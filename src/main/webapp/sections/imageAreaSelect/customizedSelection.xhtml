@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="ImageAreaSelect"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+           The ImageAreaSelect widget is high configurable.<br/>
+           The selection is now not persistent, automatically hides after the selection is done, does not has handles and can't be resized.
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<p:graphicImage id="myImage" value="/resources/images/testImage1.png" />
+			<pe:imageAreaSelect id="areaSelect"
+				for="myImage" 
+				autoHide="true"
+				handles="false"
+				movable="false"
+				persistent="false"
+				resizable="false">
+				<p:ajax event="selectEnd" listener="#{imageController.selectEndListener}" update="growl"/>
+			</pe:imageAreaSelect>
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <ui:define name="contentTab1">
+&lt;p:growl id="growl" showDetail="true" sticky="true" /&gt;
+&lt;p:graphicImage id="myImage" value="/resources/images/testImage1.png" /&gt;
+&lt;pe:imageAreaSelect id="areaSelect"
+	for="myImage" 
+	autoHide="true"
+	handles="false"
+	movable="false"
+	persistent="false"
+	resizable="false"&gt;
+	&lt;p:ajax event="selectEnd" listener="\#{imageController.selectEndListener}" update="growl"/&gt;
+&lt;/pe:imageAreaSelect&gt;
+            </ui:define>
+            <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class ImageController implements Serializable {
+
+	private static final long serialVersionUID = 20111020L;
+
+	private String imageUrl;
+
+	public ImageController() {
+		imageUrl = "../resources/images/testImage1.png";
+	}
+
+	public void selectEndListener(final ImageAreaSelectEvent e) {
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Area selected",
+				"X1: " + e.getX1() 
+				+ ", X2: " + e.getX2() 
+				+ ", Y1: " + e.getY1()
+				+ ", Y2: " + e.getY2()
+		        + ", Image width: " + e.getImgWidth() 
+		        + ", Image height: " + e.getImgHeight());
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void rotateListener(final RotateEvent e) {
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Image rotated",
+				"Degree:" + e.getDegree());
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void resizeListener(final ResizeEvent e) {
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Image resized",
+				"Width:" + e.getWidth() + ", Height: " + e.getHeight());
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/imageAreaSelect/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="imageAreaSelect"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

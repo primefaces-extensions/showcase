@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="SaveState"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+			Provides the ability to store a model value inside the view's component tree.<br/>
+			<br/>			
+			This component simply holds a reference to an arbitrary object (specified by the value property). Because this object is an ordinary component whose scope is the current view, the reference to the model automatically has that same scope.<br/>
+			<br/>
+			When the value is an EL expression, then after the view is restored the recreated target object is stored at the specified location.<br/>
+			<br/>
+			The object being saved must either:<br/>
+			    * implement java.io.Serializable, or<br/>
+			    * implement javax.faces.component.StateHolder and have a default constructor.<br/>
+			<br/>
+			Note that the saved object can be "chained" from view to view in order to extend its lifetime from a single view to a sequence of views if desired. A UISaveState component with an EL expression such as "#{someBean}" will save the object state after render, and restore it on postback. If navigation occurs to some other view and that view has a UISaveState component with the same EL expression then the object will simply be saved into the new view, thus extending its lifetime. 		</h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/saveState/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="saveState"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

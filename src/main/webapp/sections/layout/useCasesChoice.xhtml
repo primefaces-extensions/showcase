@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+    <p:menu id="useCaseList">
+        <p:menuitem value="LayoutPane - pane representation"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('layoutPane')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/layout/layoutPane.jsf"/>
+        <p:menuitem value="Tabbed layout" styleClass="#{navigationContext.getMenuitemStyleClass('tabbedLayout')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/layout/tabbedLayout.jsf"/>
+        <p:menuitem value="Events and listeners" styleClass="#{navigationContext.getMenuitemStyleClass('eventsListeners')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/layout/eventsListeners.jsf"/>
+    </p:menu>
+</ui:composition>
+</html>     

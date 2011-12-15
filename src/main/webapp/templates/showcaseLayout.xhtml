@@ -1,0 +1,101 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/templates/masterLayout.xhtml">
+    <ui:define name="resources-app">
+        <ui:include src="/sections/shared/resources-app.xhtml"/>
+        <h:outputStylesheet library="syntaxhighlighter/styles" name="syntaxhighlighter.css"/>
+        <h:outputScript library="syntaxhighlighter/scripts" name="shCore.js" target="body"/>
+        <h:outputScript library="syntaxhighlighter/scripts" name="shBrushXml.js" target="body"/>
+        <h:outputScript library="syntaxhighlighter/scripts" name="shBrushJava.js" target="body"/>
+        <h:outputScript library="syntaxhighlighter/scripts" name="shBrushCss.js" target="body"/>
+        <h:outputScript library="syntaxhighlighter/scripts" name="shBrushJScript.js" target="body"/>
+        <h:outputScript id="syntaxhighlighterInit" target="body">
+            dp.SyntaxHighlighter.ClipboardSwf = '#{request.contextPath}/resources/syntaxhighlighter/scripts/clipboard.swf';
+            dp.SyntaxHighlighter.HighlightAll('code');
+        </h:outputScript>
+    </ui:define>
+    <ui:define name="header">
+        <ui:include src="/sections/system/header.xhtml"/>
+    </ui:define>
+    <ui:define name="center">
+        <pe:layoutPane position="center" minWidth="200" minHeight="60" resizable="false" closable="false">
+            <ui:insert name="centerContent"/>
+        </pe:layoutPane>
+        <pe:layoutPane position="west" size="240" minSize="180" maxSize="500">
+            <f:facet name="header">
+                <h:outputText value="Components and more"/>
+            </f:facet>
+            <p:menu id="componentList">
+                <p:menuitem value="ClientBehaviours" styleClass="#{navigationContext.getMenuitemStyleClass('clientBehaviours')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/clientBehaviours.jsf"/>
+                <p:menuitem value="Converters" styleClass="#{navigationContext.getMenuitemStyleClass('converters')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/converters.jsf"/>
+                <p:separator/>
+                <p:menuitem value="AjaxStatus" styleClass="#{navigationContext.getMenuitemStyleClass('ajaxStatus')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/ajaxStatus.jsf"/>
+                <p:menuitem value="BlockUI" styleClass="#{navigationContext.getMenuitemStyleClass('blockUI')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/blockUI.jsf"/>
+                <p:menuitem value="CKEditor" styleClass="#{navigationContext.getMenuitemStyleClass('ckEditor')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/ckEditor.jsf"/>
+                <!-- 0.3 release
+                <p:menuitem value="FileDownload" styleClass="#{navigationContext.getMenuitemStyleClass('fileDownload')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/fileDownload.jsf"/>
+                -->
+                <p:menuitem value="Growl" styleClass="#{navigationContext.getMenuitemStyleClass('growl')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/growl.jsf"/>
+                <p:menuitem value="ImageAreaSelect" styleClass="#{navigationContext.getMenuitemStyleClass('imageAreaSelect')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/imageAreaSelect.jsf"/>
+                <p:menuitem value="ImageRotateAndResize"
+                            styleClass="#{navigationContext.getMenuitemStyleClass('imageRotateAndResize')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/imageRotateAndResize.jsf"/>
+                <p:menuitem value="KeyFilter" styleClass="#{navigationContext.getMenuitemStyleClass('keyFilter')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/keyFilter.jsf"/>
+                <p:menuitem value="Layout" styleClass="#{navigationContext.getMenuitemStyleClass('layout')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/layout.jsf"/>
+                <p:menuitem value="MasterDetail" styleClass="#{navigationContext.getMenuitemStyleClass('masterDetail')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/masterDetail.jsf"/>
+                <p:menuitem value="Message" styleClass="#{navigationContext.getMenuitemStyleClass('message')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/message.jsf"/>
+                <p:menuitem value="Messages" styleClass="#{navigationContext.getMenuitemStyleClass('messages')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/messages.jsf"/>
+                <p:menuitem value="Paginator" styleClass="#{navigationContext.getMenuitemStyleClass('paginator')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/paginator.jsf"/>
+                <p:menuitem value="RemoteCommand" styleClass="#{navigationContext.getMenuitemStyleClass('remoteCommand')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/remoteCommand.jsf"/>
+                <p:menuitem value="ResetEditableValues"
+                            styleClass="#{navigationContext.getMenuitemStyleClass('resetEditableValues')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/resetEditableValues.jsf"/>
+                <p:menuitem value="SaveState" styleClass="#{navigationContext.getMenuitemStyleClass('saveState')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/saveState.jsf"/>
+                <p:menuitem value="TimePicker" styleClass="#{navigationContext.getMenuitemStyleClass('timePicker')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/timePicker.jsf"/>
+                <p:menuitem value="Tooltip" styleClass="#{navigationContext.getMenuitemStyleClass('tooltip')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/tooltip.jsf"/>
+            </p:menu>
+        </pe:layoutPane>
+        <pe:layoutPane position="east" size="360" minSize="180" maxSize="500">
+            <pe:layoutPane position="center" minHeight="60">
+                <f:facet name="header">
+                    <h:outputText value="Use Cases"/>
+                </f:facet>
+                <ui:insert name="useCases"/>
+            </pe:layoutPane>
+            <pe:layoutPane position="south" size="'66%'" minSize="60">
+                <ui:insert name="docuTable"/>
+            </pe:layoutPane>
+        </pe:layoutPane>
+    </ui:define>
+    <ui:define name="footer">
+        <ui:include src="/sections/system/footer.xhtml"/>
+    </ui:define>
+    <ui:define name="dialogs">
+        <h:form id="dialogForm" prependId="false">
+            <ui:include src="/sections/shared/dialogs.xhtml"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

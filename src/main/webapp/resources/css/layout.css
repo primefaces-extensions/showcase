@@ -1,0 +1,56 @@
+#headerForm .logo {
+    position: relative;
+    top: 0;
+    left: 8px;
+}
+
+#componentList,
+#useCaseList {
+    border-width: 0;
+    background: none;
+    white-space: nowrap;
+}
+
+#componentList .ui-menuitem-link,
+#useCaseList .ui-menuitem-link {
+    padding: 0.2em;
+}
+
+#componentList .ui-separator {
+    margin: 5px 0;
+    width: 120%;
+}
+
+#useCaseList .ui-menuitem {
+    width: auto !important;
+}
+
+#useCaseList .ui-menuitem-text {
+    padding-left: 3px;
+}
+
+#docuDataTable th div.ui-dt-c,
+#docuDataTable .ui-datatable-data td div.ui-dt-c,
+#docuDataTable .ui-datatable-data-empty td div.ui-dt-c,
+#docuDataTable tfoot td div.ui-dt-c {
+    line-height: 1.3;
+}
+
+div.centerContent {
+    padding: 15px;
+    font-size: 13px;
+}
+
+div.centerExample {
+    padding: 0 15px 0 15px;
+}
+
+div.source {
+    margin: 15px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#sourceTabView .ui-tabs-panel {
+    padding: 0em 1em;
+}

@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition>
+	<h:graphicImage library="images" name="logo.png" styleClass="logo" alt="PrimeFaces Extensions"/>
+
+	
+	<pe:ajaxStatus style="float:right; right:0px; width:32px; height:32px;">  
+		<f:facet name="start">
+			<h:graphicImage library="images" name="ajax-loader.gif" alt="AJAX Status"/> 
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value=""/>
+		</f:facet>
+	</pe:ajaxStatus>
+</ui:composition>
+</html>

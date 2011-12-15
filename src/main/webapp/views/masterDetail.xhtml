@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="MasterDetail"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            MasterDetail component allows to group contents into levels (sections) and saves page space. 
+            Smart and flexible navigation between levels via breadcrumbs or command components gives a neat and stylish interface for users.
+            <p/>
+            Each level in the flow is represented with a MasterDetailLevel component. 
+            Switching between levels occurs by means of SelectDetailLevel handler and is based on ajax, that means each level is loaded dynamically by ajax. 
+            SelectDetailLevel can be attached to any PrimeFaces component implementing UICommand. 
+            Such typically components are CommandLink, CommandButton, MenuItem, RemoteCommand and HotKey.
+            <p/>
+            This approach gives a flexible and powerful capability to control partial validation and to call action / actionListener during navigation.
+            Area to be updated / processed during navigation between levels is set automatically to the MasterDetail component - no needs to specify
+            it in "process" / "update" attributes of command component SelectDetailLevel is attached to. But of course, this area can be also controlled 
+            more precise by "update" / "process" attributes. Partial validation can be e.g. skipped by setting process="@none" or immediate="true". 
+            Partial validation in case of the navigation via breadcrumbs is always skipped automatically.
+            <p/>
+            Other features are FlowLevel objects keeping current state of context values, "header", "footer" facets and more.
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/masterDetail/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="masterDetail"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

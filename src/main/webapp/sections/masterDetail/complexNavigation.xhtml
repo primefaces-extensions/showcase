@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="MasterDetail"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            Complex navigation from any level to any other by using of FlowLevel objects and SelectDetailLevel handler. 
+            Each navigation triggers an action method and causes displaying of growl component.             
+            Header facet allows to render any content above breadcrumb navigation. Footer facet allows to render any content below. 
+            Content of header / footer facet is shared between levels. It often makes sense if there are headline text or navigation buttons.
+        </h:panelGroup>
+        
+        <h:panelGroup layout="block" styleClass="centerExample">
+            In progress ...
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/threeTabsDecorator.html">
+            <ui:define name="contentTab1">
+contentTab1
+            </ui:define>
+            <ui:define name="contentTab2">
+contentTab2
+            </ui:define>
+            <ui:define name="contentTab3">
+contentTab3
+            </ui:define>            
+        </ui:decorate>        
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/masterDetail/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="masterDetail"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

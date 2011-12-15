@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Growl"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+        	The growl component is the same as the growl component from PrimeFaces but adds additional attributes.<br/>
+			<br/>
+			We provide fine graided control which messages should be displayed for which notification component. <br/>
+			<ul>
+				<li>TargetableFacesMessage: <br/> The TargetableFacesMessage extends from the normal FacesMessage and can be used to set a target notification component type. Current notification targets are: message, messages or growl.</li>
+				<li>level, minLevel, maxLevel: <br/> You can set which severities can be rendered by the notification component.</li>
+			</ul>
+			<br/>
+			<br/>
+			This example just shows all messages for the severity warn. 
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+			<pe:growl id="growl" showDetail="true" showSummary="true"/>
+			
+			<p:commandButton value="Add info message" actionListener="#{notificationController.addInfoMessage()}" update="growl"/>
+			<p:commandButton value="Add warn message" actionListener="#{notificationController.addWarnMessage()}" update="growl"/>
+			<p:commandButton value="Add error message" actionListener="#{notificationController.addErrorMessage()}" update="growl"/>
+			<p:commandButton value="Add fatal message" actionListener="#{notificationController.addFatalMessage()}" update="growl"/>
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <ui:define name="contentTab1">
+&lt;pe:growl id="growl" showDetail="true" showSummary="true"/&gt;
+
+&lt;p:commandButton value="Add info message" actionListener="\#{notificationController.addInfoMessage()}" update="growl"/&gt;
+&lt;p:commandButton value="Add warn message" actionListener="\#{notificationController.addWarnMessage()}" update="growl"/&gt;
+&lt;p:commandButton value="Add error message" actionListener="\#{notificationController.addErrorMessage()}" update="growl"/&gt;
+&lt;p:commandButton value="Add fatal message" actionListener="\#{notificationController.addFatalMessage()}" update="growl"/&gt;
+	            </ui:define>
+            <ui:define name="contentTab2">
+@ManagedBean
+@RequestScoped
+public class NotificationController {
+
+	public void addInfoMessage() {
+		final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "This is a Info message", null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+
+	public void addErrorMessage() {
+		final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "This is a Error message", null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+
+	public void addWarnMessage() {
+		final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "This is a <br/>Warn<br/> message", null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+
+	public void addFatalMessage() {
+		final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "This is a Fatal message", null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="growl"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>
+

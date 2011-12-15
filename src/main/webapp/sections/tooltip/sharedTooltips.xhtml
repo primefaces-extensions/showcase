@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Tooltip"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            In shared mode a single tooltip is shared between multiple targets, each with their own content.
+            A typically example is one and the same tooltip text for each filter field in a datatable with filtering feature.
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/tooltip/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="tooltip"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

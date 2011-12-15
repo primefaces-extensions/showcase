@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="CKEditor"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            Also multiple instances can be used on the same page.
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+			<p:growl id="growl" showDetail="true" />
+			<pe:ckEditor id="editor" value="#{editorController.content}">
+				<p:ajax event="save" listener="#{editorController.saveListener}" update="growl"/>
+			</pe:ckEditor>
+			<br/>
+			<br/>
+			<pe:ckEditor id="secondEditor" value="#{editorController.secondContent}" skin="office2003">
+				<p:ajax event="save" listener="#{editorController.secondSaveListener}" update="growl"/>
+			</pe:ckEditor>
+		</h:panelGroup>
+
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <ui:define name="contentTab1">
+&lt;p:growl id="growl" showDetail="true" /&gt;
+&lt;pe:ckEditor id="editor" value="\#{editorController.content}"&gt;
+	&lt;p:ajax event="save" listener="\#{editorController.saveListener}" update="growl"/&gt;
+&lt;/pe:ckEditor&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;pe:ckEditor id="secondEditor" value="\#{editorController.secondContent}" skin="office2003"&gt;
+	&lt;p:ajax event="save" listener="\#{editorController.secondSaveListener}" update="growl"/&gt;
+&lt;/pe:ckEditor&gt;
+            </ui:define>
+            <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class EditorController implements Serializable {
+
+	private static final long serialVersionUID = 20111020L;
+
+	private String content;
+	private String secondContent;
+	private String color = "#33fc14";
+
+	public EditorController() {
+		content = "Hi Showcase User";
+		secondContent = "This is a second editor";
+	}
+
+	public void saveListener() {
+		content = content.replaceAll("\\r|\\n", "");
+
+		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Content",
+		    		content.length() > 150 ? content.substring(0, 100) : content);
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void secondSaveListener() {
+		secondContent = secondContent.replaceAll("\\r|\\n", "");
+
+		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Second Content",
+				secondContent.length() > 150 ? secondContent.substring(0, 100) : secondContent);
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void changeColor() {
+		if (color.equals("#1433FC")) {
+			color = "#33fc14";
+		} else {
+			color = "#1433FC";
+		}
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(final String content) {
+		this.content = content;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(final String color) {
+		this.color = color;
+	}
+
+	public String getSecondContent() {
+		return secondContent;
+	}
+
+	public void setSecondContent(final String secondContent) {
+		this.secondContent = secondContent;
+	}
+}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/ckEditor/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="ckEditor"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

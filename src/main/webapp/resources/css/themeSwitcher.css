@@ -1,0 +1,68 @@
+.themeRoller {
+	position: absolute;
+	top: 30px;
+	right: 45px;
+	z-index: 99;
+}
+
+.themeRoller .themeText {
+	color: #808080 !important;
+	font-size: 11px !important;
+	vertical-align: middle !important;
+	padding: 0 4px 0 0 !important;
+}
+
+.themeRoller .themeSelect {
+	font-size: 11px !important;
+	padding: 0 !important;
+	vertical-align: middle !important;
+}
+
+.themeRoller .themeSelect .ui-selectonemenu {
+	width: 170px !important;
+	line-height: 18px !important;
+	height: 18px !important;
+	display: block !important;
+}
+
+.themeRoller .themeSelect .ui-selectonemenu .ui-selectonemenu-label {
+    padding: 0 0 0 5px !important;
+    font-weight: normal !important;
+	line-height: 18px !important;
+	height: 18px !important;
+}
+
+.themeRoller .themeSelect .ui-selectonemenu .ui-selectonemenu-trigger {
+    padding: 0 1px !important;
+	line-height: 18px !important;
+	height: 18px !important;
+}
+
+.themeRoller .themeSelect .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+    margin-top: 2px !important;
+}
+
+#themeSwitcher_themeSelectMenu_panel .ui-selectonemenu-table {
+	border-collapse: separate !important;
+    border-spacing: 0;
+    margin: 3px 0;
+}
+
+#themeSwitcher_themeSelectMenu_panel .ui-selectonemenu-items {
+	white-space: nowrap !important;
+}
+
+#themeSwitcher_themeSelectMenu_panel .ui-selectonemenu-table td {
+    padding: 2px 4px 2px 6px;
+    cursor: pointer;
+    border: none !important;
+}
+
+#themeSwitcher_themeSelectMenu_panel .ui-selectonemenu-table td a {
+    padding: 3px 4px !important;
+    display: block;
+}
+
+#themeSwitcher_themeSelectMenu_panel .ui-selectonemenu-item img {
+    vertical-align: middle;
+}

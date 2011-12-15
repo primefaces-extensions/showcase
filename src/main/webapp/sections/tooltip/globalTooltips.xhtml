@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Tooltip"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            In global mode tooltip uses title values of JSF components. Placing one tooltip is enough instead of using a tooltip for each target component.
+            Global tooltips are smart enough and survive Ajax updates.
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/tooltip/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="tooltip"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

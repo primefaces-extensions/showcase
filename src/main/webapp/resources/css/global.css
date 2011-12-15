@@ -1,0 +1,44 @@
+html {
+    overflow: auto !important;
+}
+
+body {
+    font-family: Trebuchet MS, Verdana, Helvetica, sans-serif;
+    font-size: 12px;
+    padding: 0 !important;
+    margin: 0;
+}
+
+input,
+select,
+textarea,
+button,
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+    font-family: Trebuchet MS, Verdana, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+}
+
+.ui-widget-header,
+.ui-widget-content,
+.ui-widget-header .ui-widget-header,
+.ui-widget-content .ui-widget-content {
+    font-family: Trebuchet MS, Verdana, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+}
+
+.ui-menu .ui-menuitem-link {
+    width: 115%;
+}
+
+table .formColumn1 {
+    padding-right: 10px;
+    text-align: right;
+}
+
+table .formColumn2 input {
+    width: 200px;
+}

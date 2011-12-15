@@ -1,0 +1,270 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="MasterDetail"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            Straightforward navigation level by level by using of SelectDetailLevel handler. 
+            Context values (any objects) are passed from level to level and available via context variables.
+            Level to go to can be set via "level" or "step" attribute. 
+            Text for breadcrumb items is set by "levelLabel" attribute of MasterDetailLevel component.
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <pe:masterDetail id="masterDetail" level="#{simpleMasterDetailController.currentLevel}">
+
+                <pe:masterDetailLevel level="1" levelLabel="Sports">
+                    <p:dataTable id="sports" value="#{simpleMasterDetailController.sports}" var="sport">
+                        <p:column headerText="Sport">
+                            <p:commandLink value="#{sport.name}">
+                                <pe:selectDetailLevel contextValue="#{sport}"/>
+                            </p:commandLink>
+                        </p:column>
+                        <p:column headerText="Number of countries with leagues">
+                            <h:outputText value="#{fn:length(sport.countriesWithLeague)}"/>
+                        </p:column>
+                    </p:dataTable>
+                </pe:masterDetailLevel>
+
+                <pe:masterDetailLevel level="2" contextVar="sport" levelLabel="Countries having #{sport.name} leagues">
+                    <p:dataTable id="countries" value="#{sport.countriesWithLeague}" var="country">
+                        <p:column headerText="Country">
+                            <p:commandLink value="#{country.name}">
+                                <pe:selectDetailLevel contextValue="#{country}"/>
+                            </p:commandLink>
+                        </p:column>
+                        <p:column headerText="Code">
+                            <h:outputText value="#{country.code}"/>
+                        </p:column>
+                    </p:dataTable>
+                </pe:masterDetailLevel>
+
+                <pe:masterDetailLevel level="3" contextVar="country" levelLabel="#{country.sport} leagues of #{country.name}">
+                    <p:dataTable id="leauges" value="#{country.leagues}" var="league">
+                        <p:column headerText="League">
+                            <h:outputText value="#{league.name}"/>
+                        </p:column>
+                        <p:column headerText="Number of teams">
+                            <h:outputText value="#{league.numberOfTeam}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <h:panelGrid columns="2" style="margin-top: 10px">
+                        <p:commandButton value="Go to Sports" image="ui-icon ui-icon-arrowthickstop-1-w">
+                            <pe:selectDetailLevel level="1"/>
+                        </p:commandButton>
+                        <p:commandButton value="Go to Countries" image="ui-icon ui-icon-arrowthick-1-w">
+                            <pe:selectDetailLevel step="-1"/>
+                        </p:commandButton>
+                    </h:panelGrid>
+                </pe:masterDetailLevel>
+
+            </pe:masterDetail>
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/threeTabsDecorator.html">
+            <ui:define name="contentTab1">
+&lt;pe:masterDetail id=&quot;masterDetail&quot; level=&quot;\#{simpleMasterDetailController.currentLevel}&quot;&gt;
+
+    &lt;pe:masterDetailLevel level=&quot;1&quot; levelLabel=&quot;Sports&quot;&gt;
+        &lt;p:dataTable id=&quot;sports&quot; value=&quot;\#{simpleMasterDetailController.sports}&quot; var=&quot;sport&quot;&gt;
+            &lt;p:column headerText=&quot;Sport&quot;&gt;
+                &lt;p:commandLink value=&quot;\#{sport.name}&quot;&gt;
+                    &lt;pe:selectDetailLevel contextValue=&quot;\#{sport}&quot;/&gt;
+                &lt;/p:commandLink&gt;
+            &lt;/p:column&gt;
+            &lt;p:column headerText=&quot;Number of countries with leagues&quot;&gt;
+                &lt;h:outputText value=&quot;\#{fn:length(sport.countriesWithLeague)}&quot;/&gt;
+            &lt;/p:column&gt;
+        &lt;/p:dataTable&gt;
+    &lt;/pe:masterDetailLevel&gt;
+
+    &lt;pe:masterDetailLevel level=&quot;2&quot; contextVar=&quot;sport&quot; levelLabel=&quot;Countries having \#{sport.name} leagues&quot;&gt;
+        &lt;p:dataTable id=&quot;countries&quot; value=&quot;\#{sport.countriesWithLeague}&quot; var=&quot;country&quot;&gt;
+            &lt;p:column headerText=&quot;Country&quot;&gt;
+                &lt;p:commandLink value=&quot;\#{country.name}&quot;&gt;
+                    &lt;pe:selectDetailLevel contextValue=&quot;\#{country}&quot;/&gt;
+                &lt;/p:commandLink&gt;
+            &lt;/p:column&gt;
+            &lt;p:column headerText=&quot;Code&quot;&gt;
+                &lt;h:outputText value=&quot;\#{country.code}&quot;/&gt;
+            &lt;/p:column&gt;
+        &lt;/p:dataTable&gt;
+    &lt;/pe:masterDetailLevel&gt;
+
+    &lt;pe:masterDetailLevel level=&quot;3&quot; contextVar=&quot;country&quot; levelLabel=&quot;\#{country.sport} leagues of \#{country.name}&quot;&gt;
+        &lt;p:dataTable id=&quot;leauges&quot; value=&quot;\#{country.leagues}&quot; var=&quot;league&quot;&gt;
+            &lt;p:column headerText=&quot;League&quot;&gt;
+                &lt;h:outputText value=&quot;\#{league.name}&quot;/&gt;
+            &lt;/p:column&gt;
+            &lt;p:column headerText=&quot;Number of teams&quot;&gt;
+                &lt;h:outputText value=&quot;\#{league.numberOfTeam}&quot;/&gt;
+            &lt;/p:column&gt;
+        &lt;/p:dataTable&gt;
+        &lt;h:panelGrid columns=&quot;2&quot; style=&quot;margin-top: 10px&quot;&gt;
+            &lt;p:commandButton value=&quot;Go to Sports&quot; image=&quot;ui-icon ui-icon-arrowthickstop-1-w&quot;&gt;
+                &lt;pe:selectDetailLevel level=&quot;1&quot;/&gt;
+            &lt;/p:commandButton&gt;
+            &lt;p:commandButton value=&quot;Go to Countries&quot; image=&quot;ui-icon ui-icon-arrowthick-1-w&quot;&gt;
+                &lt;pe:selectDetailLevel step=&quot;-1&quot;/&gt;
+            &lt;/p:commandButton&gt;
+        &lt;/h:panelGrid&gt;
+    &lt;/pe:masterDetailLevel&gt;
+
+&lt;/pe:masterDetail&gt;
+            </ui:define>
+            <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class SimpleMasterDetailController implements Serializable {
+
+	private List&lt;Sport&gt; sports;
+	private int currentLevel = 1;
+
+	public SimpleMasterDetailController() {
+		if (sports == null) {
+			sports = new ArrayList&lt;Sport&gt;();
+
+			// football
+			List&lt;Country&gt; countries = new ArrayList&lt;Country&gt;();
+			Country country = new Country(&quot;Switzerland&quot;, &quot;CH&quot;, &quot;Football&quot;, getLeagues(&quot;Switzerland&quot;));
+			countries.add(country);
+			country = new Country(&quot;England&quot;, &quot;UK&quot;, &quot;Football&quot;, getLeagues(&quot;England&quot;));
+			countries.add(country);
+			country = new Country(&quot;Spain&quot;, &quot;ES&quot;, &quot;Football&quot;, getLeagues(&quot;Spain&quot;));
+			countries.add(country);
+			country = new Country(&quot;Netherlands&quot;, &quot;NL&quot;, &quot;Football&quot;, getLeagues(&quot;Netherlands&quot;));
+			countries.add(country);
+			sports.add(new Sport(&quot;Football&quot;, countries));
+
+			//basketball
+			countries = new ArrayList&lt;Country&gt;();
+			country = new Country(&quot;Germany&quot;, &quot;DE&quot;, &quot;Basketball&quot;, getLeagues(&quot;Germany&quot;));
+			countries.add(country);
+			country = new Country(&quot;USA&quot;, &quot;US&quot;, &quot;Basketball&quot;, getLeagues(&quot;USA&quot;));
+			countries.add(country);
+			country = new Country(&quot;Poland&quot;, &quot;PL&quot;, &quot;Basketball&quot;, getLeagues(&quot;Poland&quot;));
+			countries.add(country);
+			sports.add(new Sport(&quot;Basketball&quot;, countries));
+
+			// ice hockey
+			countries = new ArrayList&lt;Country&gt;();
+			country = new Country(&quot;Russia&quot;, &quot;RU&quot;, &quot;Ice Hockey&quot;, getLeagues(&quot;Russia&quot;));
+			countries.add(country);
+			country = new Country(&quot;Canada&quot;, &quot;CA&quot;, &quot;Ice Hockey&quot;, getLeagues(&quot;Canada&quot;));
+			countries.add(country);
+			sports.add(new Sport(&quot;Ice Hockey&quot;, countries));
+		}
+	}
+
+	public List&lt;Sport&gt; getSports() {
+		return sports;
+	}
+
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
+
+	public void setCurrentLevel(int currentLevel) {
+		this.currentLevel = currentLevel;
+	}
+
+	private List&lt;League&gt; getLeagues(String country) {
+		List&lt;League&gt; leagues = new ArrayList&lt;League&gt;();
+
+		leagues.add(new League(country + &quot; SuperLeague&quot;, 20));
+		leagues.add(new League(country + &quot; NotBadLeague&quot;, 15));
+		leagues.add(new League(country + &quot; CrapLeague&quot;, 30));
+
+		return leagues;
+	}
+}
+            </ui:define>
+            <ui:define name="contentTab3">
+public class Sport implements Serializable {
+
+	private String name;
+	private List&lt;Country&gt; countriesWithLeague;
+
+	public Sport(String name, List&lt;Country&gt; countriesWithLeague) {
+		this.name = name;
+		this.countriesWithLeague = countriesWithLeague;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public List&lt;Country&gt; getCountriesWithLeague() {
+		return countriesWithLeague;
+	}
+}
+                
+public class Country implements Serializable {
+
+	private String name;
+	private String code;
+	private String sport;
+	private List&lt;League&gt; leagues;
+
+	public Country(String name, String code, String sport, List&lt;League&gt; leagues) {
+		this.name = name;
+		this.code = code;
+		this.sport = sport;
+		this.leagues = leagues;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getSport() {
+		return sport;
+	}
+
+	public List&lt;League&gt; getLeagues() {
+		return leagues;
+	}
+}
+                
+public class League implements Serializable {
+
+	private String name;
+	private int numberOfTeam;
+
+	public League(String name, int numberOfTeam) {
+		this.name = name;
+		this.numberOfTeam = numberOfTeam;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getNumberOfTeam() {
+		return numberOfTeam;
+	}
+}                
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/masterDetail/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="masterDetail"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:cc="http://java.sun.com/jsf/composite/composite">
+<f:view contentType="text/html" locale="en">
+    <pe:head title="PrimeFaces Extensions - ShowCase" shortcutIcon="#{request.contextPath}/favicon.ico">
+        <f:facet name="first">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta http-equiv="pragma" content="no-cache"/>
+            <meta http-equiv="cache-control" content="no-cache"/>
+            <meta http-equiv="expires" content="0"/>
+        </f:facet>
+    </pe:head>
+    <h:body>
+        <pe:layout id="fpl" widgetVar="fullLayoutWidget" togglerTipOpen="Close" togglerTipClose="Open" resizerTip="Resize">
+            <pe:layoutPane position="north" size="60" resizable="false" closable="false">
+                <h:form id="headerForm" prependId="false">
+                    <ui:insert name="header"/>
+                </h:form>
+            </pe:layoutPane>
+            <h:form id="mainForm" prependId="false">
+                <ui:insert name="center"/>
+                <pe:layoutPane position="south" size="28" resizable="false" closable="false" statusbar="true">
+                    <ui:insert name="footer"/>
+                </pe:layoutPane>
+            </h:form>
+        </pe:layout>
+
+        <h:form prependId="false">
+            <cc:themeSwitcher id="themeSwitcher"/>
+        </h:form>
+        <ui:insert name="dialogs"/>
+        <ui:insert name="resources-app"/>
+    </h:body>
+</f:view>
+</html>

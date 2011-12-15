@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+    <p:menu id="useCaseList">
+        <p:menuitem value="Basic Usage"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('basicUsage')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/remoteCommand/basicUsage.jsf"/>
+        <p:menuitem value="Using RemoteCommandParameter"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('remoteCommandParameter')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/remoteCommand/remoteCommandParameter.jsf"/>
+    </p:menu>
+</ui:composition>
+</html>

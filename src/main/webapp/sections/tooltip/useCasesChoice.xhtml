@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+    <p:menu id="useCaseList">
+        <p:menuitem value="Customized tooltips" styleClass="#{navigationContext.getMenuitemStyleClass('customizedTooltips')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/tooltip/customizedTooltips.jsf"/>
+        <p:menuitem value="Global tooltips" styleClass="#{navigationContext.getMenuitemStyleClass('globalTooltips')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/tooltip/globalTooltips.jsf"/>
+        <p:menuitem value="Shared tooltip" styleClass="#{navigationContext.getMenuitemStyleClass('sharedTooltips')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/tooltip/sharedTooltips.jsf"/>
+    </p:menu>
+</ui:composition>
+</html>

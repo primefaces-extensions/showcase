@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+    <p:menu id="useCaseList">
+        <p:menuitem value="JsonConverter"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('jsonConverter')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/remoteCommand/remoteCommandParameter.jsf"/>
+        <p:menuitem value="EnumConverter"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('enumConverter')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/converters/enumConverter.jsf"/>
+        <p:menuitem value="LocaleConverter"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('localeConverter')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/converters/localeConverter.jsf"/>
+    </p:menu>
+</ui:composition>
+</html>

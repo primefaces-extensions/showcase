@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="AjaxStatus"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            Programmatic Ajax Status is specified via attributes onprestart, onstart, oncomplete, onsuccess, onerror. Client side callback defined by this attributes get executed for specified ajax states.
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+            In progress ...
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <ui:define name="contentTab1">
+contentTab1
+            </ui:define>
+            <ui:define name="contentTab2">
+contentTab2
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/ajaxstatus/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="ajaxStatus"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>
