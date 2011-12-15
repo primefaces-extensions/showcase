@@ -35,9 +35,9 @@
     <inceptionYear>2011</inceptionYear>
 
     <scm>
-        <connection>scm:svn:http://primefaces-extensions.googlecode.com/svn/showcase/trunk</connection>
-        <developerConnection>scm:svn:https://primefaces-extensions.googlecode.com/svn/showcase/trunk</developerConnection>
-        <url>http://code.google.com/p/primefaces-extensions/source/browse/#svn/showcase/trunk</url>
+        <connection>scm:svn:http://primefaces-extensions.googlecode.com/svn/samples/showcase/trunk</connection>
+        <developerConnection>scm:svn:https://primefaces-extensions.googlecode.com/svn/samples/showcase/trunk</developerConnection>
+        <url>http://code.google.com/p/primefaces-extensions/source/browse/#svn/samples/showcase/trunk</url>
     </scm>
 
     <developers>
@@ -96,7 +96,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>            
+            </plugin>
             <plugin>
                 <groupId>org.primefaces.extensions</groupId>
                 <artifactId>resources-optimizer-maven-plugin</artifactId>
@@ -127,7 +127,7 @@
                 <configuration>
                     <warSourceDirectory>${project.build.directory}/webapp-resources</warSourceDirectory>
                 </configuration>
-            </plugin>         
+            </plugin>
         </plugins>
     </build>
 
@@ -163,16 +163,6 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>primefaces-extensions</artifactId>
-            <version>0.2.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>resources-ckeditor</artifactId>
-            <version>0.2.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces.themes</groupId>
