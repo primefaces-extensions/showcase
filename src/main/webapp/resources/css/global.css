@@ -42,3 +42,39 @@ table .formColumn1 {
 table .formColumn2 input {
     width: 200px;
 }
+
+.radioButtons,
+.radioButtons td {
+    white-space: nowrap;
+    border: none !important;
+}
+
+.radioLineDirection td:first-child {
+    padding-right: 15px;
+}
+
+.radioButtons input {
+    margin: 2px 0 2px 0;
+}
+
+.radioButtons input,
+.radioButtons label {
+    vertical-align: middle;
+}
+
+.radioButtons label {
+    margin-left: 4px;
+}
+
+.checkBoxes {
+    white-space: nowrap;
+}
+
+.checkBoxes input,
+.checkBoxes label {
+    vertical-align: middle;
+}
+
+.checkBoxes label {
+    padding-bottom: 2px;
+}

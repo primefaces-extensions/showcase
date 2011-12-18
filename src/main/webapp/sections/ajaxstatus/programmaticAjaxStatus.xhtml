@@ -13,15 +13,21 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            In progress ...
+            <p:ajaxStatus onstart="ajaxOnStartIndicator()" onerror="ajaxOnErrorIndicator()"
+                          onsuccess="ajaxOnSuccessIndicator()"/>
+            <h:graphicImage id="ajaxIndicatorActive" library="images"
+                            name="connect_active.gif" style="display: none;" styleClass="ajaxIndicator"/>
+            <h:graphicImage id="ajaxIndicatorCaution" library="images"
+                            name="connect_caution.gif" style="display: none;" styleClass="ajaxIndicator"
+                            title="Connection problem" alt="Connection problem"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-contentTab1
+                contentTab1
             </ui:define>
             <ui:define name="contentTab2">
-contentTab2
+                contentTab2
             </ui:define>
         </ui:decorate>
     </ui:define>
