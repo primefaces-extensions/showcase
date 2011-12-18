@@ -1,8 +1,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition>
-
+    <p:dialog header="Developers" widgetVar="dlgDevelopers" showEffect="clip" hideEffect="clip" modal="true">
+        <h:panelGrid columns="2" columnClasses="developersCol1,developersCol2" style="margin: 10px;">
+            <h:outputText value="Thomas Andraschko"/>
+            <h:outputText value="zoigln@googlemail.com"/>
+            <h:outputText value="Oleg Varaksin"/>
+            <h:outputText value="ovaraksin@googlemail.com"/>
+        </h:panelGrid>
+        <f:facet name="footer">
+            <h:panelGroup layout="block" style="text-align: right; padding: 2px;">
+                <h:panelGroup layout="block" style="text-align:center; padding-bottom:8px; font-style:italic;">
+                    <h:outputText value="We are looking for developers which would like to join our team."/>
+                </h:panelGroup>
+                <p:commandButton type="button" value="Close" onclick="dlgDevelopers.hide()"/>
+            </h:panelGroup>
+        </f:facet>
+    </p:dialog>
 </ui:composition>
 </html>     

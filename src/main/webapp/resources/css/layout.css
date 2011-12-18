@@ -2,6 +2,7 @@
     position: relative;
     top: 0;
     left: 8px;
+    float: left;
 }
 
 #componentList,
@@ -53,4 +54,54 @@ div.source {
 
 #sourceTabView .ui-tabs-panel {
     padding: 0em 1em;
+}
+
+.smallNav {
+    text-align: right;
+    float: right;
+    margin-right: 10px;
+    margin-top: -9px;
+    *margin-top: -40px; /* shows in IE7 and below */
+}
+
+.smallNav td {
+    font-size: 11px;
+}
+
+.smallNav .smallNavImg {
+    color: #D61F27 !important;
+    font-weight: bold;
+    border: none;
+    font-size: 10px;
+    padding-bottom: 5px;
+    padding-right: 4px;
+    padding-top: 4px;
+}
+
+.smallNav .smallNavText {
+    color: #4F4F4F !important;
+    font-size: 11px;
+    vertical-align: middle;
+    padding-right: 4px;
+}
+
+.smallNav .smallNavText a {
+    color: #4F4F4F !important;
+    text-decoration: none;
+    border-bottom: dotted 1px #4F4F4F !important;
+}
+
+.smallNav .smallNavText a:hover {
+    color: blue !important;
+    border-bottom: dotted 1px blue !important;
+}
+
+.developersCol1 {
+    padding: 5px 10px 5px 5px;
+    text-align: right;
+}
+
+.developersCol2 {
+    padding: 5px;
+    text-align: left;
 }

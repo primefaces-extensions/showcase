@@ -2,13 +2,21 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition>
 	<h:graphicImage library="images" name="logo.png" styleClass="logo" alt="PrimeFaces Extensions"/>
-
+    
+	<h:panelGrid columns="3" styleClass="smallNav" columnClasses="smallNavText,smallNavImg,smallNavText">
+		<h:outputLink value="http://code.google.com/p/primefaces-extensions/" target="_blank">
+            <h:outputText value="Homepage"/>
+        </h:outputLink>
+        <h:outputText value="|"/>
+		<h:outputLink value="#" onclick="dlgDevelopers.show()">
+            <h:outputText value="Developers"/>
+        </h:outputLink>
+	</h:panelGrid>    
 	
-	<pe:ajaxStatus style="float:right; right:0px; width:32px; height:32px;">  
+	<pe:ajaxStatus styleClass="logo" style="left:80px; width:32px; height:32px; margin-top: 10px;">  
 		<f:facet name="start">
 			<h:graphicImage library="images" name="ajax-loader.gif" alt="AJAX Status"/> 
 		</f:facet>
