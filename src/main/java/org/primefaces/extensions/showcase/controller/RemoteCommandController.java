@@ -18,11 +18,10 @@
 
 package org.primefaces.extensions.showcase.controller;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import org.primefaces.extensions.showcase.model.Circle;
 
@@ -33,10 +32,8 @@ import org.primefaces.extensions.showcase.model.Circle;
  * @version $Revision: 1.0 $
  */
 @ManagedBean
-@ViewScoped
-public class RemoteCommandController implements Serializable {
-
-	private static final long serialVersionUID = 20111020L;
+@RequestScoped
+public class RemoteCommandController {
 
 	private String subject;
 	private Date date;

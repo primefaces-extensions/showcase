@@ -99,10 +99,8 @@
             </ui:define>
             <ui:define name="contentTab2">
 @ManagedBean
-@ViewScoped
-public class RemoteCommandController implements Serializable {
-
-	private static final long serialVersionUID = 20111020L;
+@RequestScoped
+public class RemoteCommandController {
 
 	private String subject;
 	private Date date;
