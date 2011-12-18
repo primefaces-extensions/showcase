@@ -53,12 +53,12 @@
 
                     <p:commandButton value="Save" action="#{advancedResetEditableValuesController.updatePersonDetails}"
                                      process="personsGroup" update="personsGroup"
-                                     style="margin-top: 10px;" image="ui-icon-disk"/>
+                                     style="margin-top: 10px;" icon="ui-icon-disk"/>
                     <p:commandButton value="Regular Cancel" action="#{advancedResetEditableValuesController.cancelPersonDetails}"
-                                     update="personsGroup" immediate="true" image="ui-icon-close"/>
+                                     update="personsGroup" immediate="true" icon="ui-icon-close"/>
                     <p:commandButton value="Cancel with pe:resetEditableValues"
                                      action="#{advancedResetEditableValuesController.cancelPersonDetails}"
-                                     update="personsGroup" immediate="true" image="ui-icon-close">
+                                     update="personsGroup" immediate="true" icon="ui-icon-close">
                         <pe:resetEditableValues for="personDetail"/>
                     </p:commandButton>
                 </h:panelGroup>

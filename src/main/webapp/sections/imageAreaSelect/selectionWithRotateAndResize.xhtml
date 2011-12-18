@@ -54,13 +54,13 @@
 					<p:ajax event="resize" listener="#{imageController.resizeListener}" update="growl" oncomplete="areaSelectWidget.reload();"/>
 				</pe:imageRotateAndResize>
 
-				<p:commandButton image="ui-icon ui-icon-arrowreturnthick-1-w" value="Rotate Left"
+				<p:commandButton icon="ui-icon-arrowreturnthick-1-w" value="Rotate Left"
 					onclick="rotateAndResizeWidget.rotateLeft(90);return false;"/>
-				<p:commandButton image="ui-icon ui-icon-arrowreturnthick-1-e" value="Rotate Right"
+				<p:commandButton icon="ui-icon-arrowreturnthick-1-e" value="Rotate Right"
 					onclick="rotateAndResizeWidget.rotateRight(90);return false;"/>
-				<p:commandButton image="ui-icon ui-icon-zoomin" value="Scale +"
+				<p:commandButton icon="ui-icon-zoomin" value="Scale +"
 					onclick="rotateAndResizeWidget.scale(1.05);return false;"/>
-				<p:commandButton image="ui-icon ui-icon-zoomout" value="Scale -"
+				<p:commandButton icon="ui-icon-zoomout" value="Scale -"
 					onclick="rotateAndResizeWidget.scale(0.95);return false;"/>
 			</p:outputPanel>
         </h:panelGroup>
@@ -103,13 +103,13 @@
 		&lt;p:ajax event="resize" listener="\#{imageController.resizeListener}" update="growl" oncomplete="areaSelectWidget.reload();"/&gt;
 	&lt;/pe:imageRotateAndResize&gt;
 
-	&lt;p:commandButton image="ui-icon ui-icon-arrowreturnthick-1-w" value="Rotate Left"
+	&lt;p:commandButton icon="ui-icon-arrowreturnthick-1-w" value="Rotate Left"
 		onclick="rotateAndResizeWidget.rotateLeft(90);return false;"/&gt;
-	&lt;p:commandButton image="ui-icon ui-icon-arrowreturnthick-1-e" value="Rotate Right"
+	&lt;p:commandButton icon="ui-icon-arrowreturnthick-1-e" value="Rotate Right"
 		onclick="rotateAndResizeWidget.rotateRight(90);return false;"/&gt;
-	&lt;p:commandButton image="ui-icon ui-icon-zoomin" value="Scale +"
+	&lt;p:commandButton icon="ui-icon-zoomin" value="Scale +"
 		onclick="rotateAndResizeWidget.scale(1.05);return false;"/&gt;
-	&lt;p:commandButton image="ui-icon ui-icon-zoomout" value="Scale -"
+	&lt;p:commandButton icon="ui-icon-zoomout" value="Scale -"
 		onclick="rotateAndResizeWidget.scale(0.95);return false;"/&gt;
 &lt;/p:outputPanel&gt;
             </ui:define>
