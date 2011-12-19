@@ -16,7 +16,7 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-			<p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}" lazy="true">
+			<p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}">
 				<pe:paginator 
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rows="10"
@@ -41,7 +41,7 @@
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-&lt;p:dataTable id="dataTable" var="message" value="\#{dataTableController.messages}" lazy="true"&gt;
+&lt;p:dataTable id="dataTable" var="message" value="\#{dataTableController.messages}"&gt;
 	&lt;pe:paginator 
 		paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 		rows="10"
