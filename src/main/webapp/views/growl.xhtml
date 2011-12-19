@@ -23,7 +23,7 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-			<pe:growl id="growl" showDetail="true" showSummary="true"/>
+			<pe:growl id="growl" showDetail="true" showSummary="true" level="warn"/>
 			
 			<p:commandButton value="Add info message" actionListener="#{notificationController.addInfoMessage()}" update="growl"/>
 			<p:commandButton value="Add warn message" actionListener="#{notificationController.addWarnMessage()}" update="growl"/>
