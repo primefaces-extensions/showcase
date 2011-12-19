@@ -171,6 +171,7 @@ public class AjaxStatusController implements Serializable {
 
 	public void valueChanged(ValueChangeEvent vce) {
 		try {
+            // simulate a long running request
 			Thread.sleep(1500);
 		} catch (Exception e) {
 			// ignore

@@ -2,33 +2,139 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
             <h:outputText value="AjaxStatus"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Programmatic Ajax Status is specified via attributes onprestart, onstart, oncomplete, onsuccess, onerror. Client side callback defined by this attributes get executed for specified ajax states.
+            Programmatic Ajax Status is specified via attributes onprestart, onstart, oncomplete, onsuccess, onerror.
+            Client side callback defined by this attributes get executed for specified ajax states.
+            In this example the cursor is set to "wait" when an ajax request is running. It's how desktop applications behaves.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <p:ajaxStatus onstart="ajaxOnStartIndicator()" onerror="ajaxOnErrorIndicator()"
-                          onsuccess="ajaxOnSuccessIndicator()"/>
-            <h:graphicImage id="ajaxIndicatorActive" library="images"
-                            name="connect_active.gif" style="display: none;" styleClass="ajaxIndicator"/>
-            <h:graphicImage id="ajaxIndicatorCaution" library="images"
-                            name="connect_caution.gif" style="display: none;" styleClass="ajaxIndicator"
-                            title="Connection problem" alt="Connection problem"/>
+            <h:panelGrid columns="2">
+                <h:panelGrid columns="1" cellpadding="0" cellspacing="0">
+                    <h:outputText value="JSF standard f:ajax with PrimeFaces p:inputTextarea"/>
+                    <p:inputTextarea id="textArea" valueChangeListener="#{ajaxStatusController.textChanged}"
+                                     value="#{ajaxStatusController.text}" style="width:300px; height:100px; margin-top:10px;">
+                        <f:ajax event="keydown" execute="textArea"/>
+                    </p:inputTextarea>
+                </h:panelGrid>
+            
+                <h:panelGrid id="ajaxIndicatorTable" columns="2" columnClasses="column" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Ajax indicator" styleClass="header"/>
+                    <h:panelGroup>
+                        <pe:ajaxStatus onstart="ajaxOnStartIndicator()" onerror="ajaxOnErrorIndicator()"
+                                       onsuccess="ajaxOnSuccessIndicator()"/>
+                        <h:graphicImage id="ajaxIndicatorActive" library="images"
+                                        name="connect_active.gif" style="display: none;" styleClass="ajaxIndicator"/>
+                        <h:graphicImage id="ajaxIndicatorCaution" library="images"
+                                        name="connect_caution.gif" style="display: none;" styleClass="ajaxIndicator"
+                                        title="Connection problem" alt="Connection problem"/>
+                    </h:panelGroup>
+                </h:panelGrid>
+            </h:panelGrid>
         </h:panelGroup>
 
-        <ui:decorate template="/templates/twoTabsDecorator.html">
+        <ui:decorate template="/templates/threeTabsDecoratorJS.html">
             <ui:define name="contentTab1">
-                contentTab1
+&lt;h:panelGrid columns=&quot;2&quot;&gt;
+    &lt;h:panelGrid columns=&quot;1&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+        &lt;h:outputText value=&quot;JSF standard f:ajax with PrimeFaces p:inputTextarea&quot;/&gt;
+        &lt;p:inputTextarea id=&quot;textArea&quot; valueChangeListener=&quot;\#{ajaxStatusController.textChanged}&quot;
+                         value=&quot;\#{ajaxStatusController.text}&quot; style=&quot;width:300px; height:100px; margin-top:10px;&quot;&gt;
+            &lt;f:ajax event=&quot;keydown&quot; execute=&quot;textArea&quot;/&gt;
+        &lt;/p:inputTextarea&gt;
+    &lt;/h:panelGrid&gt;
+
+    &lt;h:panelGrid id=&quot;ajaxIndicatorTable&quot; columns=&quot;2&quot; columnClasses=&quot;column&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+        &lt;h:outputText value=&quot;Ajax indicator&quot; styleClass=&quot;header&quot;/&gt;
+        &lt;h:panelGroup&gt;
+            &lt;pe:ajaxStatus onstart=&quot;ajaxOnStartIndicator()&quot; onerror=&quot;ajaxOnErrorIndicator()&quot;
+                           onsuccess=&quot;ajaxOnSuccessIndicator()&quot;/&gt;
+            &lt;h:graphicImage id=&quot;ajaxIndicatorActive&quot; library=&quot;images&quot;
+                            name=&quot;connect_active.gif&quot; style=&quot;display: none;&quot; styleClass=&quot;ajaxIndicator&quot;/&gt;
+            &lt;h:graphicImage id=&quot;ajaxIndicatorCaution&quot; library=&quot;images&quot;
+                            name=&quot;connect_caution.gif&quot; style=&quot;display: none;&quot; styleClass=&quot;ajaxIndicator&quot;
+                            title=&quot;Connection problem&quot; alt=&quot;Connection problem&quot;/&gt;
+        &lt;/h:panelGroup&gt;
+    &lt;/h:panelGrid&gt;
+&lt;/h:panelGrid&gt;
             </ui:define>
             <ui:define name="contentTab2">
-                contentTab2
+@ManagedBean
+@ViewScoped
+public class AjaxStatusController implements Serializable {
+
+	private String text = &quot;Try to type something&quot;;
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public void textChanged(ValueChangeEvent vce) {
+		try {
+			// simulate a long running request
+			Thread.sleep(500);
+		} catch (Exception e) {
+			// ignore
+		}
+	}
+}
             </ui:define>
+            <ui:define name="contentTab3">
+function ajaxOnStartIndicator() {
+    document.body.style.cursor = 'wait';
+    $(&quot;#ajaxIndicatorCaution&quot;).css(&quot;display&quot;, &quot;none&quot;);
+    $(&quot;#ajaxIndicatorActive&quot;).css(&quot;display&quot;, &quot;block&quot;);
+
+    // get the current counter
+    var jqDoc = $(document);
+    var requestCount = jqDoc.data(&quot;ajaxStatus.requestCount&quot;);
+    if (typeof requestCount === 'undefined') {
+        requestCount = 0;
+    }
+
+    // increase the counter
+    jqDoc.data(&quot;ajaxStatus.requestCount&quot;, requestCount + 1);
+}
+
+function ajaxOnSuccessIndicator() {
+    // get the current counter
+    var jqDoc = $(document);
+    var requestCount = jqDoc.data(&quot;ajaxStatus.requestCount&quot;);
+
+    // check the counter
+    if (typeof requestCount !== 'undefined') {
+        if (requestCount == 1) {
+            // hide indicators
+            document.body.style.cursor = 'auto';
+            $(&quot;#ajaxIndicatorActive&quot;).css(&quot;display&quot;, &quot;none&quot;);
+            $(&quot;#ajaxIndicatorCaution&quot;).css(&quot;display&quot;, &quot;none&quot;);
+            jqDoc.data(&quot;ajaxStatus.requestCount&quot;, 0);
+        } else if (requestCount &gt; 1) {
+            // only decrease the counter
+            jqDoc.data(&quot;ajaxStatus.requestCount&quot;, requestCount - 1);
+        }
+    }
+}
+
+function ajaxOnErrorIndicator() {
+    document.body.style.cursor = 'auto';
+    $(&quot;#ajaxIndicatorActive&quot;).css(&quot;display&quot;, &quot;none&quot;);
+    $(&quot;#ajaxIndicatorCaution&quot;).css(&quot;display&quot;, &quot;block&quot;);
+    // reset counter
+    $(document).data(&quot;ajaxStatus.requestCount&quot;, 0);
+}
+            </ui:define>            
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">

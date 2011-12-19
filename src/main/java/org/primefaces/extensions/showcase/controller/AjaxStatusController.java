@@ -40,6 +40,7 @@ public class AjaxStatusController implements Serializable {
 	private String country2 = "Russia";
 	private String food1 = "Pizza";
 	private String food2 = "Kebab";
+	private String text = "Try to type something";
 
 	public String getCountry1() {
 		return country1;
@@ -73,9 +74,27 @@ public class AjaxStatusController implements Serializable {
 		this.food2 = food2;
 	}
 
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	public void valueChanged(ValueChangeEvent vce) {
 		try {
+			// simulate a long running request
 			Thread.sleep(1500);
+		} catch (Exception e) {
+			// ignore
+		}
+	}
+
+	public void textChanged(ValueChangeEvent vce) {
+		try {
+			// simulate a long running request
+			Thread.sleep(500);
 		} catch (Exception e) {
 			// ignore
 		}
