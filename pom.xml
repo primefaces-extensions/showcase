@@ -87,10 +87,15 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/webapp-resources</outputDirectory>
+                            <outputDirectory>${project.build.directory}/webapp-resources/resources</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.basedir}/src/main/webapp</directory>
+                                    <directory>${project.basedir}/src/main/webapp/resources</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>**/*.css</include>
+                                        <include>**/*.js</include>
+                                    </includes>                                    
                                 </resource>
                             </resources>
                         </configuration>
@@ -103,11 +108,7 @@
                 <configuration>
                     <resourcesSets>
                         <resourcesSet>
-                            <inputDir>${project.build.directory}/webapp-resources/resources</inputDir>
-                            <includes>
-                                <include>**/*.css</include>
-                                <include>**/*.js</include>
-                            </includes>
+                            <inputDir>${project.build.directory}/webapp-resources</inputDir>
                         </resourcesSet>
                     </resourcesSets>
                 </configuration>
@@ -125,7 +126,14 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <warSourceDirectory>${project.build.directory}/webapp-resources</warSourceDirectory>
+                    <webappDirectory>${project.build.directory}/webapp</webappDirectory>
+                    <warSourceDirectory>${project.basedir}/src/main/webapp</warSourceDirectory>
+                    <warSourceExcludes>**/resources/**/*.css,**/resources/**/*.js</warSourceExcludes>
+                    <webResources>
+                        <resource>
+                            <directory>${project.build.directory}/webapp-resources</directory>
+                        </resource>
+                    </webResources>                    
                 </configuration>
             </plugin>
         </plugins>
