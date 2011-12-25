@@ -18,6 +18,7 @@
 
 package org.primefaces.extensions.showcase.controller.reseteditablevalues;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -35,7 +36,7 @@ import org.primefaces.extensions.showcase.model.Person;
  */
 @ManagedBean
 @ViewScoped
-public class AdvancedResetEditableValuesController {
+public class AdvancedResetEditableValuesController implements Serializable {
 
 	private Person selectedPerson;
 	private List<Person> persons;
