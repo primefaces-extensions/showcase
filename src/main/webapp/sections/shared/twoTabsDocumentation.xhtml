@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition>
+    <f:facet name="header">
+        <h:outputText value="Documentation"/>
+    </f:facet>
+    <p:tabView id="docuTabView">
+        <p:tab title="pe:#{tagName1}">
+            <p:dataTable id="docuDataTable1" var="attribute" value="#{docuPreparer.getDocuAttributes(tagName1)}"
+                         emptyMessage="No attributes available for this component.">
+                <p:column>
+                    <f:facet name="header">
+                        Name
+                    </f:facet>
+                    <h:outputText id="name" value="#{attribute.name}"/>
+                    <pe:tooltip for="name" value="#{attribute.type}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Description
+                    </f:facet>
+                    <h:outputText value="#{attribute.description}"/>
+                </p:column>
+            </p:dataTable>
+        </p:tab>
+        <p:tab title="pe:#{tagName2}">
+            <p:dataTable id="docuDataTable2" var="attribute" value="#{docuPreparer.getDocuAttributes(tagName2)}"
+                         emptyMessage="No attributes available for this component.">
+                <p:column>
+                    <f:facet name="header">
+                        Name
+                    </f:facet>
+                    <h:outputText id="name" value="#{attribute.name}"/>
+                    <pe:tooltip for="name" value="#{attribute.type}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Description
+                    </f:facet>
+                    <h:outputText value="#{attribute.description}"/>
+                </p:column>
+            </p:dataTable>
+        </p:tab>
+    </p:tabView>
+</ui:composition>
+</html>     

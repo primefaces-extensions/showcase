@@ -33,8 +33,10 @@ contentTab3
         <ui:include src="/sections/masterDetail/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
-        <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="masterDetail"/>
+        <ui:include src="/sections/shared/threeTabsDocumentation.xhtml">
+            <ui:param name="tagName1" value="masterDetail"/>
+            <ui:param name="tagName2" value="masterDetailLevel"/>
+            <ui:param name="tagName3" value="selectDetailLevel"/>
         </ui:include>
     </ui:define>
 </ui:composition>

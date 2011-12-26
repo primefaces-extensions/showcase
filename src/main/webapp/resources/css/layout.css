@@ -37,6 +37,15 @@
     line-height: 1.3;
 }
 
+#docuTabView {
+    padding: 0;
+    border: none;
+}
+
+#docuTabView .ui-tabs-panel {
+    padding: 1em 0;
+}
+
 div.centerContent {
     padding: 15px;
     font-size: 13px;
