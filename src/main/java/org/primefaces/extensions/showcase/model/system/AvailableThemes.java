@@ -40,6 +40,7 @@ public class AvailableThemes {
 		themeNames.add("excite-bike");
 		themeNames.add("flick");
 		themeNames.add("glass-x");
+		themeNames.add("home");
 		themeNames.add("hot-sneaks");
 		themeNames.add("humanity");
 		themeNames.add("le-frog");
