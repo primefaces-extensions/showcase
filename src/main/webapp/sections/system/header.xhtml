@@ -5,6 +5,7 @@
       xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition>
 	<h:graphicImage library="images" name="logo.png" styleClass="logo" alt="PrimeFaces Extensions"/>
+    <h:outputText value="PrimeFaces Extensions" style="font-size: 28px; position: absolute; top: 16px;"/>
     
 	<h:panelGrid columns="3" styleClass="smallNav" columnClasses="smallNavText,smallNavImg,smallNavText">
 		<h:outputLink value="http://code.google.com/p/primefaces-extensions/" target="_blank">
@@ -16,7 +17,7 @@
         </h:outputLink>
 	</h:panelGrid>    
 	
-	<pe:ajaxStatus styleClass="logo" style="left:80px; width:32px; height:32px; margin-top: 10px;">  
+	<pe:ajaxStatus styleClass="logo" style="left:340px; width:32px; height:32px; margin-top: 10px;">  
 		<f:facet name="start">
 			<h:graphicImage library="images" name="ajax-loader.gif" alt="AJAX Status"/> 
 		</f:facet>
