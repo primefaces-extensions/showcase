@@ -65,4 +65,5 @@
 
 #themeSwitcher_themeSelectMenu_panel .ui-selectonemenu-item img {
     vertical-align: middle;
+    border: 1px solid gray;
 }
