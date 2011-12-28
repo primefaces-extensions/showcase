@@ -60,6 +60,15 @@ public class DataTableController implements Serializable {
 		this.messages = messages;
 	}
 
+	public void doSomething() {
+		try {
+			// simulate a long running request
+			Thread.sleep(1500);
+		} catch (Exception e) {
+			// ignore
+		}
+	}
+
 	public class Message {
 
 		private String subject;

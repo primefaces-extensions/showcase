@@ -14,32 +14,33 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:panelGroup id="myDataTableWrapper">
-                <p:dataTable id="myDataTable" var="message" value="#{dataTableController.messages}">
+            <h:panelGroup id="dataTableWrapper" layout="block">
+                <p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}">
                     <pe:paginator
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                             rows="5"
                             rowsPerPageTemplate="5,10,15"/>
-                    <pe:blockUI event="page" for="myDataTableWrapper" content="_mainForm_blockUIContent"/>
-                    <p:column>
+                    <p:ajax event="page" listener="#{dataTableController.doSomething}"/>
+                    <p:column sortBy="#{message.subject}">
                         <f:facet name="header">
                             <h:outputText value="Subject"/>
                         </f:facet>
                         <h:outputText value="#{message.subject}"/>
                     </p:column>
-                    <p:column>
+                    <p:column sortBy="#{message.message}">
                         <f:facet name="header">
                             <h:outputText value="Message"/>
                         </f:facet>
                         <h:outputText value="#{message.message}"/>
                     </p:column>
                 </p:dataTable>
+                <pe:blockUI event="page,sorting" source="dataTable" target="dataTableWrapper" content="blockUIContent" autoShow="true"/>
             </h:panelGroup>
-
+            
             <h:panelGrid id="blockUIContent" columns="2" style="display: none;">
-                <h:graphicImage library="images" name="ajax-loader1.gif" style="margin-right: 12px;"/>
-                <h:outputText value="Please wait, data is being processed..."/>
-            </h:panelGrid>
+                <h:graphicImage library="images" name="ajax-loader1.gif" style="margin-right: 12px; vertical-align: middle;"/>
+                <h:outputText value="Please wait, data is being processed..." style="white-space: nowrap;"/>
+            </h:panelGrid>            
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
