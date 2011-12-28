@@ -66,7 +66,7 @@ public class AvailableThemes {
 		for (final String themeName : themeNames) {
 			final Theme theme = new Theme();
 			theme.setName(themeName);
-			theme.setImage("../resources/images/themeswitcher/" + themeName + ".png");
+			theme.setImage("/resources/images/themeswitcher/" + themeName + ".png");
 
 			themes.add(theme);
 			themesAsMap.put(theme.getName(), theme);
