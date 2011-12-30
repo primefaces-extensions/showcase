@@ -43,6 +43,10 @@ table .formColumn2 input {
     width: 200px;
 }
 
+table .formColumn input {
+    width: 250px;
+}
+
 .radioButtons,
 .radioButtons td {
     white-space: nowrap;
@@ -77,4 +81,12 @@ table .formColumn2 input {
 
 .checkBoxes label {
     padding-bottom: 2px;
+}
+
+table .columnTop {
+    vertical-align: top;
+}
+
+.ui-tree .ui-tree-node {
+    cursor: pointer;
 }

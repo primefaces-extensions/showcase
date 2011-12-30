@@ -22,8 +22,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  * DataTableController
@@ -38,6 +40,8 @@ public class DataTableController implements Serializable {
 	private static final long serialVersionUID = 20111020L;
 
 	private List<Message> messages;
+	private String newSubject = "my subject";
+	private String newText = "my text";
 
 	public DataTableController() {
 		if (messages == null) {
@@ -45,8 +49,8 @@ public class DataTableController implements Serializable {
 
 			for (int i = 0; i < 100; i++) {
 				Message message = new Message();
-				message.setMessage("message " + i);
 				message.setSubject("subject " + i);
+				message.setText("text " + i);
 				messages.add(message);
 			}
 		}
@@ -58,6 +62,39 @@ public class DataTableController implements Serializable {
 
 	public final void setMessages(final List<Message> messages) {
 		this.messages = messages;
+	}
+
+	public String getNewSubject() {
+		return newSubject;
+	}
+
+	public void setNewSubject(String newSubject) {
+		this.newSubject = newSubject;
+	}
+
+	public String getNewText() {
+		return newText;
+	}
+
+	public void setNewText(String newText) {
+		this.newText = newText;
+	}
+
+	public String addMessage() {
+		doSomething();
+
+		Message message = new Message();
+		message.setSubject(newSubject);
+		message.setText(newText);
+		messages.add(0, message);
+
+		newSubject = "";
+		newText = "";
+
+		FacesContext fc = FacesContext.getCurrentInstance();
+		fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "New message has been added successfully", null));
+
+		return null;
 	}
 
 	public void doSomething() {
@@ -72,7 +109,7 @@ public class DataTableController implements Serializable {
 	public class Message implements Serializable {
 
 		private String subject;
-		private String message;
+		private String text;
 
 		public final String getSubject() {
 			return subject;
@@ -82,12 +119,12 @@ public class DataTableController implements Serializable {
 			this.subject = subject;
 		}
 
-		public final String getMessage() {
-			return message;
+		public final String getText() {
+			return text;
 		}
 
-		public final void setMessage(String message) {
-			this.message = message;
+		public final void setText(String text) {
+			this.text = text;
 		}
 	}
 }

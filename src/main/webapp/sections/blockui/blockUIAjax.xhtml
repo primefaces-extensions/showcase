@@ -14,32 +14,56 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:panelGroup id="dataTableWrapper" layout="block">
+            <pe:messages id="messages"/>
+            
+            <h:panelGrid columns="2">
+                <h:panelGroup id="messageDetailGroup" layout="block" style="margin-right: 20px;">
+                    <h:panelGrid id="messageDetail" columns="1" columnClasses="formColumn">
+                        <h:outputText value="Subject *"/>
+                        <h:inputText value="#{dataTableController.newSubject}" required="true" label="Subject"/>
+                        <h:outputText value="Text *"/>
+                        <h:inputText value="#{dataTableController.newText}" required="true" label="Text"/>
+                    </h:panelGrid>
+                    <p:commandButton id="addMsgButton" value="Add message" action="#{dataTableController.addMessage}"
+                                     process="messageDetailGroup" update="messageDetail dataTable messages"
+                                     style="margin-top: 20px;" icon="ui-icon-plusthick"
+                                     onstart="blockUIWidget1.block()" oncomplete="blockUIWidget1.unblock()"/>
+                </h:panelGroup>
+            
                 <p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}">
                     <pe:paginator
-                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                            rows="5"
-                            rowsPerPageTemplate="5,10,15"/>
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rows="5"
+                        rowsPerPageTemplate="5,10,15"
+                        paginatorPosition="bottom"/>
                     <p:ajax event="page" listener="#{dataTableController.doSomething}"
-                            onstart="blockUIWidget.block()" oncomplete="blockUIWidget.unblock()"/>
+                            onstart="blockUIWidget2.block()" oncomplete="blockUIWidget2.unblock()"/>
                     <p:ajax event="sort" listener="#{dataTableController.doSomething}"
-                            onstart="blockUIWidget.block()" oncomplete="blockUIWidget.unblock()"/>
+                            onstart="blockUIWidget2.block()" oncomplete="blockUIWidget2.unblock()"/>
                     <p:column sortBy="#{message.subject}">
                         <f:facet name="header">
                             <h:outputText value="Subject"/>
                         </f:facet>
                         <h:outputText value="#{message.subject}"/>
                     </p:column>
-                    <p:column sortBy="#{message.message}">
+                    <p:column sortBy="#{message.text}">
                         <f:facet name="header">
-                            <h:outputText value="Message"/>
+                            <h:outputText value="Text"/>
                         </f:facet>
-                        <h:outputText value="#{message.message}"/>
+                        <h:outputText value="#{message.text}"/>
                     </p:column>
                 </p:dataTable>
-                <pe:blockUI source="dataTable" target="dataTableWrapper" content="blockUIContent" widgetVar="blockUIWidget"/>
-            </h:panelGroup>
-
+            </h:panelGrid>
+            
+            <pe:blockUI target="messageDetailGroup" widgetVar="blockUIWidget1">
+                <h:panelGrid columns="2">
+                    <h:graphicImage library="images" name="ajax-loader1.gif" style="margin-right: 12px; vertical-align: middle;"/>
+                    <h:outputText value="Adding message..." style="white-space: nowrap;"/>
+                </h:panelGrid>
+            </pe:blockUI>
+            
+            <pe:blockUI target="dataTable" content="blockUIContent" widgetVar="blockUIWidget2"/>
+            
             <h:panelGrid id="blockUIContent" columns="2" style="display: none;">
                 <h:graphicImage library="images" name="ajax-loader1.gif" style="margin-right: 12px; vertical-align: middle;"/>
                 <h:outputText value="Please wait, data is being processed..." style="white-space: nowrap;"/>
@@ -48,10 +72,155 @@
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
+&lt;pe:messages id=&quot;messages&quot;/&gt;
 
+&lt;h:panelGrid columns=&quot;2&quot;&gt;
+    &lt;h:panelGroup id=&quot;messageDetailGroup&quot; layout=&quot;block&quot; style=&quot;padding-right: 20px;&quot;&gt;
+        &lt;h:panelGrid id=&quot;messageDetail&quot; columns=&quot;1&quot; columnClasses=&quot;formColumn&quot;&gt;
+            &lt;h:outputText value=&quot;Subject *&quot;/&gt;
+            &lt;h:inputText value=&quot;\#{dataTableController.newSubject}&quot; required=&quot;true&quot; label=&quot;Subject&quot;/&gt;
+            &lt;h:outputText value=&quot;Text *&quot;/&gt;
+            &lt;h:inputText value=&quot;\#{dataTableController.newText}&quot; required=&quot;true&quot; label=&quot;Text&quot;/&gt;
+        &lt;/h:panelGrid&gt;
+        &lt;p:commandButton id=&quot;addMsgButton&quot; value=&quot;Add message&quot; action=&quot;\#{dataTableController.addMessage}&quot;
+                         process=&quot;messageDetailGroup&quot; update=&quot;messageDetail dataTable messages&quot;
+                         style=&quot;margin-top: 20px;&quot; icon=&quot;ui-icon-plusthick&quot;
+                         onstart=&quot;blockUIWidget1.block()&quot; oncomplete=&quot;blockUIWidget1.unblock()&quot;/&gt;
+    &lt;/h:panelGroup&gt;
+
+    &lt;p:dataTable id=&quot;dataTable&quot; var=&quot;message&quot; value=&quot;\#{dataTableController.messages}&quot;&gt;
+        &lt;pe:paginator
+            paginatorTemplate=&quot;{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}&quot;
+            rows=&quot;5&quot;
+            rowsPerPageTemplate=&quot;5,10,15&quot;
+            paginatorPosition=&quot;bottom&quot;/&gt;
+        &lt;p:ajax event=&quot;page&quot; listener=&quot;\#{dataTableController.doSomething}&quot;
+                onstart=&quot;blockUIWidget2.block()&quot; oncomplete=&quot;blockUIWidget2.unblock()&quot;/&gt;
+        &lt;p:ajax event=&quot;sort&quot; listener=&quot;\#{dataTableController.doSomething}&quot;
+                onstart=&quot;blockUIWidget2.block()&quot; oncomplete=&quot;blockUIWidget2.unblock()&quot;/&gt;
+        &lt;p:column sortBy=&quot;\#{message.subject}&quot;&gt;
+            &lt;f:facet name=&quot;header&quot;&gt;
+                &lt;h:outputText value=&quot;Subject&quot;/&gt;
+            &lt;/f:facet&gt;
+            &lt;h:outputText value=&quot;\#{message.subject}&quot;/&gt;
+        &lt;/p:column&gt;
+        &lt;p:column sortBy=&quot;\#{message.text}&quot;&gt;
+            &lt;f:facet name=&quot;header&quot;&gt;
+                &lt;h:outputText value=&quot;Text&quot;/&gt;
+            &lt;/f:facet&gt;
+            &lt;h:outputText value=&quot;\#{message.text}&quot;/&gt;
+        &lt;/p:column&gt;
+    &lt;/p:dataTable&gt;
+&lt;/h:panelGrid&gt;
+
+&lt;pe:blockUI target=&quot;messageDetailGroup&quot; widgetVar=&quot;blockUIWidget1&quot;&gt;
+    &lt;h:panelGrid columns=&quot;2&quot;&gt;
+        &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot; style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
+        &lt;h:outputText value=&quot;Adding message...&quot; style=&quot;white-space: nowrap;&quot;/&gt;
+    &lt;/h:panelGrid&gt;
+&lt;/pe:blockUI&gt;
+
+&lt;pe:blockUI target=&quot;dataTable&quot; content=&quot;blockUIContent&quot; widgetVar=&quot;blockUIWidget2&quot;/&gt;
+
+&lt;h:panelGrid id=&quot;blockUIContent&quot; columns=&quot;2&quot; style=&quot;display: none;&quot;&gt;
+    &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot; style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
+    &lt;h:outputText value=&quot;Please wait, data is being processed...&quot; style=&quot;white-space: nowrap;&quot;/&gt;
+&lt;/h:panelGrid&gt;
             </ui:define>
             <ui:define name="contentTab2">
+                @ManagedBean
+                @ViewScoped
+                public class DataTableController implements Serializable {
 
+                private List&lt;Message&gt; messages;
+                private String newSubject = &quot;my subject&quot;;
+                private String newText = &quot;my text&quot;;
+
+                public DataTableController() {
+                if (messages == null) {
+                messages = new ArrayList&lt;Message&gt;();
+
+                for (int i = 0; i &lt; 100; i++) {
+                Message message = new Message();
+                message.setSubject(&quot;subject &quot; + i);
+                message.setText(&quot;text &quot; + i);
+                messages.add(message);
+                }
+                }
+                }
+
+                public final List&lt;Message&gt; getMessages() {
+                return messages;
+                }
+
+                public final void setMessages(final List&lt;Message&gt; messages) {
+                this.messages = messages;
+                }
+
+                public String getNewSubject() {
+                return newSubject;
+                }
+
+                public void setNewSubject(String newSubject) {
+                this.newSubject = newSubject;
+                }
+
+                public String getNewText() {
+                return newText;
+                }
+
+                public void setNewText(String newText) {
+                this.newText = newText;
+                }
+
+                public String addMessage() {
+                doSomething();
+
+                Message message = new Message();
+                message.setSubject(newSubject);
+                message.setText(newText);
+                messages.add(0, message);
+
+                newSubject = &quot;&quot;;
+                newText = &quot;&quot;;
+
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;New message has been added successfully&quot;, null));
+
+                return null;
+                }
+
+                public void doSomething() {
+                try {
+                // simulate a long running request
+                Thread.sleep(1500);
+                } catch (Exception e) {
+                // ignore
+                }
+                }
+
+                public class Message {
+
+                private String subject;
+                private String text;
+
+                public final String getSubject() {
+                return subject;
+                }
+
+                public final void setSubject(String subject) {
+                this.subject = subject;
+                }
+
+                public final String getText() {
+                return text;
+                }
+
+                public final void setText(String text) {
+                this.text = text;
+                }
+                }
+                }
             </ui:define>
         </ui:decorate>
     </ui:define>

@@ -10,43 +10,43 @@
             <h:outputText value="KeyFilter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-			KeyFilter can be used to filter keyboard input on specified input components.
+            KeyFilter can be used to filter keyboard input on specified input components.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-			KeyFilter with mask on a p:inputText<br/>
-			<p:inputText id="text1" required="true"/><br/><br/>
-			
-			KeyFilter with regEx on a h:inputText<br/>
-			<h:inputText id="text2">
-				<pe:keyFilter regEx="/[ABC]/i"/>
-			</h:inputText><br/><br/>
-			
-			KeyFilter with testFunction on a p:autoComplete<br/>
-            <p:autoComplete id="autoComplete1" value="#{autoCompleteController.text}"
-            	 completeMethod="#{autoCompleteController.complete}"/><br/>
-
-  			<pe:keyFilter for="text1" mask="num"/>
-  			<pe:keyFilter for="autoComplete1" testFunction="return c == 'z';"/>
+            <h:panelGrid columns="1" columnClasses="formColumn">
+                <h:outputText value="KeyFilter with mask on a p:inputText"/>
+                <p:inputText id="text1" required="true" style="margin-bottom: 10px;"/>
+                <h:outputText value="KeyFilter with regEx on a h:inputText"/>
+                <h:inputText id="text2" style="margin-bottom: 10px;">
+                    <pe:keyFilter regEx="/[ABC]/i"/>
+                </h:inputText>
+                <h:outputText value="KeyFilter with testFunction on a p:autoComplete"/>
+                <p:autoComplete id="autoComplete1" value="#{autoCompleteController.text}"
+                                completeMethod="#{autoCompleteController.complete}" style="margin-bottom: 10px;"/>
+            </h:panelGrid>
+            
+            <pe:keyFilter for="text1" mask="num"/>
+            <pe:keyFilter for="autoComplete1" testFunction="return c == 'z';"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-KeyFilter with mask on a p:inputText
-&lt;p:inputText id="text1" required="true"/&gt;
+&lt;h:panelGrid columns=&quot;1&quot; columnClasses=&quot;formColumn&quot;&gt;
+    &lt;h:outputText value=&quot;KeyFilter with mask on a p:inputText&quot;/&gt;
+    &lt;p:inputText id=&quot;text1&quot; required=&quot;true&quot; style=&quot;margin-bottom: 10px;&quot;/&gt;
+    &lt;h:outputText value=&quot;KeyFilter with regEx on a h:inputText&quot;/&gt;
+    &lt;h:inputText id=&quot;text2&quot; style=&quot;margin-bottom: 10px;&quot;&gt;
+        &lt;pe:keyFilter regEx=&quot;/[ABC]/i&quot;/&gt;
+    &lt;/h:inputText&gt;
+    &lt;h:outputText value=&quot;KeyFilter with testFunction on a p:autoComplete&quot;/&gt;
+    &lt;p:autoComplete id=&quot;autoComplete1&quot; value=&quot;\#{autoCompleteController.text}&quot;
+                    completeMethod=&quot;\#{autoCompleteController.complete}&quot; style=&quot;margin-bottom: 10px;&quot;/&gt;
+&lt;/h:panelGrid&gt;
 
-KeyFilter with regEx on a h:inputText
-&lt;h:inputText id="text2"&gt;
-	&lt;pe:keyFilter regEx="/[ABC]/i"/&gt;
-&lt;/h:inputText&gt;
-
-KeyFilter with testFunction on a p:autoComplete
-&lt;p:autoComplete id="autoComplete1" value="\#{autoCompleteController.text}"
-	completeMethod="\#{autoCompleteController.complete}"/&gt;
-
-&lt;pe:keyFilter for="text1" mask="num"/&gt;
-&lt;pe:keyFilter for="autoComplete1" testFunction="return c == 'z';"/&gt;
-	            </ui:define>
+&lt;pe:keyFilter for=&quot;text1&quot; mask=&quot;num&quot;/&gt;
+&lt;pe:keyFilter for=&quot;autoComplete1&quot; testFunction=&quot;return c == 'z';&quot;/&gt;
+            </ui:define>
             <ui:define name="contentTab2">
 @ManagedBean
 @RequestScoped
@@ -71,12 +71,12 @@ public class AutoCompleteController {
 	public final void setText(String text) {
 		this.text = text;
 	}
-}
+}	
             </ui:define>
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
-        
+
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
