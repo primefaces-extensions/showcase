@@ -25,6 +25,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.event.NodeSelectEvent;
+import org.primefaces.event.NodeUnselectEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -81,7 +82,7 @@ public class FileSystemController implements Serializable {
 		doSomething();
 	}
 
-	public void onNodeUnselect(NodeSelectEvent event) {
+	public void onNodeUnselect(NodeUnselectEvent event) {
 		selectedNode = null;
 		doSomething();
 	}

@@ -10,7 +10,9 @@
             <h:outputText value="BlockUI"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-
+            This example shows how to use widget's JavaScript methods block() / unblock().
+            They are normally used as onstart / oncomplete callbacks in ajaxified components.
+            Try to switch the current page, sort a table column or try to add a new message.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -36,9 +38,9 @@
                         rows="5"
                         rowsPerPageTemplate="5,10,15"
                         paginatorPosition="bottom"/>
-                    <p:ajax event="page" listener="#{dataTableController.doSomething}"
+                    <p:ajax event="page" listener="#{dataTableController.doSomething}" update="_mainForm_messages"
                             onstart="blockUIWidget2.block()" oncomplete="blockUIWidget2.unblock()"/>
-                    <p:ajax event="sort" listener="#{dataTableController.doSomething}"
+                    <p:ajax event="sort" listener="#{dataTableController.doSomething}" update="_mainForm_messages"
                             onstart="blockUIWidget2.block()" oncomplete="blockUIWidget2.unblock()"/>
                     <p:column sortBy="#{message.subject}">
                         <f:facet name="header">
@@ -94,9 +96,9 @@
             rows=&quot;5&quot;
             rowsPerPageTemplate=&quot;5,10,15&quot;
             paginatorPosition=&quot;bottom&quot;/&gt;
-        &lt;p:ajax event=&quot;page&quot; listener=&quot;\#{dataTableController.doSomething}&quot;
+        &lt;p:ajax event=&quot;page&quot; listener=&quot;\#{dataTableController.doSomething}&quot; update=&quot;_mainForm_messages&quot;
                 onstart=&quot;blockUIWidget2.block()&quot; oncomplete=&quot;blockUIWidget2.unblock()&quot;/&gt;
-        &lt;p:ajax event=&quot;sort&quot; listener=&quot;\#{dataTableController.doSomething}&quot;
+        &lt;p:ajax event=&quot;sort&quot; listener=&quot;\#{dataTableController.doSomething}&quot; update=&quot;_mainForm_messages&quot;
                 onstart=&quot;blockUIWidget2.block()&quot; oncomplete=&quot;blockUIWidget2.unblock()&quot;/&gt;
         &lt;p:column sortBy=&quot;\#{message.subject}&quot;&gt;
             &lt;f:facet name=&quot;header&quot;&gt;
@@ -115,7 +117,8 @@
 
 &lt;pe:blockUI target=&quot;messageDetailGroup&quot; widgetVar=&quot;blockUIWidget1&quot;&gt;
     &lt;h:panelGrid columns=&quot;2&quot;&gt;
-        &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot; style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
+        &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot;
+                style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
         &lt;h:outputText value=&quot;Adding message...&quot; style=&quot;white-space: nowrap;&quot;/&gt;
     &lt;/h:panelGrid&gt;
 &lt;/pe:blockUI&gt;
@@ -123,104 +126,105 @@
 &lt;pe:blockUI target=&quot;dataTable&quot; content=&quot;blockUIContent&quot; widgetVar=&quot;blockUIWidget2&quot;/&gt;
 
 &lt;h:panelGrid id=&quot;blockUIContent&quot; columns=&quot;2&quot; style=&quot;display: none;&quot;&gt;
-    &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot; style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
+    &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot;
+                style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
     &lt;h:outputText value=&quot;Please wait, data is being processed...&quot; style=&quot;white-space: nowrap;&quot;/&gt;
 &lt;/h:panelGrid&gt;
             </ui:define>
             <ui:define name="contentTab2">
-                @ManagedBean
-                @ViewScoped
-                public class DataTableController implements Serializable {
+@ManagedBean
+@ViewScoped
+public class DataTableController implements Serializable {
 
-                private List&lt;Message&gt; messages;
-                private String newSubject = &quot;my subject&quot;;
-                private String newText = &quot;my text&quot;;
+	private List&lt;Message&gt; messages;
+	private String newSubject = &quot;my subject&quot;;
+	private String newText = &quot;my text&quot;;
 
-                public DataTableController() {
-                if (messages == null) {
-                messages = new ArrayList&lt;Message&gt;();
+	public DataTableController() {
+		if (messages == null) {
+			messages = new ArrayList&lt;Message&gt;();
 
-                for (int i = 0; i &lt; 100; i++) {
-                Message message = new Message();
-                message.setSubject(&quot;subject &quot; + i);
-                message.setText(&quot;text &quot; + i);
-                messages.add(message);
-                }
-                }
-                }
+			for (int i = 0; i &lt; 100; i++) {
+				Message message = new Message();
+				message.setSubject(&quot;subject &quot; + i);
+				message.setText(&quot;text &quot; + i);
+				messages.add(message);
+			}
+		}
+	}
 
-                public final List&lt;Message&gt; getMessages() {
-                return messages;
-                }
+	public final List&lt;Message&gt; getMessages() {
+		return messages;
+	}
 
-                public final void setMessages(final List&lt;Message&gt; messages) {
-                this.messages = messages;
-                }
+	public final void setMessages(final List&lt;Message&gt; messages) {
+		this.messages = messages;
+	}
 
-                public String getNewSubject() {
-                return newSubject;
-                }
+	public String getNewSubject() {
+		return newSubject;
+	}
 
-                public void setNewSubject(String newSubject) {
-                this.newSubject = newSubject;
-                }
+	public void setNewSubject(String newSubject) {
+		this.newSubject = newSubject;
+	}
 
-                public String getNewText() {
-                return newText;
-                }
+	public String getNewText() {
+		return newText;
+	}
 
-                public void setNewText(String newText) {
-                this.newText = newText;
-                }
+	public void setNewText(String newText) {
+		this.newText = newText;
+	}
 
-                public String addMessage() {
-                doSomething();
+	public String addMessage() {
+		doSomething();
 
-                Message message = new Message();
-                message.setSubject(newSubject);
-                message.setText(newText);
-                messages.add(0, message);
+		Message message = new Message();
+		message.setSubject(newSubject);
+		message.setText(newText);
+		messages.add(0, message);
 
-                newSubject = &quot;&quot;;
-                newText = &quot;&quot;;
+		newSubject = &quot;&quot;;
+		newText = &quot;&quot;;
 
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;New message has been added successfully&quot;, null));
+		FacesContext fc = FacesContext.getCurrentInstance();
+		fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;New message has been added successfully&quot;, null));
 
-                return null;
-                }
+		return null;
+	}
 
-                public void doSomething() {
-                try {
-                // simulate a long running request
-                Thread.sleep(1500);
-                } catch (Exception e) {
-                // ignore
-                }
-                }
+	public void doSomething() {
+		try {
+			// simulate a long running request
+			Thread.sleep(1500);
+		} catch (Exception e) {
+			// ignore
+		}
+	}
 
-                public class Message {
+	public class Message implements Serializable {
 
-                private String subject;
-                private String text;
+		private String subject;
+		private String text;
 
-                public final String getSubject() {
-                return subject;
-                }
+		public final String getSubject() {
+			return subject;
+		}
 
-                public final void setSubject(String subject) {
-                this.subject = subject;
-                }
+		public final void setSubject(String subject) {
+			this.subject = subject;
+		}
 
-                public final String getText() {
-                return text;
-                }
+		public final String getText() {
+			return text;
+		}
 
-                public final void setText(String text) {
-                this.text = text;
-                }
-                }
-                }
+		public final void setText(String text) {
+			this.text = text;
+		}
+	}
+}
             </ui:define>
         </ui:decorate>
     </ui:define>

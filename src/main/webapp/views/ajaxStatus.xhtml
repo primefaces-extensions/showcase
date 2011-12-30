@@ -13,6 +13,8 @@
             Extended Ajax Status is similar to PrimeFaces' one, but it also considers JSF standard ajax requests in addition to PrimeFaces ajax requests.
             You can use a mix composed of standard f:ajax with any standard and not standard components + ajaxified components from PrimeFaces.
             The implementation is smart enough and avoid collisions with parallel running ajax requests.
+            <p/>
+            Keep in mind please that some PrimeFaces components and p:ajax have the "global" attribute. Setting "global" to false will not trigger AjaxStatus.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">

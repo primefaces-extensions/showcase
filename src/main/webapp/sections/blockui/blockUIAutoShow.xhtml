@@ -10,7 +10,13 @@
             <h:outputText value="BlockUI"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-
+            This example shows how to use "autoShow" mode activated by setting "autoShow" attribute to true.
+            Another features are "event" and "targetSelector" attributes. Attribute "event" specifies which events should be listen.
+            Skipping "event" means we are not interested in any events. That means all events of the source component cause a blocking of the target component(s).
+            Only events specified by p:ajax are supported. PrimeFaces components can also send ajax requests without p:ajax, but such events are internal and not exposed.
+            We don't support such events intentional. Attribute "targetSelector" allows to specify several targets and HTML elements to be blocked.
+            This is a quite normally jQuery selector. To block the entire page use targetSelector="document" please.
+            Try to expand, select, unselect a tree node on the left side or click on any checkbox on the right side.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -104,7 +110,8 @@
 
 &lt;pe:blockUI source=&quot;fileSystem&quot; target=&quot;viewArea&quot; event=&quot;expand,select,unselect&quot; autoShow=&quot;true&quot;&gt;
     &lt;h:panelGrid columns=&quot;2&quot;&gt;
-        &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot; style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
+        &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot;
+                style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
         &lt;h:outputText value=&quot;Tree event is running...&quot; style=&quot;white-space: nowrap;&quot;/&gt;
     &lt;/h:panelGrid&gt;
 &lt;/pe:blockUI&gt;
@@ -155,7 +162,7 @@ public class FileSystemController implements Serializable {
 		doSomething();
 	}
 
-	public void onNodeUnselect(NodeSelectEvent event) {
+	public void onNodeUnselect(NodeUnselectEvent event) {
 		selectedNode = null;
 		doSomething();
 	}
