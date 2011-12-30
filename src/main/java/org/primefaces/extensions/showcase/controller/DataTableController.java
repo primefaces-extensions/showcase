@@ -69,7 +69,7 @@ public class DataTableController implements Serializable {
 		}
 	}
 
-	public class Message {
+	public class Message implements Serializable {
 
 		private String subject;
 		private String message;
