@@ -28,6 +28,21 @@
             
             <pe:keyFilter for="text1" mask="num"/>
             <pe:keyFilter for="autoComplete1" testFunction="return c == 'z';"/>
+        
+        	<br/>
+        	<br/>
+            A list with predefined mask's and their regex:
+            <table>
+            	<tr><td>pint</td>		<td>/[\d]/</td>				<td></td></tr>
+            	<tr><td>int</td>		<td>/[\d\-]/</td>			<td></td></tr>
+            	<tr><td>pnum</td>		<td>/[\d\.]/</td>			<td></td></tr>
+            	<tr><td>money</td>		<td>/[\d\.\s,]</td>			<td></td></tr>
+            	<tr><td>num</td>		<td>/[\d\-\.]/</td>			<td></td></tr>
+            	<tr><td>hex</td>		<td>/[0-9a-f]/i</td>		<td></td></tr>
+            	<tr><td>email</td>		<td>/[a-z0-9_\.\-@]/i</td>	<td></td></tr>
+            	<tr><td>alpha</td>		<td>/[a-z_]/i</td>			<td></td></tr>
+            	<tr><td>alphanum</td>	<td>/[a-z0-9_]/i </td>		<td></td></tr>
+            </table>            
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
