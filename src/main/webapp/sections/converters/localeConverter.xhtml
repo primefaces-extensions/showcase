@@ -10,19 +10,88 @@
             <h:outputText value="LocaleConverter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-
+			The LocaleConverter (pe:convertLocale) converts a locale string (for example 'de_DE') to a java.util.Locale object and reverse.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
+       		<p:messages id="messages"/>
+       
+       		Enter a new locale here (A valid locale for example is de_DE):<br/>
+       		<p:inputText id="enteredLocale" value="#{localeController.enteredLocale}" required="true">
+       			<pe:convertLocale/>
+       		</p:inputText>
+       		<p:commandButton value="add"
+       			action="#{localeController.add}"
+       			update="messages addedLocales enteredLocale"/>
+       		<br/>
+       		<br/>
 
+			Added locales:<br/>
+			<h:selectManyListbox id="addedLocales" value="#{localeController.selectedLocales}">
+				<pe:convertLocale/>
+				<f:selectItems value="#{localeController.addedLocales}"/>
+			</h:selectManyListbox>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
+&lt;p:messages id="messages"/&gt;
 
+Enter a new locale here (A valid locale for example is de_DE):
+&lt;p:inputText id="enteredLocale" value="\#{localeController.enteredLocale}" required="true"&gt;
+	&lt;pe:convertLocale/&gt;
+&lt;/p:inputText>
+&lt;p:commandButton value="add"
+	action="\#{localeController.add}"
+	update="messages addedLocales enteredLocale"/&gt;
+
+Added locales:
+&lt;h:selectManyListbox id="addedLocales" value="\#{localeController.selectedLocales}"&gt;
+	&lt;pe:convertLocale/&gt;
+	&lt;f:selectItems value="\#{localeController.addedLocales}"/&gt;
+&lt;/h:selectManyListbox&gt;
             </ui:define>
             <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class LocaleController implements Serializable {
 
+	private List&lt;Locale&gt; selectedLocales;
+	private Locale enteredLocale;
+	private List&lt;Locale&gt; addedLocales;
+
+	public LocaleController() {
+		addedLocales = new ArrayList&lt;Locale&gt;();
+	}
+
+	public void add() {
+		addedLocales.add(enteredLocale);
+	}
+
+	public Locale getEnteredLocale() {
+		return enteredLocale;
+	}
+
+	public void setEnteredLocale(final Locale enteredLocale) {
+		this.enteredLocale = enteredLocale;
+	}
+
+	public List&lt;Locale&gt; getAddedLocales() {
+		return addedLocales;
+	}
+
+	public void setAddedLocales(final List&lt;Locale&gt; addedLocales) {
+		this.addedLocales = addedLocales;
+	}
+
+	public List&lt;Locale&gt; getSelectedLocales() {
+		return selectedLocales;
+	}
+
+	public void setSelectedLocales(final List&lt;Locale&gt; selectedLocales) {
+		this.selectedLocales = selectedLocales;
+	}
+}
             </ui:define>
         </ui:decorate>
     </ui:define>

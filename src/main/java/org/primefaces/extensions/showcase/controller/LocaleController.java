@@ -1,0 +1,50 @@
+package org.primefaces.extensions.showcase.controller;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+@ManagedBean
+@ViewScoped
+public class LocaleController implements Serializable {
+
+	private List<Locale> selectedLocales;
+	private Locale enteredLocale;
+	private List<Locale> addedLocales;
+
+	public LocaleController() {
+		addedLocales = new ArrayList<Locale>();
+	}
+
+	public void add() {
+		addedLocales.add(enteredLocale);
+	}
+
+	public Locale getEnteredLocale() {
+		return enteredLocale;
+	}
+
+	public void setEnteredLocale(final Locale enteredLocale) {
+		this.enteredLocale = enteredLocale;
+	}
+
+	public List<Locale> getAddedLocales() {
+		return addedLocales;
+	}
+
+	public void setAddedLocales(final List<Locale> addedLocales) {
+		this.addedLocales = addedLocales;
+	}
+
+	public List<Locale> getSelectedLocales() {
+		return selectedLocales;
+	}
+
+	public void setSelectedLocales(final List<Locale> selectedLocales) {
+		this.selectedLocales = selectedLocales;
+	}
+}
