@@ -180,8 +180,9 @@ public class Circle implements Serializable {
         <ui:include src="/sections/remoteCommand/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
-        <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="remoteCommandParameter"/>
+        <ui:include src="/sections/shared/twoTabsDocumentation.xhtml">
+            <ui:param name="tagName1" value="remoteCommand"/>
+            <ui:param name="tagName2" value="remoteCommandParameter"/>
         </ui:include>
     </ui:define>
 </ui:composition>
