@@ -169,8 +169,10 @@ public class ImageController implements Serializable {
         <ui:include src="/sections/imageAreaSelect/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
-        <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="imageAreaSelect"/>
+        <ui:include src="/sections/shared/threeTabsDocumentation.xhtml">
+            <ui:param name="tagName1" value="imageAreaSelect"/>
+            <ui:param name="tagName2" value="imageRotateAndResize"/>
+            <ui:param name="tagName3" value="javascript"/>
         </ui:include>
     </ui:define>
 </ui:composition>

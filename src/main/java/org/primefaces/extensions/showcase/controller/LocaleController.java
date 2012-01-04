@@ -18,6 +18,9 @@ public class LocaleController implements Serializable {
 
 	public LocaleController() {
 		addedLocales = new ArrayList<Locale>();
+		addedLocales.add(Locale.GERMANY);
+		addedLocales.add(Locale.ITALIAN);
+		addedLocales.add(Locale.KOREA);
 	}
 
 	public void add() {

@@ -26,8 +26,8 @@
        		<br/>
        		<br/>
 
-			Added locales:<br/>
-			<h:selectManyListbox id="addedLocales" value="#{localeController.selectedLocales}">
+			Available locales:<br/>
+			<h:selectManyListbox id="addedLocales" value="#{localeController.selectedLocales}" style="width: 200px;">
 				<pe:convertLocale/>
 				<f:selectItems value="#{localeController.addedLocales}"/>
 			</h:selectManyListbox>
@@ -45,8 +45,8 @@ Enter a new locale here (A valid locale for example is de_DE):
 	action="\#{localeController.add}"
 	update="messages addedLocales enteredLocale"/&gt;
 
-Added locales:
-&lt;h:selectManyListbox id="addedLocales" value="\#{localeController.selectedLocales}"&gt;
+Available locales:
+&lt;h:selectManyListbox id="addedLocales" value="\#{localeController.selectedLocales}" style="width: 200px;"&gt;
 	&lt;pe:convertLocale/&gt;
 	&lt;f:selectItems value="\#{localeController.addedLocales}"/&gt;
 &lt;/h:selectManyListbox&gt;
