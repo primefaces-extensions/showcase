@@ -30,11 +30,8 @@
     padding-left: 3px;
 }
 
-#docuDataTable th div.ui-dt-c,
-#docuDataTable .ui-datatable-data td div.ui-dt-c,
-#docuDataTable .ui-datatable-data-empty td div.ui-dt-c,
-#docuDataTable tfoot td div.ui-dt-c {
-    line-height: 1.3;
+.docuTable {
+    line-height: 1.3 !important;
 }
 
 #docuTabView {

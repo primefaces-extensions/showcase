@@ -11,7 +11,7 @@
     <p:tabView id="docuTabView">
         <p:tab title="pe:#{tagName1}">
             <p:dataTable id="docuDataTable1" var="attribute" value="#{docuPreparer.getDocuAttributes(tagName1)}"
-                         emptyMessage="No attributes available for this component.">
+                         emptyMessage="No attributes available for this component." styleClass="docuTable">
                 <p:column>
                     <f:facet name="header">
                         Name
