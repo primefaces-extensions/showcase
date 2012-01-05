@@ -10,11 +10,25 @@
             <h:outputText value="EnumConverter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-
+			With the JSF built-in Converter for Enums, it's not possible to use Enums as a generic type argument for example for a List. <br/>
+			JSF/EL loses the generic type information at runtime of the List and therefore it defaults to String, unless otherwise specified by an explicit Converter. <br/>
+			<br/>
+			Our own EnumConverter (pe:convertEnum) automatically solves this problem.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
+			<p:selectManyMenu value="#{enumController.selected}">
+				<f:selectItems value="#{enumController.available}"/>
+				<!-- <pe:convertEnum/> -->
+			</p:selectManyMenu>
 
+			<p:commandButton value="Submit" update="assignedDialog" oncomplete="assignedDialogWidget.show()"/>  
+
+			<p:dialog id="assignedDialog" widgetVar="assignedDialogWidget" modal="true" showEffect="fade" hideEffect="fade" appendToBody="true">
+				<ui:repeat value="#{enumController.selected}" var="library">
+					<h:outputText value="#{library}"/><br/>
+				</ui:repeat>
+			</p:dialog>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
