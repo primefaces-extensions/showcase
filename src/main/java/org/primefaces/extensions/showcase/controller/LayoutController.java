@@ -21,7 +21,7 @@ package org.primefaces.extensions.showcase.controller;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  * LayoutController
@@ -30,7 +30,7 @@ import javax.faces.bean.ViewScoped;
  * @version $Revision$
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class LayoutController implements Serializable {
 
 	private static final long serialVersionUID = 20120108L;
