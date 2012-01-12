@@ -20,8 +20,15 @@ package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.extensions.component.layout.LayoutPane;
+import org.primefaces.extensions.event.CloseEvent;
+import org.primefaces.extensions.event.OpenEvent;
+import org.primefaces.extensions.event.ResizeEvent;
 
 /**
  * LayoutController
@@ -43,5 +50,30 @@ public class LayoutController implements Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public void handleClose(CloseEvent event) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Layout Pane closed",
+		                     "Position:'" + ((LayoutPane) event.getComponent()).getPosition() + "'");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void handleOpen(OpenEvent event) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Layout Pane opened",
+		                     "Position:'" + ((LayoutPane) event.getComponent()).getPosition() + "'");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void handleResize(ResizeEvent event) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Layout Pane resized",
+		                     "Position:'" + ((LayoutPane) event.getComponent()).getPosition() + "', new width = "
+		                     + event.getWidth() + "px, new height = " + event.getHeight() + "px");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 }
