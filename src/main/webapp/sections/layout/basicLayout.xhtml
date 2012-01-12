@@ -9,15 +9,16 @@
             <h:outputText value="Layout"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Events and Listeners
+            Element and full page layout
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
         <ui:include src="/sections/layout/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
-        <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="layout"/>
+        <ui:include src="/sections/shared/twoTabsDocumentation.xhtml">
+            <ui:param name="tagName1" value="layout"/>
+            <ui:param name="tagName2" value="layoutPane"/>
         </ui:include>
     </ui:define>
 </ui:composition>
