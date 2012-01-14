@@ -30,3 +30,8 @@
     text-align: left;
     vertical-align: middle;
 }
+
+#sharedTooltipTable th .ui-column-filter {
+    display: inline;
+    margin-left: 5px;
+}
