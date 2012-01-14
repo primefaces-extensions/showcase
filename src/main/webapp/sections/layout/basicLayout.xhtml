@@ -2,7 +2,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -11,6 +12,23 @@
         <h:panelGroup layout="block" styleClass="centerContent">
             Element and full page layout
         </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <pe:layout id="elementLayout" fullPage="false" style="width:400px; height:200px;">
+                <pe:layoutPane position="west" size="100" minSize="40" maxSize="200">
+                    Left
+                </pe:layoutPane>
+                <pe:layoutPane position="center">
+                    Center
+                </pe:layoutPane>
+            </pe:layout>
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/oneTabDecorator.html">
+            <ui:define name="contentTab1">
+
+            </ui:define>
+        </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
         <ui:include src="/sections/layout/useCasesChoice.xhtml"/>
