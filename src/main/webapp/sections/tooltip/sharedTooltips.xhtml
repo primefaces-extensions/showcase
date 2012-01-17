@@ -16,6 +16,9 @@
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <p:dataTable id="sharedTooltipTable" var="message" value="#{dataTableController.messages}">
+                <f:facet name="header">
+                    Please move mouse over filter input fields
+                </f:facet>
                 <pe:paginator rows="5" paginatorPosition="bottom"/>
                 <p:column filterBy="#{message.subject}">
                     <f:facet name="header">
@@ -38,12 +41,15 @@
             </p:dataTable>
 
             <pe:tooltip value="Type any value to filter datatable" forSelector="#sharedTooltipTable th .ui-column-filter"
-                        shared="true" targetPosition="top center" position="bottom center"/>
+                        shared="true" targetPosition="bottom center" position="top center"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
 &lt;p:dataTable id=&quot;sharedTooltipTable&quot; var=&quot;message&quot; value=&quot;\#{dataTableController.messages}&quot;&gt;
+    &lt;f:facet name=&quot;header&quot;&gt;
+        Please move mouse over filter input fields
+    &lt;/f:facet&gt;    
     &lt;pe:paginator rows=&quot;5&quot; paginatorPosition=&quot;bottom&quot;/&gt;
     &lt;p:column filterBy=&quot;\#{message.subject}&quot;&gt;
         &lt;f:facet name=&quot;header&quot;&gt;
@@ -66,7 +72,7 @@
 &lt;/p:dataTable&gt;
 
 &lt;pe:tooltip value=&quot;Type any value to filter datatable&quot; forSelector=&quot;#sharedTooltipTable th .ui-column-filter&quot;
-        shared=&quot;true&quot; targetPosition=&quot;top center&quot; position=&quot;bottom center&quot;/&gt;
+        shared=&quot;true&quot; targetPosition=&quot;bottom center&quot; position=&quot;top center&quot;/&gt;
             </ui:define>
             <ui:define name="contentTab2">
 @ManagedBean

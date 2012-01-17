@@ -21,9 +21,10 @@
                         <h:outputLabel value="Last Name: "/>
                         <p:inputText title="Enter Last Name"/>                                
                     </h:panelGrid>
-                    <p:commandButton value="Submit" process="details" update="details" title="Click to submit the form"/>                    
+                    <p:commandButton value="Submit and see that global tooltips are still here" process="details" update="details" 
+                                     title="Click to submit the form per ajax" style="margin-top: 10px;"/>                    
                 </h:form>
-                <pe:tooltip global="true"/>
+                <pe:tooltip global="true" position="left center" targetPosition="right center"/>
             </h:panelGroup>
             <ui:decorate template="/templates/oneTabDecorator.html">
                 <ui:define name="contentTab1">

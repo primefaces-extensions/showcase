@@ -24,9 +24,10 @@
                     <pe:tooltip for="fade" value="Fade effect is used by default" showEffect="fadeIn" hideEffect="fadeIn"/>                    
                     <h:outputText value="Slide: " />  
                     <h:outputLink id="slide" value="#">  
-                        <h:outputText value="Slide Effect" />  
+                        <h:outputText value="Slide Effect with custom position" />  
                     </h:outputLink>  
-                    <pe:tooltip for="slide" value="This tooltip uses slide effect for the animation" showEffect="slideToggle" hideEffect="slideToggle"/>  
+                    <pe:tooltip for="slide" value="This tooltip uses slide effect for the animation" showEffect="slideToggle" hideEffect="slideToggle"
+                            showDelay="0" position="left center" targetPosition="right center"/>  
                     <h:outputText value="Position: " />  
                     <h:outputLink id="pos" value="#">  
                         <h:outputText value="Position (top, right)" />  
