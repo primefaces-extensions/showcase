@@ -66,6 +66,15 @@
             </roles>
             <timezone>+1</timezone>
         </developer>
+        <developer>
+            <id>mali</id>
+            <name>Nilesh N. Mali</name>
+            <email>nileshmali86@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+5.5</timezone>
+        </developer>
     </developers>
 
     <build>

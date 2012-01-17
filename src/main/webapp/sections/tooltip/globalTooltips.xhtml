@@ -2,24 +2,52 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-<ui:composition template="/templates/showcaseLayout.xhtml">
-    <ui:define name="centerContent">
-        <f:facet name="header">
-            <h:outputText value="Tooltip"/>
-        </f:facet>
-        <h:panelGroup layout="block" styleClass="centerContent">
-            In global mode tooltip uses title values of JSF components. Placing one tooltip is enough instead of using a tooltip for each target component.
-            Global tooltips are smart enough and survive Ajax updates.
-        </h:panelGroup>
-    </ui:define>
-    <ui:define name="useCases">
-        <ui:include src="/sections/tooltip/useCasesChoice.xhtml"/>
-    </ui:define>
-    <ui:define name="docuTable">
-        <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="tooltip"/>
-        </ui:include>
-    </ui:define>
-</ui:composition>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <ui:composition template="/templates/showcaseLayout.xhtml">
+        <ui:define name="centerContent">
+            <f:facet name="header">
+                <h:outputText value="Tooltip"/>
+            </f:facet>
+            <h:panelGroup layout="block" styleClass="centerContent">
+                In global mode tooltip uses title values of JSF components. Placing one tooltip is enough instead of using a tooltip for each target component.
+                Global tooltips are smart enough and survive Ajax updates.
+            </h:panelGroup>
+            <h:panelGroup layout="block" styleClass="centerExample">                
+                <h:form>
+                    <h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
+                        <h:outputLabel value="First Name: "/>
+                        <p:inputText title="Enter First Name"/>                
+                        <h:outputLabel value="Last Name: "/>
+                        <p:inputText title="Enter Last Name"/>                                
+                    </h:panelGrid>
+                    <p:commandButton value="Submit" process="details" update="details" title="Click to submit the form"/>                    
+                </h:form>
+                <pe:tooltip global="true"/>
+            </h:panelGroup>
+            <ui:decorate template="/templates/oneTabDecorator.html">
+                <ui:define name="contentTab1">
+                &lt;h:form&gt;
+                    &lt;h:panelGrid id=&quot;details&quot; columns=&quot;2&quot; columnClasses=&quot;formColumn1,formColumn2&quot;&gt;
+                        &lt;h:outputLabel value=&quot;First Name: &quot;/&gt;
+                        &lt;p:inputText title=&quot;Enter First Name&quot;/&gt;                
+                        &lt;h:outputLabel value=&quot;Last Name: &quot;/&gt;
+                        &lt;p:inputText title=&quot;Enter Last Name&quot;/&gt;                                
+                    &lt;/h:panelGrid&gt;
+                    &lt;p:commandButton value=&quot;Submit&quot; process=&quot;details&quot; update=&quot;details&quot; title=&quot;Click to submit the form&quot;/&gt;                    
+                &lt;/h:form&gt;
+                
+                &lt;pe:tooltip global=&quot;true&quot;/&gt; 
+                </ui:define>
+            </ui:decorate>
+        </ui:define>
+        <ui:define name="useCases">
+            <ui:include src="/sections/tooltip/useCasesChoice.xhtml"/>
+        </ui:define>
+        <ui:define name="docuTable">
+            <ui:include src="/sections/shared/documentation.xhtml">
+                <ui:param name="tagName" value="tooltip"/>
+            </ui:include>
+        </ui:define>
+    </ui:composition>
 </html>
