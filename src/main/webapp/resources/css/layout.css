@@ -34,6 +34,11 @@
     line-height: 1.3 !important;
 }
 
+.docuEventTable {
+	line-height: 1.3 !important;
+	margin-top: 8px;
+}
+
 #docuTabView {
     padding: 0;
     border: none;

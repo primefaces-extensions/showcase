@@ -30,6 +30,7 @@ import java.util.List;
 public class DocuTag {
 
 	private List<DocuAttribute> attributes = new ArrayList<DocuAttribute>();
+	private List<DocuEvent> events = new ArrayList<DocuEvent>();
 
 	public List<DocuAttribute> getAttributes() {
 		return attributes;
@@ -37,5 +38,13 @@ public class DocuTag {
 
 	public void addAttribute(final DocuAttribute attribute) {
 		attributes.add(attribute);
+	}
+
+	public List<DocuEvent> getEvents() {
+		return events;
+	}
+
+	public void addEvent(final DocuEvent event) {
+		events.add(event);
 	}
 }

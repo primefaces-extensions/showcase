@@ -28,12 +28,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.primefaces.extensions.showcase.model.system.DocuAttribute;
+import org.primefaces.extensions.showcase.model.system.DocuEvent;
 import org.primefaces.extensions.showcase.model.system.DocuTag;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 import org.xml.sax.SAXException;
 
 /**
@@ -43,6 +42,8 @@ import org.xml.sax.SAXException;
  * @version $Revision$
  */
 public class TagLibParser {
+
+	private static final String CLIENT_BEHAVIOR_EVENTS = "Client behavior events:";
 
 	public static Map<String, DocuTag> getTags() throws ParserConfigurationException, IOException, SAXException {
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -80,7 +81,10 @@ public class TagLibParser {
 				Node child = childs.item(j);
 				String nodeName = child.getNodeName();
 
-				if ("tag-name".equals(nodeName)) {
+				if ("description".equals(nodeName)) {
+					String description = child.getTextContent();
+					addEvents(description, docuTag);
+				} else if ("tag-name".equals(nodeName)) {
 					tags.put(child.getTextContent(), docuTag);
 				} else if ("attribute".equals(nodeName)) {
 					NodeList childs2 = child.getChildNodes();
@@ -108,5 +112,25 @@ public class TagLibParser {
 		}
 
 		return tags;
+	}
+
+	protected static void addEvents(final String description, final DocuTag docuTag) {
+		int clientBehaviorEventsIndex = description.indexOf(CLIENT_BEHAVIOR_EVENTS);
+
+		if (clientBehaviorEventsIndex > -1) {
+			String extractedEvents = description.substring(clientBehaviorEventsIndex + CLIENT_BEHAVIOR_EVENTS.length());
+
+			for (String extractedEvent : extractedEvents.split(",")) {
+				DocuEvent event = new DocuEvent();
+				event.setName(
+						extractedEvent.split("-")[0].trim());
+				event.setDescription(
+						extractedEvent.split("-")[1].trim().split("\\(")[0]);
+				event.setEventClass(
+						extractedEvent.split("-")[1].trim().split("\\(")[1].replace(").", "").replace(")", "").trim());
+
+				docuTag.addEvent(event);
+			}
+		}
 	}
 }

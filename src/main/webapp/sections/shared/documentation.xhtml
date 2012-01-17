@@ -8,8 +8,12 @@
     <f:facet name="header">
         <h:outputText value="Documentation pe:#{tagName}"/>
     </f:facet>
+    
     <p:dataTable id="docuDataTable" var="attribute" value="#{docuPreparer.getDocuAttributes(tagName)}"
                  emptyMessage="No attributes available for this component." styleClass="docuTable">
+        <f:facet name="header">
+        	Attributes
+        </f:facet>
         <p:column>
             <f:facet name="header">
                 Name
@@ -22,6 +26,25 @@
                 Description
             </f:facet>
             <h:outputText value="#{attribute.description}"/>
+        </p:column>
+    </p:dataTable>
+    <p:dataTable id="docuEventsDataTable" var="event" value="#{docuPreparer.getDocuEvents(tagName)}"
+                 emptyMessage="No events available for this component." styleClass="docuEventTable">
+        <f:facet name="header">
+        	Events
+        </f:facet>
+        <p:column>
+            <f:facet name="header">
+                Name
+            </f:facet>
+            <h:outputText id="name" value="#{event.name}"/>
+            <pe:tooltip for="name" value="#{event.eventClass}"/>
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                Description
+            </f:facet>
+            <h:outputText value="#{event.description}"/>
         </p:column>
     </p:dataTable>
 </ui:composition>

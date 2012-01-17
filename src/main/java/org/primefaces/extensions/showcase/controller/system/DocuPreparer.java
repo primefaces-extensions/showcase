@@ -26,6 +26,7 @@ import javax.faces.FacesException;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+import org.primefaces.extensions.showcase.model.system.DocuEvent;
 import org.primefaces.extensions.showcase.model.system.DocuAttribute;
 import org.primefaces.extensions.showcase.model.system.DocuTag;
 import org.primefaces.extensions.showcase.util.TagLibParser;
@@ -62,5 +63,18 @@ public class DocuPreparer {
 		}
 
 		return docuTag.getAttributes();
+	}
+
+	public List<DocuEvent> getDocuEvents(final String tagName) {
+		if (tagName == null || tags == null) {
+			return null;
+		}
+
+		DocuTag docuTag = tags.get(tagName);
+		if (docuTag == null) {
+			return null;
+		}
+
+		return docuTag.getEvents();
 	}
 }
