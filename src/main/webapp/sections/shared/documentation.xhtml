@@ -9,11 +9,11 @@
         <h:outputText value="Documentation pe:#{tagName}"/>
     </f:facet>
     
+    <h:panelGroup layout="block" styleClass="ui-state-default docuCaption">
+        Attributes (move mouse over names to see types)
+    </h:panelGroup>
     <p:dataTable id="docuDataTable" var="attribute" value="#{docuPreparer.getDocuAttributes(tagName)}"
                  emptyMessage="No attributes available for this component." styleClass="docuTable">
-        <f:facet name="header">
-        	Attributes
-        </f:facet>
         <p:column>
             <f:facet name="header">
                 Name
@@ -28,11 +28,12 @@
             <h:outputText value="#{attribute.description}"/>
         </p:column>
     </p:dataTable>
+    
+    <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption">
+        Events (move mouse over names to see classes)
+    </h:panelGroup>    
     <p:dataTable id="docuEventsDataTable" var="event" value="#{docuPreparer.getDocuEvents(tagName)}"
-                 emptyMessage="No events available for this component." styleClass="docuEventTable">
-        <f:facet name="header">
-        	Events
-        </f:facet>
+                 emptyMessage="No events available for this component." styleClass="docuTable">
         <p:column>
             <f:facet name="header">
                 Name

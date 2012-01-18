@@ -35,3 +35,12 @@
     display: inline;
     margin-left: 5px;
 }
+
+#layoutsSwitcher {
+    width: 400px;
+    margin-bottom: 8px;
+}
+
+#layoutsContainer .ui-menu .ui-menuitem-link {
+    width: auto;
+}

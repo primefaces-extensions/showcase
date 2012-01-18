@@ -90,3 +90,7 @@ table .columnTop {
 .ui-tree .ui-tree-node {
     cursor: pointer;
 }
+
+.ui-tooltip {
+    max-width: 400px;
+}

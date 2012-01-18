@@ -13,19 +13,21 @@
                 In global mode tooltip uses title values of JSF components. Placing one tooltip is enough instead of using a tooltip for each target component.
                 Global tooltips are smart enough and survive Ajax updates.
             </h:panelGroup>
-            <h:panelGroup layout="block" styleClass="centerExample">                
-                <h:form>
-                    <h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
-                        <h:outputLabel value="First Name: "/>
-                        <p:inputText title="Enter First Name"/>                
-                        <h:outputLabel value="Last Name: "/>
-                        <p:inputText title="Enter Last Name"/>                                
-                    </h:panelGrid>
-                    <p:commandButton value="Submit and see that global tooltips are still here" process="details" update="details" 
-                                     title="Click to submit the form per ajax" style="margin-top: 10px;"/>                    
-                </h:form>
+            
+            <h:panelGroup layout="block" styleClass="centerExample">
+                <h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
+                    <h:outputLabel value="First Name: "/>
+                    <p:inputText title="Enter First Name"/>                
+                    <h:outputLabel value="Last Name: "/>
+                    <p:inputText title="Enter Last Name"/>                                
+                </h:panelGrid>
+                
+                <p:commandButton value="Submit and see that global tooltips are still here" process="details" update="details" 
+                                 title="Click to submit the form per ajax" style="margin-top: 10px;"/>
+                
                 <pe:tooltip global="true" position="left center" targetPosition="right center"/>
             </h:panelGroup>
+            
             <ui:decorate template="/templates/oneTabDecorator.html">
                 <ui:define name="contentTab1">
                 &lt;h:form&gt;
