@@ -22,8 +22,9 @@ import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.extensions.component.layout.LayoutPane;
 import org.primefaces.extensions.event.CloseEvent;
@@ -37,19 +38,37 @@ import org.primefaces.extensions.event.ResizeEvent;
  * @version $Revision$
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class LayoutController implements Serializable {
 
 	private static final long serialVersionUID = 20120108L;
 
-	private String state;
+	private String stateOne;
+	private String stateTwo;
+	private boolean layoutOneShown = true;
 
-	public String getState() {
-		return state;
+	public String getStateOne() {
+		return stateOne;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setStateOne(String stateOne) {
+		this.stateOne = stateOne;
+	}
+
+	public String getStateTwo() {
+		return stateTwo;
+	}
+
+	public void setStateTwo(String stateTwo) {
+		this.stateTwo = stateTwo;
+	}
+
+	public void toogleLayout(ActionEvent event) {
+		layoutOneShown = !layoutOneShown;
+	}
+
+	public boolean isLayoutOneShown() {
+		return layoutOneShown;
 	}
 
 	public void handleClose(CloseEvent event) {

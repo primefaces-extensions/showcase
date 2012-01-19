@@ -10,20 +10,23 @@
             <h:outputText value="Layout"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Element and full page layout
+            Element layout
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <h:panelGroup id="layoutsContainer">
                 <p:menubar id="layoutsSwitcher">
-                    <p:menuitem value="Element layout 1" action="#{layoutController.state}" process="layoutsContainer"
-                                update="layoutsGrid" icon="ui-icon-newwin"/>
-                    <p:menuitem value="Element layout 2" action="#{layoutController.state}" process="layoutsContainer"
-                                update="layoutsGrid" icon="ui-icon-newwin"/>
+                    <p:menuitem value="Show element layout 2" actionListener="#{layoutController.toogleLayout}"
+                                rendered="#{layoutController.layoutOneShown}" process="layoutsContainer"
+                                update="layoutsContainer" icon="ui-icon-newwin"/>
+                    <p:menuitem value="Show element layout 1" actionListener="#{layoutController.toogleLayout}"
+                                rendered="#{!layoutController.layoutOneShown}" process="layoutsContainer"
+                                update="layoutsContainer" icon="ui-icon-newwin"/>
                 </p:menubar>
 
                 <h:panelGrid id="layoutsGrid" columns="2">
-                    <pe:layout fullPage="false" style="width:400px; height:200px;">
+                    <pe:layout fullPage="false" style="width:400px; height:200px;"
+                               rendered="#{layoutController.layoutOneShown}" state="#{layoutController.stateOne}">
                         <pe:layoutPane position="west" size="100" minSize="40" maxSize="200">
                             Left
                         </pe:layoutPane>
@@ -31,12 +34,19 @@
                             Center
                         </pe:layoutPane>
                     </pe:layout>
-                    <pe:layout fullPage="false" style="width:400px; height:200px;">
+                    <pe:layout fullPage="false" style="width:400px; height:200px;"
+                               rendered="#{!layoutController.layoutOneShown}" state="#{layoutController.stateTwo}">
                         <pe:layoutPane position="east" resizable="false" closable="false">
                             <pe:layoutPane position="center">
+                                <f:facet name="header">
+                                    Header East-Center
+                                </f:facet>
                                 East-Center
                             </pe:layoutPane>
                             <pe:layoutPane position="south" size="'50%'">
+                                <f:facet name="header">
+                                   Header East-South
+                                </f:facet>
                                 East-South
                             </pe:layoutPane>
                         </pe:layoutPane>

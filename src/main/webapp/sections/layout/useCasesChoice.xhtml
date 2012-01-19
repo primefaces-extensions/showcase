@@ -3,11 +3,15 @@
       xmlns:p="http://primefaces.org/ui">
 <ui:composition>
     <p:menu id="useCaseList">
-        <p:menuitem value="Element and full page layout"
-                    styleClass="#{navigationContext.getMenuitemStyleClass('basicLayout')}"
+        <p:menuitem value="Element layout and server-side state management"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('elementLayout')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/layout/basicLayout.jsf"/>
-        <p:menuitem value="Tabbed layout, events and state management"
+                    url="/sections/layout/elementLayout.jsf"/>
+        <p:menuitem value="Full page layout and events"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('fullPageLayout')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/layout/fullPageLayout.jsf"/>        
+        <p:menuitem value="Tabbed layout and client-side state management"
                     styleClass="#{navigationContext.getMenuitemStyleClass('tabbedLayout')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                     url="/sections/layout/tabbedLayout.jsf"/>
