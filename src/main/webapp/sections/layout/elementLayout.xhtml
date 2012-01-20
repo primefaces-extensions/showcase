@@ -15,28 +15,23 @@
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <h:panelGroup id="layoutsContainer">
-                <p:menubar id="layoutsSwitcher">
-                    <p:menuitem value="Show element layout 2" actionListener="#{layoutController.toogleLayout}"
-                                rendered="#{layoutController.layoutOneShown}" process="layoutsContainer"
-                                update="layoutsContainer" icon="ui-icon-newwin"/>
-                    <p:menuitem value="Show element layout 1" actionListener="#{layoutController.toogleLayout}"
-                                rendered="#{!layoutController.layoutOneShown}" process="layoutsContainer"
-                                update="layoutsContainer" icon="ui-icon-newwin"/>
-                </p:menubar>
-
-                <h:panelGrid id="layoutsGrid" columns="2">
-                    <pe:layout fullPage="false" style="width:400px; height:200px;"
+                <p:commandButton value="Switch between element layouts" actionListener="#{layoutController.toogleLayout}"
+                                 process="layoutsContainer" update="layoutsContainer" icon="ui-icon-newwin"/>
+            
+                <h:panelGrid id="layoutsGrid" columns="2" style="margin-top: 8px;">
+                    <pe:layout fullPage="false" style="width:450px; height:220px;"
                                rendered="#{layoutController.layoutOneShown}" state="#{layoutController.stateOne}">
-                        <pe:layoutPane position="west" size="100" minSize="40" maxSize="200">
+                        <pe:layoutPane position="west" size="150" minSize="40" maxSize="300">
                             Left
                         </pe:layoutPane>
                         <pe:layoutPane position="center">
                             Center
                         </pe:layoutPane>
                     </pe:layout>
-                    <pe:layout fullPage="false" style="width:400px; height:200px;"
+                    
+                    <pe:layout fullPage="false" style="width:450px; height:220px;"
                                rendered="#{!layoutController.layoutOneShown}" state="#{layoutController.stateTwo}">
-                        <pe:layoutPane position="east" resizable="false" closable="false">
+                        <pe:layoutPane position="east" size="'50%'" resizable="false" closable="false">
                             <pe:layoutPane position="center">
                                 <f:facet name="header">
                                     Header East-Center
@@ -45,7 +40,7 @@
                             </pe:layoutPane>
                             <pe:layoutPane position="south" size="'50%'">
                                 <f:facet name="header">
-                                   Header East-South
+                                    Header East-South
                                 </f:facet>
                                 East-South
                             </pe:layoutPane>
@@ -58,10 +53,80 @@
             </h:panelGroup>
         </h:panelGroup>
 
-        <ui:decorate template="/templates/oneTabDecorator.html">
+        <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
+&lt;h:panelGroup id=&quot;layoutsContainer&quot;&gt;
+    &lt;p:commandButton value=&quot;Switch between element layouts&quot; actionListener=&quot;\#{layoutController.toogleLayout}&quot;
+                     process=&quot;layoutsContainer&quot; update=&quot;layoutsContainer&quot; icon=&quot;ui-icon-newwin&quot;/&gt;
 
+    &lt;h:panelGrid id=&quot;layoutsGrid&quot; columns=&quot;2&quot; style=&quot;margin-top: 8px;&quot;&gt;
+        &lt;pe:layout fullPage=&quot;false&quot; style=&quot;width:450px; height:220px;&quot;
+                   rendered=&quot;\#{layoutController.layoutOneShown}&quot; state=&quot;\#{layoutController.stateOne}&quot;&gt;
+            &lt;pe:layoutPane position=&quot;west&quot; size=&quot;150&quot; minSize=&quot;40&quot; maxSize=&quot;300&quot;&gt;
+                Left
+            &lt;/pe:layoutPane&gt;
+            &lt;pe:layoutPane position=&quot;center&quot;&gt;
+                Center
+            &lt;/pe:layoutPane&gt;
+        &lt;/pe:layout&gt;
+        
+        &lt;pe:layout fullPage=&quot;false&quot; style=&quot;width:450px; height:220px;&quot;
+                   rendered=&quot;\#{!layoutController.layoutOneShown}&quot; state=&quot;\#{layoutController.stateTwo}&quot;&gt;
+            &lt;pe:layoutPane position=&quot;east&quot; size=&quot;'50%'&quot; resizable=&quot;false&quot; closable=&quot;false&quot;&gt;
+                &lt;pe:layoutPane position=&quot;center&quot;&gt;
+                    &lt;f:facet name=&quot;header&quot;&gt;
+                        Header East-Center
+                    &lt;/f:facet&gt;
+                    East-Center
+                &lt;/pe:layoutPane&gt;
+                &lt;pe:layoutPane position=&quot;south&quot; size=&quot;'50%'&quot;&gt;
+                    &lt;f:facet name=&quot;header&quot;&gt;
+                        Header East-South
+                    &lt;/f:facet&gt;
+                    East-South
+                &lt;/pe:layoutPane&gt;
+            &lt;/pe:layoutPane&gt;
+            &lt;pe:layoutPane position=&quot;center&quot;&gt;
+                Center
+            &lt;/pe:layoutPane&gt;
+        &lt;/pe:layout&gt;
+    &lt;/h:panelGrid&gt;
+&lt;/h:panelGroup&gt;
             </ui:define>
+            <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class LayoutController implements Serializable {
+
+	private String stateOne;
+	private String stateTwo;
+	private boolean layoutOneShown = true;
+
+	public String getStateOne() {
+		return stateOne;
+	}
+
+	public void setStateOne(String stateOne) {
+		this.stateOne = stateOne;
+	}
+
+	public String getStateTwo() {
+		return stateTwo;
+	}
+
+	public void setStateTwo(String stateTwo) {
+		this.stateTwo = stateTwo;
+	}
+
+	public void toogleLayout(ActionEvent event) {
+		layoutOneShown = !layoutOneShown;
+	}
+
+	public boolean isLayoutOneShown() {
+		return layoutOneShown;
+	}
+}
+            </ui:define>                    
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">

@@ -14,11 +14,17 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
- 
+            <p:menubar>
+                <p:menuitem value="Show full page layout" icon="ui-icon-arrow-4-diag" url="/sections/layout/fullPageExample.jsf"
+                            target="_blank"/>
+            </p:menubar>
         </h:panelGroup>
 
-        <ui:decorate template="/templates/oneTabDecorator.html">
+        <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
+
+            </ui:define>
+            <ui:define name="contentTab2">
 
             </ui:define>
         </ui:decorate>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<f:view contentType="text/html" locale="en">
+    <pe:head title="PrimeFaces Extensions - Full Page Layout" shortcutIcon="#{request.contextPath}/favicon.ico">
+        <f:facet name="first">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta http-equiv="pragma" content="no-cache"/>
+            <meta http-equiv="cache-control" content="no-cache"/>
+            <meta http-equiv="expires" content="0"/>
+        </f:facet>
+    </pe:head>
+    <h:body>
+        <pe:layout>
+            <f:ajax event="open" listener="#{layoutController.handleOpen}"/>
+            <f:ajax event="close" listener="#{layoutController.handleClose}"/>
+            <f:ajax event="resize" listener="#{layoutController.handleResize}"/>
+
+            <pe:layoutPane position="north" size="80">
+                North
+            </pe:layoutPane>
+            <h:form id="mainForm" prependId="false">
+                <pe:layoutPane position="center">
+                    <pe:layoutPane position="north" size="'50%'">
+                        <f:facet name="header">
+                            <h:outputText value="Center-North"/>
+                        </f:facet>
+                    </pe:layoutPane>
+                    <pe:layoutPane position="center" minHeight="60">
+                        <f:facet name="header">
+                            <h:outputText value="Center-Center"/>
+                        </f:facet>
+                    </pe:layoutPane>
+                </pe:layoutPane>
+                <pe:layoutPane position="west" size="200">
+                    <pe:layoutPane position="north" size="'33%'">
+                        West-North
+                    </pe:layoutPane>
+                    <pe:layoutPane position="center" minHeight="60">
+                        West-Center
+                    </pe:layoutPane>
+                    <pe:layoutPane position="south" size="'33%'">
+                        West-South
+                    </pe:layoutPane>
+                </pe:layoutPane>
+                <pe:layoutPane position="east" size="200">
+                    East
+                </pe:layoutPane>
+                <pe:layoutPane position="south" size="100">
+                    South
+                </pe:layoutPane>
+            </h:form>
+        </pe:layout>
+
+        <h:outputStylesheet library="css" name="global.css"/>
+    </h:body>
+</f:view>
+</html>
