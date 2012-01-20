@@ -28,12 +28,13 @@
             <h:outputText value="#{attribute.description}"/>
         </p:column>
     </p:dataTable>
-    
-    <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption">
+
+    <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption" rendered="#{docuPreparer.getDocuEvents(tagName).size() > 0}">
         Events (move mouse over names to see classes)
     </h:panelGroup>    
     <p:dataTable id="docuEventsDataTable" var="event" value="#{docuPreparer.getDocuEvents(tagName)}"
-                 emptyMessage="No events available for this component." styleClass="docuTable">
+                 emptyMessage="No events available for this component." styleClass="docuEventTable"
+                 rendered="#{docuPreparer.getDocuEvents(tagName).size() > 0}">
         <p:column>
             <f:facet name="header">
                 Name

@@ -8,7 +8,7 @@
     <f:facet name="header">
         <h:outputText value="Documentation"/>
     </f:facet>
-    
+
     <p:tabView id="docuTabView">
         <p:tab title="pe:#{tagName1}">
             <h:panelGroup layout="block" styleClass="ui-state-default docuCaption">
@@ -31,11 +31,12 @@
                 </p:column>
             </p:dataTable>
             
-            <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption">
+            <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption" rendered="#{docuPreparer.getDocuEvents(tagName1).size() > 0}">
                 Events (move mouse over names to see classes)
             </h:panelGroup>            
 		    <p:dataTable id="docuEventsDataTable1" var="event" value="#{docuPreparer.getDocuEvents(tagName1)}"
-		                 emptyMessage="No events available for this component." styleClass="docuTable">
+		                 emptyMessage="No events available for this component." styleClass="docuEventTable"
+		                 rendered="#{docuPreparer.getDocuEvents(tagName1).size() > 0}">
 		        <p:column>
 		            <f:facet name="header">
 		                Name
@@ -73,11 +74,12 @@
                 </p:column>
             </p:dataTable>
             
-            <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption">
+            <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption" rendered="#{docuPreparer.getDocuEvents(tagName2).size() > 0}">
                 Events (move mouse over names to see classes)
             </h:panelGroup>            
 		    <p:dataTable id="docuEventsDataTable2" var="event" value="#{docuPreparer.getDocuEvents(tagName2)}"
-		                 emptyMessage="No events available for this component." styleClass="docuTable">
+		                 emptyMessage="No events available for this component." styleClass="docuEventTable"
+		                 rendered="#{docuPreparer.getDocuEvents(tagName2).size() > 0}">
 		        <p:column>
 		            <f:facet name="header">
 		                Name
@@ -114,12 +116,13 @@
                     <h:outputText value="#{attribute.description}"/>
                 </p:column>
             </p:dataTable>
-            
-            <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption">
+
+            <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption" rendered="#{docuPreparer.getDocuEvents(tagName3).size() > 0}">
                 Events (move mouse over names to see classes)
-            </h:panelGroup>            
+            </h:panelGroup>
 		    <p:dataTable id="docuEventsDataTable3" var="event" value="#{docuPreparer.getDocuEvents(tagName3)}"
-		                 emptyMessage="No events available for this component." styleClass="docuTable">
+		                 emptyMessage="No events available for this component." styleClass="docuEventTable"
+		                 rendered="#{docuPreparer.getDocuEvents(tagName3).size() > 0}">
 		        <p:column>
 		            <f:facet name="header">
 		                Name
