@@ -1,9 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -14,18 +12,93 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <p:menubar>
-                <p:menuitem value="Show full page layout" icon="ui-icon-arrow-4-diag" url="/sections/layout/fullPageExample.jsf"
-                            target="_blank"/>
-            </p:menubar>
+            <h:outputLink value="#{request.contextPath}/sections/layout/fullPageExample.jsf" target="_blank"
+                          style="font-weight: bold; text-decoration: none; border-bottom: 1px dotted;">
+                <h:outputText value="Show full page layout"/>
+            </h:outputLink>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
+&lt;pe:growl id=&quot;growl&quot; showDetail=&quot;true&quot; showSummary=&quot;true&quot;/&gt;
 
+&lt;pe:layout id=&quot;fullPage&quot;&gt;
+    &lt;p:ajax event=&quot;open&quot; listener=&quot;\#{layoutController.handleOpen}&quot; update=&quot;_mainForm_msg&quot;/&gt;
+    &lt;p:ajax event=&quot;close&quot; listener=&quot;\#{layoutController.handleClose}&quot; update=&quot;_mainForm_msg&quot;/&gt;
+    &lt;p:ajax event=&quot;resize&quot; listener=&quot;\#{layoutController.handleResize}&quot; update=&quot;growl&quot;/&gt;
+
+    &lt;pe:layoutPane position=&quot;north&quot; size=&quot;80&quot;&gt;
+        North
+    &lt;/pe:layoutPane&gt;
+    &lt;h:form id=&quot;mainForm&quot;&gt;
+        &lt;pe:layoutPane position=&quot;center&quot;&gt;
+            &lt;pe:layoutPane position=&quot;north&quot; size=&quot;'50%'&quot;&gt;
+                &lt;f:facet name=&quot;header&quot;&gt;
+                    &lt;h:outputText value=&quot;Center-North&quot;/&gt;
+                &lt;/f:facet&gt;
+            &lt;/pe:layoutPane&gt;
+            &lt;pe:layoutPane position=&quot;center&quot; minHeight=&quot;60&quot;&gt;
+                &lt;f:facet name=&quot;header&quot;&gt;
+                    &lt;h:outputText value=&quot;Center-Center&quot;/&gt;
+                &lt;/f:facet&gt;
+                &lt;pe:messages id=&quot;msg&quot; showDetail=&quot;true&quot; showSummary=&quot;true&quot;&gt;
+                    &lt;p:effect type=&quot;pulsate&quot; event=&quot;load&quot; delay=&quot;0&quot;&gt;
+                        &lt;f:param name=&quot;mode&quot; value=&quot;'show'&quot;/&gt;
+                        &lt;f:param name=&quot;times&quot; value=&quot;'1'&quot;/&gt;
+                    &lt;/p:effect&gt;
+                &lt;/pe:messages&gt;
+            &lt;/pe:layoutPane&gt;
+        &lt;/pe:layoutPane&gt;
+        &lt;pe:layoutPane position=&quot;west&quot; size=&quot;200&quot;&gt;
+            &lt;pe:layoutPane position=&quot;north&quot; size=&quot;'33%'&quot;&gt;
+                West-North
+            &lt;/pe:layoutPane&gt;
+            &lt;pe:layoutPane position=&quot;center&quot; minHeight=&quot;60&quot;&gt;
+                West-Center
+            &lt;/pe:layoutPane&gt;
+            &lt;pe:layoutPane position=&quot;south&quot; size=&quot;'33%'&quot;&gt;
+                West-South
+            &lt;/pe:layoutPane&gt;
+        &lt;/pe:layoutPane&gt;
+        &lt;pe:layoutPane position=&quot;east&quot; size=&quot;200&quot;&gt;
+            East
+        &lt;/pe:layoutPane&gt;
+        &lt;pe:layoutPane position=&quot;south&quot; size=&quot;80&quot;&gt;
+            South
+        &lt;/pe:layoutPane&gt;
+    &lt;/h:form&gt;
+&lt;/pe:layout&gt;
             </ui:define>
             <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class LayoutController implements Serializable {
 
+	public void handleClose(CloseEvent event) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Layout Pane closed&quot;,
+		                     &quot;Position:'&quot; + ((LayoutPane) event.getComponent()).getPosition() + &quot;'&quot;);
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void handleOpen(OpenEvent event) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Layout Pane opened&quot;,
+		                     &quot;Position:'&quot; + ((LayoutPane) event.getComponent()).getPosition() + &quot;'&quot;);
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void handleResize(ResizeEvent event) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Layout Pane resized&quot;,
+		                     &quot;Position:'&quot; + ((LayoutPane) event.getComponent()).getPosition() + &quot;', new width = &quot;
+		                     + event.getWidth() + &quot;px, new height = &quot; + event.getHeight() + &quot;px&quot;);
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+}
             </ui:define>
         </ui:decorate>
     </ui:define>

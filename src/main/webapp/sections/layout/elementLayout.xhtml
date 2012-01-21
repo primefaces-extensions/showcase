@@ -18,7 +18,7 @@
                 <p:commandButton value="Switch between element layouts" actionListener="#{layoutController.toogleLayout}"
                                  process="layoutsContainer" update="layoutsContainer" icon="ui-icon-newwin"/>
             
-                <h:panelGrid id="layoutsGrid" columns="2" style="margin-top: 8px;">
+                <h:panelGrid id="layoutsGrid" columns="2" style="margin-top: 15px;" cellpadding="0" cellspacing="0">
                     <pe:layout fullPage="false" style="width:450px; height:220px;"
                                rendered="#{layoutController.layoutOneShown}" state="#{layoutController.stateOne}">
                         <pe:layoutPane position="west" size="150" minSize="40" maxSize="300">

@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
 <f:view contentType="text/html" locale="en">
     <pe:head title="PrimeFaces Extensions - Full Page Layout" shortcutIcon="#{request.contextPath}/favicon.ico">
@@ -13,15 +14,17 @@
         </f:facet>
     </pe:head>
     <h:body>
-        <pe:layout>
-            <f:ajax event="open" listener="#{layoutController.handleOpen}"/>
-            <f:ajax event="close" listener="#{layoutController.handleClose}"/>
-            <f:ajax event="resize" listener="#{layoutController.handleResize}"/>
-
+        <pe:growl id="growl" showDetail="true" showSummary="true"/>
+        
+        <pe:layout id="fullPage">
+            <p:ajax event="open" listener="#{layoutController.handleOpen}" update="_mainForm_msg"/>
+            <p:ajax event="close" listener="#{layoutController.handleClose}" update="_mainForm_msg"/>
+            <p:ajax event="resize" listener="#{layoutController.handleResize}" update="growl"/>
+        
             <pe:layoutPane position="north" size="80">
                 North
             </pe:layoutPane>
-            <h:form id="mainForm" prependId="false">
+            <h:form id="mainForm">
                 <pe:layoutPane position="center">
                     <pe:layoutPane position="north" size="'50%'">
                         <f:facet name="header">
@@ -32,6 +35,12 @@
                         <f:facet name="header">
                             <h:outputText value="Center-Center"/>
                         </f:facet>
+                        <pe:messages id="msg" showDetail="true" showSummary="true">
+                            <p:effect type="pulsate" event="load" delay="0">
+                                <f:param name="mode" value="'show'"/>
+                                <f:param name="times" value="'1'"/>
+                            </p:effect>
+                        </pe:messages>
                     </pe:layoutPane>
                 </pe:layoutPane>
                 <pe:layoutPane position="west" size="200">
@@ -48,7 +57,7 @@
                 <pe:layoutPane position="east" size="200">
                     East
                 </pe:layoutPane>
-                <pe:layoutPane position="south" size="100">
+                <pe:layoutPane position="south" size="80">
                     South
                 </pe:layoutPane>
             </h:form>
