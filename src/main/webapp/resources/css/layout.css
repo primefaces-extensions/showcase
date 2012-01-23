@@ -132,3 +132,7 @@ div.source {
     padding: 2px;
     text-align: left;
 }
+
+.layout-tabbuttons {
+    left: auto !important;
+}

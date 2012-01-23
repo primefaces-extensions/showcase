@@ -1,29 +1,141 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
             <h:outputText value="Layout"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Tabbed Layout
+            tabbed layout
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
- 
+            <h:outputLink value="#{request.contextPath}/sections/layout/examples/management.jsf" target="_blank"
+                          style="font-weight: bold; text-decoration: none; border-bottom: 1px dotted;">
+                <h:outputText value="Show tabbed layout"/>
+            </h:outputLink>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
+// 1. page fragment from management.xhtml
 
+&lt;pe:layout id=&quot;tabbedPage1&quot; tabs=&quot;\#{layoutController.layoutTabs}&quot; stateCookie=&quot;true&quot;&gt;
+    &lt;pe:layoutPane position=&quot;north&quot; size=&quot;40&quot; resizable=&quot;false&quot; closable=&quot;false&quot;&gt;
+        &lt;h:graphicImage library=&quot;images&quot; name=&quot;logo.png&quot; styleClass=&quot;logo&quot;/&gt;
+        &lt;h:outputText value=&quot;PrimeFaces Extensions&quot;
+                      style=&quot;display:block; font-size:28px; position:absolute; top:16px; margin-left:100px;&quot;/&gt;
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;center&quot; minWidth=&quot;200&quot;&gt;
+        &lt;pe:layoutPane position=&quot;north&quot; size=&quot;'50%'&quot;&gt;
+            Center-North
+        &lt;/pe:layoutPane&gt;
+        &lt;pe:layoutPane position=&quot;center&quot; minHeight=&quot;60&quot;&gt;
+            Center-Center
+        &lt;/pe:layoutPane&gt;
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;west&quot; size=&quot;210&quot; minSize=&quot;180&quot; maxSize=&quot;500&quot;&gt;
+        West
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;east&quot; size=&quot;200&quot;&gt;
+        East
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;south&quot; size=&quot;28&quot; resizable=&quot;false&quot; closable=&quot;false&quot;
+                   spacing=&quot;3&quot; statusbar=&quot;true&quot;&gt;
+        Statusbar
+    &lt;/pe:layoutPane&gt;
+&lt;/pe:layout&gt;
+
+// 2. page fragment from settings.xhtml
+
+&lt;pe:layout id=&quot;tabbedPage2&quot; tabs=&quot;\#{layoutController.layoutTabs}&quot; stateCookie=&quot;true&quot;&gt;
+    &lt;pe:layoutPane position=&quot;north&quot; size=&quot;40&quot; resizable=&quot;false&quot; closable=&quot;false&quot;&gt;
+        &lt;h:graphicImage library=&quot;images&quot; name=&quot;logo.png&quot; styleClass=&quot;logo&quot;/&gt;
+        &lt;h:outputText value=&quot;PrimeFaces Extensions&quot;
+                      style=&quot;display:block; font-size:28px; position:absolute; top:16px; margin-left:100px;&quot;/&gt;
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;center&quot;&gt;
+        Center
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;west&quot; size=&quot;200&quot;&gt;
+        West
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;east&quot; size=&quot;200&quot;&gt;
+        &lt;pe:layoutPane position=&quot;center&quot; minHeight=&quot;60&quot;&gt;
+            East-Center
+        &lt;/pe:layoutPane&gt;
+        &lt;pe:layoutPane position=&quot;south&quot; size=&quot;'70%'&quot; minSize=&quot;60&quot;&gt;
+            East-South
+        &lt;/pe:layoutPane&gt;
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;south&quot; size=&quot;28&quot; resizable=&quot;false&quot; closable=&quot;false&quot;
+                   spacing=&quot;3&quot; statusbar=&quot;true&quot;&gt;
+        Statusbar
+    &lt;/pe:layoutPane&gt;
+&lt;/pe:layout&gt;
+
+// 3. page fragment from about.xhtml
+
+&lt;pe:layout id=&quot;tabbedPage3&quot; tabs=&quot;\#{layoutController.layoutTabs}&quot; stateCookie=&quot;true&quot;&gt;
+    &lt;pe:layoutPane position=&quot;north&quot; size=&quot;40&quot; resizable=&quot;false&quot; closable=&quot;false&quot;&gt;
+        &lt;h:graphicImage library=&quot;images&quot; name=&quot;logo.png&quot; styleClass=&quot;logo&quot;/&gt;
+        &lt;h:outputText value=&quot;PrimeFaces Extensions&quot;
+                      style=&quot;display:block; font-size:28px; position:absolute; top:16px; margin-left:100px;&quot;/&gt;
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;center&quot;&gt;
+        Center
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;west&quot; size=&quot;200&quot;&gt;
+        &lt;pe:layoutPane position=&quot;center&quot;&gt;
+            West-Center
+        &lt;/pe:layoutPane&gt;
+        &lt;pe:layoutPane position=&quot;south&quot; size=&quot;'50%'&quot;&gt;
+            West-South
+        &lt;/pe:layoutPane&gt;
+    &lt;/pe:layoutPane&gt;
+    &lt;pe:layoutPane position=&quot;south&quot; size=&quot;28&quot; resizable=&quot;false&quot; closable=&quot;false&quot;
+                   spacing=&quot;3&quot; statusbar=&quot;true&quot;&gt;
+        Statusbar
+    &lt;/pe:layoutPane&gt;
+&lt;/pe:layout&gt;
             </ui:define>
             <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class LayoutController implements Serializable {
 
-            </ui:define>            
-        </ui:decorate>        
+	private List&lt;MenuItem&gt; tabs = null;
+
+	public List&lt;MenuItem&gt; getLayoutTabs() {
+		if (tabs == null) {
+			tabs = new ArrayList&lt;MenuItem&gt;();
+
+			MenuItem mi = new MenuItem();
+			mi.setUrl(&quot;/sections/layout/examples/management.xhtml&quot;);
+			mi.setIcon(&quot;ui-icon-wrench&quot;);
+			mi.setValue(&quot;Management&quot;);
+			tabs.add(mi);
+
+			mi = new MenuItem();
+			mi.setUrl(&quot;/sections/layout/examples/settings.xhtml&quot;);
+			mi.setIcon(&quot;ui-icon-gear&quot;);
+			mi.setValue(&quot;Settings&quot;);
+			tabs.add(mi);
+
+			mi = new MenuItem();
+			mi.setUrl(&quot;/sections/layout/examples/about.xhtml&quot;);
+			mi.setIcon(&quot;ui-icon-info&quot;);
+			mi.setValue(&quot;About&quot;);
+			tabs.add(mi);
+		}
+
+		return tabs;
+	}
+}
+            </ui:define>
+        </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
         <ui:include src="/sections/layout/useCasesChoice.xhtml"/>
