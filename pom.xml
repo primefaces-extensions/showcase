@@ -41,10 +41,6 @@
         <url>http://code.google.com/p/primefaces-extensions/source/browse/#svn/samples/showcase/trunk</url>
     </scm>
     
-    <prerequisites>
-        <maven>3.0.3</maven>
-    </prerequisites>    
-
     <developers>
         <developer>
             <id>andraschko</id>
