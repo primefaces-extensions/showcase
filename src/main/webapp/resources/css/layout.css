@@ -4,6 +4,10 @@
     border: none;
 }
 
+.layout-inner-north > .ui-layout-pane-content {
+    background-color: #FFFFFF;
+}
+
 #headerForm .logo {
     position: relative;
     bottom: 4px;
