@@ -10,13 +10,18 @@
             <h:outputText value="ResetEditableValues"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            TODO.
+            This example demonstrates an overview table with all persions and a detail view for person details.
+            Click on a person name in the table to go to the corresponding detail view. This detail view has three input fields: Name (required), Tax Class (only number allowed), Birth Date (only date allowed).
+            Type a wrong data, e.g. Tax Class as string instead of number, and push "Save" button. You will see a validation error.
+            Both "cancel" buttons force a back navigation to the overview table. Try to click on the first "Regular Cancel" button and select another person in the table.
+            You will see partially last shown data from the last selected person and not data from the current selected person.
+            If Tax Class would not pass validation, Name and Birth Date from the last selected person would be shown. The second button with attached pe:resetEditableValues solves this problem.  
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <h:panelGroup id="personsGroup">
                 <pe:messages/>
-
+            
                 <p:dataTable id="persons" value="#{advancedResetEditableValuesController.persons}" var="person"
                              rendered="#{empty advancedResetEditableValuesController.selectedPerson}">
                     <p:column headerText="Name">
@@ -33,7 +38,7 @@
                         </h:outputText>
                     </p:column>
                 </p:dataTable>
-
+            
                 <h:panelGroup rendered="#{not empty advancedResetEditableValuesController.selectedPerson}">
                     <h:panelGrid id="personDetail" columns="2" columnClasses="formColumn1,formColumn2">
                         <h:outputText value="Name (string)"/>
@@ -50,7 +55,7 @@
                             <f:convertDateTime pattern="dd.MM.yyyy"/>
                         </h:inputText>
                     </h:panelGrid>
-
+            
                     <p:commandButton value="Save" action="#{advancedResetEditableValuesController.updatePersonDetails}"
                                      process="personsGroup" update="personsGroup"
                                      style="margin-top: 10px;" icon="ui-icon-disk"/>
@@ -67,13 +72,164 @@
 
         <ui:decorate template="/templates/threeTabsDecoratorModel.html">
             <ui:define name="contentTab1">
+&lt;h:panelGroup id=&quot;personsGroup&quot;&gt;
+    &lt;pe:messages/&gt;
 
+    &lt;p:dataTable id=&quot;persons&quot; value=&quot;\#{advancedResetEditableValuesController.persons}&quot; var=&quot;person&quot;
+                 rendered=&quot;\#{empty advancedResetEditableValuesController.selectedPerson}&quot;&gt;
+        &lt;p:column headerText=&quot;Name&quot;&gt;
+            &lt;p:commandLink value=&quot;\#{person.name}&quot;
+                           action=&quot;\#{advancedResetEditableValuesController.showPersonDetails(person)}&quot;
+                           process=&quot;_mainForm_personsGroup&quot; update=&quot;_mainForm_personsGroup&quot;/&gt;
+        &lt;/p:column&gt;
+        &lt;p:column headerText=&quot;Tax Class&quot;&gt;
+            &lt;h:outputText value=&quot;\#{person.taxClass}&quot;/&gt;
+        &lt;/p:column&gt;
+        &lt;p:column headerText=&quot;Birth Date&quot;&gt;
+            &lt;h:outputText value=&quot;\#{person.birthDate}&quot;&gt;
+                &lt;f:convertDateTime pattern=&quot;dd.MM.yyyy&quot;/&gt;
+            &lt;/h:outputText&gt;
+        &lt;/p:column&gt;
+    &lt;/p:dataTable&gt;
+
+    &lt;h:panelGroup rendered=&quot;\#{not empty advancedResetEditableValuesController.selectedPerson}&quot;&gt;
+        &lt;h:panelGrid id=&quot;personDetail&quot; columns=&quot;2&quot; columnClasses=&quot;formColumn1,formColumn2&quot;&gt;
+            &lt;h:outputText value=&quot;Name (string)&quot;/&gt;
+            &lt;h:inputText value=&quot;\#{advancedResetEditableValuesController.selectedPerson.name}&quot;
+                         required=&quot;true&quot; label=&quot;Name&quot;/&gt;
+            &lt;h:outputText value=&quot;Tax Class (number)&quot;/&gt;
+            &lt;h:inputText value=&quot;\#{advancedResetEditableValuesController.selectedPerson.taxClass}&quot;
+                         required=&quot;true&quot; label=&quot;Tax Class&quot;&gt;
+                &lt;f:validateLength maximum=&quot;1&quot;/&gt;
+            &lt;/h:inputText&gt;
+            &lt;h:outputText value=&quot;Birth Date (date dd.MM.yyyy)&quot;/&gt;
+            &lt;h:inputText value=&quot;\#{advancedResetEditableValuesController.selectedPerson.birthDate}&quot;
+                         required=&quot;true&quot; label=&quot;Birth Date&quot;&gt;
+                &lt;f:convertDateTime pattern=&quot;dd.MM.yyyy&quot;/&gt;
+            &lt;/h:inputText&gt;
+        &lt;/h:panelGrid&gt;
+
+        &lt;p:commandButton value=&quot;Save&quot;
+                         action=&quot;\#{advancedResetEditableValuesController.updatePersonDetails}&quot;
+                         process=&quot;personsGroup&quot; update=&quot;personsGroup&quot;
+                         style=&quot;margin-top: 10px;&quot; icon=&quot;ui-icon-disk&quot;/&gt;
+        &lt;p:commandButton value=&quot;Regular Cancel&quot;
+                         action=&quot;\#{advancedResetEditableValuesController.cancelPersonDetails}&quot;
+                         update=&quot;personsGroup&quot; immediate=&quot;true&quot; icon=&quot;ui-icon-close&quot;/&gt;
+        &lt;p:commandButton value=&quot;Cancel with pe:resetEditableValues&quot;
+                         action=&quot;\#{advancedResetEditableValuesController.cancelPersonDetails}&quot;
+                         update=&quot;personsGroup&quot; immediate=&quot;true&quot; icon=&quot;ui-icon-close&quot;&gt;
+            &lt;pe:resetEditableValues for=&quot;personDetail&quot;/&gt;
+        &lt;/p:commandButton&gt;
+    &lt;/h:panelGroup&gt;
+&lt;/h:panelGroup&gt;
             </ui:define>
             <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class AdvancedResetEditableValuesController implements Serializable {
 
+	private Person selectedPerson;
+	private List&lt;Person&gt; persons;
+
+	public AdvancedResetEditableValuesController() {
+		if (persons == null) {
+			persons = new ArrayList&lt;Person&gt;();
+
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(1972, 5, 25);
+			persons.add(new Person(&quot;1&quot;, &quot;Max Mustermann&quot;, 1, calendar.getTime()));
+			calendar.set(1981, 12, 10);
+			persons.add(new Person(&quot;2&quot;, &quot;Sara Schmidt&quot;, 2, calendar.getTime()));
+			calendar.set(1968, 2, 13);
+			persons.add(new Person(&quot;3&quot;, &quot;Jasper Morgan&quot;, 3, calendar.getTime()));
+		}
+	}
+
+	public void setSelectedPerson(Person selectedPerson) {
+		this.selectedPerson = selectedPerson;
+	}
+
+	public Person getSelectedPerson() {
+		return selectedPerson;
+	}
+
+	public List&lt;Person&gt; getPersons() {
+		return persons;
+	}
+
+	public String showPersonDetails(Person person) {
+		selectedPerson = person;
+
+		return null;
+	}
+
+	public String updatePersonDetails() {
+		for (Person person : persons) {
+			if (person.getId().equals(selectedPerson.getId())) {
+				person.setName(selectedPerson.getName());
+				person.setTaxClass(selectedPerson.getTaxClass());
+				person.setBirthDate(selectedPerson.getBirthDate());
+
+				break;
+			}
+		}
+
+		selectedPerson = null;
+
+		return null;
+	}
+
+	public String cancelPersonDetails() {
+		selectedPerson = null;
+
+		return null;
+	}
+}
             </ui:define>
             <ui:define name="contentTab3">
+public class Person implements Serializable {
 
+	private String id;
+	private String name;
+	private int taxClass;
+	private Date birthDate;
+
+	public Person(String id, String name, int taxClass, Date birthDate) {
+		this.id = id;
+		this.name = name;
+		this.taxClass = taxClass;
+		this.birthDate = birthDate;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getTaxClass() {
+		return taxClass;
+	}
+
+	public void setTaxClass(int taxClass) {
+		this.taxClass = taxClass;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+}
             </ui:define>
         </ui:decorate>
     </ui:define>
