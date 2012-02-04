@@ -1,15 +1,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
             <h:outputText value="Layout"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Layout description
+            Layout creates a border layout that has auto-sizing 'center pane' surrounded by up to four closable and resizable 'border panes' (north, south, east and west). It can also create multiple headers inside each pane.
+            For more complex layouts you can nest layouts within layouts. Possibilities are unlimited - from simple fixed headers or sidebars to rich applications.
+            Each layout pane can be closed, opened and resized, within automatic or specified limits. You can use layout either for an entire page (fill page layout) or for a specific region in the page (element layout).
+            Furthermore, layout can be tabbed - built-in layout integration with tabs.
+            <p/>
+            In comparison to PrimeFaces' layout where a layout pane must have it's own form, PrimeFaces Extensions' layout can have a form surrounding multiply layout panes.
+            Having less forms has benefits - better perfomance and easier communication between layout panes (think about "update" / "process" attributes).
+            Another benefit of the PrimeFaces Extensions' layout is a sophisticated state management (state of layout panes). There are client-side and server-side state management.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
