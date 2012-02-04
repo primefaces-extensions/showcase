@@ -54,7 +54,7 @@
     <!-- Character Encoding Filter -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
-        <filter-class>org.primefaces.extensions.showcase.filter.CharacterEncodingFilter</filter-class>
+        <filter-class>org.primefaces.extensions.showcase.webapp.CharacterEncodingFilter</filter-class>
         <init-param>
             <description>override any encodings from client</description>
             <param-name>ignore</param-name>

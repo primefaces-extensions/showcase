@@ -8,7 +8,15 @@
     <h:outputText value="PrimeFaces Extensions"
                   style="display:block; font-size:28px; position:absolute; top:16px; margin-left:100px;"/>
 
-    <h:panelGrid columns="3" styleClass="smallNav" columnClasses="smallNavText,smallNavImg,smallNavText">
+    <h:panelGrid columns="7" styleClass="smallNav"
+                 columnClasses="smallNavText,smallNavImg,smallNavText,smallNavImg,smallNavText">
+        <h:outputLink value="http://fractalsoft.net/primeext-showcase-mojarra/" rendered="#{!technicalInfo.runningOnMojarra}">
+            <h:outputText value="Run with Mojarra"/>
+        </h:outputLink>
+        <h:outputLink value="http://fractalsoft.net/primeext-showcase-myfaces/" rendered="#{technicalInfo.runningOnMojarra}">
+            <h:outputText value="Run with MyFaces"/>
+        </h:outputLink>
+        <h:outputText value="|"/>
         <h:outputLink value="http://code.google.com/p/primefaces-extensions/" target="_blank">
             <h:outputText value="Homepage"/>
         </h:outputLink>

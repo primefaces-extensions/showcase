@@ -16,7 +16,7 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller.system;
+package org.primefaces.extensions.showcase.webapp;
 
 import java.util.List;
 import java.util.Map;
@@ -26,8 +26,8 @@ import javax.faces.FacesException;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import org.primefaces.extensions.showcase.model.system.DocuEvent;
 import org.primefaces.extensions.showcase.model.system.DocuAttribute;
+import org.primefaces.extensions.showcase.model.system.DocuEvent;
 import org.primefaces.extensions.showcase.model.system.DocuTag;
 import org.primefaces.extensions.showcase.util.TagLibParser;
 

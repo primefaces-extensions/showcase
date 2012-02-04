@@ -16,7 +16,7 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.filter;
+package org.primefaces.extensions.showcase.webapp;
 
 import java.io.IOException;
 

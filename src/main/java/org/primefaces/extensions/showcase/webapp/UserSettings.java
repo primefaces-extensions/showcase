@@ -16,7 +16,7 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller.system;
+package org.primefaces.extensions.showcase.webapp;
 
 import java.io.Serializable;
 import java.util.List;
