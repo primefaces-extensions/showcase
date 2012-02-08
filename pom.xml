@@ -12,7 +12,7 @@
     <groupId>org.primefaces.extensions</groupId>
     <artifactId>showcase</artifactId>
     <packaging>war</packaging>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
     <name>showcase</name>
     <description>
         <![CDATA[PrimeFaces Extensions Project Showcase for Maven.]]>
@@ -74,6 +74,12 @@
     </developers>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>        
         <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -151,8 +157,8 @@
                 <artifactId>maven-svn-revision-number-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.primefaces.extensions</groupId>
-                <artifactId>build-info-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
