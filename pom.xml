@@ -156,10 +156,6 @@
                 <groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
                 <artifactId>maven-svn-revision-number-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
 

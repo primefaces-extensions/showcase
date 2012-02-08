@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="CodeMirror"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+			CKEditor is a text editor to be used inside web pages.<br/>
+			It's a WYSIWYG editor, which means that the text being edited on it looks as similar as possible to the results users have when publishing it.<br/> 
+			It brings to the web common editing features found on desktop editing applications like Microsoft Word and OpenOffice.
+		</h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/codeMirror/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="codeMirror"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>
