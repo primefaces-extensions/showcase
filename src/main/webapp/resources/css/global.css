@@ -30,6 +30,10 @@ button,
     font-size: 12px !important;
 }
 
+.ui-inputfield {
+    padding: 1px 2px 1px 2px;
+}
+
 .ui-menu .ui-menuitem-link {
     width: 115%;
 }

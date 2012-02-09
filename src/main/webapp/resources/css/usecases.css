@@ -44,3 +44,8 @@
 #layoutsContainer .ui-menu .ui-menuitem-link {
     width: auto;
 }
+
+.levelTitle {
+    padding: 4px 6px 4px 6px;
+    margin-right: 3px;
+}
