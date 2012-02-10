@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+    font-family: Arial, "Trebuchet MS", Verdana, sans-serif;
     font-size: 12px;
     padding: 0 !important;
     margin: 0;
@@ -18,7 +18,7 @@ button,
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-    font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+    font-family: Arial, "Trebuchet MS", Verdana, sans-serif;
     font-size: 12px !important;
 }
 
@@ -26,12 +26,8 @@ button,
 .ui-widget-content,
 .ui-widget-header .ui-widget-header,
 .ui-widget-content .ui-widget-content {
-    font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+    font-family: Arial, "Trebuchet MS", Verdana, sans-serif;
     font-size: 12px !important;
-}
-
-.ui-inputfield {
-    padding: 1px 2px 1px 2px;
 }
 
 .ui-menu .ui-menuitem-link {
