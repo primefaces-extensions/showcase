@@ -19,9 +19,14 @@
 package org.primefaces.extensions.showcase.controller.masterdetail;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
+import org.primefaces.extensions.showcase.model.Person;
 
 /**
  * ComplexMasterDetailController.
@@ -34,4 +39,25 @@ import javax.faces.bean.ViewScoped;
 public class ComplexMasterDetailController implements Serializable {
 
 	private static final long serialVersionUID = 20111120L;
+
+	private Person selectedPerson;
+	private List<Person> persons;
+
+	public ComplexMasterDetailController() {
+		if (persons == null) {
+			persons = new ArrayList<Person>();
+
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(1972, 5, 25);
+			persons.add(new Person("1", "Max Mustermann", 1, calendar.getTime()));
+			calendar.set(1981, 12, 10);
+			persons.add(new Person("2", "Sara Schmidt", 2, calendar.getTime()));
+			calendar.set(1968, 2, 13);
+			persons.add(new Person("3", "Jasper Morgan", 3, calendar.getTime()));
+		}
+	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
 }

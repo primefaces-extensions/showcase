@@ -2,34 +2,65 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
             <h:outputText value="MasterDetail"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Complex navigation from any level to any other by using of FlowLevel objects and SelectDetailLevel handler. 
-            Each navigation triggers an action method and causes displaying of growl component.             
-            Header facet allows to render any content above breadcrumb navigation. Footer facet allows to render any content below. 
-            Content of header / footer facet is shared between levels. It often makes sense if there are headline text or navigation buttons.
+            Complex master-detail views with CRUD operations and a server-side flow listener.
+            SelectLevelEvent passing into the flow listener and its return value allow to control the level to be navigated.
+            If save of the detail view (level 2) was e.g. successful, the next level to go should be the master view (level 1).
+            Otherwise, in case of some errors, user should stay on the detail view.
         </h:panelGroup>
-        
+
         <h:panelGroup layout="block" styleClass="centerExample">
-            In progress ...
+            <pe:masterDetail id="masterDetail">
+                <pe:masterDetailLevel level="1">
+                    <f:facet name="label">
+                        <h:outputFormat value="Overview {0}">
+                            <f:param value="Persons"/>                                   
+                        </h:outputFormat>
+                    </f:facet>
+
+                    <p:dataTable id="persons" value="#{complexMasterDetailController.persons}" var="person">
+                        <p:column headerText="Name">
+                            <p:commandLink value="#{person.name}">
+                                <pe:selectDetailLevel contextValue="#{person}"/>
+                            </p:commandLink>
+                        </p:column>
+                        <p:column headerText="Tax Class">
+                            <h:outputText value="#{person.taxClass}"/>
+                        </p:column>
+                        <p:column headerText="Birth Date">
+                            <h:outputText value="#{person.birthDate}">
+                                <f:convertDateTime pattern="dd.MM.yyyy"/>
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+                </pe:masterDetailLevel>
+
+                <pe:masterDetailLevel level="2">
+                </pe:masterDetailLevel>
+
+                <pe:masterDetailLevel level="3">
+                </pe:masterDetailLevel>
+            </pe:masterDetail>
         </h:panelGroup>
 
         <ui:decorate template="/templates/threeTabsDecoratorModel.html">
             <ui:define name="contentTab1">
-contentTab1
+                contentTab1
             </ui:define>
             <ui:define name="contentTab2">
-contentTab2
+                contentTab2
             </ui:define>
             <ui:define name="contentTab3">
-contentTab3
-            </ui:define>            
-        </ui:decorate>        
+                contentTab3
+            </ui:define>
+        </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
         <ui:include src="/sections/masterDetail/useCasesChoice.xhtml"/>
