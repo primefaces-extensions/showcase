@@ -23,8 +23,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.el.ELContext;
+import javax.faces.FacesException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import org.primefaces.extensions.showcase.model.Person;
 
@@ -42,6 +47,7 @@ public class ComplexMasterDetailController implements Serializable {
 
 	private Person selectedPerson;
 	private List<Person> persons;
+	private List<SelectItem> availableLanguageSkills = null;
 
 	public ComplexMasterDetailController() {
 		if (persons == null) {
@@ -59,5 +65,60 @@ public class ComplexMasterDetailController implements Serializable {
 
 	public List<Person> getPersons() {
 		return persons;
+	}
+
+	public List<SelectItem> getAvailableLanguageSkills() {
+		if (availableLanguageSkills == null) {
+			availableLanguageSkills = new ArrayList<SelectItem>();
+			availableLanguageSkills.add(new SelectItem("EN", "EN"));
+			availableLanguageSkills.add(new SelectItem("DE", "DE"));
+			availableLanguageSkills.add(new SelectItem("RU", "RU"));
+			availableLanguageSkills.add(new SelectItem("TR", "TR"));
+			availableLanguageSkills.add(new SelectItem("NL", "NL"));
+			availableLanguageSkills.add(new SelectItem("FR", "FR"));
+			availableLanguageSkills.add(new SelectItem("IT", "IT"));
+		}
+
+		return availableLanguageSkills;
+	}
+
+	public String saveSuccess(Person person) {
+		FacesMessage message =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Person " + person.getName() + " has been saved", null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		return null;
+	}
+
+	public String saveFailure(Person person) {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ELContext elContext = fc.getELContext();
+
+		SelectLevelListener selectLevelListener;
+		try {
+			selectLevelListener =
+			    (SelectLevelListener) elContext.getELResolver().getValue(elContext, null, "selectLevelListener");
+			selectLevelListener.setErrorOccured(true);
+		} catch (RuntimeException e) {
+			throw new FacesException(e.getMessage(), e);
+		}
+
+		FacesMessage message =
+		    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Person " + person.getName() + " could not be saved", null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		return null;
+	}
+
+	public String delete(Person person) {
+		for (Person pers : persons) {
+			if (pers.getId().equals(person.getId())) {
+				persons.remove(pers);
+
+				break;
+			}
+		}
+
+		return null;
 	}
 }
