@@ -49,15 +49,27 @@
                 <pe:masterDetailLevel level="2" contextVar="person" levelLabel="Person Detail">
                     <h:panelGrid id="personDetail" columns="2" columnClasses="formColumn1,formColumn2">
                         <h:outputText value="Name (string)"/>
-                        <h:inputText value="#{person.name}" required="true" label="Name"/>
+                        <p:inputText value="#{person.name}" required="true" label="Name"/>
                         <h:outputText value="Tax Class (number)"/>
-                        <h:inputText value="#{person.taxClass}" required="true" label="Tax Class">
+                        <p:inputText value="#{person.taxClass}" required="true" label="Tax Class">
                             <f:validateLength maximum="1"/>
-                        </h:inputText>
+                        </p:inputText>
                         <h:outputText value="Birth Date (date dd.MM.yyyy)"/>
-                        <h:inputText value="#{person.birthDate}" required="true" label="Birth Date">
+                        <p:inputText value="#{person.birthDate}" required="true" label="Birth Date">
                             <f:convertDateTime pattern="dd.MM.yyyy"/>
-                        </h:inputText>
+                        </p:inputText>
+                        <h:outputText value="Language skills"/>
+                        <h:panelGrid columns="2" style="vertical-align: middle;">
+                            <p:dataList value="#{complexMasterDetailController.selectedLanguageSkills}"
+                                        var="skill" itemType="circle">
+                                <h:outputText value="#{skill}"/>
+                            </p:dataList>
+                            <p:commandLink process="@this" style="padding:5px 0 0 8px; vertical-align:middle;">
+                                <h:graphicImage library="images" name="flashlight_plus.png"/>
+                                <pe:selectDetailLevel step="1"/>
+                                <pe:tooltip value="Add language skills"/>
+                            </p:commandLink>
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <p:commandButton value="Save with success" action="#{complexMasterDetailController.saveSuccess(person)}"
@@ -85,7 +97,17 @@
                     </p:dialog>
                 </pe:masterDetailLevel>
 
-                <pe:masterDetailLevel level="3">
+                <pe:masterDetailLevel level="3" levelLabel="Language skills">
+                    <h:panelGrid columns="2" columnClasses="formColumn1,formColumn2">
+                        <h:outputText value="Choose language skill"/>
+                        <p:selectOneMenu value="#{complexMasterDetailController.languageSkillToAdd}" style="width: 200px;">
+                            <f:selectItems value="#{complexMasterDetailController.availableLanguageSkills}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton value="Add" action="#{complexMasterDetailController.addLanguageSkill}"
+                                     style="margin-top: 10px;" icon="ui-icon-plusthick">
+                        <pe:selectDetailLevel step="-1"/>
+                    </p:commandButton>
                 </pe:masterDetailLevel>
             </pe:masterDetail>
         </h:panelGroup>

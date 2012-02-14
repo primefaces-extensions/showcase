@@ -49,3 +49,7 @@
     padding: 4px 6px 4px 6px;
     margin-right: 3px;
 }
+
+#personDetail .ui-datalist {
+    width: 200px;
+}
