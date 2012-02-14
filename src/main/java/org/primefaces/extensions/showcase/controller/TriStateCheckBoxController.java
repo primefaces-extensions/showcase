@@ -12,4 +12,5 @@ package org.primefaces.extensions.showcase.controller;
  */
 public class TriStateCheckBoxController {
 
+    
 }
