@@ -4,13 +4,70 @@
 
 package org.primefaces.extensions.showcase.controller;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
 /**
  * 
  * @author  Mauricio Fenoglio / last modified by $Author: $
  * @version $Revision: $
  * @since   0.3
  */
+@ManagedBean
+@ViewScoped
 public class TriStateCheckBoxController {
 
+    
+    private String value1;
+    private String value2;
+    
+    private Boolean valueB1;
+    private Boolean valueB2;
+
+    public TriStateCheckBoxController() {
+        value1="2";       
+    }
+
+    public String getValue1() {
+        return value1;
+    }
+
+    public void setValue1(String value1) {
+        this.value1 = value1;
+    }
+
+    public String getValue2() {
+        return value2;
+    }
+
+    public void setValue2(String value2) {
+        this.value2 = value2;
+    }
+
+    public Boolean getValueB1() {
+        return valueB1;
+    }
+
+    public void setValueB1(Boolean valueB1) {
+        this.valueB1 = valueB1;
+    }
+
+    public Boolean getValueB2() {
+        return valueB2;
+    }
+
+    public void setValueB2(Boolean valueB2) {
+        this.valueB2 = valueB2;
+    }
+    
+     
+    
+    public void addMessage() {  
+        String checkBoxValue = "State is = "+value2;
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(checkBoxValue));  
+    } 
     
 }

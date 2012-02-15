@@ -6,6 +6,8 @@
     <ui:composition>
         <p:dialog header="Developers" widgetVar="dlgDevelopers" showEffect="clip" hideEffect="clip" modal="true">
             <h:panelGrid columns="2" columnClasses="developersCol1,developersCol2" style="margin: 10px;">
+                <h:outputText value="Main Developers" style="font-weight: bolder"/>
+                <br/>
                 <h:outputText value="Thomas Andraschko"/>
                 <h:outputLink value="mailto:zoigln@googlemail.com">
                     <h:outputText value="zoigln@googlemail.com"/>
@@ -17,8 +19,17 @@
                 <h:outputText value="Nilesh Namdeo Mali"/>
                 <h:outputLink value="mailto:nileshmali86@gmail.com">
                     <h:outputText value="nileshmali86@gmail.com"/>
-                </h:outputLink>
+                </h:outputLink>                
             </h:panelGrid>
+            <h:panelGrid columns="2" columnClasses="developersCol1,developersCol2" style="margin: 10px;">
+                <h:outputText value="Contributors" style="font-weight: bolder"/>
+                <br/>
+                <h:outputText value="Mauricio Fenoglio"/>
+                <h:outputLink value="mailto:fenoglio.mauricio@gmail.com">
+                    <h:outputText value="fenoglio.mauricio@gmail.com"/>
+                </h:outputLink>                         
+            </h:panelGrid>
+            
             <f:facet name="footer">
                 <h:panelGroup layout="block" style="text-align: right; padding: 2px;">
                     <h:panelGroup layout="block" style="text-align:center; padding-bottom:8px; font-style:italic;">

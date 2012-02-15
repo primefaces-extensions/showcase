@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <ui:composition template="/templates/showcaseLayout.xhtml">
+        <ui:define name="centerContent">
+            <f:facet name="header">
+                <h:outputText value="TriStateCheckBox"/>
+            </f:facet>
+            <h:form prependId="false">  
+
+                <p:growl id="msg" />  
+
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+
+                    <h:outputText value="Basic Usage: " />  
+                    <pe:triStateCheckbox value="#{triStateCheckBoxController.value1}" />  
+
+                    <h:outputText value="Ajax Behavior: " />  
+                    <pe:triStateCheckbox value="#{triStateCheckBoxController.value2}">  
+                        <p:ajax update="msg" listener="#{triStateCheckBoxController.addMessage}"/>  
+                    </pe:triStateCheckbox>  
+
+                </h:panelGrid>  
+
+                <p:commandButton value="Submit" update="display" oncomplete="dlg.show()" />  
+
+                <p:dialog header="Selected Values"  showEffect="fade" hideEffect="fade" widgetVar="dlg">  
+                    <h:panelGrid columns="1" id="display">  
+                        <h:outputText value="Value 1: #{triStateCheckBoxController.value1}" />  
+                        <h:outputText value="Value 2: #{triStateCheckBoxController.value2}" />  
+                    </h:panelGrid>  
+                </p:dialog>  
+
+            </h:form>  
+
+            
+        </ui:define>
+        <ui:define name="useCases">
+
+        </ui:define>
+        <ui:define name="docuTable">
+            <ui:include src="/sections/shared/documentation.xhtml">
+                <ui:param name="tagName" value="growl"/>
+            </ui:include>
+        </ui:define>
+    </ui:composition>
+</html>
+
