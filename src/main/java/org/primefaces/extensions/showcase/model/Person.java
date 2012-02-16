@@ -19,11 +19,9 @@
 package org.primefaces.extensions.showcase.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import javax.faces.model.SelectItem;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Person model class.
@@ -39,7 +37,7 @@ public class Person implements Serializable {
 	private String name;
 	private int taxClass;
 	private Date birthDate;
-	private List<SelectItem> languageSkills = new ArrayList<SelectItem>();
+	private Set<String> languageSkills = new HashSet<String>();
 
 	public Person(String id, String name, int taxClass, Date birthDate) {
 		this.id = id;
@@ -76,11 +74,11 @@ public class Person implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public List<SelectItem> getLanguageSkills() {
-		return languageSkills;
+	public String[] getLanguageSkills() {
+		return languageSkills.toArray(new String[languageSkills.size()]);
 	}
 
-	public void addLanguageSkill(String language) {
-		languageSkills.add(new SelectItem(language, language));
+	public void addLanguageSkill(String languageSkill) {
+		languageSkills.add(languageSkill);
 	}
 }

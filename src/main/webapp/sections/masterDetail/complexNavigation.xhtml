@@ -21,14 +21,14 @@
                 <f:facet name="header">
                     <pe:messages showDetail="false" showSummary="true"/>
                 </f:facet>
-
+            
                 <pe:masterDetailLevel level="1">
                     <f:facet name="label">
                         <h:outputFormat value="Overview {0}">
                             <f:param value="Persons"/>
                         </h:outputFormat>
                     </f:facet>
-
+            
                     <p:dataTable id="persons" value="#{complexMasterDetailController.persons}" var="person">
                         <p:column headerText="Name">
                             <p:commandLink value="#{person.name}">
@@ -45,7 +45,7 @@
                         </p:column>
                     </p:dataTable>
                 </pe:masterDetailLevel>
-
+            
                 <pe:masterDetailLevel level="2" contextVar="person" levelLabel="Person Detail">
                     <h:panelGrid id="personDetail" columns="2" columnClasses="formColumn1,formColumn2">
                         <h:outputText value="Name (string)"/>
@@ -60,18 +60,17 @@
                         </p:inputText>
                         <h:outputText value="Language skills"/>
                         <h:panelGrid columns="2" style="vertical-align: middle;">
-                            <p:dataList value="#{complexMasterDetailController.selectedLanguageSkills}"
-                                        var="skill" itemType="circle">
+                            <p:dataList value="#{person.languageSkills}" var="skill" itemType="circle">
                                 <h:outputText value="#{skill}"/>
                             </p:dataList>
-                            <p:commandLink process="@this" style="padding:5px 0 0 8px; vertical-align:middle;">
-                                <h:graphicImage library="images" name="flashlight_plus.png"/>
-                                <pe:selectDetailLevel step="1"/>
+                            <p:commandLink immediate="true" style="padding:5px 0 0 8px; vertical-align:middle;">
+                                <h:graphicImage library="images" name="flashlight_plus.png" style="border:none;"/>
+                                <pe:selectDetailLevel contextValue="#{person}" preserveInputs="true"/>
                                 <pe:tooltip value="Add language skills"/>
                             </p:commandLink>
                         </h:panelGrid>
                     </h:panelGrid>
-
+            
                     <p:commandButton value="Save with success" action="#{complexMasterDetailController.saveSuccess(person)}"
                                      style="margin-top: 10px;" icon="ui-icon-disk">
                         <pe:selectDetailLevel level="1"/>
@@ -81,7 +80,7 @@
                         <pe:selectDetailLevel level="1"/>
                     </p:commandButton>
                     <p:commandButton type="button" value="Delete" onclick="deletedDlg.show()" style="margin-top: 10px;"/>
-
+            
                     <p:dialog header="Delete confirmation" widgetVar="deletedDlg" resizable="false"
                               modal="true" appendToBody="true">
                         <h:panelGroup layout="block" style="padding: 5px;">
@@ -96,15 +95,15 @@
                                          style="margin-top: 10px;"/>
                     </p:dialog>
                 </pe:masterDetailLevel>
-
-                <pe:masterDetailLevel level="3" levelLabel="Language skills">
+            
+                <pe:masterDetailLevel level="3" contextVar="person" levelLabel="Language skills">
                     <h:panelGrid columns="2" columnClasses="formColumn1,formColumn2">
                         <h:outputText value="Choose language skill"/>
                         <p:selectOneMenu value="#{complexMasterDetailController.languageSkillToAdd}" style="width: 200px;">
                             <f:selectItems value="#{complexMasterDetailController.availableLanguageSkills}"/>
                         </p:selectOneMenu>
                     </h:panelGrid>
-                    <p:commandButton value="Add" action="#{complexMasterDetailController.addLanguageSkill}"
+                    <p:commandButton value="Add" action="#{complexMasterDetailController.addLanguageSkill(person)}"
                                      style="margin-top: 10px;" icon="ui-icon-plusthick">
                         <pe:selectDetailLevel step="-1"/>
                     </p:commandButton>
@@ -114,13 +113,257 @@
 
         <ui:decorate template="/templates/threeTabsDecoratorModel.html">
             <ui:define name="contentTab1">
-                contentTab1
+&lt;pe:masterDetail id=&quot;masterDetail&quot; selectLevelListener=&quot;\#{selectLevelListener.handleNavigation}&quot;&gt;
+    &lt;f:facet name=&quot;header&quot;&gt;
+        &lt;pe:messages showDetail=&quot;false&quot; showSummary=&quot;true&quot;/&gt;
+    &lt;/f:facet&gt;
+
+    &lt;pe:masterDetailLevel level=&quot;1&quot;&gt;
+        &lt;f:facet name=&quot;label&quot;&gt;
+            &lt;h:outputFormat value=&quot;Overview {0}&quot;&gt;
+                &lt;f:param value=&quot;Persons&quot;/&gt;
+            &lt;/h:outputFormat&gt;
+        &lt;/f:facet&gt;
+
+        &lt;p:dataTable id=&quot;persons&quot; value=&quot;\#{complexMasterDetailController.persons}&quot; var=&quot;person&quot;&gt;
+            &lt;p:column headerText=&quot;Name&quot;&gt;
+                &lt;p:commandLink value=&quot;\#{person.name}&quot;&gt;
+                    &lt;pe:selectDetailLevel contextValue=&quot;\#{person}&quot;/&gt;
+                &lt;/p:commandLink&gt;
+            &lt;/p:column&gt;
+            &lt;p:column headerText=&quot;Tax Class&quot;&gt;
+                &lt;h:outputText value=&quot;\#{person.taxClass}&quot;/&gt;
+            &lt;/p:column&gt;
+            &lt;p:column headerText=&quot;Birth Date&quot;&gt;
+                &lt;h:outputText value=&quot;\#{person.birthDate}&quot;&gt;
+                    &lt;f:convertDateTime pattern=&quot;dd.MM.yyyy&quot;/&gt;
+                &lt;/h:outputText&gt;
+            &lt;/p:column&gt;
+        &lt;/p:dataTable&gt;
+    &lt;/pe:masterDetailLevel&gt;
+
+    &lt;pe:masterDetailLevel level=&quot;2&quot; contextVar=&quot;person&quot; levelLabel=&quot;Person Detail&quot;&gt;
+        &lt;h:panelGrid id=&quot;personDetail&quot; columns=&quot;2&quot; columnClasses=&quot;formColumn1,formColumn2&quot;&gt;
+            &lt;h:outputText value=&quot;Name (string)&quot;/&gt;
+            &lt;p:inputText value=&quot;\#{person.name}&quot; required=&quot;true&quot; label=&quot;Name&quot;/&gt;
+            &lt;h:outputText value=&quot;Tax Class (number)&quot;/&gt;
+            &lt;p:inputText value=&quot;\#{person.taxClass}&quot; required=&quot;true&quot; label=&quot;Tax Class&quot;&gt;
+                &lt;f:validateLength maximum=&quot;1&quot;/&gt;
+            &lt;/p:inputText&gt;
+            &lt;h:outputText value=&quot;Birth Date (date dd.MM.yyyy)&quot;/&gt;
+            &lt;p:inputText value=&quot;\#{person.birthDate}&quot; required=&quot;true&quot; label=&quot;Birth Date&quot;&gt;
+                &lt;f:convertDateTime pattern=&quot;dd.MM.yyyy&quot;/&gt;
+            &lt;/p:inputText&gt;
+            &lt;h:outputText value=&quot;Language skills&quot;/&gt;
+            &lt;h:panelGrid columns=&quot;2&quot; style=&quot;vertical-align: middle;&quot;&gt;
+                &lt;p:dataList value=&quot;\#{person.languageSkills}&quot; var=&quot;skill&quot; itemType=&quot;circle&quot;&gt;
+                    &lt;h:outputText value=&quot;\#{skill}&quot;/&gt;
+                &lt;/p:dataList&gt;
+                &lt;p:commandLink immediate=&quot;true&quot; style=&quot;padding:5px 0 0 8px; vertical-align:middle;&quot;&gt;
+                    &lt;h:graphicImage library=&quot;images&quot; name=&quot;flashlight_plus.png&quot; style=&quot;border:none;&quot;/&gt;
+                    &lt;pe:selectDetailLevel contextValue=&quot;\#{person}&quot; preserveInputs=&quot;true&quot;/&gt;
+                    &lt;pe:tooltip value=&quot;Add language skills&quot;/&gt;
+                &lt;/p:commandLink&gt;
+            &lt;/h:panelGrid&gt;
+        &lt;/h:panelGrid&gt;
+
+        &lt;p:commandButton value=&quot;Save with success&quot; action=&quot;\#{complexMasterDetailController.saveSuccess(person)}&quot;
+                         style=&quot;margin-top: 10px;&quot; icon=&quot;ui-icon-disk&quot;&gt;
+            &lt;pe:selectDetailLevel level=&quot;1&quot;/&gt;
+        &lt;/p:commandButton&gt;
+        &lt;p:commandButton value=&quot;Save with failure&quot; action=&quot;\#{complexMasterDetailController.saveFailure(person)}&quot;
+                         style=&quot;margin-top: 10px;&quot; icon=&quot;ui-icon-disk&quot;&gt;
+            &lt;pe:selectDetailLevel level=&quot;1&quot;/&gt;
+        &lt;/p:commandButton&gt;
+        &lt;p:commandButton type=&quot;button&quot; value=&quot;Delete&quot; onclick=&quot;deletedDlg.show()&quot; style=&quot;margin-top: 10px;&quot;/&gt;
+
+        &lt;p:dialog header=&quot;Delete confirmation&quot; widgetVar=&quot;deletedDlg&quot; resizable=&quot;false&quot;
+                  modal=&quot;true&quot; appendToBody=&quot;true&quot;&gt;
+            &lt;h:panelGroup layout=&quot;block&quot; style=&quot;padding: 5px;&quot;&gt;
+                &lt;h:outputText value=&quot;Are you sure you want to delete this person?&quot;/&gt;
+            &lt;/h:panelGroup&gt;
+            &lt;p:commandButton value=&quot;Delete&quot; oncomplete=&quot;deletedDlg.hide();&quot;
+                             action=&quot;\#{complexMasterDetailController.delete(person)}&quot;
+                             style=&quot;margin-top: 10px;&quot;&gt;
+                &lt;pe:selectDetailLevel level=&quot;1&quot;/&gt;
+            &lt;/p:commandButton&gt;
+            &lt;p:commandButton value=&quot;Cancel&quot; type=&quot;button&quot; onclick=&quot;deletedDlg.hide();&quot;
+                             style=&quot;margin-top: 10px;&quot;/&gt;
+        &lt;/p:dialog&gt;
+    &lt;/pe:masterDetailLevel&gt;
+
+    &lt;pe:masterDetailLevel level=&quot;3&quot; contextVar=&quot;person&quot; levelLabel=&quot;Language skills&quot;&gt;
+        &lt;h:panelGrid columns=&quot;2&quot; columnClasses=&quot;formColumn1,formColumn2&quot;&gt;
+            &lt;h:outputText value=&quot;Choose language skill&quot;/&gt;
+            &lt;p:selectOneMenu value=&quot;\#{complexMasterDetailController.languageSkillToAdd}&quot; style=&quot;width: 200px;&quot;&gt;
+                &lt;f:selectItems value=&quot;\#{complexMasterDetailController.availableLanguageSkills}&quot;/&gt;
+            &lt;/p:selectOneMenu&gt;
+        &lt;/h:panelGrid&gt;
+        &lt;p:commandButton value=&quot;Add&quot; action=&quot;\#{complexMasterDetailController.addLanguageSkill(person)}&quot;
+                         style=&quot;margin-top: 10px;&quot; icon=&quot;ui-icon-plusthick&quot;&gt;
+            &lt;pe:selectDetailLevel step=&quot;-1&quot;/&gt;
+        &lt;/p:commandButton&gt;
+    &lt;/pe:masterDetailLevel&gt;
+&lt;/pe:masterDetail&gt;
             </ui:define>
             <ui:define name="contentTab2">
-                contentTab2
+@ManagedBean
+@ViewScoped
+public class ComplexMasterDetailController implements Serializable {
+
+	private List&lt;Person&gt; persons;
+	private List&lt;SelectItem&gt; availableLanguageSkills = null;
+	private List&lt;String&gt; selectedLanguageSkills = new ArrayList&lt;String&gt;();
+	private String languageSkillToAdd;
+
+	public ComplexMasterDetailController() {
+		if (persons == null) {
+			persons = new ArrayList&lt;Person&gt;();
+
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(1972, 5, 25);
+			persons.add(new Person(&quot;1&quot;, &quot;Max Mustermann&quot;, 1, calendar.getTime()));
+			calendar.set(1981, 12, 10);
+			persons.add(new Person(&quot;2&quot;, &quot;Sara Schmidt&quot;, 2, calendar.getTime()));
+			calendar.set(1968, 2, 13);
+			persons.add(new Person(&quot;3&quot;, &quot;Jasper Morgan&quot;, 3, calendar.getTime()));
+		}
+	}
+
+	public List&lt;Person&gt; getPersons() {
+		return persons;
+	}
+
+	public List&lt;SelectItem&gt; getAvailableLanguageSkills() {
+		if (availableLanguageSkills == null) {
+			availableLanguageSkills = new ArrayList&lt;SelectItem&gt;();
+			availableLanguageSkills.add(new SelectItem(&quot;English&quot;, &quot;English&quot;));
+			availableLanguageSkills.add(new SelectItem(&quot;German&quot;, &quot;German&quot;));
+			availableLanguageSkills.add(new SelectItem(&quot;Russian&quot;, &quot;Russian&quot;));
+			availableLanguageSkills.add(new SelectItem(&quot;Turkish&quot;, &quot;Turkish&quot;));
+			availableLanguageSkills.add(new SelectItem(&quot;Dutch&quot;, &quot;Dutch&quot;));
+			availableLanguageSkills.add(new SelectItem(&quot;French&quot;, &quot;French&quot;));
+			availableLanguageSkills.add(new SelectItem(&quot;Italian&quot;, &quot;Italian&quot;));
+		}
+
+		return availableLanguageSkills;
+	}
+
+	public List&lt;String&gt; getSelectedLanguageSkills() {
+		return selectedLanguageSkills;
+	}
+
+	public void setLanguageSkillToAdd(String languageSkillToAdd) {
+		this.languageSkillToAdd = languageSkillToAdd;
+	}
+
+	public String getLanguageSkillToAdd() {
+		return languageSkillToAdd;
+	}
+
+	public String saveSuccess(Person person) {
+		FacesMessage message =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Person &quot; + person.getName() + &quot; has been saved&quot;, null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		return null;
+	}
+
+	public String saveFailure(Person person) {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ELContext elContext = fc.getELContext();
+
+		SelectLevelListener selectLevelListener;
+		try {
+			selectLevelListener =
+			    (SelectLevelListener) elContext.getELResolver().getValue(elContext, null, &quot;selectLevelListener&quot;);
+			selectLevelListener.setErrorOccured(true);
+		} catch (RuntimeException e) {
+			throw new FacesException(e.getMessage(), e);
+		}
+
+		FacesMessage message =
+		    new FacesMessage(FacesMessage.SEVERITY_ERROR, &quot;Person &quot; + person.getName() + &quot; could not be saved&quot;, null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		return null;
+	}
+
+	public String delete(Person person) {
+		for (Person pers : persons) {
+			if (pers.getId().equals(person.getId())) {
+				persons.remove(pers);
+
+				break;
+			}
+		}
+
+		return null;
+	}
+
+	public String addLanguageSkill(Person person) {
+		if (languageSkillToAdd != null) {
+			person.addLanguageSkill(languageSkillToAdd);
+		}
+
+		languageSkillToAdd = null;
+
+		return null;
+	}
+}
             </ui:define>
             <ui:define name="contentTab3">
-                contentTab3
+public class Person implements Serializable {
+
+	private String id;
+	private String name;
+	private int taxClass;
+	private Date birthDate;
+	private Set&lt;String&gt; languageSkills = new HashSet&lt;String&gt;();
+
+	public Person(String id, String name, int taxClass, Date birthDate) {
+		this.id = id;
+		this.name = name;
+		this.taxClass = taxClass;
+		this.birthDate = birthDate;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getTaxClass() {
+		return taxClass;
+	}
+
+	public void setTaxClass(int taxClass) {
+		this.taxClass = taxClass;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String[] getLanguageSkills() {
+		return languageSkills.toArray(new String[languageSkills.size()]);
+	}
+
+	public void addLanguageSkill(String languageSkill) {
+		languageSkills.add(languageSkill);
+	}
+}
             </ui:define>
         </ui:decorate>
     </ui:define>
