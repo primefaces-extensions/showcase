@@ -57,23 +57,23 @@
 
                     &lt;h:outputText value="Ajax Behavior: " /&gt;  
                     &lt;pe:triStateCheckbox value="\#{triStateCheckBoxController.value2}"&gt;  
-                    &lt;p:ajax update="display" listener="\#{triStateCheckBoxController.addMessage}"/&gt;  
+                        &lt;p:ajax update="display" listener="\#{triStateCheckBoxController.addMessage}"/&gt;  
                     &lt;/pe:triStateCheckbox&gt;  
 
                     &lt;h:outputText value="Customs Icons: " /&gt;  
                     &lt;pe:triStateCheckbox value="\#{triStateCheckBoxController.value1}"                                       
-                    stateTwoIcon="ui-icon-plus" 
-                    stateThreeIcon="ui-icon-minus"/&gt;  
+                         stateTwoIcon="ui-icon-plus" 
+                         stateThreeIcon="ui-icon-minus"/&gt;  
 
 
                     &lt;p:commandButton value="Submit" update="display" oncomplete="dlg.show()" /&gt;  
 
                     &lt;p:dialog header="Selected Values"  showEffect="fade" hideEffect="fade" widgetVar="dlg"&gt;  
-                    &lt;h:panelGrid columns="1" id="display"&gt;  
-                    &lt;h:outputText value="Value 1: \#{triStateCheckBoxController.value1}" /&gt;  
-                    &lt;h:outputText value="Value 2: \#{triStateCheckBoxController.value2}" /&gt;  
-                    &lt;h:outputText value="Value 3: \#{triStateCheckBoxController.value3}" /&gt;  
-                    &lt;/h:panelGrid&gt;  
+                        &lt;h:panelGrid columns="1" id="display"&gt;  
+                        &lt;h:outputText value="Value 1: \#{triStateCheckBoxController.value1}" /&gt;  
+                        &lt;h:outputText value="Value 2: \#{triStateCheckBoxController.value2}" /&gt;  
+                        &lt;h:outputText value="Value 3: \#{triStateCheckBoxController.value3}" /&gt;  
+                        &lt;/h:panelGrid&gt;  
                     &lt;/p:dialog&gt;        
 
 
