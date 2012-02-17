@@ -1,15 +1,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
             <h:outputText value="TimePicker"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            TimePicker is a highly configurable component to integrate time inputs (hours / minutes) in a convenient way.
+            TODO
         </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <ui:define name="contentTab1">
+            </ui:define>
+            <ui:define name="contentTab2">
+            </ui:define>
+        </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
         <ui:include src="/sections/timePicker/useCasesChoice.xhtml"/>
