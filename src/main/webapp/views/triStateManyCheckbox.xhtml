@@ -7,9 +7,10 @@
     <ui:composition template="/templates/showcaseLayout.xhtml">
         <ui:define name="centerContent">
             <f:facet name="header">
-                <h:outputText value="TriStateCheckBox"/>
+                <h:outputText value="TriStateManyCheckBox"/>
             </f:facet>
-            <h:form prependId="false">  
+            
+            <h:form prependId="false">  <!-- No, no :-) Please see structure in triStateCheckbox.xhtml -->  
 
                 <p:growl id="msg" />  
 
@@ -35,15 +36,13 @@
                 </p:dialog>  
 
             </h:form>  
-
-            
         </ui:define>
         <ui:define name="useCases">
 
         </ui:define>
         <ui:define name="docuTable">
             <ui:include src="/sections/shared/documentation.xhtml">
-                <ui:param name="tagName" value="growl"/>
+                <ui:param name="tagName" value="triStateManyCheckbox"/>
             </ui:include>
         </ui:define>
     </ui:composition>
