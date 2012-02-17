@@ -18,10 +18,16 @@
 
 package org.primefaces.extensions.showcase.webapp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
@@ -37,29 +43,70 @@ public class TechnicalInfo {
 
 	private static final Logger LOGGER = Logger.getLogger(TechnicalInfo.class.getName());
 
-	private String version;
+	private String primeFaces;
+	private String primeFacesExt;
+	private String jsfImpl;
+	private String server;
 	private String revision;
 	private String buildTime;
-	private String javaRuntime;
+	private boolean online = false;
+	private boolean mojarra = true;
 
+	@PostConstruct
 	protected void initialize() {
 		ResourceBundle rb;
 		try {
-			rb = ResourceBundle.getBundle("appinfo");
+			rb = ResourceBundle.getBundle("pe-showcase");
+
+			String strAppProps = rb.getString("application.properties");
+			int lastBrace = strAppProps.indexOf("}");
+			strAppProps = strAppProps.substring(1, lastBrace);
+
+			Map<String, String> appProperties = new HashMap<String, String>();
+			String[] appProps = strAppProps.split("[\\s,]+");
+			for (String appProp : appProps) {
+				String[] keyValue = appProp.split("=");
+				if (keyValue != null && keyValue.length > 1) {
+					appProperties.put(keyValue[0], keyValue[1]);
+				}
+			}
+
+			primeFaces = "PrimeFaces: " + appProperties.get("primefaces.core.version");
+			primeFacesExt = "PrimeFaces Extensions: " + appProperties.get("pe.impl.version");
+			jsfImpl = "JSF-Impl.: " + appProperties.get("pe.jsf.displayname") + " " + appProperties.get("pe.jsf.version");
+			server = "Server: Jetty " + appProperties.get("jetty.server.version");
+			revision = "SVN-Revision: " + appProperties.get("svn.revision");
+
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTimeInMillis(Long.valueOf(appProperties.get("timestamp")));
+			buildTime = "Build time: " + formatter.format(calendar.getTime());
+
+			online = Boolean.valueOf(appProperties.get("pe.webapp.online"));
+			mojarra = appProperties.get("pe.jsf.impl").contains("mojarra");
 		} catch (MissingResourceException e) {
-			LOGGER.warning("Resource bundle 'appinfo' was not found");
-
-			return;
+			LOGGER.warning("Resource bundle 'pe-showcase' was not found");
 		}
-
-		version = getTechValue(rb, "Implementation-Version");
-		revision = getTechValue(rb, "Implementation-Build");
-		buildTime = getTechValue(rb, "Build-Time");
-		javaRuntime = System.getProperty("java.version");
 	}
 
-	public String getVersion() {
-		return version;
+	public boolean isOnline() {
+		return online;
+	}
+
+	public String getPrimeFaces() {
+		return primeFaces;
+	}
+
+	public String getPrimeFacesExt() {
+		return primeFacesExt;
+	}
+
+	public String getJsfImpl() {
+		return jsfImpl;
+	}
+
+	public String getServer() {
+		return server;
 	}
 
 	public String getRevision() {
@@ -70,20 +117,7 @@ public class TechnicalInfo {
 		return buildTime;
 	}
 
-	public String getJavaRuntime() {
-		return javaRuntime;
-	}
-
-	public boolean isRunningOnMojarra() {
-		// TODO
-		return true;
-	}
-
-	private String getTechValue(final ResourceBundle rb, final String key) {
-		try {
-			return rb.getString(key);
-		} catch (MissingResourceException e) {
-			return "???" + key + "???";
-		}
+	public boolean isMojarra() {
+		return mojarra;
 	}
 }

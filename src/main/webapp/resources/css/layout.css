@@ -105,7 +105,7 @@ div.source {
     border: none;
     font-size: 10px;
     padding-right: 4px;
-    padding-top: 4px;
+    padding-top: 2px;
 }
 
 .smallNav .smallNavText {
@@ -113,6 +113,7 @@ div.source {
     font-size: 11px;
     vertical-align: middle;
     padding-right: 4px;
+    padding-top: 4px;
 }
 
 .smallNav .smallNavText a {
