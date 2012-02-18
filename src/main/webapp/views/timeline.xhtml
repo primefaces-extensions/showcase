@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <ui:composition template="/templates/showcaseLayout.xhtml">
+        <ui:define name="centerContent">
+            <f:facet name="header">
+                <h:outputText value="Timeline"/>
+            </f:facet>
+            <h:panelGroup layout="block" styleClass="centerContent">
+                <p>
+                    Timeline visualizes temporal data. This example displays Primefaces Extensions history.
+                </p>
+            </h:panelGroup>
+            <h:panelGroup layout="block" styleClass="centerExample">
+                <pe:timeline id="timeline" value="#{timelineController.timelines}"/>
+            </h:panelGroup>
+            <ui:decorate template="/templates/twoTabsDecorator.html">
+                <ui:define name="contentTab1">
+                    &lt;pe:timeline id=&quot;timeline&quot; value=&quot;\#{timelineController.timelines}&quot;/&gt;
+                    
+                </ui:define>
+                <ui:define name="contentTab2">
+                    @ManagedBean
+                    @ViewScoped
+                    public class TimelineController implements Serializable {
+
+                        private List&lt;Timeline&gt; timelines;
+
+                        public List&lt;Timeline&gt; getTimelines() {
+                            timelines = new ArrayList&lt;Timeline&gt;();
+                            Calendar cal = Calendar.getInstance();
+                            Timeline timeline = new DefaultTimeLine(&quot;2011&quot;, &quot;2011&quot;);
+                            cal.set(2011, 03, 10);
+                            timeline.addEvent(new DefaultTimelineEvent(&quot;Project Created&quot;, &quot;Primefaces Extensions Project Created&quot;, cal.getTime(), cal.getTime()));
+                            cal.set(2011, 05, 10);
+                            timeline.addEvent(new DefaultTimelineEvent(&quot;Primefaces Extensions 0.1 Released&quot;, &quot;PE tagged first release 0.1&quot;, cal.getTime(), cal.getTime()));
+                            cal.set(2011, 07, 14);
+                            timeline.addEvent(new DefaultTimelineEvent(&quot;New member Oleg Varaksin&quot;, &quot;Oleg Varaksin has joined our team&quot;, cal.getTime(), cal.getTime()));
+                            timelines.add(timeline);
+
+                            timeline = new DefaultTimeLine(&quot;2012&quot;, &quot;2012&quot;);
+                            cal.set(2012, 01, 17);
+                            timeline.addEvent(new DefaultTimelineEvent(&quot;New member Nilesh Mali&quot;, &quot;Nilesh Mali has joined our team&quot;, cal.getTime(), cal.getTime()));
+                            cal.set(2012, 01, 23);
+                            timeline.addEvent(new DefaultTimelineEvent(&quot;Primefaces Extensions 0.2.0 Released&quot;, &quot;Primefaces Extensions second release 0.2.0&quot;, cal.getTime(), cal.getTime()));
+                            cal.set(2012, 02, 14);
+                            timeline.addEvent(new DefaultTimelineEvent(&quot;New member Mauricio Fenoglio&quot;, &quot;Mauricio Fenoglio has joined our team&quot;, cal.getTime(), cal.getTime()));
+                            timelines.add(timeline);
+                            return timelines;
+                        }
+                    }
+                </ui:define>
+            </ui:decorate>
+        </ui:define>
+        <ui:define name="docuTable">
+            <ui:include src="/sections/shared/documentation.xhtml">
+                <ui:param name="tagName" value="timeline"/>
+            </ui:include>
+        </ui:define>
+    </ui:composition>
+</html>
