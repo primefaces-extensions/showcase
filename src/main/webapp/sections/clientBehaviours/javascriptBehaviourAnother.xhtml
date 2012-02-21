@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="JavascriptBehaviour"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+			The Javascript behaviour can be used to catch events with javascript without making an AJAX request.
+			In the example, the "page" event is catched with pe:javascript. This will also destroy the paging functionality of p:datatable because no ajax request will be done.
+			So it should not be used for every event and every component. Following javascript parameters will be available in executes statement:
+			<ul>
+				<li>source - client Id of the component which fires the event</li>
+				<li>event - The name of the catched event</li>
+				<li>params - The rendered params (f:param childrens of pe:javascript)</li>
+				<li>ext - The object created by corresponding widget</li>
+			</ul>
+			The 'ext' parameter can be used for example to get the parameters which are created by the parent widget.
+			For example the colResize event of p:dataTable:
+			<p/>
+			    var ext = { params: {} };<br/>
+                ext.params[id + '_columnId'] = columnHeader.attr('id');<br/>
+                ext.params[id + '_width'] = newWidth;<br/>
+                ext.params[id + '_height'] = columnHeader.height();<br/>
+            <p/>
+            id is the client Id of the datatable.
+            <p/>
+			Notice: We can not provided a list with params, for this you should look at the PrimeFaces or PrimeFaces Extensions source.
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <p:dataTable id="myDataTable" var="message" value="#{dataTableController.messages}">
+                <pe:paginator 
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rows="10"
+                    rowsPerPageTemplate="5,10,15" />
+                <pe:javascript event="page" execute="alert('Datatable page event called')"/>
+                <f:facet name="header">
+                    Messages
+                </f:facet>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Subject" />
+                    </f:facet>
+                    <h:outputText value="#{message.subject}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Message" />
+                    </f:facet>
+                    <h:outputText value="#{message.text}" />
+                </p:column>
+            </p:dataTable>
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/oneTabDecorator.html">
+            <ui:define name="contentTab1">
+&lt;p:dataTable id=&quot;myDataTable&quot; var=&quot;message&quot; value=&quot;\#{dataTableController.messages}&quot;&gt;
+    &lt;pe:paginator 
+        paginatorTemplate=&quot;{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}&quot;
+        rows=&quot;10&quot;
+        rowsPerPageTemplate=&quot;5,10,15&quot; /&gt;
+    &lt;pe:javascript event=&quot;page&quot; execute=&quot;alert('Datatable page event called')&quot;/&gt;
+    &lt;f:facet name=&quot;header&quot;&gt;
+        Messages
+    &lt;/f:facet&gt;
+    &lt;p:column&gt;
+        &lt;f:facet name=&quot;header&quot;&gt;
+            &lt;h:outputText value=&quot;Subject&quot; /&gt;
+        &lt;/f:facet&gt;
+        &lt;h:outputText value=&quot;\#{message.subject}&quot; /&gt;
+    &lt;/p:column&gt;
+    &lt;p:column&gt;
+        &lt;f:facet name=&quot;header&quot;&gt;
+            &lt;h:outputText value=&quot;Message&quot; /&gt;
+        &lt;/f:facet&gt;
+        &lt;h:outputText value=&quot;\#{message.text}&quot; /&gt;
+    &lt;/p:column&gt;
+&lt;/p:dataTable&gt;
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/clientBehaviours/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="javascript"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

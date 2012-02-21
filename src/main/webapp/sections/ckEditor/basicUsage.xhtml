@@ -10,7 +10,7 @@
             <h:outputText value="CKEditor"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            The editor is fully updateable via AJAX as can you see with "Change color with AJAX".<br/>
+            The editor is fully updateable via AJAX as can you see with "Change color with AJAX".
             The save button of CKEditor now triggers an event called "save".
         </h:panelGroup>
 
@@ -19,7 +19,9 @@
 			<pe:ckEditor id="editor" value="#{editorController.content}" interfaceColor="#{editorController.color}" checkDirtyInterval="0">
 				<p:ajax event="save" listener="#{editorController.saveListener}" update="growl"/>
 			</pe:ckEditor>
-			<p:commandButton actionListener="#{editorController.changeColor}" update="editor" value="Change color with AJAX"/>
+			
+            <p:commandButton actionListener="#{editorController.changeColor}" update="editor"
+                             value="Change color with AJAX" style="margin-top:10px;"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
@@ -28,7 +30,9 @@
 &lt;pe:ckEditor id="editor" value="\#{editorController.content}" interfaceColor="#{editorController.color}"&gt;
 	&lt;p:ajax event="save" listener="\#{editorController.saveListener}" update="growl"/&gt;
 &lt;/pe:ckEditor&gt;
-&lt;p:commandButton actionListener="\#{editorController.changeColor}" update="editor" value="Change color with AJAX"/&gt;
+                
+&lt;p:commandButton actionListener="\#{editorController.changeColor}" update="editor"
+                 value="Change color with AJAX" style="margin-top:10px;"/&gt;
             </ui:define>
             <ui:define name="contentTab2">
 @ManagedBean

@@ -4,47 +4,38 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
-    <ui:composition template="/templates/showcaseLayout.xhtml">
-        <ui:define name="centerContent">
-            <f:facet name="header">
-                <h:outputText value="TriStateManyCheckbox"/>
-            </f:facet>
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="TriStateManyCheckbox"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            <!-- This group is for description -->
             
-            <h:form prependId="false">  <!-- No, no :-) Please see structure in triStateCheckbox.xhtml -->  
+        </h:panelGroup>
 
-                <p:growl id="msg" />  
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <!-- This group is for coding -->
 
-                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+        </h:panelGroup>
 
-                    <h:outputText value="Basic Usage: " />  
-                    <p:selectBooleanCheckbox value="#{triStateCheckBoxController.valueB1}" />  
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <!-- Code here should be left aligned -->
+            <ui:define name="contentTab1">
+TODO
+            </ui:define>
+            <ui:define name="contentTab2">
+TODO
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
 
-                    <h:outputText value="Ajax Behavior: " />  
-                    <p:selectBooleanCheckbox value="#{triStateCheckBoxController.valueB2}">  
-                        <p:ajax update="msg" listener="#{triStateCheckBoxController.addMessage}"/>  
-                    </p:selectBooleanCheckbox>  
-
-                </h:panelGrid>  
-
-                <p:commandButton value="Submit" update="display" oncomplete="dlg.show()" />  
-
-                <p:dialog header="Selected Values"  showEffect="fade" hideEffect="fade" widgetVar="dlg">  
-                    <h:panelGrid columns="1" id="display">  
-                        <h:outputText value="Value 1: #{triStateCheckBoxController.valueB1}" />  
-                        <h:outputText value="Value 2: #{triStateCheckBoxController.valueB2}" />  
-                    </h:panelGrid>  
-                </p:dialog>  
-
-            </h:form>  
-        </ui:define>
-        <ui:define name="useCases">
-
-        </ui:define>
-        <ui:define name="docuTable">
-            <ui:include src="/sections/shared/documentation.xhtml">
-                <ui:param name="tagName" value="triStateManyCheckbox"/>
-            </ui:include>
-        </ui:define>
-    </ui:composition>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="triStateManyCheckbox"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
 </html>
-

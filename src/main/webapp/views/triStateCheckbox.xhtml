@@ -12,9 +12,9 @@
         <h:panelGroup layout="block" styleClass="centerContent">
             <!-- This group is for description -->
             The TriStateCheckbox add a new state for a common SelectBooleanCheckbox.
-            The value of triStateCheckbox are mapped to 0,1,2 string values, the component also can be customized with css icon classes.
+            The value of TriStateCheckbox are mapped to 0,1,2 string values. This component can be customized with CSS classes for icons.
             <p/>
-            This example show triStateCheckbox in action.
+            This example show pe:triStateCheckbox in action.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -58,7 +58,7 @@
 
     &lt;h:outputText value=&quot;Ajax Behavior: &quot;/&gt;
     &lt;pe:triStateCheckbox id="ajaxTriState" value=&quot;\#{triStateCheckBoxController.value2}&quot;&gt;
-        &lt;p:ajax update=&quot;growl&quot; process=&quot;triStateGrid&quot; listener=&quot;\#{triStateCheckBoxController.addMessage}&quot;/&gt;
+        &lt;p:ajax update=&quot;growl&quot; listener=&quot;\#{triStateCheckBoxController.addMessage}&quot;/&gt;
     &lt;/pe:triStateCheckbox&gt;
 
     &lt;h:outputText value=&quot;Customs Icons: &quot;/&gt;

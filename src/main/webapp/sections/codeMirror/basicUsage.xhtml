@@ -10,15 +10,17 @@
             <h:outputText value="CodeMirror"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            The editor is fully updateable via AJAX as can you see with "Change color with AJAX".<br/>
-            The save button of CKEditor now triggers an event called "save".
+            The editor is fully updateable via AJAX as can you see with "Change color with AJAX".
+            The save button of CKEditor triggers an event called "save".
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
 			<p:growl id="growl" showDetail="true" />
 			<pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}"
 				theme="eclipse" value="#{codeMirrorController.content}" lineNumbers="true"/>
-			<p:commandButton actionListener="#{codeMirrorController.changeMode}" update="codeMirror" value="Change mode with AJAX"/>
+			
+            <p:commandButton actionListener="#{codeMirrorController.changeMode}" update="codeMirror"
+                             value="Change mode with AJAX" style="margin-top:10px;"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
@@ -26,7 +28,9 @@
 &lt;p:growl id="growl" showDetail="true" /&gt;
 &lt;pe:codeMirror id="codeMirror" mode="\#{codeMirrorController.mode}"
 	theme="eclipse" value="\#{codeMirrorController.content}" lineNumbers="true"/&gt;
-&lt;p:commandButton actionListener="\#{codeMirrorController.changeMode}" update="codeMirror" value="Change mode with AJAX"/&gt;
+
+&lt;p:commandButton actionListener="\#{codeMirrorController.changeMode}" update="codeMirror"
+                 value="Change mode with AJAX" style="margin-top:10px;"/&gt;
             </ui:define>
             <ui:define name="contentTab2">
 @ManagedBean

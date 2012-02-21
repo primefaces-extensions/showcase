@@ -10,14 +10,14 @@
             <h:outputText value="KeyFilter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            KeyFilter can be used to filter keyboard input on specified input components.
+            KeyFilter can be used to filter keyboard input on specified input components. Below is also a list with predefined masks and their regular expressions.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <h:panelGrid columns="1" columnClasses="formColumn">
-                <h:outputText value="KeyFilter with mask on a p:inputText"/>
+                <h:outputText value="KeyFilter with mask 'num' on a p:inputText (only digits)"/>
                 <p:inputText id="text1" required="true" style="margin-bottom: 10px;"/>
-                <h:outputText value="KeyFilter with regEx on a h:inputText"/>
+                <h:outputText value="KeyFilter with regEx /[ABC]/i on a h:inputText"/>
                 <h:inputText id="text2" style="margin-bottom: 10px;">
                     <pe:keyFilter regEx="/[ABC]/i"/>
                 </h:inputText>
@@ -28,20 +28,17 @@
             
             <pe:keyFilter for="text1" mask="num"/>
             <pe:keyFilter for="autoComplete1" testFunction="return c == 'z';"/>
-        
-        	<br/>
-        	<br/>
-            A list with predefined mask's and their regex:
+            <p/>
             <table>
-            	<tr><td>pint</td>		<td>/[\d]/</td>				<td></td></tr>
-            	<tr><td>int</td>		<td>/[\d\-]/</td>			<td></td></tr>
-            	<tr><td>pnum</td>		<td>/[\d\.]/</td>			<td></td></tr>
-            	<tr><td>money</td>		<td>/[\d\.\s,]</td>			<td></td></tr>
-            	<tr><td>num</td>		<td>/[\d\-\.]/</td>			<td></td></tr>
-            	<tr><td>hex</td>		<td>/[0-9a-f]/i</td>		<td></td></tr>
-            	<tr><td>email</td>		<td>/[a-z0-9_\.\-@]/i</td>	<td></td></tr>
-            	<tr><td>alpha</td>		<td>/[a-z_]/i</td>			<td></td></tr>
-            	<tr><td>alphanum</td>	<td>/[a-z0-9_]/i </td>		<td></td></tr>
+            	<tr><td><strong>pint</strong></td>		<td>/[\d]/</td>				<td></td></tr>
+            	<tr><td><strong>int</strong></td>		<td>/[\d\-]/</td>			<td></td></tr>
+            	<tr><td><strong>pnum</strong></td>		<td>/[\d\.]/</td>			<td></td></tr>
+            	<tr><td><strong>money</strong></td>		<td>/[\d\.\s,]</td>			<td></td></tr>
+            	<tr><td><strong>num</strong></td>		<td>/[\d\-\.]/</td>			<td></td></tr>
+            	<tr><td><strong>hex</strong></td>		<td>/[0-9a-f]/i</td>		<td></td></tr>
+            	<tr><td><strong>email</strong></td>		<td>/[a-z0-9_\.\-@]/i</td>	<td></td></tr>
+            	<tr><td><strong>alpha</strong></td>		<td>/[a-z_]/i</td>			<td></td></tr>
+            	<tr><td><strong>alphanum</strong></td>	<td>/[a-z0-9_]/i </td>		<td></td></tr>
             </table>            
         </h:panelGroup>
 

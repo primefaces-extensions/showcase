@@ -5,20 +5,20 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="CodeMirror"/>
+            <h:outputText value="JsonConverter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-			CKEditor is a text editor to be used inside web pages.
-            It's a WYSIWYG editor, which means that the text being edited on it looks as similar as possible to the results users have when publishing it. 
-			It brings to the web common editing features found on desktop editing applications like Microsoft Word and OpenOffice.
-		</h:panelGroup>
+            The following example shows how JsonConverter can be applied to RemoteCommandParameter.
+        </h:panelGroup>
+
+        <ui:include src="/sections/shared/rcpWithJsonConverter.xhtml"/>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/codeMirror/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/converters/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="codeMirror"/>
+            <ui:param name="tagName" value="jsonCoverter"/>
         </ui:include>
     </ui:define>
 </ui:composition>

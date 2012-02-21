@@ -20,11 +20,10 @@
        		<p:inputText id="enteredLocale" value="#{localeController.enteredLocale}" required="true">
        			<pe:convertLocale/>
        		</p:inputText>
-       		<p:commandButton value="add"
-       			action="#{localeController.add}"
-       			update="messages addedLocales enteredLocale"/>
-       		<br/>
-       		<br/>
+            <h:panelGroup layout="block" style="margin-top: 10px;">
+       		    <p:commandButton value="Add" action="#{localeController.add}" update="messages addedLocales enteredLocale"/>
+            </h:panelGroup>
+       		<p/>
 
 			Available locales:<br/>
 			<h:selectManyListbox id="addedLocales" value="#{localeController.selectedLocales}" style="width: 200px;">
@@ -41,9 +40,8 @@ Enter a new locale here (A valid locale for example is de_DE):
 &lt;p:inputText id="enteredLocale" value="\#{localeController.enteredLocale}" required="true"&gt;
 	&lt;pe:convertLocale/&gt;
 &lt;/p:inputText>
-&lt;p:commandButton value="add"
-	action="\#{localeController.add}"
-	update="messages addedLocales enteredLocale"/&gt;
+
+&lt;p:commandButton value="Add" action="\#{localeController.add}" update="messages addedLocales enteredLocale"/&gt;
 
 Available locales:
 &lt;h:selectManyListbox id="addedLocales" value="\#{localeController.selectedLocales}" style="width: 200px;"&gt;

@@ -10,90 +10,11 @@
             <h:outputText value="JavascriptBehaviour"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-			The Javascript behaviour can be used the catch events with javascript without making an AJAX request.<br/>
-			<br/>
-			In the example, the "page" event is catched with pe:javascript.<br/>
-			This will also destroy the paging functionality of p:datatable because no ajax request will be done! <br/>
-			So it should not be used for every event and every component. <br/>
-			Following javascript parameters will be available in your executes statement:<br/>
-			<ul>
-				<li>source</li>
-				<li>event - The name of the catched event</li>
-				<li>params - The rendered params (f:param childrens of pe:javascript)</li>
-				<li>ext - The object created by the widget</li>
-			</ul>
-			<br/>
-			The ext parameter can be used for example to get the parameters which are created by the parent widget.<br/>
-			For example the colResize event of p:dataTable:<br/>
-			<br/>
-			    var ext = { params: {} };<br/>
-                ext.params[_self.id + '_columnId'] = columnHeader.attr('id');<br/>
-                ext.params[_self.id + '_width'] = newWidth;<br/>
-                ext.params[_self.id + '_height'] = columnHeader.height();<br/>
-            <br/>
-            _self.id is the client id of the datatable.<br/>
-            <br/>
-            To get the columnId to, you must use: ext.params['myDataTable_columnId'].<br/>
-			<br/>
-			<br/>
-			Notice:<br/>
-			We can not provided a list with params, for this you should look at the PrimeFaces or PrimeFaces Extensions source.<br/>
+            If you don't need a server-side listener for the resize or rotate event in the ImageRotateAndResize example, you could use <b>pe:javascript</b> to reload the ImageAreaSelect widget.
+            In this example the resize event is also catched with <b>pe:javascript</b>.
         </h:panelGroup>
 
-        <h:panelGroup layout="block" styleClass="centerExample">
-			<p:dataTable id="myDataTable" var="message" value="#{dataTableController.messages}">
-				<pe:paginator 
-					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rows="10"
-					rowsPerPageTemplate="5,10,15" />
-				<pe:javascript event="page" execute="alert('Datatable page event called')"/>
-				<f:facet name="header">
-             		Messages
-         		</f:facet>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="Subject" />
-					</f:facet>
-					<h:outputText value="#{message.subject}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="Message" />
-					</f:facet>
-					<h:outputText value="#{message.text}" />
-				</p:column>
-			</p:dataTable>
-        </h:panelGroup>
-
-        <ui:decorate template="/templates/twoTabsDecorator.html">
-            <ui:define name="contentTab1">
-&lt;p:dataTable id="myDataTable" var="message" value="\#{dataTableController.messages}"&gt;
-	&lt;pe:paginator 
-		paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rows="10"
-		rowsPerPageTemplate="5,10,15" /&gt;
-	&lt;pe:javascript event="page" execute="alert('Datatable page event called')"/&gt;
-	&lt;f:facet name="header"&gt;
-          		Messages
-      		&lt;/f:facet&gt;
-	&lt;p:column&gt;
-		&lt;f:facet name="header"&gt;
-			&lt;h:outputText value="Subject" /&gt;
-		&lt;/f:facet&gt;
-		&lt;h:outputText value="#{message.subject}" /&gt;
-	&lt;/p:column&gt;
-	&lt;p:column&gt;
-		&lt;f:facet name="header"&gt;
-			&lt;h:outputText value="Message" /&gt;
-		&lt;/f:facet&gt;
-		&lt;h:outputText value="#{message.text}" /&gt;
-	&lt;/p:column&gt;
-&lt;/p:dataTable&gt;
-            </ui:define>
-            <ui:define name="contentTab2">
-
-            </ui:define>
-        </ui:decorate>
+        <ui:include src="/sections/shared/iasrrWithJavascriptBehavior.xhtml"/>
     </ui:define>
     <ui:define name="useCases">
         <ui:include src="/sections/clientBehaviours/useCasesChoice.xhtml"/>
