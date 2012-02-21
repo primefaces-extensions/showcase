@@ -54,15 +54,15 @@
 
 &lt;h:panelGrid id=&quot;triStateGrid&quot; columns=&quot;2&quot; layout=&quot;block&quot; styleClass=&quot;centerContent&quot;&gt;
     &lt;h:outputText value=&quot;Basic Usage: &quot;/&gt;
-    &lt;pe:triStateCheckbox value=&quot;#{triStateCheckBoxController.value1}&quot;/&gt;
+    &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value1}&quot;/&gt;
 
     &lt;h:outputText value=&quot;Ajax Behavior: &quot;/&gt;
-    &lt;pe:triStateCheckbox value=&quot;#{triStateCheckBoxController.value2}&quot;&gt;
-        &lt;p:ajax update=&quot;growl&quot; process=&quot;triStateGrid&quot; listener=&quot;#{triStateCheckBoxController.addMessage}&quot;/&gt;
+    &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value2}&quot;&gt;
+        &lt;p:ajax update=&quot;growl&quot; process=&quot;triStateGrid&quot; listener=&quot;\#{triStateCheckBoxController.addMessage}&quot;/&gt;
     &lt;/pe:triStateCheckbox&gt;
 
     &lt;h:outputText value=&quot;Customs Icons: &quot;/&gt;
-    &lt;pe:triStateCheckbox value=&quot;#{triStateCheckBoxController.value3}&quot;
+    &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value3}&quot;
                          stateTwoIcon=&quot;ui-icon-plus&quot;
                          stateThreeIcon=&quot;ui-icon-minus&quot;/&gt;
 &lt;/h:panelGrid&gt;
@@ -71,9 +71,9 @@
                  style=&quot;margin-top:10px;&quot;/&gt;
 &lt;p:dialog header=&quot;Selected Values&quot; showEffect=&quot;fade&quot; hideEffect=&quot;fade&quot; widgetVar=&quot;dlg&quot;&gt;
     &lt;h:panelGrid id=&quot;display&quot; columns=&quot;1&quot; style=&quot;margin: 10px;&quot;&gt;
-        &lt;h:outputText value=&quot;Value 1: #{triStateCheckBoxController.value1}&quot;/&gt;
-        &lt;h:outputText value=&quot;Value 2: #{triStateCheckBoxController.value2}&quot;/&gt;
-        &lt;h:outputText value=&quot;Value 3: #{triStateCheckBoxController.value3}&quot;/&gt;
+        &lt;h:outputText value=&quot;Value 1: \#{triStateCheckBoxController.value1}&quot;/&gt;
+        &lt;h:outputText value=&quot;Value 2: \#{triStateCheckBoxController.value2}&quot;/&gt;
+        &lt;h:outputText value=&quot;Value 3: \#{triStateCheckBoxController.value3}&quot;/&gt;
     &lt;/h:panelGrid&gt;
 &lt;/p:dialog&gt;
             </ui:define>
