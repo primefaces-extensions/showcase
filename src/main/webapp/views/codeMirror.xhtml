@@ -9,6 +9,20 @@
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
 			CodeMirror is a JavaScript library that can be used to create a relatively pleasant editor interface for code-like content ― computer programs, HTML markup, and similar. If a mode has been written for the language you are editing, the code will be coloured, and the editor will optionally help you with indentation.
+			<br/>
+			<br/>
+			CodeMirror also provides CSS for some modes. If you want to inclue this, they will aply to ALL CodeMirror instances on the page. <br/>
+			<br/>
+			Following CSS are available: <br/>
+			<ul>
+				<li>codemirror/mode/diff.css</li>
+				<li>codemirror/mode/spec.css</li>
+				<li>codemirror/mode/tiddlywiki.css</li>
+			</ul>
+			You can include this CSS via:<br/>
+			&lt;h:outputStylesheet library="primefaces-extensions" name="codemirror/mode/diff.css" /&gt;
+			
+		
 		</h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
