@@ -6,119 +6,141 @@
       xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
-    <f:facet name="header">
-        <h:outputText value="TriStateCheckbox"/>
-    </f:facet>
-    <h:panelGroup layout="block" styleClass="centerContent">
-        <!-- This group is for description -->
-        The TriStateCheckbox add a new state for a common SelectBooleanCheckbox.
-        The value of triStateCheckbox are mapped to 0,1,2 string values, the component also can be customized with css icon classes.
-        <p/>
-        This example show triStateCheckbox in action.
-    </h:panelGroup>
+        <f:facet name="header">
+            <h:outputText value="TriStateCheckbox"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            <!-- This group is for description -->
+            The TriStateCheckbox add a new state for a common SelectBooleanCheckbox.
+            The value of triStateCheckbox are mapped to 0,1,2 string values, the component also can be customized with css icon classes.
+            <p/>
+            This example show triStateCheckbox in action.
+        </h:panelGroup>
 
-    <h:panelGroup layout="block" styleClass="centerExample">
-        <!-- This group is for coding -->
-        <p:growl id="msg"/>
-        
-        <h:panelGrid columns="2" layout="block" styleClass="centerContent">
-            <h:outputText value="Basic Usage: "/>
-            <pe:triStateCheckbox value="#{triStateCheckBoxController.value1}"/>
-
-            <h:outputText value="Ajax Behavior: "/>
-            <pe:triStateCheckbox value="#{triStateCheckBoxController.value2}">
-                <p:ajax update="display" listener="#{triStateCheckBoxController.addMessage}"/>
-            </pe:triStateCheckbox>
-
-            <h:outputText value="Customs Icons: "/>
-            <pe:triStateCheckbox value="#{triStateCheckBoxController.value1}"
-                                 stateTwoIcon="ui-icon-plus"
-                                 stateThreeIcon="ui-icon-minus"/>
-        </h:panelGrid>
-        <br/>
-        <p:commandButton value="Submit" update="display" oncomplete="dlg.show()"/>
-        <p:dialog header="Selected Values" showEffect="fade" hideEffect="fade" widgetVar="dlg">
-            <h:panelGrid columns="1" id="display">
-                <h:outputText value="Value 1: #{triStateCheckBoxController.value1}"/>
-                <h:outputText value="Value 2: #{triStateCheckBoxController.value2}"/>
-                <h:outputText value="Value 3: #{triStateCheckBoxController.value3}"/>
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <!-- This group is for coding -->
+            <p:growl id="growl" showDetail="true" />
+            
+            <h:panelGrid id="triStateGrid" columns="2" layout="block" styleClass="centerContent">
+                <h:outputText value="Basic Usage: "/>
+                <pe:triStateCheckbox value="#{triStateCheckBoxController.value1}"/>
+            
+                <h:outputText value="Ajax Behavior: "/>
+                <pe:triStateCheckbox value="#{triStateCheckBoxController.value2}">
+                    <p:ajax update="growl" process="triStateGrid" listener="#{triStateCheckBoxController.addMessage}"/>
+                </pe:triStateCheckbox>
+            
+                <h:outputText value="Customs Icons: "/>
+                <pe:triStateCheckbox value="#{triStateCheckBoxController.value3}"
+                                     stateTwoIcon="ui-icon-plus"
+                                     stateThreeIcon="ui-icon-minus"/>
             </h:panelGrid>
-        </p:dialog>
-    </h:panelGroup>
-        
-    <ui:decorate template="/templates/twoTabsDecorator.html">
-        <!-- Code here should be left aligned -->
-        <ui:define name="contentTab1">
-&lt;p:growl id="msg" /&gt;                                        
+            
+            <p:commandButton value="Submit" process="triStateGrid" update="display" oncomplete="dlg.show()"
+                             style="margin-top:10px;"/>
+            <p:dialog header="Selected Values" showEffect="fade" hideEffect="fade" widgetVar="dlg">
+                <h:panelGrid id="display" columns="1" style="margin: 10px;">
+                    <h:outputText value="Value 1: #{triStateCheckBoxController.value1}"/>
+                    <h:outputText value="Value 2: #{triStateCheckBoxController.value2}"/>
+                    <h:outputText value="Value 3: #{triStateCheckBoxController.value3}"/>
+                </h:panelGrid>
+            </p:dialog>
+        </h:panelGroup>
 
-&lt;h:outputText value="Basic Usage: " /&gt;  
-&lt;pe:triStateCheckbox value="\#{triStateCheckBoxController.value1}"  /&gt;  
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <!-- Code here should be left aligned -->
+            <ui:define name="contentTab1">
+&lt;p:growl id=&quot;growl&quot; showDetail=&quot;true&quot; /&gt;
 
-&lt;h:outputText value="Ajax Behavior: " /&gt;  
-&lt;pe:triStateCheckbox value="\#{triStateCheckBoxController.value2}"&gt;  
-    &lt;p:ajax update="display" listener="\#{triStateCheckBoxController.addMessage}"/&gt;  
-&lt;/pe:triStateCheckbox&gt;  
+&lt;h:panelGrid id=&quot;triStateGrid&quot; columns=&quot;2&quot; layout=&quot;block&quot; styleClass=&quot;centerContent&quot;&gt;
+    &lt;h:outputText value=&quot;Basic Usage: &quot;/&gt;
+    &lt;pe:triStateCheckbox value=&quot;#{triStateCheckBoxController.value1}&quot;/&gt;
 
-&lt;h:outputText value="Customs Icons: " /&gt;  
-&lt;pe:triStateCheckbox value="\#{triStateCheckBoxController.value1}"                                       
-     stateTwoIcon="ui-icon-plus" 
-     stateThreeIcon="ui-icon-minus"/&gt;  
+    &lt;h:outputText value=&quot;Ajax Behavior: &quot;/&gt;
+    &lt;pe:triStateCheckbox value=&quot;#{triStateCheckBoxController.value2}&quot;&gt;
+        &lt;p:ajax update=&quot;growl&quot; process=&quot;triStateGrid&quot; listener=&quot;#{triStateCheckBoxController.addMessage}&quot;/&gt;
+    &lt;/pe:triStateCheckbox&gt;
 
-&lt;p:commandButton value="Submit" update="display" oncomplete="dlg.show()" /&gt;  
+    &lt;h:outputText value=&quot;Customs Icons: &quot;/&gt;
+    &lt;pe:triStateCheckbox value=&quot;#{triStateCheckBoxController.value3}&quot;
+                         stateTwoIcon=&quot;ui-icon-plus&quot;
+                         stateThreeIcon=&quot;ui-icon-minus&quot;/&gt;
+&lt;/h:panelGrid&gt;
 
-&lt;p:dialog header="Selected Values"  showEffect="fade" hideEffect="fade" widgetVar="dlg"&gt;  
-    &lt;h:panelGrid columns="1" id="display"&gt;  
-    &lt;h:outputText value="Value 1: \#{triStateCheckBoxController.value1}" /&gt;  
-    &lt;h:outputText value="Value 2: \#{triStateCheckBoxController.value2}" /&gt;  
-    &lt;h:outputText value="Value 3: \#{triStateCheckBoxController.value3}" /&gt;  
-    &lt;/h:panelGrid&gt;  
-&lt;/p:dialog&gt;        
-        </ui:define>
-        <ui:define name="contentTab2">
+&lt;p:commandButton value=&quot;Submit&quot; process=&quot;triStateGrid&quot; update=&quot;display&quot; oncomplete=&quot;dlg.show()&quot;
+                 style=&quot;margin-top:10px;&quot;/&gt;
+&lt;p:dialog header=&quot;Selected Values&quot; showEffect=&quot;fade&quot; hideEffect=&quot;fade&quot; widgetVar=&quot;dlg&quot;&gt;
+    &lt;h:panelGrid id=&quot;display&quot; columns=&quot;1&quot; style=&quot;margin: 10px;&quot;&gt;
+        &lt;h:outputText value=&quot;Value 1: #{triStateCheckBoxController.value1}&quot;/&gt;
+        &lt;h:outputText value=&quot;Value 2: #{triStateCheckBoxController.value2}&quot;/&gt;
+        &lt;h:outputText value=&quot;Value 3: #{triStateCheckBoxController.value3}&quot;/&gt;
+    &lt;/h:panelGrid&gt;
+&lt;/p:dialog&gt;
+            </ui:define>
+            <ui:define name="contentTab2">
 @ManagedBean
 @ViewScoped
 public class TriStateCheckBoxController implements Serializable {
 
-    private String value1;
-    private String value2;
-    private String value3;
-   
-    public TriStateCheckBoxController() {
-         value1 = "2";
-    }
+	private String value1;
+	private String value2;
+	private String value3;
 
-    public String getValue1() {
-          return value1;
-    }
+	private Boolean valueB1;
+	private Boolean valueB2;
 
-    public void setValue1(String value1) {
-         this.value1 = value1;
-    }
+	public TriStateCheckBoxController() {
+		value1 = &quot;2&quot;;
+	}
 
-    public String getValue2() {
-         return value2;
-    }
+	public String getValue1() {
+		return value1;
+	}
 
-    public String getValue3() {
-         return value3;
-    }
+	public void setValue1(String value1) {
+		this.value1 = value1;
+	}
 
-    public void setValue3(String value3) {
-         this.value3 = value3;
-    }
+	public String getValue2() {
+		return value2;
+	}
 
-    public void setValue2(String value2) {
-         this.value2 = value2;
-    }
-    
-    public void addMessage() {
-         String checkBoxValue = "State is = " + value2;
-         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(checkBoxValue));
-    }
+	public String getValue3() {
+		return value3;
+	}
+
+	public void setValue3(String value3) {
+		this.value3 = value3;
+	}
+
+	public void setValue2(String value2) {
+		this.value2 = value2;
+	}
+
+	public Boolean getValueB1() {
+		return valueB1;
+	}
+
+	public void setValueB1(Boolean valueB1) {
+		this.valueB1 = valueB1;
+	}
+
+	public Boolean getValueB2() {
+		return valueB2;
+	}
+
+	public void setValueB2(Boolean valueB2) {
+		this.valueB2 = valueB2;
+	}
+
+	public void addMessage() {
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;State has been changed&quot;, &quot;State is = &quot; + value2);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 }
-        </ui:define>
-    </ui:decorate>
-</ui:define>
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
     <ui:define name="useCases">
 
     </ui:define>
