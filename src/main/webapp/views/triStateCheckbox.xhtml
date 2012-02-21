@@ -26,8 +26,8 @@
                 <pe:triStateCheckbox value="#{triStateCheckBoxController.value1}"/>
             
                 <h:outputText value="Ajax Behavior: "/>
-                <pe:triStateCheckbox value="#{triStateCheckBoxController.value2}">
-                    <p:ajax update="growl" process="triStateGrid" listener="#{triStateCheckBoxController.addMessage}"/>
+                <pe:triStateCheckbox id="ajaxTriState" value="#{triStateCheckBoxController.value2}">
+                    <p:ajax update="growl" listener="#{triStateCheckBoxController.addMessage}"/>
                 </pe:triStateCheckbox>
             
                 <h:outputText value="Customs Icons: "/>
@@ -57,7 +57,7 @@
     &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value1}&quot;/&gt;
 
     &lt;h:outputText value=&quot;Ajax Behavior: &quot;/&gt;
-    &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value2}&quot;&gt;
+    &lt;pe:triStateCheckbox id="ajaxTriState" value=&quot;\#{triStateCheckBoxController.value2}&quot;&gt;
         &lt;p:ajax update=&quot;growl&quot; process=&quot;triStateGrid&quot; listener=&quot;\#{triStateCheckBoxController.addMessage}&quot;/&gt;
     &lt;/pe:triStateCheckbox&gt;
 
