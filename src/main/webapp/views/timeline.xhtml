@@ -31,20 +31,31 @@ public class TimelineController implements Serializable {
     public List&lt;Timeline&gt; getTimelines() {
         timelines = new ArrayList&lt;Timeline&gt;();
         Calendar cal = Calendar.getInstance();
-        Timeline timeline = new DefaultTimeLine(&quot;2011&quot;, &quot;2011&quot;);
+        Timeline timeline = new DefaultTimeLine(&quot;Mar2011&quot;, &quot;March, 2011&quot;);
         cal.set(2011, 03, 10);
-        timeline.addEvent(new DefaultTimelineEvent(&quot;Project Created&quot;, &quot;Primefaces Extensions Project Created&quot;, cal.getTime(), cal.getTime()));
+        timeline.addEvent(new DefaultTimelineEvent(&quot;Project Created by Thomas Andraschko&quot;, &quot;Primefaces Extensions Project Created&quot;, cal.getTime(), cal.getTime()));
+        cal.set(2011, 03, 31);
+        timeline.addEvent(new DefaultTimelineEvent(&quot;Added two components&quot;, &quot;Added two components&quot;, cal.getTime(), cal.getTime()));
+        timelines.add(timeline);                
+        timeline = new DefaultTimeLine(&quot;May2011&quot;, &quot;May, 2011&quot;);
         cal.set(2011, 05, 10);
         timeline.addEvent(new DefaultTimelineEvent(&quot;Primefaces Extensions 0.1 Released&quot;, &quot;PE tagged first release 0.1&quot;, cal.getTime(), cal.getTime()));
-        cal.set(2011, 07, 14);
-        timeline.addEvent(new DefaultTimelineEvent(&quot;New member Oleg Varaksin&quot;, &quot;Oleg Varaksin has joined our team&quot;, cal.getTime(), cal.getTime()));
+        timelines.add(timeline);                
+        timeline = new DefaultTimeLine(&quot;Oct2011&quot;, &quot;October, 2011&quot;);
+        cal.set(2011, 10, 01);
+        timeline.addEvent(new DefaultTimelineEvent(&quot;New member Oleg Varaksin&quot;, &quot;Oleg Varaksin has joined our team&quot;, cal.getTime(), cal.getTime()));         
+        cal.set(2011, 10, 30);
+        timeline.addEvent(new DefaultTimelineEvent(&quot;Released first maven plugin&quot;, &quot;Released Resource Optimizer plugin&quot;, cal.getTime(), cal.getTime()));
         timelines.add(timeline);
 
-        timeline = new DefaultTimeLine(&quot;2012&quot;, &quot;2012&quot;);
+        timeline = new DefaultTimeLine(&quot;Jan2012&quot;, &quot;January, 2012&quot;);
         cal.set(2012, 01, 17);
         timeline.addEvent(new DefaultTimelineEvent(&quot;New member Nilesh Mali&quot;, &quot;Nilesh Mali has joined our team&quot;, cal.getTime(), cal.getTime()));
-        cal.set(2012, 01, 23);
+        cal.set(2012, 01, 23);        
         timeline.addEvent(new DefaultTimelineEvent(&quot;Primefaces Extensions 0.2.0 Released&quot;, &quot;Primefaces Extensions second release 0.2.0&quot;, cal.getTime(), cal.getTime()));
+        timelines.add(timeline);                
+
+        timeline = new DefaultTimeLine(&quot;Feb2012&quot;, &quot;February, 2012&quot;);
         cal.set(2012, 02, 14);
         timeline.addEvent(new DefaultTimelineEvent(&quot;New member Mauricio Fenoglio&quot;, &quot;Mauricio Fenoglio has joined our team&quot;, cal.getTime(), cal.getTime()));
         timelines.add(timeline);
@@ -53,7 +64,210 @@ public class TimelineController implements Serializable {
 }
             </ui:define>
             <ui:define name="contentTab3">
-TODO, show Java model
+public class DefaultTimeLine implements Timeline {
+
+    private String id;
+    private String title;
+    private List&lt;TimelineEvent&gt; events;
+
+    public DefaultTimeLine() {
+        this.events = new ArrayList&lt;TimelineEvent&gt;();
+    }
+
+    public DefaultTimeLine(String id, String title) {
+        this.id = id;
+        this.title = title;
+        this.events = new ArrayList&lt;TimelineEvent&gt;();
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public void addEvent(TimelineEvent event) {
+        event.setId(UUID.randomUUID().toString());
+
+        events.add(event);
+    }
+
+    @Override
+    public boolean deleteEvent(TimelineEvent event) {
+        return events.remove(event);
+    }
+
+    @Override
+    public List&lt;TimelineEvent&gt; getEvents() {
+        return events;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DefaultTimeLine other = (DefaultTimeLine) obj;
+        if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return title;
+    }
+}
+
+public class DefaultTimelineEvent implements TimelineEvent {
+
+    private String id;
+    private String title;
+    private String description;
+    private Date startDate;
+    private Date endDate;
+    private String icon;
+
+    public DefaultTimelineEvent() {
+    }
+
+    public DefaultTimelineEvent(String title) {
+        this.title = title;
+    }
+
+    public DefaultTimelineEvent(String title, String description, Date startDate, Date endDate) {
+        this.title = title;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public DefaultTimelineEvent(String title, String description, Date startDate, Date endDate, String icon) {
+        this.title = title;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.icon = icon;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    @Override
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DefaultTimelineEvent other = (DefaultTimelineEvent) obj;
+        if ((this.title == null) ? (other.title != null) : !this.title.equals(other.title)) {
+            return false;
+        }
+        if ((this.description == null) ? (other.description != null) : !this.description.equals(other.description)) {
+            return false;
+        }
+        if (this.startDate != other.startDate &amp;&amp; (this.startDate == null || !this.startDate.equals(other.startDate))) {
+            return false;
+        }
+        if (this.endDate != other.endDate &amp;&amp; (this.endDate == null || !this.endDate.equals(other.endDate))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + (this.title != null ? this.title.hashCode() : 0);
+        hash = 79 * hash + (this.description != null ? this.description.hashCode() : 0);
+        hash = 79 * hash + (this.startDate != null ? this.startDate.hashCode() : 0);
+        hash = 79 * hash + (this.endDate != null ? this.endDate.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;DefaultTimelineEvent{&quot; + &quot;id=&quot; + id + &quot;, title=&quot; + title + &quot;, description=&quot; + description + &quot;, startDate=&quot; + startDate + &quot;, endDate=&quot; + endDate + &quot;}&quot;;
+    }
+}
             </ui:define>            
         </ui:decorate>
     </ui:define>
