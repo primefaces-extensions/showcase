@@ -15,6 +15,7 @@
 
         <h:panelGroup layout="block" styleClass="centerExample">
 			<p:growl id="growl" showDetail="true" />
+            
 			<pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}"
 				theme="eclipse" value="#{codeMirrorController.content}" lineNumbers="true"/>
 			
@@ -25,6 +26,7 @@
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
 &lt;p:growl id="growl" showDetail="true" /&gt;
+                
 &lt;pe:codeMirror id="codeMirror" mode="\#{codeMirrorController.mode}"
 	theme="eclipse" value="\#{codeMirrorController.content}" lineNumbers="true"/&gt;
 
@@ -35,8 +37,6 @@
 @ManagedBean
 @ViewScoped
 public class CodeMirrorController implements Serializable {
-
-	private static final long serialVersionUID = 20111020L;
 
 	private String content;
 	private String mode = "javascript";

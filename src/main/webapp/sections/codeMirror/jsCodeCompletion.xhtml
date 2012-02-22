@@ -10,12 +10,12 @@
             <h:outputText value="CodeMirror"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            CodeMirror also provides support for JS code completion. <br/>
-            This can be activated via <b>extraKeys</b> attribute.
+            CodeMirror also provides support for JS code completion (Ctrl-Space). This can be activated via <b>extraKeys</b> attribute.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
 			<p:growl id="growl" showDetail="true" />
+            
 			<pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}"
 				theme="eclipse" value="#{codeMirrorController.content}" lineNumbers="true"
 				extraKeys="{ 'Ctrl-Space': function(cm) {CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);}}" />
@@ -27,6 +27,7 @@
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
 &lt;p:growl id="growl" showDetail="true" /&gt;
+                
 &lt;pe:codeMirror id="codeMirror" mode="\#{codeMirrorController.mode}"
 	theme="eclipse" value="\#{codeMirrorController.content}" lineNumbers="true"
 	extraKeys="{ 'Ctrl-Space': function(cm) {CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);}}" /&gt;
@@ -38,8 +39,6 @@
 @ManagedBean
 @ViewScoped
 public class CodeMirrorController implements Serializable {
-
-	private static final long serialVersionUID = 20111020L;
 
 	private String content;
 	private String mode = "javascript";
