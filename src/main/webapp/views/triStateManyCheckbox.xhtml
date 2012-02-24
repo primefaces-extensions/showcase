@@ -21,21 +21,21 @@
                     
                <h:outputText value="Basic Usage:"/>
                <pe:triStateManyCheckbox id="TriBasic"
-                                         value="#{triSateManyCheckboxController.selectedOptionsTriStateBasic}"
+                                        value="#{triSateManyCheckBoxController.selectedOptionsTriStateBasic}"
                                          layout="pageDirection">  
-                       <f:selectItems value="#{triSateManyCheckboxController.basicOptions}" />  
-               </pe:triStateManyCheckbox>
+                       <f:selectItems value="#{triSateManyCheckBoxController.basicOptions}" />  
+               </pe:triStateManyCheckbox>              
                
                <h:outputText value="Ajax Behavior with custom icons:"/> 
                <pe:triStateManyCheckbox id="TriAjax"
-                                         value="#{triSateManyCheckboxController.selectedOptionsTriStateAjax}"                                       
+                                         value="#{triSateManyCheckBoxController.selectedOptionsTriStateAjax}"                                       
                                          stateOneIcon="ui-icon-home"
                                          stateTwoIcon="ui-icon-heart"
                                          stateThreeIcon="ui-icon-star">  
                     <f:selectItem itemLabel="Tamara" itemValue="Tamara"  />  
                     <f:selectItem itemLabel="Mauricio" itemValue="Mauricio" />                         
-                    <p:ajax update="growl" listener="#{triSateManyCheckboxController.addMessage}"/>
-               </pe:triStateManyCheckbox>
+                    <p:ajax update="growl" listener="#{triSateManyCheckBoxController.addMessage}"/>
+               </pe:triStateManyCheckbox>               
             </h:panelGrid>  
 
             <p:commandButton value="Submit" update="display" oncomplete="dlg.show()" />  
@@ -43,12 +43,12 @@
             <p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="200">  
                 <p:outputPanel id="display">  
                     NOT FINISH I KNOW THE DISPLAY ORDER IS NOT THE SAME AS THE COMPONENT DEFINED.
-                    <p:dataList  value="#{triSateManyCheckboxController.selectedOptionsTriStateBasic.keySet().toArray()}" var="optionsB">                        
-                        #{optionsB} state = #{triSateManyCheckboxController.selectedOptionsTriStateBasic.get(optionsB)}
+                    <p:dataList  value="#{triSateManyCheckBoxController.selectedOptionsTriStateBasic.keySet().toArray()}" var="optionsB">                        
+                        #{optionsB} state = #{triSateManyCheckBoxController.selectedOptionsTriStateBasic.get(optionsB)}
                     </p:dataList>   
                     
-                    <p:dataList value="#{triSateManyCheckboxController.selectedOptionsTriStateAjax.keySet().toArray()}" var="optionsA">                        
-                        #{optionsA} state = #{triSateManyCheckboxController.selectedOptionsTriStateAjax.get(optionsA)}
+                    <p:dataList value="#{triSateManyCheckBoxController.selectedOptionsTriStateAjax.keySet().toArray()}" var="optionsA">                        
+                        #{optionsA} state = #{triSateManyCheckBoxController.selectedOptionsTriStateAjax.get(optionsA)}
                     </p:dataList> 
                 </p:outputPanel>  
             </p:dialog>  

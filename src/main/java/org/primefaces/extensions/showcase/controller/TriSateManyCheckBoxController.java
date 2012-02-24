@@ -34,14 +34,14 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class TriSateManyCheckboxController implements Serializable {
+public class TriSateManyCheckBoxController implements Serializable {
 
         
         private Map<String, String> selectedOptionsTriStateBasic;
         private Map<String, String> selectedOptionsTriStateAjax;
         private Map<String,String> basicOptions;
 
-        public TriSateManyCheckboxController() {       
+        public TriSateManyCheckBoxController() {       
                 
                 basicOptions = new HashMap<String, String>();  
                 basicOptions.put("Label for Dog", "Dog");  
