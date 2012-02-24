@@ -53,3 +53,13 @@
 #personDetail .ui-datalist {
     width: 200px;
 }
+
+table .timePickerColumn1 {
+    padding: 4px 18px 0 0;
+    vertical-align: top;
+}
+
+table .timePickerColumn {
+    padding: 4px 18px 0 18px;
+    vertical-align: top;
+}

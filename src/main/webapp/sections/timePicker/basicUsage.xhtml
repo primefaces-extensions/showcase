@@ -3,8 +3,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions"
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+      xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -15,13 +14,22 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-
+            <h:panelGrid columns="3" columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn">
+                <h:outputText value="Inline mode"/>
+                <h:outputText value="Popup mode"/>
+                <h:outputText value="Spinner mode"/>
+                <pe:timePicker value="#{timePickerController.time1}" mode="inline"/>
+                <pe:timePicker value="#{timePickerController.time2}" mode="popup"/>
+                <pe:timePicker value="#{timePickerController.time3}"/>
+            </h:panelGrid>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
+                
             </ui:define>
             <ui:define name="contentTab2">
+                
             </ui:define>
         </ui:decorate>
     </ui:define>
