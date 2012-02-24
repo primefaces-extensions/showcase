@@ -37,6 +37,7 @@ import javax.faces.context.FacesContext;
 public class TriSateManyCheckboxController implements Serializable {
 
         
+
         private Map<String, String> selectedOptionsTriStateBasic;
         private Map<String, String> selectedOptionsTriStateAjax;
         private Map<String,String> basicOptions;
