@@ -16,16 +16,51 @@
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <!-- This group is for coding -->
+            <p:growl id="growl" showDetail="true" />
+            <h:panelGrid  id="triStateGrid" columns="2" style="margin-bottom:10px" cellpadding="5">  
+                    
+               <h:outputText value="Basic Usage:"/>
+               <pe:triStateManyCheckbox id="TriBasic"
+                                         value="#{triSateManyCheckboxController.selectedOptionsTriStateBasic}"
+                                         layout="pageDirection">  
+                       <f:selectItems value="#{triSateManyCheckboxController.basicOptions}" />  
+               </pe:triStateManyCheckbox>
+               
+               <h:outputText value="Ajax Behavior with custom icons:"/> 
+               <pe:triStateManyCheckbox id="TriAjax"
+                                         value="#{triSateManyCheckboxController.selectedOptionsTriStateAjax}"                                       
+                                         stateOneIcon="ui-icon-home"
+                                         stateTwoIcon="ui-icon-heart"
+                                         stateThreeIcon="ui-icon-star">  
+                    <f:selectItem itemLabel="Tamara" itemValue="Tamara"  />  
+                    <f:selectItem itemLabel="Mauricio" itemValue="Mauricio" />                         
+                    <p:ajax update="growl" listener="#{triSateManyCheckboxController.addMessage}"/>
+               </pe:triStateManyCheckbox>
+            </h:panelGrid>  
 
+            <p:commandButton value="Submit" update="display" oncomplete="dlg.show()" />  
+
+            <p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="200">  
+                <p:outputPanel id="display">  
+                    NOT FINISH I KNOW THE DISPLAY ORDER IS NOT THE SAME AS THE COMPONENT DEFINED.
+                    <p:dataList  value="#{triSateManyCheckboxController.selectedOptionsTriStateBasic.keySet().toArray()}" var="optionsB">                        
+                        #{optionsB} state = #{triSateManyCheckboxController.selectedOptionsTriStateBasic.get(optionsB)}
+                    </p:dataList>   
+                    
+                    <p:dataList value="#{triSateManyCheckboxController.selectedOptionsTriStateAjax.keySet().toArray()}" var="optionsA">                        
+                        #{optionsA} state = #{triSateManyCheckboxController.selectedOptionsTriStateAjax.get(optionsA)}
+                    </p:dataList> 
+                </p:outputPanel>  
+            </p:dialog>  
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <!-- Code here should be left aligned -->
             <ui:define name="contentTab1">
-TODO
+                TODO
             </ui:define>
             <ui:define name="contentTab2">
-TODO
+                TODO
             </ui:define>
         </ui:decorate>
     </ui:define>

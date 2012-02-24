@@ -1,17 +1,24 @@
 /*
- * Copyright (C) 2012 Scalaris AG, Germany. All rights reserved.
+ * Copyright 2012 PrimeFaces Extensions.
  *
- * $Id: $
- */
-
-/*
- * $Id
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * $Id$
  */
 
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -32,9 +39,7 @@ public class TriStateCheckBoxController implements Serializable {
 	private String value2;
 	private String value3;
 
-	private Boolean valueB1;
-	private Boolean valueB2;
-
+        
 	public TriStateCheckBoxController() {
 		value1 = "2";
 	}
@@ -63,23 +68,7 @@ public class TriStateCheckBoxController implements Serializable {
 		this.value2 = value2;
 	}
 
-	public Boolean getValueB1() {
-		return valueB1;
-	}
-
-	public void setValueB1(Boolean valueB1) {
-		this.valueB1 = valueB1;
-	}
-
-	public Boolean getValueB2() {
-		return valueB2;
-	}
-
-	public void setValueB2(Boolean valueB2) {
-		this.valueB2 = valueB2;
-	}
-
-	public void addMessage() {
+	public void addMessage() {              
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "State has been changed", "State is = " + value2);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
