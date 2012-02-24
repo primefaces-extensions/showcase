@@ -39,6 +39,7 @@ public class TimePickerController implements Serializable {
 	private Date time1;
 	private Date time2;
 	private Date time3;
+	private Date time4;
 
 	public Date getTime1() {
 		return time1;
@@ -62,5 +63,13 @@ public class TimePickerController implements Serializable {
 
 	public void setTime3(Date time3) {
 		this.time3 = time3;
+	}
+
+	public Date getTime4() {
+		return time4;
+	}
+
+	public void setTime4(Date time4) {
+		this.time4 = time4;
 	}
 }

@@ -10,26 +10,30 @@
             <h:outputText value="TimePicker"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            TODO
+            I18N nicht vergessen
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:panelGrid columns="3" columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn">
+            <h:panelGrid columns="4" columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn">
                 <h:outputText value="Inline mode"/>
                 <h:outputText value="Popup mode"/>
                 <h:outputText value="Spinner mode"/>
+                <h:outputText value="Customization"/>
                 <pe:timePicker value="#{timePickerController.time1}" mode="inline"/>
                 <pe:timePicker value="#{timePickerController.time2}" mode="popup"/>
                 <pe:timePicker value="#{timePickerController.time3}"/>
+                <pe:timePicker value="#{timePickerController.time4}" startHours="8" endHours="20" startMinutes="10"
+                               endMinutes="40" intervalMinutes="10" showCloseButton="true" showDeselectButton="true"
+                               showNowButton="true" rows="3" showPeriod="true" showPeriodLabels="true" style="width:70px;"/>
             </h:panelGrid>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-                
+
             </ui:define>
             <ui:define name="contentTab2">
-                
+
             </ui:define>
         </ui:decorate>
     </ui:define>

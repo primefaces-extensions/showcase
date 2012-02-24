@@ -10,65 +10,64 @@
             <h:outputText value="Paginator"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-        	PrimeFaces Extensions provides an seperate tag for pagination. <br/>
-			<br/>
-			Currently pe:paginator can be applied to all components which extends from PrimeFaces UIData (p:dataTable, p:dataGrid, p:dataList).
+        	PrimeFaces Extensions provides a separate tag for pagination in order to reuse (share) one and the same paginator settings between multiply components requiring pagination.
+            Place pe:paginator within ui:include to reuse it.
+            <p/>
+            pe:paginator can be applied to all PrimeFaces components extended from UIData (p:dataTable, p:dataGrid, p:dataList).
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-			<p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}">
-				<pe:paginator 
-					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rows="10"
-					rowsPerPageTemplate="5,10,15" />
-				<f:facet name="header">
-             		Messages
-         		</f:facet>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="Subject" />
-					</f:facet>
-					<h:outputText value="#{message.subject}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="Message" />
-					</f:facet>
-					<h:outputText value="#{message.text}" />
-				</p:column>
-			</p:dataTable>
+            <p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}">
+                <pe:paginator 
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rows="10"
+                    rowsPerPageTemplate="5,10,15" />
+                <f:facet name="header">
+                    Messages
+                </f:facet>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Subject" />
+                    </f:facet>
+                    <h:outputText value="#{message.subject}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Message" />
+                    </f:facet>
+                    <h:outputText value="#{message.text}" />
+                </p:column>
+            </p:dataTable>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-&lt;p:dataTable id="dataTable" var="message" value="\#{dataTableController.messages}"&gt;
-	&lt;pe:paginator 
-		paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rows="10"
-		rowsPerPageTemplate="5,10,15" /&gt;
-	&lt;f:facet name="header"&gt;
-          		Messages
-      		&lt;/f:facet&gt;
-	&lt;p:column&gt;
-		&lt;f:facet name="header"&gt;
-			&lt;h:outputText value="Subject" /&gt;
-		&lt;/f:facet&gt;
-		&lt;h:outputText value="#{message.subject}" /&gt;
-	&lt;/p:column&gt;
-	&lt;p:column&gt;
-		&lt;f:facet name="header"&gt;
-			&lt;h:outputText value="Message" /&gt;
-		&lt;/f:facet&gt;
-		&lt;h:outputText value="#{message.text}" /&gt;
-	&lt;/p:column&gt;
+&lt;p:dataTable id=&quot;dataTable&quot; var=&quot;message&quot; value=&quot;\#{dataTableController.messages}&quot;&gt;
+    &lt;pe:paginator 
+        paginatorTemplate=&quot;{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}&quot;
+        rows=&quot;10&quot;
+        rowsPerPageTemplate=&quot;5,10,15&quot; /&gt;
+    &lt;f:facet name=&quot;header&quot;&gt;
+        Messages
+    &lt;/f:facet&gt;
+    &lt;p:column&gt;
+        &lt;f:facet name=&quot;header&quot;&gt;
+            &lt;h:outputText value=&quot;Subject&quot; /&gt;
+        &lt;/f:facet&gt;
+        &lt;h:outputText value=&quot;\#{message.subject}&quot; /&gt;
+    &lt;/p:column&gt;
+    &lt;p:column&gt;
+        &lt;f:facet name=&quot;header&quot;&gt;
+            &lt;h:outputText value=&quot;Message&quot; /&gt;
+        &lt;/f:facet&gt;
+        &lt;h:outputText value=&quot;\#{message.text}&quot; /&gt;
+    &lt;/p:column&gt;
 &lt;/p:dataTable&gt;
             </ui:define>
             <ui:define name="contentTab2">
 @ManagedBean
 @ViewScoped
 public class DataTableController implements Serializable {
-
-	private static final long serialVersionUID = 20111020L;
 
 	private List&lt;Message&gt; messages;
 
