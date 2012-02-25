@@ -19,6 +19,7 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
@@ -40,6 +41,18 @@ public class TimePickerController implements Serializable {
 	private Date time2;
 	private Date time3;
 	private Date time4;
+
+	public TimePickerController() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.AM_PM, Calendar.AM);
+		calendar.set(Calendar.HOUR, 8);
+		calendar.set(Calendar.MINUTE, 15);
+		time1 = calendar.getTime();
+
+		Date today = new Date();
+		time2 = today;
+		time3 = today;
+	}
 
 	public Date getTime1() {
 		return time1;
