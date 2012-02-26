@@ -10,11 +10,19 @@
             <h:outputText value="TimePicker"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            I18N nicht vergessen
+            Time picker has three modes 'inline', 'popup', 'spinner'. 'Spinner' is the most useful mode because it allows to increment / decrement hours / minutes in a convenient way.
+            Custom time picker demonstrates how to set arbitrary start / end hours / minutes, interval for minutes, period, buttons, and some other settings.
+            <p/>
+            <h:outputLink value="http://code.google.com/p/primefaces-extensions/wiki/Locales" target="_blank"
+                          style="font-weight: bold; text-decoration: none; border-bottom: 1px dotted;">
+                <h:outputText value="Internationalisation page"/>
+            </h:outputLink>
+            describes how to localize time picker in multi-language applications.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:panelGrid columns="4" columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn">
+            <h:panelGrid id="timePickerGrid" columns="4" 
+                         columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn">
                 <h:outputText value="Inline mode"/>
                 <h:outputText value="Popup mode"/>
                 <h:outputText value="Spinner mode"/>
@@ -26,14 +34,88 @@
                                endMinutes="40" intervalMinutes="10" showCloseButton="true" showDeselectButton="true"
                                showNowButton="true" rows="3" showPeriod="true" style="width:70px;"/>
             </h:panelGrid>
+            
+            <p:commandButton value="Submit" process="timePickerGrid" update="display" oncomplete="dlg.show()"
+                             style="margin-top:10px;"/>
+            <p:dialog header="Selected Values" showEffect="fade" hideEffect="fade" widgetVar="dlg">
+                <h:panelGrid id="display" columns="1" style="margin: 10px;">
+                    <h:outputText value="Value 1: #{timePickerController.time1}"/>
+                    <h:outputText value="Value 2: #{timePickerController.time2}"/>
+                    <h:outputText value="Value 3: #{timePickerController.time3}"/>
+                    <h:outputText value="Value 4: #{timePickerController.time4}"/>
+                </h:panelGrid>
+            </p:dialog>            
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-
+&lt;h:panelGrid columns=&quot;4&quot; columnClasses=&quot;timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn&quot;&gt;
+    &lt;h:outputText value=&quot;Inline mode&quot;/&gt;
+    &lt;h:outputText value=&quot;Popup mode&quot;/&gt;
+    &lt;h:outputText value=&quot;Spinner mode&quot;/&gt;
+    &lt;h:outputText value=&quot;Customization&quot;/&gt;
+    &lt;pe:timePicker value=&quot;\#{timePickerController.time1}&quot; mode=&quot;inline&quot;/&gt;
+    &lt;pe:timePicker value=&quot;\#{timePickerController.time2}&quot; mode=&quot;popup&quot;/&gt;
+    &lt;pe:timePicker value=&quot;\#{timePickerController.time3}&quot;/&gt;
+    &lt;pe:timePicker value=&quot;\#{timePickerController.time4}&quot; startHours=&quot;8&quot; endHours=&quot;20&quot; startMinutes=&quot;10&quot;
+                   endMinutes=&quot;40&quot; intervalMinutes=&quot;10&quot; showCloseButton=&quot;true&quot; showDeselectButton=&quot;true&quot;
+                   showNowButton=&quot;true&quot; rows=&quot;3&quot; showPeriod=&quot;true&quot; style=&quot;width:70px;&quot;/&gt;
+&lt;/h:panelGrid&gt;
             </ui:define>
             <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class TimePickerController implements Serializable {
 
+	private Date time1;
+	private Date time2;
+	private Date time3;
+	private Date time4;
+
+	public TimePickerController() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.AM_PM, Calendar.AM);
+		calendar.set(Calendar.HOUR, 8);
+		calendar.set(Calendar.MINUTE, 15);
+		time1 = calendar.getTime();
+
+		Date today = new Date();
+		time2 = today;
+		time3 = today;
+	}
+
+	public Date getTime1() {
+		return time1;
+	}
+
+	public void setTime1(Date time1) {
+		this.time1 = time1;
+	}
+
+	public Date getTime2() {
+		return time2;
+	}
+
+	public void setTime2(Date time2) {
+		this.time2 = time2;
+	}
+
+	public Date getTime3() {
+		return time3;
+	}
+
+	public void setTime3(Date time3) {
+		this.time3 = time3;
+	}
+
+	public Date getTime4() {
+		return time4;
+	}
+
+	public void setTime4(Date time4) {
+		this.time4 = time4;
+	}
+}
             </ui:define>
         </ui:decorate>
     </ui:define>
