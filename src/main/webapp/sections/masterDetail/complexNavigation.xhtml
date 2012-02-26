@@ -311,6 +311,25 @@ public class ComplexMasterDetailController implements Serializable {
 		return null;
 	}
 }
+                
+@ManagedBean
+@RequestScoped
+public class SelectLevelListener {
+
+	private boolean errorOccured = false;
+
+	public int handleNavigation(SelectLevelEvent selectLevelEvent) {
+		if (errorOccured) {
+			return 2;
+		} else {
+			return selectLevelEvent.getNewLevel();
+		}
+	}
+
+	public void setErrorOccured(boolean errorOccured) {
+		this.errorOccured = errorOccured;
+	}
+}                
             </ui:define>
             <ui:define name="contentTab3">
 public class Person implements Serializable {
