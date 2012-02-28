@@ -56,10 +56,115 @@
                         <ui:decorate template="/templates/twoTabsDecorator.html">
                                 <!-- Code here should be left aligned -->
                                 <ui:define name="contentTab1">
-                                        TODO
+&lt;p:growl id=&quot;growl&quot; showDetail=&quot;true&quot; /&gt;                                
+&lt;h:panelGrid  id=&quot;triStateGrid&quot; columns=&quot;2&quot; style=&quot;margin-bottom:10px&quot; cellpadding=&quot;5&quot;&gt;
+
+   &lt;h:outputText value=&quot;Basic Usage:&quot;/&gt;
+   &lt;pe:triStateManyCheckbox id=&quot;TriBasic&quot;
+                value=&quot;#{triSateManyCheckBoxController.selectedOptionsTriStateBasic}&quot;
+                layout=&quot;pageDirection&quot;&gt;
+      &lt;f:selectItems value=&quot;\#{triSateManyCheckBoxController.basicOptions}&quot; /&gt;                 
+   &lt;/pe:triStateManyCheckbox&gt;
+
+   &lt;h:outputText value=&quot;Ajax Behavior with custom icons:&quot;/&gt;
+   &lt;pe:triStateManyCheckbox id=&quot;TriAjax&quot;
+                value=&quot;\#{triSateManyCheckBoxController.selectedOptionsTriStateAjax}&quot;
+                stateOneIcon=&quot;ui-icon-home&quot;
+                stateTwoIcon=&quot;ui-icon-heart&quot;
+                stateThreeIcon=&quot;ui-icon-star&quot;&gt;
+      &lt;f:selectItem itemLabel=&quot;Tamara&quot; itemValue=&quot;Tamara&quot;  /&gt;
+      &lt;f:selectItem itemLabel=&quot;Mauricio&quot; itemValue=&quot;Mauricio&quot; /&gt;
+      &lt;p:ajax update=&quot;growl&quot; listener=&quot;\#{triSateManyCheckBoxController.addMessage}&quot;/&gt;
+   &lt;/pe:triStateManyCheckbox&gt;
+&lt;/h:panelGrid&gt;
+
+&lt;p:commandButton value=&quot;Submit&quot; update=&quot;display&quot; oncomplete=&quot;dlg.show()&quot; /&gt;
+
+&lt;p:dialog header=&quot;Selected Values&quot; modal=&quot;false&quot; showEffect=&quot;fade&quot; hideEffect=&quot;fade&quot; widgetVar=&quot;dlg&quot; width=&quot;200&quot;&gt;
+    &lt;p:outputPanel id=&quot;display&quot;&gt; 
+        &lt;p:dataList  value=&quot;\#{triSateManyCheckBoxController.selectedOptionsTriStateBasic.keySet().toArray()}&quot; var=&quot;optionsB&quot;&gt;
+             \#{optionsB} state = \#{triSateManyCheckBoxController.selectedOptionsTriStateBasic.get(optionsB)}
+        &lt;/p:dataList&gt;
+
+        &lt;p:dataList value=&quot;\#{triSateManyCheckBoxController.selectedOptionsTriStateAjax.keySet().toArray()}&quot; var=&quot;optionsA&quot;&gt;
+             \#{optionsA} state = \#{triSateManyCheckBoxController.selectedOptionsTriStateAjax.get(optionsA)}
+         &lt;/p:dataList&gt;
+    &lt;/p:outputPanel&gt;
+&lt;/p:dialog&gt;
                                 </ui:define>
                                 <ui:define name="contentTab2">
-                                        TODO
+                                      @ManagedBean
+@ViewScoped
+public class TriSateManyCheckBoxController implements Serializable {
+
+        private Map&lt;String, String&gt; selectedOptionsTriStateBasic;
+        private Map&lt;String, String&gt; selectedOptionsTriStateAjax;
+        private Map&lt;String, State&gt; selectedOptionsTriStateConverted;
+        private Map&lt;String, String&gt; basicOptions;
+
+        public TriSateManyCheckBoxController() {
+
+                basicOptions = new HashMap&lt;String, String&gt;();
+                basicOptions.put(&quot;Label for Dog&quot;, &quot;Dog&quot;);
+                basicOptions.put(&quot;Label for Cat&quot;, &quot;Cat&quot;);
+                basicOptions.put(&quot;Label for Fish&quot;, &quot;Fish&quot;);
+
+                //default will created with state=0
+                selectedOptionsTriStateBasic = new HashMap&lt;String, String&gt;();
+                selectedOptionsTriStateBasic.put(&quot;Cat&quot;, &quot;1&quot;);
+
+                selectedOptionsTriStateAjax = new HashMap&lt;String, String&gt;();
+                selectedOptionsTriStateAjax.put(&quot;Tamara&quot;, &quot;1&quot;);
+                selectedOptionsTriStateAjax.put(&quot;Mauricio&quot;, &quot;1&quot;);
+
+                selectedOptionsTriStateConverted = new HashMap&lt;String,State&gt;();
+                selectedOptionsTriStateConverted.put(&quot;Dog&quot;, new State(&quot;One&quot;));
+                selectedOptionsTriStateConverted.put(&quot;Cat&quot;, new State(&quot;Two&quot;));
+                selectedOptionsTriStateConverted.put(&quot;Fish&quot;, new State(&quot;Three&quot;));
+        }
+
+        public Map&lt;String, String&gt; getSelectedOptionsTriStateAjax() {
+                return selectedOptionsTriStateAjax;
+        }
+
+        public void setSelectedOptionsTriStateAjax(Map&lt;String, String&gt; selectedOptionsTriStateAjax) {
+                this.selectedOptionsTriStateAjax = selectedOptionsTriStateAjax;
+        }
+
+        public Map&lt;String, String&gt; getSelectedOptionsTriStateBasic() {
+                return selectedOptionsTriStateBasic;
+        }
+
+        public void setSelectedOptionsTriStateBasic(Map&lt;String, String&gt; selectedOptionsTriStateBasic) {
+                this.selectedOptionsTriStateBasic = selectedOptionsTriStateBasic;
+        }
+
+        public void addMessage() {
+                String message = &quot;&quot;;
+                for (String key : selectedOptionsTriStateAjax.keySet()) {
+                        message += key + &quot;=&quot; + selectedOptionsTriStateAjax.get(key) + &quot;  &quot;;
+                }
+
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;State has been changed&quot;, message.trim());
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+
+        public Map&lt;String, String&gt; getBasicOptions() {
+                return basicOptions;
+        }
+
+        public void setBasicOptions(Map&lt;String, String&gt; basicOptions) {
+                this.basicOptions = basicOptions;
+        }
+
+        public Map&lt;String, State&gt; getSelectedOptionsTriStateConverted() {
+                return selectedOptionsTriStateConverted;
+        }
+
+        public void setSelectedOptionsTriStateConverted(Map&lt;String, State&gt; selectedOptionsTriStateConverted) {
+                this.selectedOptionsTriStateConverted = selectedOptionsTriStateConverted;
+        }
+}
                                 </ui:define>
                         </ui:decorate>
                 </ui:define>

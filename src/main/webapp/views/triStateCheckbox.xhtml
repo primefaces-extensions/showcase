@@ -51,29 +51,34 @@
                                 <ui:define name="contentTab1">
                                         &lt;p:growl id=&quot;growl&quot; showDetail=&quot;true&quot; /&gt;
 
-                                        &lt;h:panelGrid id=&quot;triStateGrid&quot; columns=&quot;2&quot; layout=&quot;block&quot; styleClass=&quot;centerContent&quot;&gt;
-                                        &lt;h:outputText value=&quot;Basic Usage: &quot;/&gt;
-                                        &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value1}&quot;/&gt;
+                                        &lt;h:panelGrid id=&quot;triStateGrid&quot; columns=&quot;2&quot; layout=&quot;block&quot; &gt;                                                
+                                            &lt;h:outputText value=&quot;Basic Usage: &quot;/&gt;
+                                            &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value1}&quot;/&gt;
 
-                                        &lt;h:outputText value=&quot;Ajax Behavior: &quot;/&gt;
-                                        &lt;pe:triStateCheckbox id="ajaxTriState" value=&quot;\#{triStateCheckBoxController.value2}&quot;&gt;
-                                        &lt;p:ajax update=&quot;growl&quot; listener=&quot;\#{triStateCheckBoxController.addMessage}&quot;/&gt;
-                                        &lt;/pe:triStateCheckbox&gt;
+                                            &lt;h:outputText value=&quot;Ajax Behavior: &quot;/&gt;
+                                            &lt;pe:triStateCheckbox id="ajaxTriState" 
+                                                                        value=&quot;\#{triStateCheckBoxController.value2}&quot;&gt;
+                                               &lt;p:ajax update=&quot;growl&quot; 
+                                                          listener=&quot;\#{triStateCheckBoxController.addMessage}&quot;/&gt;
+                                            &lt;/pe:triStateCheckbox&gt;
 
-                                        &lt;h:outputText value=&quot;Customs Icons: &quot;/&gt;
-                                        &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value3}&quot;
-                                        stateTwoIcon=&quot;ui-icon-plus&quot;
-                                        stateThreeIcon=&quot;ui-icon-minus&quot;/&gt;
+                                            &lt;h:outputText value=&quot;Customs Icons: &quot;/&gt;
+                                               &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value3}&quot;
+                                               stateTwoIcon=&quot;ui-icon-plus&quot;
+                                               stateThreeIcon=&quot;ui-icon-minus&quot;/&gt;              
                                         &lt;/h:panelGrid&gt;
 
-                                        &lt;p:commandButton value=&quot;Submit&quot; process=&quot;triStateGrid&quot; update=&quot;display&quot; oncomplete=&quot;dlg.show()&quot;
-                                        style=&quot;margin-top:10px;&quot;/&gt;
+                                        &lt;p:commandButton value=&quot;Submit&quot; 
+                                                process=&quot;triStateGrid&quot; 
+                                                update=&quot;display&quot; 
+                                                oncomplete=&quot;dlg.show()&quot;/&gt;
+                                       
                                         &lt;p:dialog header=&quot;Selected Values&quot; showEffect=&quot;fade&quot; hideEffect=&quot;fade&quot; widgetVar=&quot;dlg&quot;&gt;
-                                        &lt;h:panelGrid id=&quot;display&quot; columns=&quot;1&quot; style=&quot;margin: 10px;&quot;&gt;
-                                        &lt;h:outputText value=&quot;Value 1: \#{triStateCheckBoxController.value1}&quot;/&gt;
-                                        &lt;h:outputText value=&quot;Value 2: \#{triStateCheckBoxController.value2}&quot;/&gt;
-                                        &lt;h:outputText value=&quot;Value 3: \#{triStateCheckBoxController.value3}&quot;/&gt;
-                                        &lt;/h:panelGrid&gt;
+                                            &lt;h:panelGrid id=&quot;display&quot; columns=&quot;1&quot; style=&quot;margin: 10px;&quot;&gt;
+                                                &lt;h:outputText value=&quot;Value 1: \#{triStateCheckBoxController.value1}&quot;/&gt;
+                                                &lt;h:outputText value=&quot;Value 2: \#{triStateCheckBoxController.value2}&quot;/&gt;
+                                                &lt;h:outputText value=&quot;Value 3: \#{triStateCheckBoxController.value3}&quot;/&gt;
+                                            &lt;/h:panelGrid&gt;
                                         &lt;/p:dialog&gt;
                                 </ui:define>
                                 <ui:define name="contentTab2">
@@ -81,61 +86,42 @@
                                         @ViewScoped
                                         public class TriStateCheckBoxController implements Serializable {
 
-                                        private String value1;
-                                        private String value2;
-                                        private String value3;
+                                                private String value1;
+                                                private String value2;
+                                                private String value3;
 
-                                        private Boolean valueB1;
-                                        private Boolean valueB2;
+                                                public TriStateCheckBoxController() {
+                                                        value1 = &quot;2&quot;;
+                                                }
 
-                                        public TriStateCheckBoxController() {
-                                        value1 = &quot;2&quot;;
-                                        }
+                                                public String getValue1() {
+                                                        return value1;
+                                                }
 
-                                        public String getValue1() {
-                                        return value1;
-                                        }
+                                                public void setValue1(String value1) {
+                                                         this.value1 = value1;
+                                                }
 
-                                        public void setValue1(String value1) {
-                                        this.value1 = value1;
-                                        }
+                                                public String getValue2() {
+                                                        return value2;
+                                                }
 
-                                        public String getValue2() {
-                                        return value2;
-                                        }
+                                                public String getValue3() {
+                                                        return value3;
+                                                }
 
-                                        public String getValue3() {
-                                        return value3;
-                                        }
+                                                public void setValue3(String value3) {
+                                                        this.value3 = value3;
+                                                }
 
-                                        public void setValue3(String value3) {
-                                        this.value3 = value3;
-                                        }
+                                                public void setValue2(String value2) {
+                                                        this.value2 = value2;
+                                                }                                       
 
-                                        public void setValue2(String value2) {
-                                        this.value2 = value2;
-                                        }
-
-                                        public Boolean getValueB1() {
-                                        return valueB1;
-                                        }
-
-                                        public void setValueB1(Boolean valueB1) {
-                                        this.valueB1 = valueB1;
-                                        }
-
-                                        public Boolean getValueB2() {
-                                        return valueB2;
-                                        }
-
-                                        public void setValueB2(Boolean valueB2) {
-                                        this.valueB2 = valueB2;
-                                        }
-
-                                        public void addMessage() {
-                                        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;State has been changed&quot;, &quot;State is = &quot; + value2);
-                                        FacesContext.getCurrentInstance().addMessage(null, msg);
-                                        }
+                                                public void addMessage() {
+                                                        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;State has been changed&quot;, &quot;State is = &quot; + value2);
+                                                        FacesContext.getCurrentInstance().addMessage(null, msg);
+                                                }
                                         }
                                 </ui:define>
                         </ui:decorate>
