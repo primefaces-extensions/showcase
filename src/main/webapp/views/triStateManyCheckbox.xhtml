@@ -4,73 +4,27 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
-<ui:composition template="/templates/showcaseLayout.xhtml">
-    <ui:define name="centerContent">
-        <f:facet name="header">
-            <h:outputText value="TriStateManyCheckbox"/>
-        </f:facet>
-        <h:panelGroup layout="block" styleClass="centerContent">
-            <!-- This group is for description -->
-            
-        </h:panelGroup>
-
-        <h:panelGroup layout="block" styleClass="centerExample">
-            <!-- This group is for coding -->
-            <p:growl id="growl" showDetail="true" />
-            <h:panelGrid  id="triStateGrid" columns="2" style="margin-bottom:10px" cellpadding="5">  
-                    
-               <h:outputText value="Basic Usage:"/>
-               <pe:triStateManyCheckbox id="TriBasic"
-                                        value="#{triSateManyCheckBoxController.selectedOptionsTriStateBasic}"
-                                         layout="pageDirection">  
-                       <f:selectItems value="#{triSateManyCheckBoxController.basicOptions}" />  
-               </pe:triStateManyCheckbox>              
-               
-               <h:outputText value="Ajax Behavior with custom icons:"/> 
-               <pe:triStateManyCheckbox id="TriAjax"
-                                         value="#{triSateManyCheckBoxController.selectedOptionsTriStateAjax}"                                       
-                                         stateOneIcon="ui-icon-home"
-                                         stateTwoIcon="ui-icon-heart"
-                                         stateThreeIcon="ui-icon-star">  
-                    <f:selectItem itemLabel="Tamara" itemValue="Tamara"  />  
-                    <f:selectItem itemLabel="Mauricio" itemValue="Mauricio" />                         
-                    <p:ajax update="growl" listener="#{triSateManyCheckBoxController.addMessage}"/>
-               </pe:triStateManyCheckbox>               
-            </h:panelGrid>  
-
-            <p:commandButton value="Submit" update="display" oncomplete="dlg.show()" />  
-
-            <p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="200">  
-                <p:outputPanel id="display">  
-                    NOT FINISH I KNOW THE DISPLAY ORDER IS NOT THE SAME AS THE COMPONENT DEFINED.
-                    <p:dataList  value="#{triSateManyCheckBoxController.selectedOptionsTriStateBasic.keySet().toArray()}" var="optionsB">                        
-                        #{optionsB} state = #{triSateManyCheckBoxController.selectedOptionsTriStateBasic.get(optionsB)}
-                    </p:dataList>   
-                    
-                    <p:dataList value="#{triSateManyCheckBoxController.selectedOptionsTriStateAjax.keySet().toArray()}" var="optionsA">                        
-                        #{optionsA} state = #{triSateManyCheckBoxController.selectedOptionsTriStateAjax.get(optionsA)}
-                    </p:dataList> 
-                </p:outputPanel>  
-            </p:dialog>  
-        </h:panelGroup>
-
-        <ui:decorate template="/templates/twoTabsDecorator.html">
-            <!-- Code here should be left aligned -->
-            <ui:define name="contentTab1">
-                TODO
-            </ui:define>
-            <ui:define name="contentTab2">
-                TODO
-            </ui:define>
-        </ui:decorate>
-    </ui:define>
-    <ui:define name="useCases">
-
-    </ui:define>
-    <ui:define name="docuTable">
-        <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="triStateManyCheckbox"/>
-        </ui:include>
-    </ui:define>
-</ui:composition>
+        <ui:composition template="/templates/showcaseLayout.xhtml">
+                <ui:define name="centerContent">
+                        <f:facet name="header">
+                                <h:outputText value="TriStateManyCheckbox"/>
+                        </f:facet>
+                        <h:panelGroup layout="block" styleClass="centerContent">          
+                                The TriStateManyCheckbox add a new state to the a common SelectManyBooleanCheckbox.
+                                The value for the state of the elements are mapped to 0,1,2 string values.
+                                <p/>
+                                This component supports validators and converters and also can be customized with CSS classes for icons.
+                                <p/>
+                                Choose the uses cases to see pe:triStateManyCheckbox in action.            
+                        </h:panelGroup>
+                </ui:define>
+                <ui:define name="useCases">
+                        <ui:include src="/sections/triStateManyCheckbox/useCasesChoice.xhtml"/>
+                </ui:define>
+                <ui:define name="docuTable">
+                        <ui:include src="/sections/shared/documentation.xhtml">
+                                <ui:param name="tagName" value="triStateManyCheckbox"/>
+                        </ui:include>
+                </ui:define>
+        </ui:composition>
 </html>
