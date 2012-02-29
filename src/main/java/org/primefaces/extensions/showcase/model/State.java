@@ -15,6 +15,7 @@
  *
  * $Id$
  */
+
 package org.primefaces.extensions.showcase.model;
 
 import java.io.Serializable;
@@ -22,37 +23,37 @@ import java.io.Serializable;
 /**
  * State model class.
  *
- * @author Mauricio Fenoglio / last modified by $Author:$
+ * @author  Mauricio Fenoglio / last modified by $Author:$
  * @version $Revision:$
  */
 public class State implements Serializable {
 
-        private String stateDesc;
-        private String state;
+	private String stateDesc;
+	private String state;
 
-        public State(String state) {
-                this.state = state;
-                this.stateDesc = "State class value = " + state;
-        }
+	public State(String state) {
+		this.state = state;
+		this.stateDesc = "State class value = " + state;
+	}
 
-        public String getState() {
-                return state;
-        }
+	public String getState() {
+		return state;
+	}
 
-        public void setState(String state) {
-                this.state = state;
-        }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-        public String getStateDesc() {
-                return stateDesc;
-        }
+	public String getStateDesc() {
+		return stateDesc;
+	}
 
-        public void setStateDesc(String stateDesc) {
-                this.stateDesc = stateDesc;
-        }
+	public void setStateDesc(String stateDesc) {
+		this.stateDesc = stateDesc;
+	}
 
-        @Override
-        public String toString() {
-                return stateDesc;
-        }
+	@Override
+	public String toString() {
+		return stateDesc;
+	}
 }
