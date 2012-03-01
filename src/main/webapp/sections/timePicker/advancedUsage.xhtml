@@ -10,17 +10,27 @@
             <h:outputText value="TimePicker"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            TODO
+            Advanced example demonstrates using of callbacks, ajax events and interesting settings.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
+            <p:growl id="growl" showDetail="true"/>
 
+            <h:panelGrid id="timePickerGrid" columns="4"
+                         columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn">
+                <h:outputText value="Time select event"/>
+                <pe:timePicker id="inlineTime" value="#{advancedTimePickerController.time1}" mode="inline">
+                    <p:ajax event="timeSelect" listener="#{advancedTimePickerController.timeSelectListener}" update="growl"/>
+                </pe:timePicker>
+            </h:panelGrid>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
+
             </ui:define>
             <ui:define name="contentTab2">
+
             </ui:define>
         </ui:decorate>
     </ui:define>
