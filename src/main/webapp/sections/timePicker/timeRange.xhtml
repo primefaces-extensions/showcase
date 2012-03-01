@@ -27,13 +27,129 @@
 
         <ui:decorate template="/templates/threeTabsDecoratorJS.html">
             <ui:define name="contentTab1">
-
+&lt;h:panelGrid columns=&quot;5&quot;&gt;
+    &lt;h:outputText value=&quot;Start time&quot;/&gt;
+    &lt;pe:timePicker value=&quot;\#{timePickerController.time1}&quot; mode=&quot;popup&quot; onHourShow=&quot;tpStartOnHourShowCallback&quot;
+                   onMinuteShow=&quot;tpStartOnMinuteShowCallback&quot; widgetVar=&quot;startTimeWidget&quot;/&gt;
+    &lt;h:panelGroup layout=&quot;block&quot; style=&quot;width:20px;&quot;/&gt;
+    &lt;h:outputText value=&quot;End time&quot;/&gt;
+    &lt;pe:timePicker value=&quot;\#{timePickerController.time2}&quot; mode=&quot;popup&quot; onHourShow=&quot;tpEndOnHourShowCallback&quot;
+                   onMinuteShow=&quot;tpEndOnMinuteShowCallback&quot; widgetVar=&quot;endTimeWidget&quot;/&gt;
+&lt;/h:panelGrid&gt;
             </ui:define>
             <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class TimePickerController implements Serializable {
 
+	private Date time1;
+	private Date time2;
+
+	public TimePickerController() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.AM_PM, Calendar.AM);
+		calendar.set(Calendar.HOUR, 8);
+		calendar.set(Calendar.MINUTE, 15);
+		time1 = calendar.getTime();
+
+		calendar.set(Calendar.HOUR, 11);
+		calendar.set(Calendar.MINUTE, 40);
+		time2 = calendar.getTime();
+	}
+
+	public Date getTime1() {
+		return time1;
+	}
+
+	public void setTime1(Date time1) {
+		this.time1 = time1;
+	}
+
+	public Date getTime2() {
+		return time2;
+	}
+
+	public void setTime2(Date time2) {
+		this.time2 = time2;
+	}
+}
             </ui:define>
             <ui:define name="contentTab3">
+function tpStartOnHourShowCallback(hour) {
+    if (typeof endTimeWidget === 'undefined') {
+        return false;
+    }
 
+    var tpEndHour = parseInt(endTimeWidget.getHours());
+
+    // Check if proposed hour is prior or equal to selected end time hour
+    if (parseInt(hour) &lt;= tpEndHour) {
+        return true;
+    }
+
+    // if hour did not match, it can not be selected
+    return false;
+}
+
+function tpStartOnMinuteShowCallback(hour, minute) {
+    if (typeof endTimeWidget === 'undefined') {
+        return false;
+    }
+
+    var tpEndHour = parseInt(endTimeWidget.getHours());
+    var tpEndMinute = parseInt(endTimeWidget.getMinutes());
+
+    // Check if proposed hour is prior to selected end time hour
+    if (parseInt(hour) &lt; tpEndHour) {
+        return true;
+    }
+
+    // Check if proposed hour is equal to selected end time hour and minutes is prior
+    if ((parseInt(hour) == tpEndHour) &amp;&amp; (parseInt(minute) &lt; tpEndMinute)) {
+        return true;
+    }
+
+    // if minute did not match, it can not be selected
+    return false;
+}
+
+function tpEndOnHourShowCallback(hour) {
+    if (typeof startTimeWidget === 'undefined') {
+        return false;
+    }
+
+    var tpStartHour = parseInt(startTimeWidget.getHours());
+
+    // Check if proposed hour is after or equal to selected start time hour
+    if (parseInt(hour) &gt;= tpStartHour) {
+        return true;
+    }
+
+    // if hour did not match, it can not be selected
+    return false;
+}
+
+function tpEndOnMinuteShowCallback(hour, minute) {
+    if (typeof startTimeWidget === 'undefined') {
+        return false;
+    }
+
+    var tpStartHour = parseInt(startTimeWidget.getHours());
+    var tpStartMinute = parseInt(startTimeWidget.getMinutes());
+
+    // Check if proposed hour is after selected start time hour
+    if (parseInt(hour) &gt; tpStartHour) {
+        return true;
+    }
+
+    // Check if proposed hour is equal to selected start time hour and minutes is after
+    if ((parseInt(hour) == tpStartHour) &amp;&amp; (parseInt(minute) &gt; tpStartMinute)) {
+        return true;
+    }
+
+    // if minute did not match, it can not be selected
+    return false;
+}
             </ui:define>
         </ui:decorate>
     </ui:define>

@@ -3,10 +3,10 @@ function tpStartOnHourShowCallback(hour) {
         return false;
     }
 
-    var tpEndHour = endTimeWidget.getHours();
+    var tpEndHour = parseInt(endTimeWidget.getHours());
 
     // Check if proposed hour is prior or equal to selected end time hour
-    if (hour <= tpEndHour) {
+    if (parseInt(hour) <= tpEndHour) {
         return true;
     }
 
@@ -19,16 +19,16 @@ function tpStartOnMinuteShowCallback(hour, minute) {
         return false;
     }
 
-    var tpEndHour = endTimeWidget.getHours();
-    var tpEndMinute = endTimeWidget.getMinutes();
+    var tpEndHour = parseInt(endTimeWidget.getHours());
+    var tpEndMinute = parseInt(endTimeWidget.getMinutes());
 
     // Check if proposed hour is prior to selected end time hour
-    if (hour < tpEndHour) {
+    if (parseInt(hour) < tpEndHour) {
         return true;
     }
 
     // Check if proposed hour is equal to selected end time hour and minutes is prior
-    if ((hour == tpEndHour) && (minute < tpEndMinute)) {
+    if ((parseInt(hour) == tpEndHour) && (parseInt(minute) < tpEndMinute)) {
         return true;
     }
 
@@ -41,10 +41,10 @@ function tpEndOnHourShowCallback(hour) {
         return false;
     }
 
-    var tpStartHour = startTimeWidget.getHours();
+    var tpStartHour = parseInt(startTimeWidget.getHours());
 
     // Check if proposed hour is after or equal to selected start time hour
-    if (hour >= tpStartHour) {
+    if (parseInt(hour) >= tpStartHour) {
         return true;
     }
 
@@ -57,16 +57,16 @@ function tpEndOnMinuteShowCallback(hour, minute) {
         return false;
     }
 
-    var tpStartHour = startTimeWidget.getHours();
-    var tpStartMinute = startTimeWidget.getMinutes();
+    var tpStartHour = parseInt(startTimeWidget.getHours());
+    var tpStartMinute = parseInt(startTimeWidget.getMinutes());
 
     // Check if proposed hour is after selected start time hour
-    if (hour > tpStartHour) {
+    if (parseInt(hour) > tpStartHour) {
         return true;
     }
 
     // Check if proposed hour is equal to selected start time hour and minutes is after
-    if ((hour == tpStartHour) && (minute > tpStartMinute)) {
+    if ((parseInt(hour) == tpStartHour) && (parseInt(minute) > tpStartMinute)) {
         return true;
     }
 

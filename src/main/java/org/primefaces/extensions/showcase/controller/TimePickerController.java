@@ -19,11 +19,13 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 /**
  * TimePickerController
@@ -41,6 +43,7 @@ public class TimePickerController implements Serializable {
 	private Date time2;
 	private Date time3;
 	private Date time4;
+	private boolean showTime = false;
 
 	public TimePickerController() {
 		Calendar calendar = Calendar.getInstance();
@@ -49,9 +52,11 @@ public class TimePickerController implements Serializable {
 		calendar.set(Calendar.MINUTE, 15);
 		time1 = calendar.getTime();
 
-		Date today = new Date();
-		time2 = today;
-		time3 = today;
+		calendar.set(Calendar.HOUR, 11);
+		calendar.set(Calendar.MINUTE, 40);
+		time2 = calendar.getTime();
+
+		time3 = new Date();
 	}
 
 	public Date getTime1() {
@@ -84,5 +89,45 @@ public class TimePickerController implements Serializable {
 
 	public void setTime4(Date time4) {
 		this.time4 = time4;
+	}
+
+	public String getFormattedTime1() {
+		return getFormattedTime(time1, "HH:mm");
+	}
+
+	public String getFormattedTime2() {
+		return getFormattedTime(time2, "HH:mm");
+	}
+
+	public String getFormattedTime3() {
+		return getFormattedTime(time3, "HH:mm");
+	}
+
+	public String getFormattedTime4() {
+		return getFormattedTime(time4, "hh-mm a");
+	}
+
+	public void showTime(ActionEvent ae) {
+		showTime = true;
+	}
+
+	public boolean isShowTimeDialog() {
+		if (showTime) {
+			showTime = false;
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private String getFormattedTime(Date time, String format) {
+		if (time == null) {
+			return null;
+		}
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+
+		return simpleDateFormat.format(time);
 	}
 }
