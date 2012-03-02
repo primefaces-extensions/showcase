@@ -32,8 +32,8 @@ import org.primefaces.extensions.showcase.model.State;
 /**
  * TriSateManyCheckboxController
  *
- * @author  Mauricio Fenoglio / last modified by $Author:$
- * @version $Revision:$
+ * @author  Mauricio Fenoglio / last modified by $Author: $
+ * @version $Revision: $
  * @since   0.3
  */
 @ManagedBean
