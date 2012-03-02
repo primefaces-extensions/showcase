@@ -10,27 +10,125 @@
             <h:outputText value="TimePicker"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Advanced example demonstrates using of callbacks, ajax events and interesting settings.
+            Advanced example demonstrates using of ajax events, callbacks and interesting settings.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <p:growl id="growl" showDetail="true"/>
-
-            <h:panelGrid id="timePickerGrid" columns="4"
-                         columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn">
-                <h:outputText value="Time select event"/>
-                <pe:timePicker id="inlineTime" value="#{advancedTimePickerController.time1}" mode="inline">
-                    <p:ajax event="timeSelect" listener="#{advancedTimePickerController.timeSelectListener}" update="growl"/>
+            
+            <h:panelGrid id="timePickerGrid" columns="5"
+                         columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn,timePickerColumn,timePickerColumn">
+                <h:outputText value="TimeSelect event"/>
+                <h:outputText value="BeforeShow / Close events"/>
+                <h:outputText value="Only hours"/>
+                <h:outputText value="Only minutes"/>
+                <h:outputText value="Restricted time"/>
+                <pe:timePicker id="inlineTime" value="#{timePickerController.time1}" mode="inline">
+                    <p:ajax event="timeSelect" listener="#{timePickerController.timeSelectListener}" update="growl"/>
                 </pe:timePicker>
+                <pe:timePicker id="spinnerTime" value="#{timePickerController.time2}" showPeriod="true"
+                               style="width: 100px;">
+                    <p:ajax event="beforeShow" listener="#{timePickerController.beforeShowListener}" update="growl"/>
+                    <p:ajax event="close" listener="#{timePickerController.closeListener}" update="growl"/>
+                </pe:timePicker>
+                <pe:timePicker value="#{timePickerController.time4}" showMinutes="false"/>
+                <pe:timePicker value="#{timePickerController.time4}" showHours="false"/>
+                <pe:timePicker value="#{timePickerController.time4}" mode="popup"
+                               onHourShow="onHourShowCallback" onMinuteShow="onMinuteShowCallback"/>
             </h:panelGrid>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
+&lt;p:growl id=&quot;growl&quot; showDetail=&quot;true&quot;/&gt;
 
+&lt;h:panelGrid id=&quot;timePickerGrid&quot; columns=&quot;5&quot;
+    columnClasses=&quot;timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn,timePickerColumn,timePickerColumn&quot;&gt;
+    &lt;h:outputText value=&quot;TimeSelect event&quot;/&gt;
+    &lt;h:outputText value=&quot;BeforeShow / Close events&quot;/&gt;
+    &lt;h:outputText value=&quot;Only hours&quot;/&gt;
+    &lt;h:outputText value=&quot;Only minutes&quot;/&gt;
+    &lt;h:outputText value=&quot;Restricted time&quot;/&gt;
+    &lt;pe:timePicker id=&quot;inlineTime&quot; value=&quot;\#{timePickerController.time1}&quot; mode=&quot;inline&quot;&gt;
+        &lt;p:ajax event=&quot;timeSelect&quot; listener=&quot;\#{timePickerController.timeSelectListener}&quot; update=&quot;growl&quot;/&gt;
+    &lt;/pe:timePicker&gt;
+    &lt;pe:timePicker id=&quot;spinnerTime&quot; value=&quot;\#{timePickerController.time2}&quot; showPeriod=&quot;true&quot;
+                   style=&quot;width: 100px;&quot;&gt;
+        &lt;p:ajax event=&quot;beforeShow&quot; listener=&quot;\#{timePickerController.beforeShowListener}&quot; update=&quot;growl&quot;/&gt;
+        &lt;p:ajax event=&quot;close&quot; listener=&quot;\#{timePickerController.closeListener}&quot; update=&quot;growl&quot;/&gt;
+    &lt;/pe:timePicker&gt;
+    &lt;pe:timePicker value=&quot;\#{timePickerController.time4}&quot; showMinutes=&quot;false&quot;/&gt;
+    &lt;pe:timePicker value=&quot;\timePickerController.time4}&quot; showHours=&quot;false&quot;/&gt;
+    &lt;pe:timePicker value=&quot;\#{timePickerController.time4}&quot; mode=&quot;popup&quot;
+                   onHourShow=&quot;onHourShowCallback&quot; onMinuteShow=&quot;onMinuteShowCallback&quot;/&gt;
+&lt;/h:panelGrid&gt;
             </ui:define>
             <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class TimePickerController implements Serializable {
 
+	private Date time1;
+	private Date time2;
+	private Date time4;
+
+	public TimePickerController() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.AM_PM, Calendar.AM);
+		calendar.set(Calendar.HOUR, 8);
+		calendar.set(Calendar.MINUTE, 15);
+		time1 = calendar.getTime();
+
+		calendar.set(Calendar.HOUR, 11);
+		calendar.set(Calendar.MINUTE, 40);
+		time2 = calendar.getTime();
+	}
+
+	public Date getTime1() {
+		return time1;
+	}
+
+	public void setTime1(Date time1) {
+		this.time1 = time1;
+	}
+
+	public Date getTime2() {
+		return time2;
+	}
+
+	public void setTime2(Date time2) {
+		this.time2 = time2;
+	}
+
+	public Date getTime4() {
+		return time4;
+	}
+
+	public void setTime4(Date time4) {
+		this.time4 = time4;
+	}
+
+	public void timeSelectListener(TimeSelectEvent timeSelectEvent) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Time select fired&quot;,
+		                     &quot;Selected time: &quot; + getFormattedTime(timeSelectEvent.getTime(), &quot;HH:mm&quot;));
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void beforeShowListener(BeforeShowEvent beforeShowEvent) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Before show fired&quot;,
+		                     &quot;Component id: &quot; + beforeShowEvent.getComponent().getId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void closeListener(CloseEvent closeEvent) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Close fired&quot;, &quot;Component id: &quot; + 
+                closeEvent.getComponent().getId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+}
             </ui:define>
         </ui:decorate>
     </ui:define>

@@ -4,27 +4,27 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
-        <ui:composition template="/templates/showcaseLayout.xhtml">
-                <ui:define name="centerContent">
-                        <f:facet name="header">
-                                <h:outputText value="TriStateManyCheckbox"/>
-                        </f:facet>
-                        <h:panelGroup layout="block" styleClass="centerContent">          
-                                The TriStateManyCheckbox add a new state to the a common SelectManyBooleanCheckbox.
-                                The value for the state of the elements are mapped to 0,1,2 string values.
-                                <p/>
-                                This component supports validators and converters and also can be customized with CSS classes for icons.
-                                <p/>
-                                Choose the uses cases to see pe:triStateManyCheckbox in action.            
-                        </h:panelGroup>
-                </ui:define>
-                <ui:define name="useCases">
-                        <ui:include src="/sections/triStateManyCheckbox/useCasesChoice.xhtml"/>
-                </ui:define>
-                <ui:define name="docuTable">
-                        <ui:include src="/sections/shared/documentation.xhtml">
-                                <ui:param name="tagName" value="triStateManyCheckbox"/>
-                        </ui:include>
-                </ui:define>
-        </ui:composition>
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="TriStateManyCheckbox"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            The TriStateManyCheckbox add a new state to the a common SelectManyBooleanCheckbox.
+            The value for the state of the elements are mapped to 0,1,2 string values.
+            <p/>
+            This component supports validators and converters and also can be customized with CSS classes for icons.
+            <p/>
+            Choose the uses cases to see pe:triStateManyCheckbox in action.
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/triStateManyCheckbox/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="triStateManyCheckbox"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
 </html>

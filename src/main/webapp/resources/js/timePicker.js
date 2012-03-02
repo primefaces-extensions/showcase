@@ -1,3 +1,27 @@
+// Use case 2
+
+function onHourShowCallback(hour) {
+    if ((hour > 20) || (hour < 6)) {
+        return false; // not valid
+    }
+    
+    return true; // valid
+}
+
+function onMinuteShowCallback(hour, minute) {
+    if ((hour == 20) && (minute >= 30)) {
+        return false; // not valid
+    }
+    
+    if ((hour == 6) && (minute < 30)) {
+        return false; // not valid
+    }
+    
+    return true;  // valid
+}
+
+// Use case 3
+
 function tpStartOnHourShowCallback(hour) {
     if (typeof endTimeWidget === 'undefined') {
         return false;

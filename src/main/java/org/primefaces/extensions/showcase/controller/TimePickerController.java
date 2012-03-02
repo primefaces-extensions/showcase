@@ -16,16 +16,22 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller.timepicker;
+package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+
+import org.primefaces.extensions.event.BeforeShowEvent;
+import org.primefaces.extensions.event.CloseEvent;
+import org.primefaces.extensions.event.TimeSelectEvent;
 
 /**
  * TimePickerController
@@ -119,6 +125,26 @@ public class TimePickerController implements Serializable {
 		}
 
 		return false;
+	}
+
+	public void timeSelectListener(TimeSelectEvent timeSelectEvent) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Time select fired",
+		                     "Selected time: " + getFormattedTime(timeSelectEvent.getTime(), "HH:mm"));
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void beforeShowListener(BeforeShowEvent beforeShowEvent) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Before show fired",
+		                     "Component id: " + beforeShowEvent.getComponent().getId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void closeListener(CloseEvent closeEvent) {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Close fired", "Component id: " + closeEvent.getComponent().getId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	private String getFormattedTime(Date time, String format) {
