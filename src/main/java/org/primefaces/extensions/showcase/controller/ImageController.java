@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Id: UserSettings.java 294 2011-10-18 19:03:57Z Zoigln@googlemail.com $
+ * $Id$
  */
 
 package org.primefaces.extensions.showcase.controller;
@@ -32,8 +32,8 @@ import org.primefaces.extensions.event.RotateEvent;
 /**
  * ImageController
  *
- * @author  Thomas Andraschko / last modified by $Author: $
- * @version $Revision: 1.0 $
+ * @author  Thomas Andraschko / last modified by $Author$
+ * @version $Revision$
  */
 @ManagedBean
 @ViewScoped

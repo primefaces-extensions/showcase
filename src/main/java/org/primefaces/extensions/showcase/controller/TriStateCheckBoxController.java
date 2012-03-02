@@ -28,8 +28,8 @@ import javax.faces.context.FacesContext;
 /**
  * TriStateCheckBoxController
  *
- * @author  Mauricio Fenoglio / last modified by $Author: $
- * @version $Revision: $
+ * @author  Mauricio Fenoglio / last modified by $Author$
+ * @version $Revision$
  * @since   0.3
  */
 @ManagedBean
