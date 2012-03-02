@@ -4,89 +4,114 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
-    <ui:composition template="/templates/showcaseLayout.xhtml">
-        <ui:define name="centerContent">
-            <f:facet name="header">
-                <h:outputText value="Tooltip"/>
-            </f:facet>
-            <h:panelGroup layout="block" styleClass="centerContent">
-                Tooltip has various customization options such as positioning, delay, effects and events.
-            </h:panelGroup>
-            <h:panelGroup layout="block" styleClass="centerExample">                
-                <h:panelGrid id="details" columns="3" columnClasses="formColumn1, formColumn2">
-                    <h:outputLabel value="Focus/Blur: "/>
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Tooltip"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            Tooltip has various customization options such as positioning, delay, effects and events.
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
+                <h:outputLabel value="Focus / Blur: "/>
+                <h:panelGroup layout="block" style="padding: 0 0 3px 0;">
                     <p:inputText id="focus" title="This tooltip is displayed when input gets the focus"/>
-                    <pe:tooltip for="focus" showEvent="focus" hideEvent="blur"/>                        
-                    <h:outputText value="Fade: " />  
-                    <h:outputLink id="fade" value="#">  
-                        <h:outputText value="Fade Effect" />  
-                    </h:outputLink>  
-                    <pe:tooltip for="fade" value="Fade effect is used by default" showEffect="fadeIn" hideEffect="fadeIn"/>                    
-                    <h:outputText value="Slide: " />  
-                    <h:outputLink id="slide" value="#">  
-                        <h:outputText value="Slide Effect with custom position" />  
-                    </h:outputLink>  
-                    <pe:tooltip for="slide" value="This tooltip uses slide effect for the animation" showEffect="slideToggle" hideEffect="slideToggle"
-                            showDelay="0" position="left center" targetPosition="right center"/>  
-                    <h:outputText value="Position: " />  
-                    <h:outputLink id="pos" value="#">  
-                        <h:outputText value="Position (top, right)" />  
-                    </h:outputLink>  
-                    <pe:tooltip for="pos" value="This tooltip positioned at top right" position="top, right"/> 
-                    <h:outputText value="Content:  " />  
-                    <h:outputLink id="lnk" value="#">  
-                        <h:outputText value="PrimeFaces Extensions" />  
-                    </h:outputLink>  
-                    <pe:tooltip for="lnk">  
-                        <p:graphicImage  value="/resources/images/logo.png" />  
-                    </pe:tooltip>  
-                </h:panelGrid>       
-            </h:panelGroup>
-            <ui:decorate template="/templates/oneTabDecorator.html">
-                <ui:define name="contentTab1">
-                  &lt;h:panelGrid id=&quot;details&quot; columns=&quot;3&quot; columnClasses=&quot;formColumn1, formColumn2&quot;&gt;
-                  
-                    &lt;h:outputLabel value=&quot;Focus/Blur: &quot;/&gt;
-                    &lt;p:inputText id=&quot;focus&quot; title=&quot;This tooltip is displayed when input gets the focus&quot;/&gt;
-                    &lt;pe:tooltip for=&quot;focus&quot; showEvent=&quot;focus&quot; hideEvent=&quot;blur&quot;/&gt;                        
-                    
-                    &lt;h:outputText value=&quot;Fade: &quot; /&gt;  
-                    &lt;h:outputLink id=&quot;fade&quot; value=&quot;#&quot;&gt;  
-                        &lt;h:outputText value=&quot;Fade Effect&quot; /&gt;  
-                    &lt;/h:outputLink&gt;  
-                    &lt;pe:tooltip for=&quot;fade&quot; value=&quot;Fade effect is used by default&quot; showEffect=&quot;fadeIn&quot; hideEffect=&quot;fadeIn&quot;/&gt;                    
-                    
-                    &lt;h:outputText value=&quot;Slide: &quot; /&gt;  
-                    &lt;h:outputLink id=&quot;slide&quot; value=&quot;#&quot;&gt;  
-                        &lt;h:outputText value=&quot;Slide Effect&quot; /&gt;  
-                    &lt;/h:outputLink&gt;  
-                    &lt;pe:tooltip for=&quot;slide&quot; value=&quot;This tooltip uses slide effect for the animation&quot; showEffect=&quot;slideToggle&quot; hideEffect=&quot;slideToggle&quot;/&gt;  
-                    
-                    &lt;h:outputText value=&quot;Position: &quot; /&gt;  
-                    &lt;h:outputLink id=&quot;pos&quot; value=&quot;#&quot;&gt;  
-                        &lt;h:outputText value=&quot;Position (top, right)&quot; /&gt;  
-                    &lt;/h:outputLink&gt;  
-                    &lt;pe:tooltip for=&quot;pos&quot; value=&quot;This tooltip positioned at top right&quot; position=&quot;top, right&quot;/&gt; 
-                    
-                    &lt;h:outputText value=&quot;Content:  &quot; /&gt;  
-                    &lt;h:outputLink id=&quot;lnk&quot; value=&quot;#&quot;&gt;  
-                        &lt;h:outputText value=&quot;PrimeFaces Extensions&quot; /&gt;  
-                    &lt;/h:outputLink&gt;  
-                    &lt;pe:tooltip for=&quot;lnk&quot;&gt;  
-                        &lt;p:graphicImage  value=&quot;/resources/images/logo.png&quot; /&gt;  
-                    &lt;/pe:tooltip&gt;  
-                    
-                &lt;/h:panelGrid&gt;
-                </ui:define>
-            </ui:decorate>
-        </ui:define>
-        <ui:define name="useCases">
-            <ui:include src="/sections/tooltip/useCasesChoice.xhtml"/>
-        </ui:define>
-        <ui:define name="docuTable">
-            <ui:include src="/sections/shared/documentation.xhtml">
-                <ui:param name="tagName" value="tooltip"/>
-            </ui:include>
-        </ui:define>
-    </ui:composition>
+                    <pe:tooltip for="focus" showEvent="focus" hideEvent="blur"/>
+                </h:panelGroup>
+            
+                <h:outputText value="Fade: "/>
+                <h:panelGroup layout="block" style="padding: 3px 0 3px 0;">
+                    <h:outputLink id="fade" value="#">
+                        <h:outputText value="Fade Effect"/>
+                    </h:outputLink>
+                    <pe:tooltip for="fade" value="Fade effect is used by default" showEffect="fadeIn" hideEffect="fadeIn"/>
+                </h:panelGroup>
+            
+                <h:outputText value="Position: "/>
+                <h:panelGroup layout="block" style="padding: 3px 0 3px 0;">
+                    <h:outputLink id="pos" value="#">
+                        <h:outputText value="Position (top, right)"/>
+                    </h:outputLink>
+                    <pe:tooltip for="pos" value="This tooltip positioned at top right" position="top, right"/>
+                </h:panelGroup>
+            
+                <h:outputText value="Slide: "/>
+                <h:panelGroup layout="block" style="padding: 3px 0 3px 0;">
+                    <h:outputLink id="slide" value="#">
+                        <h:outputText value="Slide Effect with custom position"/>
+                    </h:outputLink>
+                    <pe:tooltip for="slide" value="This tooltip uses slide effect for the animation" showEffect="slideToggle"
+                                hideEffect="slideToggle" showDelay="0" position="left center" targetPosition="right center"/>
+                </h:panelGroup>
+            
+                <h:outputText value="Content: "/>
+                <h:panelGroup layout="block" style="padding: 3px 0 3px 0;">
+                    <h:outputLink id="lnk" value="#">
+                        <h:outputText value="PrimeFaces Extensions"/>
+                    </h:outputLink>
+                    <pe:tooltip for="lnk">
+                        <p:graphicImage value="/resources/images/logo.png"/>
+                    </pe:tooltip>
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/oneTabDecorator.html">
+            <ui:define name="contentTab1">
+&lt;h:panelGrid id=&quot;details&quot; columns=&quot;2&quot; columnClasses=&quot;formColumn1,formColumn2&quot;&gt;
+    &lt;h:outputLabel value=&quot;Focus / Blur: &quot;/&gt;
+    &lt;h:panelGroup layout=&quot;block&quot; style=&quot;padding: 0 0 3px 0;&quot;&gt;
+        &lt;p:inputText id=&quot;focus&quot; title=&quot;This tooltip is displayed when input gets the focus&quot;/&gt;
+        &lt;pe:tooltip for=&quot;focus&quot; showEvent=&quot;focus&quot; hideEvent=&quot;blur&quot;/&gt;
+    &lt;/h:panelGroup&gt;
+
+    &lt;h:outputText value=&quot;Fade: &quot;/&gt;
+    &lt;h:panelGroup layout=&quot;block&quot; style=&quot;padding: 3px 0 3px 0;&quot;&gt;
+        &lt;h:outputLink id=&quot;fade&quot; value=&quot;#&quot;&gt;
+            &lt;h:outputText value=&quot;Fade Effect&quot;/&gt;
+        &lt;/h:outputLink&gt;
+        &lt;pe:tooltip for=&quot;fade&quot; value=&quot;Fade effect is used by default&quot; showEffect=&quot;fadeIn&quot; hideEffect=&quot;fadeIn&quot;/&gt;
+    &lt;/h:panelGroup&gt;
+
+    &lt;h:outputText value=&quot;Position: &quot;/&gt;
+    &lt;h:panelGroup layout=&quot;block&quot; style=&quot;padding: 3px 0 3px 0;&quot;&gt;
+        &lt;h:outputLink id=&quot;pos&quot; value=&quot;#&quot;&gt;
+            &lt;h:outputText value=&quot;Position (top, right)&quot;/&gt;
+        &lt;/h:outputLink&gt;
+        &lt;pe:tooltip for=&quot;pos&quot; value=&quot;This tooltip positioned at top right&quot; position=&quot;top, right&quot;/&gt;
+    &lt;/h:panelGroup&gt;
+
+    &lt;h:outputText value=&quot;Slide: &quot;/&gt;
+    &lt;h:panelGroup layout=&quot;block&quot; style=&quot;padding: 3px 0 3px 0;&quot;&gt;
+        &lt;h:outputLink id=&quot;slide&quot; value=&quot;#&quot;&gt;
+            &lt;h:outputText value=&quot;Slide Effect with custom position&quot;/&gt;
+        &lt;/h:outputLink&gt;
+        &lt;pe:tooltip for=&quot;slide&quot; value=&quot;This tooltip uses slide effect for the animation&quot; showEffect=&quot;slideToggle&quot;
+                    hideEffect=&quot;slideToggle&quot; showDelay=&quot;0&quot; position=&quot;left center&quot; targetPosition=&quot;right center&quot;/&gt;
+    &lt;/h:panelGroup&gt;
+
+    &lt;h:outputText value=&quot;Content: &quot;/&gt;
+    &lt;h:panelGroup layout=&quot;block&quot; style=&quot;padding: 3px 0 3px 0;&quot;&gt;
+        &lt;h:outputLink id=&quot;lnk&quot; value=&quot;#&quot;&gt;
+            &lt;h:outputText value=&quot;PrimeFaces Extensions&quot;/&gt;
+        &lt;/h:outputLink&gt;
+        &lt;pe:tooltip for=&quot;lnk&quot;&gt;
+            &lt;p:graphicImage value=&quot;/resources/images/logo.png&quot;/&gt;
+        &lt;/pe:tooltip&gt;
+    &lt;/h:panelGroup&gt;
+&lt;/h:panelGrid&gt;
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/tooltip/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="tooltip"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
 </html>

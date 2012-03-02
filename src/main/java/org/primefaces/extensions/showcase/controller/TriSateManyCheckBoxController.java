@@ -15,93 +15,97 @@
  *
  * $Id$
  */
+
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
 import org.primefaces.extensions.showcase.model.State;
 
 /**
  * TriSateManyCheckboxController
  *
- * @author Mauricio Fenoglio / last modified by $Author:$
+ * @author  Mauricio Fenoglio / last modified by $Author:$
  * @version $Revision:$
- * @since 0.3
+ * @since   0.3
  */
 @ManagedBean
 @ViewScoped
 public class TriSateManyCheckBoxController implements Serializable {
 
-        private Map<String, String> selectedOptionsTriStateBasic;
-        private Map<String, String> selectedOptionsTriStateAjax;
-        private Map<String, State> selectedOptionsTriStateConverted;
-        private Map<String, String> basicOptions;
+	private static final long serialVersionUID = 20110302L;
 
-        public TriSateManyCheckBoxController() {
+	private Map<String, String> selectedOptionsTriStateBasic;
+	private Map<String, String> selectedOptionsTriStateAjax;
+	private Map<String, State> selectedOptionsTriStateConverted;
+	private Map<String, String> basicOptions;
 
-                basicOptions = new HashMap<String, String>();
-                basicOptions.put("Label for Dog", "Dog");
-                basicOptions.put("Label for Cat", "Cat");
-                basicOptions.put("Label for Fish", "Fish");
+	public TriSateManyCheckBoxController() {
+		basicOptions = new HashMap<String, String>();
+		basicOptions.put("Label for Dog", "Dog");
+		basicOptions.put("Label for Cat", "Cat");
+		basicOptions.put("Label for Fish", "Fish");
 
-                //default will created with state=0
-                selectedOptionsTriStateBasic = new HashMap<String, String>();
-                selectedOptionsTriStateBasic.put("Cat", "1");
+		//default will created with state=0
+		selectedOptionsTriStateBasic = new HashMap<String, String>();
+		selectedOptionsTriStateBasic.put("Cat", "1");
 
-                selectedOptionsTriStateAjax = new HashMap<String, String>();
-                selectedOptionsTriStateAjax.put("Tamara", "1");
-                selectedOptionsTriStateAjax.put("Mauricio", "1");
+		selectedOptionsTriStateAjax = new HashMap<String, String>();
+		selectedOptionsTriStateAjax.put("Tamara", "1");
+		selectedOptionsTriStateAjax.put("Mauricio", "1");
 
-                selectedOptionsTriStateConverted = new HashMap<String, State>();
-                selectedOptionsTriStateConverted.put("Dog", new State("One"));
-                selectedOptionsTriStateConverted.put("Cat", new State("Two"));
-                selectedOptionsTriStateConverted.put("Fish", new State("Three"));
-        }
+		selectedOptionsTriStateConverted = new HashMap<String, State>();
+		selectedOptionsTriStateConverted.put("Dog", new State("One"));
+		selectedOptionsTriStateConverted.put("Cat", new State("Two"));
+		selectedOptionsTriStateConverted.put("Fish", new State("Three"));
+	}
 
-        public Map<String, String> getSelectedOptionsTriStateAjax() {
-                return selectedOptionsTriStateAjax;
-        }
+	public Map<String, String> getSelectedOptionsTriStateAjax() {
+		return selectedOptionsTriStateAjax;
+	}
 
-        public void setSelectedOptionsTriStateAjax(Map<String, String> selectedOptionsTriStateAjax) {
-                this.selectedOptionsTriStateAjax = selectedOptionsTriStateAjax;
-        }
+	public void setSelectedOptionsTriStateAjax(Map<String, String> selectedOptionsTriStateAjax) {
+		this.selectedOptionsTriStateAjax = selectedOptionsTriStateAjax;
+	}
 
-        public Map<String, String> getSelectedOptionsTriStateBasic() {
-                return selectedOptionsTriStateBasic;
-        }
+	public Map<String, String> getSelectedOptionsTriStateBasic() {
+		return selectedOptionsTriStateBasic;
+	}
 
-        public void setSelectedOptionsTriStateBasic(Map<String, String> selectedOptionsTriStateBasic) {
-                this.selectedOptionsTriStateBasic = selectedOptionsTriStateBasic;
-        }
+	public void setSelectedOptionsTriStateBasic(Map<String, String> selectedOptionsTriStateBasic) {
+		this.selectedOptionsTriStateBasic = selectedOptionsTriStateBasic;
+	}
 
-        public void addMessage() {
-                String message = "";
-                for (String key : selectedOptionsTriStateAjax.keySet()) {
-                        message += key + "=" + selectedOptionsTriStateAjax.get(key) + "  ";
-                }
+	public void addMessage() {
+		String message = "";
+		for (String key : selectedOptionsTriStateAjax.keySet()) {
+			message += key + "=" + selectedOptionsTriStateAjax.get(key) + "  ";
+		}
 
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "State has been changed", message.trim());
-                FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "State has been changed", message.trim());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
-        public Map<String, String> getBasicOptions() {
-                return basicOptions;
-        }
+	public Map<String, String> getBasicOptions() {
+		return basicOptions;
+	}
 
-        public void setBasicOptions(Map<String, String> basicOptions) {
-                this.basicOptions = basicOptions;
-        }
+	public void setBasicOptions(Map<String, String> basicOptions) {
+		this.basicOptions = basicOptions;
+	}
 
-        public Map<String, State> getSelectedOptionsTriStateConverted() {
-                return selectedOptionsTriStateConverted;
-        }
+	public Map<String, State> getSelectedOptionsTriStateConverted() {
+		return selectedOptionsTriStateConverted;
+	}
 
-        public void setSelectedOptionsTriStateConverted(Map<String, State> selectedOptionsTriStateConverted) {
-                this.selectedOptionsTriStateConverted = selectedOptionsTriStateConverted;
-        }
+	public void setSelectedOptionsTriStateConverted(Map<String, State> selectedOptionsTriStateConverted) {
+		this.selectedOptionsTriStateConverted = selectedOptionsTriStateConverted;
+	}
 }
