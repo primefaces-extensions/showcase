@@ -17,7 +17,7 @@
         <h:panelGroup layout="block" styleClass="centerExample">
             <pe:masterDetail id="masterDetail" level="#{wizardMasterDetailController.currentLevel}" showBreadcrumb="false">
                 <f:facet name="header">
-                    <pe:messages showDetail="true"/>
+                    <p:messages showDetail="true"/>
                     <h:panelGroup layout="block" style="margin-top: 10px;">
                         <h:panelGroup styleClass="levelTitle ui-state-default ui-corner-all
                                       #{wizardMasterDetailController.currentLevel eq 1 ? 'ui-state-hover' : ''}">
@@ -139,7 +139,7 @@
             <ui:define name="contentTab1">
 &lt;pe:masterDetail id=&quot;masterDetail&quot; level=&quot;\#{wizardMasterDetailController.currentLevel}&quot; showBreadcrumb=&quot;false&quot;&gt;
     &lt;f:facet name=&quot;header&quot;&gt;
-        &lt;pe:messages showDetail=&quot;true&quot;/&gt;
+        &lt;p:messages showDetail=&quot;true&quot;/&gt;
         &lt;h:panelGroup layout=&quot;block&quot; style=&quot;margin-top: 10px;&quot;&gt;
             &lt;h:panelGroup styleClass=&quot;levelTitle ui-state-default ui-corner-all
                           \#{wizardMasterDetailController.currentLevel eq 1 ? 'ui-state-hover' : ''}&quot;&gt;

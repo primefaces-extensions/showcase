@@ -20,7 +20,7 @@
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <h:panelGroup id="personsGroup">
-                <pe:messages/>
+                <p:messages/>
             
                 <p:dataTable id="persons" value="#{advancedResetEditableValuesController.persons}" var="person"
                              rendered="#{empty advancedResetEditableValuesController.selectedPerson}">
@@ -73,7 +73,7 @@
         <ui:decorate template="/templates/threeTabsDecoratorModel.html">
             <ui:define name="contentTab1">
 &lt;h:panelGroup id=&quot;personsGroup&quot;&gt;
-    &lt;pe:messages/&gt;
+    &lt;p:messages/&gt;
 
     &lt;p:dataTable id=&quot;persons&quot; value=&quot;\#{advancedResetEditableValuesController.persons}&quot; var=&quot;person&quot;
                  rendered=&quot;\#{empty advancedResetEditableValuesController.selectedPerson}&quot;&gt;
