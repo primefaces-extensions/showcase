@@ -1,11 +1,15 @@
-.layout-inner-north {
+.pe-layout-inner-north {
     color: #000000;
     background-color: #FFFFFF;
     border: none;
 }
 
-.layout-inner-north > .ui-layout-pane-content {
+.pe-layout-inner-north > .pe-layout-pane-content {
     background-color: #FFFFFF;
+}
+
+.pe-layout-tabbuttons {
+    left: auto !important;
 }
 
 #headerForm .logo {
@@ -137,6 +141,3 @@ div.source {
     text-align: left;
 }
 
-.layout-tabbuttons {
-    left: auto !important;
-}
