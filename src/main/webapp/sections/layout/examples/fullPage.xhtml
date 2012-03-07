@@ -16,13 +16,23 @@
     <h:body>
         <p:growl id="growl" showDetail="true" showSummary="true"/>
         
-        <pe:layout id="fullPage">
+        <pe:layout id="fullPage" widgetVar="fpLayoutWidget">
             <p:ajax event="open" listener="#{layoutController.handleOpen}" update="_mainForm_msg"/>
             <p:ajax event="close" listener="#{layoutController.handleClose}" update="_mainForm_msg"/>
             <p:ajax event="resize" listener="#{layoutController.handleResize}" update="growl"/>
         
             <pe:layoutPane position="north" size="80">
                 North
+                <h:form prependId="false">
+                    <h:panelGrid columns="6" style="margin-left:80px;">
+                        <p:commandButton value="Toggle South" type="button" onclick="fpLayoutWidget.toggle('south')"/>
+                        <p:commandButton value="Toggle West-North" type="button" onclick="fpLayoutWidget.toggle('west_north')"/>
+                        <p:commandButton value="Close Center-North" type="button" onclick="fpLayoutWidget.close('center_north')"/>
+                        <p:commandButton value="Open Center-North" type="button" onclick="fpLayoutWidget.open('center_north')"/>
+                        <p:commandButton value="Size East Pane" type="button" onclick="fpLayoutWidget.sizePane('east', 350)"/>
+                        <p:commandButton value="Size West-South Pane" type="button" onclick="fpLayoutWidget.sizePane('west_south', 80)"/>
+                    </h:panelGrid>
+                </h:form>
             </pe:layoutPane>
             <h:form id="mainForm">
                 <pe:layoutPane position="center">

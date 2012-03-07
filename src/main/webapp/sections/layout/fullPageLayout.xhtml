@@ -9,7 +9,12 @@
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
             This example demonstrates a full page, nested layout and its ajax events. Three events are possible: "open", "close", "resize".
-            Furthermore, you can see that h:form is defined for a block of layout panes.
+            You can also see that h:form is defined for a block of layout panes.
+            <p/>
+            Furthermore, you can see client-side widget's methods for pane manipulation in action. These are sizePane(), toggle(), close() and open().
+            They expect pane position as parameter. Nested panes are separated by _ sign. Example: sizePane("center_north", 300);
+            <p/>
+            Note: "center" pane can not be manipulated, so that e.g. toggle("center") or sizePane("west_center", 300) are invalid calls.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
