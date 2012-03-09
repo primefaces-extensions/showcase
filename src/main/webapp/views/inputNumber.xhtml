@@ -21,12 +21,20 @@
                 <p:growl id="growl" showDetail="true"/>
                 <h:panelGrid id="inputNumberGrid" columns="2" styleClass="centerContent">
                     <h:outputText value="Basic Usage: "/>
-                    <pe:inputNumber></pe:inputNumber>
-
-
-
-                </h:panelGrid>            
-
+                    <pe:inputNumber value="#{inputNumberController.inputOne}" symbol="$"/>
+                    GettedValue = #{inputNumberController.inputOne};
+                    
+                    
+                    <pe:inputNumber value="#{inputNumberController.inputTwo}" symbol="U$"/>
+                    GettedValue = #{inputNumberController.inputTwo};
+                    
+                   
+                    
+                </h:panelGrid>        
+                
+                <p:commandButton update="inputNumberGrid" value="update" action="#{inputNumberController.multiplicate(1)}"/>
+                <p:commandButton update="inputNumberGrid" value="update" action="#{inputNumberController.multiplicate(2)}"/>
+                <p:commandButton update="inputNumberGrid" value="update" action="#{inputNumberController.multiplicate(2)}"/>
             </h:panelGroup>
 
             <ui:decorate template="/templates/twoTabsDecorator.html">
