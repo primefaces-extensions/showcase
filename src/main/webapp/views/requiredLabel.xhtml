@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="RequiredLabel"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+			The requiredLabel extends the h:ouputLabel and adds an required indicator. <br/>
+			<br/>
+			The required indicator can be changed with the <b>requiredIndicator</b> attribute. <br/>
+			<br/>
+			Also the indicator can be styled via css: <b>.pe-required-label-indicator</b>.
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+			<pe:requiredLabel for="loginName" value="LoginName:" />
+			<p:inputText id="loginName" />
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/oneTabDecorator.html">
+            <ui:define name="contentTab1">
+&lt;pe:requiredLabel for="loginName" value="LoginName:" /&gt;
+&lt;p:inputText id="loginName" /&gt;
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="requiredLabel"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>
