@@ -19,6 +19,8 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -48,6 +50,15 @@ public class CodeMirrorController implements Serializable {
 		} else {
 			mode = "css";
 		}
+	}
+
+	public List<String> complete(final String token, final String context) {
+		final ArrayList<String> suggestions = new ArrayList<String>();
+
+		suggestions.add("context: " + context);
+		suggestions.add("token: " + token);
+
+		return suggestions;
 	}
 
 	public String getContent() {
