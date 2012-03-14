@@ -29,42 +29,95 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class InputNumberController implements Serializable {
+        private static final long serialVersionUID = 1L;
 
-        private Double inputOne;
-        private double inputTwo;
+        private Double input1;
+        private Double input2;
+        private Double input3;
+        private Double input4;
+        private Double input5;
+        private Double input6;
+        private Double input7;
+        private Double input8;       
+        
+        private String unit;
 
         public InputNumberController() {
-                //init values
-                inputOne = 10d;
-                inputTwo = 10d;
+              unit = " kmh";
         }
 
-        public void multiplicate(int input) {
-               
-                if (input == 1) {
-                        inputOne *= 2;
-                        return;
-                }
-                if (input == 2) {
-                        inputTwo *= 2;
-                        return;
-                }
-
+        public Double getInput1() {
+                return input1;
         }
 
-        public Double getInputOne() {
-                return inputOne;
+        public void setInput1(Double input1) {
+                this.input1 = input1;
         }
 
-        public void setInputOne(Double inputOne) {
-                this.inputOne = inputOne;
+        public Double getInput2() {
+                return input2;
         }
 
-        public double getInputTwo() {
-                return inputTwo;
+        public void setInput2(Double input2) {
+                this.input2 = input2;
         }
 
-        public void setInputTwo(double inputTwo) {
-                this.inputTwo = inputTwo;
+        public Double getInput3() {
+                return input3;
         }
+
+        public void setInput3(Double input3) {
+                this.input3 = input3;
+        }
+
+        public Double getInput4() {
+                return input4;
+        }
+
+        public void setInput4(Double input4) {
+                this.input4 = input4;
+        }
+
+        public Double getInput5() {
+                return input5;
+        }
+
+        public void setInput5(Double input5) {
+                this.input5 = input5;
+        }
+
+        public Double getInput6() {
+                return input6;
+        }
+
+        public void setInput6(Double input6) {
+                this.input6 = input6;
+        }
+
+        public Double getInput7() {
+                return input7;
+        }
+
+        public void setInput7(Double input7) {
+                this.input7 = input7;
+        }
+
+        public Double getInput8() {
+                return input8;
+        }
+
+        public void setInput8(Double input8) {
+                this.input8 = input8;
+        }
+
+        public String getUnit() {
+                return unit;
+        }
+
+        public void setUnit(String unit) {
+                this.unit = unit;
+        }
+        
+              
+
 }

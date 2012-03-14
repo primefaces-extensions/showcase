@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+        <ui:composition template="/templates/showcaseLayout.xhtml">
+                <ui:define name="centerContent">
+                        <f:facet name="header">
+                                <h:outputText value="inputNumber"/>
+                        </f:facet>
+                        <h:panelGroup layout="block" styleClass="centerContent">
+                               //TODO
+                        </h:panelGroup>
+
+                        <h:panelGroup layout="block" styleClass="centerExample">
+                                <!-- This group is for coding -->
+                                //TODO
+
+                        </h:panelGroup>
+
+                        <ui:decorate template="/templates/twoTabsDecorator.html">
+                                <!-- Code here should be left aligned -->
+                                <ui:define name="contentTab1">
+                                        TODO
+                                </ui:define>
+                                <ui:define name="contentTab2">
+                                        TODO
+                                </ui:define>
+                        </ui:decorate>
+                </ui:define>
+                <ui:define name="useCases">
+                        <ui:include src="/sections/inputNumber/useCasesChoice.xhtml"/>
+                </ui:define>
+                <ui:define name="docuTable">
+                        <ui:include src="/sections/shared/documentation.xhtml">
+                                <ui:param name="tagName" value="inputNumber"/>
+                        </ui:include>
+                </ui:define>
+        </ui:composition>
+</html>

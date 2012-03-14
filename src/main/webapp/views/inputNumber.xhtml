@@ -4,57 +4,25 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
-    <ui:composition template="/templates/showcaseLayout.xhtml">
-        <ui:define name="centerContent">
-            <f:facet name="header">
-                <h:outputText value="TriStateCheckbox"/>
-            </f:facet>
-            <h:panelGroup layout="block" styleClass="centerContent">
-                <!-- This group is for description -->
-                TODO
-                <p/>
-                This example show pe:inputNumber in action.
-            </h:panelGroup>
-
-            <h:panelGroup layout="block" styleClass="centerExample">
-                <!-- This group is for coding -->
-                <p:growl id="growl" showDetail="true"/>
-                <h:panelGrid id="inputNumberGrid" columns="2" styleClass="centerContent">
-                    <h:outputText value="Basic Usage: "/>
-                    <pe:inputNumber value="#{inputNumberController.inputOne}" symbol="$"/>
-                    GettedValue = #{inputNumberController.inputOne};
-                    
-                    
-                    <pe:inputNumber value="#{inputNumberController.inputTwo}" symbol="U$"/>
-                    GettedValue = #{inputNumberController.inputTwo};
-                    
-                   
-                    
-                </h:panelGrid>        
-                
-                <p:commandButton update="inputNumberGrid" value="update" action="#{inputNumberController.multiplicate(1)}"/>
-                <p:commandButton update="inputNumberGrid" value="update" action="#{inputNumberController.multiplicate(2)}"/>
-                <p:commandButton update="inputNumberGrid" value="update" action="#{inputNumberController.multiplicate(2)}"/>
-            </h:panelGroup>
-
-            <ui:decorate template="/templates/twoTabsDecorator.html">
-                <!-- Code here should be left aligned -->
-                <ui:define name="contentTab1">
-                    //TODO
-                </ui:define>
-                <ui:define name="contentTab2">
-                    //TODO
-                </ui:define>
-            </ui:decorate>
-        </ui:define>
-        <ui:define name="useCases">
-
-        </ui:define>
-        <ui:define name="docuTable">
-            <ui:include src="/sections/shared/documentation.xhtml">
-                <ui:param name="tagName" value="inputNumber"/>
-            </ui:include>
-        </ui:define>
-    </ui:composition>
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="inputNumber"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+             <!-- This group is for description -->
+             InputNumber is based on the autoNumeric jQuery plugin.
+             <p/>
+             Choose the uses cases to see pe:inputNumber in action.            
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/inputNumber/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="inputNumber"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
 </html>
-
