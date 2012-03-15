@@ -20,41 +20,29 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import org.primefaces.extensions.showcase.model.State;
+import org.primefaces.extensions.showcase.model.Distance;
 
 /**
- * TriStateManyCheckboxConverter converter class.
+ * InputNumberConverter converter class.
  *
  * @author  Mauricio Fenoglio / last modified by $Author:$
  * @version $Revision:$
  */
-@FacesConverter("triStateManyCheckboxConverter")
-public class TriStateManyCheckboxConverter implements Converter {
+@FacesConverter("inputNumberConverter")
+public class InputNumberConverter implements Converter {
 
-	public Object getAsObject(final FacesContext context, final UIComponent component, final String value) {
-		State res;
-		if (value.equals("0")) {
-			res = new State("One");
-		} else if (value.equals("1")) {
-			res = new State("Two");
-		} else {
-			res = new State("Three");
-		}
-
-		return res;
-	}
+	public Object getAsObject(final FacesContext context, final UIComponent component, final String value) {		
+                Double doubleValue = Double.valueOf(value);
+                Distance res = new Distance();
+                res.setMeters(doubleValue);
+                return res;
+        }
 
 	public String getAsString(final FacesContext context, final UIComponent component, final Object valueO) {
-		State value = (State) valueO;
-		String res;
-		if (value.getState().equals("One")) {
-			res = "0";
-		} else if (value.getState().equals("Two")) {
-			res = "1";
-		} else {
-			res = "2";
-		}
-
-		return res;
+		Distance value = (Distance) valueO;
+		Double res = value.getMeters();
+		return res.toString();
 	}
+
+       
 }

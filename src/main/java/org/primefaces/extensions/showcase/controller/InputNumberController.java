@@ -18,6 +18,7 @@ package org.primefaces.extensions.showcase.controller;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.extensions.showcase.model.Distance;
 
 /**
  * InputNumberController
@@ -29,21 +30,26 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class InputNumberController implements Serializable {
-        private static final long serialVersionUID = 1L;
 
+        private static final long serialVersionUID = 1L;
         private Double input1;
         private Double input2;
         private Double input3;
         private Double input4;
         private Double input5;
         private Double input6;
-        private Double input7;
-        private Double input8;       
-        
         private String unit;
+        private String roundMethod;
+        private int decimalPlaces;
+        private Distance distance;
 
         public InputNumberController() {
-              unit = " kmh";
+                unit = " kmh";
+                roundMethod = "S";
+                decimalPlaces = 2;
+                distance = new Distance();
+                input5 = 251.31;
+                input6 = 60d;
         }
 
         public Double getInput1() {
@@ -94,22 +100,6 @@ public class InputNumberController implements Serializable {
                 this.input6 = input6;
         }
 
-        public Double getInput7() {
-                return input7;
-        }
-
-        public void setInput7(Double input7) {
-                this.input7 = input7;
-        }
-
-        public Double getInput8() {
-                return input8;
-        }
-
-        public void setInput8(Double input8) {
-                this.input8 = input8;
-        }
-
         public String getUnit() {
                 return unit;
         }
@@ -117,7 +107,28 @@ public class InputNumberController implements Serializable {
         public void setUnit(String unit) {
                 this.unit = unit;
         }
-        
-              
 
+        public Distance getDistance() {
+                return distance;
+        }
+
+        public void setDistance(Distance distance) {
+                this.distance = distance;
+        }
+
+        public String getRoundMethod() {
+                return roundMethod;
+        }
+
+        public void setRoundMethod(String roundMethod) {
+                this.roundMethod = roundMethod;
+        }
+
+        public int getDecimalPlaces() {
+                return decimalPlaces;
+        }
+
+        public void setDecimalPlaces(int decimalPlaces) {
+                this.decimalPlaces = decimalPlaces;
+        }
 }
