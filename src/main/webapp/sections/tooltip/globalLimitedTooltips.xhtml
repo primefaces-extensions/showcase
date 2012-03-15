@@ -18,10 +18,10 @@
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
-                <h:outputLabel value="First Name: "/>
-                <p:inputText required="true" title="#{component.valid ? '' : 'First Name can not be empty'}"/>
-                <h:outputLabel value="Last Name: "/>
-                <p:inputText required="true" title="#{component.valid ? '' : 'Last Name can not be empty'}"/>
+                <pe:requiredLabel for="firstName" value="First Name: "/>
+                <p:inputText id="firstName" required="true" title="#{component.valid ? '' : 'First Name can not be empty'}"/>
+                <pe:requiredLabel for="lastName" value="Last Name: "/>
+                <p:inputText id="lastName" required="true" title="#{component.valid ? '' : 'Last Name can not be empty'}"/>
             </h:panelGrid>
             
             <p:commandButton value="Submit" process="details" update="details" style="margin-top: 10px;"/>
@@ -32,16 +32,15 @@
         <ui:decorate template="/templates/oneTabDecorator.html">
             <ui:define name="contentTab1">
 &lt;h:panelGrid id=&quot;details&quot; columns=&quot;2&quot; columnClasses=&quot;formColumn1,formColumn2&quot;&gt;
-    &lt;h:outputLabel value=&quot;First Name: &quot;/&gt;
-    &lt;p:inputText required=&quot;true&quot; title=&quot;\#{component.valid ? '' : 'First Name can not be empty'}&quot;/&gt;
-    &lt;h:outputLabel value=&quot;Last Name: &quot;/&gt;
-    &lt;p:inputText required=&quot;true&quot; title=&quot;\#{component.valid ? '' : 'Last Name can not be empty'}&quot;/&gt;
+    &lt;pe:requiredLabel for=&quot;firstName&quot; value=&quot;First Name: &quot;/&gt;
+    &lt;p:inputText id=&quot;firstName&quot; required=&quot;true&quot; title=&quot;\#{component.valid ? '' : 'First Name can not be empty'}&quot;/&gt;
+    &lt;pe:requiredLabel for=&quot;lastName&quot; value=&quot;Last Name: &quot;/&gt;
+    &lt;p:inputText id=&quot;lastName&quot; required=&quot;true&quot; title=&quot;\#{component.valid ? '' : 'Last Name can not be empty'}&quot;/&gt;
 &lt;/h:panelGrid&gt;
 
 &lt;p:commandButton value=&quot;Submit&quot; process=&quot;details&quot; update=&quot;details&quot; style=&quot;margin-top: 10px;&quot;/&gt;
 
-&lt;pe:tooltip global=&quot;true&quot; position=&quot;left center&quot; targetPosition=&quot;right center&quot; forSelector=&quot;.ui-state-error&quot;/&gt;
-            </ui:define>
+&lt;pe:tooltip global=&quot;true&quot; position=&quot;left center&quot; targetPosition=&quot;right center&quot; forSelector=&quot;.ui-state-error&quot;/&gt;            </ui:define>
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
