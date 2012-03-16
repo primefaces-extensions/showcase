@@ -15,18 +15,12 @@
  *
  * $Id$
  */
-
 package org.primefaces.extensions.showcase.webapp;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Logger;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -34,90 +28,124 @@ import javax.faces.bean.ManagedBean;
 /**
  * TechnicalInfo.
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
 @ApplicationScoped
 @ManagedBean(eager = true)
 public class TechnicalInfo {
 
-	private static final Logger LOGGER = Logger.getLogger(TechnicalInfo.class.getName());
+        private static final Logger LOGGER = Logger.getLogger(TechnicalInfo.class.getName());
+        private String primeFaces;
+        private String primeFacesExt;
+        private String jsfImpl;
+        private String server;
+        private String revision;
+        private String buildTime;
+        private boolean online = false;
+        private boolean mojarra = true;
+        //mfenoglio
+        private List<String> newComponents = new ArrayList<String>();
+        private List<String> updatedComponents = new ArrayList<String>();
 
-	private String primeFaces;
-	private String primeFacesExt;
-	private String jsfImpl;
-	private String server;
-	private String revision;
-	private String buildTime;
-	private boolean online = false;
-	private boolean mojarra = true;
+        @PostConstruct
+        protected void initialize() {
+                ResourceBundle rb;
+                try {
+                        rb = ResourceBundle.getBundle("pe-showcase");
 
-	@PostConstruct
-	protected void initialize() {
-		ResourceBundle rb;
-		try {
-			rb = ResourceBundle.getBundle("pe-showcase");
+                        String strAppProps = rb.getString("application.properties");
+                        int lastBrace = strAppProps.indexOf("}");
+                        strAppProps = strAppProps.substring(1, lastBrace);
 
-			String strAppProps = rb.getString("application.properties");
-			int lastBrace = strAppProps.indexOf("}");
-			strAppProps = strAppProps.substring(1, lastBrace);
+                        Map<String, String> appProperties = new HashMap<String, String>();
+                        String[] appProps = strAppProps.split("[\\s,]+");
+                        for (String appProp : appProps) {
+                                System.err.println(appProp);
+                                String[] keyValue = appProp.split("=");
+                                if (keyValue != null && keyValue.length > 1) {
+                                        appProperties.put(keyValue[0], keyValue[1]);
+                                }
+                        }
 
-			Map<String, String> appProperties = new HashMap<String, String>();
-			String[] appProps = strAppProps.split("[\\s,]+");
-			for (String appProp : appProps) {
-				String[] keyValue = appProp.split("=");
-				if (keyValue != null && keyValue.length > 1) {
-					appProperties.put(keyValue[0], keyValue[1]);
-				}
-			}
+                        primeFaces = "PrimeFaces: " + appProperties.get("primefaces.core.version");
+                        primeFacesExt = "PrimeFaces Extensions: " + appProperties.get("pe.impl.version");
+                        jsfImpl = "JSF-Impl.: " + appProperties.get("pe.jsf.displayname") + " " + appProperties.get("pe.jsf.version");
+                        server = "Server: Jetty " + appProperties.get("jetty.server.version");
+                        revision = "SVN-Revision: " + appProperties.get("svn.revision");
 
-			primeFaces = "PrimeFaces: " + appProperties.get("primefaces.core.version");
-			primeFacesExt = "PrimeFaces Extensions: " + appProperties.get("pe.impl.version");
-			jsfImpl = "JSF-Impl.: " + appProperties.get("pe.jsf.displayname") + " " + appProperties.get("pe.jsf.version");
-			server = "Server: Jetty " + appProperties.get("jetty.server.version");
-			revision = "SVN-Revision: " + appProperties.get("svn.revision");
+                        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTimeInMillis(Long.valueOf(appProperties.get("timestamp")));
+                        buildTime = "Build time: " + formatter.format(calendar.getTime());
 
-			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTimeInMillis(Long.valueOf(appProperties.get("timestamp")));
-			buildTime = "Build time: " + formatter.format(calendar.getTime());
+                        online = Boolean.valueOf(appProperties.get("pe.webapp.online"));
+                        mojarra = appProperties.get("pe.jsf.impl").contains("mojarra");
 
-			online = Boolean.valueOf(appProperties.get("pe.webapp.online"));
-			mojarra = appProperties.get("pe.jsf.impl").contains("mojarra");
-		} catch (MissingResourceException e) {
-			LOGGER.warning("Resource bundle 'pe-showcase' was not found");
-		}
-	}
 
-	public boolean isOnline() {
-		return online;
-	}
+                        //mfenoglio process new and updated components
+                        this.proccessNewsComponents(appProperties.get("pe.newComponents"), appProperties.get("pe.updatedComponents"));
 
-	public String getPrimeFaces() {
-		return primeFaces;
-	}
+                } catch (MissingResourceException e) {
+                        LOGGER.warning("Resource bundle 'pe-showcase' was not found");
+                }
+        }
 
-	public String getPrimeFacesExt() {
-		return primeFacesExt;
-	}
+        public boolean isOnline() {
+                return online;
+        }
 
-	public String getJsfImpl() {
-		return jsfImpl;
-	}
+        public String getPrimeFaces() {
+                return primeFaces;
+        }
 
-	public String getServer() {
-		return server;
-	}
+        public String getPrimeFacesExt() {
+                return primeFacesExt;
+        }
 
-	public String getRevision() {
-		return revision;
-	}
+        public String getJsfImpl() {
+                return jsfImpl;
+        }
 
-	public String getBuildTime() {
-		return buildTime;
-	}
+        public String getServer() {
+                return server;
+        }
 
-	public boolean isMojarra() {
-		return mojarra;
-	}
+        public String getRevision() {
+                return revision;
+        }
+
+        public String getBuildTime() {
+                return buildTime;
+        }
+
+        public boolean isMojarra() {
+                return mojarra;
+        }
+
+        public String getMenuitemIconStyleClass(final String page) {
+
+                if (newComponents.contains(page)) {
+                        return "ui-icon-lightbulb";
+                }
+
+                if (updatedComponents.contains(page)) {
+                        return "ui-icon-notice";
+                }
+
+                return "ui-icon-none";
+        }
+
+        private void proccessNewsComponents(String newComp, String updatedComp) {
+                try {
+                        System.err.println(newComp);
+                        String[] newCompArray = newComp.split(";");
+                        Collections.addAll(newComponents, newCompArray);
+                        String[] updatedCompArray = updatedComp.split(";");
+                        Collections.addAll(updatedComponents, updatedCompArray);
+                } catch (Exception ex) {
+                        this.newComponents = new ArrayList<String>();
+                        this.updatedComponents = new ArrayList<String>();
+                }
+        }
 }

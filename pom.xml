@@ -71,6 +71,15 @@
             </roles>
             <timezone>+5.5</timezone>
         </developer>
+        <developer>
+            <id>mfenoglio</id>
+            <name>Mauricio Fenoglio</name>
+            <email>fenoloco@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>-3.0</timezone>
+        </developer>
     </developers>
 
     <build>
