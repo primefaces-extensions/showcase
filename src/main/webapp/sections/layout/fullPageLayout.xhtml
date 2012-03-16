@@ -28,13 +28,23 @@
             <ui:define name="contentTab1">
 &lt;p:growl id=&quot;growl&quot; showDetail=&quot;true&quot; showSummary=&quot;true&quot;/&gt;
 
-&lt;pe:layout id=&quot;fullPage&quot;&gt;
+&lt;pe:layout id=&quot;fullPage&quot; widgetVar=&quot;fpLayoutWidget&quot;&gt;
     &lt;p:ajax event=&quot;open&quot; listener=&quot;\#{layoutController.handleOpen}&quot; update=&quot;_mainForm_msg&quot;/&gt;
     &lt;p:ajax event=&quot;close&quot; listener=&quot;\#{layoutController.handleClose}&quot; update=&quot;_mainForm_msg&quot;/&gt;
     &lt;p:ajax event=&quot;resize&quot; listener=&quot;\#{layoutController.handleResize}&quot; update=&quot;growl&quot;/&gt;
 
     &lt;pe:layoutPane position=&quot;north&quot; size=&quot;80&quot;&gt;
         North
+        &lt;h:form prependId=&quot;false&quot;&gt;
+            &lt;h:panelGrid columns=&quot;6&quot; style=&quot;margin-left:80px;&quot;&gt;
+                &lt;p:commandButton value=&quot;Toggle South&quot; type=&quot;button&quot; onclick=&quot;fpLayoutWidget.toggle('south')&quot;/&gt;
+                &lt;p:commandButton value=&quot;Toggle West-North&quot; type=&quot;button&quot; onclick=&quot;fpLayoutWidget.toggle('west_north')&quot;/&gt;
+                &lt;p:commandButton value=&quot;Close Center-North&quot; type=&quot;button&quot; onclick=&quot;fpLayoutWidget.close('center_north')&quot;/&gt;
+                &lt;p:commandButton value=&quot;Open Center-North&quot; type=&quot;button&quot; onclick=&quot;fpLayoutWidget.open('center_north')&quot;/&gt;
+                &lt;p:commandButton value=&quot;Size East Pane&quot; type=&quot;button&quot; onclick=&quot;fpLayoutWidget.sizePane('east', 350)&quot;/&gt;
+                &lt;p:commandButton value=&quot;Size West-South Pane&quot; type=&quot;button&quot; onclick=&quot;fpLayoutWidget.sizePane('west_south', 80)&quot;/&gt;
+            &lt;/h:panelGrid&gt;
+        &lt;/h:form&gt;
     &lt;/pe:layoutPane&gt;
     &lt;h:form id=&quot;mainForm&quot;&gt;
         &lt;pe:layoutPane position=&quot;center&quot;&gt;
