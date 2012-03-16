@@ -4,65 +4,203 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
-        <ui:composition template="/templates/showcaseLayout.xhtml">
-                <ui:define name="centerContent">
-                        <f:facet name="header">
-                                <h:outputText value="inputNumber"/>
-                        </f:facet>
-                        <h:panelGroup layout="block" styleClass="centerContent">
-                               Here there are some examples of more advanced use.
-                        </h:panelGroup>
-                        <p:growl id="growl" showDetail="false"/>
-                        <h:panelGroup layout="block" styleClass="centerExample">
-                                <!-- This group is for coding -->
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="inputNumber"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            Here there are some examples for more advanced usage.
+        </h:panelGroup>
+        
+        <p:growl id="growl" showDetail="false"/>
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <!-- This group is for coding -->
+            <h:panelGrid id="inputNumberGrid" columns="3" style="margin-bottom:10px" cellpadding="5">
+                <h:outputText value="Dinamic symbols."/>
+                <p:selectOneMenu id="selectInput5" value="#{inputNumberController.unit}" style="width: 138px">
+                    <f:selectItem itemLabel="Kmh" itemValue=" kmh"/>
+                    <f:selectItem itemLabel="Mph" itemValue=" mph"/>
+                    <f:selectItem itemLabel="Knots" itemValue=" knots"/>
+                    <p:ajax update="Input5"/>
+                </p:selectOneMenu>
+                <pe:inputNumber id="Input5" value="#{inputNumberController.input5}" symbol="#{inputNumberController.unit}"
+                                symbolPosition="s"/>
+            
+                <h:outputText value="Validate the double value (min 50.00)"/>
+                <pe:inputNumber id="Input6" value="#{inputNumberController.input6}" symbol="$ "
+                                validatorMessage="The value must be greater than 50.00">
+                    <f:validateDoubleRange minimum="50"/>
+                </pe:inputNumber>
+                <span></span>
+            
+                <h:outputText value="Convert the double value"/>
+                <pe:inputNumber id="InputDistance" value="#{inputNumberController.distance}" symbol="mts "
+                                converter="inputNumberConverter"/>
+            
+            </h:panelGrid>
+            <p:commandButton value="Submit" update="growl display" oncomplete="dlg.show()"/>
+            
+            <p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="470">
+                <p:panelGrid id="display" columns="1">
+                    <h:outputText value="Value of firt input = #{inputNumberController.input5}"/>
+                    <h:outputText value="Value of firt input = #{inputNumberController.input6}"/>
+                    <h:outputText value="Value of firt input = #{inputNumberController.distance}"/>
+                </p:panelGrid>
+            </p:dialog>
+        </h:panelGroup>
 
-                                <h:panelGrid id="inputNumberGrid" columns="3" style="margin-bottom:10px" cellpadding="5">
-                                        <h:outputText value="Dinamic symbols."/>
-                                        <p:selectOneMenu id="selectInput5" value="#{inputNumberController.unit}" style="width: 138px" >                          
-                                                <f:selectItem itemLabel="Kmh" itemValue=" kmh" />  
-                                                <f:selectItem itemLabel="Mph" itemValue=" mph" />  
-                                                <f:selectItem itemLabel="Knots" itemValue=" knots" />  
-                                                <p:ajax update="Input5"/>                               
-                                        </p:selectOneMenu>
-                                        <pe:inputNumber id="Input5" value="#{inputNumberController.input5}" symbol="#{inputNumberController.unit}" symbolPosition="s" />                
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <!-- Code here should be left aligned -->
+            <ui:define name="contentTab1">
+&lt;h:panelGrid id=&quot;inputNumberGrid&quot; columns=&quot;3&quot; style=&quot;margin-bottom:10px&quot; cellpadding=&quot;5&quot;&gt;
+    &lt;h:outputText value=&quot;Dinamic symbols.&quot;/&gt;
+    &lt;p:selectOneMenu id=&quot;selectInput5&quot; value=&quot;\#{inputNumberController.unit}&quot; style=&quot;width: 138px&quot;&gt;
+        &lt;f:selectItem itemLabel=&quot;Kmh&quot; itemValue=&quot; kmh&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Mph&quot; itemValue=&quot; mph&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Knots&quot; itemValue=&quot; knots&quot;/&gt;
+        &lt;p:ajax update=&quot;Input5&quot;/&gt;
+    &lt;/p:selectOneMenu&gt;
+    &lt;pe:inputNumber id=&quot;Input5&quot; value=&quot;\#{inputNumberController.input5}&quot; symbol=&quot;\#{inputNumberController.unit}&quot;
+                    symbolPosition=&quot;s&quot;/&gt;
 
-                                        <h:outputText value="Validate the double value (min 50.00)"/>
-                                        <pe:inputNumber id="Input6" value="#{inputNumberController.input6}" symbol="$ " validatorMessage="The value must be greater than 50.00">                                                
-                                                <f:validateDoubleRange minimum="50"/>
-                                        </pe:inputNumber>
-                                        <span></span>
+    &lt;h:outputText value=&quot;Validate the double value (min 50.00)&quot;/&gt;
+    &lt;pe:inputNumber id=&quot;Input6&quot; value=&quot;\#{inputNumberController.input6}&quot; symbol=&quot;$ &quot;
+                    validatorMessage=&quot;The value must be greater than 50.00&quot;&gt;
+        &lt;f:validateDoubleRange minimum=&quot;50&quot;/&gt;
+    &lt;/pe:inputNumber&gt;
+    &lt;span&gt;&lt;/span&gt;
 
-                                        <h:outputText value="Convert the double value"/>
-                                        <pe:inputNumber id="InputDistance" value="#{inputNumberController.distance}" symbol="mts " converter="inputNumberConverter"/>
+    &lt;h:outputText value=&quot;Convert the double value&quot;/&gt;
+    &lt;pe:inputNumber id=&quot;InputDistance&quot; value=&quot;\#{inputNumberController.distance}&quot; symbol=&quot;mts &quot;
+                    converter=&quot;inputNumberConverter&quot;/&gt;
 
-                                </h:panelGrid>     
-                                <p:commandButton value="Submit" update="growl display" oncomplete="dlg.show()"/>
-                                <p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="470">
-                                        <p:panelGrid id="display" columns="1" >                                                
-                                                <h:outputText value="Value of firt input = #{inputNumberController.input5}"/> 
-                                                <h:outputText value="Value of firt input = #{inputNumberController.input6}"/> 
-                                                <h:outputText value="Value of firt input = #{inputNumberController.distance}"/> 
-                                        </p:panelGrid>
-                                </p:dialog>
-                        </h:panelGroup>
+&lt;/h:panelGrid&gt;
+&lt;p:commandButton value=&quot;Submit&quot; update=&quot;growl display&quot; oncomplete=&quot;dlg.show()&quot;/&gt;
+                
+&lt;p:dialog header=&quot;Selected Values&quot; modal=&quot;false&quot; showEffect=&quot;fade&quot; hideEffect=&quot;fade&quot; widgetVar=&quot;dlg&quot; width=&quot;470&quot;&gt;
+    &lt;p:panelGrid id=&quot;display&quot; columns=&quot;1&quot;&gt;
+        &lt;h:outputText value=&quot;Value of firt input = \#{inputNumberController.input5}&quot;/&gt;
+        &lt;h:outputText value=&quot;Value of firt input = \#{inputNumberController.input6}&quot;/&gt;
+        &lt;h:outputText value=&quot;Value of firt input = \#{inputNumberController.distance}&quot;/&gt;
+    &lt;/p:panelGrid&gt;
+&lt;/p:dialog&gt;
+            </ui:define>
+            <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class InputNumberController implements Serializable {
 
-                        <ui:decorate template="/templates/twoTabsDecorator.html">
-                                <!-- Code here should be left aligned -->
-                                <ui:define name="contentTab1">
-                                        TODO
-                                </ui:define>
-                                <ui:define name="contentTab2">
-                                        TODO
-                                </ui:define>
-                        </ui:decorate>
-                </ui:define>
-                <ui:define name="useCases">
-                        <ui:include src="/sections/inputNumber/useCasesChoice.xhtml"/>
-                </ui:define>
-                <ui:define name="docuTable">
-                        <ui:include src="/sections/shared/documentation.xhtml">
-                                <ui:param name="tagName" value="inputNumber"/>
-                        </ui:include>
-                </ui:define>
-        </ui:composition>
+	private Double input1;
+	private Double input2;
+	private Double input3;
+	private Double input4;
+	private Double input5;
+	private Double input6;
+	private String unit;
+	private String roundMethod;
+	private int decimalPlaces;
+	private Distance distance;
+
+	public InputNumberController() {
+		unit = &quot; kmh&quot;;
+		roundMethod = &quot;S&quot;;
+		decimalPlaces = 2;
+		distance = new Distance();
+		input5 = 251.31;
+		input6 = 60d;
+	}
+
+	public Double getInput1() {
+		return input1;
+	}
+
+	public void setInput1(Double input1) {
+		this.input1 = input1;
+	}
+
+	public Double getInput2() {
+		return input2;
+	}
+
+	public void setInput2(Double input2) {
+		this.input2 = input2;
+	}
+
+	public Double getInput3() {
+		return input3;
+	}
+
+	public void setInput3(Double input3) {
+		this.input3 = input3;
+	}
+
+	public Double getInput4() {
+		return input4;
+	}
+
+	public void setInput4(Double input4) {
+		this.input4 = input4;
+	}
+
+	public Double getInput5() {
+		return input5;
+	}
+
+	public void setInput5(Double input5) {
+		this.input5 = input5;
+	}
+
+	public Double getInput6() {
+		return input6;
+	}
+
+	public void setInput6(Double input6) {
+		this.input6 = input6;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+	public Distance getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Distance distance) {
+		this.distance = distance;
+	}
+
+	public String getRoundMethod() {
+		return roundMethod;
+	}
+
+	public void setRoundMethod(String roundMethod) {
+		this.roundMethod = roundMethod;
+	}
+
+	public int getDecimalPlaces() {
+		return decimalPlaces;
+	}
+
+	public void setDecimalPlaces(int decimalPlaces) {
+		this.decimalPlaces = decimalPlaces;
+	}
+}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/inputNumber/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="inputNumber"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
 </html>

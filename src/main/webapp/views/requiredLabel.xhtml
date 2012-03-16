@@ -10,18 +10,18 @@
             <h:outputText value="RequiredLabel"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-			The requiredLabel extends the h:ouputLabel and adds an required indicator. <br/>
-			<br/>
-			The required indicator can be changed with the <b>requiredIndicator</b> attribute and can be styled via css: <b>.pe-required-label-indicator</b>.<br/>
-			<br/>
-			Also if the "for" component is invalid, an error style class will also be rendered: <b>.re-required-label-invalid</b>.
+			RequiredLabel extends the h:ouputLabel and adds an required indicator.
+			<p/>
+			The required indicator can be changed with the <b>requiredIndicator</b> attribute and can be styled via CSS: <b>.pe-required-label-indicator</b>.
+			<p/>
+			In case if the referenced by "for" component is invalid, an error style class will be rendered: <b>.re-required-label-invalid</b>.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
         	<p:outputPanel id="container">
 				<pe:requiredLabel for="loginName" value="LoginName:" />
 				<p:inputText id="loginName" required="true" />
-				<p:commandButton id="submitLoginName" value="Post" process="container" update="container" />
+				<p:commandButton id="submitLoginName" value="Post" process="container" update="container" style="margin-left: 10px;"/>
 			</p:outputPanel>
         </h:panelGroup>
 
@@ -30,6 +30,7 @@
 &lt;p:outputPanel id="container"&gt;
 	&lt;pe:requiredLabel for="loginName" value="LoginName:" /&gt;
 	&lt;p:inputText id="loginName" /&gt;
+                
 	&lt;p:commandButton id="submitLoginName" value="Post" process="container" update="container" /&gt;
 &lt;/p:outputPanel&gt;
             </ui:define>

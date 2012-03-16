@@ -4,74 +4,210 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
-        <ui:composition template="/templates/showcaseLayout.xhtml">
-                <ui:define name="centerContent">
-                        <f:facet name="header">
-                                <h:outputText value="inputNumber"/>
-                        </f:facet>
-                        <h:panelGroup layout="block" styleClass="centerContent">
-                                This example shows available rounding methods. 
-                        </h:panelGroup>
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="inputNumber"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            This example shows available rounding methods.
+        </h:panelGroup>
 
-                        <h:panelGroup layout="block" styleClass="centerExample">
-                                <!-- This group is for coding -->
-                                <h:panelGrid id="inputNumberGrid" columns="2" style="margin-bottom:10px" cellpadding="5">
-                                        <h:outputText value="Select round method"/>
-                                        <p:selectOneMenu id="selectRoundInput5" value="#{inputNumberController.roundMethod}" >                          
-                                                <f:selectItem itemLabel="Round-Half-Up Symmetric (default)" itemValue="S" />  
-                                                <f:selectItem itemLabel="Round-Half-Up Asymmetric" itemValue="A" />
-                                                <f:selectItem itemLabel="Round-Half-Down Symmetric (lower case s)" itemValue="s" />
-                                                <f:selectItem itemLabel="Round-Half-Down Asymmetric (lower case a)" itemValue="a" />
-                                                <f:selectItem itemLabel="Round-Half-Even Bankers Rounding" itemValue="B" />
-                                                <f:selectItem itemLabel="Round Up Round-Away-From-Zero" itemValue="U" />
-                                                <f:selectItem itemLabel="Round Down Round-Toward-Zero" itemValue="D" />
-                                                <f:selectItem itemLabel="Round to Ceiling Toward Positive Infinity" itemValue="C" />
-                                                <f:selectItem itemLabel="Round to Floor Toward Negative Infinity" itemValue="F" />
-                                                <p:ajax update="Input6"/>                               
-                                        </p:selectOneMenu>
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <!-- This group is for coding -->
+            <h:panelGrid id="inputNumberGrid" columns="2" style="margin-bottom:10px" cellpadding="5">
+                <h:outputText value="Select round method"/>
+                <p:selectOneMenu id="selectRoundInput5" value="#{inputNumberController.roundMethod}">
+                    <f:selectItem itemLabel="Round-Half-Up Symmetric (default)" itemValue="S"/>
+                    <f:selectItem itemLabel="Round-Half-Up Asymmetric" itemValue="A"/>
+                    <f:selectItem itemLabel="Round-Half-Down Symmetric (lower case s)" itemValue="s"/>
+                    <f:selectItem itemLabel="Round-Half-Down Asymmetric (lower case a)" itemValue="a"/>
+                    <f:selectItem itemLabel="Round-Half-Even Bankers Rounding" itemValue="B"/>
+                    <f:selectItem itemLabel="Round Up Round-Away-From-Zero" itemValue="U"/>
+                    <f:selectItem itemLabel="Round Down Round-Toward-Zero" itemValue="D"/>
+                    <f:selectItem itemLabel="Round to Ceiling Toward Positive Infinity" itemValue="C"/>
+                    <f:selectItem itemLabel="Round to Floor Toward Negative Infinity" itemValue="F"/>
+                    <p:ajax update="Input6"/>
+                </p:selectOneMenu>
+            
+                <h:outputText value="Select decimal places"/>
+                <p:selectOneMenu id="selectDecimalsInput5" value="#{inputNumberController.decimalPlaces}">
+                    <f:selectItem itemLabel="1" itemValue="1"/>
+                    <f:selectItem itemLabel="2" itemValue="2"/>
+                    <f:selectItem itemLabel="3" itemValue="3"/>
+                    <f:selectItem itemLabel="4" itemValue="4"/>
+                    <f:selectItem itemLabel="5" itemValue="5"/>
+                    <f:selectItem itemLabel="6" itemValue="6"/>
+                    <p:ajax update="Input6"/>
+                </p:selectOneMenu>
+            
+                <h:outputText value="Enter the a number"/>
+                <p:inputText id="textInput6" value="#{inputNumberController.input6}">
+                    <p:ajax update="Input6"/>
+                </p:inputText>
+            
+                <h:outputText value="Formated value"/>
+                <pe:inputNumber id="Input6" value="#{inputNumberController.input6}" disabled="true" symbol="$ "
+                                roundMethod="#{inputNumberController.roundMethod}"
+                                decimalPlaces="#{inputNumberController.decimalPlaces}"/>
+            </h:panelGrid>
+        </h:panelGroup>
 
-                                        <h:outputText value="Select decimal places"/>
-                                        <p:selectOneMenu id="selectDecimalsInput5" value="#{inputNumberController.decimalPlaces}" >                          
-                                                <f:selectItem itemLabel="1" itemValue="1" />  
-                                                <f:selectItem itemLabel="2" itemValue="2" />
-                                                <f:selectItem itemLabel="3" itemValue="3" />
-                                                <f:selectItem itemLabel="4" itemValue="4" />
-                                                <f:selectItem itemLabel="5" itemValue="5" />
-                                                <f:selectItem itemLabel="6" itemValue="6" />                                               
-                                                <p:ajax update="Input6"/>                               
-                                        </p:selectOneMenu>
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <!-- Code here should be left aligned -->
+            <ui:define name="contentTab1">
+&lt;h:panelGrid id=&quot;inputNumberGrid&quot; columns=&quot;2&quot; style=&quot;margin-bottom:10px&quot; cellpadding=&quot;5&quot;&gt;
+    &lt;h:outputText value=&quot;Select round method&quot;/&gt;
+    &lt;p:selectOneMenu id=&quot;selectRoundInput5&quot; value=&quot;\#{inputNumberController.roundMethod}&quot;&gt;
+        &lt;f:selectItem itemLabel=&quot;Round-Half-Up Symmetric (default)&quot; itemValue=&quot;S&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Round-Half-Up Asymmetric&quot; itemValue=&quot;A&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Round-Half-Down Symmetric (lower case s)&quot; itemValue=&quot;s&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Round-Half-Down Asymmetric (lower case a)&quot; itemValue=&quot;a&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Round-Half-Even Bankers Rounding&quot; itemValue=&quot;B&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Round Up Round-Away-From-Zero&quot; itemValue=&quot;U&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Round Down Round-Toward-Zero&quot; itemValue=&quot;D&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Round to Ceiling Toward Positive Infinity&quot; itemValue=&quot;C&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;Round to Floor Toward Negative Infinity&quot; itemValue=&quot;F&quot;/&gt;
+        &lt;p:ajax update=&quot;Input6&quot;/&gt;
+    &lt;/p:selectOneMenu&gt;
 
-                                        <h:outputText value="Enter the a number"/>
-                                        <p:inputText id="textInput6" value="#{inputNumberController.input6}">
-                                                <p:ajax update="Input6"/>
-                                        </p:inputText> 
+    &lt;h:outputText value=&quot;Select decimal places&quot;/&gt;
+    &lt;p:selectOneMenu id=&quot;selectDecimalsInput5&quot; value=&quot;\#{inputNumberController.decimalPlaces}&quot;&gt;
+        &lt;f:selectItem itemLabel=&quot;1&quot; itemValue=&quot;1&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;2&quot; itemValue=&quot;2&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;3&quot; itemValue=&quot;3&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;4&quot; itemValue=&quot;4&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;5&quot; itemValue=&quot;5&quot;/&gt;
+        &lt;f:selectItem itemLabel=&quot;6&quot; itemValue=&quot;6&quot;/&gt;
+        &lt;p:ajax update=&quot;Input6&quot;/&gt;
+    &lt;/p:selectOneMenu&gt;
 
-                                        <h:outputText value="Formated value"/>
-                                        <pe:inputNumber id="Input6" value="#{inputNumberController.input6}"  disabled="true" symbol="$ " roundMethod="#{inputNumberController.roundMethod}" decimalPlaces="#{inputNumberController.decimalPlaces}"/>                
+    &lt;h:outputText value=&quot;Enter the a number&quot;/&gt;
+    &lt;p:inputText id=&quot;textInput6&quot; value=&quot;\#{inputNumberController.input6}&quot;&gt;
+        &lt;p:ajax update=&quot;Input6&quot;/&gt;
+    &lt;/p:inputText&gt;
 
+    &lt;h:outputText value=&quot;Formated value&quot;/&gt;
+    &lt;pe:inputNumber id=&quot;Input6&quot; value=&quot;\#{inputNumberController.input6}&quot; disabled=&quot;true&quot; symbol=&quot;$ &quot;
+                    roundMethod=&quot;\#{inputNumberController.roundMethod}&quot;
+                    decimalPlaces=&quot;\#{inputNumberController.decimalPlaces}&quot;/&gt;
+&lt;/h:panelGrid&gt;
+            </ui:define>
+            <ui:define name="contentTab2">
+@ManagedBean
+@ViewScoped
+public class InputNumberController implements Serializable {
 
+	private Double input1;
+	private Double input2;
+	private Double input3;
+	private Double input4;
+	private Double input5;
+	private Double input6;
+	private String unit;
+	private String roundMethod;
+	private int decimalPlaces;
+	private Distance distance;
 
-                                </h:panelGrid>
+	public InputNumberController() {
+		unit = &quot; kmh&quot;;
+		roundMethod = &quot;S&quot;;
+		decimalPlaces = 2;
+		distance = new Distance();
+		input5 = 251.31;
+		input6 = 60d;
+	}
 
-                        </h:panelGroup>
+	public Double getInput1() {
+		return input1;
+	}
 
-                        <ui:decorate template="/templates/twoTabsDecorator.html">
-                                <!-- Code here should be left aligned -->
-                                <ui:define name="contentTab1">
-                                        TODO
-                                </ui:define>
-                                <ui:define name="contentTab2">
-                                        TODO
-                                </ui:define>
-                        </ui:decorate>
-                </ui:define>
-                <ui:define name="useCases">
-                        <ui:include src="/sections/inputNumber/useCasesChoice.xhtml"/>
-                </ui:define>
-                <ui:define name="docuTable">
-                        <ui:include src="/sections/shared/documentation.xhtml">
-                                <ui:param name="tagName" value="inputNumber"/>
-                        </ui:include>
-                </ui:define>
-        </ui:composition>
+	public void setInput1(Double input1) {
+		this.input1 = input1;
+	}
+
+	public Double getInput2() {
+		return input2;
+	}
+
+	public void setInput2(Double input2) {
+		this.input2 = input2;
+	}
+
+	public Double getInput3() {
+		return input3;
+	}
+
+	public void setInput3(Double input3) {
+		this.input3 = input3;
+	}
+
+	public Double getInput4() {
+		return input4;
+	}
+
+	public void setInput4(Double input4) {
+		this.input4 = input4;
+	}
+
+	public Double getInput5() {
+		return input5;
+	}
+
+	public void setInput5(Double input5) {
+		this.input5 = input5;
+	}
+
+	public Double getInput6() {
+		return input6;
+	}
+
+	public void setInput6(Double input6) {
+		this.input6 = input6;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+	public Distance getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Distance distance) {
+		this.distance = distance;
+	}
+
+	public String getRoundMethod() {
+		return roundMethod;
+	}
+
+	public void setRoundMethod(String roundMethod) {
+		this.roundMethod = roundMethod;
+	}
+
+	public int getDecimalPlaces() {
+		return decimalPlaces;
+	}
+
+	public void setDecimalPlaces(int decimalPlaces) {
+		this.decimalPlaces = decimalPlaces;
+	}
+}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/inputNumber/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="inputNumber"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
 </html>
