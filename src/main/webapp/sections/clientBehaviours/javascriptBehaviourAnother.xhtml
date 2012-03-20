@@ -22,10 +22,13 @@
 			The 'ext' parameter can be used for example to get the parameters which are created by the parent widget.
 			For example the colResize event of p:dataTable:
 			<p/>
-			    var ext = { params: {} };<br/>
-                ext.params[id + '_columnId'] = columnHeader.attr('id');<br/>
-                ext.params[id + '_width'] = newWidth;<br/>
-                ext.params[id + '_height'] = columnHeader.height();<br/>
+&#160; 			var ext = {<br/>
+&#160;&#160;    	params: [<br/>
+&#160;&#160;&#160;    	{ name: id + '_columnId', value : columnHeader.attr('id') }, <br/>
+&#160;&#160;&#160;    	{ name: id + '_width', value : newWidth }, <br/>
+&#160;&#160;&#160;    	{ name: id + '_height', value : columnHeader.height() } <br/>
+&#160;				] <br/>
+&#160;		    };<br/>
             <p/>
             id is the client Id of the datatable.
             <p/>
