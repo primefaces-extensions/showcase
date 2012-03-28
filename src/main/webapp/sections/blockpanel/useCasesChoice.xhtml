@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+    <p:menu id="useCaseList">
+        <p:menuitem value="Usage by p:ajax"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('lockPanelAjax')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/blockpanel/blockPanelAjax.jsf"/>
+        <p:menuitem value="Usage by JS API"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('lockPanelAjax')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/blockpanel/blockPanelJS.jsf"/>
+<!--         <p:menuitem value="AutoShow mode and more" -->
+<!--                     styleClass="#{navigationContext.getMenuitemStyleClass('blockUIAutoShow')}" -->
+<!--                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play" -->
+<!--                     url="/sections/blockui/blockUIAutoShow.jsf"/> -->
+    </p:menu>
+</ui:composition>
+</html>

@@ -1,0 +1,36 @@
+<h:panelGroup xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" 
+	
+	layout="block" styleClass="centerExample">
+	
+	<p:messages id="messages" />
+
+	<pe:blockPanel blocked="false" widgetVar="firstBlockPanel" style="border: 1px solid red;margin:5px;padding:10px;">
+		First BlockPanel
+		<h:panelGrid columns="">
+			<h:inputText value="1" />
+			<h:inputText value="2" />
+			<h:inputText value="3" />
+			<h:inputText value="4" />
+		</h:panelGrid>
+		<button onclick="firstBlockPanel.block();return false;">JS LOCK</button>
+		<button onclick="firstBlockPanel.unblock();return false;">JS UNLOCK</button>
+	</pe:blockPanel>
+
+	<br />
+
+	<pe:blockPanel blocked="true" widgetVar="secondBlockPanel" style="border: 1px solid blue;margin:5px;padding:10px;">
+		Second BlockPanel
+		<h:panelGrid columns="">
+			<h:inputText value="1" />
+			<h:inputText value="2" />
+			<h:inputText value="3" />
+			<h:inputText value="4" />
+		</h:panelGrid>
+		<button onclick="secondBlockPanel.block();return false;">JS LOCK</button>
+		<button onclick="secondBlockPanel.unblock();return false;">JS UNLOCK</button>
+	</pe:blockPanel>
+
+</h:panelGroup>
