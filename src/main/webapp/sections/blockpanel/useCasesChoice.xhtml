@@ -4,11 +4,11 @@
 <ui:composition>
     <p:menu id="useCaseList">
         <p:menuitem value="Usage by p:ajax"
-                    styleClass="#{navigationContext.getMenuitemStyleClass('lockPanelAjax')}"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('blockPanelAjax')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                     url="/sections/blockpanel/blockPanelAjax.jsf"/>
-        <p:menuitem value="Usage by JS API"
-                    styleClass="#{navigationContext.getMenuitemStyleClass('lockPanelAjax')}"
+        <p:menuitem value="Usage by JavaScript API"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('blockPanelJS')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                     url="/sections/blockpanel/blockPanelJS.jsf"/>
 <!--         <p:menuitem value="AutoShow mode and more" -->

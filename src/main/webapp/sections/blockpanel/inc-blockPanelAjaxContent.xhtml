@@ -1,56 +1,62 @@
-<h:panelGrid columns="3" xmlns="http://www.w3.org/1999/xhtml"
-             xmlns:h="http://java.sun.com/jsf/html"
-             xmlns:p="http://primefaces.org/ui"
-             xmlns:pe="http://primefaces.org/ui/extensions">
-	
-	<pe:blockPanel id="idPanel1" blocked="${viewScope.editPanel1}" style="padding:10px;margin:10px; border: 1px solid navy;">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<p:messages id="messages"/>
 
-		<p:selectBooleanButton value="#{viewScope.editPanel1}" offLabel="Edit" onLabel="Save">
-			<p:ajax event="change" process="idPanel1" update="idPanel1" />
-		</p:selectBooleanButton>
+<h:panelGrid columns="3">
+    <pe:blockPanel id="idPanel1" blocked="${viewScope.editPanel1}" style="padding:10px;margin:10px;"
+                   styleClass="ui-widget ui-widget-content ui-corner-all">
 
-		<div style="margin-top: 10px;">
-			First BlockPanel
-			<h:panelGrid columns="">
-				<h:inputText value="1" disabled="${!viewScope.editPanel1}" />
-				<h:inputText value="2" disabled="${!viewScope.editPanel1}" />
-				<h:inputText value="3" disabled="${!viewScope.editPanel1}" />
-				<h:inputText value="4" disabled="${!viewScope.editPanel1}" />
-			</h:panelGrid>
-		</div>
-	</pe:blockPanel>
+        <p:selectBooleanButton value="#{viewScope.editPanel1}" offLabel="Edit" onLabel="Save">
+            <p:ajax event="change" process="idPanel1" update="idPanel1"/>
+        </p:selectBooleanButton>
 
-	<pe:blockPanel id="idPanel2" blocked="${viewScope.editPanel2}" style="padding:10px;margin:10px; border: 1px solid navy;">
+        <h:panelGroup layout="block" style="margin-top: 10px;">
+            First BlockPanel
+            <h:panelGrid columns="">
+                <h:inputText value="1" disabled="${!viewScope.editPanel1}"/>
+                <h:inputText value="2" disabled="${!viewScope.editPanel1}"/>
+                <h:inputText value="3" disabled="${!viewScope.editPanel1}"/>
+                <h:inputText value="4" disabled="${!viewScope.editPanel1}"/>
+            </h:panelGrid>
+        </h:panelGroup>
+    </pe:blockPanel>
 
-		<p:selectBooleanButton value="#{viewScope.editPanel2}" offLabel="Edit" onLabel="Save">
-			<p:ajax event="change" process="idPanel2" update="idPanel2" />
-		</p:selectBooleanButton>
+    <pe:blockPanel id="idPanel2" blocked="${viewScope.editPanel2}" style="padding:10px;margin:10px;"
+                   styleClass="ui-widget ui-widget-content ui-corner-all">
 
-		<div style="margin-top: 10px;">
-			Second BlockPanel
-			<h:panelGrid columns="">
-				<h:inputText value="1" disabled="${!viewScope.editPanel2}" />
-				<h:inputText value="2" disabled="${!viewScope.editPanel2}" />
-				<h:inputText value="3" disabled="${!viewScope.editPanel2}" />
-				<h:inputText value="4" disabled="${!viewScope.editPanel2}" />
-			</h:panelGrid>
-		</div>
-	</pe:blockPanel>
+        <p:selectBooleanButton value="#{viewScope.editPanel2}" offLabel="Edit" onLabel="Save">
+            <p:ajax event="change" process="idPanel2" update="idPanel2"/>
+        </p:selectBooleanButton>
 
-	<pe:blockPanel id="idPanel3" blocked="${viewScope.editPanel3}" style="padding:10px;margin:10px; border: 1px solid navy;">
+        <h:panelGroup layout="block" style="margin-top: 10px;">
+            Second BlockPanel
+            <h:panelGrid columns="">
+                <h:inputText value="1" disabled="${!viewScope.editPanel2}"/>
+                <h:inputText value="2" disabled="${!viewScope.editPanel2}"/>
+                <h:inputText value="3" disabled="${!viewScope.editPanel2}"/>
+                <h:inputText value="4" disabled="${!viewScope.editPanel2}"/>
+            </h:panelGrid>
+        </h:panelGroup>
+    </pe:blockPanel>
 
-		<p:selectBooleanButton value="#{viewScope.editPanel3}" offLabel="Edit" onLabel="Save">
-			<p:ajax event="change" process="idPanel3" update="idPanel3" />
-		</p:selectBooleanButton>
+    <pe:blockPanel id="idPanel3" blocked="${viewScope.editPanel3}" style="padding:10px;margin:10px;"
+                   styleClass="ui-widget ui-widget-content ui-corner-all">
 
-		<div style="margin-top: 10px;">
-			Third BlockPanel
-			<h:panelGrid columns="">
-				<h:inputText value="1" disabled="${!viewScope.editPanel3}" />
-				<h:inputText value="2" disabled="${!viewScope.editPanel3}" />
-				<h:inputText value="3" disabled="${!viewScope.editPanel3}" />
-				<h:inputText value="4" disabled="${!viewScope.editPanel3}" />
-			</h:panelGrid>
-		</div>
-	</pe:blockPanel>
+        <p:selectBooleanButton value="#{viewScope.editPanel3}" offLabel="Edit" onLabel="Save">
+            <p:ajax event="change" process="idPanel3" update="idPanel3"/>
+        </p:selectBooleanButton>
+
+        <h:panelGroup layout="block" style="margin-top: 10px;">
+            Third BlockPanel
+            <h:panelGrid columns="">
+                <h:inputText value="1" disabled="${!viewScope.editPanel3}"/>
+                <h:inputText value="2" disabled="${!viewScope.editPanel3}"/>
+                <h:inputText value="3" disabled="${!viewScope.editPanel3}"/>
+                <h:inputText value="4" disabled="${!viewScope.editPanel3}"/>
+            </h:panelGrid>
+        </h:panelGroup>
+    </pe:blockPanel>
 </h:panelGrid>
+</html>

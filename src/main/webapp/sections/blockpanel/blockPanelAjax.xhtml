@@ -1,24 +1,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-        >
-      
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
-	    
+        <f:facet name="header">
+            <h:outputText value="BlockPanel"/>
+        </f:facet>
+        
+        <h:panelGroup layout="block" styleClass="centerContent">
+            TODO Description
+        </h:panelGroup>        
+
         <h:panelGroup layout="block" styleClass="centerExample">
-            <p:messages id="messages"/>
-            <ui:include src="./inc-blockPanelAjaxContent.xhtml" ></ui:include>
-            
+            <ui:include src="/sections/blockpanel/inc-blockPanelAjaxContent.xhtml"/>
         </h:panelGroup>
-    	<ui:decorate template="/templates/oneTabDecorator.html">
+        
+        <ui:decorate template="/templates/oneTabDecorator.html">
             <ui:define name="contentTab1">
 ${showcase:getFileContentFromWeb('/sections/blockpanel/inc-blockPanelAjaxContent.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>
-    
+
     <ui:define name="useCases">
         <ui:include src="/sections/blockpanel/useCasesChoice.xhtml"/>
     </ui:define>

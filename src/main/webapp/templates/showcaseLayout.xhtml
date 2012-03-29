@@ -36,10 +36,16 @@
                 <p:menuitem value="Converters" styleClass="#{navigationContext.getMenuitemStyleClass('converters')}"
                             icon="#{technicalInfo.getMenuitemIconStyleClass('converters')}"
                             onclick="selectComponentLink(this)" ajax="false" url="/views/converters.jsf"/>
+                <p:menuitem value="Functions, Utils" styleClass="#{navigationContext.getMenuitemStyleClass('utils')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('utils')} ui-icon-new-comp"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/utils.jsf"/>                
                 <p:separator/>
                 <p:menuitem value="AjaxStatus" styleClass="#{navigationContext.getMenuitemStyleClass('ajaxStatus')}"
                             icon="#{technicalInfo.getMenuitemIconStyleClass('ajaxStatus')}"
                             onclick="selectComponentLink(this)" ajax="false" url="/views/ajaxStatus.jsf"/>
+                <p:menuitem value="BlockPanel" styleClass="#{navigationContext.getMenuitemStyleClass('blockPanel')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('blockPanel')}"
+                            onclick="selectComponentLink(this)" ajax="false" url="/views/blockPanel.jsf"/>                
                 <p:menuitem value="BlockUI" styleClass="#{navigationContext.getMenuitemStyleClass('blockUI')}"
                             icon="#{technicalInfo.getMenuitemIconStyleClass('blockUI')}"
                             onclick="selectComponentLink(this)" ajax="false" url="/views/blockUI.jsf"/>
