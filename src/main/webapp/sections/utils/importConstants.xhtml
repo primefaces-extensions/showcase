@@ -10,19 +10,44 @@
             <h:outputText value="ImportConstants"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-			TODO Description
+			In EL 2.2 or older, it's not possible to use constants or any other static fields/methods in an EL expression. <br/>
+			As it is not really "cool" to create beans with getter/setter for each constants class, we provide an utils tag which allows to import constant fields in a page. <br/>
+			<br/>
+			The constants can be accessed via the name of the class (default setting) or via a custom name (var attribtue).
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            TODO Code
+            <pe:importConstants className="org.primefaces.extensions.util.Constants" var="PEConstants" />
+            
+            Library:
+            <h:outputText value="#{PEConstants.LIBRARY}" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-                
+	            &lt;pe:importConstants className="org.primefaces.extensions.util.Constants" var="PEConstants" /&gt;
+	            
+	            Library:
+	            &lt;h:outputText value="\#{PEConstants.LIBRARY}" /&gt;
             </ui:define>
             <ui:define name="contentTab2">
-                
+public final class Constants {
+
+	public static final String LIBRARY = "primefaces-extensions";
+	public static final String LIBRARY_UNCOMPRESSED = "primefaces-extensions-uncompressed";
+
+	public static final String DELIVER_UNCOMPRESSED_RESOURCES_INIT_PARAM =
+	    "org.primefaces.extensions.DELIVER_UNCOMPRESSED_RESOURCES";
+
+	public static final String EXTENSION_CSS = ".css";
+	public static final String EXTENSION_JS = ".js";
+
+	/**
+	 * Avoid instantiation.
+	 */
+	private Constants() {
+	}
+}
             </ui:define>
         </ui:decorate>
     </ui:define>
