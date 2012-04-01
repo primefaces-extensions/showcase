@@ -1,0 +1,19 @@
+<h:panelGroup
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions"
+
+        layout="block">
+
+    <p:growl id="growl" showDetail="true" />
+    <pe:ckEditor id="editor" value="#{editorController.content}">
+        <p:ajax event="save" listener="#{editorController.saveListener}" update="growl"/>
+    </pe:ckEditor>
+    <br/>
+    <br/>
+    <pe:ckEditor id="secondEditor" value="#{editorController.secondContent}" skin="office2003">
+        <p:ajax event="save" listener="#{editorController.secondSaveListener}" update="growl"/>
+    </pe:ckEditor>
+
+</h:panelGroup>

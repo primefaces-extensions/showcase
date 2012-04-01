@@ -1,0 +1,17 @@
+<h:panelGroup
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions"
+    layout="block">
+
+    <p:growl id="growl" showDetail="true" />
+
+    <pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}"
+        theme="eclipse" value="#{codeMirrorController.content}" lineNumbers="true"
+        extraKeys="{ 'Ctrl-Space': function(cm) {CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);}}" />
+
+    <p:commandButton actionListener="#{codeMirrorController.changeMode}" update="codeMirror"
+                     value="Change mode with AJAX" style="margin-top:10px;"/>
+
+</h:panelGroup>

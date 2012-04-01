@@ -6,14 +6,20 @@
     <namespace>http://primefaces.org/ui/extensions/showcase</namespace>
 
 	<function>
-		<function-name>getFileContentFromWeb</function-name>
+		<function-name>getFileContent</function-name>
 		<function-class>org.primefaces.extensions.showcase.util.ShowcaseUtil</function-class>
-		<function-signature>java.lang.String getFileContentFromWeb(java.lang.String)</function-signature>
+		<function-signature>java.lang.String getFileContent(java.lang.String)</function-signature>
 	</function>
 
-	<function>
-		<function-name>getFileContentFromClasspath</function-name>
-		<function-class>org.primefaces.extensions.showcase.util.ShowcaseUtil</function-class>
-		<function-signature>java.lang.String getFileContentFromClasspath(java.lang.String)</function-signature>
-	</function>
+    <!--<function>-->
+        <!--<function-name>getFileContentFromClasspath</function-name>-->
+        <!--<function-class>org.primefaces.extensions.showcase.util.ShowcaseUtil</function-class>-->
+        <!--<function-signature>java.lang.String getFileContentFromClasspath(java.lang.String)</function-signature>-->
+    <!--</function>-->
+
+    <!--<function>-->
+        <!--<function-name>getFileContentFromClasspath</function-name>-->
+        <!--<function-class>org.primefaces.extensions.showcase.util.ShowcaseUtil</function-class>-->
+        <!--<function-signature>java.lang.String getFileContentFromClasspath(java.lang.String)</function-signature>-->
+    <!--</function>-->
 </facelet-taglib>

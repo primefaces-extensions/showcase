@@ -2,8 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -14,170 +13,15 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:panelGrid columns="2">
-                <h:panelGrid id="ajaxStatusTable" columns="3" columnClasses="column,column,column"
-                             cellpadding="0" cellspacing="0">
-                    <h:panelGroup/>
-                    <h:outputText value="JSF standard" styleClass="header"/>
-                    <h:outputText value="PrimeFaces" styleClass="header"/>
-                    <h:outputText value="Choose country please"/>
-                    <h:selectOneMenu valueChangeListener="#{ajaxStatusController.valueChanged}"
-                                     value="#{ajaxStatusController.country1}">
-                        <f:selectItem itemLabel="Germany" itemValue="Germany"/>
-                        <f:selectItem itemLabel="Russia" itemValue="Russia"/>
-                        <f:selectItem itemLabel="USA" itemValue="USA"/>
-                        <f:selectItem itemLabel="Canada" itemValue="Canada"/>
-                        <f:ajax event="change" execute="ajaxStatusTable"/>
-                    </h:selectOneMenu>
-                    <p:selectOneMenu valueChangeListener="#{ajaxStatusController.valueChanged}"
-                                     value="#{ajaxStatusController.country2}">
-                        <f:selectItem itemLabel="Germany" itemValue="Germany"/>
-                        <f:selectItem itemLabel="Russia" itemValue="Russia"/>
-                        <f:selectItem itemLabel="USA" itemValue="USA"/>
-                        <f:selectItem itemLabel="Canada" itemValue="Canada"/>
-                        <p:ajax event="change" process="ajaxStatusTable"/>
-                    </p:selectOneMenu>
-                    <h:outputText value="Choose your favorite food"/>
-                    <h:selectOneRadio valueChangeListener="#{ajaxStatusController.valueChanged}"
-                                      value="#{ajaxStatusController.food1}"
-                                      layout="pageDirection" styleClass="radioButtons">
-                        <f:selectItem itemLabel="Pizza" itemValue="Pizza"/>
-                        <f:selectItem itemLabel="Pasta" itemValue="Pasta"/>
-                        <f:selectItem itemLabel="Kebab" itemValue="Kebab"/>
-                        <f:ajax event="click" execute="ajaxStatusTable"/>
-                    </h:selectOneRadio>
-                    <p:selectOneRadio valueChangeListener="#{ajaxStatusController.valueChanged}"
-                                      value="#{ajaxStatusController.food2}"
-                                      layout="pageDirection" styleClass="radioButtons">
-                        <f:selectItem itemLabel="Pizza" itemValue="Pizza"/>
-                        <f:selectItem itemLabel="Pasta" itemValue="Pasta"/>
-                        <f:selectItem itemLabel="Kebab" itemValue="Kebab"/>
-                        <p:ajax event="change" process="ajaxStatusTable"/>
-                    </p:selectOneRadio>
-                </h:panelGrid>
-            
-                <h:panelGrid id="ajaxIndicatorTable" columns="2" columnClasses="column" cellpadding="0" cellspacing="0">
-                    <h:outputText value="Ajax indicator" styleClass="header"/>
-                    <pe:ajaxStatus style="width:31px;height:31px;">
-                        <f:facet name="start">
-                            <h:graphicImage library="images" name="ajax-loader1.gif"/>
-                        </f:facet>
-                        <f:facet name="complete">
-                            <h:outputText value=""/>
-                        </f:facet>
-                    </pe:ajaxStatus>
-                </h:panelGrid>
-            </h:panelGrid>
+            <ui:include src="/sections/ajaxstatus/example-declarativeAjaxStatus.xhtml" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-&lt;h:panelGrid columns=&quot;2&quot;&gt;
-    &lt;h:panelGrid id=&quot;ajaxStatusTable&quot; columns=&quot;3&quot; columnClasses=&quot;column,column,column&quot;
-                 cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
-        &lt;h:panelGroup/&gt;
-        &lt;h:outputText value=&quot;JSF standard&quot; styleClass=&quot;header&quot;/&gt;
-        &lt;h:outputText value=&quot;PrimeFaces&quot; styleClass=&quot;header&quot;/&gt;
-        &lt;h:outputText value=&quot;Choose country please&quot;/&gt;
-        &lt;h:selectOneMenu valueChangeListener=&quot;\#{ajaxStatusController.valueChanged}&quot;
-                         value=&quot;\#{ajaxStatusController.country1}&quot;&gt;
-            &lt;f:selectItem itemLabel=&quot;Germany&quot; itemValue=&quot;Germany&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;Russia&quot; itemValue=&quot;Russia&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;USA&quot; itemValue=&quot;USA&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;Canada&quot; itemValue=&quot;Canada&quot;/&gt;
-            &lt;f:ajax event=&quot;change&quot; execute=&quot;ajaxStatusTable&quot;/&gt;
-        &lt;/h:selectOneMenu&gt;
-        &lt;p:selectOneMenu valueChangeListener=&quot;\#{ajaxStatusController.valueChanged}&quot;
-                         value=&quot;\#{ajaxStatusController.country2}&quot;&gt;
-            &lt;f:selectItem itemLabel=&quot;Germany&quot; itemValue=&quot;Germany&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;Russia&quot; itemValue=&quot;Russia&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;USA&quot; itemValue=&quot;USA&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;Canada&quot; itemValue=&quot;Canada&quot;/&gt;
-            &lt;p:ajax event=&quot;change&quot; process=&quot;ajaxStatusTable&quot;/&gt;
-        &lt;/p:selectOneMenu&gt;
-        &lt;h:outputText value=&quot;Choose your favorite food&quot;/&gt;
-        &lt;h:selectOneRadio valueChangeListener=&quot;\#{ajaxStatusController.valueChanged}&quot;
-                          value=&quot;\#{ajaxStatusController.food1}&quot;
-                          layout=&quot;pageDirection&quot; styleClass=&quot;radioButtons&quot;&gt;
-            &lt;f:selectItem itemLabel=&quot;Pizza&quot; itemValue=&quot;Pizza&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;Pasta&quot; itemValue=&quot;Pasta&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;Kebab&quot; itemValue=&quot;Kebab&quot;/&gt;
-            &lt;f:ajax event=&quot;click&quot; execute=&quot;ajaxStatusTable&quot;/&gt;
-        &lt;/h:selectOneRadio&gt;
-        &lt;p:selectOneRadio valueChangeListener=&quot;\#{ajaxStatusController.valueChanged}&quot;
-                          value=&quot;\#{ajaxStatusController.food2}&quot;
-                          layout=&quot;pageDirection&quot; styleClass=&quot;radioButtons&quot;&gt;
-            &lt;f:selectItem itemLabel=&quot;Pizza&quot; itemValue=&quot;Pizza&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;Pasta&quot; itemValue=&quot;Pasta&quot;/&gt;
-            &lt;f:selectItem itemLabel=&quot;Kebab&quot; itemValue=&quot;Kebab&quot;/&gt;
-            &lt;p:ajax event=&quot;change&quot; process=&quot;ajaxStatusTable&quot;/&gt;
-        &lt;/p:selectOneRadio&gt;
-    &lt;/h:panelGrid&gt;
-
-    &lt;h:panelGrid id=&quot;ajaxIndicatorTable&quot; columns=&quot;2&quot; columnClasses=&quot;column&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
-        &lt;h:outputText value=&quot;Ajax indicator&quot; styleClass=&quot;header&quot;/&gt;
-        &lt;pe:ajaxStatus style=&quot;width:31px;height:31px;&quot;&gt;
-            &lt;f:facet name=&quot;start&quot;&gt;
-                &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot;/&gt;
-            &lt;/f:facet&gt;
-            &lt;f:facet name=&quot;complete&quot;&gt;
-                &lt;h:outputText value=&quot;&quot;/&gt;
-            &lt;/f:facet&gt;
-        &lt;/pe:ajaxStatus&gt;
-    &lt;/h:panelGrid&gt;
-&lt;/h:panelGrid&gt;
+${showcase:getFileContent('/sections/ajaxstatus/example-declarativeAjaxStatus.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-@ManagedBean
-@ViewScoped
-public class AjaxStatusController implements Serializable {
-
-	private String country1 = &quot;Germany&quot;;
-	private String country2 = &quot;Russia&quot;;
-	private String food1 = &quot;Pizza&quot;;
-	private String food2 = &quot;Kebab&quot;;
-
-	public String getCountry1() {
-		return country1;
-	}
-
-	public void setCountry1(String country1) {
-		this.country1 = country1;
-	}
-
-	public String getCountry2() {
-		return country2;
-	}
-
-	public void setCountry2(String country2) {
-		this.country2 = country2;
-	}
-
-	public String getFood1() {
-		return food1;
-	}
-
-	public void setFood1(String food1) {
-		this.food1 = food1;
-	}
-
-	public String getFood2() {
-		return food2;
-	}
-
-	public void setFood2(String food2) {
-		this.food2 = food2;
-	}
-
-	public void valueChanged(ValueChangeEvent vce) {
-		try {
-            // simulate a long running request
-			Thread.sleep(1500);
-		} catch (Exception e) {
-			// ignore
-		}
-	}
-}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/AjaxStatusController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

@@ -1,0 +1,16 @@
+<h:panelGroup
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions"
+
+        layout="block">
+
+    <p:growl id="growl" showDetail="true" />
+    <pe:ckEditor id="editor" value="#{editorController.content}" interfaceColor="#{editorController.color}" checkDirtyInterval="0">
+        <p:ajax event="save" listener="#{editorController.saveListener}" update="growl"/>
+    </pe:ckEditor>
+
+    <p:commandButton actionListener="#{editorController.changeColor}" update="editor"
+                     value="Change color with AJAX" style="margin-top:10px;"/>
+</h:panelGroup>

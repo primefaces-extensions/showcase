@@ -3,7 +3,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -69,153 +70,12 @@
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-&lt;h:panelGroup id=&quot;viewArea&quot; layout=&quot;block&quot;&gt;
-    &lt;h:panelGrid columns=&quot;2&quot; columnClasses=&quot;columnTop,columnTop&quot;&gt;
-        &lt;h:panelGroup layout=&quot;block&quot; styleClass=&quot;blockable&quot; style=&quot;margin-right: 40px;&quot;&gt;
-            &lt;p:tree id=&quot;fileSystem&quot; value=&quot;\#{fileSystemController.root}&quot; var=&quot;node&quot; dynamic=&quot;true&quot; cache=&quot;false&quot;
-                    selectionMode=&quot;single&quot; selection=&quot;\#{fileSystemController.selectedNode}&quot;&gt;
-                &lt;p:ajax event=&quot;expand&quot; update=&quot;_mainForm_accessRightsGroup&quot;
-                        listener=&quot;\#{fileSystemController.onNodeExpand}&quot;/&gt;
-                &lt;p:ajax event=&quot;select&quot; update=&quot;_mainForm_accessRightsGroup&quot;
-                        listener=&quot;\#{fileSystemController.onNodeSelect}&quot;/&gt;
-                &lt;p:ajax event=&quot;unselect&quot; update=&quot;_mainForm_accessRightsGroup&quot;
-                        listener=&quot;\#{fileSystemController.onNodeUnselect}&quot;/&gt;
-                &lt;p:treeNode&gt;
-                    &lt;h:outputText value=&quot;#{node}&quot;/&gt;
-                &lt;/p:treeNode&gt;
-            &lt;/p:tree&gt;
-        &lt;/h:panelGroup&gt;
-
-        &lt;h:panelGroup layout=&quot;block&quot; id=&quot;accessRightsGroup&quot; styleClass=&quot;blockable&quot; style=&quot;width: 250px;&quot;&gt;
-            &lt;h:outputText value=&quot;Access rights for \#{fileSystemController.selectedNode.data}&quot;
-                          rendered=&quot;\#{not empty fileSystemController.selectedNode}&quot;/&gt;
-            &lt;h:outputText value=&quot;No tree node is selected&quot; rendered=&quot;\#{empty fileSystemController.selectedNode}&quot;/&gt;
-
-            &lt;h:selectManyCheckbox id=&quot;accessRights&quot; value=&quot;\#{accessRightsController.selectedAccessRights}&quot;
-                                  styleClass=&quot;checkBoxes&quot; layout=&quot;pageDirection&quot; style=&quot;margin-top: 10px;&quot;&gt;
-                &lt;f:selectItems value=&quot;\#{accessRightsController.accessRights}&quot;/&gt;
-                &lt;p:ajax process=&quot;@this&quot;/&gt;
-            &lt;/h:selectManyCheckbox&gt;
-
-            &lt;pe:blockUI source=&quot;accessRights&quot; targetSelector=&quot;.blockable&quot; autoShow=&quot;true&quot;&gt;
-                &lt;h:panelGrid columns=&quot;2&quot;&gt;
-                    &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot;
-                                    style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
-                    &lt;h:outputText value=&quot;Checkbox clicked...&quot; style=&quot;white-space: nowrap;&quot;/&gt;
-                &lt;/h:panelGrid&gt;
-            &lt;/pe:blockUI&gt;
-        &lt;/h:panelGroup&gt;
-    &lt;/h:panelGrid&gt;
-&lt;/h:panelGroup&gt;
-
-&lt;pe:blockUI source=&quot;fileSystem&quot; target=&quot;viewArea&quot; event=&quot;expand,select,unselect&quot; autoShow=&quot;true&quot;&gt;
-    &lt;h:panelGrid columns=&quot;2&quot;&gt;
-        &lt;h:graphicImage library=&quot;images&quot; name=&quot;ajax-loader1.gif&quot;
-                style=&quot;margin-right: 12px; vertical-align: middle;&quot;/&gt;
-        &lt;h:outputText value=&quot;Tree event is running...&quot; style=&quot;white-space: nowrap;&quot;/&gt;
-    &lt;/h:panelGrid&gt;
-&lt;/pe:blockUI&gt;
+${showcase:getFileContent('/sections/blockui/example-blockUIAutoShow.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-@ManagedBean
-@ViewScoped
-public class FileSystemController implements Serializable {
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/blockui/FileSystemController.java')}
 
-	private TreeNode root;
-	private TreeNode selectedNode;
-
-	public FileSystemController() {
-		root = new DefaultTreeNode(&quot;Root&quot;, null);
-
-		TreeNode node0 = new DefaultTreeNode(&quot;Folder 0&quot;, root);
-		TreeNode node1 = new DefaultTreeNode(&quot;Folder 1&quot;, root);
-		TreeNode node2 = new DefaultTreeNode(&quot;Folder 2&quot;, root);
-		TreeNode node00 = new DefaultTreeNode(&quot;Folder 0.0&quot;, node0);
-		TreeNode node01 = new DefaultTreeNode(&quot;Folder 0.1&quot;, node0);
-		TreeNode node10 = new DefaultTreeNode(&quot;Folder 1.0&quot;, node1);
-		new DefaultTreeNode(&quot;File 1.1&quot;, node1);
-		new DefaultTreeNode(&quot;File 2.0&quot;, node2);
-		new DefaultTreeNode(&quot;File 0.0.0&quot;, node00);
-		new DefaultTreeNode(&quot;File 0.0.1&quot;, node00);
-		new DefaultTreeNode(&quot;File 0.1.0&quot;, node01);
-		new DefaultTreeNode(&quot;File 1.0.0&quot;, node10);
-	}
-
-	public TreeNode getRoot() {
-		return root;
-	}
-
-	public TreeNode getSelectedNode() {
-		return selectedNode;
-	}
-
-	public void setSelectedNode(TreeNode selectedNode) {
-		this.selectedNode = selectedNode;
-	}
-
-	public void onNodeExpand(NodeExpandEvent event) {
-		doSomething();
-	}
-
-	public void onNodeSelect(NodeSelectEvent event) {
-		selectedNode = event.getTreeNode();
-		doSomething();
-	}
-
-	public void onNodeUnselect(NodeUnselectEvent event) {
-		selectedNode = null;
-		doSomething();
-	}
-
-	public void doSomething() {
-		try {
-			// simulate a long running request
-			Thread.sleep(1200);
-		} catch (Exception e) {
-			// ignore
-		}
-	}
-}
-                
-@ManagedBean
-@ViewScoped
-public class AccessRightsController implements Serializable {
-
-	private List&lt;SelectItem&gt; accessRights = new ArrayList&lt;SelectItem&gt;();
-	private List&lt;SelectItem&gt; selectedAccessRights = new ArrayList&lt;SelectItem&gt;();
-
-	public AccessRightsController() {
-		accessRights.add(new SelectItem(&quot;View&quot;, &quot;View&quot;));
-		accessRights.add(new SelectItem(&quot;Read&quot;, &quot;Read&quot;));
-		accessRights.add(new SelectItem(&quot;Write&quot;, &quot;Write&quot;));
-		accessRights.add(new SelectItem(&quot;Execute&quot;, &quot;Execute&quot;));
-		accessRights.add(new SelectItem(&quot;Delete&quot;, &quot;Delete&quot;));
-		accessRights.add(new SelectItem(&quot;Full&quot;, &quot;Full&quot;));
-	}
-
-	public List&lt;SelectItem&gt; getAccessRights() {
-		return accessRights;
-	}
-
-	public void setAccessRights(List&lt;SelectItem&gt; accessRights) {
-		this.accessRights = accessRights;
-	}
-
-	public List&lt;SelectItem&gt; getSelectedAccessRights() {
-		try {
-			// simulate a long running request
-			Thread.sleep(1200);
-		} catch (Exception e) {
-			// ignore
-		}
-
-		return selectedAccessRights;
-	}
-
-	public void setSelectedAccessRights(List&lt;SelectItem&gt; selectedAccessRights) {
-		this.selectedAccessRights = selectedAccessRights;
-	}
-}                
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/blockui/AccessRightsController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

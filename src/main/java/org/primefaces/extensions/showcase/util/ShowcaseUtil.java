@@ -31,27 +31,20 @@ import java.io.InputStreamReader;
  * @version $Revision$
  */
 public class ShowcaseUtil {
+    public static String getFileContent(String fullPathToFile) {
+        try {
+            // Finding in WEB ...
+            FacesContext fc = FacesContext.getCurrentInstance();
+            InputStream is = fc.getExternalContext().getResourceAsStream(fullPathToFile);
+            if (is != null) return convertStreamToString(is);
 
-	public static String getFileContentFromWeb(String fileName) {
-		try {
-			FacesContext fc = FacesContext.getCurrentInstance();
-			InputStream is = fc.getExternalContext().getResourceAsStream(fileName);
+            // Finding in ClassPath ...
+            is = ShowcaseUtil.class.getResourceAsStream(fullPathToFile);
+            if (is != null) return convertStreamToString(is);
 
-			return convertStreamToString(is);
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	public static String getFileContentFromClasspath(String fileName) {
-		try {
-			InputStream is = ShowcaseUtil.class.getResourceAsStream(fileName);
-
-			return convertStreamToString(is);
-		} catch (Exception e) {
-			return null;
-		}
-	}
+        } catch (Exception e) {}
+        return "";
+    }
 
 	private static String convertStreamToString(InputStream is) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));

@@ -2,8 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -36,54 +35,12 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <p:dataTable id="myDataTable" var="message" value="#{dataTableController.messages}">
-                <pe:paginator 
-                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                    rows="10"
-                    rowsPerPageTemplate="5,10,15" />
-                <pe:javascript event="page" execute="alert('Datatable page event called')"/>
-                <f:facet name="header">
-                    Messages
-                </f:facet>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Subject" />
-                    </f:facet>
-                    <h:outputText value="#{message.subject}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Message" />
-                    </f:facet>
-                    <h:outputText value="#{message.text}" />
-                </p:column>
-            </p:dataTable>
+            <ui:include src="/sections/clientBehaviours/example-javascriptBehaviourAnother.xhtml"  />
         </h:panelGroup>
 
         <ui:decorate template="/templates/oneTabDecorator.html">
             <ui:define name="contentTab1">
-&lt;p:dataTable id=&quot;myDataTable&quot; var=&quot;message&quot; value=&quot;\#{dataTableController.messages}&quot;&gt;
-    &lt;pe:paginator 
-        paginatorTemplate=&quot;{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}&quot;
-        rows=&quot;10&quot;
-        rowsPerPageTemplate=&quot;5,10,15&quot; /&gt;
-    &lt;pe:javascript event=&quot;page&quot; execute=&quot;alert('Datatable page event called')&quot;/&gt;
-    &lt;f:facet name=&quot;header&quot;&gt;
-        Messages
-    &lt;/f:facet&gt;
-    &lt;p:column&gt;
-        &lt;f:facet name=&quot;header&quot;&gt;
-            &lt;h:outputText value=&quot;Subject&quot; /&gt;
-        &lt;/f:facet&gt;
-        &lt;h:outputText value=&quot;\#{message.subject}&quot; /&gt;
-    &lt;/p:column&gt;
-    &lt;p:column&gt;
-        &lt;f:facet name=&quot;header&quot;&gt;
-            &lt;h:outputText value=&quot;Message&quot; /&gt;
-        &lt;/f:facet&gt;
-        &lt;h:outputText value=&quot;\#{message.text}&quot; /&gt;
-    &lt;/p:column&gt;
-&lt;/p:dataTable&gt;
+${showcase:getFileContent('/sections/clientBehaviours/example-javascriptBehaviourAnother.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>

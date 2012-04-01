@@ -2,8 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -14,63 +13,15 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-			<p:growl id="growl" showDetail="true" />
-            
-			<pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}"
-				theme="eclipse" value="#{codeMirrorController.content}" lineNumbers="true"
-				extraKeys="{ 'Ctrl-Space': function(cm) {CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);}}" />
-			
-            <p:commandButton actionListener="#{codeMirrorController.changeMode}" update="codeMirror"
-                             value="Change mode with AJAX" style="margin-top:10px;"/>
+			<ui:include src="/sections/codeMirror/example-jsCodeCompletion.xhtml" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-&lt;p:growl id="growl" showDetail="true" /&gt;
-                
-&lt;pe:codeMirror id="codeMirror" mode="\#{codeMirrorController.mode}"
-	theme="eclipse" value="\#{codeMirrorController.content}" lineNumbers="true"
-	extraKeys="{ 'Ctrl-Space': function(cm) {CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);}}" /&gt;
-
-&lt;p:commandButton actionListener="\#{codeMirrorController.changeMode}" update="codeMirror"
-                 value="Change mode with AJAX" style="margin-top:10px;"/&gt;
+${showcase:getFileContent('/sections/codeMirror/example-jsCodeCompletion.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-@ManagedBean
-@ViewScoped
-public class CodeMirrorController implements Serializable {
-
-	private String content;
-	private String mode = "javascript";
-
-	public CodeMirrorController() {
-		content = "function test() { console.log('test'); }";
-	}
-
-	public void changeMode() {
-		if (mode.equals("css")) {
-			mode = "javascript";
-		} else {
-			mode = "css";
-		}
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(final String content) {
-		this.content = content;
-	}
-
-	public String getMode() {
-		return mode;
-	}
-
-	public void setMode(final String mode) {
-		this.mode = mode;
-	}
-}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/CodeMirrorController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

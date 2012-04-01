@@ -1,0 +1,30 @@
+<h:panelGrid
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions"
+
+    columns="2">
+
+    <h:panelGrid columns="1" cellpadding="0" cellspacing="0">
+        <h:outputText value="JSF standard f:ajax with PrimeFaces p:inputTextarea"/>
+        <p:inputTextarea id="textArea" valueChangeListener="#{ajaxStatusController.textChanged}"
+                         value="#{ajaxStatusController.text}" style="width:300px; height:100px; margin-top:10px;">
+            <f:ajax event="keydown" execute="textArea"/>
+        </p:inputTextarea>
+    </h:panelGrid>
+
+    <h:panelGrid id="ajaxIndicatorTable" columns="2" columnClasses="column" cellpadding="0" cellspacing="0">
+        <h:outputText value="Ajax indicator" styleClass="header"/>
+        <h:panelGroup>
+            <pe:ajaxStatus onstart="ajaxOnStartIndicator()" onerror="ajaxOnErrorIndicator()"
+                           onsuccess="ajaxOnSuccessIndicator()"/>
+            <h:graphicImage id="ajaxIndicatorActive" library="images"
+                            name="connect_active.gif" style="display: none;" styleClass="ajaxIndicator"/>
+            <h:graphicImage id="ajaxIndicatorCaution" library="images"
+                            name="connect_caution.gif" style="display: none;" styleClass="ajaxIndicator"
+                            title="Connection problem" alt="Connection problem"/>
+        </h:panelGroup>
+    </h:panelGrid>
+</h:panelGrid>

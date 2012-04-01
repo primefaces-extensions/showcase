@@ -2,7 +2,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
@@ -15,12 +14,15 @@
         </h:panelGroup>        
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/blockpanel/inc-blockPanelAjaxContent.xhtml"/>
+            <ui:include src="/sections/blockpanel/example-blockPanelAjax.xhtml"/>
         </h:panelGroup>
         
-        <ui:decorate template="/templates/oneTabDecorator.html">
+        <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-${showcase:getFileContentFromWeb('/sections/blockpanel/inc-blockPanelAjaxContent.xhtml')}
+${showcase:getFileContent('/sections/blockpanel/example-blockPanelAjax.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/blockpanel/BlockPanelController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

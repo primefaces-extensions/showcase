@@ -1,0 +1,99 @@
+<h:panelGroup
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions"
+        layout="block">
+
+<p:messages id="messages"/>
+
+<h:panelGrid columns="3">
+
+    <!--First BlockPanel-->
+    <pe:blockPanel id="idPanel1" blocked="${blockPanelController.addr1.editable}"
+                   style="padding:10px;margin:10px;"
+                   styleClass="ui-widget ui-widget-content ui-corner-all">
+
+        <p:selectBooleanButton value="#{blockPanelController.addr1.editable}"
+                               offLabel="Edit" onLabel="Save">
+            <p:ajax event="change" process="idPanel1" update="idPanel1"/>
+        </p:selectBooleanButton>
+
+        <h:panelGroup layout="block" style="margin-top: 10px;">
+
+            Address1:
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Street" />
+                <h:inputText value="#{blockPanelController.addr1.street}"
+                             disabled="${!blockPanelController.addr1.editable}"/>
+
+                <h:outputLabel value="City" />
+                <h:inputText value="#{blockPanelController.addr1.city}"
+                             disabled="${!blockPanelController.addr1.editable}"/>
+
+                <h:outputLabel value="ZIP" />
+                <h:inputText value="#{blockPanelController.addr1.zip}"
+                             disabled="${!blockPanelController.addr1.editable}"/>
+            </h:panelGrid>
+        </h:panelGroup>
+    </pe:blockPanel>
+
+    <!--Second BlockPanel-->
+    <pe:blockPanel id="idPanel2" blocked="${blockPanelController.addr2.editable}"
+                   style="padding:10px;margin:10px;"
+                   styleClass="ui-widget ui-widget-content ui-corner-all">
+
+        <p:selectBooleanButton value="#{blockPanelController.addr2.editable}"
+                               offLabel="Edit" onLabel="Save">
+            <p:ajax event="change" process="idPanel2" update="idPanel2"/>
+        </p:selectBooleanButton>
+
+        <h:panelGroup layout="block" style="margin-top: 10px;">
+            Address 2:
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Street" />
+                <h:inputText value="#{blockPanelController.addr2.street}"
+                             disabled="${!blockPanelController.addr2.editable}"/>
+
+                <h:outputLabel value="City" />
+                <h:inputText value="#{blockPanelController.addr2.city}"
+                             disabled="${!blockPanelController.addr2.editable}"/>
+
+                <h:outputLabel value="ZIP" />
+                <h:inputText value="#{blockPanelController.addr2.zip}"
+                             disabled="${!blockPanelController.addr2.editable}"/>
+            </h:panelGrid>
+        </h:panelGroup>
+    </pe:blockPanel>
+
+    <!--Third BlockPanel-->
+    <pe:blockPanel id="idPanel3" blocked="${blockPanelController.addr3.editable}"
+                   style="padding:10px;margin:10px;"
+                   styleClass="ui-widget ui-widget-content ui-corner-all">
+
+        <p:selectBooleanButton value="#{blockPanelController.addr3.editable}"
+                               offLabel="Edit" onLabel="Save">
+            <p:ajax event="change" process="idPanel3" update="idPanel3"/>
+        </p:selectBooleanButton>
+
+        <h:panelGroup layout="block" style="margin-top: 10px;">
+            Address 3:
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Street" />
+                <h:inputText value="#{blockPanelController.addr3.street}"
+                             disabled="${!blockPanelController.addr3.editable}"/>
+
+                <h:outputLabel value="City" />
+                <h:inputText value="#{blockPanelController.addr3.city}"
+                             disabled="${!blockPanelController.addr3.editable}"/>
+
+                <h:outputLabel value="ZIP" />
+                <h:inputText value="#{blockPanelController.addr3.zip}"
+                             disabled="${!blockPanelController.addr3.editable}"/>
+            </h:panelGrid>
+        </h:panelGroup>
+    </pe:blockPanel>
+
+</h:panelGrid>
+
+</h:panelGroup>

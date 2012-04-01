@@ -1,0 +1,34 @@
+<h:panelGroup
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions"
+
+        layout="block">
+
+
+    <p:dataTable id="myDataTable" var="message" value="#{dataTableController.messages}">
+        <pe:paginator
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rows="10"
+            rowsPerPageTemplate="5,10,15" />
+        <pe:javascript event="page" execute="alert('Datatable page event called')"/>
+        <f:facet name="header">
+            Messages
+        </f:facet>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Subject" />
+            </f:facet>
+            <h:outputText value="#{message.subject}" />
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Message" />
+            </f:facet>
+            <h:outputText value="#{message.text}" />
+        </p:column>
+    </p:dataTable>
+
+</h:panelGroup>
