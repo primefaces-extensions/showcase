@@ -20,8 +20,10 @@ package org.primefaces.extensions.showcase.controller;
 
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.extensions.showcase.model.Circle;
 
@@ -38,6 +40,20 @@ public class RemoteCommandController {
 	private String subject;
 	private Date date;
 	private Circle circle;
+
+	public void printMethodParams(final String subject, final Date date, final Circle circle) {
+		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ActionListener called",
+				"Subject: " + subject + ", Date: " + date + ", Circle - backgroundColor: " + circle.getBackgroundColor());
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void parametersAssigned() {
+		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ActionListener called",
+				"Parameters assigned");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
 	public String getSubject() {
 		return subject;

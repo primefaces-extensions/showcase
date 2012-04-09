@@ -5,13 +5,13 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="RemoteCommand"/>
+            <h:outputText value="AssignableParam"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            With RemoteCommandParameter you can assign JavaScript parameters to a property in your bean in a convenient way.
+            With AssignableParam you can assign JavaScript parameters to a property in your bean in a convenient way.
         </h:panelGroup>
 
-        <ui:include src="/sections/shared/rcpWithJsonConverter.xhtml"/>
+        <ui:include src="/sections/shared/apWithJsonConverter.xhtml"/>
     </ui:define>
     <ui:define name="useCases">
         <ui:include src="/sections/remoteCommand/useCasesChoice.xhtml"/>
@@ -19,7 +19,7 @@
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/twoTabsDocumentation.xhtml">
             <ui:param name="tagName1" value="remoteCommand"/>
-            <ui:param name="tagName2" value="remoteCommandParameter"/>
+            <ui:param name="tagName2" value="assignableParam"/>
         </ui:include>
     </ui:define>
 </ui:composition>

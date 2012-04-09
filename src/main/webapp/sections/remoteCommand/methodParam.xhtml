@@ -2,18 +2,30 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
+      xmlns:p="http://primefaces.org/ui" 
       xmlns:pe="http://primefaces.org/ui/extensions">
-<ui:composition>
-        <h:panelGroup layout="block" styleClass="centerExample">
-			<pe:remoteCommand id="applyDataCommand" name="applyData" process="@this" update="subject date circle">
-				<pe:remoteCommandParameter name="subject" applyTo="#{remoteCommandController.subject}"/>
-				<pe:remoteCommandParameter name="date" applyTo="#{remoteCommandController.date}">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="MethodParam"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            With methodParam you can pass JavaScript parameters to the actionLister. Action is not supported.<br/>
+           	For some converters (which needs the class of the ValueExpression), it's required to set the <b>type</b> attribute of the <b>methodParam</b> tag.
+ 			<br/>
+ 			<br/>
+
+			<p:growl id="growl" showDetail="true" />
+
+			<pe:remoteCommand id="applyDataCommand" name="applyData" process="@this" update="growl" actionListener="#{remoteCommandController.printMethodParams}">
+				<pe:methodSignature parameters="java.lang.String, java.util.Date, org.primefaces.extensions.showcase.model.Circle" /> 
+				<pe:methodParam name="subject" type="java.lang.String"/>
+				<pe:methodParam name="date" type="java.util.Date">
 					<f:convertDateTime type="both" dateStyle="short" locale="en"/>
-				</pe:remoteCommandParameter>
-				<pe:remoteCommandParameter name="circle" applyTo="#{remoteCommandController.circle}">
+				</pe:methodParam>
+				<pe:methodParam name="circle" type="org.primefaces.extensions.showcase.model.Circle">
 					<pe:convertJson />
-				</pe:remoteCommandParameter>
+				</pe:methodParam>
 			</pe:remoteCommand>
 			
 			<script type="text/javascript">
@@ -31,31 +43,23 @@
 				};
 			</script>
 
-			<h:outputLabel for="subject" value="Subject: " />
-			<h:outputText id="subject" value="#{remoteCommandController.subject}" />
-			<br/> 
-			<h:outputLabel for="date" value="Date: " />
-			<h:outputText id="date" value="#{remoteCommandController.date}" />  
-			<br/>
-			<h:outputLabel for="circle" value="Circle: " />
-			<h:outputText id="circle" value="#{remoteCommandController.circle.radius} - #{remoteCommandController.circle.backgroundColor} - #{remoteCommandController.circle.borderColor} - #{remoteCommandController.circle.scaleFactor}" />  
-			<br/><br/>
-
 			<p:commandButton value="Apply Data" type="button" onclick="applyData('hello world', '5/14/07 12:55:42 PM', JSON.stringify(circle))" />
 			<p:commandButton value="Apply Second Data" type="button" onclick="applyData('hello user', '7/11/01 11:55:42 PM', JSON.stringify(circle2))" />
-		</h:panelGroup>
+        </h:panelGroup>
 
-        <ui:decorate template="/templates/threeTabsDecoratorModel.html">
+       <ui:decorate template="/templates/threeTabsDecoratorModel.html">
             <ui:define name="contentTab1">
-&lt;pe:remoteCommand id="applyDataCommand" 
-	name="applyData" process="@this" update="subject date circle"&gt;
-	&lt;pe:remoteCommandParameter name="subject" applyTo="\#{remoteCommandController.subject}"/&gt;
-	&lt;pe:remoteCommandParameter name="date" applyTo="\#{remoteCommandController.date}"&gt;
+&lt;p:growl id="growl" showDetail="true" /&gt;
+
+&lt;pe:remoteCommand id="applyDataCommand" name="applyData" process="@this" update="growl" actionListener="\#{remoteCommandController.printMethodParams}"&gt;
+	&lt;pe:methodSignature parameters="java.lang.String, java.util.Date, org.primefaces.extensions.showcase.model.Circle" /&gt; 
+	&lt;pe:methodParam name="subject"/&gt;
+	&lt;pe:methodParam name="date"&gt;
 		&lt;f:convertDateTime type="both" dateStyle="short" locale="en"/&gt;
-	&lt;/pe:remoteCommandParameter&gt;
-	&lt;pe:remoteCommandParameter name="circle" applyTo="\#{remoteCommandController.circle}"&gt;
+	&lt;/pe:methodParam&gt;
+	&lt;pe:methodParam name="circle" type="org.primefaces.extensions.showcase.model.Circle"&gt;
 		&lt;pe:convertJson /&gt;
-	&lt;/pe:remoteCommandParameter&gt;
+	&lt;/pe:methodParam&gt;
 &lt;/pe:remoteCommand&gt;
 
 &lt;script type="text/javascript"&gt;
@@ -73,15 +77,6 @@
 	};
 &lt;/script&gt;
 
-&lt;h:outputLabel for="subject" value="Subject: " /&gt;
-&lt;h:outputText id="subject" value="\#{remoteCommandController.subject}" /&gt;
- 
-&lt;h:outputLabel for="date" value="Date: " /&gt;
-&lt;h:outputText id="date" value="\#{remoteCommandController.date}" /&gt;  
-
-&lt;h:outputLabel for="radius" value="Circle: " /&gt;
-&lt;h:outputText id="circle" value="\#{remoteCommandController.circle.radius} - \#{remoteCommandController.circle.backgroundColor} - \#{remoteCommandController.circle.borderColor} - \#{remoteCommandController.circle.scaleFactor}"/&gt;  
-
 &lt;p:commandButton value="Apply Data" type="button" 
 	onclick="applyData('hello world', '5/14/07 12:55:42 PM', JSON.stringify(circle))" /&gt;
 &lt;p:commandButton value="Apply Second Data" type="button" 
@@ -95,6 +90,20 @@ public class RemoteCommandController {
 	private String subject;
 	private Date date;
 	private Circle circle;
+
+	public void printMethodParams(final String subject, final Date date, final Circle circle) {
+		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ActionListener called",
+				"Subject: " + subject + ", Date: " + date + ", Circle - backgroundColor: " + circle.getBackgroundColor());
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void parametersAssigned() {
+		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ActionListener called",
+				"Parameters assigned");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
 	public String getSubject() {
 		return subject;
@@ -163,5 +172,18 @@ public class Circle implements Serializable {
 }
             </ui:define>
         </ui:decorate>
+
+
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/remoteCommand/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/threeTabsDocumentation.xhtml">
+            <ui:param name="tagName1" value="remoteCommand"/>
+            <ui:param name="tagName2" value="methodParam"/>
+            <ui:param name="tagName3" value="methodSignature"/>
+        </ui:include>
+    </ui:define>
 </ui:composition>
 </html>
