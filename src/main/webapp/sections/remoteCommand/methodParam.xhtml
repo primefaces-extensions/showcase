@@ -10,8 +10,8 @@
             <h:outputText value="MethodParam"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            With methodParam you can pass JavaScript parameters to the actionLister. Action is not supported.<br/>
-           	For some converters (which needs the class of the ValueExpression), it's required to set the <b>type</b> attribute of the <b>methodParam</b> tag.
+            With methodParam you can pass JavaScript parameters to the actionLister. <br/>
+            Action is not supported.<br/>
  			<br/>
  			<br/>
 
@@ -19,11 +19,11 @@
 
 			<pe:remoteCommand id="applyDataCommand" name="applyData" process="@this" update="growl" actionListener="#{remoteCommandController.printMethodParams}">
 				<pe:methodSignature parameters="java.lang.String, java.util.Date, org.primefaces.extensions.showcase.model.Circle" /> 
-				<pe:methodParam name="subject" type="java.lang.String"/>
-				<pe:methodParam name="date" type="java.util.Date">
+				<pe:methodParam name="subject"/>
+				<pe:methodParam name="date">
 					<f:convertDateTime type="both" dateStyle="short" locale="en"/>
 				</pe:methodParam>
-				<pe:methodParam name="circle" type="org.primefaces.extensions.showcase.model.Circle">
+				<pe:methodParam name="circle">
 					<pe:convertJson />
 				</pe:methodParam>
 			</pe:remoteCommand>
@@ -57,7 +57,7 @@
 	&lt;pe:methodParam name="date"&gt;
 		&lt;f:convertDateTime type="both" dateStyle="short" locale="en"/&gt;
 	&lt;/pe:methodParam&gt;
-	&lt;pe:methodParam name="circle" type="org.primefaces.extensions.showcase.model.Circle"&gt;
+	&lt;pe:methodParam name="circle"&gt;
 		&lt;pe:convertJson /&gt;
 	&lt;/pe:methodParam&gt;
 &lt;/pe:remoteCommand&gt;
