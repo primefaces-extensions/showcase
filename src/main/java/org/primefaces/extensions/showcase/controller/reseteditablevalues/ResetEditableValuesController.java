@@ -20,8 +20,10 @@ package org.primefaces.extensions.showcase.controller.reseteditablevalues;
 
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  * ResetEditableValuesController
@@ -40,7 +42,7 @@ public class ResetEditableValuesController implements Serializable {
 		return firstValue;
 	}
 
-	public final void setFirstValue(final String value) {
+	public final void setFirstValue(String value) {
 		this.firstValue = value;
 	}
 
@@ -48,7 +50,12 @@ public class ResetEditableValuesController implements Serializable {
 		return secondValue;
 	}
 
-	public final void setSecondValue(final String secondValue) {
+	public final void setSecondValue(String secondValue) {
 		this.secondValue = secondValue;
+	}
+
+	public void handleChangeValue() {
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Value changed", null);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 }

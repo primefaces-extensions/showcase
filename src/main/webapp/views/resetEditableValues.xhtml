@@ -8,8 +8,8 @@
             <h:outputText value="ResetEditableValues"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-			ResetEditableValues is a component which can be applied to any UICommand component like CommandLink, CommandButton, MenuItem, RemoteCommand and HotKey.
-			This component enables to reset editable components derived from EditableValueHolder. This can be used to restore default values or reset validation state.
+			ResetEditableValues is a component which can be applied to any UICommand component like CommandLink, CommandButton, MenuItem, RemoteCommand, HotKey and any ajaxified component with attached f:ajax / p:ajax.
+			This component enables to reset editable components derived from EditableValueHolder. This can be used to restore default values (from beans) or reset validation state.
 			<p/>
 			Example: if you clear a form, you usually set current backing bean values to default values and update the form elements.
 			The problem is, if validation was already triggered before and some input fields were invalid. The validation state remains and survives further updates.
