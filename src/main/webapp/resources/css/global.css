@@ -37,6 +37,8 @@ button,
 table .formColumn1 {
     padding-right: 10px;
     text-align: right;
+    white-space: nowrap;
+    width: 1%;
 }
 
 table .formColumn2 input {

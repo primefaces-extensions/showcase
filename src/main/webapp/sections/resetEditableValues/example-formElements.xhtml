@@ -1,0 +1,55 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <p:growl id="growl" showSummary="true" showDetail="false" severity="info"/>
+
+    <h:panelGroup>
+        <p:messages id="messages" severity="error"/>
+
+        <h:panelGrid columns="2" columnClasses="formColumn1,formColumn2">
+            <h:outputText value="First value"/>
+            <p:inputText id="input1" value="#{resetEditableValuesController.firstValue}"
+                         required="true" label="First value">
+                <f:validateLength minimum="5"/>
+            </p:inputText>
+            <h:outputText value="Second value"/>
+            <p:inputText id="input2" value="#{resetEditableValuesController.secondValue}"
+                         required="true" label="Second value">
+                <f:validateLength minimum="5"/>
+            </p:inputText>
+
+            <f:facet name="footer">
+                <h:panelGrid columns="5" style="margin-top: 10px;">
+                    <p:commandButton update="input1 input2 messages" process="input1 input2" value="Submit"
+                                     style="margin-right:10px;"/>
+
+                    <p:commandButton id="normal" value="Normal button" update="input1 input2 messages" process="@this"/>
+                    <p:selectOneMenu id="selectWithoutReset" value="dummy">
+                        <f:selectItem itemLabel="Value A (normal)" itemValue="Value A"/>
+                        <f:selectItem itemLabel="Value B (normal)" itemValue="Value B"/>
+                        <f:selectItem itemLabel="Value C (normal)" itemValue="Value C"/>
+                        <p:ajax update="input1 input2 messages growl"
+                                listener="#{resetEditableValuesController.handleChangeValue}"/>
+                    </p:selectOneMenu>
+
+                    <p:commandButton id="reset" value="Button with reset" update="input1 input2 messages" process="@this"
+                                     style="margin-left:10px;">
+                        <pe:resetEditableValues for="input1 input2"/>
+                    </p:commandButton>
+                    <p:selectOneMenu id="selectWithReset" value="dummy">
+                        <f:selectItem itemLabel="Value A (with reset)" itemValue="Value A"/>
+                        <f:selectItem itemLabel="Value B (with reset)" itemValue="Value B"/>
+                        <f:selectItem itemLabel="Value C (with reset)" itemValue="Value C"/>
+                        <p:ajax update="input1 input2 messages growl"
+                                listener="#{resetEditableValuesController.handleChangeValue}"/>
+                        <pe:resetEditableValues for="input1 input2" event="valueChange"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+            </f:facet>
+        </h:panelGrid>
+    </h:panelGroup>
+</ui:composition>
