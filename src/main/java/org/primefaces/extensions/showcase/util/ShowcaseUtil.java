@@ -18,11 +18,12 @@
 
 package org.primefaces.extensions.showcase.util;
 
-import javax.faces.context.FacesContext;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import javax.faces.context.FacesContext;
 
 /**
  * ShowcaseUtil
@@ -31,31 +32,66 @@ import java.io.InputStreamReader;
  * @version $Revision$
  */
 public class ShowcaseUtil {
-    public static String getFileContent(String fullPathToFile) {
-        try {
-            // Finding in WEB ...
-            FacesContext fc = FacesContext.getCurrentInstance();
-            InputStream is = fc.getExternalContext().getResourceAsStream(fullPathToFile);
-            if (is != null) return convertStreamToString(is);
 
-            // Finding in ClassPath ...
-            is = ShowcaseUtil.class.getResourceAsStream(fullPathToFile);
-            if (is != null) return convertStreamToString(is);
+	private static final String[] START_MARKERS = {"@ManagedBean", "@RequestScoped", "@ViewScoped", "@SessionScoped", " class "};
 
-        } catch (Exception e) {}
-        return "";
-    }
+	public static String getFileContent(final String fullPathToFile) {
+		try {
+			// Finding in WEB ...
+			FacesContext fc = FacesContext.getCurrentInstance();
+			InputStream is = fc.getExternalContext().getResourceAsStream(fullPathToFile);
+			if (is != null) {
+				return convertStreamToString(is, false);
+			}
 
-	private static String convertStreamToString(InputStream is) throws IOException {
+			// Finding in ClassPath ...
+			is = ShowcaseUtil.class.getResourceAsStream(fullPathToFile);
+			if (is != null) {
+				return convertStreamToString(is, true);
+			}
+		} catch (Exception e) {
+			throw new IllegalStateException("Internal error: file " + fullPathToFile + " could not be read", e);
+		}
+
+		return "";
+	}
+
+	private static String convertStreamToString(final InputStream is, final boolean classPath) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
 		StringBuilder sb = new StringBuilder();
+		String line;
 
-		String line = br.readLine();
+		if (classPath) {
+			boolean foundStart = false;
+			line = br.readLine();
+
+			while (line != null && !foundStart) {
+				for (String startMarker : START_MARKERS) {
+					if (line.contains(startMarker)) {
+						foundStart = true;
+
+						break;
+					}
+				}
+
+				if (!foundStart) {
+					line = br.readLine();
+				}
+			}
+
+			if (foundStart) {
+				sb.append(line);
+			} else {
+				throw new IllegalStateException("Internal error: start marker for an Java file to be output is not found!");
+			}
+		}
+
+		line = br.readLine();
 		while (line != null) {
-		    sb.append("\n");
+			sb.append("\n");
 			sb.append(line);
-            line = br.readLine();
+			line = br.readLine();
 		}
 
 		return sb.toString().trim();
