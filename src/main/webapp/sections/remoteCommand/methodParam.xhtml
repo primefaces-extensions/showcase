@@ -10,12 +10,12 @@
             <h:outputText value="MethodParam"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            With methodParam you can pass JavaScript parameters to the actionLister. <br/>
-            Action is not supported.<br/>
- 			<br/>
- 			<br/>
-
-			<p:growl id="growl" showDetail="true" />
+            Task: Call a remote Java method with any parameters from JavaScript. It can be done with pe:remoteCommand and pe:methodParam, pe:methodSignature.
+            MethodParam specifies a name of the parameter and MethodSignature specifies a comma separated list with full qualified class names. Class names should match passed parameters in the same order as they were defined.
+        </h:panelGroup>
+        
+        <h:panelGroup layout="block" styleClass="centerExample">    
+            <p:growl id="growl" showDetail="true" />
 
 			<pe:remoteCommand id="applyDataCommand" name="applyData" process="@this" update="growl" actionListener="#{remoteCommandController.printMethodParams}">
 				<pe:methodSignature parameters="java.lang.String, java.util.Date, org.primefaces.extensions.showcase.model.Circle" /> 

@@ -6,33 +6,31 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="BlockUI"/>
+            <h:outputText value="DynaForm"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            This example shows how to use widget's JavaScript methods block() / unblock().
-            They are normally used as onstart / oncomplete callbacks in ajaxified components.
-            Try to switch the current page, sort a table column or try to add a new message.
+            TODO
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/blockui/example-blockUIAjax.xhtml"/>
+            <ui:include src="/sections/dynaform/example-advancedFeatures.xhtml"/>            
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/blockui/example-blockUIAjax.xhtml')}
+${showcase:getFileContent('/sections/dynaform/example-advancedFeatures.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/DataTableController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/DynaFormController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/blockui/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/dynaform/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="blockUI"/>
+            <ui:param name="tagName" value="dynaForm"/>
         </ui:include>
     </ui:define>
 </ui:composition>

@@ -8,7 +8,9 @@
             <h:outputText value="AssignableParam"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            With AssignableParam you can assign JavaScript parameters to a property in your bean in a convenient way.
+            Task: Assign JavaScript parameters to a property in a bean. It can be done in a convenient way with pe:remoteCommand and pe:assignableParam.
+            AssignableParam specifies a name of the parameter and an EL expression for a corresponding Java method (setter) the parameter will be applied to.
+            It allows to attach a converter or define it as usual in JSF by converter attribute.
         </h:panelGroup>
 
         <ui:include src="/sections/shared/apWithJsonConverter.xhtml"/>

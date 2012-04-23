@@ -1,12 +1,10 @@
-<h:panelGroup
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:pe="http://primefaces.org/ui/extensions"
-
-    layout="block">
-
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
     <p:messages id="messages"/>
 
     <h:panelGrid columns="2">
@@ -25,10 +23,10 @@
 
         <p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}">
             <pe:paginator
-                paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                rows="5"
-                rowsPerPageTemplate="5,10,15"
-                paginatorPosition="bottom"/>
+                    paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rows="5"
+                    rowsPerPageTemplate="5,10,15"
+                    paginatorPosition="bottom"/>
             <p:ajax event="page" listener="#{dataTableController.doSomething}" update="_mainForm_messages"
                     onstart="blockUIWidget2.block()" oncomplete="blockUIWidget2.unblock()"/>
             <p:ajax event="sort" listener="#{dataTableController.doSomething}" update="_mainForm_messages"
@@ -50,7 +48,8 @@
 
     <pe:blockUI target="messageDetailGroup" widgetVar="blockUIWidget1">
         <h:panelGrid columns="2">
-            <h:graphicImage library="images" name="ajax-loader1.gif" style="margin-right: 12px; vertical-align: middle;"/>
+            <h:graphicImage library="images" name="ajax-loader1.gif"
+                            style="margin-right: 12px; vertical-align: middle;"/>
             <h:outputText value="Adding message..." style="white-space: nowrap;"/>
         </h:panelGrid>
     </pe:blockUI>
@@ -58,8 +57,8 @@
     <pe:blockUI target="dataTable" content="blockUIContent" widgetVar="blockUIWidget2"/>
 
     <h:panelGrid id="blockUIContent" columns="2" style="display: none;">
-        <h:graphicImage library="images" name="ajax-loader1.gif" style="margin-right: 12px; vertical-align: middle;"/>
+        <h:graphicImage library="images" name="ajax-loader1.gif"
+                        style="margin-right: 12px; vertical-align: middle;"/>
         <h:outputText value="Please wait, data is being processed..." style="white-space: nowrap;"/>
     </h:panelGrid>
-
-</h:panelGroup>
+</ui:composition>

@@ -1,17 +1,15 @@
-<h:panelGroup
+<ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:pe="http://primefaces.org/ui/extensions"
-
-        layout="block" styleClass="centerExample">
-
+        xmlns:pe="http://primefaces.org/ui/extensions">
     <h:panelGroup id="viewArea" layout="block">
         <h:panelGrid columns="2" columnClasses="columnTop,columnTop">
             <h:panelGroup layout="block" styleClass="blockable" style="margin-right: 40px;">
-                <p:tree id="fileSystem" value="#{fileSystemController.root}" var="node" dynamic="true" cache="false"
-                        selectionMode="single" selection="#{fileSystemController.selectedNode}">
+                <p:tree id="fileSystem" value="#{fileSystemController.root}" var="node" dynamic="true"
+                        cache="false" selectionMode="single" selection="#{fileSystemController.selectedNode}">
                     <p:ajax event="expand" update="_mainForm_accessRightsGroup"
                             listener="#{fileSystemController.onNodeExpand}"/>
                     <p:ajax event="select" update="_mainForm_accessRightsGroup"
@@ -48,8 +46,9 @@
 
     <pe:blockUI source="fileSystem" target="viewArea" event="expand,select,unselect" autoShow="true">
         <h:panelGrid columns="2">
-            <h:graphicImage library="images" name="ajax-loader1.gif" style="margin-right: 12px; vertical-align: middle;"/>
+            <h:graphicImage library="images" name="ajax-loader1.gif"
+                            style="margin-right: 12px; vertical-align: middle;"/>
             <h:outputText value="Tree event is running..." style="white-space: nowrap;"/>
         </h:panelGrid>
     </pe:blockUI>
-</h:panelGroup>
+</ui:composition>

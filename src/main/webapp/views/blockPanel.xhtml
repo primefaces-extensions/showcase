@@ -8,31 +8,22 @@
             <h:outputText value="BlockPanel"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            <p>
-                BlockPanel component allows to block UI elements that are placed out of panel.
-                Component is suitable for situation where user is not able to work with UI components
-                (f.e. menu) before he/she commits changes in panel content.
-            </p>
-
-            <p>
-                Imagine situation where you have more forms (areas) in one page. Elements in forms
-                are in readonly mode until you click edit button, and then you can change values and
-                save it. Problem occurs when data in form have influence on other parts of application
-                so it’s necessary to finish editing of data otherwise user is not able to use the application
-                (user can not click to menu, or start editing other area).
-            </p>
-
-            <p>
-                There will have to be disabled all dependent parts of application elements during
-                editing data in form, or opened form in MODAL POPUP panel without usage of BlockPanel.
-                MODAL POPUP panel solution is acceptable but POPUP in general is not user friendly
-                because content is moved to center and popup panel has title and bordered.
-            </p>
-
-            <p>
-                Blockpanel can be used for creating simple page with blocking UI during address editing.
-            </p>
-
+            BlockPanel component allows to block UI elements that are placed out of panel.
+            Component is suitable for situation where user is not able to work with UI components
+            (e.g. menu) before he/she commits changes in panel content.
+            <p/>
+            Imagine situation where you have more forms (areas) in one page. Elements in forms
+            are in readonly mode until you click edit button, and then you can change values and
+            save it. Problem occurs when data in form have influence on other parts of application
+            so it’s necessary to finish editing of data otherwise user is not able to use the application
+            (user can not click to menu, or start editing other area).
+            <p/>
+            There will have to be disabled all dependent parts of application elements during
+            editing data in form, or opened form in MODAL POPUP panel without usage of BlockPanel.
+            MODAL POPUP panel solution is acceptable but POPUP in general is not user friendly
+            because content is moved to center and popup panel has title and bordered.
+            <p/>
+            Blockpanel can be used for creating simple page with blocking UI during address editing.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
