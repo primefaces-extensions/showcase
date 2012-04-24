@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+    <p:menu id="useCaseList">
+        <p:menuitem value="Simple declaration"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('arhSimple')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/ajaxerrorhandler/arhSimple.jsf"/>
+        <p:menuitem value="Declarative with facets"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('arhWithFacets')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/ajaxerrorhandler/arhWithFacets.jsf"/>
+    </p:menu>
+</ui:composition>
+</html>
