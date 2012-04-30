@@ -1,37 +1,41 @@
-<h:panelGroup
+<ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:pe="http://primefaces.org/ui/extensions"
-        layout="block">
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:panelGroup layout="block">
 
-    <!-- Form with AJAX actions, whitch throw exceptions -->
-    <h:form>
-        <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="test ViewExpiredException" />
-        <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="test NullPoinerException" />
-        <p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="test IllegalStateException" />
-    </h:form>
+<!-- EXAMPLE-SOURCE-START -->
+<!-- Form with AJAX actions, whitch throw exceptions -->
+<h:form>
+    <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="test ViewExpiredException" />
+    <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="test NullPoinerException" />
+    <p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="test IllegalStateException" />
+</h:form>
 
-    <pe:ajaxErrorHandler type="java.lang.IllegalStateException">
-        <f:facet name="body">
-            <div>
-                <h:form>
-                    <p:tabView >
-                        <p:tab title="Message">
-                            <h:panelGrid columns="2">
-                                <h:outputLabel value="Error message:" />
-                                <h:outputText value="{error-message}" style="font-size: 1.2em;color:navy;" />
+<pe:ajaxErrorHandler type="java.lang.IllegalStateException">
+    <f:facet name="body">
+        <div>
+            <h:form>
+                <p:tabView >
+                    <p:tab title="Message">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Error message:" />
+                            <h:outputText value="{error-message}" style="font-size: 1.2em;color:navy;" />
 
-                                <h:outputLabel value="Server name:" />
-                                <h:outputText value="{error-hostname}"  style="font-size: 1.2em;color:navy;"/>
-                            </h:panelGrid>
+                            <h:outputLabel value="Server name:" />
+                            <h:outputText value="{error-hostname}"  style="font-size: 1.2em;color:navy;"/>
+                        </h:panelGrid>
 
-                        </p:tab>
-                        <p:tab title="Detail"><div style="overflow: auto; height: 300px; width: 700px;">{error-stacktrace}</div></p:tab>
-                    </p:tabView>
-                </h:form>
-            </div>
-        </f:facet>
-    </pe:ajaxErrorHandler>
-</h:panelGroup>
+                    </p:tab>
+                    <p:tab title="Detail"><div style="overflow: auto; height: 300px; width: 700px;">{error-stacktrace}</div></p:tab>
+                </p:tabView>
+            </h:form>
+        </div>
+    </f:facet>
+</pe:ajaxErrorHandler>
+        <!-- EXAMPLE-SOURCE-END -->
+    </h:panelGroup>
+</ui:composition>
