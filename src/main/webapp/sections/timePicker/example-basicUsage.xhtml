@@ -1,0 +1,47 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <!-- EXAMPLE-SOURCE-START -->
+<p:messages id="messages"/>
+
+<h:panelGrid id="timePickerGrid" columns="4"
+             columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn">
+    <h:outputText value="Inline mode"/>
+    <h:outputText value="Popup mode"/>
+    <h:outputText value="Spinner mode"/>
+    <h:outputText value="Customization"/>
+    <pe:timePicker value="#{timePickerController.time1}" mode="inline" widgetVar="inlineTimeWidget"
+                   label="Inline time picker"/>
+    <pe:timePicker value="#{timePickerController.time2}" mode="popup" widgetVar="popupTimeWidget"
+                   label="Popup time picker"/>
+    <pe:timePicker value="#{timePickerController.time3}" widgetVar="spinnerTimeWidget"
+                   label="Spinner time picker"/>
+    <pe:timePicker value="#{timePickerController.time4}" timeSeparator="-" startHours="8" endHours="20"
+                   startMinutes="10" endMinutes="40" intervalMinutes="10" showCloseButton="true"
+                   showDeselectButton="true" showNowButton="true" rows="3" showPeriod="true" style="width:70px;"
+                   widgetVar="customTimeWidget" label="Custom time picker"/>
+</h:panelGrid>
+
+<p:commandButton type="button" value="Disable time pickers" style="margin-top:10px;"
+                 onclick="inlineTimeWidget.disable();popupTimeWidget.disable();
+                                  spinnerTimeWidget.disable();customTimeWidget.disable();"/>
+<p:commandButton type="button" value="Enable time pickers" style="margin-top:10px;"
+                 onclick="inlineTimeWidget.enable();popupTimeWidget.enable();
+                                  spinnerTimeWidget.enable();customTimeWidget.enable();"/>
+<p:commandButton id="submitButton" value="Submit" actionListener="#{timePickerController.showTime}"
+                 process="@this timePickerGrid" update="messages timeDialog timePickerGrid"
+                 style="margin-top:10px;" icon="ui-icon-disk"/>
+
+<p:dialog id="timeDialog" header="Selected Values" visible="#{timePickerController.showTimeDialog}">
+    <h:panelGrid columns="1" style="margin: 10px;">
+        <h:outputText value="Inline: #{timePickerController.formattedTime1}"/>
+        <h:outputText value="Popup: #{timePickerController.formattedTime2}"/>
+        <h:outputText value="Spinner: #{timePickerController.formattedTime3}"/>
+        <h:outputText value="Custom: #{timePickerController.formattedTime4}"/>
+    </h:panelGrid>
+</p:dialog>
+    <!-- EXAMPLE-SOURCE-END -->
+</ui:composition>

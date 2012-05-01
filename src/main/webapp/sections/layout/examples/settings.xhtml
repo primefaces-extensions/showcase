@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <f:view contentType="text/html" locale="en">
     <pe:head title="PrimeFaces Extensions - Full Page Layout" shortcutIcon="#{request.contextPath}/favicon.ico">
         <f:facet name="first">
@@ -14,31 +15,7 @@
     </pe:head>
     <h:body>
         <h:form id="mainForm">
-            <pe:layout id="tabbedPage2" tabs="#{layoutController.layoutTabs}" stateCookie="true">
-                <pe:layoutPane position="north" size="40" resizable="false" closable="false">
-                    <h:graphicImage library="images" name="logo.png" styleClass="logo"/>
-                    <h:outputText value="Extensions"
-                                  style="display:block; font-size:22px; font-weight:bold; color:#3178C4; position:absolute; top:21px; margin-left:225px;"/>
-                </pe:layoutPane>
-                <pe:layoutPane position="center">
-                    Center
-                </pe:layoutPane>
-                <pe:layoutPane position="west" size="200">
-                    West
-                </pe:layoutPane>
-                <pe:layoutPane position="east" size="200">
-                    <pe:layoutPane position="center" minHeight="60">
-                        East-Center
-                    </pe:layoutPane>
-                    <pe:layoutPane position="south" size="'70%'" minSize="60">
-                        East-South
-                    </pe:layoutPane>
-                </pe:layoutPane>
-                <pe:layoutPane position="south" size="28" resizable="false" closable="false"
-                               spacing="3" statusbar="true">
-                    Statusbar
-                </pe:layoutPane>
-            </pe:layout>
+            <ui:include src="/sections/layout/examples/example-settings.xhtml" />
         </h:form>
 
         <h:outputStylesheet library="css" name="global.css"/>

@@ -2,8 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -17,30 +16,13 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
-                <pe:requiredLabel for="firstName" value="First Name: "/>
-                <p:inputText id="firstName" required="true" title="#{component.valid ? '' : 'First Name can not be empty'}"/>
-                <pe:requiredLabel for="lastName" value="Last Name: "/>
-                <p:inputText id="lastName" required="true" title="#{component.valid ? '' : 'Last Name can not be empty'}"/>
-            </h:panelGrid>
-            
-            <p:commandButton value="Submit" process="details" update="details" style="margin-top: 10px;"/>
-            
-            <pe:tooltip global="true" position="left center" targetPosition="right center" forSelector=".ui-state-error"/>
+            <ui:include src="/sections/tooltip/example-globalLimitedTooltips.xhtml" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/oneTabDecorator.html">
             <ui:define name="contentTab1">
-&lt;h:panelGrid id=&quot;details&quot; columns=&quot;2&quot; columnClasses=&quot;formColumn1,formColumn2&quot;&gt;
-    &lt;pe:requiredLabel for=&quot;firstName&quot; value=&quot;First Name: &quot;/&gt;
-    &lt;p:inputText id=&quot;firstName&quot; required=&quot;true&quot; title=&quot;\#{component.valid ? '' : 'First Name can not be empty'}&quot;/&gt;
-    &lt;pe:requiredLabel for=&quot;lastName&quot; value=&quot;Last Name: &quot;/&gt;
-    &lt;p:inputText id=&quot;lastName&quot; required=&quot;true&quot; title=&quot;\#{component.valid ? '' : 'Last Name can not be empty'}&quot;/&gt;
-&lt;/h:panelGrid&gt;
-
-&lt;p:commandButton value=&quot;Submit&quot; process=&quot;details&quot; update=&quot;details&quot; style=&quot;margin-top: 10px;&quot;/&gt;
-
-&lt;pe:tooltip global=&quot;true&quot; position=&quot;left center&quot; targetPosition=&quot;right center&quot; forSelector=&quot;.ui-state-error&quot;/&gt;            </ui:define>
+${showcase:getFileContent('/sections/tooltip/example-globalLimitedTooltips.xhtml')}
+            </ui:define>
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">

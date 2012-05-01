@@ -18,12 +18,8 @@
 
 package org.primefaces.extensions.showcase.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import javax.faces.context.FacesContext;
+import java.io.InputStream;
 
 /**
  * ShowcaseUtil
@@ -32,68 +28,24 @@ import javax.faces.context.FacesContext;
  * @version $Revision$
  */
 public class ShowcaseUtil {
-
-	private static final String[] START_MARKERS = {"@ManagedBean", "@RequestScoped", "@ViewScoped", "@SessionScoped", " class "};
-
 	public static String getFileContent(final String fullPathToFile) {
 		try {
 			// Finding in WEB ...
 			FacesContext fc = FacesContext.getCurrentInstance();
 			InputStream is = fc.getExternalContext().getResourceAsStream(fullPathToFile);
 			if (is != null) {
-				return convertStreamToString(is, false);
+				return FileContentMarkerUtil.readFileContent(fullPathToFile, is);
 			}
 
 			// Finding in ClassPath ...
 			is = ShowcaseUtil.class.getResourceAsStream(fullPathToFile);
 			if (is != null) {
-				return convertStreamToString(is, true);
+                return FileContentMarkerUtil.readFileContent(fullPathToFile, is);
 			}
 		} catch (Exception e) {
 			throw new IllegalStateException("Internal error: file " + fullPathToFile + " could not be read", e);
 		}
 
 		return "";
-	}
-
-	private static String convertStreamToString(final InputStream is, final boolean classPath) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-		StringBuilder sb = new StringBuilder();
-		String line;
-
-		if (classPath) {
-			boolean foundStart = false;
-			line = br.readLine();
-
-			while (line != null && !foundStart) {
-				for (String startMarker : START_MARKERS) {
-					if (line.contains(startMarker)) {
-						foundStart = true;
-
-						break;
-					}
-				}
-
-				if (!foundStart) {
-					line = br.readLine();
-				}
-			}
-
-			if (foundStart) {
-				sb.append(line);
-			} else {
-				throw new IllegalStateException("Internal error: start marker for an Java file to be output is not found!");
-			}
-		}
-
-		line = br.readLine();
-		while (line != null) {
-			sb.append("\n");
-			sb.append(line);
-			line = br.readLine();
-		}
-
-		return sb.toString().trim();
 	}
 }

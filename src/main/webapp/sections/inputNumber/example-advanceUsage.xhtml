@@ -1,0 +1,45 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <!-- EXAMPLE-SOURCE-START -->
+
+<!-- This group is for coding -->
+<h:panelGrid id="inputNumberGrid" columns="3" style="margin-bottom:10px" cellpadding="5">
+    <h:outputText value="Dinamic symbols."/>
+    <p:selectOneMenu id="selectInput5" value="#{inputNumberController.unit}" style="width: 138px">
+        <f:selectItem itemLabel="Kmh" itemValue=" kmh"/>
+        <f:selectItem itemLabel="Mph" itemValue=" mph"/>
+        <f:selectItem itemLabel="Knots" itemValue=" knots"/>
+        <p:ajax update="Input5"/>
+    </p:selectOneMenu>
+    <pe:inputNumber id="Input5" value="#{inputNumberController.input5}" symbol="#{inputNumberController.unit}"
+                    symbolPosition="s"/>
+
+    <h:outputText value="Validate the double value (min 50.00)"/>
+    <pe:inputNumber id="Input6" value="#{inputNumberController.input6}" symbol="$ "
+                    validatorMessage="The value must be greater than 50.00">
+        <f:validateDoubleRange minimum="50"/>
+    </pe:inputNumber>
+    <span></span>
+
+    <h:outputText value="Convert the double value"/>
+    <pe:inputNumber id="InputDistance" value="#{inputNumberController.distance}" symbol="mts "
+                    converter="inputNumberConverter"/>
+
+</h:panelGrid>
+<p:commandButton value="Submit" update="growl display" oncomplete="dlg.show()"/>
+
+<p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="470">
+    <p:panelGrid id="display" columns="1">
+        <h:outputText value="Value of firt input = #{inputNumberController.input5}"/>
+        <h:outputText value="Value of firt input = #{inputNumberController.input6}"/>
+        <h:outputText value="Value of firt input = #{inputNumberController.distance}"/>
+    </p:panelGrid>
+</p:dialog>
+
+    <!-- EXAMPLE-SOURCE-END -->
+</ui:composition>

@@ -1,0 +1,70 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <!-- EXAMPLE-SOURCE-START -->
+<p:growl id="growl" showDetail="true" showSummary="true"/>
+
+<pe:layout id="fullPage" widgetVar="fpLayoutWidget">
+    <p:ajax event="open" listener="#{layoutController.handleOpen}" update="_mainForm_msg"/>
+    <p:ajax event="close" listener="#{layoutController.handleClose}" update="_mainForm_msg"/>
+    <p:ajax event="resize" listener="#{layoutController.handleResize}" update="growl"/>
+
+    <pe:layoutPane position="north" size="80">
+        North
+        <h:form prependId="false">
+            <h:panelGrid columns="6" style="margin-left:80px;">
+                <p:commandButton value="Toggle South" type="button" onclick="fpLayoutWidget.toggle('south')"/>
+                <p:commandButton value="Toggle West-North" type="button" onclick="fpLayoutWidget.toggle('west_north')"/>
+                <p:commandButton value="Close Center-North" type="button" onclick="fpLayoutWidget.close('center_north')"/>
+                <p:commandButton value="Open Center-North" type="button" onclick="fpLayoutWidget.open('center_north')"/>
+                <p:commandButton value="Size East Pane" type="button" onclick="fpLayoutWidget.sizePane('east', 350)"/>
+                <p:commandButton value="Size West-South Pane" type="button" onclick="fpLayoutWidget.sizePane('west_south', 80)"/>
+            </h:panelGrid>
+        </h:form>
+    </pe:layoutPane>
+    <h:form id="mainForm">
+        <pe:layoutPane position="center">
+            <pe:layoutPane position="north" size="'50%'">
+                <f:facet name="header">
+                    <h:outputText value="Center-North"/>
+                </f:facet>
+            </pe:layoutPane>
+            <pe:layoutPane position="center" minHeight="60">
+                <f:facet name="header">
+                    <h:outputText value="Center-Center"/>
+                </f:facet>
+                <p:messages id="msg" showDetail="true" showSummary="true">
+                    <p:effect type="pulsate" event="load" delay="0">
+                        <f:param name="mode" value="'show'"/>
+                        <f:param name="times" value="'1'"/>
+                    </p:effect>
+                </p:messages>
+            </pe:layoutPane>
+        </pe:layoutPane>
+        <pe:layoutPane position="west" size="200">
+            <pe:layoutPane position="north" size="'33%'">
+                West-North
+            </pe:layoutPane>
+            <pe:layoutPane position="center" minHeight="60">
+                West-Center
+            </pe:layoutPane>
+            <pe:layoutPane position="south" size="'33%'">
+                West-South
+            </pe:layoutPane>
+        </pe:layoutPane>
+        <pe:layoutPane position="east" size="200">
+            East
+        </pe:layoutPane>
+        <pe:layoutPane position="south" size="80">
+            South
+        </pe:layoutPane>
+    </h:form>
+</pe:layout>
+
+<h:outputStylesheet library="css" name="global.css"/>
+    <!-- EXAMPLE-SOURCE-END -->
+</ui:composition>

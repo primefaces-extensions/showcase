@@ -1,0 +1,28 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <!-- EXAMPLE-SOURCE-START -->
+<p:growl id="growl" showDetail="true" />
+
+<h:graphicImage id="myImage" value="/resources/images/testImage1.png" />
+
+<pe:imageRotateAndResize id="rotateAndResize" for="myImage" widgetVar="rotateAndResizeWidget">
+    <p:ajax event="rotate" listener="#{imageController.rotateListener}" update="growl"/>
+    <p:ajax event="resize" listener="#{imageController.resizeListener}" update="growl"/>
+</pe:imageRotateAndResize>
+
+<br/>
+
+<p:commandButton icon="ui-icon-arrowreturnthick-1-w" value="Rotate Left"
+                 onclick="rotateAndResizeWidget.rotateLeft(90);return false;"/>
+<p:commandButton icon="ui-icon-arrowreturnthick-1-e" value="Rotate Right"
+                 onclick="rotateAndResizeWidget.rotateRight(90);return false;"/>
+<p:commandButton icon="ui-icon-zoomin" value="Scale +"
+                 onclick="rotateAndResizeWidget.scale(1.05);return false;"/>
+<p:commandButton icon="ui-icon-zoomout" value="Scale -"
+                 onclick="rotateAndResizeWidget.scale(0.95);return false;"/>
+    <!-- EXAMPLE-SOURCE-END -->
+</ui:composition>

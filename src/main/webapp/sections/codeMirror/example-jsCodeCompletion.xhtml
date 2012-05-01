@@ -1,17 +1,20 @@
-<h:panelGroup
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:pe="http://primefaces.org/ui/extensions"
-    layout="block">
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
 
-    <p:growl id="growl" showDetail="true" />
+<!-- EXAMPLE-SOURCE-START -->
 
-    <pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}"
-        theme="eclipse" value="#{codeMirrorController.content}" lineNumbers="true"
-        extraKeys="{ 'Ctrl-Space': function(cm) {CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);}}" />
+<p:growl id="growl" showDetail="true" />
 
-    <p:commandButton actionListener="#{codeMirrorController.changeMode}" update="codeMirror"
-                     value="Change mode with AJAX" style="margin-top:10px;"/>
+<pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}"
+    theme="eclipse" value="#{codeMirrorController.content}" lineNumbers="true"
+    extraKeys="{ 'Ctrl-Space': function(cm) {CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);}}" />
 
-</h:panelGroup>
+<p:commandButton actionListener="#{codeMirrorController.changeMode}" update="codeMirror"
+                 value="Change mode with AJAX" style="margin-top:10px;"/>
+
+<!-- EXAMPLE-SOURCE-END -->
+
+</ui:composition>

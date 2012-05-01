@@ -2,8 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -15,118 +14,15 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:panelGroup id="layoutsContainer">
-                <p:commandButton value="Switch between element layouts" actionListener="#{layoutController.toogleLayout}"
-                                 process="layoutsContainer" update="layoutsContainer" icon="ui-icon-newwin"/>
-            
-                <h:panelGrid id="layoutsGrid" columns="2" style="margin-top: 15px;" cellpadding="0" cellspacing="0">
-                    <pe:layout fullPage="false" style="width:450px; height:220px;"
-                               rendered="#{layoutController.layoutOneShown}" state="#{layoutController.stateOne}">
-                        <pe:layoutPane position="west" size="150" minSize="40" maxSize="300">
-                            Left
-                        </pe:layoutPane>
-                        <pe:layoutPane position="center">
-                            Center
-                        </pe:layoutPane>
-                    </pe:layout>
-                    
-                    <pe:layout fullPage="false" style="width:450px; height:220px;"
-                               rendered="#{!layoutController.layoutOneShown}" state="#{layoutController.stateTwo}">
-                        <pe:layoutPane position="east" size="'50%'" resizable="false" closable="false">
-                            <pe:layoutPane position="center">
-                                <f:facet name="header">
-                                    Header East-Center
-                                </f:facet>
-                                East-Center
-                            </pe:layoutPane>
-                            <pe:layoutPane position="south" size="'50%'">
-                                <f:facet name="header">
-                                    Header East-South
-                                </f:facet>
-                                East-South
-                            </pe:layoutPane>
-                        </pe:layoutPane>
-                        <pe:layoutPane position="center">
-                            Center
-                        </pe:layoutPane>
-                    </pe:layout>
-                </h:panelGrid>
-            </h:panelGroup>
+            <ui:include src="/sections/layout/example-elementLayout.xhtml" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-&lt;h:panelGroup id=&quot;layoutsContainer&quot;&gt;
-    &lt;p:commandButton value=&quot;Switch between element layouts&quot; actionListener=&quot;\#{layoutController.toogleLayout}&quot;
-                     process=&quot;layoutsContainer&quot; update=&quot;layoutsContainer&quot; icon=&quot;ui-icon-newwin&quot;/&gt;
-
-    &lt;h:panelGrid id=&quot;layoutsGrid&quot; columns=&quot;2&quot; style=&quot;margin-top: 8px;&quot;&gt;
-        &lt;pe:layout fullPage=&quot;false&quot; style=&quot;width:450px; height:220px;&quot;
-                   rendered=&quot;\#{layoutController.layoutOneShown}&quot; state=&quot;\#{layoutController.stateOne}&quot;&gt;
-            &lt;pe:layoutPane position=&quot;west&quot; size=&quot;150&quot; minSize=&quot;40&quot; maxSize=&quot;300&quot;&gt;
-                Left
-            &lt;/pe:layoutPane&gt;
-            &lt;pe:layoutPane position=&quot;center&quot;&gt;
-                Center
-            &lt;/pe:layoutPane&gt;
-        &lt;/pe:layout&gt;
-        
-        &lt;pe:layout fullPage=&quot;false&quot; style=&quot;width:450px; height:220px;&quot;
-                   rendered=&quot;\#{!layoutController.layoutOneShown}&quot; state=&quot;\#{layoutController.stateTwo}&quot;&gt;
-            &lt;pe:layoutPane position=&quot;east&quot; size=&quot;'50%'&quot; resizable=&quot;false&quot; closable=&quot;false&quot;&gt;
-                &lt;pe:layoutPane position=&quot;center&quot;&gt;
-                    &lt;f:facet name=&quot;header&quot;&gt;
-                        Header East-Center
-                    &lt;/f:facet&gt;
-                    East-Center
-                &lt;/pe:layoutPane&gt;
-                &lt;pe:layoutPane position=&quot;south&quot; size=&quot;'50%'&quot;&gt;
-                    &lt;f:facet name=&quot;header&quot;&gt;
-                        Header East-South
-                    &lt;/f:facet&gt;
-                    East-South
-                &lt;/pe:layoutPane&gt;
-            &lt;/pe:layoutPane&gt;
-            &lt;pe:layoutPane position=&quot;center&quot;&gt;
-                Center
-            &lt;/pe:layoutPane&gt;
-        &lt;/pe:layout&gt;
-    &lt;/h:panelGrid&gt;
-&lt;/h:panelGroup&gt;
+${showcase:getFileContent('/sections/layout/example-elementLayout.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-@ManagedBean
-@ViewScoped
-public class LayoutController implements Serializable {
-
-	private String stateOne;
-	private String stateTwo;
-	private boolean layoutOneShown = true;
-
-	public String getStateOne() {
-		return stateOne;
-	}
-
-	public void setStateOne(String stateOne) {
-		this.stateOne = stateOne;
-	}
-
-	public String getStateTwo() {
-		return stateTwo;
-	}
-
-	public void setStateTwo(String stateTwo) {
-		this.stateTwo = stateTwo;
-	}
-
-	public void toogleLayout(ActionEvent event) {
-		layoutOneShown = !layoutOneShown;
-	}
-
-	public boolean isLayoutOneShown() {
-		return layoutOneShown;
-	}
-}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/LayoutController.java')}
             </ui:define>                    
         </ui:decorate>
     </ui:define>

@@ -2,8 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -15,32 +14,12 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
-                <h:outputLabel value="First Name: "/>
-                <p:inputText title="Enter First Name"/>
-                <h:outputLabel value="Last Name: "/>
-                <p:inputText title="Enter Last Name"/>
-            </h:panelGrid>
-            
-            <p:commandButton value="Submit and see that global tooltips are still here" process="details" update="details"
-                             title="Click to submit the form per ajax" style="margin-top: 10px;"/>
-            
-            <pe:tooltip global="true" position="left center" targetPosition="right center"/>
+            <ui:include src="/sections/tooltip/example-globalTooltips.xhtml" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/oneTabDecorator.html">
             <ui:define name="contentTab1">
-&lt;h:panelGrid id=&quot;details&quot; columns=&quot;2&quot; columnClasses=&quot;formColumn1,formColumn2&quot;&gt;
-    &lt;h:outputLabel value=&quot;First Name: &quot;/&gt;
-    &lt;p:inputText title=&quot;Enter First Name&quot;/&gt;
-    &lt;h:outputLabel value=&quot;Last Name: &quot;/&gt;
-    &lt;p:inputText title=&quot;Enter Last Name&quot;/&gt;
-&lt;/h:panelGrid&gt;
-
-&lt;p:commandButton value=&quot;Submit and see that global tooltips are still here&quot; process=&quot;details&quot; update=&quot;details&quot;
-                 title=&quot;Click to submit the form per ajax&quot; style=&quot;margin-top: 10px;&quot;/&gt;
-
-&lt;pe:tooltip global=&quot;true&quot; position=&quot;left center&quot; targetPosition=&quot;right center&quot;/&gt;
+${showcase:getFileContent('/sections/tooltip/example-globalTooltips.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>

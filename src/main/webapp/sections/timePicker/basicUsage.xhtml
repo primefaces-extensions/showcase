@@ -2,8 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -17,184 +16,15 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <p:messages id="messages"/>
-            
-            <h:panelGrid id="timePickerGrid" columns="4"
-                         columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn">
-                <h:outputText value="Inline mode"/>
-                <h:outputText value="Popup mode"/>
-                <h:outputText value="Spinner mode"/>
-                <h:outputText value="Customization"/>
-                <pe:timePicker value="#{timePickerController.time1}" mode="inline" widgetVar="inlineTimeWidget"
-                               label="Inline time picker"/>
-                <pe:timePicker value="#{timePickerController.time2}" mode="popup" widgetVar="popupTimeWidget"
-                               label="Popup time picker"/>
-                <pe:timePicker value="#{timePickerController.time3}" widgetVar="spinnerTimeWidget"
-                               label="Spinner time picker"/>
-                <pe:timePicker value="#{timePickerController.time4}" timeSeparator="-" startHours="8" endHours="20"
-                               startMinutes="10" endMinutes="40" intervalMinutes="10" showCloseButton="true"
-                               showDeselectButton="true" showNowButton="true" rows="3" showPeriod="true" style="width:70px;"
-                               widgetVar="customTimeWidget" label="Custom time picker"/>
-            </h:panelGrid>
-            
-            <p:commandButton type="button" value="Disable time pickers" style="margin-top:10px;"
-                             onclick="inlineTimeWidget.disable();popupTimeWidget.disable();
-                                      spinnerTimeWidget.disable();customTimeWidget.disable();"/>
-            <p:commandButton type="button" value="Enable time pickers" style="margin-top:10px;"
-                             onclick="inlineTimeWidget.enable();popupTimeWidget.enable();
-                                      spinnerTimeWidget.enable();customTimeWidget.enable();"/>
-            <p:commandButton id="submitButton" value="Submit" actionListener="#{timePickerController.showTime}"
-                             process="@this timePickerGrid" update="messages timeDialog timePickerGrid"
-                             style="margin-top:10px;" icon="ui-icon-disk"/>
-            
-            <p:dialog id="timeDialog" header="Selected Values" visible="#{timePickerController.showTimeDialog}">
-                <h:panelGrid columns="1" style="margin: 10px;">
-                    <h:outputText value="Inline: #{timePickerController.formattedTime1}"/>
-                    <h:outputText value="Popup: #{timePickerController.formattedTime2}"/>
-                    <h:outputText value="Spinner: #{timePickerController.formattedTime3}"/>
-                    <h:outputText value="Custom: #{timePickerController.formattedTime4}"/>
-                </h:panelGrid>
-            </p:dialog>
+            <ui:include src="/sections/timePicker/example-basicUsage.xhtml"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-&lt;p:messages id=&quot;messages&quot;/&gt;
-
-&lt;h:panelGrid id=&quot;timePickerGrid&quot; columns=&quot;4&quot;
-             columnClasses=&quot;timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn&quot;&gt;
-    &lt;h:outputText value=&quot;Inline mode&quot;/&gt;
-    &lt;h:outputText value=&quot;Popup mode&quot;/&gt;
-    &lt;h:outputText value=&quot;Spinner mode&quot;/&gt;
-    &lt;h:outputText value=&quot;Customization&quot;/&gt;
-    &lt;pe:timePicker value=&quot;\#{timePickerController.time1}&quot; mode=&quot;inline&quot; widgetVar=&quot;inlineTimeWidget&quot;
-                   label=&quot;Inline time picker&quot;/&gt;
-    &lt;pe:timePicker value=&quot;\#{timePickerController.time2}&quot; mode=&quot;popup&quot; widgetVar=&quot;popupTimeWidget&quot;
-                   label=&quot;Popup time picker&quot;/&gt;
-    &lt;pe:timePicker value=&quot;\#{timePickerController.time3}&quot; widgetVar=&quot;spinnerTimeWidget&quot;
-                   label=&quot;Spinner time picker&quot;/&gt;
-    &lt;pe:timePicker value=&quot;\#{timePickerController.time4}&quot; timeSeparator=&quot;-&quot; startHours=&quot;8&quot; endHours=&quot;20&quot;
-                   startMinutes=&quot;10&quot; endMinutes=&quot;40&quot; intervalMinutes=&quot;10&quot; showCloseButton=&quot;true&quot;
-                   showDeselectButton=&quot;true&quot; showNowButton=&quot;true&quot; rows=&quot;3&quot; showPeriod=&quot;true&quot; style=&quot;width:70px;&quot;
-                   widgetVar=&quot;customTimeWidget&quot; label=&quot;Custom time picker&quot;/&gt;
-&lt;/h:panelGrid&gt;
-
-&lt;p:commandButton type=&quot;button&quot; value=&quot;Disable time pickers&quot; style=&quot;margin-top:10px;&quot;
-                 onclick=&quot;inlineTimeWidget.disable();popupTimeWidget.disable();
-                          spinnerTimeWidget.disable();customTimeWidget.disable();&quot;/&gt;
-&lt;p:commandButton type=&quot;button&quot; value=&quot;Enable time pickers&quot; style=&quot;margin-top:10px;&quot;
-                 onclick=&quot;inlineTimeWidget.enable();popupTimeWidget.enable();
-                          spinnerTimeWidget.enable();customTimeWidget.enable();&quot;/&gt;
-&lt;p:commandButton id=&quot;submitButton&quot; value=&quot;Submit&quot; actionListener=&quot;\#{timePickerController.showTime}&quot;
-                 process=&quot;@this timePickerGrid&quot; update=&quot;messages timeDialog timePickerGrid&quot;
-                 style=&quot;margin-top:10px;&quot; icon=&quot;ui-icon-disk&quot;/&gt;
-
-&lt;p:dialog id=&quot;timeDialog&quot; header=&quot;Selected Values&quot; visible=&quot;\#{timePickerController.showTimeDialog}&quot;&gt;
-    &lt;h:panelGrid columns=&quot;1&quot; style=&quot;margin: 10px;&quot;&gt;
-        &lt;h:outputText value=&quot;Inline: \#{timePickerController.formattedTime1}&quot;/&gt;
-        &lt;h:outputText value=&quot;Popup: \#{timePickerController.formattedTime2}&quot;/&gt;
-        &lt;h:outputText value=&quot;Spinner: \#{timePickerController.formattedTime3}&quot;/&gt;
-        &lt;h:outputText value=&quot;Custom: \#{timePickerController.formattedTime4}&quot;/&gt;
-    &lt;/h:panelGrid&gt;
-&lt;/p:dialog&gt;
+${showcase:getFileContent('/sections/timePicker/example-basicUsage.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-@ManagedBean
-@ViewScoped
-public class TimePickerController implements Serializable {
-
-	private Date time1;
-	private Date time2;
-	private Date time3;
-	private Date time4;
-	private boolean showTime = false;
-
-	public TimePickerController() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.AM_PM, Calendar.AM);
-		calendar.set(Calendar.HOUR, 8);
-		calendar.set(Calendar.MINUTE, 15);
-		time1 = calendar.getTime();
-
-		calendar.set(Calendar.HOUR, 11);
-		calendar.set(Calendar.MINUTE, 40);
-		time2 = calendar.getTime();
-
-		time3 = new Date();
-	}
-
-	public Date getTime1() {
-		return time1;
-	}
-
-	public void setTime1(Date time1) {
-		this.time1 = time1;
-	}
-
-	public Date getTime2() {
-		return time2;
-	}
-
-	public void setTime2(Date time2) {
-		this.time2 = time2;
-	}
-
-	public Date getTime3() {
-		return time3;
-	}
-
-	public void setTime3(Date time3) {
-		this.time3 = time3;
-	}
-
-	public Date getTime4() {
-		return time4;
-	}
-
-	public void setTime4(Date time4) {
-		this.time4 = time4;
-	}
-
-	public String getFormattedTime1() {
-		return getFormattedTime(time1, &quot;HH:mm&quot;);
-	}
-
-	public String getFormattedTime2() {
-		return getFormattedTime(time2, &quot;HH:mm&quot;);
-	}
-
-	public String getFormattedTime3() {
-		return getFormattedTime(time3, &quot;HH:mm&quot;);
-	}
-
-	public String getFormattedTime4() {
-		return getFormattedTime(time4, &quot;hh-mm a&quot;);
-	}
-
-	public void showTime(ActionEvent ae) {
-		showTime = true;
-	}
-
-	public boolean isShowTimeDialog() {
-		if (showTime) {
-			showTime = false;
-
-			return true;
-		}
-
-		return false;
-	}
-
-	private String getFormattedTime(Date time, String format) {
-		if (time == null) {
-			return null;
-		}
-
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-
-		return simpleDateFormat.format(time);
-	}
-}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/TimePickerController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

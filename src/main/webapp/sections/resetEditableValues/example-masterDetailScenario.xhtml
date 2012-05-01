@@ -4,53 +4,55 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:pe="http://primefaces.org/ui/extensions">
-    <h:panelGroup id="personsGroup">
-        <p:messages/>
+<!-- EXAMPLE-SOURCE-START -->
+<h:panelGroup id="personsGroup">
+    <p:messages/>
 
-        <p:dataTable id="persons" value="#{advancedResetEditableValuesController.persons}" var="person"
-                     rendered="#{empty advancedResetEditableValuesController.selectedPerson}">
-            <p:column headerText="Name">
-                <p:commandLink value="#{person.name}"
-                               action="#{advancedResetEditableValuesController.showPersonDetails(person)}"
-                               process="_mainForm_personsGroup" update="_mainForm_personsGroup"/>
-            </p:column>
-            <p:column headerText="Tax Class">
-                <h:outputText value="#{person.taxClass}"/>
-            </p:column>
-            <p:column headerText="Birth Date">
-                <h:outputText value="#{person.birthDate}">
-                    <f:convertDateTime pattern="dd.MM.yyyy"/>
-                </h:outputText>
-            </p:column>
-        </p:dataTable>
+    <p:dataTable id="persons" value="#{advancedResetEditableValuesController.persons}" var="person"
+                 rendered="#{empty advancedResetEditableValuesController.selectedPerson}">
+        <p:column headerText="Name">
+            <p:commandLink value="#{person.name}"
+                           action="#{advancedResetEditableValuesController.showPersonDetails(person)}"
+                           process="_mainForm_personsGroup" update="_mainForm_personsGroup"/>
+        </p:column>
+        <p:column headerText="Tax Class">
+            <h:outputText value="#{person.taxClass}"/>
+        </p:column>
+        <p:column headerText="Birth Date">
+            <h:outputText value="#{person.birthDate}">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+            </h:outputText>
+        </p:column>
+    </p:dataTable>
 
-        <h:panelGroup rendered="#{not empty advancedResetEditableValuesController.selectedPerson}">
-            <h:panelGrid id="personDetail" columns="2" columnClasses="formColumn1,formColumn2">
-                <h:outputText value="Name (string)"/>
-                <h:inputText value="#{advancedResetEditableValuesController.selectedPerson.name}"
-                             required="true" label="Name"/>
-                <h:outputText value="Tax Class (number)"/>
-                <h:inputText value="#{advancedResetEditableValuesController.selectedPerson.taxClass}"
-                             required="true" label="Tax Class">
-                    <f:validateLength maximum="1"/>
-                </h:inputText>
-                <h:outputText value="Birth Date (date dd.MM.yyyy)"/>
-                <h:inputText value="#{advancedResetEditableValuesController.selectedPerson.birthDate}"
-                             required="true" label="Birth Date">
-                    <f:convertDateTime pattern="dd.MM.yyyy"/>
-                </h:inputText>
-            </h:panelGrid>
+    <h:panelGroup rendered="#{not empty advancedResetEditableValuesController.selectedPerson}">
+        <h:panelGrid id="personDetail" columns="2" columnClasses="formColumn1,formColumn2">
+            <h:outputText value="Name (string)"/>
+            <h:inputText value="#{advancedResetEditableValuesController.selectedPerson.name}"
+                         required="true" label="Name"/>
+            <h:outputText value="Tax Class (number)"/>
+            <h:inputText value="#{advancedResetEditableValuesController.selectedPerson.taxClass}"
+                         required="true" label="Tax Class">
+                <f:validateLength maximum="1"/>
+            </h:inputText>
+            <h:outputText value="Birth Date (date dd.MM.yyyy)"/>
+            <h:inputText value="#{advancedResetEditableValuesController.selectedPerson.birthDate}"
+                         required="true" label="Birth Date">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+            </h:inputText>
+        </h:panelGrid>
 
-            <p:commandButton value="Save" action="#{advancedResetEditableValuesController.updatePersonDetails}"
-                             process="personsGroup" update="personsGroup"
-                             style="margin-top: 10px;" icon="ui-icon-disk"/>
-            <p:commandButton value="Regular Cancel" action="#{advancedResetEditableValuesController.cancelPersonDetails}"
-                             update="personsGroup" immediate="true" icon="ui-icon-close"/>
-            <p:commandButton value="Cancel with pe:resetEditableValues"
-                             action="#{advancedResetEditableValuesController.cancelPersonDetails}"
-                             update="personsGroup" immediate="true" icon="ui-icon-close">
-                <pe:resetEditableValues for="personDetail"/>
-            </p:commandButton>
-        </h:panelGroup>
+        <p:commandButton value="Save" action="#{advancedResetEditableValuesController.updatePersonDetails}"
+                         process="personsGroup" update="personsGroup"
+                         style="margin-top: 10px;" icon="ui-icon-disk"/>
+        <p:commandButton value="Regular Cancel" action="#{advancedResetEditableValuesController.cancelPersonDetails}"
+                         update="personsGroup" immediate="true" icon="ui-icon-close"/>
+        <p:commandButton value="Cancel with pe:resetEditableValues"
+                         action="#{advancedResetEditableValuesController.cancelPersonDetails}"
+                         update="personsGroup" immediate="true" icon="ui-icon-close">
+            <pe:resetEditableValues for="personDetail"/>
+        </p:commandButton>
     </h:panelGroup>
+</h:panelGroup>
+<!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

@@ -2,8 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -14,163 +13,16 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <!-- This group is for coding -->
-            <p:growl id="growl" showDetail="false"/>
-            <h:panelGrid id="triStateGrid" columns="2" style="margin-bottom:10px" cellpadding="5">
-
-                <h:outputText value="With converter:"/>
-                <pe:triStateManyCheckbox id="TriBasic"
-                                         value="#{triSateManyCheckBoxController.selectedOptionsTriStateConverted}"
-                                         converter="triStateManyCheckboxConverter">
-                    <f:selectItems value="#{triSateManyCheckBoxController.basicOptions}"/>
-                </pe:triStateManyCheckbox>
-
-                <h:outputText value="With Validator, 0 is not allowed:"/>
-                <pe:triStateManyCheckbox id="TriAjax"
-                                         value="#{triSateManyCheckBoxController.selectedOptionsTriStateAjax}"
-                                         stateOneIcon="ui-icon-home"
-                                         stateTwoIcon="ui-icon-heart"
-                                         stateThreeIcon="ui-icon-star"
-                                         validatorMessage="State 0 is not allowed">
-                    <f:selectItem itemLabel="Tamara" itemValue="Tamara"/>
-                    <f:selectItem itemLabel="Mauricio" itemValue="Mauricio"/>
-                    <f:validateLongRange minimum="1"/>
-                    <p:ajax update="growl" listener="#{triSateManyCheckBoxController.addMessage}"/>
-                </pe:triStateManyCheckbox>
-            </h:panelGrid>
-
-            <p:commandButton value="Submit" update="display" oncomplete="dlg.show()"/>
-
-            <p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="240">
-                <p:outputPanel id="display">
-                    <p:dataList value="#{triSateManyCheckBoxController.selectedOptionsTriStateConverted.keySet().toArray()}"
-                                var="optionsB">
-                        #{optionsB} #{triSateManyCheckBoxController.selectedOptionsTriStateConverted.get(optionsB)}
-                    </p:dataList>
-
-                    <p:dataList value="#{triSateManyCheckBoxController.selectedOptionsTriStateAjax.keySet().toArray()}"
-                                var="optionsA">
-                        #{optionsA} state = #{triSateManyCheckBoxController.selectedOptionsTriStateAjax.get(optionsA)}
-                    </p:dataList>
-                </p:outputPanel>
-            </p:dialog>
+            <ui:include src="/sections/triStateManyCheckbox/example-advanceUsage.xhtml" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <!-- Code here should be left aligned -->
             <ui:define name="contentTab1">
-&lt;p:growl id=&quot;growl&quot; showDetail=&quot;false&quot;/&gt;
-&lt;h:panelGrid id=&quot;triStateGrid&quot; columns=&quot;2&quot; style=&quot;margin-bottom:10px&quot; cellpadding=&quot;5&quot;&gt;
-
-    &lt;h:outputText value=&quot;With converter:&quot;/&gt;
-    &lt;pe:triStateManyCheckbox id=&quot;TriBasic&quot;
-                             value=&quot;\#{triSateManyCheckBoxController.selectedOptionsTriStateConverted}&quot;
-                             converter=&quot;triStateManyCheckboxConverter&quot;&gt;
-        &lt;f:selectItems value=&quot;\#{triSateManyCheckBoxController.basicOptions}&quot;/&gt;
-    &lt;/pe:triStateManyCheckbox&gt;
-
-    &lt;h:outputText value=&quot;With Validator, 0 is not allowed:&quot;/&gt;
-    &lt;pe:triStateManyCheckbox id=&quot;TriAjax&quot;
-                             value=&quot;\#{triSateManyCheckBoxController.selectedOptionsTriStateAjax}&quot;
-                             stateOneIcon=&quot;ui-icon-home&quot;
-                             stateTwoIcon=&quot;ui-icon-heart&quot;
-                             stateThreeIcon=&quot;ui-icon-star&quot;
-                             validatorMessage=&quot;State 0 is not allowed&quot;&gt;
-        &lt;f:selectItem itemLabel=&quot;Tamara&quot; itemValue=&quot;Tamara&quot;/&gt;
-        &lt;f:selectItem itemLabel=&quot;Mauricio&quot; itemValue=&quot;Mauricio&quot;/&gt;
-        &lt;f:validateLongRange minimum=&quot;1&quot;/&gt;
-        &lt;p:ajax update=&quot;growl&quot; listener=&quot;\#{triSateManyCheckBoxController.addMessage}&quot;/&gt;
-    &lt;/pe:triStateManyCheckbox&gt;
-&lt;/h:panelGrid&gt;
-
-&lt;p:commandButton value=&quot;Submit&quot; update=&quot;display&quot; oncomplete=&quot;dlg.show()&quot;/&gt;
-
-&lt;p:dialog header=&quot;Selected Values&quot; modal=&quot;false&quot; showEffect=&quot;fade&quot; hideEffect=&quot;fade&quot; widgetVar=&quot;dlg&quot; width=&quot;240&quot;&gt;
-    &lt;p:outputPanel id=&quot;display&quot;&gt;
-        &lt;p:dataList value=&quot;\#{triSateManyCheckBoxController.selectedOptionsTriStateConverted.keySet().toArray()}&quot;
-                    var=&quot;optionsB&quot;&gt;
-            \#{optionsB} \#{triSateManyCheckBoxController.selectedOptionsTriStateConverted.get(optionsB)}
-        &lt;/p:dataList&gt;
-
-        &lt;p:dataList value=&quot;\#{triSateManyCheckBoxController.selectedOptionsTriStateAjax.keySet().toArray()}&quot;
-                    var=&quot;optionsA&quot;&gt;
-            \#{optionsA} state = \#{triSateManyCheckBoxController.selectedOptionsTriStateAjax.get(optionsA)}
-        &lt;/p:dataList&gt;
-    &lt;/p:outputPanel&gt;
-&lt;/p:dialog&gt;
+${showcase:getFileContent('/sections/triStateManyCheckbox/example-advanceUsage.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-@ManagedBean
-@ViewScoped
-public class TriSateManyCheckBoxController implements Serializable {
-
-	private Map&lt;String, String&gt; selectedOptionsTriStateBasic;
-	private Map&lt;String, String&gt; selectedOptionsTriStateAjax;
-	private Map&lt;String, State&gt; selectedOptionsTriStateConverted;
-	private Map&lt;String, String&gt; basicOptions;
-
-	public TriSateManyCheckBoxController() {
-		basicOptions = new HashMap&lt;String, String&gt;();
-		basicOptions.put(&quot;Label for Dog&quot;, &quot;Dog&quot;);
-		basicOptions.put(&quot;Label for Cat&quot;, &quot;Cat&quot;);
-		basicOptions.put(&quot;Label for Fish&quot;, &quot;Fish&quot;);
-
-		//default will created with state=0
-		selectedOptionsTriStateBasic = new HashMap&lt;String, String&gt;();
-		selectedOptionsTriStateBasic.put(&quot;Cat&quot;, &quot;1&quot;);
-
-		selectedOptionsTriStateAjax = new HashMap&lt;String, String&gt;();
-		selectedOptionsTriStateAjax.put(&quot;Tamara&quot;, &quot;1&quot;);
-		selectedOptionsTriStateAjax.put(&quot;Mauricio&quot;, &quot;1&quot;);
-
-		selectedOptionsTriStateConverted = new HashMap&lt;String, State&gt;();
-		selectedOptionsTriStateConverted.put(&quot;Dog&quot;, new State(&quot;One&quot;));
-		selectedOptionsTriStateConverted.put(&quot;Cat&quot;, new State(&quot;Two&quot;));
-		selectedOptionsTriStateConverted.put(&quot;Fish&quot;, new State(&quot;Three&quot;));
-	}
-
-	public Map&lt;String, String&gt; getSelectedOptionsTriStateAjax() {
-		return selectedOptionsTriStateAjax;
-	}
-
-	public void setSelectedOptionsTriStateAjax(Map&lt;String, String&gt; selectedOptionsTriStateAjax) {
-		this.selectedOptionsTriStateAjax = selectedOptionsTriStateAjax;
-	}
-
-	public Map&lt;String, String&gt; getSelectedOptionsTriStateBasic() {
-		return selectedOptionsTriStateBasic;
-	}
-
-	public void setSelectedOptionsTriStateBasic(Map&lt;String, String&gt; selectedOptionsTriStateBasic) {
-		this.selectedOptionsTriStateBasic = selectedOptionsTriStateBasic;
-	}
-
-	public void addMessage() {
-		String message = &quot;&quot;;
-		for (String key : selectedOptionsTriStateAjax.keySet()) {
-			message += key + &quot;=&quot; + selectedOptionsTriStateAjax.get(key) + &quot;  &quot;;
-		}
-
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;State has been changed&quot;, message.trim());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public Map&lt;String, String&gt; getBasicOptions() {
-		return basicOptions;
-	}
-
-	public void setBasicOptions(Map&lt;String, String&gt; basicOptions) {
-		this.basicOptions = basicOptions;
-	}
-
-	public Map&lt;String, State&gt; getSelectedOptionsTriStateConverted() {
-		return selectedOptionsTriStateConverted;
-	}
-
-	public void setSelectedOptionsTriStateConverted(Map&lt;String, State&gt; selectedOptionsTriStateConverted) {
-		this.selectedOptionsTriStateConverted = selectedOptionsTriStateConverted;
-	}
-}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/TriSateManyCheckBoxController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

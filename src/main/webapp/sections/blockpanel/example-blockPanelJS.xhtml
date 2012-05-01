@@ -1,41 +1,44 @@
-<h:panelGroup
+<ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:pe="http://primefaces.org/ui/extensions"
-        layout="block">
+        xmlns:pe="http://primefaces.org/ui/extensions">
 
-    <p:messages id="messages"/>
+    <!-- EXAMPLE-SOURCE-START -->
 
-    <pe:blockPanel blocked="false" widgetVar="firstBlockPanel" style="border:1px solid red;margin:5px;padding:10px;">
-        First BlockPanel
-        <h:panelGrid columns="">
-            <h:inputText value="1"/>
-            <h:inputText value="2"/>
-            <h:inputText value="3"/>
-            <h:inputText value="4"/>
-        </h:panelGrid>
-        
-        <p:commandButton type="button" value="JS Block" icon="ui-icon-locked" style="margin-top:10px;"
-                         onclick="firstBlockPanel.block()"/>
-        <p:commandButton type="button" value="JS Unblock" icon="ui-icon-unlocked" style="margin-top:10px;"
-                         onclick="firstBlockPanel.unblock()"/>
-    </pe:blockPanel>
+<p:messages id="messages"/>
 
-    <br/>
+<pe:blockPanel blocked="false" widgetVar="firstBlockPanel" style="border:1px solid red;margin:5px;padding:10px;">
+    First BlockPanel
+    <h:panelGrid columns="">
+        <h:inputText value="1"/>
+        <h:inputText value="2"/>
+        <h:inputText value="3"/>
+        <h:inputText value="4"/>
+    </h:panelGrid>
 
-    <pe:blockPanel blocked="true" widgetVar="secondBlockPanel" style="border:1px solid blue;margin:5px;padding:10px;">
-        Second BlockPanel
-        <h:panelGrid columns="">
-            <h:inputText value="1"/>
-            <h:inputText value="2"/>
-            <h:inputText value="3"/>
-            <h:inputText value="4"/>
-        </h:panelGrid>
-        <p:commandButton type="button" value="JS Block" icon="ui-icon-locked" style="margin-top:10px;"
-                         onclick="secondBlockPanel.block()"/>
-        <p:commandButton type="button" value="JS Unblock" icon="ui-icon-unlocked" style="margin-top:10px;"
-                         onclick="secondBlockPanel.unblock()"/>
-    </pe:blockPanel>
+    <p:commandButton type="button" value="JS Block" icon="ui-icon-locked" style="margin-top:10px;"
+                     onclick="firstBlockPanel.block()"/>
+    <p:commandButton type="button" value="JS Unblock" icon="ui-icon-unlocked" style="margin-top:10px;"
+                     onclick="firstBlockPanel.unblock()"/>
+</pe:blockPanel>
 
-</h:panelGroup>
+<br/>
+
+<pe:blockPanel blocked="true" widgetVar="secondBlockPanel" style="border:1px solid blue;margin:5px;padding:10px;">
+    Second BlockPanel
+    <h:panelGrid columns="">
+        <h:inputText value="1"/>
+        <h:inputText value="2"/>
+        <h:inputText value="3"/>
+        <h:inputText value="4"/>
+    </h:panelGrid>
+    <p:commandButton type="button" value="JS Block" icon="ui-icon-locked" style="margin-top:10px;"
+                     onclick="secondBlockPanel.block()"/>
+    <p:commandButton type="button" value="JS Unblock" icon="ui-icon-unlocked" style="margin-top:10px;"
+                     onclick="secondBlockPanel.unblock()"/>
+</pe:blockPanel>
+
+    <!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
