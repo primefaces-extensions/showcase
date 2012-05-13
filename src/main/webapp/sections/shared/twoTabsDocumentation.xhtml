@@ -27,7 +27,7 @@
                     <f:facet name="header">
                         Description
                     </f:facet>
-                    <h:outputText value="#{attribute.description}"/>
+                    <h:outputText value="#{attribute.description}" escape="false"/>
                 </p:column>
             </p:dataTable>
 
@@ -48,7 +48,7 @@
 		            <f:facet name="header">
 		                Description
 		            </f:facet>
-		            <h:outputText value="#{event.description}"/>
+		            <h:outputText value="#{event.description}" escape="false"/>
 		        </p:column>
 		    </p:dataTable>
         </p:tab>
@@ -70,7 +70,7 @@
                     <f:facet name="header">
                         Description
                     </f:facet>
-                    <h:outputText value="#{attribute.description}"/>
+                    <h:outputText value="#{attribute.description}" escape="false"/>
                 </p:column>
             </p:dataTable>
             
@@ -91,7 +91,7 @@
 		            <f:facet name="header">
 		                Description
 		            </f:facet>
-		            <h:outputText value="#{event.description}"/>
+		            <h:outputText value="#{event.description}" escape="false"/>
 		        </p:column>
 		    </p:dataTable>
         </p:tab>
