@@ -4,21 +4,31 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="ajaxErrorHandler"><!-- Disable ajaxErrorHandler inserted in masterLayout.xhtml --> </ui:define>
     <ui:define name="centerContent">
         <f:facet name="header">
             <h:outputText value="ajaxErrorHandler"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            TODO DESCRIPTION
+            <p>
+                In case if you wanted to set the displaying through RELOAD of the page, but for some errors like
+                ViewExpiredException you would demand RELOAD, you can define it with various logs with adding a definition
+                of the attribute TYPE. If the type is not assigned, define DEFAULT behaviour, if the type is defined, you
+                determine a specific behaviour for handling only for one type of error/exception.
+            </p>
+            <p>
+                An example frequently displays the utilized definition, where after the error ViewExpiredException is in demand of a RELOAD and in other error the RELOAD will not be necessary.
+            </p>
+
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/ajaxerrorhandler/example-ajaxErrorHandlerWithFacets.xhtml" />
+            <ui:include src="/sections/ajaxerrorhandler/example-ajaxerrorhandlerType.xhtml" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/ajaxerrorhandler/example-ajaxErrorHandlerWithFacets.xhtml')}
+${showcase:getFileContent('/sections/ajaxerrorhandler/example-ajaxerrorhandlerType.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/AjaxErrorHandlerController.java')}

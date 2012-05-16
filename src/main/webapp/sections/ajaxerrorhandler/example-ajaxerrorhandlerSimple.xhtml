@@ -1,0 +1,64 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:panelGroup layout="block">
+
+<!-- EXAMPLE-SOURCE-START -->
+
+
+<!-- With the exception of texts, you can add the button its own JavaScript function.  You can define texts: -->
+<pe:ajaxErrorHandler
+        title="Error"
+        body="Server return exception  {error-name} with description {error-message}"
+        button="Hide"
+        widgetVar="myAjaxErrorHandler" buttonOnclick="myAjaxErrorHandler.hide()"  />
+
+<!-- In title and body you can use HTML tags too, because the values are not escaped. -->
+<pe:ajaxErrorHandler
+        title="Error"
+        body="Server return exception  {error-name} with description &lt;b&gt;{error-message}&lt;/b&gt;"
+        button="Hide"
+        widgetVar="myAjaxErrorHandler" buttonOnclick="myAjaxErrorHandler.hide()"
+        type="javax.faces.application.ViewExpiredException" />
+
+
+<!-- An example of protocol, where title and body are defined through <f:facet name="title"> and/or <f:facet name="body"> -->
+<pe:ajaxErrorHandler type="java.lang.IllegalStateException" button="Close warning!">
+    <f:facet name="title">
+        Error <span style="color: red;">{error-name}</span>
+    </f:facet>
+    <f:facet name="body">
+        <div>
+            <h:form>
+                <p:tabView >
+                    <p:tab title="Message">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Error message:" />
+                            <h:outputText value="{error-message}" style="font-size: 1.2em;color:navy;" />
+
+                            <h:outputLabel value="Server name:" />
+                            <h:outputText value="{error-hostname}"  style="font-size: 1.2em;color:navy;"/>
+                        </h:panelGrid>
+
+                    </p:tab>
+                    <p:tab title="Detail"><div style="overflow: auto; height: 300px; width: 700px;">{error-stacktrace}</div></p:tab>
+                </p:tabView>
+            </h:form>
+        </div>
+    </f:facet>
+</pe:ajaxErrorHandler>
+
+
+        <!-- Form with AJAX actions, whitch throw exceptions -->
+<h:form>
+    <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Example first definition" />
+    <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="Example second definition" />
+    <p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="Example third definition" />
+</h:form>
+<!-- EXAMPLE-SOURCE-END -->
+    </h:panelGroup>
+</ui:composition>

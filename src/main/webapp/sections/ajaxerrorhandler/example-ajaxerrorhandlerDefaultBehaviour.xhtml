@@ -1,0 +1,23 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:panelGroup layout="block">
+
+<!-- EXAMPLE-SOURCE-START -->
+
+
+<!-- Default ajaxErrorHandler -->
+<pe:ajaxErrorHandler />
+
+<!-- Form with AJAX actions, whitch throw exceptions -->
+<h:form>
+    <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="test ViewExpiredException" />
+    <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="test NullPoinerException" />
+    <p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="test IllegalStateException" />
+</h:form>
+<!-- EXAMPLE-SOURCE-END -->
+    </h:panelGroup>
+</ui:composition>

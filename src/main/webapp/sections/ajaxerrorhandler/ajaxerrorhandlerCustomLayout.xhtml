@@ -11,38 +11,19 @@
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
             <p>
-                Default behaviour uses English texts, but most of the applications are created in the local
-                language and for that reason all the texts must be localized. Component pe:ajaxErrorHandler
-                enables showing errors in the given language with the help of defining localized texts.
+                In case if the pe:ajaxErrorHandler would have defined childs compontents and they are not facet,
+                you are defining the content of the window. You can use HTML,JSF components but we strongly not recommend
+                defining h:form or ajax events, that could cause more types of errors.
             </p>
-
-            <p>
-                Attributes title, body, button enable defining the texts for the correct display of a module window of the error. In the texts you can use the following variables.
-                <ul>
-                    <li>{error-name} – complete name of the exception/error, e.g javax.faces.application.ViewExpiredException</li>
-                    <li>{error-message} - Message of exception/error</li>
-                    <li>{error-stacktrace} - stacktrace of exception/error</li>
-                    <li>{error-hostname} - hostname of server, where exception is catched. This is good information in clusters solutions.</li>
-                </ul>
-            </p>
-
-            <p>
-                Default settings is: &lt;pe:ajaxErrorHandler title="{error-name}" body="{error-message}" button="Reload" /&gt; <br/>
-            </p>
-            <p>
-                Examples of simple declaration are in below example.
-            </p>
-
-
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/ajaxerrorhandler/example-ajaxerrorhandlerSimple.xhtml" />
+            <ui:include src="/sections/ajaxerrorhandler/example-ajaxErrorHandlerCustomLayout.xhtml" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/ajaxerrorhandler/example-ajaxerrorhandlerSimple.xhtml')}
+${showcase:getFileContent('/sections/ajaxerrorhandler/example-ajaxErrorHandlerCustomLayout.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/AjaxErrorHandlerController.java')}

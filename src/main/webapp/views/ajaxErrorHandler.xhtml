@@ -8,7 +8,30 @@
             <h:outputText value="AjaxErrorHandler"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            TODO DESCRIPTION
+
+            <p>
+                If partial AJAX request returned some error, FrontEnd PrimeFaces did not respond to this error and user didn't know,
+                where is problem and how can continue. The most often problems with AjaxErrors was, when some action/actionListener
+                throw unexpected Exception and developer do not catch all exceptions (e.g.: save DB problem) or Session/ViewScope
+                Expired (but Session/ViewScope expired is solved in new PrimeFaces).
+            </p>
+
+            <p>
+                Maybe you too have experienced that during development user's actions has no affect after session expiration
+                (no response from server). Because PrimeFaces ignore a lot of errors, finding out the real reason of problem
+                takes a long time without error information.
+            </p>
+
+            <p>
+                Component pe:ajaxErrorHandler is created for setting of AJAX error handling. The component enables displaying
+                a message in case of detection of an AJAX error. In case of need, you can define different behaviour for various
+                types of errors.
+            </p>
+
+            <p>
+                The best way to understand the behaviour is through examples.
+            </p>
+
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">

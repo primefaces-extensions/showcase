@@ -1,0 +1,52 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:panelGroup layout="block">
+
+        <!-- EXAMPLE-SOURCE-START -->
+        <!-- Custom CSS styles -->
+        <style>
+            /*Red background*/
+            .pe-ajax-error-handler .ui-widget-overlay {
+                background: #f60;
+            }
+
+        </style>
+
+<!-- An example of custom layout -->
+<pe:ajaxErrorHandler button="Close warning!" widgetVar="myAjaxErrorHandler">
+    <div>
+        <h2 style="border-bottom: 2px solid blue; border-top: 2px solid blue;padding: 15px; text-align:center;background:#ccc;">
+            Error <span style="color: red;">{error-name}</span>
+        </h2>
+        <p:panel header="Base information" toggleable="true">
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Error message:" />
+                <h:outputText value="{error-message}" style="font-size: 1.2em;color:navy;" />
+
+                <h:outputLabel value="Server name:" />
+                <h:outputText value="{error-hostname}"  style="font-size: 1.2em;color:navy;"/>
+            </h:panelGrid>
+        </p:panel>
+        <p:panel header="Exception details" toggleable="true">
+            <div style="overflow: auto; height: 300px; width: 440px;">{error-stacktrace}</div>
+        </p:panel>
+
+        <div style="text-align  :center; padding: 5px;">
+            <p:commandButton onclick="window.location.href=window.location.href; return false;" value="RELOAD"></p:commandButton>
+            <p:commandButton onclick="myAjaxErrorHandler.hide(); return false;" value="CLOSE"></p:commandButton>
+        </div>
+    </div>
+</pe:ajaxErrorHandler>
+
+
+<!-- Form with AJAX actions, whitch throw exceptions -->
+<h:form>
+    <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Show it" />
+</h:form>
+        <!-- EXAMPLE-SOURCE-END -->
+    </h:panelGroup>
+</ui:composition>
