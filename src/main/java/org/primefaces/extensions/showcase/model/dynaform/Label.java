@@ -16,22 +16,31 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller;
+package org.primefaces.extensions.showcase.model.dynaform;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
 /**
- * DynaFormController
+ * Label
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author  ova / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
-@ViewScoped
-public class DynaFormController implements Serializable {
+public class Label implements Serializable {
 
-	private static final long serialVersionUID = 20120423L;
+	private static final long serialVersionUID = 20120521L;
+
+	private String value;
+
+	public Label(String value) {
+		this.value = value;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
 }

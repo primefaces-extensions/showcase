@@ -1,8 +1,31 @@
 <ui:composition
         xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
     <!-- EXAMPLE-SOURCE-START -->
-    
+
+    <pe:dynaForm id="dynaForm" value="#{dynaFormController.model}" var="data" varStatus="curStatus">
+        <pe:dynaFormCell type="label">
+            <h:outputLabel value="${data.value}"/>
+        </pe:dynaFormCell>
+        <pe:dynaFormCell type="input">
+            <h:inputText value="${data.value}" required="${data.required}"/>
+        </pe:dynaFormCell>
+
+        <f:facet name="buttonBar">
+            <p:commandButton value="Submit" process="dynaForm" update="_mainForm_inputValues"
+                             oncomplete="inputValuesWidget.show()"/>
+        </f:facet>
+    </pe:dynaForm>
+
+    <p:dialog header="Input values" widgetVar="inputValuesWidget">
+        <p:dataList id="inputValues" value="#{dynaFormController.bookProperties}" var="bookProperty"
+                    style="margin:10px;">
+            <h:outputText value="#{bookProperty.name}: #{bookProperty.value}" style="margin-right: 10px;"/>
+        </p:dataList>
+    </p:dialog>
+
     <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
