@@ -22,9 +22,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
 import org.primefaces.extensions.model.dynaform.DynaFormModel;
 import org.primefaces.extensions.model.dynaform.DynaFormRow;
@@ -63,11 +66,11 @@ public class DynaFormController implements Serializable {
 
 		// row 1
 		DynaFormControl label11 = row.addControl(new Label("Author"), "label", 1, 1, true);
-		DynaFormControl edit12 = row.addControl(new BookProperty("author", true), "input", 1, 1);
+		DynaFormControl edit12 = row.addControl(new BookProperty("Author", true), "input", 1, 1);
 		label11.setRefKey(edit12.getKey());
 
 		DynaFormControl label13 = row.addControl(new Label("ISBN"), "label", 1, 1, true);
-		DynaFormControl edit14 = row.addControl(new BookProperty("isbn", false), "input", 1, 1);
+		DynaFormControl edit14 = row.addControl(new BookProperty("ISBN", false), "input", 1, 1);
 		label13.setRefKey(edit14.getKey());
 	}
 
@@ -88,5 +91,15 @@ public class DynaFormController implements Serializable {
 		}
 
 		return bookProperties;
+	}
+
+	public String submitForm() {
+		FacesMessage.Severity sev = FacesContext.getCurrentInstance().getMaximumSeverity();
+		boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR.compareTo(sev) >= 0));
+
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		requestContext.addCallbackParam("isValid", !hasErrors);
+
+		return null;
 	}
 }
