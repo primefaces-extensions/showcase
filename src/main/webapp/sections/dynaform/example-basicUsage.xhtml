@@ -10,10 +10,10 @@
 
     <pe:dynaForm id="dynaForm" value="#{dynaFormController.model}" var="data" varStatus="curStatus">
         <pe:dynaFormCell type="label">
-            <h:outputLabel value="${data.value}"/>
+            <h:outputLabel value="${data.value}" for="inputTxt"/>
         </pe:dynaFormCell>
         <pe:dynaFormCell type="input">
-            <p:inputText value="${data.value}" required="${data.required}" label="${data.name}"/>
+            <p:inputText id="inputTxt" value="${data.value}" required="${data.required}"/>
         </pe:dynaFormCell>
 
         <f:facet name="buttonBar">
