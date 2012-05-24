@@ -8,22 +8,19 @@
 
     <p:messages id="messages" showSummary="true"/>
 
-    <pe:dynaForm id="dynaForm" value="#{dynaFormController.model}" var="data" varStatus="curStatus">
-        <pe:dynaFormCell type="label">
-            <h:outputLabel value="${data.value}" for="inputTxt"/>
-        </pe:dynaFormCell>
-        <pe:dynaFormCell type="input">
+    <pe:dynaForm id="dynaForm" value="#{dynaFormController.model}" var="data">
+        <pe:dynaFormControl type="input" for="inputTxt">
             <p:inputText id="inputTxt" value="${data.value}" required="${data.required}"/>
-        </pe:dynaFormCell>
+        </pe:dynaFormControl>
 
         <f:facet name="buttonBar">
             <p:commandButton value="Submit" action="#{dynaFormController.submitForm}"
                              process="dynaForm" update="_mainForm_messages _mainForm_inputValues"
-                             oncomplete="handleCompleteDynaForm(xhr, status, args)"/>
+                             oncomplete="handleComplete(xhr, status, args)"/>
             <p:commandButton type="reset" value="Reset" style="margin-left: 5px;"/>
         </f:facet>
     </pe:dynaForm>
-
+    
     <p:dialog header="Input values" widgetVar="inputValuesWidget">
         <p:dataList id="inputValues" value="#{dynaFormController.bookProperties}" var="bookProperty"
                     style="margin:10px;">
@@ -33,14 +30,14 @@
 
     <h:outputScript id="dynaFormScript" target="body">
         /* <![CDATA[ */
-    function handleCompleteDynaForm(xhr, status, args) {
-        if(args && args.isValid) {
-            inputValuesWidget.show();
-        } else {
-            inputValuesWidget.hide();
+        function handleComplete(xhr, status, args) {
+            if(args && args.isValid) {
+                inputValuesWidget.show();
+            } else {
+                inputValuesWidget.hide();
+            }
         }
-    }
-    /* ]]> */
+        /* ]]> */
     </h:outputScript>
 
     <!-- EXAMPLE-SOURCE-END -->
