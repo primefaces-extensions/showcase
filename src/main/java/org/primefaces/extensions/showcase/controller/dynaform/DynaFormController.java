@@ -26,6 +26,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
@@ -48,30 +49,59 @@ public class DynaFormController implements Serializable {
 
 	private DynaFormModel model;
 
+	private static List<SelectItem> LANGUAGES = new ArrayList<SelectItem>();
+
 	public DynaFormController() {
 		model = new DynaFormModel();
 
+		// add rows, labels and editable controls
+		// set relationship between label and editable controls to support outputLabel with "for" attribute
+
+		// 1. row
 		DynaFormRow row = model.createRegularRow();
 
-		/*
-		private String title;
-		private String publisher;
-		private Date publicationDate;
-		private String language;
-		private String description;
-		 */
-
-		// add labels and editable controls
-		// set relationship between label and editable controls in order to support outputLabel with "for" attribute
-
-		// row 1
 		DynaFormLabel label11 = row.addLabel("Author", 1, 1);
 		DynaFormControl edit12 = row.addControl(new BookProperty("Author", true), "input", 1, 1);
 		label11.setForControl(edit12);
 
 		DynaFormLabel label13 = row.addLabel("ISBN", 1, 1);
-		DynaFormControl edit14 = row.addControl(new BookProperty("ISBN", false), "input", 1, 1);
+		DynaFormControl edit14 = row.addControl(new BookProperty("ISBN", true), "input", 1, 1);
 		label13.setForControl(edit14);
+
+		// 2. row
+		row = model.createRegularRow();
+
+		DynaFormLabel label21 = row.addLabel("Title", 1, 1);
+		DynaFormControl edit22 = row.addControl(new BookProperty("Title", false), "input", 3, 1);
+		label21.setForControl(edit22);
+
+		// 3. row
+		row = model.createRegularRow();
+
+		DynaFormLabel label31 = row.addLabel("Publisher", 1, 1);
+		DynaFormControl edit32 = row.addControl(new BookProperty("Publisher", false), "input", 1, 1);
+		label31.setForControl(edit32);
+
+		DynaFormLabel label33 = row.addLabel("Published on", 1, 1);
+		DynaFormControl edit34 = row.addControl(new BookProperty("Published on", false), "calendar", 1, 1);
+		label33.setForControl(edit34);
+
+		// 4. row
+		row = model.createRegularRow();
+
+		DynaFormLabel label41 = row.addLabel("Language", 1, 1);
+		DynaFormControl edit42 = row.addControl(new BookProperty("Language", false), "select", 1, 1);
+		label41.setForControl(edit42);
+
+		DynaFormLabel label43 = row.addLabel("Description", 1, 2);
+		DynaFormControl edit44 = row.addControl(new BookProperty("Description", false), "textarea", 1, 2);
+		label43.setForControl(edit44);
+
+		// 5. row
+		row = model.createRegularRow();
+
+		row.addLabel("Rating", 1, 1);
+		row.addControl(new BookProperty("Rating", 3, false), "rating", 1, 1);
 	}
 
 	public DynaFormModel getModel() {
@@ -99,5 +129,16 @@ public class DynaFormController implements Serializable {
 		requestContext.addCallbackParam("isValid", !hasErrors);
 
 		return null;
+	}
+
+	public List<SelectItem> getLanguages() {
+		if (LANGUAGES.isEmpty()) {
+			LANGUAGES.add(new SelectItem("en", "English"));
+			LANGUAGES.add(new SelectItem("de", "German"));
+			LANGUAGES.add(new SelectItem("ru", "Russia"));
+			LANGUAGES.add(new SelectItem("tr", "Turkish"));
+		}
+
+		return LANGUAGES;
 	}
 }

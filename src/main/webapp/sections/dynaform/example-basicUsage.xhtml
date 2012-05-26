@@ -10,8 +10,22 @@
         <p:messages id="messages" showSummary="true"/>
 
         <pe:dynaForm id="dynaForm" value="#{dynaFormController.model}" var="data">
-            <pe:dynaFormControl type="input" for="inputTxt">
-                <p:inputText id="inputTxt" value="${data.value}" required="${data.required}"/>
+            <pe:dynaFormControl type="input" for="txt">
+                <p:inputText id="txt" value="#{data.value}" required="#{data.required}"/>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="calendar" for="cal" styleClass="calendar">
+                <p:calendar id="cal" value="#{data.value}" required="#{data.required}" showOn="button"/>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="select" for="sel" styleClass="select">
+                <p:selectOneMenu id="sel" value="#{data.value}" required="#{data.required}">
+                    <f:selectItems value="#{dynaFormController.languages}"/>
+                </p:selectOneMenu>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="textarea" for="tarea">
+                <p:inputTextarea id="tarea" value="#{data.value}" required="#{data.required}" autoResize="false"/>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="rating">
+                <p:rating value="#{data.value}" required="#{data.required}"/>
             </pe:dynaFormControl>
 
             <f:facet name="buttonBar">
@@ -41,6 +55,25 @@
         }
         /* ]]> */
     </h:outputScript>
+
+    <h:outputStylesheet id="dynaFormCSS">
+        .pe-dynaform-cell input,
+        .pe-dynaform-cell textarea {
+            width: 150px;
+        }
+
+        .pe-dynaform-cell.calendar input {
+            width: 120px;
+        }
+
+        .pe-dynaform-cell.select .ui-selectonemenu {
+            width: 157px !important;
+        }
+
+        .pe-dynaform-cell.select .ui-selectonemenu .ui-selectonemenu-label {
+            width: 130px !important;
+        }
+    </h:outputStylesheet>
 
     <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

@@ -19,10 +19,6 @@
 package org.primefaces.extensions.showcase.model.dynaform;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.faces.model.SelectItem;
 
 /**
  * Book
@@ -37,15 +33,6 @@ public class BookProperty implements Serializable {
 	private String name;
 	private Object value;
 	private boolean required;
-
-	private static List<SelectItem> languages = new ArrayList<SelectItem>();
-
-	static {
-		languages.add(new SelectItem("en", "English"));
-		languages.add(new SelectItem("de", "German"));
-		languages.add(new SelectItem("ru", "Russia"));
-		languages.add(new SelectItem("tr", "Turkish"));
-	}
 
 	public BookProperty(String name, boolean required) {
 		this.name = name;
@@ -80,9 +67,5 @@ public class BookProperty implements Serializable {
 
 	public void setRequired(boolean required) {
 		this.required = required;
-	}
-
-	public static List<SelectItem> getLanguages() {
-		return languages;
 	}
 }
