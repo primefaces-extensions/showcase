@@ -135,7 +135,7 @@ public class DynaFormController implements Serializable {
 		if (LANGUAGES.isEmpty()) {
 			LANGUAGES.add(new SelectItem("en", "English"));
 			LANGUAGES.add(new SelectItem("de", "German"));
-			LANGUAGES.add(new SelectItem("ru", "Russia"));
+			LANGUAGES.add(new SelectItem("ru", "Russian"));
 			LANGUAGES.add(new SelectItem("tr", "Turkish"));
 		}
 
