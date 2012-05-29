@@ -6,9 +6,9 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
     <!-- EXAMPLE-SOURCE-START -->
 <h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
-    <pe:requiredLabel for="firstName" value="First Name: "/>
+    <p:outputLabel for="firstName" value="First Name: "/>
     <p:inputText id="firstName" required="true" title="#{component.valid ? '' : 'First Name can not be empty'}"/>
-    <pe:requiredLabel for="lastName" value="Last Name: "/>
+    <p:outputLabel for="lastName" value="Last Name: "/>
     <p:inputText id="lastName" required="true" title="#{component.valid ? '' : 'Last Name can not be empty'}"/>
 </h:panelGrid>
 
