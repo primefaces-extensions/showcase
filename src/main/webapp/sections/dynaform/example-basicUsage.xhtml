@@ -6,75 +6,74 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
     <!-- EXAMPLE-SOURCE-START -->
 
-    <h:panelGroup id="dynaFormGroup">
-        <p:messages id="messages" showSummary="true"/>
+<h:panelGroup id="dynaFormGroup">
+    <p:messages id="messages" showSummary="true"/>
 
-        <pe:dynaForm id="dynaForm" value="#{dynaFormController.model}" var="data">
-            <pe:dynaFormControl type="input" for="txt">
-                <p:inputText id="txt" value="#{data.value}" required="#{data.required}"/>
-            </pe:dynaFormControl>
-            <pe:dynaFormControl type="calendar" for="cal" styleClass="calendar">
-                <p:calendar id="cal" value="#{data.value}" required="#{data.required}" showOn="button"/>
-            </pe:dynaFormControl>
-            <pe:dynaFormControl type="select" for="sel" styleClass="select">
-                <p:selectOneMenu id="sel" value="#{data.value}" required="#{data.required}">
-                    <f:selectItems value="#{dynaFormController.languages}"/>
-                </p:selectOneMenu>
-            </pe:dynaFormControl>
-            <pe:dynaFormControl type="textarea" for="tarea">
-                <p:inputTextarea id="tarea" value="#{data.value}"
-                                 required="#{data.required}" autoResize="false"/>
-            </pe:dynaFormControl>
-            <pe:dynaFormControl type="rating">
-                <p:rating value="#{data.value}" required="#{data.required}"/>
-            </pe:dynaFormControl>
+    <pe:dynaForm id="dynaForm" value="#{dynaFormController.model}" var="data">
+        <pe:dynaFormControl type="input" for="txt">
+            <p:inputText id="txt" value="#{data.value}" required="#{data.required}"/>
+        </pe:dynaFormControl>
+        <pe:dynaFormControl type="calendar" for="cal" styleClass="calendar">
+            <p:calendar id="cal" value="#{data.value}" required="#{data.required}" showOn="button"/>
+        </pe:dynaFormControl>
+        <pe:dynaFormControl type="select" for="sel" styleClass="select">
+            <p:selectOneMenu id="sel" value="#{data.value}" required="#{data.required}">
+                <f:selectItems value="#{dynaFormController.languages}"/>
+            </p:selectOneMenu>
+        </pe:dynaFormControl>
+        <pe:dynaFormControl type="textarea" for="tarea">
+            <p:inputTextarea id="tarea" value="#{data.value}" required="#{data.required}" autoResize="false"/>
+        </pe:dynaFormControl>
+        <pe:dynaFormControl type="rating">
+            <p:rating value="#{data.value}" required="#{data.required}"/>
+        </pe:dynaFormControl>
 
-            <f:facet name="buttonBar">
-                <p:commandButton value="Submit" action="#{dynaFormController.submitForm}"
-                                 process="dynaForm" update="_mainForm_dynaFormGroup _mainForm_inputValues"
-                                 oncomplete="handleComplete(xhr, status, args)"/>
-                <p:commandButton type="reset" value="Reset" style="margin-left: 5px;"/>
-            </f:facet>
-        </pe:dynaForm>
-    </h:panelGroup>
+        <f:facet name="buttonBar">
+            <p:commandButton value="Submit" action="#{dynaFormController.submitForm}"
+                             process="dynaForm" update="_mainForm_dynaFormGroup _mainForm_inputValues"
+                             oncomplete="handleComplete(xhr, status, args)"/>
+            <p:commandButton type="reset" value="Reset" style="margin-left: 5px;"/>
+        </f:facet>
+    </pe:dynaForm>
+</h:panelGroup>
 
-    <p:dialog header="Input values" widgetVar="inputValuesWidget">
-        <p:dataList id="inputValues" value="#{dynaFormController.bookProperties}" var="bookProperty"
-                    style="margin:10px;">
-            <h:outputText value="#{bookProperty.name}: #{bookProperty.value}" style="margin-right: 10px;"/>
-        </p:dataList>
-    </p:dialog>
+<p:dialog header="Input values" widgetVar="inputValuesWidget">
+    <p:dataList id="inputValues" value="#{dynaFormController.bookProperties}" var="bookProperty"
+                style="margin:10px;">
+        <h:outputText value="#{bookProperty.name}: #{bookProperty.value}" style="margin-right: 10px;"/>
+    </p:dataList>
+</p:dialog>
 
-    <h:outputScript id="dynaFormScript" target="body">
-        /* <![CDATA[ */
-        function handleComplete(xhr, status, args) {
-            if(args && args.isValid) {
-                inputValuesWidget.show();
-            } else {
-                inputValuesWidget.hide();
-            }
+<h:outputScript id="dynaFormScript" target="body">
+    /* <![CDATA[ */
+    function handleComplete(xhr, status, args) {
+        if(args && args.isValid) {
+            inputValuesWidget.show();
+        } else {
+            inputValuesWidget.hide();
         }
-        /* ]]> */
-    </h:outputScript>
+    }
+    /* ]]> */
+</h:outputScript>
 
-    <h:outputStylesheet id="dynaFormCSS">
-        .pe-dynaform-cell input,
-        .pe-dynaform-cell textarea {
-            width: 150px;
-        }
+<h:outputStylesheet id="dynaFormCSS">
+    .pe-dynaform-cell input,
+    .pe-dynaform-cell textarea {
+        width: 150px;
+    }
 
-        .pe-dynaform-cell.calendar input {
-            width: 120px;
-        }
+    .pe-dynaform-cell.calendar input {
+        width: 120px;
+    }
 
-        .pe-dynaform-cell.select .ui-selectonemenu {
-            width: 157px !important;
-        }
+    .pe-dynaform-cell.select .ui-selectonemenu {
+        width: 157px !important;
+    }
 
-        .pe-dynaform-cell.select .ui-selectonemenu .ui-selectonemenu-label {
-            width: 130px !important;
-        }
-    </h:outputStylesheet>
+    .pe-dynaform-cell.select .ui-selectonemenu .ui-selectonemenu-label {
+        width: 130px !important;
+    }
+</h:outputStylesheet>
 
     <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

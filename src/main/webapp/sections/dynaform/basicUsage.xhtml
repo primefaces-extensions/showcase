@@ -25,13 +25,16 @@
             <ui:include src="/sections/dynaform/example-basicUsage.xhtml"/>            
         </h:panelGroup>
 
-        <ui:decorate template="/templates/twoTabsDecorator.html">
+        <ui:decorate template="/templates/threeTabsDecoratorModel.html">
             <ui:define name="contentTab1">
 ${showcase:getFileContent('/sections/dynaform/example-basicUsage.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/dynaform/DynaFormController.java')}
             </ui:define>
+            <ui:define name="contentTab3">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/dynaform/BookProperty.java')}
+            </ui:define>            
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
