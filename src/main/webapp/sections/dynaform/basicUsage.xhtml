@@ -9,7 +9,16 @@
             <h:outputText value="DynaForm"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            This example demonstrates how to build a simple dynamic form.
+            This example demonstrates how to build a simple dynamic form. Main steps:
+            <p/>
+            <ul>
+                <li>Create model instance: DynaFormModel model = new DynaFormModel();</li>
+                <li>Add row: DynaFormRow row = model.createRegularRow();</li>
+                <li>Add label: DynaFormLabel label = row.addLabel(...);</li>
+                <li>Add editable control: DynaFormControl control = row.addControl(...);</li>
+                <li>Set relationship between label and control if needed: label.setForControl(control);</li>
+            </ul>
+            Repeat four last steps as many times as needed.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">

@@ -61,41 +61,41 @@ public class DynaFormController implements Serializable {
 		DynaFormRow row = model.createRegularRow();
 
 		DynaFormLabel label11 = row.addLabel("Author", 1, 1);
-		DynaFormControl edit12 = row.addControl(new BookProperty("Author", true), "input", 1, 1);
-		label11.setForControl(edit12);
+		DynaFormControl control12 = row.addControl(new BookProperty("Author", true), "input", 1, 1);
+		label11.setForControl(control12);
 
 		DynaFormLabel label13 = row.addLabel("ISBN", 1, 1);
-		DynaFormControl edit14 = row.addControl(new BookProperty("ISBN", true), "input", 1, 1);
-		label13.setForControl(edit14);
+		DynaFormControl control14 = row.addControl(new BookProperty("ISBN", true), "input", 1, 1);
+		label13.setForControl(control14);
 
 		// 2. row
 		row = model.createRegularRow();
 
 		DynaFormLabel label21 = row.addLabel("Title", 1, 1);
-		DynaFormControl edit22 = row.addControl(new BookProperty("Title", false), "input", 3, 1);
-		label21.setForControl(edit22);
+		DynaFormControl control22 = row.addControl(new BookProperty("Title", false), "input", 3, 1);
+		label21.setForControl(control22);
 
 		// 3. row
 		row = model.createRegularRow();
 
 		DynaFormLabel label31 = row.addLabel("Publisher", 1, 1);
-		DynaFormControl edit32 = row.addControl(new BookProperty("Publisher", false), "input", 1, 1);
-		label31.setForControl(edit32);
+		DynaFormControl control32 = row.addControl(new BookProperty("Publisher", false), "input", 1, 1);
+		label31.setForControl(control32);
 
 		DynaFormLabel label33 = row.addLabel("Published on", 1, 1);
-		DynaFormControl edit34 = row.addControl(new BookProperty("Published on", false), "calendar", 1, 1);
-		label33.setForControl(edit34);
+		DynaFormControl control34 = row.addControl(new BookProperty("Published on", false), "calendar", 1, 1);
+		label33.setForControl(control34);
 
 		// 4. row
 		row = model.createRegularRow();
 
 		DynaFormLabel label41 = row.addLabel("Language", 1, 1);
-		DynaFormControl edit42 = row.addControl(new BookProperty("Language", false), "select", 1, 1);
-		label41.setForControl(edit42);
+		DynaFormControl control42 = row.addControl(new BookProperty("Language", false), "select", 1, 1);
+		label41.setForControl(control42);
 
 		DynaFormLabel label43 = row.addLabel("Description", 1, 2);
-		DynaFormControl edit44 = row.addControl(new BookProperty("Description", false), "textarea", 1, 2);
-		label43.setForControl(edit44);
+		DynaFormControl control44 = row.addControl(new BookProperty("Description", false), "textarea", 1, 2);
+		label43.setForControl(control44);
 
 		// 5. row
 		row = model.createRegularRow();
