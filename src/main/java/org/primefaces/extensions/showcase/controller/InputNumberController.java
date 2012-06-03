@@ -36,12 +36,12 @@ public class InputNumberController implements Serializable {
 
 	private static final long serialVersionUID = 20120316L;
 
-	private Double input1;
-	private Double input2;
-	private Double input3;
-	private Double input4;
-	private Double input5;
-	private Double input6;
+	private Double input1 = new Double(0);
+	private Double input2 = new Double(0);
+	private Double input3 = new Double(0);
+	private Double input4 = new Double(0);
+	private Double input5 = new Double(0);
+	private Double input6 = new Double(0);
 	private String unit;
 	private String roundMethod;
 	private int decimalPlaces;
@@ -52,6 +52,13 @@ public class InputNumberController implements Serializable {
 		roundMethod = "S";
 		decimalPlaces = 2;
 		distance = new Distance();
+        
+        
+        //initialize values
+        input1 = 0d;
+        input2 = 0d;
+        input3 = 0d;
+        input4 = 0d;       
 		input5 = 251.31;
 		input6 = 60d;
 	}
