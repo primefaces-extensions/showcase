@@ -100,8 +100,9 @@ public class DynaFormController implements Serializable {
 		// 5. row
 		row = model.createRegularRow();
 
-		row.addLabel("Rating", 1, 1);
-		row.addControl(new BookProperty("Rating", 3, false), "rating", 1, 1);
+		DynaFormLabel label51 = row.addLabel("Rating", 1, 1);
+		DynaFormControl control52 = row.addControl(new BookProperty("Rating", 3, true), "rating", 1, 1);
+		label51.setForControl(control52);
 	}
 
 	public DynaFormModel getModel() {

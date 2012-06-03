@@ -19,6 +19,8 @@
 package org.primefaces.extensions.showcase.model.dynaform;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Book
@@ -54,6 +56,16 @@ public class BookProperty implements Serializable {
 	}
 
 	public Object getValue() {
+		return value;
+	}
+
+	public Object getFormattedValue() {
+		if (value instanceof Date) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d MMM yyyy");
+
+			return simpleDateFormat.format(value);
+		}
+
 		return value;
 	}
 

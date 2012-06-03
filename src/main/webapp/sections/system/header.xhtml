@@ -4,7 +4,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition>
-    <h:graphicImage library="images" name="logo.png" styleClass="logo" alt="PrimeFaces Extensions"/>
+    <h:graphicImage library="images" name="logo.png" styleClass="logo" title="PrimeFaces Extensions"/>
 
     <h:panelGrid columns="7" styleClass="smallNav"
                  columnClasses="smallNavText,smallNavImg,smallNavText,smallNavImg,smallNavText">
@@ -26,7 +26,7 @@
         </h:outputLink>
     </h:panelGrid>
 
-    <pe:ajaxStatus styleClass="logo" style="left:360px; width:32px; height:32px; margin-top: 12px;">
+    <pe:ajaxStatus styleClass="logo" style="left:80px; width:32px; height:32px; margin-top: 10px;">
         <f:facet name="start">
             <h:graphicImage library="images" name="ajax-loader.gif" alt="AJAX Status"/>
         </f:facet>
