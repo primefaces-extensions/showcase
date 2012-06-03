@@ -23,11 +23,14 @@ public class AvailableThemes {
 	}
 
 	private final HashMap<String, Theme> themesAsMap;
-	private final List<String> themeNames;
 	private final List<Theme> themes;
 
 	private AvailableThemes() {
-		themeNames = new ArrayList<String>();
+		final List<String> themeNames = new ArrayList<String>();
+
+		themeNames.add("afterdark");
+		themeNames.add("afternoon");
+		themeNames.add("afterwork");
 		themeNames.add("aristo");
 		themeNames.add("black-tie");
 		themeNames.add("blitzer");

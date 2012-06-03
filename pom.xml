@@ -231,6 +231,19 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
+        
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>afterdark</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>afternoon</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>afterwork</artifactId>
+        </dependency>        
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>black-tie</artifactId>
