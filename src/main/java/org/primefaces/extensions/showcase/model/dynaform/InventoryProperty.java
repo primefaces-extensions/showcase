@@ -23,36 +23,36 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * BookProperty
+ * InventoryProperty
  *
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-public class BookProperty implements Serializable {
+public class InventoryProperty implements Serializable {
 
 	private static final long serialVersionUID = 20120521L;
 
-	private String name;
+	private String position;
 	private Object value;
 	private boolean required;
 
-	public BookProperty(String name, boolean required) {
-		this.name = name;
+	public InventoryProperty(String position, boolean required) {
+		this.position = position;
 		this.required = required;
 	}
 
-	public BookProperty(String name, Object value, boolean required) {
-		this.name = name;
+	public InventoryProperty(String position, Object value, boolean required) {
+		this.position = position;
 		this.value = value;
 		this.required = required;
 	}
 
-	public String getName() {
-		return name;
+	public String getPosition() {
+		return position;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public Object getValue() {
