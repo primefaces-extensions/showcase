@@ -9,11 +9,14 @@
 <h:panelGroup id="dynaFormGroup">
     <p:messages id="messages" showSummary="true"/>
 
-    <pe:dynaForm id="dynaForm" value="#{advancedDynaFormController.model}" var="data"
-                 autoSubmit="true" widgetVar="dynaFormWidget">
+    <pe:dynaForm id="dynaForm" value="#{anotherDynaFormController.model}" var="data"
+                 buttonBarPosition="both" widgetVar="dynaFormWidget">
         <pe:dynaFormControl styleClass="pe-dynaform-label">
             <h:outputText value="#{data}"/>
         </pe:dynaFormControl>
+        <pe:dynaFormControl type="separator">
+            <p:separator/>
+        </pe:dynaFormControl>        
         <pe:dynaFormControl type="input" for="input">
             <p:inputText id="input" value="#{data.value}" required="#{data.required}"/>
         </pe:dynaFormControl>
@@ -24,31 +27,17 @@
             <p:inputTextarea id="desc" value="#{data.value}" required="#{data.required}" autoResize="false"/>
         </pe:dynaFormControl>
 
-        <f:facet name="headerRegular">
-            <h:outputText value="This is a regular header area"/>
-        </f:facet>
-        <f:facet name="footerRegular">
-            <h:outputText value="This is a regular footer area"/>
-        </f:facet>
-        <f:facet name="headerExtended">
-            <h:outputText value="This is an extended header area"/>
-        </f:facet>
-        <f:facet name="footerExtended">
-            <h:outputText value="This is an extended footer area"/>
-        </f:facet>        
         <f:facet name="buttonBar">
-            <p:commandButton value="Search" action="#{advancedDynaFormController.submitForm}"
+            <p:commandButton value="Search" action="#{anotherDynaFormController.submitForm}"
                              process="dynaForm" update="_mainForm_dynaFormGroup _mainForm_inputValues"
                              oncomplete="handleComplete(xhr, status, args)"/>
             <p:commandButton type="reset" value="Reset" style="margin-left: 5px;"/>
-            <p:commandButton type="button" value="Show / hide advanced search" style="margin-left: 5px;"
-                             onclick="dynaFormWidget.toggleExtended()"/>
         </f:facet>
     </pe:dynaForm>
 </h:panelGroup>
 
 <p:dialog header="Input values" widgetVar="inputValuesWidget">
-    <p:dataList id="inputValues" value="#{advancedDynaFormController.inventoryProperties}" var="property"
+    <p:dataList id="inputValues" value="#{anotherDynaFormController.inventoryProperties}" var="property"
                 style="margin:10px;">
         <h:outputText value="#{property.position}: #{property.formattedValue}"
                       style="margin-right: 10px;"/>
@@ -68,6 +57,10 @@
 </h:outputScript>
 
 <h:outputStylesheet id="dynaFormCSS">
+    .pe-dynaform-cell.separator {
+        padding: 10px 0 10px 0;
+    }    
+    
     .pe-dynaform-cell input,
     .pe-dynaform-cell textarea {
         width: 130px;
@@ -76,13 +69,6 @@
     .pe-dynaform-cell.calendar input {
         width: 100px;
     }
-    
-    .pe-dynaform-headerfacet,
-    .pe-dynaform-footerfacet {
-        border: 1px dotted #808080;
-        padding: 10px;
-        text-align: center;
-    }    
 </h:outputStylesheet>
 
     <!-- EXAMPLE-SOURCE-END -->

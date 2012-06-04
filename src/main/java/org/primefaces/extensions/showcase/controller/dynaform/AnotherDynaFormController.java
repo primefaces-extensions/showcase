@@ -36,20 +36,20 @@ import org.primefaces.extensions.model.dynaform.DynaFormRow;
 import org.primefaces.extensions.showcase.model.dynaform.InventoryProperty;
 
 /**
- * AdvancedDynaFormController
+ * AnotherDynaFormController
  *
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
 @ViewScoped
-public class AdvancedDynaFormController implements Serializable {
+public class AnotherDynaFormController implements Serializable {
 
 	private static final long serialVersionUID = 20120423L;
 
 	private DynaFormModel model;
 
-	public AdvancedDynaFormController() {
+	public AnotherDynaFormController() {
 		model = new DynaFormModel();
 
 		// add rows, labels and editable controls
@@ -77,42 +77,48 @@ public class AdvancedDynaFormController implements Serializable {
 		DynaFormControl control22 = row.addControl(new InventoryProperty("(2,2)", false), "input", 1, 1);
 		label21.setForControl(control22);
 
-		DynaFormLabel label23 = row.addLabel("Ref. No. 5 (this field requires any not empty input)", 3, 1);
+		DynaFormLabel label23 = row.addLabel("Ref. No. 5 (this field is required, please make input)", 3, 1);
 		DynaFormControl control24 = row.addControl(new InventoryProperty("(2,4)", "555-555", true), "input", 1, 1);
 		label23.setForControl(control24);
 
 		// 3. regular row
 		row = model.createRegularRow();
 
-		DynaFormLabel label31 = row.addLabel("Date from", 1, 1);
-		DynaFormControl control32 = row.addControl(new InventoryProperty("(3,2)", false), "date", 1, 1);
-		label31.setForControl(control32);
+		row.addControl("", 1, 1);
+		row.addControl(null, "separator", 5, 1);
 
-		DynaFormLabel label33 = row.addLabel("Date till", 1, 1);
-		DynaFormControl control34 = row.addControl(new InventoryProperty("(3,4)", false), "date", 1, 1);
-		label33.setForControl(control34);
+		// 4. regular row
+		row = model.createRegularRow();
 
-		DynaFormLabel label35 = row.addLabel("Expiry", 1, 1);
-		DynaFormControl control36 = row.addControl(new InventoryProperty("(3,6)", new Date(), true), "date", 1, 1);
-		label35.setForControl(control36);
+		DynaFormLabel label41 = row.addLabel("Date from", 1, 1);
+		DynaFormControl control42 = row.addControl(new InventoryProperty("(4,2)", false), "date", 1, 1);
+		label41.setForControl(control42);
+
+		DynaFormLabel label43 = row.addLabel("Date till", 1, 1);
+		DynaFormControl control44 = row.addControl(new InventoryProperty("(4,4)", false), "date", 1, 1);
+		label43.setForControl(control44);
+
+		DynaFormLabel label45 = row.addLabel("Expiry", 1, 1);
+		DynaFormControl control46 = row.addControl(new InventoryProperty("(4,6)", new Date(), true), "date", 1, 1);
+		label45.setForControl(control46);
 
 		// 1. extended row
 		row = model.createExtendedRow();
 
 		row.addControl("Ref. No. 6", 1, 1);
-		row.addControl(new InventoryProperty("(4,2)", false), "input", 1, 1);
+		row.addControl(new InventoryProperty("(5,2)", false), "input", 1, 1);
 
 		row.addControl("Ref. No. 7", 1, 1);
-		row.addControl(new InventoryProperty("(4,4)", false), "input", 1, 1);
+		row.addControl(new InventoryProperty("(5,4)", false), "input", 1, 1);
 
 		row.addControl("Ref. No. 8", 1, 1);
-		row.addControl(new InventoryProperty("(4,6)", false), "input", 1, 1);
+		row.addControl(new InventoryProperty("(5,6)", false), "input", 1, 1);
 
 		// 2. extended row
 		row = model.createExtendedRow();
 
-		row.addControl("Advanced inventory description", 2, 1);
-		row.addControl(new InventoryProperty("(5,2)", false), "desc", 4, 1);
+		row.addControl("Inventory description for advanced search", 2, 1);
+		row.addControl(new InventoryProperty("(6,2)", false), "desc", 4, 1);
 	}
 
 	public DynaFormModel getModel() {
