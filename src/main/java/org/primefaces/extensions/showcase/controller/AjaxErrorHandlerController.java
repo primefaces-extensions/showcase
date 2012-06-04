@@ -15,6 +15,7 @@
  *
  * $Id$
  */
+
 package org.primefaces.extensions.showcase.controller;
 
 import javax.faces.FacesException;
@@ -26,23 +27,25 @@ import javax.faces.context.FacesContext;
 /**
  * AjaxErrorHandlerController
  *
- * @author Pavol Slany / last modified by $Author$
+ * @author  Pavol Slany / last modified by $Author$
  * @version $Revision$
- * @since 0.5
+ * @since   0.5
  */
 @ManagedBean
 @RequestScoped
 public class AjaxErrorHandlerController {
-    public String actionThrowNullPointer() {
-        throw new NullPointerException("This is my null pointer exception!");
-    }
 
-    public String actionWrappedException()  {
-        Throwable t = new IllegalStateException("This is wrapped illegal state exception!");
-        throw new FacesException(t);
-    }
+	public String actionThrowNullPointer() {
+		throw new NullPointerException("This is my null pointer exception!");
+	}
 
-    public String actionSimulateViewExpiredException() {
-        throw new ViewExpiredException("This is simulated ViewExpiredException", FacesContext.getCurrentInstance().getViewRoot().getViewId());
-    }
+	public String actionWrappedException() {
+		Throwable t = new IllegalStateException("This is wrapped illegal state exception!");
+		throw new FacesException(t);
+	}
+
+	public String actionSimulateViewExpiredException() {
+		throw new ViewExpiredException("This is simulated ViewExpiredException",
+		                               FacesContext.getCurrentInstance().getViewRoot().getViewId());
+	}
 }

@@ -8,30 +8,17 @@
             <h:outputText value="AjaxErrorHandler"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-
-            <p>
-                If partial AJAX request returned some error, FrontEnd PrimeFaces did not respond to this error and user didn't know,
-                where is problem and how can continue. The most often problems with AjaxErrors was, when some action/actionListener
-                throw unexpected Exception and developer do not catch all exceptions (e.g.: save DB problem) or Session/ViewScope
-                Expired (but Session/ViewScope expired is solved in new PrimeFaces).
-            </p>
-
-            <p>
-                Maybe you too have experienced that during development user's actions has no affect after session expiration
-                (no response from server). Because PrimeFaces ignore a lot of errors, finding out the real reason of problem
-                takes a long time without error information.
-            </p>
-
-            <p>
-                Component pe:ajaxErrorHandler is created for setting of AJAX error handling. The component enables displaying
-                a message in case of detection of an AJAX error. In case of need, you can define different behaviour for various
-                types of errors.
-            </p>
-
-            <p>
-                The best way to understand the behaviour is through examples.
-            </p>
-
+            If a partial AJAX request returned some error, PrimeFaces based web application did not respond to this error and user didn't know,
+            where is the problem and how he/she can continue to work. The most often problem with AJAX errors is, when some action / actionListener
+            throws an unexpected exception and developer don't catch all exceptions (e.g. falied DB save operation or expired Session-, ViewScope).
+            <p/>
+            Maybe you have also experienced that during development - user's actions has no affect after session expiration
+            (no response from server). Because PrimeFaces ignores a lot of errors, finding out the real reason of problem takes a long time without any error information.
+            <p/>
+            Component pe:ajaxErrorHandler is created to overcome these cases and provide a better AJAX error handling.
+            The component enables message displaying in case of detection of an AJAX error. In case of need, you can define different behaviours for various types of errors.
+            <p/>
+            The best way to understand the behaviour is through examples.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">

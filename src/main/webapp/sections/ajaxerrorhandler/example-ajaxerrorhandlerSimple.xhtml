@@ -9,7 +9,6 @@
 
 <!-- EXAMPLE-SOURCE-START -->
 
-
 <!-- With the exception of texts, you can add the button its own JavaScript function.  You can define texts: -->
 <pe:ajaxErrorHandler
         title="Error"
@@ -52,8 +51,7 @@
     </f:facet>
 </pe:ajaxErrorHandler>
 
-
-        <!-- Form with AJAX actions, whitch throw exceptions -->
+<!-- Form with AJAX actions, which throw exceptions -->
 <h:form>
     <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Example first definition" />
     <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="Example second definition" />

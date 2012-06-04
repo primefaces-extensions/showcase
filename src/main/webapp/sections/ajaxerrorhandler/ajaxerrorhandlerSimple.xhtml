@@ -10,30 +10,21 @@
             <h:outputText value="ajaxErrorHandler"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            <p>
-                Default behaviour uses English texts, but most of the applications are created in the local
-                language and for that reason all the texts must be localized. Component pe:ajaxErrorHandler
-                enables showing errors in the given language with the help of defining localized texts.
-            </p>
-
-            <p>
-                Attributes title, body, button enable defining the texts for the correct display of a module window of the error. In the texts you can use the following variables.
-                <ul>
-                    <li>{error-name} – complete name of the exception/error, e.g javax.faces.application.ViewExpiredException</li>
-                    <li>{error-message} - Message of exception/error</li>
-                    <li>{error-stacktrace} - stacktrace of exception/error</li>
-                    <li>{error-hostname} - hostname of server, where exception is catched. This is good information in clusters solutions.</li>
-                </ul>
-            </p>
-
-            <p>
-                Default settings is: &lt;pe:ajaxErrorHandler title="{error-name}" body="{error-message}" button="Reload" /&gt; <br/>
-            </p>
-            <p>
-                Examples of simple declaration are in below example.
-            </p>
-
-
+            Default behaviour uses English texts, but most of the applications are created in the local
+            language and for that reason all the texts must be localized. Component pe:ajaxErrorHandler
+            enables showing errors in the given language with the help of defining localized texts.
+            <p/>
+            Attributes title, body, button enable defining the texts for the correct displaying in a modal window. In the texts you can use the following variables.
+            <ul>
+                <li>{error-name} – complete name of the exception/error, e.g javax.faces.application.ViewExpiredException</li>
+                <li>{error-message} - Message of exception/error</li>
+                <li>{error-stacktrace} - stacktrace of exception/error</li>
+                <li>{error-hostname} - hostname of server, where exception is catched. This is good information in clusters solutions.</li>
+            </ul>
+            <p/>
+            Default settings is: &lt;pe:ajaxErrorHandler title="{error-name}" body="{error-message}" button="Reload" /&gt; <br/>
+            <p/>
+            Examples of simple declaration are in below example.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">

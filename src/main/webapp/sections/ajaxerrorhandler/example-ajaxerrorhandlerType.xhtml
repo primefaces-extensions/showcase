@@ -8,16 +8,17 @@
 
 <!-- EXAMPLE-SOURCE-START -->
 
-
 <!-- Enable ajaxErrorHandler -->
-<pe:ajaxErrorHandler widgetVar="ajaxErrorHandler" button="Hide" buttonOnclick="ajaxErrorHandler.hide();" />  
-<pe:ajaxErrorHandler type="javax.faces.application.ViewExpiredException" button="Reload" buttonOnclick="document.location.href=document.location.href;" />  
+<pe:ajaxErrorHandler widgetVar="ajaxErrorHandler" button="Hide" buttonOnclick="ajaxErrorHandler.hide();" />
+<pe:ajaxErrorHandler type="javax.faces.application.ViewExpiredException" button="Reload"
+                     buttonOnclick="document.location.href=document.location.href;" />
 
-<!-- Form with AJAX actions, whitch throw exceptions -->
+<!-- Form with AJAX actions, which throw exceptions -->
 <h:form>
     <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="test NullPoinerException" />
     <p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="test IllegalStateException" />
-    <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="test ViewExpiredException - type definied" />
+    <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}"
+                     value="test ViewExpiredException - type definied" />
 </h:form>
 <!-- EXAMPLE-SOURCE-END -->
     </h:panelGroup>

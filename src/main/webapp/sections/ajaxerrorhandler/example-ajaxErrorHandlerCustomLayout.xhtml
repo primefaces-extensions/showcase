@@ -8,7 +8,7 @@
 
         <!-- EXAMPLE-SOURCE-START -->
         <!-- Custom CSS styles -->
-        <style>
+        <style type="text/css">
             /*Red background*/
             .pe-ajax-error-handler .ui-widget-overlay {
                 background: #f60;
@@ -43,7 +43,7 @@
 </pe:ajaxErrorHandler>
 
 
-<!-- Form with AJAX actions, whitch throw exceptions -->
+<!-- Form with AJAX actions, which throw exceptions -->
 <h:form>
     <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Show it" />
 </h:form>

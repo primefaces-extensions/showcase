@@ -10,7 +10,7 @@
         <!-- EXAMPLE-SOURCE-START -->
 
 <!-- Custom CSS styles -->
-<style>
+<style type="text/css">
     /*Red background*/
     .pe-ajax-error-handler .ui-widget-overlay {
         background: red;
@@ -23,7 +23,6 @@
     }
 
 </style>
-
 
 <!-- With the exception of texts, you can add the button its own JavaScript function.  You can define texts: -->
 <pe:ajaxErrorHandler
@@ -39,7 +38,6 @@
         button="Hide"
         widgetVar="myAjaxErrorHandler" buttonOnclick="myAjaxErrorHandler.hide()"
         type="javax.faces.application.ViewExpiredException" />
-
 
 <!-- An example of protocol, where title and body are defined through <f:facet name="title"> and/or <f:facet name="body"> -->
 <pe:ajaxErrorHandler type="java.lang.IllegalStateException" button="Close warning!">
@@ -67,8 +65,7 @@
     </f:facet>
 </pe:ajaxErrorHandler>
 
-
-<!-- Form with AJAX actions, whitch throw exceptions -->
+<!-- Form with AJAX actions, which throw exceptions -->
 <h:form>
     <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Example first definition" />
     <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="Example second definition" />
