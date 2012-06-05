@@ -1,4 +1,5 @@
 <ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
@@ -25,16 +26,16 @@
         </pe:dynaFormControl>
 
         <f:facet name="headerRegular">
-            <h:outputText value="This is a regular header area"/>
+            <div><h:outputText value="This is a regular header area"/></div>
         </f:facet>
         <f:facet name="footerRegular">
-            <h:outputText value="This is a regular footer area"/>
+            <div><h:outputText value="This is a regular footer area"/></div>
         </f:facet>
         <f:facet name="headerExtended">
-            <h:outputText value="This is an extended header area"/>
+            <div><h:outputText value="This is an extended header area"/></div>
         </f:facet>
         <f:facet name="footerExtended">
-            <h:outputText value="This is an extended footer area"/>
+            <div><h:outputText value="This is an extended footer area"/></div>
         </f:facet>        
         <f:facet name="buttonBar">
             <p:commandButton value="Search" action="#{advancedDynaFormController.submitForm}"
@@ -48,6 +49,7 @@
 </h:panelGroup>
 
 <p:dialog header="Input values" widgetVar="inputValuesWidget">
+    <h:outputText value="Search has been executed with values:"/>
     <p:dataList id="inputValues" value="#{advancedDynaFormController.inventoryProperties}" var="property"
                 style="margin:10px;">
         <h:outputText value="#{property.position}: #{property.formattedValue}"
@@ -68,17 +70,22 @@
 </h:outputScript>
 
 <h:outputStylesheet id="dynaFormCSS">
+    /* note: trick with colspan is needed for IE8 */
     .pe-dynaform-cell input,
-    .pe-dynaform-cell textarea {
+    .pe-dynaform-cell textarea,
+    .pe-dynaform-cell[colspan="1"] input,
+    .pe-dynaform-cell[colspan="1"] textarea {
         width: 130px;
     }
 
-    .pe-dynaform-cell.calendar input {
+    /* note: trick with colspan is needed for IE8 */
+    .pe-dynaform-cell.calendar input,
+    .pe-dynaform-cell[colspan="1"].calendar input {
         width: 100px;
     }
     
-    .pe-dynaform-headerfacet,
-    .pe-dynaform-footerfacet {
+    .pe-dynaform-headerfacet div,
+    .pe-dynaform-footerfacet div {
         border: 1px dotted #808080;
         padding: 10px;
         text-align: center;

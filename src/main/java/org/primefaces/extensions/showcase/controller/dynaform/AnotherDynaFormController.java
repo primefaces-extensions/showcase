@@ -47,16 +47,16 @@ public class AnotherDynaFormController implements Serializable {
 
 	private static final long serialVersionUID = 20120423L;
 
-	private DynaFormModel model;
+	private DynaFormModel modelOne;
 
 	public AnotherDynaFormController() {
-		model = new DynaFormModel();
+		modelOne = new DynaFormModel();
 
 		// add rows, labels and editable controls
 		// set relationship between label and editable controls to support outputLabel with "for" attribute
 
 		// 1. regular row
-		DynaFormRow row = model.createRegularRow();
+		DynaFormRow row = modelOne.createRegularRow();
 
 		DynaFormLabel label11 = row.addLabel("Ref. No. 1", 1, 1);
 		DynaFormControl control12 = row.addControl(new InventoryProperty("(1,2)", false), "input", 1, 1);
@@ -71,7 +71,7 @@ public class AnotherDynaFormController implements Serializable {
 		label15.setForControl(control16);
 
 		// 2. regular row
-		row = model.createRegularRow();
+		row = modelOne.createRegularRow();
 
 		DynaFormLabel label21 = row.addLabel("Ref. No. 4", 1, 1);
 		DynaFormControl control22 = row.addControl(new InventoryProperty("(2,2)", false), "input", 1, 1);
@@ -82,13 +82,13 @@ public class AnotherDynaFormController implements Serializable {
 		label23.setForControl(control24);
 
 		// 3. regular row
-		row = model.createRegularRow();
+		row = modelOne.createRegularRow();
 
 		row.addControl("", 1, 1);
 		row.addControl(null, "separator", 5, 1);
 
 		// 4. regular row
-		row = model.createRegularRow();
+		row = modelOne.createRegularRow();
 
 		DynaFormLabel label41 = row.addLabel("Date from", 1, 1);
 		DynaFormControl control42 = row.addControl(new InventoryProperty("(4,2)", false), "date", 1, 1);
@@ -103,7 +103,7 @@ public class AnotherDynaFormController implements Serializable {
 		label45.setForControl(control46);
 
 		// 1. extended row
-		row = model.createExtendedRow();
+		row = modelOne.createExtendedRow();
 
 		row.addControl("Ref. No. 6", 1, 1);
 		row.addControl(new InventoryProperty("(5,2)", false), "input", 1, 1);
@@ -115,23 +115,23 @@ public class AnotherDynaFormController implements Serializable {
 		row.addControl(new InventoryProperty("(5,6)", false), "input", 1, 1);
 
 		// 2. extended row
-		row = model.createExtendedRow();
+		row = modelOne.createExtendedRow();
 
 		row.addControl("Inventory description for advanced search", 2, 1);
 		row.addControl(new InventoryProperty("(6,2)", false), "desc", 4, 1);
 	}
 
-	public DynaFormModel getModel() {
-		return model;
+	public DynaFormModel getModelOne() {
+		return modelOne;
 	}
 
 	public List<InventoryProperty> getInventoryProperties() {
-		if (model == null) {
+		if (modelOne == null) {
 			return null;
 		}
 
 		List<InventoryProperty> inventoryProperties = new ArrayList<InventoryProperty>();
-		for (DynaFormControl dynaFormControl : model.getControls()) {
+		for (DynaFormControl dynaFormControl : modelOne.getControls()) {
 			if (dynaFormControl.getData() instanceof InventoryProperty) {
 				inventoryProperties.add((InventoryProperty) dynaFormControl.getData());
 			}

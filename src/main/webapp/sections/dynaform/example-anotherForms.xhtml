@@ -9,7 +9,7 @@
 <h:panelGroup id="dynaFormGroup">
     <p:messages id="messages" showSummary="true"/>
 
-    <pe:dynaForm id="dynaForm" value="#{anotherDynaFormController.model}" var="data"
+    <pe:dynaForm id="dynaForm" value="#{anotherDynaFormController.modelOne}" var="data"
                  buttonBarPosition="both" widgetVar="dynaFormWidget">
         <pe:dynaFormControl styleClass="pe-dynaform-label">
             <h:outputText value="#{data}"/>
@@ -61,13 +61,12 @@
         padding: 10px 0 10px 0;
     }    
     
+    /* note: trick with colspan is needed for IE8 */
     .pe-dynaform-cell input,
-    .pe-dynaform-cell textarea {
+    .pe-dynaform-cell textarea,
+    .pe-dynaform-cell[colspan="1"] input,
+    .pe-dynaform-cell[colspan="1"] textarea {
         width: 130px;
-    }
-
-    .pe-dynaform-cell.calendar input {
-        width: 100px;
     }
 </h:outputStylesheet>
 

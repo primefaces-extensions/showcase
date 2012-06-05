@@ -23,12 +23,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Person
+ * PersonProperty
  *
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-public class Person implements Serializable {
+public class PersonProperty implements Serializable {
 
 	private static final long serialVersionUID = 20120521L;
 
@@ -36,12 +36,12 @@ public class Person implements Serializable {
 	private Object value;
 	private boolean required;
 
-	public Person(String position, boolean required) {
+	public PersonProperty(String position, boolean required) {
 		this.position = position;
 		this.required = required;
 	}
 
-	public Person(String position, Object value, boolean required) {
+	public PersonProperty(String position, Object value, boolean required) {
 		this.position = position;
 		this.value = value;
 		this.required = required;
