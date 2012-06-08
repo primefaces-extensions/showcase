@@ -11,16 +11,20 @@
 
 <!-- Custom CSS styles -->
 <style type="text/css">
-    /*Red background*/
-    .pe-ajax-error-handler .ui-widget-overlay {
-        background: red;
+    /*Red background for mask*/
+	#ajaxErrorHandlerDialog_modal {
+        background: darkred;
     }
 
-    /*Margin for button*/
-    .pe-ajax-error-handler .pe-error-buttons {
-        padding: 5px;
-        padding-bottom: 15px;
+    /*button colors*/
+	#ajaxErrorHandlerDialog button * {
+        color: red;
+		background:none;
     }
+	#ajaxErrorHandlerDialog button {
+		border-width: 5px;
+		background: lightgreen;
+	}
 
 </style>
 
@@ -65,12 +69,10 @@
     </f:facet>
 </pe:ajaxErrorHandler>
 
-<!-- Form with AJAX actions, which throw exceptions -->
-<h:form>
-    <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Example first definition" />
-    <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="Example second definition" />
-    <p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="Example third definition" />
-</h:form>
+<!-- AJAX actions, which throw exceptions -->
+<p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Example first definition" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="Example second definition" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="Example third definition" />
         <!-- EXAMPLE-SOURCE-END -->
     </h:panelGroup>
 </ui:composition>

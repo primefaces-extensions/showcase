@@ -13,13 +13,11 @@
 <pe:ajaxErrorHandler type="javax.faces.application.ViewExpiredException" button="Reload"
                      buttonOnclick="document.location.href=document.location.href;" />
 
-<!-- Form with AJAX actions, which throw exceptions -->
-<h:form>
-    <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="test NullPoinerException" />
-    <p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="test IllegalStateException" />
-    <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}"
-                     value="test ViewExpiredException - type definied" />
-</h:form>
+<!-- AJAX actions, which throw exceptions -->
+<p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="test NullPoinerException" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="test IllegalStateException" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}"
+				 value="test ViewExpiredException - type definied" />
 <!-- EXAMPLE-SOURCE-END -->
     </h:panelGroup>
 </ui:composition>

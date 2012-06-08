@@ -11,12 +11,10 @@
 <!-- Default ajaxErrorHandler -->
 <pe:ajaxErrorHandler />
 
-<!-- Form with AJAX actions, which throw exceptions -->
-<h:form>
-    <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="test ViewExpiredException" />
-    <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="test NullPoinerException" />
-    <p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="test IllegalStateException" />
-</h:form>
+<!-- AJAX actions, which throw exceptions -->
+<p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="test ViewExpiredException" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="test NullPoinerException" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="test IllegalStateException" />
 <!-- EXAMPLE-SOURCE-END -->
     </h:panelGroup>
 </ui:composition>

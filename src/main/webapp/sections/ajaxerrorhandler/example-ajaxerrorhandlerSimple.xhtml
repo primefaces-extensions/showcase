@@ -51,12 +51,10 @@
     </f:facet>
 </pe:ajaxErrorHandler>
 
-<!-- Form with AJAX actions, which throw exceptions -->
-<h:form>
-    <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Example first definition" />
-    <p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="Example second definition" />
-    <p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="Example third definition" />
-</h:form>
+<!-- AJAX actions, which throw exceptions -->
+<p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Example first definition" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="Example second definition" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="Example third definition" />
 <!-- EXAMPLE-SOURCE-END -->
     </h:panelGroup>
 </ui:composition>
