@@ -19,53 +19,40 @@
 package org.primefaces.extensions.showcase.model.dynaform;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
+
+import javax.faces.model.SelectItem;
 
 /**
- * PersonProperty
+ * FormField
  *
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-public class PersonProperty implements Serializable {
+public class FormField implements Serializable {
 
 	private static final long serialVersionUID = 20120521L;
 
-	private String position;
 	private Object value;
 	private boolean required;
+	private List<SelectItem> selectItems;
 
-	public PersonProperty(String position, boolean required) {
-		this.position = position;
+	public FormField(boolean required) {
 		this.required = required;
 	}
 
-	public PersonProperty(String position, Object value, boolean required) {
-		this.position = position;
+	public FormField(Object value, boolean required) {
 		this.value = value;
 		this.required = required;
 	}
 
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
+	public FormField(Object value, boolean required, List<SelectItem> selectItems) {
+		this.value = value;
+		this.required = required;
+		this.selectItems = selectItems;
 	}
 
 	public Object getValue() {
-		return value;
-	}
-
-	public Object getFormattedValue() {
-		if (value instanceof Date) {
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d MMM yyyy");
-
-			return simpleDateFormat.format(value);
-		}
-
 		return value;
 	}
 
@@ -79,5 +66,9 @@ public class PersonProperty implements Serializable {
 
 	public void setRequired(boolean required) {
 		this.required = required;
+	}
+
+	public List<SelectItem> getSelectItems() {
+		return selectItems;
 	}
 }

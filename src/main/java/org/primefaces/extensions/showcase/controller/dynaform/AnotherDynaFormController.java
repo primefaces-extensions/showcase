@@ -20,20 +20,20 @@ package org.primefaces.extensions.showcase.controller.dynaform;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
 import org.primefaces.extensions.model.dynaform.DynaFormLabel;
 import org.primefaces.extensions.model.dynaform.DynaFormModel;
 import org.primefaces.extensions.model.dynaform.DynaFormRow;
-import org.primefaces.extensions.showcase.model.dynaform.InventoryProperty;
+import org.primefaces.extensions.showcase.model.dynaform.FormField;
 
 /**
  * AnotherDynaFormController
@@ -49,7 +49,19 @@ public class AnotherDynaFormController implements Serializable {
 
 	private DynaFormModel modelOne;
 
-	public AnotherDynaFormController() {
+	private DynaFormModel modelTwo;
+
+	private boolean showModelOne = true;
+
+	public DynaFormModel getModel() {
+		return (showModelOne ? getModelOne() : getModelTwo());
+	}
+
+	public DynaFormModel getModelOne() {
+		if (modelOne != null) {
+			return modelOne;
+		}
+
 		modelOne = new DynaFormModel();
 
 		// add rows, labels and editable controls
@@ -58,86 +70,154 @@ public class AnotherDynaFormController implements Serializable {
 		// 1. regular row
 		DynaFormRow row = modelOne.createRegularRow();
 
-		DynaFormLabel label11 = row.addLabel("Ref. No. 1", 1, 1);
-		DynaFormControl control12 = row.addControl(new InventoryProperty("(1,2)", false), "input", 1, 1);
-		label11.setForControl(control12);
-
-		DynaFormLabel label13 = row.addLabel("Ref. No. 2", 1, 1);
-		DynaFormControl control14 = row.addControl(new InventoryProperty("(1,4)", false), "input", 1, 1);
-		label13.setForControl(control14);
-
-		DynaFormLabel label15 = row.addLabel("Ref. No. 3", 1, 1);
-		DynaFormControl control16 = row.addControl(new InventoryProperty("(1,6)", false), "input", 1, 1);
-		label15.setForControl(control16);
+		DynaFormLabel label11 = row.addLabel("Short Name", 1, 1);
+		DynaFormLabel label12 = row.addLabel("Street", 2, 1);
 
 		// 2. regular row
 		row = modelOne.createRegularRow();
 
-		DynaFormLabel label21 = row.addLabel("Ref. No. 4", 1, 1);
-		DynaFormControl control22 = row.addControl(new InventoryProperty("(2,2)", false), "input", 1, 1);
-		label21.setForControl(control22);
+		DynaFormControl control21 = row.addControl(new FormField(true), "name", 1, 1);
+		DynaFormControl control22 = row.addControl(new FormField(false), "address", 2, 1);
 
-		DynaFormLabel label23 = row.addLabel("Ref. No. 5 (this field is required, please make input)", 3, 1);
-		DynaFormControl control24 = row.addControl(new InventoryProperty("(2,4)", "555-555", true), "input", 1, 1);
-		label23.setForControl(control24);
+		label11.setForControl(control21);
+		label12.setForControl(control22);
 
 		// 3. regular row
 		row = modelOne.createRegularRow();
 
-		row.addControl("", 1, 1);
-		row.addControl(null, "separator", 5, 1);
+		DynaFormLabel label31 = row.addLabel("Long Name", 1, 1);
+		DynaFormLabel label32 = row.addLabel("Zip code, city", 2, 1);
 
 		// 4. regular row
 		row = modelOne.createRegularRow();
 
-		DynaFormLabel label41 = row.addLabel("Date from", 1, 1);
-		DynaFormControl control42 = row.addControl(new InventoryProperty("(4,2)", false), "date", 1, 1);
-		label41.setForControl(control42);
+		DynaFormControl control41 = row.addControl(new FormField(true), "name", 1, 1);
+		DynaFormControl control42 = row.addControl(new FormField(false), "address", 2, 1);
 
-		DynaFormLabel label43 = row.addLabel("Date till", 1, 1);
-		DynaFormControl control44 = row.addControl(new InventoryProperty("(4,4)", false), "date", 1, 1);
-		label43.setForControl(control44);
+		label31.setForControl(control41);
+		label32.setForControl(control42);
 
-		DynaFormLabel label45 = row.addLabel("Expiry", 1, 1);
-		DynaFormControl control46 = row.addControl(new InventoryProperty("(4,6)", new Date(), true), "date", 1, 1);
-		label45.setForControl(control46);
+		// 5. regular row
+		row = modelOne.createRegularRow();
 
-		// 1. extended row
-		row = modelOne.createExtendedRow();
+		row.addControl("Make choice", "separator", 3, 1);
 
-		row.addControl("Ref. No. 6", 1, 1);
-		row.addControl(new InventoryProperty("(5,2)", false), "input", 1, 1);
+		// 6. regular row
+		row = modelOne.createRegularRow();
 
-		row.addControl("Ref. No. 7", 1, 1);
-		row.addControl(new InventoryProperty("(5,4)", false), "input", 1, 1);
+		DynaFormLabel label61 = row.addLabel("Married?", 1, 1);
+		DynaFormLabel label62 = row.addLabel("Children", 1, 1);
+		DynaFormLabel label63 = row.addLabel("PrimeFaces fan?", 1, 1);
 
-		row.addControl("Ref. No. 8", 1, 1);
-		row.addControl(new InventoryProperty("(5,6)", false), "input", 1, 1);
+		// 7. regular row
+		row = modelOne.createRegularRow();
 
-		// 2. extended row
-		row = modelOne.createExtendedRow();
+		DynaFormControl control71 = row.addControl(new FormField(false, false), "booleanchoice", 1, 1);
 
-		row.addControl("Inventory description for advanced search", 2, 1);
-		row.addControl(new InventoryProperty("(6,2)", false), "desc", 4, 1);
-	}
+		List<SelectItem> children = new ArrayList<SelectItem>();
+		children.add(new SelectItem("No", "No"));
+		children.add(new SelectItem("1", "1"));
+		children.add(new SelectItem("2", "2"));
+		children.add(new SelectItem("More", "More"));
 
-	public DynaFormModel getModelOne() {
+		DynaFormControl control72 = row.addControl(new FormField("No", false, children), "radiochoice", 1, 1);
+
+		List<SelectItem> pffan = new ArrayList<SelectItem>();
+		children.add(new SelectItem("Yes", "Yes"));
+		children.add(new SelectItem("No", "No"));
+
+		DynaFormControl control73 = row.addControl(new FormField("Yes", false, pffan), "radiochoice", 1, 1);
+
+		label61.setForControl(control71);
+		label62.setForControl(control72);
+		label63.setForControl(control73);
+
 		return modelOne;
 	}
 
-	public List<InventoryProperty> getInventoryProperties() {
-		if (modelOne == null) {
+	public DynaFormModel getModelTwo() {
+		if (modelTwo != null) {
+			return modelTwo;
+		}
+
+		modelTwo = new DynaFormModel();
+
+		// add rows, labels and editable controls
+		// set relationship between label and editable controls to support outputLabel with "for" attribute
+
+		// 1. regular row
+		DynaFormRow row = modelTwo.createRegularRow();
+
+		row.addControl("Audio Output Volume", "separator", 3, 1);
+
+		// 2. regular row
+		row = modelTwo.createRegularRow();
+
+		row.addControl("Port 1", 1, 1);
+		row.addControl("Port 2", 1, 1);
+		row.addControl("Port 3", 1, 1);
+
+		// 3. regular row
+		row = modelTwo.createRegularRow();
+
+		row.addControl(new FormField(false), "audioslider", 1, 1);
+		row.addControl(new FormField(false), "audioslider", 1, 1);
+		row.addControl(new FormField(false), "audioslider", 1, 1);
+
+		// 4. regular row
+		row = modelTwo.createRegularRow();
+
+		row.addControl("HDMI Output Volume", "separator", 3, 1);
+
+		// 5. regular row
+		row = modelTwo.createRegularRow();
+
+		row.addControl("Port 1", 1, 1);
+		row.addControl("Port 2", 1, 1);
+		row.addControl("Port 3", 1, 1);
+
+		// 6. regular row
+		row = modelTwo.createRegularRow();
+
+		row.addControl(new FormField(false), "audioslider", 1, 1);
+		row.addControl(new FormField(false), "audioslider", 1, 1);
+		row.addControl(new FormField(false), "audioslider", 1, 1);
+
+		return modelTwo;
+	}
+
+	public String switchModel() {
+		showModelOne = !showModelOne;
+
+		// reset current set model (simulate new loading)
+		if (showModelOne) {
+			modelOne = null;
+		} else {
+			modelTwo = null;
+		}
+
+		return null;
+	}
+
+	public String getFormFields() {
+		DynaFormModel model = (showModelOne ? getModelOne() : getModelTwo());
+
+		if (model == null) {
 			return null;
 		}
 
-		List<InventoryProperty> inventoryProperties = new ArrayList<InventoryProperty>();
-		for (DynaFormControl dynaFormControl : modelOne.getControls()) {
-			if (dynaFormControl.getData() instanceof InventoryProperty) {
-				inventoryProperties.add((InventoryProperty) dynaFormControl.getData());
+		StringBuilder sb = new StringBuilder();
+		for (DynaFormControl dynaFormControl : model.getControls()) {
+			if (dynaFormControl.getData() instanceof FormField) {
+				FormField ff = (FormField) dynaFormControl.getData();
+				if (ff.getValue() != null) {
+					sb.append(ff.getValue());
+					sb.append("\n");
+				}
 			}
 		}
 
-		return inventoryProperties;
+		return sb.toString();
 	}
 
 	public String submitForm() {
