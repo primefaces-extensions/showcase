@@ -11,7 +11,7 @@
     <p:messages id="messages" showSummary="true"/>
 
     <pe:dynaForm id="dynaForm" value="#{advancedDynaFormController.model}" var="data"
-                 autoSubmit="true" widgetVar="dynaFormWidget">
+                 autoSubmit="true" buttonBarPosition="both" widgetVar="dynaFormWidget">
         <pe:dynaFormControl styleClass="pe-dynaform-label">
             <h:outputText value="#{data}"/>
         </pe:dynaFormControl>

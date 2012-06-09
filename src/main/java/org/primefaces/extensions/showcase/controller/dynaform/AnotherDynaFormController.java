@@ -28,6 +28,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import org.apache.commons.lang3.StringUtils;
+
 import org.primefaces.context.RequestContext;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
 import org.primefaces.extensions.model.dynaform.DynaFormLabel;
@@ -105,32 +107,36 @@ public class AnotherDynaFormController implements Serializable {
 		// 6. regular row
 		row = modelOne.createRegularRow();
 
-		DynaFormLabel label61 = row.addLabel("Married?", 1, 1);
-		DynaFormLabel label62 = row.addLabel("Children", 1, 1);
-		DynaFormLabel label63 = row.addLabel("PrimeFaces fan?", 1, 1);
+		row.addControl("PrimeFaces fan?", 1, 1);
+		row.addControl("Married?", 1, 1);
+		row.addControl("Children", 1, 1);
 
 		// 7. regular row
 		row = modelOne.createRegularRow();
 
-		DynaFormControl control71 = row.addControl(new FormField(false, false), "booleanchoice", 1, 1);
+		List<SelectItem> pffan = new ArrayList<SelectItem>();
+		pffan.add(new SelectItem("Sure", "Sure"));
+		pffan.add(new SelectItem("Don't know", "Don't know"));
+		row.addControl(new FormField("Sure", false, pffan), "radiochoice", 1, 1);
+
+		row.addControl(new FormField(false, false), "booleanchoice", 1, 1);
 
 		List<SelectItem> children = new ArrayList<SelectItem>();
 		children.add(new SelectItem("No", "No"));
 		children.add(new SelectItem("1", "1"));
 		children.add(new SelectItem("2", "2"));
 		children.add(new SelectItem("More", "More"));
+		row.addControl(new FormField("No", false, children), "radiochoice", 1, 1);
 
-		DynaFormControl control72 = row.addControl(new FormField("No", false, children), "radiochoice", 1, 1);
+		// 1. extended row
+		row = modelOne.createExtendedRow();
 
-		List<SelectItem> pffan = new ArrayList<SelectItem>();
-		children.add(new SelectItem("Yes", "Yes"));
-		children.add(new SelectItem("No", "No"));
+		row.addControl("Notes", 3, 1);
 
-		DynaFormControl control73 = row.addControl(new FormField("Yes", false, pffan), "radiochoice", 1, 1);
+		// 2. extended row
+		row = modelOne.createExtendedRow();
 
-		label61.setForControl(control71);
-		label62.setForControl(control72);
-		label63.setForControl(control73);
+		row.addControl(new FormField("Hallo DynaForm!", false), "editor", 3, 1);
 
 		return modelOne;
 	}
@@ -148,7 +154,7 @@ public class AnotherDynaFormController implements Serializable {
 		// 1. regular row
 		DynaFormRow row = modelTwo.createRegularRow();
 
-		row.addControl("Audio Output Volume", "separator", 3, 1);
+		row.addControl("Audio Analog Output Volume", "separator", 3, 1);
 
 		// 2. regular row
 		row = modelTwo.createRegularRow();
@@ -160,28 +166,47 @@ public class AnotherDynaFormController implements Serializable {
 		// 3. regular row
 		row = modelTwo.createRegularRow();
 
-		row.addControl(new FormField(false), "audioslider", 1, 1);
-		row.addControl(new FormField(false), "audioslider", 1, 1);
-		row.addControl(new FormField(false), "audioslider", 1, 1);
+		row.addControl(new FormField(60, false), "audioslider", 1, 1);
+		row.addControl(new FormField(0, false), "audioslider", 1, 1);
+		row.addControl(new FormField(0, false), "audioslider", 1, 1);
 
 		// 4. regular row
 		row = modelTwo.createRegularRow();
 
-		row.addControl("HDMI Output Volume", "separator", 3, 1);
+		row.addControl("Audio Digital Output Volume", "separator", 3, 1);
 
 		// 5. regular row
+		row = modelTwo.createRegularRow();
+
+		row.addControl("Port 4", 1, 1);
+		row.addControl("Port 5", 1, 1);
+		row.addControl("Port 6", 1, 1);
+
+		// 6. regular row
+		row = modelTwo.createRegularRow();
+
+		row.addControl(new FormField(10, false), "audioslider", 1, 1);
+		row.addControl(new FormField(50, false), "audioslider", 1, 1);
+		row.addControl(new FormField(50, false), "audioslider", 1, 1);
+
+		// 7. regular row
+		row = modelTwo.createRegularRow();
+
+		row.addControl("HDMI Output Volume", "separator", 3, 1);
+
+		// 8. regular row
 		row = modelTwo.createRegularRow();
 
 		row.addControl("Port 1", 1, 1);
 		row.addControl("Port 2", 1, 1);
 		row.addControl("Port 3", 1, 1);
 
-		// 6. regular row
+		// 9. regular row
 		row = modelTwo.createRegularRow();
 
-		row.addControl(new FormField(false), "audioslider", 1, 1);
-		row.addControl(new FormField(false), "audioslider", 1, 1);
-		row.addControl(new FormField(false), "audioslider", 1, 1);
+		row.addControl(new FormField(20, false), "audioslider", 1, 1);
+		row.addControl(new FormField(80, false), "audioslider", 1, 1);
+		row.addControl(new FormField(40, false), "audioslider", 1, 1);
 
 		return modelTwo;
 	}
@@ -189,7 +214,7 @@ public class AnotherDynaFormController implements Serializable {
 	public String switchModel() {
 		showModelOne = !showModelOne;
 
-		// reset current set model (simulate new loading)
+		// reset models (simulate new loading)
 		if (showModelOne) {
 			modelOne = null;
 		} else {
@@ -197,6 +222,17 @@ public class AnotherDynaFormController implements Serializable {
 		}
 
 		return null;
+	}
+
+	public List<String> complete(String query) {
+		List<String> results = new ArrayList<String>();
+
+		char letter;
+		for (letter = 'a'; letter <= 'm'; letter++) {
+			results.add(query + letter);
+		}
+
+		return results;
 	}
 
 	public String getFormFields() {
@@ -210,9 +246,9 @@ public class AnotherDynaFormController implements Serializable {
 		for (DynaFormControl dynaFormControl : model.getControls()) {
 			if (dynaFormControl.getData() instanceof FormField) {
 				FormField ff = (FormField) dynaFormControl.getData();
-				if (ff.getValue() != null) {
+				if (ff.getValue() != null && StringUtils.isNotBlank(ff.getValue().toString())) {
 					sb.append(ff.getValue());
-					sb.append("\n");
+					sb.append("<br/>");
 				}
 			}
 		}

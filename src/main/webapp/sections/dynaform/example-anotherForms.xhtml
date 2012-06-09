@@ -1,4 +1,5 @@
 <ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
@@ -6,46 +7,70 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
     <!-- EXAMPLE-SOURCE-START -->
 
-<h:panelGroup id="dynaFormGroup">
-    <p:messages id="messages" showSummary="true"/>
+    <p:commandLink id="switch" value="Switch model" process="switch" update="dynaFormGroup"
+                   action="#{anotherDynaFormController.switchModel}" style="font-weight:bold;"/>
 
-    <pe:dynaForm id="dynaForm" value="#{anotherDynaFormController.modelOne}" var="data"
-                 buttonBarPosition="both" widgetVar="dynaFormWidget">
-        <pe:dynaFormControl styleClass="pe-dynaform-label">
-            <h:outputText value="#{data}"/>
-        </pe:dynaFormControl>
-        <pe:dynaFormControl type="separator">
-            <p:separator/>
-        </pe:dynaFormControl>        
-        <pe:dynaFormControl type="input" for="input">
-            <p:inputText id="input" value="#{data.value}" required="#{data.required}"/>
-        </pe:dynaFormControl>
-        <pe:dynaFormControl type="date" for="date" styleClass="calendar">
-            <p:calendar id="date" value="#{data.value}" required="#{data.required}" showOn="button"/>
-        </pe:dynaFormControl>
-        <pe:dynaFormControl type="desc" for="desc">
-            <p:inputTextarea id="desc" value="#{data.value}" required="#{data.required}" autoResize="false"/>
-        </pe:dynaFormControl>
+    <h:panelGroup id="dynaFormGroup" layout="block" style="margin-top: 15px;">
+        <p:messages id="messages" showSummary="true"/>
 
-        <f:facet name="buttonBar">
-            <p:commandButton value="Search" action="#{anotherDynaFormController.submitForm}"
-                             process="dynaForm" update="_mainForm_dynaFormGroup _mainForm_inputValues"
-                             oncomplete="handleComplete(xhr, status, args)"/>
-            <p:commandButton type="reset" value="Reset" style="margin-left: 5px;"/>
-        </f:facet>
-    </pe:dynaForm>
-</h:panelGroup>
+        <pe:dynaForm id="dynaForm" value="#{anotherDynaFormController.model}" var="data"
+                     openExtended="true" widgetVar="dynaFormWidget">
+            <pe:dynaFormControl styleClass="pe-dynaform-label">
+                <h:outputText value="#{data}"/>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="separator" styleClass="separator ui-state-disabled">
+                <h:panelGrid columns="2" style="width:100%;" columnClasses="separatorText">
+                    <h:outputText value="#{data}"/>
+                    <p:separator/>
+                </h:panelGrid>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="name" for="autocompl">
+                <p:autoComplete id="autocompl" value="#{data.value}" required="#{data.required}"
+                                dropdown="true" completeMethod="#{anotherDynaFormController.complete}"/>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="address" for="txt">
+                <p:inputText id="txt" value="#{data.value}" required="#{data.required}"/>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="booleanchoice">
+                <p:selectBooleanCheckbox value="#{data.value}" required="#{data.required}"
+                                         style="vertical-align:middle;"/>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="radiochoice">
+                <p:selectOneRadio value="#{data.value}" required="#{data.required}">
+                    <f:selectItems value="#{data.selectItems}"/>
+                </p:selectOneRadio>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="editor">
+                <p:editor value="#{data.value}" width="380" height="150"/>
+            </pe:dynaFormControl>
+            <pe:dynaFormControl type="audioslider">
+                <h:inputHidden id="input" value="#{data.value}"/>
+                <h:panelGrid columns="2">
+                    <p:slider for="input" display="output" style="width:150px;"/>
+                    <h:outputText id="output" value="#{data.value}" style="margin-left: 5px;"/>
+                </h:panelGrid>
+            </pe:dynaFormControl>
 
-<p:dialog header="Input values" widgetVar="inputValuesWidget">
-    <p:dataList id="inputValues" value="#{anotherDynaFormController.inventoryProperties}" var="property"
-                style="margin:10px;">
-        <h:outputText value="#{property.position}: #{property.formattedValue}"
-                      style="margin-right: 10px;"/>
-    </p:dataList>
-</p:dialog>
+            <f:facet name="buttonBar">
+                <p:commandButton value="Submit" action="#{anotherDynaFormController.submitForm}"
+                                 process="dynaForm" update="_mainForm_dynaFormGroup _mainForm_inputValues"
+                                 oncomplete="handleComplete(xhr, status, args)"/>
+                <p:commandButton type="reset" value="Reset" style="margin-left: 5px;"/>
+                <p:commandButton type="button" value="Show / hide more fields"
+                                 rendered="#{anotherDynaFormController.model.existExtendedGrid}"
+                                 style="margin-left: 5px;" onclick="dynaFormWidget.toggleExtended()"/>
+            </f:facet>
+        </pe:dynaForm>
+    </h:panelGroup>
 
-<h:outputScript id="dynaFormScript" target="body">
-/* <![CDATA[ */
+    <p:dialog header="Input values" widgetVar="inputValuesWidget">
+        <h:panelGroup id="inputValues" layout="block" style="margin:10px;">
+            <h:outputText value="#{anotherDynaFormController.formFields}" escape="false"/>
+        </h:panelGroup>
+    </p:dialog>
+
+    <h:outputScript id="dynaFormScript" target="body">
+        /* <![CDATA[ */
     function handleComplete(xhr, status, args) {
         if(args && args.isValid) {
             inputValuesWidget.show();
@@ -54,21 +79,33 @@
         }
     }
 /* ]]> */
-</h:outputScript>
+    </h:outputScript>
 
-<h:outputStylesheet id="dynaFormCSS">
-    .pe-dynaform-cell.separator {
-        padding: 10px 0 10px 0;
-    }    
-    
-    /* note: trick with colspan is needed for IE8 */
-    .pe-dynaform-cell input,
-    .pe-dynaform-cell textarea,
-    .pe-dynaform-cell[colspan="1"] input,
-    .pe-dynaform-cell[colspan="1"] textarea {
-        width: 130px;
-    }
-</h:outputStylesheet>
+    <h:outputStylesheet id="dynaFormCSS">
+        .pe-dynaform-cell {
+            padding-bottom: 8px;
+        }
+
+        .pe-dynaform-label {
+            text-align: left;
+            padding: 2px 20px 0 0;
+        }
+
+        .pe-dynaform-cell.separator {
+            padding: 10px 0 10px 0;
+        }
+
+        .pe-dynaform-cell.separator .separatorText {
+            width: 15%;
+            padding-left: 0;
+        }
+
+        /* note: trick with colspan is needed for IE8 */
+        .pe-dynaform-cell input,
+        .pe-dynaform-cell[colspan="1"] input {
+            width: 130px;
+        }
+    </h:outputStylesheet>
 
     <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
