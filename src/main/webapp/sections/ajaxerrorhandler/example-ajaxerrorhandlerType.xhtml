@@ -11,7 +11,8 @@
 <!-- Enable ajaxErrorHandler -->
 <pe:ajaxErrorHandler widgetVar="ajaxErrorHandler" button="Hide" buttonOnclick="ajaxErrorHandler.hide();" />
 <pe:ajaxErrorHandler type="javax.faces.application.ViewExpiredException" button="Reload"
-                     buttonOnclick="document.location.href=document.location.href;" />
+                     buttonOnclick="document.location.href=document.location.href;"
+					 body="Due to inactivity on page please push RELOAD to continue." title="Page expired ..."/>
 
 <!-- AJAX actions, which throw exceptions -->
 <p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="test NullPoinerException" />
