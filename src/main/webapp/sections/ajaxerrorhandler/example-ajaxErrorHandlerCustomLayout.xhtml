@@ -32,12 +32,14 @@
             </h:panelGrid>
         </p:panel>
         <p:panel header="Exception details" toggleable="true">
-            <div style="overflow: auto; height: 300px; width: 440px;">{error-stacktrace}</div>
+            <div style="overflow: auto; height: 300px; width: 440px;">
+                {error-stacktrace}
+            </div>
         </p:panel>
 
         <div style="text-align  :center; padding: 5px;">
-            <p:commandButton onclick="window.location.href=window.location.href; return false;" value="RELOAD"></p:commandButton>
-            <p:commandButton onclick="myAjaxErrorHandler.hide(); return false;" value="CLOSE"></p:commandButton>
+            <p:commandButton onclick="window.location.href=window.location.href; return false;" value="RELOAD"/>
+            <p:commandButton onclick="myAjaxErrorHandler.hide(); return false;" value="CLOSE"/>
         </div>
     </div>
 </pe:ajaxErrorHandler>

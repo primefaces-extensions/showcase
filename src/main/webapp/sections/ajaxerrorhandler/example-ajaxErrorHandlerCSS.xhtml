@@ -62,7 +62,11 @@
                         </h:panelGrid>
 
                     </p:tab>
-                    <p:tab title="Detail"><div style="overflow: auto; height: 300px; width: 700px;">{error-stacktrace}</div></p:tab>
+                    <p:tab title="Detail">
+                        <div style="overflow: auto; height: 300px; width: 700px;">
+                            {error-stacktrace}
+                        </div>
+                    </p:tab>
                 </p:tabView>
             </h:form>
         </div>
@@ -70,9 +74,12 @@
 </pe:ajaxErrorHandler>
 
 <!-- AJAX actions, which throw exceptions -->
-<p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}" value="Example first definition" />
-<p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}" value="Example second definition" />
-<p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}" value="Example third definition" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionThrowNullPointer}"
+                 value="Example first definition" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionSimulateViewExpiredException}"
+                 value="Example second definition" />
+<p:commandButton action="#{ajaxErrorHandlerController.actionWrappedException}"
+                 value="Example third definition" />
         <!-- EXAMPLE-SOURCE-END -->
     </h:panelGroup>
 </ui:composition>
