@@ -13,14 +13,15 @@
             <p/>
             <ul>
                 <li>Create model instance: DynaFormModel model = new DynaFormModel();</li>
-                <li>Add row: DynaFormRow row = model.createRegularRow();</li>
-                <li>Add label: DynaFormLabel label = row.addLabel(...);</li>
-                <li>Add editable control: DynaFormControl control = row.addControl(...);</li>
-                <li>Set relationship between label and control if needed: label.setForControl(control);</li>
+                <li>Add row to regular grid: DynaFormRow row = model.createRegularRow();</li>
+                <li>Add label: DynaFormLabel label = row.addLabel(value, colspan, rowspan);</li>
+                <li>Add editable control: DynaFormControl control = row.addControl(data, type, colspan, rowspan);</li>
+                <li>Set relationship between label and control (optional): label.setForControl(control);</li>
             </ul>
             Repeat four last steps as many times as needed.
+            UI form elements match created in Java controls by "type" attribute. This is usually a "one to many" relation.
             <p/>
-            You see that one of important features is a buil-in support for labels. DynaForm renders labels automatically - no need to write p:outputLabel.
+            You also see that one of important features is a buil-in support for labels. DynaForm renders labels automatically - no need to write p:outputLabel.
             But of course h:outputText can be used as a quite normal tag inside pe:dynaFormControl with proper "type" too.
         </h:panelGroup>
 
