@@ -13,12 +13,12 @@
 
     <h:panelGrid columns="2" columnClasses="formColumn1,formColumn2">
         <h:outputText value="First value"/>
-        <p:inputText id="input1" value="#{resetEditableValuesController.firstValue}"
+        <p:inputText id="input1" value="#{resetInputController.firstValue}"
                      required="true" label="First value">
             <f:validateLength minimum="5"/>
         </p:inputText>
         <h:outputText value="Second value"/>
-        <p:inputText id="input2" value="#{resetEditableValuesController.secondValue}"
+        <p:inputText id="input2" value="#{resetInputController.secondValue}"
                      required="true" label="Second value">
             <f:validateLength minimum="5"/>
         </p:inputText>
@@ -34,20 +34,20 @@
                     <f:selectItem itemLabel="Value B (normal)" itemValue="Value B"/>
                     <f:selectItem itemLabel="Value C (normal)" itemValue="Value C"/>
                     <p:ajax update="input1 input2 messages growl"
-                            listener="#{resetEditableValuesController.handleChangeValue}"/>
+                            listener="#{resetInputController.handleChangeValue}"/>
                 </p:selectOneMenu>
 
                 <p:commandButton id="reset" value="Button with reset" update="input1 input2 messages" process="@this"
                                  style="margin-left:10px;">
-                    <pe:resetEditableValues for="input1 input2"/>
+                    <pe:resetInput for="input1 input2"/>
                 </p:commandButton>
                 <p:selectOneMenu id="selectWithReset" value="dummy">
                     <f:selectItem itemLabel="Value A (with reset)" itemValue="Value A"/>
                     <f:selectItem itemLabel="Value B (with reset)" itemValue="Value B"/>
                     <f:selectItem itemLabel="Value C (with reset)" itemValue="Value C"/>
                     <p:ajax update="input1 input2 messages growl"
-                            listener="#{resetEditableValuesController.handleChangeValue}"/>
-                    <pe:resetEditableValues for="input1 input2" event="valueChange"/>
+                            listener="#{resetInputController.handleChangeValue}"/>
+                    <pe:resetInput for="input1 input2" event="valueChange"/>
                 </p:selectOneMenu>
             </h:panelGrid>
         </f:facet>

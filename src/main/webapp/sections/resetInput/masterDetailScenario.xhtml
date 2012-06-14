@@ -6,7 +6,7 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="ResetEditableValues"/>
+            <h:outputText value="ResetInput"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
             This example demonstrates an overview table with all persions and a detail view for person details.
@@ -14,19 +14,19 @@
             Type a wrong data, e.g. Tax Class as string instead of number, and push "Save" button. You will see a validation error.
             Both "cancel" buttons force a back navigation to the overview table. Try to click on the first "Regular Cancel" button and select another person in the table.
             You will see partially last shown data from the last selected person and not data from the current selected person.
-            If Tax Class would not pass validation, Name and Birth Date from the last selected person would be shown. The second button with attached pe:resetEditableValues solves this problem.
+            If Tax Class would not pass validation, Name and Birth Date from the last selected person would be shown. The second button with attached pe:resetInput solves this problem.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/resetEditableValues/example-masterDetailScenario.xhtml"/>
+            <ui:include src="/sections/resetInput/example-masterDetailScenario.xhtml"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/threeTabsDecoratorModel.html">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/resetEditableValues/example-masterDetailScenario.xhtml')}
+${showcase:getFileContent('/sections/resetInput/example-masterDetailScenario.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/reseteditablevalues/AdvancedResetEditableValuesController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/resetInput/AdvancedResetInputController.java')}
             </ui:define>
             <ui:define name="contentTab3">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/model/Person.java')}
@@ -34,11 +34,11 @@ ${showcase:getFileContent('/org/primefaces/extensions/showcase/model/Person.java
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/resetEditableValues/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/resetInput/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="resetEditableValues"/>
+            <ui:param name="tagName" value="resetInput"/>
         </ui:include>
     </ui:define>
 </ui:composition>

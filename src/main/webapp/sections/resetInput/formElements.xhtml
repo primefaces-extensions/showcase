@@ -6,37 +6,37 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="ResetEditableValues"/>
+            <h:outputText value="ResetInput"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
             Click on the "Submit" button triggers a validation. The validation state and value will be saved.
             Simple try to skip input or input any characters with length less than 5 and click on "Submit".
             <p/>
             Now if you would like to update server-side input values backed by managed bean, the validation state will not be reseted.
-            This behavior can be replicated by button / select menu without attached pe:resetEditableValue.
+            This behavior can be replicated by button / select menu without attached pe:resetInput.
             You will see red borders around input fields and last input values passed validation.
-            Attached pe:resetEditableValue allows to reset the saved state of input fields completely.
+            Attached pe:resetInput allows to reset the saved state of input fields completely.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/resetEditableValues/example-formElements.xhtml"/>
+            <ui:include src="/sections/resetInput/example-formElements.xhtml"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/resetEditableValues/example-formElements.xhtml')}
+${showcase:getFileContent('/sections/resetInput/example-formElements.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/reseteditablevalues/ResetEditableValuesController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/resetInput/ResetInputController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/resetEditableValues/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/resetInput/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="resetEditableValues"/>
+            <ui:param name="tagName" value="resetInput"/>
         </ui:include>
     </ui:define>
 </ui:composition>

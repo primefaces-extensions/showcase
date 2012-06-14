@@ -16,7 +16,7 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller.reseteditablevalues;
+package org.primefaces.extensions.showcase.controller.resetinput;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,19 +29,19 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.extensions.showcase.model.Person;
 
 /**
- * AdvancedResetEditableValuesController
+ * AdvancedResetInputController
  *
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
 @ViewScoped
-public class AdvancedResetEditableValuesController implements Serializable {
+public class AdvancedResetInputController implements Serializable {
 
 	private Person selectedPerson;
 	private List<Person> persons;
 
-	public AdvancedResetEditableValuesController() {
+	public AdvancedResetInputController() {
 		if (persons == null) {
 			persons = new ArrayList<Person>();
 

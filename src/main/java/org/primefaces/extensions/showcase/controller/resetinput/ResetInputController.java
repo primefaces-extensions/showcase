@@ -16,7 +16,7 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller.reseteditablevalues;
+package org.primefaces.extensions.showcase.controller.resetinput;
 
 import java.io.Serializable;
 
@@ -26,14 +26,14 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
- * ResetEditableValuesController
+ * ResetInputController
  *
  * @author  Thomas Andraschko / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
 @ViewScoped
-public class ResetEditableValuesController implements Serializable {
+public class ResetInputController implements Serializable {
 
 	private String firstValue;
 	private String secondValue;
