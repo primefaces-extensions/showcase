@@ -19,28 +19,30 @@
 <!-- An example of custom layout -->
 <pe:ajaxErrorHandler button="Close warning!" widgetVar="myAjaxErrorHandler">
     <div>
-        <h2 style="border-bottom: 2px solid blue; border-top: 2px solid blue;padding: 15px; text-align:center;background:#ccc;">
+        <h2 class="ui-dialog-titlebar" style="border-bottom: 2px solid blue; border-top: 2px solid blue;padding: 15px; text-align:center;background:#ccc;">
             Error <span style="color: red;">{error-name}</span>
         </h2>
-        <p:panel header="Base information" toggleable="true">
-            <h:panelGrid columns="2">
-                <h:outputLabel value="Error message:" />
-                <h:outputText value="{error-message}" style="font-size: 1.2em;color:navy;" />
+		<div class="ui-dialog-content">
+			<p:panel header="Base information" toggleable="true">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Error message:" />
+					<h:outputText value="{error-message}" style="font-size: 1.2em;color:navy;" />
 
-                <h:outputLabel value="Server name:" />
-                <h:outputText value="{error-hostname}"  style="font-size: 1.2em;color:navy;"/>
-            </h:panelGrid>
-        </p:panel>
-        <p:panel header="Exception details" toggleable="true">
-            <div style="overflow: auto; height: 300px; width: 440px;">
-                {error-stacktrace}
-            </div>
-        </p:panel>
+					<h:outputLabel value="Server name:" />
+					<h:outputText value="{error-hostname}"  style="font-size: 1.2em;color:navy;"/>
+				</h:panelGrid>
+			</p:panel>
+			<p:panel header="Exception details" toggleable="true">
+				<div style="overflow: auto; height: 300px; width: 440px;">
+					{error-stacktrace}
+				</div>
+			</p:panel>
 
-        <div style="text-align  :center; padding: 5px;">
-            <p:commandButton onclick="window.location.href=window.location.href; return false;" value="RELOAD"/>
-            <p:commandButton onclick="myAjaxErrorHandler.hide(); return false;" value="CLOSE"/>
-        </div>
+			<div style="text-align  :center; padding: 5px;">
+				<p:commandButton onclick="window.location.href=window.location.href; return false;" value="RELOAD"/>
+				<p:commandButton onclick="myAjaxErrorHandler.hide(); return false;" value="CLOSE"/>
+			</div>
+		</div>
     </div>
 </pe:ajaxErrorHandler>
 
