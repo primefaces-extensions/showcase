@@ -262,6 +262,10 @@
         </dependency>
         <dependency>
             <groupId>org.primefaces.themes</groupId>
+            <artifactId>cruze</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
             <artifactId>cupertino</artifactId>
         </dependency>
         <dependency>
