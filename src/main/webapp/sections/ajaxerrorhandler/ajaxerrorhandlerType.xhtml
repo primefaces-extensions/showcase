@@ -10,31 +10,19 @@
             <h:outputText value="AjaxErrorHandler"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-			<p>
-				Default behaviour of pe:ajaxErrorHandler is to display exception with RELOAD button.
-				There is not neccessary to render this component for all exceptions in the same manner.
-			</p>
-
-			<p>
-				For example: Description of ViewExpiredException could be:
-				"Due to inactivity on page please push RELOAD to continue."
-			</p>
-
-			<p>
-				For other exceptions it's appropriate to show following: name of exception,
-				message of exception, stacktrace, server name and information for user how to continue.
-			</p>
-
-			<p>
-				Attribute TYPE determines behaviour of component - if it is not set AjaxErrorHandler has default
-				settings, otherwise TYPE atribute has value of full class name of exception and for each
-				exception type defines specific properties.
-			</p>
-
-			<p>
-				Example is shown bellow: ViewExpiredException has defined
-				custom description (defined without TYPE attribute).
-			</p>
+            Default behaviour of pe:ajaxErrorHandler is to display exception with RELOAD button.
+            There is not neccessary to render this component for all exceptions in the same manner.
+			<p/>
+			For example: Description of ViewExpiredException could be: "Due to inactivity on page please push RELOAD to continue."
+			<p/>
+            For other exceptions it's appropriate to show following: name of exception,
+            message of exception, stacktrace, server name and information for user how to continue.
+			<p/>
+            Attribute TYPE determines behaviour of component - if it is not set AjaxErrorHandler has default
+            settings, otherwise TYPE atribute has value of full class name of exception and for each
+            exception type defines specific properties.
+			<p/>
+            Example is shown bellow: ViewExpiredException has defined custom description (defined without TYPE attribute).
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
