@@ -12,9 +12,9 @@
             Smart and flexible navigation between levels via built-in breadcrumbs or command components gives a neat and stylish interface for users.
             <p/>
             Each level in the flow is represented with a MasterDetailLevel component. 
-            Switching between levels occurs by means of SelectDetailLevel handler and is based on ajax, that means each level is loaded dynamically by ajax. 
-            SelectDetailLevel can be attached to any PrimeFaces component implementing UICommand. 
-            Such typically components are CommandLink, CommandButton, MenuItem, RemoteCommand and HotKey. Components with p:ajax are supported as well.
+            Switching between levels occurs by means of SelectDetailLevel handler and is based on AJAX, that means each level is loaded dynamically by AJAX. 
+            SelectDetailLevel can be attached to any ajaxified PrimeFaces and non PrimeFaces component. 
+            Such typically components are CommandLink, CommandButton, MenuItem, RemoteCommand, HotKey and any other components with attached f:ajax / p:ajax.
             <p/>
             This approach gives a flexible and powerful capability to control partial validation and to call action / actionListener during navigation.
             Area to be updated / processed during navigation between levels is set automatically to the MasterDetail component - no needs to specify
@@ -22,7 +22,7 @@
             more precise by "update" / "process" attributes. Partial validation can be e.g. skipped by setting process="@none" or immediate="true". 
             Partial validation in case of the navigation via breadcrumbs is always skipped automatically.
             <p/>
-            Other features are a server-side listener invoking when a navigation attempt takes place, "header", "footer" facets, implicitly navigation without pe:selectDetailLevel and more.
+            Other features are a server-side listener invoking when a navigation attempt takes place, "header", "footer" facets and more.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">

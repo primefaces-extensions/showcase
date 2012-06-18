@@ -63,41 +63,41 @@
         </h:panelGrid>
 
         <p:commandButton value="Save with success" action="#{complexMasterDetailController.saveSuccess(person)}"
-                         style="margin-top: 10px;" icon="ui-icon-disk">
+                         style="margin-top:10px;" icon="ui-icon-disk">
             <pe:selectDetailLevel level="1"/>
         </p:commandButton>
         <p:commandButton value="Save with failure" action="#{complexMasterDetailController.saveFailure(person)}"
-                         style="margin-top: 10px;" icon="ui-icon-disk">
+                         style="margin-top:10px;" icon="ui-icon-disk">
             <pe:selectDetailLevel level="1"/>
         </p:commandButton>
-        <p:commandButton type="button" value="Delete" onclick="deletedDlg.show()" style="margin-top: 10px;"/>
+        <p:commandButton type="button" value="Delete" onclick="deletedDlg.show()" style="margin-top:10px;"/>
 
         <p:dialog header="Delete confirmation" widgetVar="deletedDlg" resizable="false"
                   modal="true" appendToBody="true">
-            <h:panelGroup layout="block" style="padding: 5px;">
+            <h:panelGroup layout="block" style="padding:5px;">
                 <h:outputText value="Are you sure you want to delete this person?"/>
             </h:panelGroup>
-            <p:commandButton value="Delete" oncomplete="deletedDlg.hide();"
+            <p:commandButton id="deleteBtn" value="Delete" oncomplete="deletedDlg.hide();" process="@this"
                              action="#{complexMasterDetailController.delete(person)}"
-                             style="margin-top: 10px;">
+                             style="margin-top:10px;">
                 <pe:selectDetailLevel level="1"/>
             </p:commandButton>
             <p:commandButton value="Cancel" type="button" onclick="deletedDlg.hide();"
-                             style="margin-top: 10px;"/>
+                             style="margin-top:10px;"/>
         </p:dialog>
     </pe:masterDetailLevel>
 
     <pe:masterDetailLevel level="3" contextVar="person" levelLabel="Language skills">
         <h:panelGrid columns="2" columnClasses="formColumn1,formColumn2">
             <h:outputText value="Choose language skill"/>
-            <p:selectOneMenu value="#{complexMasterDetailController.languageSkillToAdd}" style="width: 200px;">
+            <p:selectOneMenu id="languageSkills" value="#{complexMasterDetailController.languageSkillToAdd}"
+                             style="width:200px;">
                 <f:selectItems value="#{complexMasterDetailController.availableLanguageSkills}"/>
+                <p:ajax event="valueChange"
+                        listener="#{complexMasterDetailController.addLanguageSkill(person)}"/>
+                <pe:selectDetailLevel step="-1"/>
             </p:selectOneMenu>
         </h:panelGrid>
-        <p:commandButton value="Add" action="#{complexMasterDetailController.addLanguageSkill(person)}"
-                         style="margin-top: 10px;" icon="ui-icon-plusthick">
-            <pe:selectDetailLevel step="-1"/>
-        </p:commandButton>
     </pe:masterDetailLevel>
 </pe:masterDetail>
     <!-- EXAMPLE-SOURCE-END -->

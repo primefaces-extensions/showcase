@@ -135,13 +135,11 @@ public class ComplexMasterDetailController implements Serializable {
 		return null;
 	}
 
-	public String addLanguageSkill(Person person) {
+	public void addLanguageSkill(Person person) {
 		if (languageSkillToAdd != null) {
 			person.addLanguageSkill(languageSkillToAdd);
 		}
 
 		languageSkillToAdd = null;
-
-		return null;
 	}
 }
