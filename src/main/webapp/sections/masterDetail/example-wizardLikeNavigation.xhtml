@@ -43,10 +43,12 @@
                 <p:inputText value="#{wizardMasterDetailController.user.age}"/>
             </h:panelGrid>
         </p:panel>
-        <p:commandButton value="Next" style="margin-top: 10px;" icon="ui-icon-arrowthick-1-e">
+        <p:commandButton value="Next" process="masterDetail"
+                         style="margin-top: 10px;" icon="ui-icon-arrowthick-1-e">
             <pe:selectDetailLevel step="1"/>
         </p:commandButton>
-        <p:commandButton value="Go to Save" style="margin-top: 10px;" icon="ui-icon-arrowthickstop-1-e">
+        <p:commandButton value="Go to Save" process="masterDetail"
+                         style="margin-top: 10px;" icon="ui-icon-arrowthickstop-1-e">
             <pe:selectDetailLevel level="4"/>
         </p:commandButton>
     </pe:masterDetailLevel>
@@ -66,7 +68,8 @@
                          process="@this" immediate="true">
             <pe:selectDetailLevel step="-1"/>
         </p:commandButton>
-        <p:commandButton value="Next" style="margin-top: 10px;" icon="ui-icon-arrowthick-1-e">
+        <p:commandButton value="Next" process="masterDetail"
+                         style="margin-top: 10px;" icon="ui-icon-arrowthick-1-e">
             <pe:selectDetailLevel step="1"/>
         </p:commandButton>
     </pe:masterDetailLevel>
@@ -87,7 +90,8 @@
                          process="@this" immediate="true">
             <pe:selectDetailLevel step="-1"/>
         </p:commandButton>
-        <p:commandButton value="Next" style="margin-top: 10px;" icon="ui-icon-arrowthick-1-e">
+        <p:commandButton value="Next" process="masterDetail"
+                         style="margin-top: 10px;" icon="ui-icon-arrowthick-1-e">
             <pe:selectDetailLevel step="1"/>
         </p:commandButton>
     </pe:masterDetailLevel>
@@ -119,7 +123,8 @@
                          process="@this" immediate="true">
             <pe:selectDetailLevel step="-1"/>
         </p:commandButton>
-        <p:commandButton value="Submit" actionListener="#{wizardMasterDetailController.save}"
+        <p:commandButton value="Submit" process="masterDetail"
+                         actionListener="#{wizardMasterDetailController.save}"
                          style="margin-top: 10px;" icon="ui-icon-disk">
             <pe:selectDetailLevel level="1"/>
         </p:commandButton>

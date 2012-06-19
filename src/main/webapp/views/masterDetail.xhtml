@@ -17,9 +17,9 @@
             Such typically components are CommandLink, CommandButton, MenuItem, RemoteCommand, HotKey and any other components with attached f:ajax / p:ajax.
             <p/>
             This approach gives a flexible and powerful capability to control partial validation and to call action / actionListener during navigation.
-            Area to be updated / processed during navigation between levels is set automatically to the MasterDetail component - no needs to specify
-            it in "process" / "update" attributes of command component SelectDetailLevel is attached to. But of course, this area can be also controlled 
-            more precise by "update" / "process" attributes. Partial validation can be e.g. skipped by setting process="@none" or immediate="true". 
+            Area to be updated during navigation between levels is set automatically to the MasterDetail component - no needs to specify
+            it explicitly. But of course, processed and updated areas can be controlled more precise by "process" / "update" attributes.
+            Partial validation can be e.g. skipped by setting process="@none" or immediate="true". 
             Partial validation in case of the navigation via breadcrumbs is always skipped automatically.
             <p/>
             Other features are a server-side listener invoking when a navigation attempt takes place, "header", "footer" facets and more.

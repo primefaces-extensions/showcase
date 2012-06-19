@@ -62,23 +62,24 @@
             </h:panelGrid>
         </h:panelGrid>
 
-        <p:commandButton value="Save with success" action="#{complexMasterDetailController.saveSuccess(person)}"
+        <p:commandButton value="Save with success" process="masterDetail"
+                         action="#{complexMasterDetailController.saveSuccess(person)}"
                          style="margin-top:10px;" icon="ui-icon-disk">
             <pe:selectDetailLevel level="1"/>
         </p:commandButton>
-        <p:commandButton value="Save with failure" action="#{complexMasterDetailController.saveFailure(person)}"
+        <p:commandButton value="Save with failure" process="masterDetail"
+                         action="#{complexMasterDetailController.saveFailure(person)}"
                          style="margin-top:10px;" icon="ui-icon-disk">
             <pe:selectDetailLevel level="1"/>
         </p:commandButton>
         <p:commandButton type="button" value="Delete" onclick="deletedDlg.show()" style="margin-top:10px;"/>
 
-        <p:dialog header="Delete confirmation" widgetVar="deletedDlg" resizable="false"
-                  modal="true" appendToBody="true">
+        <p:dialog header="Delete confirmation" widgetVar="deletedDlg" resizable="false">
             <h:panelGroup layout="block" style="padding:5px;">
                 <h:outputText value="Are you sure you want to delete this person?"/>
             </h:panelGroup>
-            <p:commandButton id="deleteBtn" value="Delete" oncomplete="deletedDlg.hide();" process="@this"
-                             action="#{complexMasterDetailController.delete(person)}"
+            <p:commandButton id="deleteBtn" value="Delete" oncomplete="deletedDlg.hide();"
+                             action="#{complexMasterDetailController.delete(person)}" immediate="true"
                              style="margin-top:10px;">
                 <pe:selectDetailLevel level="1"/>
             </p:commandButton>
@@ -93,7 +94,7 @@
             <p:selectOneMenu id="languageSkills" value="#{complexMasterDetailController.languageSkillToAdd}"
                              style="width:200px;">
                 <f:selectItems value="#{complexMasterDetailController.availableLanguageSkills}"/>
-                <p:ajax event="valueChange"
+                <p:ajax event="valueChange" process="masterDetail"
                         listener="#{complexMasterDetailController.addLanguageSkill(person)}"/>
                 <pe:selectDetailLevel step="-1"/>
             </p:selectOneMenu>
