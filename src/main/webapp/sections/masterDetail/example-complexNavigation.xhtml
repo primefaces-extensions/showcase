@@ -20,17 +20,17 @@
             </h:outputFormat>
         </f:facet>
 
-        <p:dataTable id="persons" value="#{complexMasterDetailController.persons}" var="person">
+        <p:dataTable id="persons" value="#{complexMasterDetailController.persons}" var="pers">
             <p:column headerText="Name">
-                <p:commandLink value="#{person.name}">
-                    <pe:selectDetailLevel contextValue="#{person}"/>
+                <p:commandLink value="#{pers.name}">
+                    <pe:selectDetailLevel contextValue="#{pers}"/>
                 </p:commandLink>
             </p:column>
             <p:column headerText="Tax Class">
-                <h:outputText value="#{person.taxClass}"/>
+                <h:outputText value="#{pers.taxClass}"/>
             </p:column>
             <p:column headerText="Birth Date">
-                <h:outputText value="#{person.birthDate}">
+                <h:outputText value="#{pers.birthDate}">
                     <f:convertDateTime pattern="dd.MM.yyyy"/>
                 </h:outputText>
             </p:column>
@@ -79,7 +79,7 @@
                 <h:outputText value="Are you sure you want to delete this person?"/>
             </h:panelGroup>
             <p:commandButton id="deleteBtn" value="Delete" oncomplete="deletedDlg.hide();"
-                             action="#{complexMasterDetailController.delete(person)}" immediate="true"
+                             action="#{complexMasterDetailController.delete(person)}" process="@this"
                              style="margin-top:10px;">
                 <pe:selectDetailLevel level="1"/>
             </p:commandButton>
