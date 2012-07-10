@@ -18,6 +18,9 @@
 
 package org.primefaces.extensions.showcase.webapp;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,10 +32,6 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
-
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
 
 /**
  * TechnicalInfo.
@@ -80,7 +79,7 @@ public class TechnicalInfo {
 			primeFaces = "PrimeFaces: " + appProperties.get("primefaces.core.version");
 			primeFacesExt = "PrimeFaces Extensions: " + appProperties.get("pe.impl.version");
 			jsfImpl = "JSF-Impl.: " + appProperties.get("pe.jsf.displayname") + " " + appProperties.get("pe.jsf.version");
-			server = "Server: Jetty " + appProperties.get("jetty.server.version");
+			server = "Server: " + appProperties.get("server.name") + " " + appProperties.get("server.version");
 			revision = "SVN-Revision: " + appProperties.get("svn.revision");
 
 			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
