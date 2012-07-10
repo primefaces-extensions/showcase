@@ -50,10 +50,8 @@ public class TechnicalInfo {
 	private String server;
 	private String revision;
 	private String buildTime;
-	private boolean online = false;
 	private boolean mojarra = true;
 
-	//mfenoglio
 	private List<String> newComponents = new ArrayList<String>();
 	private List<String> updatedComponents = new ArrayList<String>();
 
@@ -86,8 +84,6 @@ public class TechnicalInfo {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTimeInMillis(Long.valueOf(appProperties.get("timestamp")));
 			buildTime = "Build time: " + formatter.format(calendar.getTime());
-
-			online = Boolean.valueOf(appProperties.get("pe.webapp.online"));
 			mojarra = appProperties.get("pe.jsf.impl").contains("mojarra");
 
 			//mfenoglio process new and updated components
@@ -95,10 +91,6 @@ public class TechnicalInfo {
 		} catch (MissingResourceException e) {
 			LOGGER.warning("Resource bundle 'pe-showcase' was not found");
 		}
-	}
-
-	public boolean isOnline() {
-		return online;
 	}
 
 	public String getPrimeFaces() {

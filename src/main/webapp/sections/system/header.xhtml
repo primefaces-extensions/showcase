@@ -6,17 +6,7 @@
 <ui:composition>
     <h:graphicImage library="images" name="logo.png" styleClass="logo" title="PrimeFaces Extensions"/>
 
-    <h:panelGrid columns="7" styleClass="smallNav"
-                 columnClasses="smallNavText,smallNavImg,smallNavText,smallNavImg,smallNavText">
-        <h:outputLink value="http://fractalsoft.net/primeext-showcase-mojarra/"
-                      rendered="#{technicalInfo.online and !technicalInfo.mojarra}">
-            <h:outputText value="Run with Mojarra"/>
-        </h:outputLink>
-        <h:outputLink value="http://fractalsoft.net/primeext-showcase-myfaces/"
-                      rendered="#{technicalInfo.online and technicalInfo.mojarra}">
-            <h:outputText value="Run with MyFaces"/>
-        </h:outputLink>
-        <h:outputText value="|" rendered="#{technicalInfo.online}"/>
+    <h:panelGrid columns="7" styleClass="smallNav" columnClasses="smallNavText,smallNavImg,smallNavText">
         <h:outputLink value="http://code.google.com/p/primefaces-extensions/" target="_blank">
             <h:outputText value="Homepage"/>
         </h:outputLink>
