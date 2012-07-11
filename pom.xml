@@ -64,12 +64,12 @@
         </developer>
         <developer>
             <id>mali</id>
-            <name>Nilesh N. Mali</name>
+            <name>Nilesh Namdeo Mali</name>
             <email>nileshmali86@gmail.com</email>
             <roles>
                 <role>Developer</role>
             </roles>
-            <timezone>+5.5</timezone>
+            <timezone>+5.30</timezone>
         </developer>
         <developer>
             <id>mfenoglio</id>
