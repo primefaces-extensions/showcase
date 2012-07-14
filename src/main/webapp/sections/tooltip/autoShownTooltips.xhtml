@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Tooltip"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            The autoShow feature enables showing tooltips automatically after page loading.
+            All tooltips below are shown directly after the page has been loaded.
+            Auto shown tooltips should not be used with "global" and "shared" flags.
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <ui:include src="/sections/tooltip/example-autoShownTooltips.xhtml" />
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/oneTabDecorator.html">
+            <ui:define name="contentTab1">
+${showcase:getFileContent('/sections/tooltip/example-autoShownTooltips.xhtml')}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/tooltip/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="tooltip"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

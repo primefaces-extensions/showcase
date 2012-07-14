@@ -1,0 +1,36 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <!-- EXAMPLE-SOURCE-START -->
+<h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
+    <h:outputLabel value="Tooltip on InputText: "/>
+    <h:panelGroup layout="block" style="padding: 0 0 3px 0;">
+        <p:inputText id="txt" title="Type something into this field"/>
+        <pe:tooltip for="txt" autoShow="true"
+                    position="left center" targetPosition="right center"/>
+    </h:panelGroup>
+
+    <h:outputText value="Tooltip on OutputLink: "/>
+    <h:panelGroup layout="block" style="padding: 3px 0 3px 0;">
+        <h:outputLink id="olink" value="#">
+            <h:outputText value="Link to something"/>
+        </h:outputLink>
+        <pe:tooltip for="olink" value="Follow this link please" autoShow="true"
+                    position="left center" targetPosition="right center"/>
+    </h:panelGroup>
+
+    <h:outputText value="Tooltip with content: "/>
+    <h:panelGroup layout="block" style="padding: 3px 0 3px 0;">
+        <h:outputLink id="olink2" value="#">
+            <h:outputText value="PrimeFaces Extensions"/>
+        </h:outputLink>
+        <pe:tooltip for="olink2" autoShow="true">
+            <p:graphicImage value="/resources/images/logo.png"/>
+        </pe:tooltip>
+    </h:panelGroup>
+</h:panelGrid>
+    <!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
