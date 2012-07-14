@@ -1,15 +1,30 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
     <!-- EXAMPLE-SOURCE-START -->
+
 <h:panelGrid id="details" columns="2" columnClasses="formColumn1,formColumn2">
+    <f:facet name="header">
+        <h:panelGroup layout="block" style="text-align:left;margin-bottom:10px;">
+            <p:commandButton value="Hide" type="button"
+                             onclick="tipwdgt1.hide();tipwdgt2.hide();tipwdgt3.hide()"/>
+            <p:commandButton value="Show" type="button"
+                             onclick="tipwdgt1.show();tipwdgt2.show();tipwdgt3.show()"/>
+            <p:commandButton value="Reposition" type="button"
+                             onclick="tipwdgt1.reposition();tipwdgt2.reposition();tipwdgt3.reposition()"/>            
+            <p:commandButton value="Destroy" type="button"
+                             onclick="tipwdgt1.destroy();tipwdgt2.destroy();tipwdgt3.destroy()"/>
+        </h:panelGroup>
+    </f:facet>
+    
     <h:outputLabel value="Tooltip on InputText: "/>
     <h:panelGroup layout="block" style="padding: 0 0 3px 0;">
         <p:inputText id="txt" title="Type something into this field"/>
-        <pe:tooltip for="txt" autoShow="true"
+        <pe:tooltip for="txt" autoShow="true" widgetVar="tipwdgt1"
                     position="left center" targetPosition="right center"/>
     </h:panelGroup>
 
@@ -18,7 +33,8 @@
         <h:outputLink id="olink" value="#">
             <h:outputText value="Link to something"/>
         </h:outputLink>
-        <pe:tooltip for="olink" value="Follow this link please" autoShow="true"
+        <pe:tooltip for="olink" value="Follow this link please"
+                    autoShow="true" widgetVar="tipwdgt2"
                     position="left center" targetPosition="right center"/>
     </h:panelGroup>
 
@@ -27,7 +43,7 @@
         <h:outputLink id="olink2" value="#">
             <h:outputText value="PrimeFaces Extensions"/>
         </h:outputLink>
-        <pe:tooltip for="olink2" autoShow="true">
+        <pe:tooltip for="olink2" autoShow="true" widgetVar="tipwdgt3">
             <p:graphicImage value="/resources/images/logo.png"/>
         </pe:tooltip>
     </h:panelGroup>
