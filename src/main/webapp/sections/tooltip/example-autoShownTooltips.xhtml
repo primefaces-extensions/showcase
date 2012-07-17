@@ -11,20 +11,24 @@
     <f:facet name="header">
         <h:panelGroup layout="block" style="text-align:left;margin-bottom:10px;">
             <p:commandButton value="Hide" type="button"
-                             onclick="tipwdgt1.hide();tipwdgt2.hide();tipwdgt3.hide()"/>
+                             onclick="tip1.hide();tip2.hide();tip3.hide();tip4.hide()"/>
             <p:commandButton value="Show" type="button"
-                             onclick="tipwdgt1.show();tipwdgt2.show();tipwdgt3.show()"/>
+                             onclick="tip1.show();tip2.show();tip3.show();tip4.show()"/>
             <p:commandButton value="Reposition" type="button"
-                             onclick="tipwdgt1.reposition();tipwdgt2.reposition();tipwdgt3.reposition()"/>            
+                             onclick="tip1.reposition();tip2.reposition();tip3.reposition();tip4.reposition()"/>            
             <p:commandButton value="Destroy" type="button"
-                             onclick="tipwdgt1.destroy();tipwdgt2.destroy();tipwdgt3.destroy()"/>
+                             onclick="tip1.destroy();tip2.destroy();tip3.destroy();tip4.destroy()">
+                <pe:tooltip value="Once destroyed, tooltip's markup doesn't exist anymore"
+                            autoShow="true" widgetVar="tip4"
+                            position="left center" targetPosition="right center"/>
+            </p:commandButton>
         </h:panelGroup>
     </f:facet>
     
     <h:outputLabel value="Tooltip on InputText: "/>
     <h:panelGroup layout="block" style="padding: 0 0 3px 0;">
         <p:inputText id="txt" title="Type something into this field"/>
-        <pe:tooltip for="txt" autoShow="true" widgetVar="tipwdgt1"
+        <pe:tooltip for="txt" autoShow="true" widgetVar="tip1"
                     position="left center" targetPosition="right center"/>
     </h:panelGroup>
 
@@ -34,7 +38,7 @@
             <h:outputText value="Link to something"/>
         </h:outputLink>
         <pe:tooltip for="olink" value="Follow this link please"
-                    autoShow="true" widgetVar="tipwdgt2"
+                    autoShow="true" widgetVar="tip2"
                     position="left center" targetPosition="right center"/>
     </h:panelGroup>
 
@@ -43,7 +47,7 @@
         <h:outputLink id="olink2" value="#">
             <h:outputText value="PrimeFaces Extensions"/>
         </h:outputLink>
-        <pe:tooltip for="olink2" autoShow="true" widgetVar="tipwdgt3">
+        <pe:tooltip for="olink2" autoShow="true" widgetVar="tip3">
             <p:graphicImage value="/resources/images/logo.png"/>
         </pe:tooltip>
     </h:panelGroup>
