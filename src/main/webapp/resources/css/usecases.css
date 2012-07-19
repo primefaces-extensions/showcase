@@ -1,36 +1,3 @@
-#ajaxStatusTable {
-    border-collapse: collapse;
-}
-
-#ajaxStatusTable td {
-    border: solid 1px #808080;
-}
-
-#ajaxStatusTable .header {
-    font-weight: bold;
-}
-
-#ajaxStatusTable .column {
-    padding: 10px;
-    text-align: left;
-    vertical-align: middle;
-}
-
-#ajaxStatusTable .column div.ui-selectonemenu {
-    vertical-align: middle;
-}
-
-#ajaxIndicatorTable {
-    border-collapse: collapse;
-    clear: both;
-}
-
-#ajaxIndicatorTable .column {
-    padding: 12px;
-    text-align: left;
-    vertical-align: middle;
-}
-
 #sharedTooltipTable th .ui-column-filter {
     display: inline;
     margin-left: 5px;
