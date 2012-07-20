@@ -20,7 +20,7 @@
                              onclick="tip1.destroy();tip2.destroy();tip3.destroy();tip4.destroy()">
                 <pe:tooltip value="Once destroyed, tooltip's markup doesn't exist anymore"
                             autoShow="true" widgetVar="tip4"
-                            position="left center" targetPosition="right center"/>
+                            myPosition="left center" atPosition="right center"/>
             </p:commandButton>
         </h:panelGroup>
     </f:facet>
@@ -29,7 +29,7 @@
     <h:panelGroup layout="block" style="padding: 0 0 3px 0;">
         <p:inputText id="txt" title="Type something into this field"/>
         <pe:tooltip for="txt" autoShow="true" widgetVar="tip1"
-                    position="left center" targetPosition="right center"/>
+                    myPosition="left center" atPosition="right center"/>
     </h:panelGroup>
 
     <h:outputText value="Tooltip on OutputLink: "/>
@@ -39,7 +39,7 @@
         </h:outputLink>
         <pe:tooltip for="olink" value="Follow this link please"
                     autoShow="true" widgetVar="tip2"
-                    position="left center" targetPosition="right center"/>
+                    myPosition="left center" atPosition="right center"/>
     </h:panelGroup>
 
     <h:outputText value="Tooltip with content: "/>
@@ -52,5 +52,6 @@
         </pe:tooltip>
     </h:panelGroup>
 </h:panelGrid>
+    
     <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
