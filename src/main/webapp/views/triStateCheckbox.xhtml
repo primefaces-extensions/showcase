@@ -20,6 +20,7 @@
         <h:panelGroup layout="block" styleClass="centerExample">
             <!-- This group is for coding -->
             <p:growl id="growl" showDetail="true"/>
+            
             <h:panelGrid id="triStateGrid" columns="2" styleClass="centerContent">
                 <h:outputText value="Basic Usage: "/>
                 <pe:triStateCheckbox value="#{triStateCheckBoxController.value1}"/>
@@ -33,15 +34,20 @@
                 <pe:triStateCheckbox value="#{triStateCheckBoxController.value3}"
                                      stateTwoIcon="ui-icon-plus"
                                      stateThreeIcon="ui-icon-minus"/>
+                
+                <h:panelGroup/>
+                <pe:triStateCheckbox value="#{triStateCheckBoxController.value4}" itemLabel="Item Label"/>                
             </h:panelGrid>
             
             <p:commandButton value="Submit" process="triStateGrid" update="display" oncomplete="dlg.show()"
                              style="margin-top:10px;"/>
+            
             <p:dialog header="Selected Values" showEffect="fade" hideEffect="fade" widgetVar="dlg">
                 <h:panelGrid id="display" columns="1" style="margin: 10px;">
                     <h:outputText value="Value 1: #{triStateCheckBoxController.value1}"/>
                     <h:outputText value="Value 2: #{triStateCheckBoxController.value2}"/>
                     <h:outputText value="Value 3: #{triStateCheckBoxController.value3}"/>
+                    <h:outputText value="Value 4: #{triStateCheckBoxController.value4}"/>
                 </h:panelGrid>
             </p:dialog>
         </h:panelGroup>
@@ -50,12 +56,13 @@
             <!-- Code here should be left aligned -->
             <ui:define name="contentTab1">
 &lt;p:growl id=&quot;growl&quot; showDetail=&quot;true&quot;/&gt;
+
 &lt;h:panelGrid id=&quot;triStateGrid&quot; columns=&quot;2&quot; styleClass=&quot;centerContent&quot;&gt;
     &lt;h:outputText value=&quot;Basic Usage: &quot;/&gt;
     &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value1}&quot;/&gt;
 
     &lt;h:outputText value=&quot;Ajax Behavior: &quot;/&gt;
-    &lt;pe:triStateCheckbox id=&quot;ajaxTriState&quot; value=&quot;\#{triStateCheckBoxController.value2}&quot;&gt;
+    &lt;pe:triStateCheckbox id=&quot;ajaxTriState&quot; value=&quot;#{triStateCheckBoxController.value2}&quot;&gt;
         &lt;p:ajax update=&quot;growl&quot; listener=&quot;\#{triStateCheckBoxController.addMessage}&quot;/&gt;
     &lt;/pe:triStateCheckbox&gt;
 
@@ -63,15 +70,20 @@
     &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value3}&quot;
                          stateTwoIcon=&quot;ui-icon-plus&quot;
                          stateThreeIcon=&quot;ui-icon-minus&quot;/&gt;
+    
+    &lt;h:panelGroup/&gt;
+    &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value4}&quot; itemLabel=&quot;Item Label&quot;/&gt;                
 &lt;/h:panelGrid&gt;
 
 &lt;p:commandButton value=&quot;Submit&quot; process=&quot;triStateGrid&quot; update=&quot;display&quot; oncomplete=&quot;dlg.show()&quot;
                  style=&quot;margin-top:10px;&quot;/&gt;
+
 &lt;p:dialog header=&quot;Selected Values&quot; showEffect=&quot;fade&quot; hideEffect=&quot;fade&quot; widgetVar=&quot;dlg&quot;&gt;
     &lt;h:panelGrid id=&quot;display&quot; columns=&quot;1&quot; style=&quot;margin: 10px;&quot;&gt;
         &lt;h:outputText value=&quot;Value 1: \#{triStateCheckBoxController.value1}&quot;/&gt;
         &lt;h:outputText value=&quot;Value 2: \#{triStateCheckBoxController.value2}&quot;/&gt;
         &lt;h:outputText value=&quot;Value 3: \#{triStateCheckBoxController.value3}&quot;/&gt;
+        &lt;h:outputText value=&quot;Value 4: \#{triStateCheckBoxController.value4}&quot;/&gt;
     &lt;/h:panelGrid&gt;
 &lt;/p:dialog&gt;
             </ui:define>
@@ -83,9 +95,11 @@ public class TriStateCheckBoxController implements Serializable {
     private String value1;
     private String value2;
     private String value3;
+    private String value4;
 
     public TriStateCheckBoxController() {
         value1 = &quot;2&quot;;
+        value4 = &quot;1&quot;;
     }
 
     public String getValue1() {
@@ -100,6 +114,10 @@ public class TriStateCheckBoxController implements Serializable {
         return value2;
     }
 
+    public void setValue2(String value2) {
+        this.value2 = value2;
+    }
+
     public String getValue3() {
         return value3;
     }
@@ -108,12 +126,17 @@ public class TriStateCheckBoxController implements Serializable {
         this.value3 = value3;
     }
 
-    public void setValue2(String value2) {
-        this.value2 = value2;
+    public String getValue4() {
+        return value4;
+    }
+
+    public void setValue4(String value4) {
+        this.value4 = value4;
     }
 
     public void addMessage() {
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;State has been changed&quot;, &quot;State is = &quot; + value2);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                &quot;State has been changed&quot;, &quot;State is = &quot; + value2);
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }

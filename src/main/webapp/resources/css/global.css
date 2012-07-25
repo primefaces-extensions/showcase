@@ -34,6 +34,14 @@ button,
     width: 115%;
 }
 
+.ui-chkbox .ui-chkbox-label {
+    margin: 3px;
+}
+
+.ui-selectmanycheckbox label, .ui-selectoneradio label {
+    margin-top: 0;
+}
+
 table .formColumn1 {
     padding-right: 10px;
     text-align: right;
