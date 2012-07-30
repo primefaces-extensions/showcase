@@ -7,7 +7,8 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
     <!-- EXAMPLE-SOURCE-START -->
 <p:dataTable id="sharedTooltipTable" var="message" value="#{dataTableController.messages}"
-             paginator="true" rows="5" paginatorPosition="bottom">
+             paginator="true" rows="5" paginatorPosition="bottom"
+             filteredValue="#{dataTableController.filteredMessages}">
     <f:facet name="header">
         Please move mouse over filter input fields
     </f:facet>

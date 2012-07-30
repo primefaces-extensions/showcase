@@ -40,6 +40,7 @@ public class DataTableController implements Serializable {
 	private static final long serialVersionUID = 20111020L;
 
 	private List<Message> messages;
+	private List<Message> filteredMessages;
 	private String newSubject = "my subject";
 	private String newText = "my text";
 
@@ -56,12 +57,20 @@ public class DataTableController implements Serializable {
 		}
 	}
 
-	public final List<Message> getMessages() {
+	public List<Message> getMessages() {
 		return messages;
 	}
 
-	public final void setMessages(final List<Message> messages) {
+	public void setMessages(final List<Message> messages) {
 		this.messages = messages;
+	}
+
+	public List<Message> getFilteredMessages() {
+		return filteredMessages;
+	}
+
+	public void setFilteredMessages(List<Message> filteredMessages) {
+		this.filteredMessages = filteredMessages;
 	}
 
 	public String getNewSubject() {
