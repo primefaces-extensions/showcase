@@ -8,12 +8,12 @@
 
 <!-- EXAMPLE-SOURCE-START -->
 
-<p:dataTable id="myDataTable" var="message" value="#{dataTableController.messages}">
-    <pe:paginator
-        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rows="10"
-        rowsPerPageTemplate="5,10,15" />
+<p:dataTable id="myDataTable" var="message" value="#{dataTableController.messages}" paginator="true"
+    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+    rows="10" rowsPerPageTemplate="5,10,15">
+    
     <pe:javascript event="page" execute="alert('Datatable page event called')"/>
+    
     <f:facet name="header">
         Messages
     </f:facet>

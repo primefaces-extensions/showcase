@@ -78,9 +78,6 @@
                 <p:menuitem value="MasterDetail" styleClass="#{navigationContext.getMenuitemStyleClass('masterDetail')}"
                             icon="#{technicalInfo.getMenuitemIconStyleClass('masterDetail')}"
                             onclick="selectComponentLink(this)" ajax="false" url="/views/masterDetail.jsf"/>
-                <p:menuitem value="Paginator" styleClass="#{navigationContext.getMenuitemStyleClass('paginator')}"
-                            icon="#{technicalInfo.getMenuitemIconStyleClass('paginator')}"
-                            onclick="selectComponentLink(this)" ajax="false" url="/views/paginator.jsf"/>
                 <p:menuitem value="RemoteCommand" styleClass="#{navigationContext.getMenuitemStyleClass('remoteCommand')}"
                             icon="#{technicalInfo.getMenuitemIconStyleClass('remoteCommand')}"
                             onclick="selectComponentLink(this)" ajax="false" url="/views/remoteCommand.jsf"/>
@@ -102,7 +99,7 @@
                             onclick="selectComponentLink(this)" ajax="false" url="/views/triStateCheckbox.jsf"/>
                 <p:menuitem value="TriStateManyCheckbox"
                             styleClass="#{navigationContext.getMenuitemStyleClass('triStateManyCheckbox')}"
-                            icon="#{technicalInfo.getMenuitemIconStyleClass('triStateManyCheckBox')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('triStateManyCheckbox')}"
                             onclick="selectComponentLink(this)" ajax="false" url="/views/triStateManyCheckbox.jsf"/>
             </p:menu>
             <pe:tooltip value="New component in the current release" shared="true" forSelector=".ui-icon-new-comp"/>
