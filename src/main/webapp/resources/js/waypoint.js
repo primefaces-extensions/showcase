@@ -10,7 +10,6 @@ function handleWaypoint(ext) {
         $('#container').append("<div class='article'>" + "<h2>Vestibulum</h2>" + "<p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros" + "eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus," + "metus sit amet est et sapien ullamcorper pharetra. Aliquam erat volutpat. Nam dui mi, tincidunt" + "quis, accumsan porttitor, facilisis luctus. Hello said dkrew qwq ncki juewewe, upsum el.</p>" + "</div>");
 
         $loading.detach();
-        delete ext.cfg.handler;
         ext.target.waypoint(ext.cfg);
     }
 }
