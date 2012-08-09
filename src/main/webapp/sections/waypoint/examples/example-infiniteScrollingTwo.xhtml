@@ -140,13 +140,19 @@
             
             // show a smooth animation
             img.css('opacity', 0);
-            img.load(function(){ img.animate({ opacity: 1 }, 500); });
             
             // change src
             img.attr('src', img.attr('data-src'));
             
-            // remove data-src
-            img.removeAttr('data-src');
+            img.load(function(){
+                img.animate({ opacity: 1 }, 500);
+
+                // destroy waypoint
+                img.waypoint('destroy');
+            
+                // remove data-src
+                img.removeAttr('data-src');
+            });
         }
     /* ]]> */
     </h:outputScript>
