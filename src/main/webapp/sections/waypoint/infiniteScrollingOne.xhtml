@@ -9,7 +9,7 @@
             <h:outputText value="Waypoint"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Infinite scrolling with pe:remoteCommand.
+            Infinite scrolling with p:remoteCommand and offset as function.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -19,9 +19,12 @@
             </h:outputLink>            
         </h:panelGroup>
 
-        <ui:decorate template="/templates/oneTabDecorator.html">
+        <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
 ${showcase:getFileContent('/sections/waypoint/examples/example-infiniteScrollingOne.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/InfiniteScrollController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
