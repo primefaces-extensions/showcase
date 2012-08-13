@@ -135,7 +135,7 @@
 <h:outputScript id="waypointScript" target="body">
 /* <![CDATA[ */
     function handleWaypoint(ext) {
-        var img = ext.jqThis;
+        var img = $(ext.waypoint);
         
         // show a smooth animation
         img.css('opacity', 0);
@@ -143,6 +143,8 @@
         // change src
         img.attr('src', img.attr('data-src'));
         
+        // note: call .load() on cached images is not reliable.
+        // better to use https://github.com/desandro/imagesloaded
         img.load(function(){
             img.animate({ opacity: 1 }, 500);
 
