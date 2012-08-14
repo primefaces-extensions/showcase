@@ -7,7 +7,7 @@
     <!-- EXAMPLE-SOURCE-START -->
 
 <h:panelGroup id="wrapper" layout="block">
-    <h1>Infinite scrolling with Waypoint component</h1>
+    <h1>Infinite scrolling with Waypoint</h1>
     
     <h:panelGroup id="container" layout="block">
         <div class="article">
@@ -98,7 +98,7 @@
         
         <pe:waypoint id="waypoint" widgetVar="waypointWidget"
                      offset="function(){return $.waypoints('viewportHeight') - $(this).outerHeight()}">
-            <pe:javascript event="scroll" execute="handleLoadStart(ext);"/>
+            <pe:javascript event="reached" execute="handleLoadStart(ext);"/>
         </pe:waypoint>
     </h:panelGroup>
 </h:panelGroup>
