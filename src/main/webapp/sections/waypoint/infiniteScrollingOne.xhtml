@@ -11,7 +11,10 @@
         <h:panelGroup layout="block" styleClass="centerContent">
             Infinite scrolling with p:remoteCommand and offset as function.
             The Waypoint component self is used in combination with pe:javascript.
-            In the callback function we check the current scrolling direction.
+            In the callback function we check the current scrolling direction. Furthermore, we use two widget methods:
+            .remove() and .register(). The method remove() unregisters the waypoint(s) and wipes any custom options,
+            but leaves the waypoint's event bound. Calling register() again in the future would reregister the waypoint(s)
+            and the old handlers would continue to work.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
