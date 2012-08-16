@@ -9,7 +9,8 @@
             <h:outputText value="Waypoint"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Infinite scrolling with p:remoteCommand and offset as function.
+            Infinite scrolling with p:remoteCommand and offset as function. The offset defines a waypoint if the bottom of the element is in view.
+            When resizing the window, this offset will be recalculated automatically.
             The Waypoint component self is used in combination with pe:javascript.
             In the callback function we check the current scrolling direction. Furthermore, we use two widget methods:
             .remove() and .register(). The method remove() unregisters the waypoint(s) and wipes any custom options,
