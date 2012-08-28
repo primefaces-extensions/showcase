@@ -18,11 +18,6 @@
 
 package org.primefaces.extensions.showcase.webapp;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,6 +29,12 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 
 /**
  * TechnicalInfo.
@@ -78,14 +79,18 @@ public class TechnicalInfo {
 
 			primeFaces = "PrimeFaces: " + appProperties.get("primefaces.core.version");
 			primeFacesExt = "PrimeFaces Extensions: " + appProperties.get("pe.impl.version");
-            Package jsfPackage = FacesContext.class.getPackage();
+			Package jsfPackage = FacesContext.class.getPackage();
 			jsfImpl = "JSF-Impl.: " + jsfPackage.getImplementationTitle() + " " + jsfPackage.getImplementationVersion();
 			server = "Server: " + ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getServerInfo();
 			revision = "SVN-Revision: " + appProperties.get("svn.revision");
 
 			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Calendar calendar = Calendar.getInstance();
-			calendar.setTimeInMillis(Long.valueOf(appProperties.get("timestamp")));
+
+			if (appProperties.containsKey("timestamp")) {
+				calendar.setTimeInMillis(Long.valueOf(appProperties.get("timestamp")));
+			}
+
 			buildTime = "Build time: " + formatter.format(calendar.getTime());
 			mojarra = appProperties.get("pe.jsf.impl").contains("mojarra");
 
@@ -136,7 +141,7 @@ public class TechnicalInfo {
 		return "ui-icon-none";
 	}
 
-	private void proccessNewsComponents(String newComp, String updatedComp) {
+	private void proccessNewsComponents(final String newComp, final String updatedComp) {
 		try {
 			String[] newCompArray = newComp.split(";");
 			Collections.addAll(newComponents, newCompArray);
