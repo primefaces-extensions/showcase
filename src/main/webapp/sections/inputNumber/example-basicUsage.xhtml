@@ -69,7 +69,7 @@
     <p:row>
         <p:column>
             <pe:inputNumber id="Input4" value="#{inputNumberController.input4}" decimalPlaces="6">
-                <p:ajax event="blur" update="valueInput4" partialSubmit="false"/>
+                <p:ajax event="blur" update="valueInput4" partialSubmit="true"/>
             </pe:inputNumber>
         </p:column>
 
@@ -78,9 +78,11 @@
         </p:column>
 
         <p:column>
-            <h:outputText value="Custom decimal places."/>
+            <h:outputText value="Custom decimal places. (partialSubmit=true)"/>
         </p:column>
     </p:row>
+    
+    
 </p:panelGrid>
     <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

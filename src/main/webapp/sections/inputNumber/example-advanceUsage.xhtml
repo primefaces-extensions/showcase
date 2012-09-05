@@ -29,7 +29,22 @@
     <h:outputText value="Convert the double value"/>
     <pe:inputNumber id="InputDistance" value="#{inputNumberController.distance}" symbol="mts "
                     converter="inputNumberConverter"/>
-
+    <span></span>
+    
+    <h:outputText value="Empty value (empty) and required" />
+    <pe:inputNumber widgetVar="f1" id="Input7" value="#{inputNumberController.input7}" symbol="%" 
+                    symbolPosition="s" required="true" emptyValue="empty"/>
+    <span></span>
+    
+    <h:outputText value="Empty value (zero)"/>
+    <pe:inputNumber widgetVar="f2" id="Input8" value="#{inputNumberController.input8}" symbol="%" 
+                    symbolPosition="s" emptyValue="zero"/>
+    <span></span>
+    
+    <h:outputText value="Empty value (sign)"/>
+    <pe:inputNumber widgetVar="f3" id="Input9" value="#{inputNumberController.input9}" symbol="%" 
+                    symbolPosition="s" emptyValue="sign"/>
+    
 </h:panelGrid>
 <p:commandButton value="Submit" update="growl display" oncomplete="dlg.show()"/>
 
@@ -38,6 +53,9 @@
         <h:outputText value="Value of firt input = #{inputNumberController.input5}"/>
         <h:outputText value="Value of second input = #{inputNumberController.input6}"/>
         <h:outputText value="Value of third input = #{inputNumberController.distance}"/>
+        <h:outputText value="Value of fourth input = #{inputNumberController.input7}"/>
+        <h:outputText value="Value of fifth input = #{inputNumberController.input8}"/>
+        <h:outputText value="Value of sixth input = #{inputNumberController.input9}"/>
     </p:panelGrid>
 </p:dialog>
 
