@@ -18,14 +18,22 @@
             <ul>
                 <li>{error-name} – complete name of the exception/error, e.g javax.faces.application.ViewExpiredException</li>
                 <li>{error-message} - Message of exception/error</li>
-                <li>{error-stacktrace} - stacktrace of exception/error</li>
-                <li>{error-hostname} - hostname of server, where exception is catched. This is good information in clusters solutions.</li>
+                <li>{error-stacktrace} - stacktrace of exception/error (work with exception-handler-factory)</li>
+                <li>{error-hostname} - hostname of server, where exception is catched. This is good information in clusters solutions  (work with exception-handler-factory)</li>
             </ul>
             <p/>
             Default settings is: &lt;pe:ajaxErrorHandler title="{error-name}" body="{error-message}" button="Reload" /&gt; <br/>
             <p/>
             Examples of simple declaration are in below example.
-        </h:panelGroup>
+
+			<p /><p />
+			<b>exception-handler-factory:</b><br />
+			Add this lines to your faces-config.xml, if you use variables {error-stacktrace} or {error-hostname}.<br />
+			&lt;factory&gt;<br />
+			  &lt;exception-handler-factory&gt;org.primefaces.extensions.component.ajaxerrorhandler.AjaxExceptionHandlerFactory&lt;/exception-handler-factory&gt;<br />
+			&lt;/factory&gt;
+
+		</h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <ui:include src="/sections/ajaxerrorhandler/example-ajaxerrorhandlerSimple.xhtml" />
