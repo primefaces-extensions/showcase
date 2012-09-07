@@ -9,8 +9,8 @@
 
 <p:messages id="messages"/>
 
-<pe:blockPanel blocked="false" widgetVar="firstBlockPanel" style="border:1px solid red;margin:5px;padding:10px;">
-    First BlockPanel
+<pe:spotlight blocked="false" widgetVar="firstSpotlight" style="border:1px solid red;margin:5px;padding:10px;">
+    First Spotlight
     <h:panelGrid columns="">
         <h:inputText value="1"/>
         <h:inputText value="2"/>
@@ -19,15 +19,15 @@
     </h:panelGrid>
 
     <p:commandButton type="button" value="JS Block" icon="ui-icon-locked" style="margin-top:10px;"
-                     onclick="firstBlockPanel.block()"/>
+                     onclick="firstSpotlight.block()"/>
     <p:commandButton type="button" value="JS Unblock" icon="ui-icon-unlocked" style="margin-top:10px;"
-                     onclick="firstBlockPanel.unblock()"/>
-</pe:blockPanel>
+                     onclick="firstSpotlight.unblock()"/>
+</pe:spotlight>
 
 <br/>
 
-<pe:blockPanel blocked="true" widgetVar="secondBlockPanel" style="border:1px solid blue;margin:5px;padding:10px;">
-    Second BlockPanel
+<pe:spotlight blocked="true" widgetVar="secondSpotlight" style="border:1px solid blue;margin:5px;padding:10px;">
+    Second Spotlight
     <h:panelGrid columns="">
         <h:inputText value="1"/>
         <h:inputText value="2"/>
@@ -35,10 +35,10 @@
         <h:inputText value="4"/>
     </h:panelGrid>
     <p:commandButton type="button" value="JS Block" icon="ui-icon-locked" style="margin-top:10px;"
-                     onclick="secondBlockPanel.block()"/>
+                     onclick="secondSpotlight.block()"/>
     <p:commandButton type="button" value="JS Unblock" icon="ui-icon-unlocked" style="margin-top:10px;"
-                     onclick="secondBlockPanel.unblock()"/>
-</pe:blockPanel>
+                     onclick="secondSpotlight.unblock()"/>
+</pe:spotlight>
 
     <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

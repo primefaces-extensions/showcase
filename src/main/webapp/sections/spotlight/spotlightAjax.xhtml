@@ -6,30 +6,34 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="BlockPanel"/>
+            <h:outputText value="Spotlight"/>
         </f:facet>
-
+        
         <h:panelGroup layout="block" styleClass="centerContent">
-            This example shows how to use widget's JavaScript methods block() / unblock().
-            Try to click on BLOCK / UNBLOCK buttons.
-        </h:panelGroup>
+            This example shows how to use widget's with AJAX update.
+            Try to edit one address.
+        </h:panelGroup>        
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/blockpanel/example-blockPanelJS.xhtml"/>
+            <ui:include src="/sections/spotlight/example-spotlightAjax.xhtml"/>
         </h:panelGroup>
-
-        <ui:decorate template="/templates/oneTabDecorator.html">
+        
+        <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/blockpanel/example-blockPanelJS.xhtml')}
+${showcase:getFileContent('/sections/spotlight/example-spotlightAjax.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/spotlight/SpotlightController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
+
     <ui:define name="useCases">
-        <ui:include src="/sections/blockpanel/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/spotlight/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="blockPanel"/>
+            <ui:param name="tagName" value="spotlight"/>
         </ui:include>
     </ui:define>
 </ui:composition>

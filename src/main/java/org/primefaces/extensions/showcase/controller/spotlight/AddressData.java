@@ -15,46 +15,53 @@
  *
  * $Id$
  */
-package org.primefaces.extensions.showcase.controller.blockpanel;
+package org.primefaces.extensions.showcase.controller.spotlight;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 
 /**
- * BlockPanelController
+ * AddressData
  *
  * @author Pavol Slany / last modified by $Author$
  * @version $Revision$
  * @since 0.5
  */
-@ManagedBean
-@ViewScoped
-public class BlockPanelController implements Serializable {
+public class AddressData implements Serializable {
+    private String street;
+    private String city;
+    private String zip;
 
-    private static final long serialVersionUID = 20120401L;
+    private boolean editable;
 
-    private AddressData addr1;
-    private AddressData addr2;
-    private AddressData addr3;
-
-    @PostConstruct
-    public void init() {
-        addr1 = new AddressData();
-        addr2 = new AddressData();
-        addr3 = new AddressData();
+    public String getStreet() {
+        return street;
     }
 
-    public AddressData getAddr1() {
-        return addr1;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public AddressData getAddr2() {
-        return addr2;
+    public String getCity() {
+        return city;
     }
 
-    public AddressData getAddr3() {
-        return addr3;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
     }
 }

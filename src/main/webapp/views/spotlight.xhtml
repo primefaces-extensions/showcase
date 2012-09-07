@@ -5,10 +5,10 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="BlockPanel"/>
+            <h:outputText value="Spotlight"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            BlockPanel component allows to block UI elements that are placed out of panel.
+            Spotlight component allows to block UI elements that are placed out of panel.
             Component is suitable for situation where user is not able to work with UI components
             (e.g. menu) before he/she commits changes in panel content.
             <p/>
@@ -19,19 +19,19 @@
             (user can not click to menu, or start editing other area).
             <p/>
             There will have to be disabled all dependent parts of application elements during
-            editing data in form, or opened form in MODAL POPUP panel without usage of BlockPanel.
+            editing data in form, or opened form in MODAL POPUP panel without usage of Spotlight.
             MODAL POPUP panel solution is acceptable but POPUP in general is not user friendly
             because content is moved to center and popup panel has title and bordered.
             <p/>
-            Blockpanel can be used for creating simple page with blocking UI during address editing.
+            spotlight can be used for creating simple page with blocking UI during address editing.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/blockpanel/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/spotlight/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="blockPanel"/>
+            <ui:param name="tagName" value="spotlight"/>
         </ui:include>
     </ui:define>
 </ui:composition>
