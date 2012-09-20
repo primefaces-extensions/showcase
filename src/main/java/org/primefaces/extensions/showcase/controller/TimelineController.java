@@ -17,17 +17,16 @@
  */
 package org.primefaces.extensions.showcase.controller;
 
+import org.primefaces.extensions.model.timeline.DefaultTimeLine;
+import org.primefaces.extensions.model.timeline.DefaultTimelineEvent;
+import org.primefaces.extensions.model.timeline.Timeline;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
-import org.primefaces.extensions.model.timeline.DefaultTimeLine;
-import org.primefaces.extensions.model.timeline.DefaultTimelineEvent;
-import org.primefaces.extensions.model.timeline.Timeline;
 
 /**
  *
@@ -43,33 +42,21 @@ public class TimelineController implements Serializable {
     public List<Timeline> getTimelines() {
         timelines = new ArrayList<Timeline>();
         Calendar cal = Calendar.getInstance();
-        Timeline timeline = new DefaultTimeLine("Mar2011", "March, 2011");
-        cal.set(2011, 03, 10);
-        timeline.addEvent(new DefaultTimelineEvent("Project Created by Thomas Andraschko", "Primefaces Extensions Project Created", cal.getTime(), cal.getTime()));
-        cal.set(2011, 03, 31);
-        timeline.addEvent(new DefaultTimelineEvent("Added two components", "Added two components", cal.getTime(), cal.getTime()));
-        timelines.add(timeline);                
-        timeline = new DefaultTimeLine("May2011", "May, 2011");
-        cal.set(2011, 05, 10);
-        timeline.addEvent(new DefaultTimelineEvent("Primefaces Extensions 0.1 Released", "PE tagged first release 0.1", cal.getTime(), cal.getTime()));
-        timelines.add(timeline);                
-        timeline = new DefaultTimeLine("Oct2011", "October, 2011");
-        cal.set(2011, 10, 01);
-        timeline.addEvent(new DefaultTimelineEvent("New member Oleg Varaksin", "Oleg Varaksin has joined our team", cal.getTime(), cal.getTime()));         
-        cal.set(2011, 10, 30);
-        timeline.addEvent(new DefaultTimelineEvent("Released first maven plugin", "Released Resource Optimizer plugin", cal.getTime(), cal.getTime()));
-        timelines.add(timeline);
-
-        timeline = new DefaultTimeLine("Jan2012", "January, 2012");
-        cal.set(2012, 01, 17);
-        timeline.addEvent(new DefaultTimelineEvent("New member Nilesh Mali", "Nilesh Mali has joined our team", cal.getTime(), cal.getTime()));
-        cal.set(2012, 01, 23);        
-        timeline.addEvent(new DefaultTimelineEvent("Primefaces Extensions 0.2.0 Released", "Primefaces Extensions second release 0.2.0", cal.getTime(), cal.getTime()));
-        timelines.add(timeline);                
-
-        timeline = new DefaultTimeLine("Feb2012", "February, 2012");
-        cal.set(2012, 02, 14);
-        timeline.addEvent(new DefaultTimelineEvent("New member Mauricio Fenoglio", "Mauricio Fenoglio has joined our team", cal.getTime(), cal.getTime()));
+        Timeline timeline = new DefaultTimeLine("Primefaces Release History");
+        cal.set(2011, 4, 10);
+        timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.1", cal.getTime()));
+        cal.set(2012, 0, 23);
+        timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.2.0", cal.getTime()));
+        cal.set(2012, 3, 02);
+        timeline.addEvent(new DefaultTimelineEvent("Primefaces Extensions 0.3.0", cal.getTime()));
+        cal.set(2012, 3, 16);
+        timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.4.0", cal.getTime()));
+        cal.set(2012, 5, 10);
+        timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.5.0", cal.getTime()));
+        cal.set(2012, 5, 19);
+        timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.5.1", cal.getTime()));
+        cal.set(2012, 8, 23);
+        timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.6.0", cal.getTime()));
         timelines.add(timeline);
         return timelines;
     }
