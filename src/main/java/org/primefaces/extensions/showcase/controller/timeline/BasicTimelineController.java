@@ -15,18 +15,19 @@
  * 
  * $Id$
  */
-package org.primefaces.extensions.showcase.controller;
+package org.primefaces.extensions.showcase.controller.timeline;
 
-import org.primefaces.extensions.model.timeline.DefaultTimeLine;
-import org.primefaces.extensions.model.timeline.DefaultTimelineEvent;
-import org.primefaces.extensions.model.timeline.Timeline;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+import org.primefaces.extensions.model.timeline.DefaultTimeLine;
+import org.primefaces.extensions.model.timeline.DefaultTimelineEvent;
+import org.primefaces.extensions.model.timeline.Timeline;
 
 /**
  *
@@ -35,9 +36,13 @@ import java.util.List;
  */
 @ManagedBean
 @ViewScoped
-public class TimelineController implements Serializable {
+public class BasicTimelineController implements Serializable {
 
     private List<Timeline> timelines;
+
+    private String eventStyle = "dot";
+    private String axisPosition = "bottom";
+    private boolean showNavigation = false;
 
     public List<Timeline> getTimelines() {
         timelines = new ArrayList<Timeline>();
@@ -55,9 +60,33 @@ public class TimelineController implements Serializable {
         timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.5.0", cal.getTime()));
         cal.set(2012, 5, 19);
         timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.5.1", cal.getTime()));
-        cal.set(2012, 8, 23);
+        cal.set(2012, 8, 26);
         timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.6.0", cal.getTime()));
         timelines.add(timeline);
         return timelines;
+    }
+
+    public String getEventStyle() {
+        return eventStyle;
+    }
+
+    public void setEventStyle(String eventStyle) {
+        this.eventStyle = eventStyle;
+    }
+
+    public String getAxisPosition() {
+        return axisPosition;
+    }
+
+    public void setAxisPosition(String axisPosition) {
+        this.axisPosition = axisPosition;
+    }
+
+    public boolean isShowNavigation() {
+        return showNavigation;
+    }
+
+    public void setShowNavigation(boolean showNavigation) {
+        this.showNavigation = showNavigation;
     }
 }
