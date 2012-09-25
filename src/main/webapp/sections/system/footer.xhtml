@@ -2,8 +2,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition>
-    <h:panelGrid columns="7" style="float: left; margin-left: 10px; margin-top: -2px;">
+    <h:panelGrid columns="8">
         <h:panelGroup styleClass="ui-icon ui-icon-info"/>
+        <h:outputFormat value="PrimeFaces Extensions Showcase - &#169; 2011-2012,"/>
         <h:outputText value="#{technicalInfo.primeFaces},"/>
         <h:outputText value="#{technicalInfo.primeFacesExt},"/>
         <h:outputText value="#{technicalInfo.jsfImpl},"/>
@@ -11,8 +12,5 @@
         <h:outputText value="#{technicalInfo.revision},"/>
         <h:outputText value="#{technicalInfo.buildTime}"/>
     </h:panelGrid>
-    <h:panelGroup layout="block" style="float: right; margin-top: 2px;">
-        <h:outputFormat value="PrimeFaces Extensions Showcase - &#169; 2011-2012"/>
-    </h:panelGroup>
 </ui:composition>
 </html>     

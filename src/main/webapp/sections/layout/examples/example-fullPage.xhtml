@@ -9,9 +9,9 @@
 <p:growl id="growl" showDetail="true" showSummary="true"/>
 
 <pe:layout id="fullPage" widgetVar="fpLayoutWidget">
-    <p:ajax event="open" listener="#{layoutController.handleOpen}" update="_mainForm_msg"/>
-    <p:ajax event="close" listener="#{layoutController.handleClose}" update="_mainForm_msg"/>
-    <p:ajax event="resize" listener="#{layoutController.handleResize}" update="growl"/>
+    <p:ajax event="open" listener="#{fullLayoutController.handleOpen}" update="_mainForm_msg"/>
+    <p:ajax event="close" listener="#{fullLayoutController.handleClose}" update="_mainForm_msg"/>
+    <p:ajax event="resize" listener="#{fullLayoutController.handleResize}" update="growl"/>
 
     <pe:layoutPane position="north" size="80">
         North

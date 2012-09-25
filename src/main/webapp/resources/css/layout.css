@@ -1,15 +1,24 @@
-.pe-layout-inner-north {
-    color: #000000;
-    background-color: #FFFFFF;
+body {
+    margin: 4px !important;
+}
+
+body > .ui-layout-north {
+    background: none;
     border: none;
+    color: #000000;
+    padding: 4px;
+    overflow: hidden;
 }
 
-.pe-layout-inner-north > .pe-layout-pane-content {
-    background-color: #FFFFFF;
-}
-
-.pe-layout-tabbuttons {
-    left: auto !important;
+body > form > .ui-layout-south {
+    background: none;
+    border: none;
+    color: #000000;
+    overflow: hidden;
+    vertical-align: middle;
+    font-size: 11px !important;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 #headerForm .logo {
@@ -96,8 +105,8 @@ div.source {
     text-align: right;
     float: right;
     margin-right: 10px;
-    margin-top: -12px;
-    *margin-top: -43px; /* shows in IE7 and below */
+    margin-top: -10px;
+    *margin-top: -41px; /* shows in IE7 and below */
 }
 
 .smallNav td {

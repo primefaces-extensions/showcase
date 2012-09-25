@@ -22,10 +22,10 @@
         <ui:include src="/sections/system/header.xhtml"/>
     </ui:define>
     <ui:define name="center">
-        <pe:layoutPane position="center" minWidth="200" minHeight="60" resizable="false" closable="false">
+        <pe:layoutPane position="center">
             <ui:insert name="centerContent"/>
         </pe:layoutPane>
-        <pe:layoutPane position="west" size="210" minSize="180" maxSize="500">
+        <pe:layoutPane position="west">
             <f:facet name="header">
                 <h:outputText value="Components and more"/>
             </f:facet>
@@ -109,14 +109,14 @@
             <pe:tooltip value="New component in the current release" shared="true" forSelector=".ui-icon-new-comp"/>
             <pe:tooltip value="Updated component / use case in the current release" shared="true" forSelector=".ui-icon-updated-comp"/>
         </pe:layoutPane>
-        <pe:layoutPane position="east" size="440" minSize="180" maxSize="650">
-            <pe:layoutPane position="center" minHeight="60">
+        <pe:layoutPane position="east">
+            <pe:layoutPane position="center">
                 <f:facet name="header">
                     <h:outputText value="Use Cases"/>
                 </f:facet>
                 <ui:insert name="useCases"/>
             </pe:layoutPane>
-            <pe:layoutPane position="south" size="'70%'" minSize="60">
+            <pe:layoutPane position="south">
                 <ui:insert name="docuTable"/>
             </pe:layoutPane>
         </pe:layoutPane>

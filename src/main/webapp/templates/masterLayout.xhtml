@@ -21,16 +21,15 @@
             <pe:ajaxErrorHandler type="javax.faces.application.ViewExpiredException" button="Reload" buttonOnclick="document.location.href=document.location.href;" />
         </ui:insert>
 
-        <pe:layout id="fpl" widgetVar="fullLayoutWidget">
-            <pe:layoutPane position="north" size="60" resizable="false" closable="false">
+        <pe:layout id="fpl" widgetVar="fullLayoutWidget" options="#{showcaseLayout.layoutOptions}">
+            <pe:layoutPane position="north">
                 <h:form id="headerForm" prependId="false">
                     <ui:insert name="header"/>
                 </h:form>
             </pe:layoutPane>
             <h:form id="mainForm" prependId="false">
                 <ui:insert name="center"/>
-                <pe:layoutPane position="south" size="28" resizable="false" closable="false"
-                               spacing="3" statusbar="true">
+                <pe:layoutPane position="south">
                     <ui:insert name="footer"/>
                 </pe:layoutPane>
             </h:form>

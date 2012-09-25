@@ -16,23 +16,21 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller;
+package org.primefaces.extensions.showcase.controller.layout;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 
-import org.primefaces.component.menuitem.MenuItem;
 import org.primefaces.extensions.component.layout.LayoutPane;
 import org.primefaces.extensions.event.CloseEvent;
 import org.primefaces.extensions.event.OpenEvent;
 import org.primefaces.extensions.event.ResizeEvent;
+import org.primefaces.extensions.model.layout.LayoutOptions;
 
 /**
  * LayoutController
@@ -42,37 +40,21 @@ import org.primefaces.extensions.event.ResizeEvent;
  */
 @ManagedBean
 @ViewScoped
-public class LayoutController implements Serializable {
+public class FullLayoutController implements Serializable {
 
-	private static final long serialVersionUID = 20120108L;
+	private static final long serialVersionUID = 20120925L;
 
-	private String stateOne;
-	private String stateTwo;
-	private boolean layoutOneShown = true;
-	private List<MenuItem> tabs = null;
+	private LayoutOptions layoutOptions;
 
-	public String getStateOne() {
-		return stateOne;
+	@PostConstruct
+	protected void initialize() {
+		layoutOptions = new LayoutOptions();
+
+		// TODO;
 	}
 
-	public void setStateOne(String stateOne) {
-		this.stateOne = stateOne;
-	}
-
-	public String getStateTwo() {
-		return stateTwo;
-	}
-
-	public void setStateTwo(String stateTwo) {
-		this.stateTwo = stateTwo;
-	}
-
-	public void toogleLayout(ActionEvent event) {
-		layoutOneShown = !layoutOneShown;
-	}
-
-	public boolean isLayoutOneShown() {
-		return layoutOneShown;
+	public LayoutOptions getLayoutOptions() {
+		return layoutOptions;
 	}
 
 	public void handleClose(CloseEvent event) {
@@ -98,31 +80,5 @@ public class LayoutController implements Serializable {
 		                     + event.getWidth() + "px, new height = " + event.getHeight() + "px");
 
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public List<MenuItem> getLayoutTabs() {
-		if (tabs == null) {
-			tabs = new ArrayList<MenuItem>();
-
-			MenuItem mi = new MenuItem();
-			mi.setUrl("/sections/layout/examples/management.xhtml");
-			mi.setIcon("ui-icon-wrench");
-			mi.setValue("Management");
-			tabs.add(mi);
-
-			mi = new MenuItem();
-			mi.setUrl("/sections/layout/examples/settings.xhtml");
-			mi.setIcon("ui-icon-gear");
-			mi.setValue("Settings");
-			tabs.add(mi);
-
-			mi = new MenuItem();
-			mi.setUrl("/sections/layout/examples/about.xhtml");
-			mi.setIcon("ui-icon-info");
-			mi.setValue("About");
-			tabs.add(mi);
-		}
-
-		return tabs;
 	}
 }
