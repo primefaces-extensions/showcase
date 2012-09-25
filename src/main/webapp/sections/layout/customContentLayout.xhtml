@@ -9,8 +9,10 @@
             <h:outputText value="Layout"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Tabbed layout is another useful feature. Tabs must be specified as instances of type MenuItem.
-            Switch between tabs causes a full page request and provides therefore bookmarkable URLs.
+            Custom content between layout panes is another useful feature. Use the option "containerSelector" for that.
+            This should point to any container element (e.g. div) for the child (nested) layout.
+            <p/>
+            Layouts in this example save their states via cookies.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -34,7 +36,7 @@ ${showcase:getFileContent('/sections/layout/examples/example-settings.xhtml')}
 ${showcase:getFileContent('/sections/layout/examples/example-about.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/LayoutController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/layout/FullLayoutController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

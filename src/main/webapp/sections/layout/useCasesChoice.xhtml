@@ -11,10 +11,14 @@
                     styleClass="#{navigationContext.getMenuitemStyleClass('fullPageLayout')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                     url="/sections/layout/fullPageLayout.jsf"/>        
-        <p:menuitem value="Tabbed layout and client-side state management"
-                    styleClass="#{navigationContext.getMenuitemStyleClass('tabbedLayout')}"
+        <p:menuitem value="Custom content between layout panes and client-side state management"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('customContentLayout')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/layout/tabbedLayout.jsf"/>
+                    url="/sections/layout/customContentLayout.jsf"/>
+        <p:menuitem value="Update nested child layouts by AJAX"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('updatableLayout')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/layout/updatableLayout.jsf"/>
     </p:menu>
 </ui:composition>
 </html>     
