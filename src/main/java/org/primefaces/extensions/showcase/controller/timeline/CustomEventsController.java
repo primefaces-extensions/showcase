@@ -25,9 +25,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.event.SelectEvent;
 import org.primefaces.extensions.model.timeline.DefaultTimeLine;
 import org.primefaces.extensions.model.timeline.DefaultTimelineEvent;
 import org.primefaces.extensions.model.timeline.Timeline;
+import org.primefaces.extensions.model.timeline.TimelineEvent;
 
 /**
  *
@@ -36,18 +38,16 @@ import org.primefaces.extensions.model.timeline.Timeline;
  */
 @ManagedBean
 @ViewScoped
-public class BasicTimelineController implements Serializable {
+public class CustomEventsController implements Serializable {
 
     private List<Timeline> timelines;
+    private TimelineEvent selectedEvent;
 
-    private String eventStyle = "dot";
-    private String axisPosition = "bottom";
-    private boolean showNavigation = false;
 
-    public List<Timeline> getTimelines() {
+    public CustomEventsController(){
         timelines = new ArrayList<Timeline>();
         Calendar cal = Calendar.getInstance();
-        Timeline timeline = new DefaultTimeLine("prh", "Primefaces Release History");
+        Timeline timeline = new DefaultTimeLine("customEventTimeline", "Primefaces Release History");
         cal.set(2011, 4, 10);
         timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.1", cal.getTime()));
         cal.set(2012, 0, 23);
@@ -63,30 +63,17 @@ public class BasicTimelineController implements Serializable {
         cal.set(2012, 8, 26);
         timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.6.0", cal.getTime()));
         timelines.add(timeline);
+    }
+
+    public void onEventSelect(SelectEvent event){
+        selectedEvent = (TimelineEvent) event.getObject();
+    }
+
+    public List<Timeline> getTimelines() {
         return timelines;
     }
 
-    public String getEventStyle() {
-        return eventStyle;
-    }
-
-    public void setEventStyle(String eventStyle) {
-        this.eventStyle = eventStyle;
-    }
-
-    public String getAxisPosition() {
-        return axisPosition;
-    }
-
-    public void setAxisPosition(String axisPosition) {
-        this.axisPosition = axisPosition;
-    }
-
-    public boolean isShowNavigation() {
-        return showNavigation;
-    }
-
-    public void setShowNavigation(boolean showNavigation) {
-        this.showNavigation = showNavigation;
+    public TimelineEvent getSelectedEvent() {
+        return selectedEvent;
     }
 }

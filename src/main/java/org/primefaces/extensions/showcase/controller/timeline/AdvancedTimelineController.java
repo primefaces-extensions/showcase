@@ -46,7 +46,7 @@ public class AdvancedTimelineController implements Serializable {
         cal.set(Calendar.HOUR_OF_DAY, 1);
         Date start, end;
         for (int group = 1; group <= 5; group++) {
-            Timeline timeline = new DefaultTimeLine("Group" + group);
+            Timeline timeline = new DefaultTimeLine(String.valueOf(group),"Group" + group);
             cal.setTime(new Date());
             cal.set(Calendar.HOUR_OF_DAY, 1);
             for (int event = 1; event < 6; event++) {
