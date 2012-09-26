@@ -9,8 +9,8 @@
             <h:outputText value="Layout"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            This example demonstrates a full page, nested layout and its ajax events. Three events are possible: "open", "close", "resize".
-            You can also see that h:form is defined for a block of layout panes.
+            This example demonstrates a full page layout with nested panes, layout's AJAX events and client-side state management.
+            Three events are possible: "open", "close", "resize". The client-side state management is activated by setting stateCookie="true".
             <p/>
             Furthermore, you can see client-side widget's methods for pane manipulation in action. These are sizePane(), toggle(), close() and open().
             They expect pane position as parameter. Nested panes are separated by _ sign. Example: sizePane("center_north", 300);
@@ -19,7 +19,7 @@
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:outputLink value="#{request.contextPath}/sections/layout/examples/fullPage.jsf" target="_blank"
+            <h:outputLink value="#{request.contextPath}/sections/layout/fullPage.jsf" target="_blank"
                           style="font-weight: bold; text-decoration: none; border-bottom: 1px dotted;">
                 <h:outputText value="Show full page layout"/>
             </h:outputLink>
@@ -27,38 +27,10 @@
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/layout/examples/example-fullPage.xhtml')}
+${showcase:getFileContent('/sections/layout/example-fullPage.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-@ManagedBean
-@ViewScoped
-public class LayoutController implements Serializable {
-
-	public void handleClose(CloseEvent event) {
-		FacesMessage msg =
-		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Layout Pane closed&quot;,
-		                     &quot;Position:'&quot; + ((LayoutPane) event.getComponent()).getPosition() + &quot;'&quot;);
-
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public void handleOpen(OpenEvent event) {
-		FacesMessage msg =
-		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Layout Pane opened&quot;,
-		                     &quot;Position:'&quot; + ((LayoutPane) event.getComponent()).getPosition() + &quot;'&quot;);
-
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public void handleResize(ResizeEvent event) {
-		FacesMessage msg =
-		    new FacesMessage(FacesMessage.SEVERITY_INFO, &quot;Layout Pane resized&quot;,
-		                     &quot;Position:'&quot; + ((LayoutPane) event.getComponent()).getPosition() + &quot;', new width = &quot;
-		                     + event.getWidth() + &quot;px, new height = &quot; + event.getHeight() + &quot;px&quot;);
-
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/layout/FullLayoutController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

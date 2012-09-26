@@ -68,7 +68,7 @@ public class ElementLayoutController implements Serializable {
 		// 2. set options for second layout
 		layoutOptionsTwo = new LayoutOptions();
 
-		// options for all panes (center and west)
+		// options for all panes
 		panes = new LayoutOptions();
 		panes.addOption("slidable", false);
 		panes.addOption("spacing", 6);
