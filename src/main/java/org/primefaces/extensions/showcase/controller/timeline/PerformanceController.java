@@ -36,28 +36,21 @@ import org.primefaces.extensions.model.timeline.Timeline;
  */
 @ManagedBean
 @ViewScoped
-public class AdvancedTimelineController implements Serializable {
+public class PerformanceController implements Serializable {
 
     private List<Timeline> timelines;
 
-    public AdvancedTimelineController() {
+    public PerformanceController() {
         timelines = new ArrayList<Timeline>();
+        Timeline timeline = new DefaultTimeLine("pt", "Timeline Performance");
         Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, -5);
         cal.set(Calendar.HOUR_OF_DAY, 1);
-        Date start, end;
-        for (int group = 1; group <= 5; group++) {
-            Timeline timeline = new DefaultTimeLine(String.valueOf(group), "Group" + group);
-            cal.setTime(new Date());
-            cal.set(Calendar.HOUR_OF_DAY, 1);
-            for (int event = 1; event < 6; event++) {
-                cal.add(Calendar.HOUR_OF_DAY, 1 + 4 * ((Math.random() < 0.2) ? 1 : 0));
-                start = cal.getTime();
-                cal.add(Calendar.HOUR_OF_DAY, 2 + (int) (Math.floor(Math.random() * 4)));
-                end = cal.getTime();
-                timeline.addEvent(new DefaultTimelineEvent("Event " + event, start, (Math.random() < 0.25) ? null : end));
-            }
-            timelines.add(timeline);
+        for (int event = 1; event < 200; ++event) {
+            cal.add(Calendar.HOUR_OF_DAY, 1 + 4 * ((Math.random() < 0.2) ? 1 : 0));
+            timeline.addEvent(new DefaultTimelineEvent("Event " + event, cal.getTime()));
         }
+        timelines.add(timeline);
     }
 
     public List<Timeline> getTimelines() {

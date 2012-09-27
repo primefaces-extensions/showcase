@@ -29,6 +29,7 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.extensions.model.timeline.DefaultTimeLine;
 import org.primefaces.extensions.model.timeline.DefaultTimelineEvent;
 import org.primefaces.extensions.model.timeline.Timeline;
+import org.primefaces.extensions.model.timeline.TimelineEvent;
 
 /**
  * @author Nilesh Mali / last modified by $Author$
@@ -36,28 +37,30 @@ import org.primefaces.extensions.model.timeline.Timeline;
  */
 @ManagedBean
 @ViewScoped
-public class AdvancedTimelineController implements Serializable {
+public class CustomStyleController implements Serializable {
 
     private List<Timeline> timelines;
 
-    public AdvancedTimelineController() {
+    public CustomStyleController() {
         timelines = new ArrayList<Timeline>();
+        Timeline timeline = new DefaultTimeLine("pt", "Custom Style");
         Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, -5);
         cal.set(Calendar.HOUR_OF_DAY, 1);
+        TimelineEvent timelineEvent;
         Date start, end;
-        for (int group = 1; group <= 5; group++) {
-            Timeline timeline = new DefaultTimeLine(String.valueOf(group), "Group" + group);
-            cal.setTime(new Date());
-            cal.set(Calendar.HOUR_OF_DAY, 1);
-            for (int event = 1; event < 6; event++) {
-                cal.add(Calendar.HOUR_OF_DAY, 1 + 4 * ((Math.random() < 0.2) ? 1 : 0));
-                start = cal.getTime();
-                cal.add(Calendar.HOUR_OF_DAY, 2 + (int) (Math.floor(Math.random() * 4)));
-                end = cal.getTime();
-                timeline.addEvent(new DefaultTimelineEvent("Event " + event, start, (Math.random() < 0.25) ? null : end));
-            }
-            timelines.add(timeline);
+        for (int event = 1; event < 10; ++event) {
+            cal.add(Calendar.HOUR_OF_DAY, 1 + 2 * ((Math.random() < 0.2) ? 1 : 0));
+            start = cal.getTime();
+            cal.add(Calendar.HOUR_OF_DAY, 2 + (int) (Math.floor(Math.random() * 4)));
+            end = cal.getTime();
+            timelineEvent = new DefaultTimelineEvent("Event " + event, start, end);
+
+            timelineEvent.setStyleClass(Math.random() > 0.25 ? "green" : "red");
+
+            timeline.addEvent(timelineEvent);
         }
+        timelines.add(timeline);
     }
 
     public List<Timeline> getTimelines() {

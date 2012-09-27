@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Timeline"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            Timeline performance with 200 events.
+            <br/>
+            <strong>Tip:</strong> Use mouse scroll wheel for zoom-in and zoom-out.
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <!-- EXAMPLE-SOURCE-START -->
+            <pe:timeline id="timeline" value="#{performanceController.timelines}"
+                         eventStyle="box"
+                         height="300px" width="100%">
+            </pe:timeline>
+            <!-- EXAMPLE-SOURCE-END -->
+        </h:panelGroup>
+        <ui:decorate template="/templates/twoTabsDecorator.html">
+            <ui:define name="contentTab1">
+            ${showcase:getFileContent('/sections/timeline/performance.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/PerformanceController.java')}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/timeline/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="timeline"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

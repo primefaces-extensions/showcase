@@ -36,11 +36,11 @@
                       appendToBody="true" resizable="false" header="Event Details" width="350">
                 <p:fieldset>
                     <h:panelGrid columns="2" columnClasses="formColumn1,formColumn2">
-                        <h:outputLabel value="Release Date:"/>
+                        <h:outputText value="Release Date:"/>
                         <h:outputText value="#{customEventsController.selectedEvent.startDate}">
                             <f:convertDateTime pattern="dd MMM yyyy"/>
                         </h:outputText>
-                        <h:outputLabel value="Title:"/>
+                        <h:outputText value="Title:"/>
                         <h:outputText value="#{customEventsController.selectedEvent.title}"/>
                     </h:panelGrid>
                 </p:fieldset>
