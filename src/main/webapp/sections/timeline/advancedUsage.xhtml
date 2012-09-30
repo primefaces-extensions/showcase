@@ -16,18 +16,18 @@
             <strong>Tip:</strong> Use mouse scroll wheel for zoom-in and zoom-out.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
-            <!-- EXAMPLE-SOURCE-START -->
-            <pe:timeline id="timeline" value="#{advancedTimelineController.timelines}"
-                         axisPosition="bottom"
-                         showNavigation="true"
-                         eventStyle="box"
-                         height="250px" width="100%">
-            </pe:timeline>
-            <!-- EXAMPLE-SOURCE-END -->
+<!-- EXAMPLE-SOURCE-START -->
+<pe:timeline id="timeline" value="#{advancedTimelineController.timelines}"
+             axisPosition="bottom"
+             showNavigation="true"
+             eventStyle="box"
+             height="250px" width="100%">
+</pe:timeline>
+<!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-            ${showcase:getFileContent('/sections/timeline/advancedUsage.xhtml')}
+${showcase:getFileContent('/sections/timeline/advancedUsage.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/AdvancedTimelineController.java')}

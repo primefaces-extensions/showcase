@@ -11,11 +11,15 @@
             Layout creates a border layout that has auto-sizing 'center pane' surrounded by up to four closable and resizable 'border panes' (north, south, east and west). It can also create multiple headers inside each pane.
             For more complex layouts you can nest layouts within layouts. Possibilities are unlimited - from simple fixed headers or sidebars to rich applications.
             Each layout pane can be closed, opened and resized, within automatic or specified limits. You can use layout either for an entire page (fill page layout) or for a specific region in the page (element layout).
-            Furthermore, layout can be tabbed - built-in layout integration with tabs.
+            Furthermore, any custom content can be placed between layout panes. There are also client-side and server-side state management.
             <p/>
-            In comparison to PrimeFaces' layout where a layout pane must have it's own form, PrimeFaces Extensions' layout can have a form surrounding multiply layout panes.
-            Having less forms has benefits - better perfomance and easier communication between layout panes (think about "update" / "process" attributes).
-            Another benefit of the PrimeFaces Extensions' layout is a sophisticated state management (state of layout panes). There are client-side and server-side state management.
+            The layout in PrimeFaces Extensions is described by model which binds all layout options together.
+            Layout options are built up by the class LayoutOptions. By this way, you can use all available options from the underlying jQuery layout plugin.
+            Please refer the documentation to learn all options:
+            <p/>
+            <a href="http://layout.jquery-dev.net/documentation.cfm#Options" target="_blank">Overview of Layout Options</a>
+            <p/>
+            <a href="http://layout.jquery-dev.net/changelog.cfm" target="_blank">Changelog, Using Examples</a>
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">

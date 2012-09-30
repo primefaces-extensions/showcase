@@ -17,42 +17,43 @@
             <strong>Tip:</strong> Use mouse scroll wheel for zoom-in and zoom-out.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
-            <!-- EXAMPLE-SOURCE-START -->
-            <pe:timeline id="timeline" value="#{customEventsController.timelines}"
-                         eventStyle="box"
-                         var="event"
-                         height="250px" width="100%">
-                <p:ajax event="eventSelect" listener="#{customEventsController.onEventSelect}" process="@this"
-                        update="viewDialog" oncomplete="viewDlg.show()"/>
-                <h:panelGroup layout="block">
-                    <h:outputText value="#{event.startDate}">
-                        <f:convertDateTime pattern="dd MMM yyyy"/>
-                    </h:outputText>
-                    <br/>
-                    <h:outputText value="#{event.title}"/>
-                </h:panelGroup>
-            </pe:timeline>
-            <p:dialog id="viewDialog" modal="true" dynamic="true" widgetVar="viewDlg"
-                      appendToBody="true" resizable="false" header="Event Details" width="350">
-                <p:fieldset>
-                    <h:panelGrid columns="2" columnClasses="formColumn1,formColumn2">
-                        <h:outputText value="Release Date:"/>
-                        <h:outputText value="#{customEventsController.selectedEvent.startDate}">
-                            <f:convertDateTime pattern="dd MMM yyyy"/>
-                        </h:outputText>
-                        <h:outputText value="Title:"/>
-                        <h:outputText value="#{customEventsController.selectedEvent.title}"/>
-                    </h:panelGrid>
-                </p:fieldset>
-                <h:panelGroup layout="block" style="width:100%; text-align: center;padding: 5px;">
-                    <p:commandButton id="close" value="Close" type="button" onclick="viewDlg.hide()"/>
-                </h:panelGroup>
-            </p:dialog>
-            <!-- EXAMPLE-SOURCE-END -->
+<!-- EXAMPLE-SOURCE-START -->
+<pe:timeline id="timeline" value="#{customEventsController.timelines}"
+             eventStyle="box"
+             var="event"
+             height="250px" width="100%">
+    <p:ajax event="eventSelect" listener="#{customEventsController.onEventSelect}" process="@this"
+            update="viewDialog" oncomplete="viewDlg.show()"/>
+    <h:panelGroup layout="block">
+        <h:outputText value="#{event.startDate}">
+            <f:convertDateTime pattern="dd MMM yyyy"/>
+        </h:outputText>
+        <br/>
+        <h:outputText value="#{event.title}"/>
+    </h:panelGroup>
+</pe:timeline>
+            
+<p:dialog id="viewDialog" modal="true" dynamic="true" widgetVar="viewDlg"
+          appendToBody="true" resizable="false" header="Event Details" width="350">
+    <p:fieldset>
+        <h:panelGrid columns="2" columnClasses="formColumn1,formColumn2">
+            <h:outputText value="Release Date:"/>
+            <h:outputText value="#{customEventsController.selectedEvent.startDate}">
+                <f:convertDateTime pattern="dd MMM yyyy"/>
+            </h:outputText>
+            <h:outputText value="Title:"/>
+            <h:outputText value="#{customEventsController.selectedEvent.title}"/>
+        </h:panelGrid>
+    </p:fieldset>
+    <h:panelGroup layout="block" style="width:100%; text-align: center;padding: 5px;">
+        <p:commandButton id="close" value="Close" type="button" onclick="viewDlg.hide()"/>
+    </h:panelGroup>
+</p:dialog>
+<!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-            ${showcase:getFileContent('/sections/timeline/customEvents.xhtml')}
+${showcase:getFileContent('/sections/timeline/customEvents.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/CustomEventsController.java')}

@@ -9,34 +9,34 @@
             <h:outputText value="Layout"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Custom content between layout panes is another useful feature. Use the option "containerSelector" for that.
-            This should point to any container element (e.g. div) for the child (nested) layout.
+            To place any custom content between layout panes there are two alternative ways:
             <p/>
-            Layouts in this example save their states via cookies.
+            1) Place a nested layout panes (pe:layoutPane) within a div element with the class "ui-layout-content".
+            This way is applied in this example.
+            <br/>
+            2) Add the option "containerSelector" to child options (see LayoutOptions class).
+            The value of "containerSelector" points to a wrapper-div element which acts as a container for nested layout panes.
+            <p/>
+            Please refer <a href="http://layout.jquery-dev.net/changelog.cfm" target="_blank">examples</a> on the plugin homepage to see how it works in detail.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <h:outputLink value="#{request.contextPath}/sections/layout/examples/management.jsf" target="_blank"
+            <h:outputLink value="#{request.contextPath}/sections/layout/customContentPage.jsf" target="_blank"
                           style="font-weight: bold; text-decoration: none; border-bottom: 1px dotted;">
-                <h:outputText value="Show tabbed layout"/>
+                <h:outputText value="Show full page layout"/>
             </h:outputLink>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.html">
             <ui:define name="contentTab1">
-// 1. page fragment from management.xhtml
-${showcase:getFileContent('/sections/layout/examples/example-management.xhtml')}
-
-
-// 2. page fragment from settings.xhtml
-${showcase:getFileContent('/sections/layout/examples/example-settings.xhtml')}
-
-
-// 3. page fragment from about.xhtml
-${showcase:getFileContent('/sections/layout/examples/example-about.xhtml')}
+${showcase:getFileContent('/sections/layout/example-customContent.xhtml')}
+                
+// Included page with nested child layout
+                
+${showcase:getFileContent('/sections/layout/example-customContentOne.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/layout/FullLayoutController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/layout/CustomContentLayoutController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
