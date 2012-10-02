@@ -35,7 +35,8 @@
     <pe:inputNumber widgetVar="f1" id="Input7" value="#{inputNumberController.input7}" symbol="%" 
                     symbolPosition="s" required="true" emptyValue="empty"/>
     <span></span>
-    
+   
+       
     <h:outputText value="Empty value (zero)"/>
     <pe:inputNumber widgetVar="f2" id="Input8" value="#{inputNumberController.input8}" symbol="%" 
                     symbolPosition="s" emptyValue="zero"/>
@@ -44,6 +45,13 @@
     <h:outputText value="Empty value (sign)"/>
     <pe:inputNumber widgetVar="f3" id="Input9" value="#{inputNumberController.input9}" symbol="%" 
                     symbolPosition="s" emptyValue="sign"/>
+    
+    <span></span>
+     
+    <h:outputText value="Empty value (empty) not required" />
+    <pe:inputNumber widgetVar="f4" id="Input10" value="#{inputNumberController.input10}" symbol="%" 
+                    symbolPosition="s" emptyValue="empty"/>
+   
     
 </h:panelGrid>
 <p:commandButton value="Submit" update="growl display" oncomplete="dlg.show()"/>
@@ -56,6 +64,7 @@
         <h:outputText value="Value of fourth input = #{inputNumberController.input7}"/>
         <h:outputText value="Value of fifth input = #{inputNumberController.input8}"/>
         <h:outputText value="Value of sixth input = #{inputNumberController.input9}"/>
+        <h:outputText value="Value of seventh input = #{inputNumberController.input10}"/>
     </p:panelGrid>
 </p:dialog>
 
