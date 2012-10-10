@@ -38,8 +38,9 @@ button,
     margin: 3px;
 }
 
-.ui-selectmanycheckbox label, .ui-selectoneradio label {
-    margin-top: 0;
+.ui-selectoneradio label,
+.ui-selectmanycheckbox label {
+    margin-left: 3px;
 }
 
 table .formColumn1 {
