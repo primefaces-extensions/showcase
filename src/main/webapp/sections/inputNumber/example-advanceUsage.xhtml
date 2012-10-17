@@ -5,56 +5,57 @@
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
-    <!-- EXAMPLE-SOURCE-START -->
+<!-- EXAMPLE-SOURCE-START -->
 
 <!-- This group is for coding -->
 <h:panelGrid id="inputNumberGrid" columns="3" style="margin-bottom:10px" cellpadding="5">
     <h:outputText value="Dinamic symbols."/>
-    <p:selectOneMenu id="selectInput5" value="#{inputNumberController.unit}" style="width: 138px">
+    <p:selectOneMenu id="selectInput5" value="#{inputNumberController.unit}" style="width:138px">
         <f:selectItem itemLabel="Kmh" itemValue=" kmh"/>
         <f:selectItem itemLabel="Mph" itemValue=" mph"/>
         <f:selectItem itemLabel="Knots" itemValue=" knots"/>
         <p:ajax update="Input5" partialSubmit="false"/>
     </p:selectOneMenu>
-    <pe:inputNumber id="Input5" value="#{inputNumberController.input5}" symbol="#{inputNumberController.unit}"
-                    symbolPosition="s"/>
+    <pe:inputNumber id="Input5" value="#{inputNumberController.input5}"
+                    symbol="#{inputNumberController.unit}" symbolPosition="s"/>
 
     <h:outputText value="Validate the double value (min 50.00)"/>
     <pe:inputNumber id="Input6" value="#{inputNumberController.input6}" symbol="$ "
                     validatorMessage="The value must be greater than 50.00">
         <f:validateDoubleRange minimum="50"/>
     </pe:inputNumber>
-    <span></span>
+    <span/>
 
     <h:outputText value="Convert the double value"/>
     <pe:inputNumber id="InputDistance" value="#{inputNumberController.distance}" symbol="mts "
                     converter="inputNumberConverter"/>
-    <span></span>
-    
-    <h:outputText value="Empty value (empty) and required" />
-    <pe:inputNumber widgetVar="f1" id="Input7" value="#{inputNumberController.input7}" symbol="%" 
+    <span/>
+
+    <h:outputText value="Empty value (empty) and required"/>
+    <pe:inputNumber widgetVar="f1" id="Input7" value="#{inputNumberController.input7}" symbol="%"
                     symbolPosition="s" required="true" emptyValue="empty"/>
-    <span></span>
-   
-       
+    <span/>
+
+
     <h:outputText value="Empty value (zero)"/>
-    <pe:inputNumber widgetVar="f2" id="Input8" value="#{inputNumberController.input8}" symbol="%" 
+    <pe:inputNumber widgetVar="f2" id="Input8" value="#{inputNumberController.input8}" symbol="%"
                     symbolPosition="s" emptyValue="zero"/>
-    <span></span>
-    
+    <span/>
+
     <h:outputText value="Empty value (sign)"/>
-    <pe:inputNumber widgetVar="f3" id="Input9" value="#{inputNumberController.input9}" symbol="%" 
+    <pe:inputNumber widgetVar="f3" id="Input9" value="#{inputNumberController.input9}" symbol="%"
                     symbolPosition="s" emptyValue="sign"/>
-    
-    <span></span>
-     
-    <h:outputText value="Empty value (empty) not required" />
-    <pe:inputNumber widgetVar="f4" id="Input10" value="#{inputNumberController.input10}" symbol="%" 
+
+    <span/>
+
+    <h:outputText value="Empty value (empty) not required"/>
+    <pe:inputNumber widgetVar="f4" id="Input10" value="#{inputNumberController.input10}" symbol="%"
                     symbolPosition="s" emptyValue="empty"/>
-   
-    
+
 </h:panelGrid>
-<p:commandButton value="Submit" update="growl display" oncomplete="dlg.show()"/>
+
+<p:commandButton value="Submit" process="inputNumberGrid" update="growl display"
+                 oncomplete="dlg.show()"/>
 
 <p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="470">
     <p:panelGrid id="display" columns="1">
@@ -68,5 +69,5 @@
     </p:panelGrid>
 </p:dialog>
 
-    <!-- EXAMPLE-SOURCE-END -->
+<!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

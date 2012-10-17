@@ -17,8 +17,10 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
 import org.primefaces.extensions.showcase.model.Distance;
 
 /**
@@ -40,11 +42,11 @@ public class InputNumberController implements Serializable {
 	private Double input4 = new Double(0);
 	private Double input5 = new Double(0);
 	private Double input6 = new Double(0);
-        private Double input7 = null;
-        private Double input8 = null;
-        private Double input9 = null;
-        private Double input10 = null;
-        
+	private Double input7 = null;
+	private Double input8 = null;
+	private Double input9 = null;
+	private Double input10 = null;
+
 	private String unit;
 	private String roundMethod;
 	private int decimalPlaces;
@@ -55,13 +57,12 @@ public class InputNumberController implements Serializable {
 		roundMethod = "S";
 		decimalPlaces = 2;
 		distance = new Distance();
-        
-        
-        //initialize values
-        input1 = 0d;
-        input2 = 0d;
-        input3 = 0d;
-        input4 = 0d;       
+
+		//initialize values
+		input1 = 0d;
+		input2 = 0d;
+		input3 = 0d;
+		input4 = 0d;
 		input5 = 251.31;
 		input6 = 60d;
 	}
@@ -114,38 +115,38 @@ public class InputNumberController implements Serializable {
 		this.input6 = input6;
 	}
 
-        public Double getInput7() {
-            return input7;
-        }
+	public Double getInput7() {
+		return input7;
+	}
 
-        public void setInput7(Double input7) {
-            this.input7 = input7;
-        }
+	public void setInput7(Double input7) {
+		this.input7 = input7;
+	}
 
-        public Double getInput8() {
-            return input8;
-        }
+	public Double getInput8() {
+		return input8;
+	}
 
-        public void setInput8(Double input8) {
-            this.input8 = input8;
-        }
+	public void setInput8(Double input8) {
+		this.input8 = input8;
+	}
 
-        public Double getInput9() {
-            return input9;
-        }
+	public Double getInput9() {
+		return input9;
+	}
 
-        public void setInput9(Double input9) {
-            this.input9 = input9;
-        }       
+	public void setInput9(Double input9) {
+		this.input9 = input9;
+	}
 
-        public Double getInput10() {
-            return input10;
-        }
+	public Double getInput10() {
+		return input10;
+	}
 
-        public void setInput10(Double input10) {
-            this.input10 = input10;
-        }
-        
+	public void setInput10(Double input10) {
+		this.input10 = input10;
+	}
+
 	public String getUnit() {
 		return unit;
 	}

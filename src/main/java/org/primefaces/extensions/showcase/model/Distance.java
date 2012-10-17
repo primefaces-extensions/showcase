@@ -25,39 +25,36 @@ import java.io.Serializable;
  * @version $Revision$
  * @since   0.3
  */
-public class Distance implements Serializable{
+public class Distance implements Serializable {
 
-        Double meters;
-        Double centimeters;
+	Double meters;
+	Double centimeters;
 
-        public Distance() {
-                this.meters = 0d;
-                this.centimeters = 0d;
-        }
-               
-        public Double getCentimeters() {
-                return centimeters;
-        }
+	public Distance() {
+		this.meters = 0d;
+		this.centimeters = 0d;
+	}
 
-        public void setCentimeters(Double centimeters) {
-                this.centimeters = centimeters;
-                this.meters = centimeters == 0 ? 0d : centimeters/100;
-        }
+	public Double getCentimeters() {
+		return centimeters;
+	}
 
-        public Double getMeters() {
-                return meters;
-        }
+	public void setCentimeters(Double centimeters) {
+		this.centimeters = centimeters;
+		this.meters = centimeters == 0 ? 0d : centimeters / 100;
+	}
 
-        public void setMeters(Double meters) {
-                this.meters = meters;
-                this.centimeters = meters*100;
-        }
+	public Double getMeters() {
+		return meters;
+	}
 
-        @Override
-        public String toString() {
-                return "Distance{" + "meters=" + meters + ", centimeters=" + centimeters + '}';
-        }
-        
-        
-        
+	public void setMeters(Double meters) {
+		this.meters = meters;
+		this.centimeters = meters * 100;
+	}
+
+	@Override
+	public String toString() {
+		return "Distance{" + "meters=" + meters + ", centimeters=" + centimeters + '}';
+	}
 }

@@ -20,6 +20,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
 import org.primefaces.extensions.showcase.model.Distance;
 
 /**
@@ -31,21 +32,22 @@ import org.primefaces.extensions.showcase.model.Distance;
 @FacesConverter("inputNumberConverter")
 public class InputNumberConverter implements Converter {
 
-	public Object getAsObject(final FacesContext context, final UIComponent component, final String value) {
-            Double doubleValue = new Double(0);
-            if(value!=null && !value.isEmpty()){
-                 doubleValue = Double.valueOf(value);                
-            }            
-            Distance res = new Distance();
-            res.setMeters(doubleValue);
-            return res;            
-        }
+	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+		Double doubleValue = 0.0;
+		if (value != null && !value.isEmpty()) {
+			doubleValue = Double.valueOf(value);
+		}
 
-	public String getAsString(final FacesContext context, final UIComponent component, final Object valueO) {
-		Distance value = (Distance) valueO;
-		Double res = value.getMeters();
-		return res.toString();
+		Distance res = new Distance();
+		res.setMeters(doubleValue);
+
+		return res;
 	}
 
-       
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		Distance distance = (Distance) value;
+		Double res = distance.getMeters();
+
+		return res.toString();
+	}
 }
