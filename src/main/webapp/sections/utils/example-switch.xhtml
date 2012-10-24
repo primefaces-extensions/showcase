@@ -22,21 +22,21 @@
 
 <pe:switch id="switch" value="#{switchController.value}">
 	<pe:defaultCase>
-		default case
+		Case: Default
 	</pe:defaultCase>
-	
+
 	<pe:case value="case1">
-		<p:commandButton id="case1" actionListener="#{switchController.listener('case1')}" update="growl"
-			value="Call listener with 'case1'" /> 
+		Case: <p:commandButton id="case1button" actionListener="#{switchController.listener('case1')}" update="_mainForm_growl"
+				value="Call listener with 'case1'" /> 
 	</pe:case>
-	
+
 	<pe:case value="case2">
-		<p:commandButton id="case2" actionListener="#{switchController.listener('case2')}" update="growl"
-			value="Call listener with 'case2'"  />
+		Case: <p:commandButton id="case2button" actionListener="#{switchController.listener('case2')}" update="_mainForm_growl"
+				value="Call listener with 'case2'"  />
 	</pe:case>
-	
+
 	<pe:case value="#{null}">
-		null
+		Case: Null
 	</pe:case>
 </pe:switch>
 
