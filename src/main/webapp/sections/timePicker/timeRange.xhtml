@@ -9,11 +9,13 @@
             <h:outputText value="TimePicker"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            This use case demonstrates two time pickers to select chronological time range. The first timepicker is restricted to before the time selected in the second timepicker, and vice versa.
+            This use case demonstrates two time pickers to select chronological time range.
+            The first timepicker is restricted to before the time selected in the second timepicker, and vice versa.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <ui:include src="/sections/timePicker/example-timeRange.xhtml" />
+            <ui:include src="/sections/timePicker/example-timeRangeJS.xhtml" />
         </h:panelGroup>
 
         <ui:decorate template="/templates/threeTabsDecoratorJS.html">
@@ -24,7 +26,7 @@ ${showcase:getFileContent('/sections/timePicker/example-timeRange.xhtml')}
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/TimePickerController.java')}
             </ui:define>
             <ui:define name="contentTab3">
-${showcase:getFileContent('/resources/js/timePicker.js')}
+${showcase:getFileContent('/sections/timePicker/example-timeRangeJS.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>

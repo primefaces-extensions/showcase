@@ -3,7 +3,7 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:pe="http://primefaces.org/ui/extensions">
-    <!-- EXAMPLE-SOURCE-START -->
+<!-- EXAMPLE-SOURCE-START -->
 <h:panelGrid columns="5">
     <h:outputText value="Start time"/>
     <pe:timePicker value="#{timePickerController.time1}" mode="popup" onHourShow="tpStartOnHourShowCallback"
@@ -13,5 +13,5 @@
     <pe:timePicker value="#{timePickerController.time2}" mode="popup" onHourShow="tpEndOnHourShowCallback"
                    onMinuteShow="tpEndOnMinuteShowCallback" widgetVar="endTimeWidget"/>
 </h:panelGrid>
-    <!-- EXAMPLE-SOURCE-END -->
+<!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
