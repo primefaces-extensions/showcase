@@ -1,7 +1,7 @@
 package org.primefaces.extensions.showcase.model.system;
 
 /**
- * DOCUMENT_ME
+ * Theme
  *
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
@@ -12,7 +12,6 @@ public class Theme {
 	private String image;
 
 	public Theme() {
-
 	}
 
 	public Theme(final String name, final String image) {
