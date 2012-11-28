@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Commons Functions"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+			Here is a list of commons functions:<br/>
+			<br/>
+			<table>
+				<tr>
+					<th width="150" style="text-align: left">Function Name</th><th width="250" style="text-align: left">Function Description</th>
+				</tr>
+				<tr>
+					<td>escapeHtml4</td><td>Escapes HTML4 entities</td>
+				</tr>
+				<tr>
+					<td>unescapeHtml4</td><td>Unescapes HTML4 entities</td>
+				</tr>
+				<tr>
+					<td>escapeHtml3</td><td>Escapes HTML3 entities</td>
+				</tr>
+				<tr>
+					<td>unescapeHtml3</td><td>Unescapes HTML3 entities</td>
+				</tr>
+				<tr>
+					<td>escapeXml</td><td>Escapes XML entities</td>
+				</tr>
+				<tr>
+					<td>unescapeXml</td><td>Unescapes XML entities</td>
+				</tr>
+				<tr>
+					<td>encodeURL</td><td>Encodes URL</td>
+				</tr>
+			</table>
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/utils/useCasesChoice.xhtml"/>
+    </ui:define>
+</ui:composition>
+</html>
