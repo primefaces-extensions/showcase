@@ -18,10 +18,8 @@
 package org.primefaces.extensions.showcase.controller.timeline;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -39,11 +37,10 @@ import org.primefaces.extensions.model.timeline.TimelineEvent;
 @ViewScoped
 public class CustomStyleController implements Serializable {
 
-    private List<Timeline> timelines;
+    private Timeline timeline;
 
     public CustomStyleController() {
-        timelines = new ArrayList<Timeline>();
-        Timeline timeline = new DefaultTimeLine("pt", "Custom Style");
+        timeline = new DefaultTimeLine("pt", "Custom Style");
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_YEAR, -5);
         cal.set(Calendar.HOUR_OF_DAY, 1);
@@ -59,11 +56,10 @@ public class CustomStyleController implements Serializable {
             timelineEvent.setStyleClass(Math.random() > 0.25 ? "green" : "red");
 
             timeline.addEvent(timelineEvent);
-        }
-        timelines.add(timeline);
+        }        
     }
 
-    public List<Timeline> getTimelines() {
-        return timelines;
+    public Timeline getTimeline() {
+        return timeline;
     }
 }

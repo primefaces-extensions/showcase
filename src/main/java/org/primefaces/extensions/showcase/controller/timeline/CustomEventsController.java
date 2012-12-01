@@ -18,9 +18,7 @@
 package org.primefaces.extensions.showcase.controller.timeline;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -40,14 +38,13 @@ import org.primefaces.extensions.model.timeline.TimelineEvent;
 @ViewScoped
 public class CustomEventsController implements Serializable {
 
-    private List<Timeline> timelines;
+    private Timeline timeline;
     private TimelineEvent selectedEvent;
 
 
     public CustomEventsController(){
-        timelines = new ArrayList<Timeline>();
         Calendar cal = Calendar.getInstance();
-        Timeline timeline = new DefaultTimeLine("customEventTimeline", "Primefaces Release History");
+        timeline = new DefaultTimeLine("customEventTimeline", "Primefaces Release History");
         cal.set(2011, 4, 10);
         timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.1", cal.getTime()));
         cal.set(2012, 0, 23);
@@ -62,15 +59,14 @@ public class CustomEventsController implements Serializable {
         timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.5.1", cal.getTime()));
         cal.set(2012, 8, 26);
         timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.6.0", cal.getTime()));
-        timelines.add(timeline);
     }
 
     public void onEventSelect(SelectEvent event){
         selectedEvent = (TimelineEvent) event.getObject();
     }
 
-    public List<Timeline> getTimelines() {
-        return timelines;
+    public Timeline getTimeline() {
+        return timeline;
     }
 
     public TimelineEvent getSelectedEvent() {

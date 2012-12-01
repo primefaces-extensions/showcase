@@ -18,10 +18,7 @@
 package org.primefaces.extensions.showcase.controller.timeline;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -38,22 +35,20 @@ import org.primefaces.extensions.model.timeline.Timeline;
 @ViewScoped
 public class PerformanceController implements Serializable {
 
-    private List<Timeline> timelines;
+    private Timeline timeline;
 
     public PerformanceController() {
-        timelines = new ArrayList<Timeline>();
-        Timeline timeline = new DefaultTimeLine("pt", "Timeline Performance");
+        timeline = new DefaultTimeLine("pt", "Timeline Performance");
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_YEAR, -5);
         cal.set(Calendar.HOUR_OF_DAY, 1);
         for (int event = 1; event < 200; ++event) {
             cal.add(Calendar.HOUR_OF_DAY, 1 + 4 * ((Math.random() < 0.2) ? 1 : 0));
             timeline.addEvent(new DefaultTimelineEvent("Event " + event, cal.getTime()));
-        }
-        timelines.add(timeline);
+        }        
     }
 
-    public List<Timeline> getTimelines() {
-        return timelines;
+    public Timeline getTimeline() {
+        return timeline;
     }
 }
