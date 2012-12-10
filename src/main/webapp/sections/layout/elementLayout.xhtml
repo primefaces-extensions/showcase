@@ -13,7 +13,9 @@
             An example below shows two element layouts with server-side state management. Try to resize, open or close panes and switch between layouts.
             <p/>
             The entire layout is described by options (class LayoutOptions) which are bound to the "options" attribute of pe:layout.
-            They are created like a Tree with parent-child relation.
+            They are created like a Tree with parent-child relation. LayoutOptions is optional, it also possible to create a layout
+            by options defined as attributes of pe:layoutPane. Note: LayoutOptions created as Java model takes precedence over layout options
+            as tag attributes. It is up to you if you would like to use all available options via LayoutOptions or a limited set of options in pe:layoutPane.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
