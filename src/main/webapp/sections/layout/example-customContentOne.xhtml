@@ -1,6 +1,7 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
 <pe:layoutPane position="north">
@@ -8,6 +9,9 @@
 </pe:layoutPane>
 <pe:layoutPane position="center">
     Center-Center
+
+    <p:commandButton id="clickMe" value="Click Me" process="@this" update="growl" style="margin:10px;"
+                     action="#{customContentLayoutController.clickMe}"/>
 </pe:layoutPane>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

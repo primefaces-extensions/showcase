@@ -7,6 +7,8 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
 <h:form id="mainForm" prependId="false">
+    <p:growl id="growl" showSummary="true" showDetail="false"/>
+    
     <pe:layout id="fullPage" options="#{customContentLayoutController.layoutOptions}"
                widgetVar="fpLayoutWidget">
         <pe:layoutPane position="north">

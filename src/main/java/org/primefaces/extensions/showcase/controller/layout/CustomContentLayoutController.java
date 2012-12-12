@@ -21,8 +21,10 @@ package org.primefaces.extensions.showcase.controller.layout;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.extensions.model.layout.LayoutOptions;
 
@@ -102,5 +104,13 @@ public class CustomContentLayoutController implements Serializable {
 
 	public String getSrc() {
 		return src;
+	}
+
+	public String clickMe() {
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Nice to see that an action works in nested layouts.", null);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+		return null;
 	}
 }
