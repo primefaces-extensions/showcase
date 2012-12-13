@@ -1,0 +1,53 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- EXAMPLE-SOURCE-START -->
+<h:form>
+    <pe:layout resizerTip="Resize Me" togglerTipClosed="Open Me" togglerTipOpen="Close Me">
+        <pe:layoutPane position="north" size="80" closable="false">
+            North
+        </pe:layoutPane>
+        <pe:layoutPane position="center">
+            <pe:layoutPane position="north" size="50%">
+                <f:facet name="header">
+                    <h:outputText value="Center-North"/>
+                </f:facet>
+            </pe:layoutPane>
+            <pe:layoutPane position="center" minHeight="60">
+                <f:facet name="header">
+                    <h:outputText value="Center-Center"/>
+                </f:facet>
+            </pe:layoutPane>
+        </pe:layoutPane>
+        <pe:layoutPane position="west" size="200">
+            <pe:layoutPane position="north" size="33%">
+                West-North
+            </pe:layoutPane>
+            <pe:layoutPane position="center" minHeight="60">
+                West-Center
+            </pe:layoutPane>
+            <pe:layoutPane position="south" size="33%" initClosed="true">
+                West-South
+            </pe:layoutPane>
+        </pe:layoutPane>
+        <pe:layoutPane position="east" size="200" resizeWhileDragging="true">
+            East
+        </pe:layoutPane>
+        <pe:layoutPane position="south" size="80">
+            South
+        </pe:layoutPane>
+    </pe:layout>
+</h:form>
+
+<h:outputStylesheet library="css" name="global.css"/>
+   
+<h:outputStylesheet id="layoutCSS">
+    body {
+        margin: 4px !important;
+    }
+</h:outputStylesheet>    
+<!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
