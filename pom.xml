@@ -12,7 +12,7 @@
     <groupId>org.primefaces.extensions</groupId>
     <artifactId>showcase</artifactId>
     <packaging>war</packaging>
-    <version>0.6.2-SNAPSHOT</version>
+    <version>0.6.2</version>
     <name>showcase</name>
     <description>
         <![CDATA[PrimeFaces Extensions Project Showcase for Maven.]]>
