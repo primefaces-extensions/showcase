@@ -253,7 +253,7 @@
             <artifactId>resources-codemirror</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.primefaces.extensions</groupId>
+            <groupId>org.primefaces.themes</groupId>
             <artifactId>all-themes</artifactId>
         </dependency>        
     </dependencies>
