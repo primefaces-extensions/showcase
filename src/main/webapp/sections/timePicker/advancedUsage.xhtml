@@ -14,14 +14,18 @@
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <ui:include src="/sections/timePicker/example-advancedUsage.xhtml"/>
+            <ui:include src="/sections/timePicker/example-timeRangeJS.xhtml"/>
         </h:panelGroup>
 
-        <ui:decorate template="/templates/twoTabsDecorator.html">
+        <ui:decorate template="/templates/threeTabsDecoratorJS.html">
             <ui:define name="contentTab1">
 #{showcase:getFileContent('/sections/timePicker/example-advancedUsage.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 #{showcase:getFileContent('/org/primefaces/extensions/showcase/controller/TimePickerController.java')}
+            </ui:define>
+            <ui:define name="contentTab3">
+${showcase:getFileContent('/sections/timePicker/example-timeRangeJS.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>

@@ -16,7 +16,7 @@
         <p:ajax event="resize" listener="#{fullLayoutController.handleResize}" update="_growl"/>
 
         <pe:layoutPane position="north">
-            North
+            North            
             <h:panelGrid columns="6" style="margin-left:80px;">
                 <p:commandButton value="Toggle South" type="button"
                                  onclick="fpLayoutWidget.toggle('south')"/>
@@ -37,6 +37,7 @@
                 <f:facet name="header">
                     <h:outputText value="Center-North"/>
                 </f:facet>
+                Refresh this page to see that the state of all panes is preserved
             </pe:layoutPane>
             <pe:layoutPane position="center">
                 <f:facet name="header">

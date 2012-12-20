@@ -14,16 +14,17 @@
     <h:outputText value="Only hours"/>
     <h:outputText value="Only minutes"/>
     <h:outputText value="Restricted time"/>
+    
     <pe:timePicker id="inlineTime" value="#{timePickerController.time1}" mode="inline">
         <p:ajax event="timeSelect" listener="#{timePickerController.timeSelectListener}" update="growl"/>
-    </pe:timePicker>
+    </pe:timePicker>    
     <pe:timePicker id="spinnerTime" value="#{timePickerController.time2}" showPeriod="true"
                    style="width: 100px;">
         <p:ajax event="beforeShow" listener="#{timePickerController.beforeShowListener}" update="growl"/>
         <p:ajax event="close" listener="#{timePickerController.closeListener}" update="growl"/>
-    </pe:timePicker>
-    <pe:timePicker value="#{timePickerController.time4}" showMinutes="false"/>
-    <pe:timePicker value="#{timePickerController.time4}" showHours="false"/>
+    </pe:timePicker>    
+    <pe:timePicker value="#{timePickerController.time4}" showMinutes="false"/>    
+    <pe:timePicker value="#{timePickerController.time4}" showHours="false"/>    
     <pe:timePicker value="#{timePickerController.time4}" mode="popup"
                    onHourShow="onHourShowCallback" onMinuteShow="onMinuteShowCallback"/>
 </h:panelGrid>
