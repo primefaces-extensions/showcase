@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
@@ -19,6 +20,64 @@
             The component enables message displaying in case of detection of an AJAX error. In case of need, you can define different behaviours for various types of errors.
             <p/>
             The best way to understand the behaviour is through examples.
+			<h3>Simple and Extended mode</h3>
+			<p>
+				Component ajaxErrorHandler can be used in simple and extended mode. Extended mode is activated when our exception-handler-factory is used in faces-config.xml
+			</p>
+			<div>
+				&lt;factory&gt;<br />
+				&lt;exception-handler-factory&gt;org.primefaces.extensions.component.ajaxerrorhandler.AjaxExceptionHandlerFactory&lt;/exception-handler-factory&gt;<br />
+			&lt;/factory&gt;
+			</div>
+			<p/>
+			<p:panelGrid style="margin-top:20px">
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="3">Comparision of Simple and Extended mode</p:column>
+					</p:row>
+					<p:row>
+						<p:column></p:column>
+						<p:column style="width:30%">Simple mode</p:column>
+						<p:column style="width:30%">Extended mode</p:column>
+					</p:row>
+				</f:facet>
+
+				<p:row>
+					<p:column>all atp:rowibutes in pe: ajaxErrorHandler (body, title, ...)</p:column>
+					<p:column>OK</p:column>
+					<p:column>OK</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Variable {error-name}</p:column>
+					<p:column>OK</p:column>
+					<p:column>OK</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Variable {error-message}</p:column>
+					<p:column>OK</p:column>
+					<p:column>OK</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Variable {error-hostname}</p:column>
+					<p:column>WARNING – value of error-hostname might be wrong when application runs on cluster and current node is changed during work</p:column>
+					<p:column>OK</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Variable {error-stackp:rowace}</p:column>
+					<p:column>NOT WORKING</p:column>
+					<p:column>OK</p:column>
+				</p:row>
+				<p:row>
+					<p:column>facet (body, title) in pe:ajaxErrorHandler </p:column>
+					<p:column>NOT WORKING</p:column>
+					<p:column>OK</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Very custom layout definition – inner components in pe:ajaxErrorHandler</p:column>
+					<p:column>NOT WORKING</p:column>
+					<p:column>OK</p:column>
+				</p:row>
+			</p:panelGrid>
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
