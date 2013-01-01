@@ -10,7 +10,7 @@
     </f:facet>
     
     <h:panelGroup layout="block" styleClass="ui-state-default docuCaption">
-        Attributes (move mouse over names to see types)
+        Attributes (move mouse over the names to see data types)
     </h:panelGroup>
     <p:dataTable id="docuDataTable" var="attribute" value="#{docuPreparer.getDocuAttributes(tagName)}"
                  emptyMessage="No attributes available for this component." styleClass="docuTable">
@@ -30,7 +30,7 @@
     </p:dataTable>
 
     <h:panelGroup layout="block" styleClass="ui-state-default docuEventCaption" rendered="#{docuPreparer.getDocuEvents(tagName).size() > 0}">
-        Events (move mouse over names to see classes)
+        Events (move mouse over the names to see classes)
     </h:panelGroup>    
     <p:dataTable id="docuEventsDataTable" var="event" value="#{docuPreparer.getDocuEvents(tagName)}"
                  emptyMessage="No events available for this component." styleClass="docuEventTable"
