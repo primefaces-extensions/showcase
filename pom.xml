@@ -29,6 +29,10 @@
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
+			<resource>
+				<directory>src/main/webapp/WEB-INF/</directory>
+				<filtering>true</filtering>
+			</resource>
 		</resources>
 		<plugins>
 			<plugin>
@@ -62,10 +66,6 @@
 					<packagingExcludes>**/overrideweb-mojarra.xml,**/overrideweb-myfaces.xml,WEB-INF/web.xml
 					</packagingExcludes>
 					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
-					<filters>
-						<filter>${basedir}/src/main/filter/${primefaces-extensions.showcase-stage}-${jsf-impl}.properties
-						</filter>
-					</filters>
 					<nonFilteredFileExtensions>
 						<nonFilteredFileExtension>jpeg</nonFilteredFileExtension>
 						<nonFilteredFileExtension>jpg</nonFilteredFileExtension>
@@ -228,6 +228,7 @@
 			<properties>
 				<jsf-impl>myfaces</jsf-impl>
 				<jsf-version>${myfaces.version}</jsf-version>
+				<jsf-listener>org.apache.myfaces.webapp.StartupServletContextListener</jsf-listener>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -252,6 +253,7 @@
 			<properties>
 				<jsf-impl>mojarra</jsf-impl>
 				<jsf-version>${mojarra.version}</jsf-version>
+				<jsf-listener>com.sun.faces.config.ConfigureListener</jsf-listener>
 			</properties>
 			<dependencies>
 				<dependency>
