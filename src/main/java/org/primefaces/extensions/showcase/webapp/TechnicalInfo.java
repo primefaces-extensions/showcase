@@ -71,9 +71,8 @@ public class TechnicalInfo {
             }
 
             primeFaces = "PrimeFaces: " + appProperties.get("primefaces.core.version");
-            primeFacesExt = "PrimeFaces Extensions: " + appProperties.get("pe.impl.version");
-            Package jsfPackage = FacesContext.class.getPackage();
-            jsfImpl = "JSF: " + jsfPackage.getImplementationTitle() + " " + jsfPackage.getImplementationVersion();
+            primeFacesExt = "PrimeFaces Extensions: " + appProperties.get("primefaces-extensions.core.version");
+            jsfImpl = "JSF: " + appProperties.get("jsf-impl") + " " + appProperties.get("jsf-version");
             server = "Server: " + ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getServerInfo();
             revision = "SVN-Revision: " + appProperties.get("svn.revision");
 
@@ -85,10 +84,12 @@ public class TechnicalInfo {
             }
 
             buildTime = "Build time: " + formatter.format(calendar.getTime());
-            mojarra = appProperties.get("pe.jsf.impl").contains("mojarra");
+            mojarra = appProperties.get("jsf-impl").contains("mojarra");
 
             //mfenoglio process new and updated components
-            this.proccessNewsComponents(appProperties.get("pe.newComponents"), appProperties.get("pe.updatedComponents"));
+            this.proccessNewsComponents(
+            		appProperties.get("primefaces-extensions.new-components"),
+            		appProperties.get("primefaces-extensions.updated-components"));
         } catch (MissingResourceException e) {
             LOGGER.warning("Resource bundle 'pe-showcase' was not found");
         }
