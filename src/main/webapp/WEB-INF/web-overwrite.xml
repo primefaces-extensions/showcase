@@ -5,32 +5,25 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
     <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
         <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
         <param-value>2</param-value>
     </context-param>
+
     <context-param>
         <param-name>com.sun.faces.resourceUpdateCheckPeriod</param-name>
         <param-value>2</param-value>
     </context-param>
     <context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
+        <param-name>com.sun.faces.injectionProvider</param-name>
+        <param-value>com.sun.faces.vendor.WebContainerInjectionProvider</param-value>
+    </context-param>    
+    <context-param>
+        <param-name>com.sun.faces.spi.AnnotationProvider</param-name>
+        <param-value>com.sun.faces.config.AnnotationScanner</param-value>
     </context-param>
-    
-    <listener>
-        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
-    </listener>
-    
-    <!--
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>org.apache.myfaces.webapp.MyFacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.jsf</url-pattern>
-    </servlet-mapping>
-    -->
 
 </web-app>

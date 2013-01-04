@@ -42,7 +42,7 @@
 				<configuration>
 					<webAppConfig>
 						<contextPath>/primeext-showcase</contextPath>
-						<overrideDescriptor>src/main/resources/overrideweb-${jsf-impl}.xml</overrideDescriptor>
+						<overrideDescriptor>src/main/webapp/WEB-INF/web-overwrite.xml</overrideDescriptor>
 					</webAppConfig>
 					<webXml>${project.build.directory}/classes/web.xml</webXml>
 					<webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>
@@ -64,7 +64,7 @@
 							<directory>${project.build.directory}/webapp-resources</directory>
 						</resource>
 					</webResources>
-					<packagingExcludes>**/overrideweb-mojarra.xml,**/overrideweb-myfaces.xml,WEB-INF/web.xml
+					<packagingExcludes>**/web-overwrite.xml,WEB-INF/web.xml
 					</packagingExcludes>
 					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
 					<nonFilteredFileExtensions>

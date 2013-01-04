@@ -11,17 +11,13 @@
 	    <param-value>/WEB-INF/showcase.taglib.xml</param-value>
 	 </context-param>
 
-    <!-- Context parameters -->
+    <!-- Context parameters - JSF -->
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Production</param-value>
     </context-param>
     <context-param>
         <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
-        <param-value>-1</param-value>
-    </context-param>
-    <context-param>
-        <param-name>com.sun.faces.resourceUpdateCheckPeriod</param-name>
         <param-value>-1</param-value>
     </context-param>
     <context-param>
@@ -35,6 +31,12 @@
     <context-param>
         <param-name>javax.faces.VALIDATE_EMPTY_FIELDS</param-name>
         <param-value>true</param-value>
+    </context-param>
+
+ 	<!-- Context parameters - Mojarra -->
+    <context-param>
+        <param-name>com.sun.faces.resourceUpdateCheckPeriod</param-name>
+        <param-value>-1</param-value>
     </context-param>
     <context-param>
         <param-name>com.sun.faces.allowTextChildren</param-name>
@@ -51,15 +53,22 @@
     <context-param>
         <param-name>com.sun.faces.expressionFactory</param-name>
         <param-value>de.odysseus.el.ExpressionFactoryImpl</param-value>
-    </context-param>    
+    </context-param>
+
+	<!-- Context parameters - MyFaces -->
+    <context-param>
+        <param-name>org.apache.myfaces.EXPRESSION_FACTORY</param-name>
+        <param-value>de.odysseus.el.ExpressionFactoryImpl</param-value>
+    </context-param>
+
+	<!-- Context parameters - Primefaces & Extensions -->
     <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>#{userSettings.currentTheme.name}</param-value>
     </context-param>
-    
     <context-param>
     	<param-name>org.primefaces.extensions.WRAP_PRIME_FACES_RESOURCES</param-name>
-    	<param-value>false</param-value>
+    	<param-value>true</param-value>
     </context-param>
     <context-param>
     	<param-name>org.primefaces.extensions.DELIVER_UNCOMPRESSED_RESOURCES</param-name>
