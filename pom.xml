@@ -274,11 +274,9 @@
 	</profiles>
 
 	<properties>
+		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
 		<primefaces-extensions.new-components>;</primefaces-extensions.new-components>
 		<primefaces-extensions.updated-components>codeMirror;ckEditor;layout;timeline;tooltip</primefaces-extensions.updated-components>
-		<primefaces-extensions.showcase-stage>development</primefaces-extensions.showcase-stage>
-
-		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
 
 		<mojarra.version>2.1.13</mojarra.version>
 		<myfaces.version>2.1.10</myfaces.version>
