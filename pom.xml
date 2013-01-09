@@ -36,9 +36,9 @@
 		</resources>
 		<plugins>
 			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
+				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.0.0.M4</version>
+				<version>8.1.8.v20121106</version>
 				<configuration>
 					<webAppConfig>
 						<contextPath>/primeext-showcase</contextPath>
