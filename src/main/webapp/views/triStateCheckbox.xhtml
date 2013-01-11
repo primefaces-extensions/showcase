@@ -22,8 +22,11 @@
             <p:growl id="growl" showDetail="true"/>
             
             <h:panelGrid id="triStateGrid" columns="2" styleClass="centerContent">
-                <h:outputText value="Basic Usage: "/>
-                <pe:triStateCheckbox value="#{triStateCheckBoxController.value1}"/>
+                <h:outputText value="Basic Usage with title: "/>
+                <pe:triStateCheckbox value="#{triStateCheckBoxController.value1}" 
+                                     stateOneTitle="StateOneTitle"
+                                     stateTwoTitle="StateTwoTitle"
+                                     stateThreeTitle="StateThreeTitle"/>
             
                 <h:outputText value="Ajax Behavior: "/>
                 <pe:triStateCheckbox id="ajaxTriState" value="#{triStateCheckBoxController.value2}">
