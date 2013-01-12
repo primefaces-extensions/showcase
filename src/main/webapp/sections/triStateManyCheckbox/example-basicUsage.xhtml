@@ -13,7 +13,10 @@
     <h:outputText value="Basic Usage:"/>
     <pe:triStateManyCheckbox id="TriBasic"
                              value="#{triSateManyCheckBoxController.selectedOptionsTriStateBasic}"
-                             layout="pageDirection">
+                             layout="pageDirection"
+                             stateOneTitle="not matter"
+                             stateTwoTitle="love it"
+                             stateThreeTitle="dislikes">
         <f:selectItems value="#{triSateManyCheckBoxController.basicOptions}"/>
     </pe:triStateManyCheckbox>
 
