@@ -21,7 +21,7 @@
 
     <h:outputText value="Validate the double value (min 50.00)"/>
     <pe:inputNumber id="Input6" value="#{inputNumberController.input6}" symbol="$ "
-                    validatorMessage="The value must be greater than 50.00">
+                    validatorMessage="The value must be 50.00 or greater">
         <f:validateDoubleRange minimum="50"/>
     </pe:inputNumber>
     <span/>
