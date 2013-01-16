@@ -20,7 +20,7 @@
         <f:selectItem itemLabel="Round Down Round-Toward-Zero" itemValue="D"/>
         <f:selectItem itemLabel="Round to Ceiling Toward Positive Infinity" itemValue="C"/>
         <f:selectItem itemLabel="Round to Floor Toward Negative Infinity" itemValue="F"/>
-        <p:ajax update="Input6" partialSubmit="false"/>
+        <p:ajax update="Input6" />
     </p:selectOneMenu>
 
     <h:outputText value="Select decimal places"/>
@@ -31,12 +31,12 @@
         <f:selectItem itemLabel="4" itemValue="4"/>
         <f:selectItem itemLabel="5" itemValue="5"/>
         <f:selectItem itemLabel="6" itemValue="6"/>
-        <p:ajax update="Input6" partialSubmit="false"/>
+        <p:ajax update="Input6" />
     </p:selectOneMenu>
 
     <h:outputText value="Enter the a number"/>
     <p:inputText id="textInput6" value="#{inputNumberController.input6}">
-        <p:ajax update="Input6" partialSubmit="false"/>
+        <p:ajax update="Input6" />
     </p:inputText>
 
     <h:outputText value="Formated value"/>

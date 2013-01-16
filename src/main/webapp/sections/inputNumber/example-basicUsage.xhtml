@@ -20,7 +20,7 @@
     <p:row>
         <p:column>
             <pe:inputNumber id="Input1" value="#{inputNumberController.input1}">
-                <p:ajax event="blur" update="valueInput1" partialSubmit="false"/>
+                <p:ajax event="blur" update="valueInput1" />
             </pe:inputNumber>
         </p:column>
 
@@ -37,7 +37,7 @@
         <p:column>
             <pe:inputNumber id="Input2" value="#{inputNumberController.input2}" symbol=" CHF" symbolPosition="s"
                             decimalSeparator="," thousandSeparator=".">
-                <p:ajax event="blur" update="valueInput2" partialSubmit="false"/>
+                <p:ajax event="blur" update="valueInput2" />
             </pe:inputNumber>
         </p:column>
 
@@ -53,7 +53,7 @@
     <p:row>
         <p:column>
             <pe:inputNumber id="Input3" value="#{inputNumberController.input3}" minValue="-1000.999" maxValue="1000">
-                <p:ajax event="blur" update="valueInput3" partialSubmit="false"/>
+                <p:ajax event="blur" update="valueInput3" />
             </pe:inputNumber>
         </p:column>
 
