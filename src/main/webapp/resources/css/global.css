@@ -53,6 +53,10 @@ button,
     white-space: normal;
 }
 
+.ui-datatable .ui-sortable-column-icon {
+    margin: 0 -10px 0 0 !important; /* this has been -16px -10px 0px 0px */
+}
+
 table .formColumn1 {
     padding-right: 10px;
     text-align: right;
@@ -98,10 +102,6 @@ table .formColumn input {
 .checkBoxes input,
 .checkBoxes label {
     vertical-align: middle;
-}
-
-.checkBoxes label {
-    padding-bottom: 2px;
 }
 
 table .columnTop {

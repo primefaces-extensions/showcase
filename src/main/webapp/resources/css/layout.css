@@ -53,6 +53,10 @@ body > form > .ui-layout-south {
     padding-left: 3px;
 }
 
+#useCaseList .ui-menuitem-link {
+    width: 115%;
+}
+
 .docuTable {
     line-height: 1.3 !important;
 }
