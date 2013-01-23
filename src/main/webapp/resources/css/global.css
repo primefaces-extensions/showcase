@@ -47,6 +47,12 @@ button,
     margin-left: 1px;
 }
 
+.ui-datatable thead th,
+.ui-datatable tbody td,
+.ui-datatable tfoot td {
+    white-space: normal;
+}
+
 table .formColumn1 {
     padding-right: 10px;
     text-align: right;
