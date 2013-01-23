@@ -5,9 +5,7 @@
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
-
-    <!-- EXAMPLE-SOURCE-START -->
-
+<!-- EXAMPLE-SOURCE-START -->
 <p:messages id="messages"/>
 
 <h:panelGrid columns="2">
@@ -25,8 +23,8 @@
     </h:panelGroup>
 
     <p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}" paginator="true"
-            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-            rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
         <p:ajax event="page" listener="#{dataTableController.doSomething}" update="_mainForm_messages"
                 onstart="blockUIWidget2.block()" oncomplete="blockUIWidget2.unblock()"/>
         <p:ajax event="sort" listener="#{dataTableController.doSomething}" update="_mainForm_messages"
@@ -56,11 +54,17 @@
 
 <pe:blockUI target="dataTable" content="blockUIContent" widgetVar="blockUIWidget2"/>
 
-<h:panelGrid id="blockUIContent" columns="2" style="display: none;">
+<h:panelGrid id="blockUIContent" columns="2" style="display:none;">
     <h:graphicImage library="images" name="ajax-loader1.gif"
                     style="margin-right: 12px; vertical-align: middle;"/>
     <h:outputText value="Please wait, data is being processed..." style="white-space: nowrap;"/>
 </h:panelGrid>
-
-    <!-- EXAMPLE-SOURCE-END -->
+    
+<h:outputStylesheet id="dynaFormCSS">
+    #blockUIContent td {
+        border: none !important;
+        padding: 0 !important;
+    }
+</h:outputStylesheet>
+<!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
