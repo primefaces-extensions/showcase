@@ -1,0 +1,35 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+    <!-- EXAMPLE-SOURCE-START -->
+    <h:panelGrid id="grid" columns="3" style="margin-bottom:10px">
+        <h:outputLabel for="template" value="Template:" style="font-weight:bold"/>
+        <p:inputText id="template" value="#{dynamicColumnsTableController.columnTemplate}" size="50"/>
+        <p:commandButton id="btn" update="dynamicColumnsTable" actionListener="#{dynamicColumnsTableController.updateColumns}" value="Update" process="@parent"/>
+    </h:panelGrid>
+
+    <p:dataTable id="dynamicColumnsTable" var="message" value="#{dynamicColumnsTableController.messages}" filteredValue="#{dynamicColumnsTableController.filteredMessages}">
+        <p:columns value="#{dynamicColumnsTableController.columns}" var="column" columnIndexVar="colIndex"
+                   sortBy="#{message[column.property]}" filterBy="#{message[column.property]}">
+            <f:facet name="header">
+                <h:outputText value="#{column.header}"></h:outputText>
+            </f:facet>
+
+           <h:outputText value="#{message[column.property]}"></h:outputText>
+        </p:columns>
+
+    </p:dataTable>
+    <p:spacer height="30"></p:spacer>
+    <p:panel header="Export PDF">
+        <p:commandLink id="pdf" ajax="false">
+            <p:graphicImage value="/resources/images/pdf.png" />
+            <pe:exporter  type="pdf" target="dynamicColumnsTable" fileName="dynamicColumnsTable" />
+        </p:commandLink>
+    </p:panel>
+
+    <!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
