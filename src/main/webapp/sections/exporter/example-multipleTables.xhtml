@@ -6,9 +6,9 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
     <!-- EXAMPLE-SOURCE-START -->
-<p:dataTable id="messageTable" var="message" value="#{dataTableController.messages}"
+<p:dataTable id="messageTable" var="message" value="#{messageTableController.messages}"
              paginator="true" rows="5" paginatorPosition="bottom"
-             filteredValue="#{dataTableController.filteredMessages}">
+             filteredValue="#{messageTableController.filteredMessages}">
      <f:facet name="header">
          <h:outputText value="Basic Message Table"></h:outputText>
      </f:facet>
