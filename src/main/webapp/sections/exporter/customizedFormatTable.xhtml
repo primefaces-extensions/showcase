@@ -6,19 +6,19 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="Tooltip"/>
+            <h:outputText value="Exporter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-           Customized exporter enables customizing/skinning the header and cell content  in terms of font and backgroundColors .And we can also customize with pre and postProcessors.Ex Adding logos,disclaimers etc.
+           Customized exporter enables customizing/skinning the header and cell content  in terms of font and backgroundColors.PDF Header can display the title by the use of tableTitle attribute.And we can also customize with pre and postProcessors.Ex Adding logos,disclaimers etc.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
             <ui:include src="/sections/exporter/example-customizedFormatTables.xhtml" />
         </h:panelGroup>
 
-        <ui:decorate template="/templates/oneTabDecorator.html">
+        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/exporter/example-customizedFormatTables.xhtml')}
+                ${showcase:getFileContent('/sections/exporter/example-customizedFormatTables.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
                 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/GroupedTableController.java')}

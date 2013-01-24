@@ -6,7 +6,7 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="Tooltip"/>
+            <h:outputText value="Exporter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
             This feature enables exporting the table whose header and footer facets are grouped with different combinations of rowSpan and colSpan columns.Note:Grouped Table includes rowSpan and colSpan columns under columngGroup and row tags.
@@ -16,7 +16,7 @@
             <ui:include src="/sections/exporter/example-groupingTables.xhtml" />
         </h:panelGroup>
 
-        <ui:decorate template="/templates/oneTabDecorator.html">
+        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
             ${showcase:getFileContent('/sections/exporter/example-groupingTables.xhtml')}
             </ui:define>

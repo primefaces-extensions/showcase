@@ -6,7 +6,7 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="Tooltip"/>
+            <h:outputText value="Exporter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
            This feature enables to export dynmic columns dataTable.
@@ -17,9 +17,9 @@
             <ui:include src="/sections/exporter/example-dynamicTables.xhtml" />
         </h:panelGroup>
 
-        <ui:decorate template="/templates/oneTabDecorator.html">
+        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-            ${showcase:getFileContent('/sections/exporter/example-dynamicTables.xhtml')}
+                 ${showcase:getFileContent('/sections/exporter/example-dynamicTables.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
                 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/DynamicColumnsTableController.java')}
