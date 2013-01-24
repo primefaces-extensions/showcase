@@ -52,7 +52,7 @@ public class MessageTableController implements Serializable {
     static {
         states = new String[10];
         for (int i = 0; i < 10; i++) {
-        states[i] = "states"+i;
+        states[i] = "state"+i;
         }
     }
 
@@ -66,6 +66,7 @@ public class MessageTableController implements Serializable {
 				message.setText("text " + i);
                 message.setTextLength(((i*10)+10)+"");
                 message.setCountry("country"+i);
+                message.setState("state"+i);
                 message.setDeliveryStatus("successfull");
 				messages.add(message);
 			}
