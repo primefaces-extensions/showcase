@@ -99,11 +99,15 @@
         </f:facet>
 
     </p:dataTable>
+
     <p:spacer height="30"></p:spacer>
+
     <p:panel header="Export PDF">
         <p:commandLink id="pdf" ajax="false">
             <p:graphicImage value="/resources/images/pdf.png" />
+
             <pe:exporter  type="pdf" target="groupingTable" fileName="GroupedTable" />
+
         </p:commandLink>
     </p:panel>
 

@@ -23,11 +23,15 @@
         </p:columns>
 
     </p:dataTable>
+
     <p:spacer height="30"></p:spacer>
+
     <p:panel header="Export PDF">
         <p:commandLink id="pdf" ajax="false">
             <p:graphicImage value="/resources/images/pdf.png" />
+
             <pe:exporter  type="pdf" target="dynamicColumnsTable" fileName="dynamicColumnsTable" />
+
         </p:commandLink>
     </p:panel>
 

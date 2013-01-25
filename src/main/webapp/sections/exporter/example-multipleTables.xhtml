@@ -31,7 +31,9 @@
         <h:outputText value="#{message.time}"/>
     </p:column>
 </p:dataTable>
+
     <p:spacer height="30"></p:spacer>
+
     <p:dataTable id="messageDetailsTable" var="message" value="#{messageTableController.messages}"
                  paginator="true" rows="5" paginatorPosition="bottom"
                  filteredValue="#{messageTableController.filteredMessages}">
@@ -63,11 +65,15 @@
             <h:outputText value="#{message.deliveryStatus}"/>
         </p:column>
     </p:dataTable>
+
     <p:spacer height="30"></p:spacer>
+
     <p:panel header="Export PDF" >
         <p:commandLink id="pdf" ajax="false">
             <p:graphicImage value="/resources/images/pdf.png" />
+
             <pe:exporter  type="pdf" target="messageTable,messageDetailsTable" fileName="MessagesAndDetails" />
+
         </p:commandLink>
     </p:panel>
 

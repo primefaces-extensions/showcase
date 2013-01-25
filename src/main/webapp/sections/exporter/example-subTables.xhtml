@@ -57,12 +57,15 @@
             </p:columnGroup>
         </p:subTable>
     </p:dataTable>
-    <p:spacer height="30"></p:spacer>
-    <p:panel header="Export All Data">
 
+    <p:spacer height="30"></p:spacer>
+
+    <p:panel header="Export All Data">
         <p:commandLink id="pdf" ajax="false">
             <p:graphicImage value="/resources/images/pdf.png" />
+
             <pe:exporter type="pdf" target="playersSubTable" fileName="PlayersStatistics" isSubTable="true"/>
+
         </p:commandLink>
 
     </p:panel>

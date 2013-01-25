@@ -158,12 +158,15 @@
             </p:columnGroup>
         </p:subTable>
     </p:dataTable>
-    <p:spacer height="30"></p:spacer>
-    <p:panel header="Export PDF">
 
+    <p:spacer height="30"></p:spacer>
+
+    <p:panel header="Export PDF">
         <p:commandLink id="pdfSubtable" ajax="false">
             <p:graphicImage value="/resources/images/pdf.png" />
+
             <pe:exporter type="pdf" target="playersSubTable" fileName="PlayersStatistics" tableTitle="Players Statistics" isSubTable="true" facetBackground="#008000" facetFontSize="15" facetFontColor="#FFFFFF" facetFontStyle="BOLD" cellFontColor="#0000FF" cellFontSize="12" cellFontStyle="NORMAL"/>
+
         </p:commandLink>
 
     </p:panel>
