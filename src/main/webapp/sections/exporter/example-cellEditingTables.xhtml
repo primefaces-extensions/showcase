@@ -51,9 +51,9 @@
         <p:cellEditor>
             <f:facet name="output"><h:outputText value="#{message.state}" /></f:facet>
             <f:facet name="input">
-                <p:selectOneMenu value="#{message.state}" style="width:100%">
+                <h:selectOneMenu value="#{message.state}" style="width:100%">
                     <f:selectItems value="#{messageTableController.states}" var="state" itemLabel="#{state}" itemValue="#{state}" />
-                </p:selectOneMenu>
+                </h:selectOneMenu>
             </f:facet>
         </p:cellEditor>
     </p:column>

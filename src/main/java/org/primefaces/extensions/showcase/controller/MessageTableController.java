@@ -105,7 +105,6 @@ public class MessageTableController implements Serializable {
 		this.newText = newText;
 	}
     public String[] getStates() {
-        System.out.println("States list is"+states+"size is"+states.length);
         return states;
     }
     public String addMessage() {
