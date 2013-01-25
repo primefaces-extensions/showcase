@@ -208,6 +208,5 @@ public class DynamicColumnsTableController implements Serializable {
                 columns.add(new ColumnModel(columnKey.toUpperCase(), columnKey));
             }
         }
-        System.out.println("dynamic columns are created"+columnKeys.length);
     }
 }
