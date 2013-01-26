@@ -6,31 +6,31 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
     <!-- EXAMPLE-SOURCE-START -->
-<p:dataTable id="messageTable" var="message" value="#{messageTableController.messages}"
-             paginator="true" rows="5" paginatorPosition="bottom"
-             filteredValue="#{messageTableController.filteredMessages}">
-     <f:facet name="header">
-         <h:outputText value="Basic Message Table"></h:outputText>
-     </f:facet>
-    <p:column filterBy="#{message.subject}">
+    <p:dataTable id="messageTable" var="message" value="#{messageTableController.messages}"
+                 paginator="true" rows="5" paginatorPosition="bottom"
+                 filteredValue="#{messageTableController.filteredMessages}">
         <f:facet name="header">
-            <h:outputText value="Subject"/>
+            <h:outputText value="Basic Message Table"></h:outputText>
         </f:facet>
-        <h:outputText value="#{message.subject}"/>
-    </p:column>
-    <p:column filterBy="#{message.text}">
-        <f:facet name="header">
-            <h:outputText value="Text"/>
-        </f:facet>
-        <h:outputText value="#{message.text}"/>
-    </p:column>
-    <p:column filterBy="#{message.time}">
-        <f:facet name="header">
-            <h:outputText value="Time"/>
-        </f:facet>
-        <h:outputText value="#{message.time}"/>
-    </p:column>
-</p:dataTable>
+        <p:column filterBy="#{message.subject}">
+            <f:facet name="header">
+                <h:outputText value="Subject"/>
+            </f:facet>
+            <h:outputText value="#{message.subject}"/>
+        </p:column>
+        <p:column filterBy="#{message.text}">
+            <f:facet name="header">
+                <h:outputText value="Text"/>
+            </f:facet>
+            <h:outputText value="#{message.text}"/>
+        </p:column>
+        <p:column filterBy="#{message.time}">
+            <f:facet name="header">
+                <h:outputText value="Time"/>
+            </f:facet>
+            <h:outputText value="#{message.time}"/>
+        </p:column>
+    </p:dataTable>
 
     <p:spacer height="30"></p:spacer>
 
@@ -68,11 +68,11 @@
 
     <p:spacer height="30"></p:spacer>
 
-    <p:panel header="Export PDF" >
+    <p:panel header="Export PDF">
         <p:commandLink id="pdf" ajax="false">
-            <p:graphicImage value="/resources/images/pdf.png" />
+            <p:graphicImage value="/resources/images/pdf.png"/>
 
-            <pe:exporter  type="pdf" target="messageTable,messageDetailsTable" fileName="MessagesAndDetails" />
+            <pe:exporter type="pdf" target="messageTable,messageDetailsTable" fileName="MessagesAndDetails"/>
 
         </p:commandLink>
     </p:panel>

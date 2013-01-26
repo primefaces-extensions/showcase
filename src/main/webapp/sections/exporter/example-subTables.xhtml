@@ -9,50 +9,50 @@
     <p:dataTable id="playersSubTable" var="player" value="#{subTableController.players}">
 
         <f:facet name="header">
-            <h:outputText value="ICC Players Statistics" />
+            <h:outputText value="ICC Players Statistics"/>
         </f:facet>
 
 
         <p:columnGroup type="header">
             <p:row>
                 <p:column rowspan="2" headerText="Player " sortBy="#{player.name}-#{player.number}-#{player.country}"/>
-                <p:column colspan="3" headerText="Player Statistics" />
+                <p:column colspan="3" headerText="Player Statistics"/>
             </p:row>
 
             <p:row>
-                <p:column headerText="Score" />
-                <p:column headerText="Wickets" />
-                <p:column headerText="Catches" />
+                <p:column headerText="Score"/>
+                <p:column headerText="Wickets"/>
+                <p:column headerText="Catches"/>
             </p:row>
         </p:columnGroup>
 
         <p:subTable var="details" value="#{player.details}">
             <f:facet name="header">
-                <h:outputText value="#{player.name}-#{player.number}-#{player.country}" />
+                <h:outputText value="#{player.name}-#{player.number}-#{player.country}"/>
             </f:facet>
 
             <p:column>
-                <h:outputText value=" #{details.year}" />
+                <h:outputText value=" #{details.year}"/>
             </p:column>
 
             <p:column>
-                <h:outputText value=" #{details.runs}" />
+                <h:outputText value=" #{details.runs}"/>
             </p:column>
 
             <p:column>
-                <h:outputText value="  #{details.wickets}" />
+                <h:outputText value="  #{details.wickets}"/>
             </p:column>
 
             <p:column>
-                <h:outputText value=" #{details.catches}" />
+                <h:outputText value=" #{details.catches}"/>
             </p:column>
 
             <p:columnGroup type="footer">
                 <p:row>
                     <p:column footerText="Totals: " style="text-align:right"/>
-                    <p:column footerText="#{player.totalRuns}" />
-                    <p:column footerText="#{player.totalWickets}" />
-                    <p:column footerText="#{player.totalCatches}" />
+                    <p:column footerText="#{player.totalRuns}"/>
+                    <p:column footerText="#{player.totalWickets}"/>
+                    <p:column footerText="#{player.totalCatches}"/>
                 </p:row>
             </p:columnGroup>
         </p:subTable>
@@ -62,7 +62,7 @@
 
     <p:panel header="Export All Data">
         <p:commandLink id="pdf" ajax="false">
-            <p:graphicImage value="/resources/images/pdf.png" />
+            <p:graphicImage value="/resources/images/pdf.png"/>
 
             <pe:exporter type="pdf" target="playersSubTable" fileName="PlayersStatistics" isSubTable="true"/>
 

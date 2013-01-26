@@ -9,17 +9,20 @@
     <h:panelGrid id="grid" columns="3" style="margin-bottom:10px">
         <h:outputLabel for="template" value="Template:" style="font-weight:bold"/>
         <p:inputText id="template" value="#{dynamicColumnsTableController.columnTemplate}" size="50"/>
-        <p:commandButton id="btn" update="dynamicColumnsTable" actionListener="#{dynamicColumnsTableController.updateColumns}" value="Update" process="@parent"/>
+        <p:commandButton id="btn" update="dynamicColumnsTable"
+                         actionListener="#{dynamicColumnsTableController.updateColumns}" value="Update"
+                         process="@parent"/>
     </h:panelGrid>
 
-    <p:dataTable id="dynamicColumnsTable" var="message" value="#{dynamicColumnsTableController.messages}" filteredValue="#{dynamicColumnsTableController.filteredMessages}">
+    <p:dataTable id="dynamicColumnsTable" var="message" value="#{dynamicColumnsTableController.messages}"
+                 filteredValue="#{dynamicColumnsTableController.filteredMessages}">
         <p:columns value="#{dynamicColumnsTableController.columns}" var="column" columnIndexVar="colIndex"
                    sortBy="#{message[column.property]}" filterBy="#{message[column.property]}">
             <f:facet name="header">
                 <h:outputText value="#{column.header}"></h:outputText>
             </f:facet>
 
-           <h:outputText value="#{message[column.property]}"></h:outputText>
+            <h:outputText value="#{message[column.property]}"></h:outputText>
         </p:columns>
 
     </p:dataTable>
@@ -28,9 +31,9 @@
 
     <p:panel header="Export PDF">
         <p:commandLink id="pdf" ajax="false">
-            <p:graphicImage value="/resources/images/pdf.png" />
+            <p:graphicImage value="/resources/images/pdf.png"/>
 
-            <pe:exporter  type="pdf" target="dynamicColumnsTable" fileName="dynamicColumnsTable" />
+            <pe:exporter type="pdf" target="dynamicColumnsTable" fileName="dynamicColumnsTable"/>
 
         </p:commandLink>
     </p:panel>

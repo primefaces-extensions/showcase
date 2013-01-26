@@ -9,88 +9,88 @@
     <p:dataTable id="groupingTable" var="sale" value="#{groupedTableController.mobileList}">
 
         <f:facet name="header">
-            <h:outputText value="Sales/Profits of Mobile Manufacturers" />
+            <h:outputText value="Sales/Profits of Mobile Manufacturers"/>
         </f:facet>
 
         <p:columnGroup type="header">
             <p:row>
-                <p:column rowspan="3" headerText="Manufacturer" />
-                <p:column colspan="8" headerText="Sales" />
+                <p:column rowspan="3" headerText="Manufacturer"/>
+                <p:column colspan="8" headerText="Sales"/>
             </p:row>
 
             <p:row>
-                <p:column colspan="4" headerText="Sales Report" />
-                <p:column colspan="4" headerText="Profit Report" />
+                <p:column colspan="4" headerText="Sales Report"/>
+                <p:column colspan="4" headerText="Profit Report"/>
             </p:row>
 
             <p:row>
-                <p:column headerText="First Quarter" />
-                <p:column headerText="Second Quarter" />
-                <p:column headerText="Third Quarter" />
-                <p:column headerText="Fourth Quarter" />
+                <p:column headerText="First Quarter"/>
+                <p:column headerText="Second Quarter"/>
+                <p:column headerText="Third Quarter"/>
+                <p:column headerText="Fourth Quarter"/>
 
-                <p:column headerText="First Quarter" />
-                <p:column headerText="Second Quarter" />
-                <p:column headerText="Third Quarter" />
-                <p:column headerText="Fourth Quarter" />
+                <p:column headerText="First Quarter"/>
+                <p:column headerText="Second Quarter"/>
+                <p:column headerText="Third Quarter"/>
+                <p:column headerText="Fourth Quarter"/>
             </p:row>
         </p:columnGroup>
 
         <p:column>
-            <h:outputText value="#{sale.manufacturer}" />
+            <h:outputText value="#{sale.manufacturer}"/>
         </p:column>
 
         <p:column>
-            <h:outputText value="#{sale.q1Sale}" />
-
-        </p:column>
-
-        <p:column>
-            <h:outputText value="#{sale.q2Sale}" />
+            <h:outputText value="#{sale.q1Sale}"/>
 
         </p:column>
 
         <p:column>
-            <h:outputText value="#{sale.q3Sale}" />
+            <h:outputText value="#{sale.q2Sale}"/>
 
         </p:column>
 
         <p:column>
-            <h:outputText value="#{sale.q4Sale}" />
-
-        </p:column>
-        <p:column>
-            <h:outputText value="#{sale.q1Profit}" />
+            <h:outputText value="#{sale.q3Sale}"/>
 
         </p:column>
 
         <p:column>
-            <h:outputText value="#{sale.q2Profit}" />
+            <h:outputText value="#{sale.q4Sale}"/>
+
+        </p:column>
+        <p:column>
+            <h:outputText value="#{sale.q1Profit}"/>
 
         </p:column>
 
         <p:column>
-            <h:outputText value="#{sale.q3Profit}" />
+            <h:outputText value="#{sale.q2Profit}"/>
 
         </p:column>
 
         <p:column>
-            <h:outputText value="#{sale.q4Profit}" />
+            <h:outputText value="#{sale.q3Profit}"/>
+
+        </p:column>
+
+        <p:column>
+            <h:outputText value="#{sale.q4Profit}"/>
 
         </p:column>
         <p:columnGroup type="footer">
             <p:row>
-                <p:column colspan="1" style="text-align:right" footerText="Totals:" />
+                <p:column colspan="1" style="text-align:right" footerText="Totals:"/>
 
-                <p:column footerText="#{groupedTableController.q1TotSales}$" />
-                <p:column footerText="#{groupedTableController.q2TotSales}$" />
-                <p:column footerText="#{groupedTableController.q3TotSales}$" />
-                <p:column footerText="#{groupedTableController.q4TotSales}$" />
+                <p:column footerText="#{groupedTableController.q1TotSales}$"/>
+                <p:column footerText="#{groupedTableController.q2TotSales}$"/>
+                <p:column footerText="#{groupedTableController.q3TotSales}$"/>
+                <p:column footerText="#{groupedTableController.q4TotSales}$"/>
 
-                <p:column footerText="#{groupedTableController.q1TotProfit}$" />
-                <p:column footerText="#{groupedTableController.q2TotProfit}$" />
-                <p:column footerText="#{groupedTableController.q3TotProfit}$" />
-                <p:column footerText="#{groupedTableController.q4TotProfit}$" />
+                <p:column footerText="#{groupedTableController.q1TotProfit}$"/>
+                <p:column footerText="#{groupedTableController.q2TotProfit}$"/>
+                <p:column footerText="#{groupedTableController.q3TotProfit}$"/>
+                <p:column footerText="#{groupedTableController.q4TotProfit}$"/>
             </p:row>
         </p:columnGroup>
 
@@ -102,58 +102,60 @@
     <p:spacer height="30"></p:spacer>
     <p:panel header="Export PDF">
         <p:commandLink id="pdf" ajax="false">
-            <p:graphicImage value="/resources/images/pdf.png" />
-            <pe:exporter  type="pdf" target="groupingTable" fileName="GroupedTable" tableTitle="Sales/Profits Analysis" facetBackground="#F88017" facetFontSize="10" facetFontColor="#000000" facetFontStyle="BOLD" cellFontColor="#000000" cellFontSize="8" cellFontStyle="NORMAL"/>
+            <p:graphicImage value="/resources/images/pdf.png"/>
+            <pe:exporter type="pdf" target="groupingTable" fileName="GroupedTable" tableTitle="Sales/Profits Analysis"
+                         facetBackground="#F88017" facetFontSize="10" facetFontColor="#000000" facetFontStyle="BOLD"
+                         cellFontColor="#000000" cellFontSize="8" cellFontStyle="NORMAL"/>
         </p:commandLink>
     </p:panel>
     <p:spacer height="30"></p:spacer>
     <p:dataTable id="playersSubTable" var="player" value="#{subTableController.players}">
 
         <f:facet name="header">
-            <h:outputText value="ICC Players Statistics" />
+            <h:outputText value="ICC Players Statistics"/>
         </f:facet>
 
 
         <p:columnGroup type="header">
             <p:row>
                 <p:column rowspan="2" headerText="Player " sortBy="#{player.name}-#{player.number}-#{player.country}"/>
-                <p:column colspan="3" headerText="Player Statistics" />
+                <p:column colspan="3" headerText="Player Statistics"/>
             </p:row>
 
             <p:row>
-                <p:column headerText="Score" />
-                <p:column headerText="Wickets" />
-                <p:column headerText="Catches" />
+                <p:column headerText="Score"/>
+                <p:column headerText="Wickets"/>
+                <p:column headerText="Catches"/>
             </p:row>
         </p:columnGroup>
 
         <p:subTable var="details" value="#{player.details}">
             <f:facet name="header">
-                <h:outputText value="#{player.name}-#{player.number}-#{player.country}" />
+                <h:outputText value="#{player.name}-#{player.number}-#{player.country}"/>
             </f:facet>
 
             <p:column>
-                <h:outputText value=" #{details.year}" />
+                <h:outputText value=" #{details.year}"/>
             </p:column>
 
             <p:column>
-                <h:outputText value=" #{details.runs}" />
+                <h:outputText value=" #{details.runs}"/>
             </p:column>
 
             <p:column>
-                <h:outputText value="  #{details.wickets}" />
+                <h:outputText value="  #{details.wickets}"/>
             </p:column>
 
             <p:column>
-                <h:outputText value=" #{details.catches}" />
+                <h:outputText value=" #{details.catches}"/>
             </p:column>
 
             <p:columnGroup type="footer">
                 <p:row>
                     <p:column footerText="Totals: " style="text-align:right"/>
-                    <p:column footerText="#{player.totalRuns}" />
-                    <p:column footerText="#{player.totalWickets}" />
-                    <p:column footerText="#{player.totalCatches}" />
+                    <p:column footerText="#{player.totalRuns}"/>
+                    <p:column footerText="#{player.totalWickets}"/>
+                    <p:column footerText="#{player.totalCatches}"/>
                 </p:row>
             </p:columnGroup>
         </p:subTable>
@@ -163,9 +165,12 @@
 
     <p:panel header="Export PDF">
         <p:commandLink id="pdfSubtable" ajax="false">
-            <p:graphicImage value="/resources/images/pdf.png" />
+            <p:graphicImage value="/resources/images/pdf.png"/>
 
-            <pe:exporter type="pdf" target="playersSubTable" fileName="PlayersStatistics" tableTitle="Players Statistics" isSubTable="true" facetBackground="#008000" facetFontSize="15" facetFontColor="#FFFFFF" facetFontStyle="BOLD" cellFontColor="#0000FF" cellFontSize="12" cellFontStyle="NORMAL"/>
+            <pe:exporter type="pdf" target="playersSubTable" fileName="PlayersStatistics"
+                         tableTitle="Players Statistics" isSubTable="true" facetBackground="#008000" facetFontSize="15"
+                         facetFontColor="#FFFFFF" facetFontStyle="BOLD" cellFontColor="#0000FF" cellFontSize="12"
+                         cellFontStyle="NORMAL"/>
 
         </p:commandLink>
 

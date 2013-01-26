@@ -31,8 +31,8 @@ import javax.faces.context.FacesContext;
 /**
  * SubTableController
  *
- * @author  Sudheer Jonna / last modified by $Author$
- * @since   0.7.0
+ * @author Sudheer Jonna / last modified by $Author$
+ * @since 0.7.0
  */
 
 
@@ -49,31 +49,31 @@ public class SubTableController implements Serializable {
     public void populatePlayers() {
         players = new ArrayList<Player>();
 
-        Player sachin = new Player("Sachin", 10,"India");
-        sachin.getDetails().add(new PlayerDetails("2001", 800, 7,12));
-        sachin.getDetails().add(new PlayerDetails("2002", 933, 13,11));
-        sachin.getDetails().add(new PlayerDetails("2003", 900, 10,33));
-        sachin.getDetails().add(new PlayerDetails("2004", 600, 15,8));
-        sachin.getDetails().add(new PlayerDetails("2005", 1000, 22,3));
-        sachin.getDetails().add(new PlayerDetails("2006", 700, 5,9));
+        Player sachin = new Player("Sachin", 10, "India");
+        sachin.getDetails().add(new PlayerDetails("2001", 800, 7, 12));
+        sachin.getDetails().add(new PlayerDetails("2002", 933, 13, 11));
+        sachin.getDetails().add(new PlayerDetails("2003", 900, 10, 33));
+        sachin.getDetails().add(new PlayerDetails("2004", 600, 15, 8));
+        sachin.getDetails().add(new PlayerDetails("2005", 1000, 22, 3));
+        sachin.getDetails().add(new PlayerDetails("2006", 700, 5, 9));
         players.add(sachin);
 
-        Player ponting = new Player("Ponting", 6,"Australia");
-        ponting.getDetails().add(new PlayerDetails("2001", 900, 5,11));
-        ponting.getDetails().add(new PlayerDetails("2002", 600, 2,13));
-        ponting.getDetails().add(new PlayerDetails("2003", 700, 13,9));
-        ponting.getDetails().add(new PlayerDetails("2004", 907, 9,8));
-        ponting.getDetails().add(new PlayerDetails("2005", 988, 3,20));
-        ponting.getDetails().add(new PlayerDetails("2006", 400, 6,16));
+        Player ponting = new Player("Ponting", 6, "Australia");
+        ponting.getDetails().add(new PlayerDetails("2001", 900, 5, 11));
+        ponting.getDetails().add(new PlayerDetails("2002", 600, 2, 13));
+        ponting.getDetails().add(new PlayerDetails("2003", 700, 13, 9));
+        ponting.getDetails().add(new PlayerDetails("2004", 907, 9, 8));
+        ponting.getDetails().add(new PlayerDetails("2005", 988, 3, 20));
+        ponting.getDetails().add(new PlayerDetails("2006", 400, 6, 16));
         players.add(ponting);
 
-        Player lara = new Player("Lara", 10,"Trinidad");
-        lara.getDetails().add(new PlayerDetails("2001", 600, 12,22));
-        lara.getDetails().add(new PlayerDetails("2002", 700, 9,17));
-        lara.getDetails().add(new PlayerDetails("2003", 999, 14,9));
-        lara.getDetails().add(new PlayerDetails("2004", 600, 7,2));
-        lara.getDetails().add(new PlayerDetails("2005", 888, 6,5));
-        lara.getDetails().add(new PlayerDetails("2006", 700, 22,9));
+        Player lara = new Player("Lara", 10, "Trinidad");
+        lara.getDetails().add(new PlayerDetails("2001", 600, 12, 22));
+        lara.getDetails().add(new PlayerDetails("2002", 700, 9, 17));
+        lara.getDetails().add(new PlayerDetails("2003", 999, 14, 9));
+        lara.getDetails().add(new PlayerDetails("2004", 600, 7, 2));
+        lara.getDetails().add(new PlayerDetails("2005", 888, 6, 5));
+        lara.getDetails().add(new PlayerDetails("2006", 700, 22, 9));
         players.add(lara);
     }
 
@@ -92,7 +92,8 @@ public class SubTableController implements Serializable {
 
         private List<PlayerDetails> details = new ArrayList<PlayerDetails>();
 
-        public Player() {}
+        public Player() {
+        }
 
         public Player(String name) {
             this.name = name;
@@ -103,7 +104,6 @@ public class SubTableController implements Serializable {
             this.number = number;
             this.country = country;
         }
-
 
 
         public Player(String name, int number) {
@@ -146,7 +146,7 @@ public class SubTableController implements Serializable {
         public int getTotalRuns() {
             int sum = 0;
 
-            for(PlayerDetails d : details) {
+            for (PlayerDetails d : details) {
                 sum += d.getRuns();
             }
 
@@ -156,16 +156,17 @@ public class SubTableController implements Serializable {
         public int getTotalWickets() {
             int sum = 0;
 
-            for(PlayerDetails d : details) {
+            for (PlayerDetails d : details) {
                 sum += d.getWickets();
             }
 
             return sum;
         }
+
         public int getTotalCatches() {
             int sum = 0;
 
-            for(PlayerDetails d : details) {
+            for (PlayerDetails d : details) {
                 sum += d.getCatches();
             }
 
@@ -174,12 +175,12 @@ public class SubTableController implements Serializable {
 
         @Override
         public boolean equals(Object obj) {
-            if(obj == null)
+            if (obj == null)
                 return false;
-            if(!(obj instanceof Player))
+            if (!(obj instanceof Player))
                 return false;
 
-            return ((Player)obj).getNumber() == this.number;
+            return ((Player) obj).getNumber() == this.number;
         }
 
         @Override
@@ -194,6 +195,7 @@ public class SubTableController implements Serializable {
         }
 
     }
+
     public class PlayerDetails implements Serializable {
 
         private String year;
@@ -204,7 +206,8 @@ public class SubTableController implements Serializable {
 
         private int catches;
 
-        public PlayerDetails() {}
+        public PlayerDetails() {
+        }
 
         public PlayerDetails(String year, int runs, int wickets, int catches) {
             this.year = year;
@@ -245,4 +248,4 @@ public class SubTableController implements Serializable {
             this.catches = catches;
         }
     }
-    }
+}
