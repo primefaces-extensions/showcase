@@ -16,19 +16,15 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller;
-
-import java.io.Serializable;
-import java.lang.Math;
-import java.lang.String;
-import java.lang.System;
-import java.util.ArrayList;
-import java.util.List;
+package org.primefaces.extensions.showcase.controller.exporter;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MessageTableController

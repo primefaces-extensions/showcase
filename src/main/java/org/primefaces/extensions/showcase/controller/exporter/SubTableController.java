@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.primefaces.extensions.showcase.controller;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+package org.primefaces.extensions.showcase.controller.exporter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SubTableController
