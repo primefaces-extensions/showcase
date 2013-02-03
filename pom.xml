@@ -305,7 +305,7 @@
 	<properties>
 		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
 		<primefaces-extensions.new-components>exporter;</primefaces-extensions.new-components>
-		<primefaces-extensions.updated-components>triStateCheckbox;triStateManyCheckbox;ajaxErrorHandler;tooltip;imageAreaSelect;timePicker;inputNumber</primefaces-extensions.updated-components>
+		<primefaces-extensions.updated-components>ckEditor;triStateCheckbox;triStateManyCheckbox;ajaxErrorHandler;tooltip;imageAreaSelect;timePicker;inputNumber</primefaces-extensions.updated-components>
 
 		<mojarra.version>2.1.17</mojarra.version>
 		<myfaces.version>2.1.10</myfaces.version>
