@@ -44,7 +44,7 @@ public class InputNumberController implements Serializable {
 	private Double input6 = new Double(0);
 	private Double input7 = null;
 	private Double input8 = null;
-	private Double input9 = null;
+	private Double input9 = new Double(0);
 	private Double input10 = null;
 
 	private String unit;
