@@ -25,6 +25,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.extensions.event.CompleteEvent;
+
 /**
  * CodeMirrorController
  *
@@ -52,11 +54,11 @@ public class CodeMirrorController implements Serializable {
 		}
 	}
 
-	public List<String> complete(final String token, final String context) {
+	public List<String> complete(final CompleteEvent event) {
 		final ArrayList<String> suggestions = new ArrayList<String>();
 
-		suggestions.add("context: " + context);
-		suggestions.add("token: " + token);
+		suggestions.add("context: " + event.getContext());
+		suggestions.add("token: " + event.getToken());
 
 		return suggestions;
 	}
