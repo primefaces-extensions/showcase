@@ -29,11 +29,20 @@
 
 <p:spacer height="30"/>
 
-<p:panel header="Export PDF">
+<p:panel header="Export PDF and Excel">
     <p:commandLink id="pdf" ajax="false">
         <p:graphicImage value="/resources/images/pdf.png"/>
 
         <pe:exporter type="pdf" target="dynamicColumnsTable" fileName="dynamicColumnsTable"/>
+
+    </p:commandLink>
+
+    <p:spacer height="20"/>
+
+    <p:commandLink id="xls" ajax="false">
+        <p:graphicImage value="/resources/images/excel.png"/>
+
+        <pe:exporter type="xlsx" target="dynamicColumnsTable" fileName="dynamicColumnsTable"/>
 
     </p:commandLink>
 </p:panel>
