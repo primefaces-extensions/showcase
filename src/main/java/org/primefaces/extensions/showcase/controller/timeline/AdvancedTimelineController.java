@@ -26,41 +26,48 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.primefaces.extensions.model.timeline.DefaultTimeLine;
-import org.primefaces.extensions.model.timeline.DefaultTimelineEvent;
-import org.primefaces.extensions.model.timeline.Timeline;
+import org.primefaces.extensions.model.timeline_old.DefaultTimeLine;
+import org.primefaces.extensions.model.timeline_old.DefaultTimelineEvent;
+import org.primefaces.extensions.model.timeline_old.Timeline;
 
 /**
- * @author Nilesh Mali / last modified by $Author$
+ * DOCUMENT_ME
+ *
+ *
+ * @author  Nilesh Mali / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
 @ViewScoped
 public class AdvancedTimelineController implements Serializable {
 
-    private List<Timeline> timelines;
+	private List<Timeline> timelines;
 
-    public AdvancedTimelineController() {
-        timelines = new ArrayList<Timeline>();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 1);
-        Date start, end;
-        for (int group = 1; group <= 5; group++) {
-            Timeline timeline = new DefaultTimeLine(String.valueOf(group), "Group" + group);
-            cal.setTime(new Date());
-            cal.set(Calendar.HOUR_OF_DAY, 1);
-            for (int event = 1; event < 6; event++) {
-                cal.add(Calendar.HOUR_OF_DAY, 1 + 4 * ((Math.random() < 0.2) ? 1 : 0));
-                start = cal.getTime();
-                cal.add(Calendar.HOUR_OF_DAY, 2 + (int) (Math.floor(Math.random() * 4)));
-                end = cal.getTime();
-                timeline.addEvent(new DefaultTimelineEvent("Event " + event, start, (Math.random() < 0.25) ? null : end));
-            }
-            timelines.add(timeline);
-        }
-    }
+	public AdvancedTimelineController() {
+		timelines = new ArrayList<Timeline>();
 
-    public List<Timeline> getTimelines() {
-        return timelines;
-    }
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, 1);
+
+		Date start;
+		Date end;
+		for (int group = 1; group <= 5; group++) {
+			Timeline timeline = new DefaultTimeLine(String.valueOf(group), "Group" + group);
+			cal.setTime(new Date());
+			cal.set(Calendar.HOUR_OF_DAY, 1);
+			for (int event = 1; event < 6; event++) {
+				cal.add(Calendar.HOUR_OF_DAY, 1 + 4 * ((Math.random() < 0.2) ? 1 : 0));
+				start = cal.getTime();
+				cal.add(Calendar.HOUR_OF_DAY, 2 + (int) (Math.floor(Math.random() * 4)));
+				end = cal.getTime();
+				timeline.addEvent(new DefaultTimelineEvent("Event " + event, start, (Math.random() < 0.25) ? null : end));
+			}
+
+			timelines.add(timeline);
+		}
+	}
+
+	public List<Timeline> getTimelines() {
+		return timelines;
+	}
 }
