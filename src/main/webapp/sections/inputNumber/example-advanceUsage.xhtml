@@ -51,7 +51,15 @@
     <h:outputText value="Empty value (empty) not required"/>
     <pe:inputNumber widgetVar="f4" id="Input10" value="#{inputNumberController.input10}" symbol="%"
                     symbolPosition="s" emptyValue="empty"/>
-
+    <span/>
+    
+    <h:outputText value="15 decimals using Double"/>
+    <pe:inputNumber widgetVar="f5" id="Input11" value="#{inputNumberController.input11}" decimalPlaces="15" style="width: 150px"/>
+    <span/>
+    
+    <h:outputText value="15 Decimals using BigDecimal" />
+    <pe:inputNumber widgetVar="f6" id="Input12" value="#{inputNumberController.input12}" decimalPlaces="15" style="width: 150px"/>
+   
 </h:panelGrid>
 
 <p:commandButton value="Submit" process="inputNumberGrid" update="growl display"
@@ -66,6 +74,8 @@
         <h:outputText value="Value of fifth input = #{inputNumberController.input8}"/>
         <h:outputText value="Value of sixth input = #{inputNumberController.input9}"/>
         <h:outputText value="Value of seventh input = #{inputNumberController.input10}"/>
+        <h:outputText value="Value of eighth input = #{inputNumberController.input11}"/>
+        <h:outputText value="Value of ninth input = #{inputNumberController.input12}"/>
     </p:panelGrid>
 </p:dialog>
 

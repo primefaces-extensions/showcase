@@ -17,6 +17,7 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -46,6 +47,9 @@ public class InputNumberController implements Serializable {
 	private Double input8 = null;
 	private Double input9 = new Double(0);
 	private Double input10 = null;
+        
+        private Double input11 = new Double(0);
+        private BigDecimal input12 = new BigDecimal(0);
 
 	private String unit;
 	private String roundMethod;
@@ -53,6 +57,9 @@ public class InputNumberController implements Serializable {
 	private Distance distance;
 
 	public InputNumberController() {
+            
+               
+            
 		unit = " kmh";
 		roundMethod = "S";
 		decimalPlaces = 2;
@@ -64,7 +71,10 @@ public class InputNumberController implements Serializable {
 		input3 = 0d;
 		input4 = 0d;
 		input5 = 251.31;
-		input6 = 60d;
+		input6 = 60d;    
+                
+                input11 = 1234.000000001 ;   
+                input12 = new BigDecimal("1234.000000001");
 	}
 
 	public Double getInput1() {
@@ -146,6 +156,22 @@ public class InputNumberController implements Serializable {
 	public void setInput10(Double input10) {
 		this.input10 = input10;
 	}
+
+        public Double getInput11() {           
+             return input11;
+        }
+
+        public void setInput11(Double input11) {  
+            this.input11 = input11;
+        }
+
+        public BigDecimal getInput12() {          
+            return input12;
+        }
+
+        public void setInput12(BigDecimal input12) {            
+            this.input12 = input12;
+        }
 
 	public String getUnit() {
 		return unit;
