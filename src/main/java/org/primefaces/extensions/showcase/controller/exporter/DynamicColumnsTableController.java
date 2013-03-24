@@ -33,7 +33,6 @@ import java.util.UUID;
  * @since   0.7.0
  * @version $Revision: 1.0 $
  */
-
 @ManagedBean
 @ViewScoped
 public class DynamicColumnsTableController implements Serializable {

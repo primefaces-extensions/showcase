@@ -23,32 +23,36 @@ import java.util.Calendar;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.primefaces.extensions.model.timeline.DefaultTimeLine;
-import org.primefaces.extensions.model.timeline.DefaultTimelineEvent;
-import org.primefaces.extensions.model.timeline.Timeline;
+import org.primefaces.extensions.model.timeline_old.DefaultTimeLine;
+import org.primefaces.extensions.model.timeline_old.DefaultTimelineEvent;
+import org.primefaces.extensions.model.timeline_old.Timeline;
 
 /**
- * @author Nilesh Mali / last modified by $Author$
+ * DOCUMENT_ME
+ *
+ *
+ * @author  Nilesh Mali / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
 @ViewScoped
 public class PerformanceController implements Serializable {
 
-    private Timeline timeline;
+	private Timeline timeline;
 
-    public PerformanceController() {
-        timeline = new DefaultTimeLine("pt", "Timeline Performance");
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_YEAR, -5);
-        cal.set(Calendar.HOUR_OF_DAY, 1);
-        for (int event = 1; event < 200; ++event) {
-            cal.add(Calendar.HOUR_OF_DAY, 1 + 4 * ((Math.random() < 0.2) ? 1 : 0));
-            timeline.addEvent(new DefaultTimelineEvent("Event " + event, cal.getTime()));
-        }        
-    }
+	public PerformanceController() {
+		timeline = new DefaultTimeLine("pt", "Timeline Performance");
 
-    public Timeline getTimeline() {
-        return timeline;
-    }
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_YEAR, -5);
+		cal.set(Calendar.HOUR_OF_DAY, 1);
+		for (int event = 1; event < 200; ++event) {
+			cal.add(Calendar.HOUR_OF_DAY, 1 + 4 * ((Math.random() < 0.2) ? 1 : 0));
+			timeline.addEvent(new DefaultTimelineEvent("Event " + event, cal.getTime()));
+		}
+	}
+
+	public Timeline getTimeline() {
+		return timeline;
+	}
 }

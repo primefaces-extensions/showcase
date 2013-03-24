@@ -24,42 +24,48 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.primefaces.extensions.model.timeline.DefaultTimeLine;
-import org.primefaces.extensions.model.timeline.DefaultTimelineEvent;
-import org.primefaces.extensions.model.timeline.Timeline;
-import org.primefaces.extensions.model.timeline.TimelineEvent;
+import org.primefaces.extensions.model.timeline_old.DefaultTimeLine;
+import org.primefaces.extensions.model.timeline_old.DefaultTimelineEvent;
+import org.primefaces.extensions.model.timeline_old.Timeline;
+import org.primefaces.extensions.model.timeline_old.TimelineEvent;
 
 /**
- * @author Nilesh Mali / last modified by $Author$
+ * DOCUMENT_ME
+ *
+ *
+ * @author  Nilesh Mali / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
 @ViewScoped
 public class CustomStyleController implements Serializable {
 
-    private Timeline timeline;
+	private Timeline timeline;
 
-    public CustomStyleController() {
-        timeline = new DefaultTimeLine("pt", "Custom Style");
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_YEAR, -5);
-        cal.set(Calendar.HOUR_OF_DAY, 1);
-        TimelineEvent timelineEvent;
-        Date start, end;
-        for (int event = 1; event < 10; ++event) {
-            cal.add(Calendar.HOUR_OF_DAY, 1 + 2 * ((Math.random() < 0.2) ? 1 : 0));
-            start = cal.getTime();
-            cal.add(Calendar.HOUR_OF_DAY, 2 + (int) (Math.floor(Math.random() * 4)));
-            end = cal.getTime();
-            timelineEvent = new DefaultTimelineEvent("Event " + event, start, end);
+	public CustomStyleController() {
+		timeline = new DefaultTimeLine("pt", "Custom Style");
 
-            timelineEvent.setStyleClass(Math.random() > 0.25 ? "green" : "red");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_YEAR, -5);
+		cal.set(Calendar.HOUR_OF_DAY, 1);
 
-            timeline.addEvent(timelineEvent);
-        }        
-    }
+		TimelineEvent timelineEvent;
+		Date start;
+		Date end;
+		for (int event = 1; event < 10; ++event) {
+			cal.add(Calendar.HOUR_OF_DAY, 1 + 2 * ((Math.random() < 0.2) ? 1 : 0));
+			start = cal.getTime();
+			cal.add(Calendar.HOUR_OF_DAY, 2 + (int) (Math.floor(Math.random() * 4)));
+			end = cal.getTime();
+			timelineEvent = new DefaultTimelineEvent("Event " + event, start, end);
 
-    public Timeline getTimeline() {
-        return timeline;
-    }
+			timelineEvent.setStyleClass(Math.random() > 0.25 ? "green" : "red");
+
+			timeline.addEvent(timelineEvent);
+		}
+	}
+
+	public Timeline getTimeline() {
+		return timeline;
+	}
 }

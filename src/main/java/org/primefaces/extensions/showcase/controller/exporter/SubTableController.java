@@ -28,7 +28,6 @@ import java.util.List;
  * @since   0.7.0
  * @version $Revision: 1.0 $
  */
-
 @ManagedBean
 @ViewScoped
 public class SubTableController implements Serializable {

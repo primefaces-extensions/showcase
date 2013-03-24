@@ -73,13 +73,23 @@
 
     <p:spacer height="20"/>
 
-    <p:panel header="Export PDF">
+    <p:panel header="Export PDF and Excel">
         <p:commandLink id="pdf" ajax="false">
             <p:graphicImage value="/resources/images/pdf.png"/>
 
             <pe:exporter type="pdf" target="cellEditingTable" fileName="CellEditableTable"/>
 
         </p:commandLink>
+
+        <p:spacer height="20"/>
+
+        <p:commandLink id="xls" ajax="false">
+            <p:graphicImage value="/resources/images/excel.png"/>
+
+            <pe:exporter type="xlsx" target="cellEditingTable" fileName="CellEditableTable"/>
+
+        </p:commandLink>
+
     </p:panel>
 
     <p:spacer height="40"/>
@@ -154,13 +164,24 @@
 
 <p:spacer height="20"/>
 
-<p:panel header="Export PDF">
+<p:panel header="Export PDF and Excel">
     <p:commandLink id="pdf1" ajax="false">
         <p:graphicImage value="/resources/images/pdf.png"/>
 
-        <pe:exporter type="pdf" target="rowEditingTable" fileName="RowEditableTable"/>
+        <pe:exporter type="pdf" target="rowEditingTable" fileName="RowEditableTable" cellFontColor="#ffffff" facetBackground="#008000"
+                     facetFontColor="#FFFFFF" />
 
     </p:commandLink>
+
+    <p:spacer height="20"/>
+
+    <p:commandLink id="xls1" ajax="false">
+        <p:graphicImage value="/resources/images/excel.png"/>
+
+        <pe:exporter type="xlsx" target="rowEditingTable" fileName="RowEditableTable"  />
+
+    </p:commandLink>
+
 </p:panel>
 
 <!-- EXAMPLE-SOURCE-END -->
