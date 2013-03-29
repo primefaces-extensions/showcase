@@ -16,7 +16,7 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller;
+package org.primefaces.extensions.showcase.controller.waypoint;
 
 import java.io.Serializable;
 

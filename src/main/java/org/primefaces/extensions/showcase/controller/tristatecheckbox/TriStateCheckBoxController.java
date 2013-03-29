@@ -16,7 +16,7 @@
  * $Id$
  */
 
-package org.primefaces.extensions.showcase.controller;
+package org.primefaces.extensions.showcase.controller.tristatecheckbox;
 
 import java.io.Serializable;
 
