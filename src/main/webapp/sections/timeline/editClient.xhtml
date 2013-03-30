@@ -11,19 +11,49 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-           Cooming soon...
+            If the attribute "editable" is true, the events can be created, edited (content), changed (start / end time) and deleted.
+            Events can only be editable when the attribute "selectable" is true (default). When "editable" is true, the timeline can fire
+            AJAX events "select", "change", "edit", "add", "delete". The global setting "editable" can be overwritten for individual
+            events by setting boolean true or false in field "editable" (see TimelineEvent model class).
+            <p/>
+            <i>How to create, edit, change and delete events?</i> When the timeline is defined as editable, events can be moved to another time by dragging them.
+            When an event with a date range is selected, it has a drag area on the left and right side, with which the start or end dates of the event can be manipulated.
+            By double clicking, the contents of an event can be edited. An event can be deleted by clicking the delete button on the upper right.
+            A new event can be added in different ways: by double clicking in the timeline, or by keeping the Ctrl key down and clicking or dragging in the timeline,
+            or by clicking the "Add" button in the timeline navigation bar (visible when "showButtonNew" is set to true).
+            <p/>
+            The Timeline component in this example contains editable events which can be manipulated by using of the client-side API (widget's methods).
+            The most important widget's methods for event manipulations are <strong>addItem()</strong>, <strong>changeItem()</strong> and <strong>deleteItem()</strong>.
+            The operation on event can be canceled by calling the methods <strong>cancelAdd()</strong>, <strong>cancelChange()</strong> and <strong>cancelDelete()</strong>.
+            This is useful when the operation needs to be approved.
+            <p/>
+            Another feature which is demonstrated here, are read-only events. Events are made read-only on an individual basis (see TimelineEvent model class).
+            <p/>
+            Press the button "Submit" to send all changes and save them on the server-side. We take advantage of the <strong>pe:remoteCommand</strong> and
+            the Json converter <strong>pe:convertJson</strong> to submit current events retrieved by widget's method <strong>getData()</strong>.
+            The Json converter is needed because <strong>getData()</strong> retrieves an array of timeline events in JSON format.
+            <strong>Note:</strong> The content of events may contain additional HTML formatting.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
-
+<h:panelGrid columns="4">
+    <p:inputTextarea style="width:300px; margin-bottom:10px;"/>
+    
+    <p:commandButton value="Add" type="button"/>
+    <p:commandButton value="Change" type="button"/>
+    <p:commandButton value="Delete" type="button"/>
+</h:panelGrid>
+            
+<pe:timeline id="timeline" value="#{editClientTimelineController.model}"
+             editable="true" showButtonNew="true"/>
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/timeline/eventFeatures.xhtml')}
+${showcase:getFileContent('/sections/timeline/editClient.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/BasicTimelineController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/EditClientTimelineController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

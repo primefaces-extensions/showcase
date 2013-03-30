@@ -11,66 +11,93 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            This example demonstrates configurable options such as "axisOnTop", "editable", "selectable",
-            "zoomable", "moveable", "eventStyle", "showCurrentTime", "showButtonNew", "showNavigation" and some other.
+            This example demonstrates configurable options such as "selectable", "zoomable", "moveable", "themable",
+            "eventStyle", "axisOnTop", "showCurrentTime", "showNavigation".
             <p/>
-            <strong>Note:</strong> If the attribute "editable" is true, the events can be created, edited (content), changed (start / end time) and deleted.
-            Events can only be editable when the option selectable is true (default). When editable is true, the timeline can fire events "change", "edit", "add", "delete".
-            This global setting "editable" can be overwritten for individual events by setting a value in field "editable".
-            <p/>
-            How to create, edit, change and delete events? When the timeline is defined as editable, events can be moved to another time by dragging them.
-            By double clicking, the contents of an event can be edited. An event can be deleted by clicking the delete button on the upper right.
-            A new event can be added in different ways: by double clicking in the timeline, or by keeping the Ctrl key down and clicking or dragging in the timeline,
-            or by clicking the add button in the upper left of the timeline (if "showButtonNew" is set to true), and then clicking or dragging at the right location in the timeline.
-            <p/>
-            The Timeline below shows the release history of the Primefaces Extensions. The content of the events may contain additional HTML formatting.
+            The Timeline below shows the release history of the Primefaces Extensions. It is selectable.
+            That means, you can click on any event and calls a server-side listener.
+            The listener gets a parameter <strong>TimelineSelectEvent</strong> which contains the clicked TimelineEvent object.
             <strong>Tip:</strong> Use mouse scroll wheel for zoom-in and zoom-out.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
 <p:growl id="growl" showSummary="true" showDetail="true" autoUpdate="true"/>
 
-<p:fieldset>
-    <ui:remove>
-        <h:panelGrid columns="6"
-                     columnClasses="formColumn1,formColumn2,formColumn1,formColumn2,formColumn1,formColumn2">
-            <h:outputLabel value="Axis Position"/>
-            <p:selectOneButton id="axisPosition"
-                               value="#{basicTimelineController.axisPosition}">
-                <f:selectItem itemLabel="Bottom" itemValue="bottom"/>
-                <f:selectItem itemLabel="Top" itemValue="top"/>
-                <p:ajax event="change" process="@this" update="timeline"/>
-            </p:selectOneButton>
-
-            <h:outputLabel value="Event Style"/>
-            <p:selectOneButton id="eventStyle"
-                               value="#{basicTimelineController.eventStyle}">
-                <f:selectItem itemLabel="Dot" itemValue="dot"/>
-                <f:selectItem itemLabel="Box" itemValue="box"/>
-                <p:ajax event="change" process="@this" update="timeline"/>
-            </p:selectOneButton>
-
-            <h:outputLabel value="Show Navigation"/>
-            <p:selectBooleanButton id="navigation" onLabel="Yes" offLabel="No"
-                                   value="#{basicTimelineController.showNavigation}">
-                <p:ajax event="change" process="@this" update="timeline"/>
-            </p:selectBooleanButton>
-        </h:panelGrid>
-    </ui:remove>
+<p:fieldset style="width:1%; white-space:nowrap;">
+    <h:panelGrid columns="8" columnClasses="formColumn,,formColumn,,formColumn,,formColumn,,">
+        <h:outputText value="Selectable"/>
+        <p:selectBooleanButton id="selectable" onLabel="Yes" offLabel="No"
+                               value="#{basicTimelineController.selectable}">
+            <p:ajax event="change" process="@this" update="timeline"/>
+        </p:selectBooleanButton>
+        
+        <h:outputText value="Zoomable"/>
+        <p:selectBooleanButton id="zoomable" onLabel="Yes" offLabel="No"
+                               value="#{basicTimelineController.zoomable}">
+            <p:ajax event="change" process="@this" update="timeline"/>
+        </p:selectBooleanButton>
+        
+        <h:outputText value="Moveable"/>
+        <p:selectBooleanButton id="moveable" onLabel="Yes" offLabel="No"
+                               value="#{basicTimelineController.moveable}">
+            <p:ajax event="change" process="@this" update="timeline"/>
+        </p:selectBooleanButton>
+        
+        <h:outputText value="Themable"/>
+        <p:selectBooleanButton id="themable" onLabel="Yes" offLabel="No"
+                               value="#{basicTimelineController.themable}">
+            <p:ajax event="change" process="@this" update="timeline"/>
+        </p:selectBooleanButton>
+        
+        <h:outputText value="Event Style"/>
+        <p:selectOneButton id="eventStyle"
+                           value="#{basicTimelineController.eventStyle}">
+            <f:selectItem itemLabel="Dot" itemValue="dot"/>
+            <f:selectItem itemLabel="Box" itemValue="box"/>
+            <p:ajax event="change" process="@this" update="timeline"/>
+        </p:selectOneButton>
+        
+        <h:outputText value="Axis On Top"/>
+        <p:selectBooleanButton id="axisOnTop" onLabel="Yes" offLabel="No"
+                               value="#{basicTimelineController.axisOnTop}">
+            <p:ajax event="change" process="@this" update="timeline"/>
+        </p:selectBooleanButton>
+        
+        <h:outputText value="Show Current Time"/>
+        <p:selectBooleanButton id="currentTime" onLabel="Yes" offLabel="No"
+                               value="#{basicTimelineController.showCurrentTime}">
+            <p:ajax event="change" process="@this" update="timeline"/>
+        </p:selectBooleanButton>
+    
+        <h:outputText value="Show Navigation"/>
+        <p:selectBooleanButton id="navigation" onLabel="Yes" offLabel="No"
+                               value="#{basicTimelineController.showNavigation}">
+            <p:ajax event="change" process="@this" update="timeline"/>
+        </p:selectBooleanButton>
+    </h:panelGrid>
 </p:fieldset>
 
 <p:spacer width="100%" height="10"/>
 
 <pe:timeline id="timeline" value="#{basicTimelineController.model}" height="250px"
-             axisOnTop="#{basicTimelineController.axisOnTop}"
              selectable="#{basicTimelineController.selectable}"
              zoomable="#{basicTimelineController.zoomable}"
              moveable="#{basicTimelineController.moveable}"
+             themable="#{basicTimelineController.themable}"
+             axisOnTop="#{basicTimelineController.axisOnTop}"             
              eventStyle="#{basicTimelineController.eventStyle}"
              showCurrentTime="#{basicTimelineController.showCurrentTime}"
              showNavigation="#{basicTimelineController.showNavigation}">
     <p:ajax event="select" listener="#{basicTimelineController.onSelect}"/>
 </pe:timeline>
+            
+<h:outputStylesheet id="timelineCSS">
+    table .formColumn {
+        padding: 0 5px 0 20px;
+        text-align: right;
+        white-space: nowrap;
+    }       
+</h:outputStylesheet>
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
