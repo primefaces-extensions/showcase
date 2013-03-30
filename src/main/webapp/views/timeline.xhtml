@@ -10,10 +10,17 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Timeline visualizes temporal data.
+            The Timeline is an interactive visualization chart to visualize events in time.
             The events can take place on a single date, or have a start and end date (a range).
             You can freely move and zoom in the timeline by dragging and scrolling in the Timeline.
-            The time scale on the axis is adjusted automatically, and supports scales ranging from milliseconds to years.
+            Events can be created, edited, and deleted in the timeline. The time scale on the axis is adjusted automatically, 
+            and supports scales ranging from milliseconds to years.
+            <p/>
+            When the timeline is defined as editable, events can be moved to another time by dragging them.
+            By double clicking, the contents of an event can be changed. An event can be deleted by clicking the delete button 
+            on the upper right. A new event can be added in different ways: by double clicking in the timeline, 
+            or by keeping the Ctrl key down and clicking or dragging in the timeline, or by clicking the add button 
+            in the upper left of the timeline, and then clicking or dragging at the right location in the timeline.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">

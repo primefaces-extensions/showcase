@@ -11,15 +11,25 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Timeline shows Primefaces Extensions release history.
-            <br/>
-            <strong>Tip:</strong> Use mouse scroll wheel for zoom-in and zoom-out.
+            This example demonstrates configurable options such as "axisOnTop", "editable", "selectable",
+            "zoomable", "moveable", "eventStyle", "showCurrentTime", "showButtonNew", "showNavigation" and some other.
+            <p/>
+            <strong>Note:</strong> If the attribute "editable" is true, the events can be created, edited (content), changed (start / end time) and deleted.            
+            Events can only be editable when the option selectable is true (default). When editable is true, the timeline can fire events "change", "edit", "add", "delete".
+            This global setting "editable" can be overwritten for individual events by setting a value in field "editable".
+            <p/>
+            How to create, edit, change and delete events? When the timeline is defined as editable, events can be moved to another time by dragging them.
+            By double clicking, the contents of an event can be edited. An event can be deleted by clicking the delete button on the upper right.
+            A new event can be added in different ways: by double clicking in the timeline, or by keeping the Ctrl key down and clicking or dragging in the timeline,
+            or by clicking the add button in the upper left of the timeline (if "showButtonNew" is set to true), and then clicking or dragging at the right location in the timeline.
+            <p/>
+            The Timeline below shows the release history of the Primefaces Extensions. The content of the events may contain additional HTML formatting. <strong>Tip:</strong> Use mouse scroll wheel for zoom-in and zoom-out.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
 <p:fieldset>
-    <h:panelGrid columns="4"
-                 columnClasses="formColumn1,formColumn2,formColumn1,formColumn2">
+    <ui:remove>
+    <h:panelGrid columns="6" columnClasses="formColumn1,formColumn2,formColumn1,formColumn2,formColumn1,formColumn2">
         <h:outputLabel value="Axis Position"/>
         <p:selectOneButton id="axisPosition"
                            value="#{basicTimelineController.axisPosition}">
@@ -27,6 +37,7 @@
             <f:selectItem itemLabel="Top" itemValue="top"/>
             <p:ajax event="change" process="@this" update="timeline"/>
         </p:selectOneButton>
+        
         <h:outputLabel value="Event Style"/>
         <p:selectOneButton id="eventStyle"
                            value="#{basicTimelineController.eventStyle}">
@@ -34,27 +45,27 @@
             <f:selectItem itemLabel="Box" itemValue="box"/>
             <p:ajax event="change" process="@this" update="timeline"/>
         </p:selectOneButton>
+        
         <h:outputLabel value="Show Navigation"/>
         <p:selectBooleanButton id="navigation" onLabel="Yes" offLabel="No"
                                value="#{basicTimelineController.showNavigation}">
             <p:ajax event="change" process="@this" update="timeline"/>
         </p:selectBooleanButton>
     </h:panelGrid>
+    </ui:remove>
 </p:fieldset>
 
 <p:spacer width="100%" height="10"/>
 
-<pe:timeline id="timeline" value="#{basicTimelineController.timeline}"
-             axisPosition="#{basicTimelineController.axisPosition}"
-             showNavigation="#{basicTimelineController.showNavigation}"
-             eventStyle="#{basicTimelineController.eventStyle}"
-             height="250px" width="100%">
+<pe:timeline id="timeline" value="#{basicTimelineController.model}"
+             
+             height="250px">
 </pe:timeline>
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/timeline/basicUsage.xhtml')}
+${showcase:getFileContent('/sections/timeline/basicFeatures.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/BasicTimelineController.java')}

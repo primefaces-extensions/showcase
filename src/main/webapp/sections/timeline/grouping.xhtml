@@ -11,24 +11,19 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Timeline performance with 200 events.
-            <br/>
-            <strong>Tip:</strong> Use mouse scroll wheel for zoom-in and zoom-out.
+           TODO.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
-            <!-- EXAMPLE-SOURCE-START -->
-            <pe:timeline id="timeline" value="#{performanceController.timeline}"
-                         eventStyle="box"
-                         height="300px" width="100%">
-            </pe:timeline>
-            <!-- EXAMPLE-SOURCE-END -->
+<!-- EXAMPLE-SOURCE-START -->
+
+<!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-            ${showcase:getFileContent('/sections/timeline/performance.xhtml')}
+${showcase:getFileContent('/sections/timeline/grouping.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/PerformanceController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/BasicTimelineController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

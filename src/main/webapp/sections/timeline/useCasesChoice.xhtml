@@ -3,21 +3,15 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
         <p:menu id="useCaseList">
-            <p:menuitem value="Basic Usage" styleClass="#{navigationContext.getMenuitemStyleClass('basicUsage')}"
+            <p:menuitem value="Basic features" styleClass="#{navigationContext.getMenuitemStyleClass('basicFeatures')}"
                         onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                        url="/sections/timeline/basicUsage.jsf"/>
-            <p:menuitem value="Advanced Usage" styleClass="#{navigationContext.getMenuitemStyleClass('advancedUsage')}"
+                        url="/sections/timeline/basicFeatures.jsf"/>
+            <p:menuitem value="Editable, readonly and mergeable events" styleClass="#{navigationContext.getMenuitemStyleClass('eventFeatures')}"
                         onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                        url="/sections/timeline/advancedUsage.jsf"/>
-            <p:menuitem value="Custom Events" styleClass="#{navigationContext.getMenuitemStyleClass('customEvents')}"
+                        url="/sections/timeline/eventFeatures.jsf"/>
+            <p:menuitem value="Grouping" styleClass="#{navigationContext.getMenuitemStyleClass('grouping')}"
                         onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                        url="/sections/timeline/customEvents.jsf"/>
-            <p:menuitem value="Custom Style" styleClass="#{navigationContext.getMenuitemStyleClass('customStyle')}"
-                        onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                        url="/sections/timeline/customStyle.jsf"/>
-            <p:menuitem value="Performance" styleClass="#{navigationContext.getMenuitemStyleClass('performance')}"
-                        onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                        url="/sections/timeline/performance.jsf"/>
+                        url="/sections/timeline/grouping.jsf"/>
         </p:menu>
     </ui:composition>
 </html>

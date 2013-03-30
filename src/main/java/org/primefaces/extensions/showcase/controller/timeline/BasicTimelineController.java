@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 PrimeFaces Extensions.
+ * Copyright 2012-2013 PrimeFaces Extensions.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,50 +20,121 @@ package org.primefaces.extensions.showcase.controller.timeline;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.primefaces.extensions.model.timeline_old.DefaultTimeLine;
-import org.primefaces.extensions.model.timeline_old.DefaultTimelineEvent;
-import org.primefaces.extensions.model.timeline_old.Timeline;
+import org.primefaces.extensions.model.timeline.TimelineEvent;
+import org.primefaces.extensions.model.timeline.TimelineModel;
 
 /**
- * DOCUMENT_ME
+ * BasicTimelineController
  *
- *
- * @author  Nilesh Mali / last modified by $Author$
- * @version $Revision$
+ * @author  Oleg Varaksin / last modified by $Author: $
+ * @version $Revision: 1.0 $
  */
 @ManagedBean
 @ViewScoped
 public class BasicTimelineController implements Serializable {
 
-	private Timeline timeline;
-	private String eventStyle = "dot";
-	private String axisPosition = "bottom";
+	private TimelineModel model;
+
+	// default settings
+	private boolean axisOnTop;
+	private boolean editable;
+	private boolean selectable;
+	private boolean zoomable;
+	private boolean moveable;
+	private String eventStyle = "box";
+	private boolean showCurrentTime = true;
+	private boolean showButtonNew = false;
 	private boolean showNavigation = false;
 
-	public BasicTimelineController() {
-		Calendar cal = Calendar.getInstance();
-		timeline = new DefaultTimeLine("prh", "Primefaces Release History");
-		cal.set(2011, 4, 10);
-		timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.1", cal.getTime()));
-		cal.set(2012, 0, 23);
-		timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.2.0", cal.getTime()));
-		cal.set(2012, 3, 02);
-		timeline.addEvent(new DefaultTimelineEvent("Primefaces Extensions 0.3.0", cal.getTime()));
-		cal.set(2012, 3, 16);
-		timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.4.0", cal.getTime()));
-		cal.set(2012, 5, 10);
-		timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.5.0", cal.getTime()));
-		cal.set(2012, 5, 19);
-		timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.5.1", cal.getTime()));
-		cal.set(2012, 8, 26);
-		timeline.addEvent(new DefaultTimelineEvent("Primefaces-Extensions 0.6.0", cal.getTime()));
+	@PostConstruct
+	protected void initialize() {
 	}
 
-	public Timeline getTimeline() {
-		return timeline;
+	public BasicTimelineController() {
+		model = new TimelineModel();
+
+		Calendar cal = Calendar.getInstance();
+		cal.set(2011, Calendar.MAY, 10);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.1", cal.getTime()));
+
+		cal.set(2012, Calendar.JANUARY, 23);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.2.0", cal.getTime()));
+
+		cal.set(2012, Calendar.APRIL, 2);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.3.0", cal.getTime()));
+
+		cal.set(2012, Calendar.APRIL, 16);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.4.0", cal.getTime()));
+
+		cal.set(2012, Calendar.JUNE, 10);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.5.0", cal.getTime()));
+
+		cal.set(2012, Calendar.JUNE, 19);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.5.1", cal.getTime()));
+
+		cal.set(2012, Calendar.SEPTEMBER, 26);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.6.0", cal.getTime()));
+
+		cal.set(2012, Calendar.OCTOBER, 13);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.6.1", cal.getTime()));
+
+		cal.set(2012, Calendar.DECEMBER, 16);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.6.2", cal.getTime()));
+
+		cal.set(2013, Calendar.FEBRUARY, 3);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.6.3", cal.getTime()));
+	}
+
+	public TimelineModel getModel() {
+		return model;
+	}
+
+	public void setModel(TimelineModel model) {
+		this.model = model;
+	}
+
+	public boolean isAxisOnTop() {
+		return axisOnTop;
+	}
+
+	public void setAxisOnTop(boolean axisOnTop) {
+		this.axisOnTop = axisOnTop;
+	}
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	public boolean isSelectable() {
+		return selectable;
+	}
+
+	public void setSelectable(boolean selectable) {
+		this.selectable = selectable;
+	}
+
+	public boolean isZoomable() {
+		return zoomable;
+	}
+
+	public void setZoomable(boolean zoomable) {
+		this.zoomable = zoomable;
+	}
+
+	public boolean isMoveable() {
+		return moveable;
+	}
+
+	public void setMoveable(boolean moveable) {
+		this.moveable = moveable;
 	}
 
 	public String getEventStyle() {
@@ -74,12 +145,20 @@ public class BasicTimelineController implements Serializable {
 		this.eventStyle = eventStyle;
 	}
 
-	public String getAxisPosition() {
-		return axisPosition;
+	public boolean isShowCurrentTime() {
+		return showCurrentTime;
 	}
 
-	public void setAxisPosition(String axisPosition) {
-		this.axisPosition = axisPosition;
+	public void setShowCurrentTime(boolean showCurrentTime) {
+		this.showCurrentTime = showCurrentTime;
+	}
+
+	public boolean isShowButtonNew() {
+		return showButtonNew;
+	}
+
+	public void setShowButtonNew(boolean showButtonNew) {
+		this.showButtonNew = showButtonNew;
 	}
 
 	public boolean isShowNavigation() {
