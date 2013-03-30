@@ -21,9 +21,12 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.extensions.event.timeline.TimelineSelectEvent;
 import org.primefaces.extensions.model.timeline.TimelineEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
 
@@ -41,20 +44,15 @@ public class BasicTimelineController implements Serializable {
 
 	// default settings
 	private boolean axisOnTop;
-	private boolean editable;
-	private boolean selectable;
-	private boolean zoomable;
-	private boolean moveable;
+	private boolean selectable = true;
+	private boolean zoomable = true;
+	private boolean moveable = true;
 	private String eventStyle = "box";
 	private boolean showCurrentTime = true;
-	private boolean showButtonNew = false;
-	private boolean showNavigation = false;
+	private boolean showNavigation = true;
 
 	@PostConstruct
 	protected void initialize() {
-	}
-
-	public BasicTimelineController() {
 		model = new TimelineModel();
 
 		Calendar cal = Calendar.getInstance();
@@ -89,6 +87,13 @@ public class BasicTimelineController implements Serializable {
 		model.add(new TimelineEvent("Primefaces-Extensions 0.6.3", cal.getTime()));
 	}
 
+	public void onSelect(TimelineSelectEvent e) {
+		TimelineEvent timelineEvent = e.getTimelineEvent();
+
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected event:", timelineEvent.getData().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
 	public TimelineModel getModel() {
 		return model;
 	}
@@ -103,14 +108,6 @@ public class BasicTimelineController implements Serializable {
 
 	public void setAxisOnTop(boolean axisOnTop) {
 		this.axisOnTop = axisOnTop;
-	}
-
-	public boolean isEditable() {
-		return editable;
-	}
-
-	public void setEditable(boolean editable) {
-		this.editable = editable;
 	}
 
 	public boolean isSelectable() {
@@ -151,14 +148,6 @@ public class BasicTimelineController implements Serializable {
 
 	public void setShowCurrentTime(boolean showCurrentTime) {
 		this.showCurrentTime = showCurrentTime;
-	}
-
-	public boolean isShowButtonNew() {
-		return showButtonNew;
-	}
-
-	public void setShowButtonNew(boolean showButtonNew) {
-		this.showButtonNew = showButtonNew;
 	}
 
 	public boolean isShowNavigation() {

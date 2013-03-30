@@ -3,15 +3,27 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
         <p:menu id="useCaseList">
-            <p:menuitem value="Basic features" styleClass="#{navigationContext.getMenuitemStyleClass('basicFeatures')}"
+            <p:menuitem value="Basic features" styleClass="#{navigationContext.getMenuitemStyleClass('basic')}"
                         onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                        url="/sections/timeline/basicFeatures.jsf"/>
-            <p:menuitem value="Editable, readonly and mergeable events" styleClass="#{navigationContext.getMenuitemStyleClass('eventFeatures')}"
+                        url="/sections/timeline/basic.jsf"/>
+            <p:menuitem value="Editable events and client-side API" styleClass="#{navigationContext.getMenuitemStyleClass('editClient')}"
                         onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                        url="/sections/timeline/eventFeatures.jsf"/>
-            <p:menuitem value="Grouping" styleClass="#{navigationContext.getMenuitemStyleClass('grouping')}"
+                        url="/sections/timeline/editClient.jsf"/>
+            <p:menuitem value="Editable events and server-side API" styleClass="#{navigationContext.getMenuitemStyleClass('editServer')}"
+                        onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                        url="/sections/timeline/editServer.jsf"/>
+            <p:menuitem value="Grouping and mergeable events" styleClass="#{navigationContext.getMenuitemStyleClass('grouping')}"
                         onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                         url="/sections/timeline/grouping.jsf"/>
+            <p:menuitem value="Style customization and i18n support" styleClass="#{navigationContext.getMenuitemStyleClass('custom')}"
+                        onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                        url="/sections/timeline/custom.jsf"/>
+            <p:menuitem value="Limit ranges" styleClass="#{navigationContext.getMenuitemStyleClass('limitRanges')}"
+                        onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                        url="/sections/timeline/limitRanges.jsf"/>
+            <p:menuitem value="Two linked timelines" styleClass="#{navigationContext.getMenuitemStyleClass('linked')}"
+                        onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                        url="/sections/timeline/linked.jsf"/>
         </p:menu>
     </ui:composition>
 </html>
