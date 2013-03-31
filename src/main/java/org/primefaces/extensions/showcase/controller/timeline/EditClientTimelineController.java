@@ -19,10 +19,15 @@ package org.primefaces.extensions.showcase.controller.timeline;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.extensions.model.timeline.TimelineEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
@@ -39,43 +44,75 @@ public class EditClientTimelineController implements Serializable {
 
 	private TimelineModel model;
 
+	private TimeZone timeZone = TimeZone.getTimeZone("Europe/Berlin");
+
 	@PostConstruct
 	protected void initialize() {
 		model = new TimelineModel();
 
+		String contextPath = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
+
 		Calendar cal = Calendar.getInstance();
-		cal.set(2011, Calendar.MAY, 10);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.1", cal.getTime()));
+		cal.set(2012, Calendar.AUGUST, 22, 17, 30, 0);
+		model.add(new TimelineEvent("<div>Mail from boss</div><img src='" + contextPath
+		                            + "/resources/images/timeline/mail.png' style='width:32px;height:26px;'>", cal.getTime()));
 
-		cal.set(2012, Calendar.JANUARY, 23);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.2.0", cal.getTime()));
+		cal.set(2012, Calendar.AUGUST, 23, 23, 0, 0);
+		model.add(new TimelineEvent("<div>Call back my boss</div><img src='" + contextPath
+		                            + "/resources/images/timeline/callback.png' style='width:30px;height:30px;'>",
+		                            cal.getTime()));
 
-		cal.set(2012, Calendar.APRIL, 2);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.3.0", cal.getTime()));
+		// read-only event
+		cal.set(2012, Calendar.AUGUST, 24, 16, 0, 0);
+		model.add(new TimelineEvent("<div>My next target</div><img src='" + contextPath
+		                            + "/resources/images/timeline/location.png' style='width:20px;height:32px;'>", cal.getTime(),
+		                            false, null, "readonly"));
 
-		cal.set(2012, Calendar.APRIL, 16);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.4.0", cal.getTime()));
+		cal.set(2012, Calendar.AUGUST, 26, 0, 0, 0);
+		Date startWork = cal.getTime();
+		cal.set(2012, Calendar.SEPTEMBER, 2, 0, 0, 0);
+		Date endWork = cal.getTime();
+		model.add(
+		    new TimelineEvent(
+		        "<img src='" + contextPath
+		        + "/resources/images/timeline/homework.png' style='width:31px;height:29px;'><span style='padding:8px'>Homework</span>",
+		        startWork, endWork));
 
-		cal.set(2012, Calendar.JUNE, 10);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.5.0", cal.getTime()));
+		cal.set(2012, Calendar.AUGUST, 28, 0, 0, 0);
+		model.add(new TimelineEvent("<div>Memo</div><img src='" + contextPath
+		                            + "/resources/images/timeline/memo.png' style='width:32px;height:32px;'>", cal.getTime()));
 
-		cal.set(2012, Calendar.JUNE, 19);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.5.1", cal.getTime()));
-
-		cal.set(2012, Calendar.SEPTEMBER, 26);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.6.0", cal.getTime()));
-
-		cal.set(2012, Calendar.OCTOBER, 13);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.6.1", cal.getTime()));
-
-		cal.set(2012, Calendar.DECEMBER, 16);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.6.2", cal.getTime()));
-
-		cal.set(2013, Calendar.FEBRUARY, 3);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.6.3", cal.getTime()));
+		// read-only event
+		cal.set(2012, Calendar.AUGUST, 31, 0, 0, 0);
+		Date startReport = cal.getTime();
+		cal.set(2012, Calendar.SEPTEMBER, 3, 0, 0, 0);
+		Date endReport = cal.getTime();
+		model.add(
+		    new TimelineEvent(
+		        "<img src='" + contextPath
+		        + "/resources/images/timeline/report.png' style='width:32px;height:31px;'><span style='padding:8px'>Report</span>",
+		        startReport, endReport, false, null, "readonly"));
 	}
 
 	public TimelineModel getModel() {
 		return model;
+	}
+
+	public TimeZone getTimeZone() {
+		return timeZone;
+	}
+
+	public void updateData(List<TimelineEvent> events) {
+		// update model
+		model.setEvents(events);
+
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Timeline model has been updated",
+		                     events != null ? events.size() + " events available" : "0 events available");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public String getTypeForEvents() {
+		return "java.util.List<org.primefaces.extensions.model.timeline.TimelineEvent>";
 	}
 }

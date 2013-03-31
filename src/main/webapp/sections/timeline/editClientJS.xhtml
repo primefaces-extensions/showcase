@@ -1,0 +1,68 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:outputScript id="timelineJS" target="body">
+<!-- EXAMPLE-SOURCE-START -->    
+function showContent() {
+    $('#textArea').val(timelineWdgt.getSelectedEvent().content);
+}
+    
+function add() {
+    var range = timelineWdgt.getVisibleRange();
+    var start = new Date((range.start.valueOf() + range.end.valueOf()) / 2);
+    var content = $('#textArea').val();
+
+    timelineWdgt.addEvent({
+        'start': start,
+        'content': content
+    });
+
+    var count = timelineWdgt.getNumberOfEvents();
+    timelineWdgt.setSelection(count - 1);
+}
+
+function change() {
+    var index = timelineWdgt.getSelectedIndex();
+    if (index == -1) {
+        // no event was selected
+        return;
+    }
+
+    if (!timelineWdgt.isEditable(index)) {
+        // only editable events can be changed
+        return;
+    }
+
+    var content = $('#textArea').val();
+
+    timelineWdgt.changeEvent(index, {
+        'content': content
+        // Note: start, end, and group can be added here too.
+    });
+}
+
+function remove() {
+    var index = timelineWdgt.getSelectedIndex();
+    if (index == -1) {
+        // no event was selected
+        return;
+    }
+
+    if (!timelineWdgt.isEditable(index)) {
+        // only editable events can be deleted
+        return;
+    }
+
+    confirmWdgt.show();
+}
+    
+function removeAfterConfirm() {
+    var index = timelineWdgt.getSelectedIndex();
+    
+    timelineWdgt.deleteEvent(index);
+    $('#textArea').val('');
+}
+<!-- EXAMPLE-SOURCE-END -->
+</h:outputScript>
+</ui:composition>

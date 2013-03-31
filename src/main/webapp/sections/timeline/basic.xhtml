@@ -12,18 +12,18 @@
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
             This example demonstrates configurable options such as "selectable", "zoomable", "moveable", "themable",
-            "eventStyle", "axisOnTop", "showCurrentTime", "showNavigation".
+            "eventStyle", "axisOnTop", "showCurrentTime", "showNavigation". The Timeline below shows the release history
+            of the Primefaces Extensions. It is <strong>selectable</strong>. That means, you can click on any event and
+            calls a server-side listener. The listener gets a parameter <strong>TimelineSelectEvent</strong> which contains
+            the clicked <strong>TimelineEvent</strong> object.
             <p/>
-            The Timeline below shows the release history of the Primefaces Extensions. It is selectable.
-            That means, you can click on any event and calls a server-side listener.
-            The listener gets a parameter <strong>TimelineSelectEvent</strong> which contains the clicked TimelineEvent object.
             <strong>Tip:</strong> Use mouse scroll wheel for zoom-in and zoom-out.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
 <p:growl id="growl" showSummary="true" showDetail="true" autoUpdate="true"/>
 
-<p:fieldset style="width:1%; white-space:nowrap;">
+<p:fieldset style="white-space:nowrap;">
     <h:panelGrid columns="8" columnClasses="formColumn,,formColumn,,formColumn,,formColumn,,">
         <h:outputText value="Selectable"/>
         <p:selectBooleanButton id="selectable" onLabel="Yes" offLabel="No"
