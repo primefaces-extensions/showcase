@@ -63,8 +63,8 @@ public class EditClientTimelineController implements Serializable {
 		                            cal.getTime()));
 
 		// read-only event
-		cal.set(2012, Calendar.AUGUST, 24, 16, 0, 0);
-		model.add(new TimelineEvent("<div>My next target</div><img src='" + contextPath
+		cal.set(2012, Calendar.AUGUST, 24, 21, 45, 0);
+		model.add(new TimelineEvent("<div>Travel to Spain</div><img src='" + contextPath
 		                            + "/resources/images/timeline/location.png' style='width:20px;height:32px;'>", cal.getTime(),
 		                            false, null, "readonly"));
 

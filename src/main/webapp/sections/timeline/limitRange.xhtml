@@ -11,19 +11,30 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Cooming soon...
+            The visible range of the timeline is limited in this demo.
+            <ul>            
+                <li>Minimum visible date is limited to 2012-01-01 using attribute <strong>min</strong></li>
+                <li>Maximum visible date is limited to 2012-12-31 using attribute <strong>max</strong></li>
+                <li>Visible interval is limited to a minimum of 24 hours using attribute <strong>zoomMin</strong></li>
+                <li>Visible interval is limited to a maximum of about 3 months using attribute <strong>zoomMax</strong></li>
+            </ul>
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
-
+<pe:timeline value="#{limitTimelineRangeController.model}"
+             min="#{limitTimelineRangeController.min}"
+             max="#{limitTimelineRangeController.max}"
+             zoomMin="#{limitTimelineRangeController.zoomMin}"
+             zoomMax="#{limitTimelineRangeController.zoomMax}"
+             height="150px"/>
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/timeline/grouping.xhtml')}
+${showcase:getFileContent('/sections/timeline/limitRange.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/BasicTimelineController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/LimitTimelineRangeController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
