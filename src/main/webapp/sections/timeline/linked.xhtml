@@ -11,19 +11,44 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Cooming soon...
+            This example demonstrates linked timelines. When moving one timeline, the other moves along.
         </h:panelGroup>
+        
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
-
+<pe:timeline id="timelineFirst" value="#{linkedTimelinesController.modelFirst}" var="task"
+             height="300px" widgetVar="timelineFirstWdgt">
+    <pe:javascript event="rangechange" execute="onrangechange1()"/>
+    
+    <h:panelGroup layout="block" rendered="#{not task.period}" style="padding-bottom:5px">
+        <h:outputText value="#{task.title}"/>
+    </h:panelGroup>
+    <p:graphicImage library="images" name="#{task.imagePath}"/>
+    <h:panelGroup rendered="#{task.period}" style="padding:8px">
+        <h:outputText value="#{task.title}"/>
+    </h:panelGroup>
+</pe:timeline>
+            
+<pe:timeline id="timelineSecond" value="#{linkedTimelinesController.modelSecond}"
+             height="150px" widgetVar="timelineSecondWdgt" style="margin-top:10px;">
+    <pe:javascript event="rangechange" execute="onrangechange2()"/>
+</pe:timeline>
 <!-- EXAMPLE-SOURCE-END -->
+<ui:include src="/sections/timeline/linkedJS.xhtml"/>
         </h:panelGroup>
-        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
+        
+        <ui:decorate template="/templates/fourTabsDecoratorModelJS.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/timeline/grouping.xhtml')}
+${showcase:getFileContent('/sections/timeline/linked.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/BasicTimelineController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/LinkedTimelinesController.java')}
+            </ui:define>
+            <ui:define name="contentTab3">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/timeline/Task.java')}
+            </ui:define>
+            <ui:define name="contentTab4">
+${showcase:getFileContent('/sections/timeline/linkedJS.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>
