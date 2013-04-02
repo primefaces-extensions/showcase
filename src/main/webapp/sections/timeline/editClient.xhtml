@@ -82,12 +82,16 @@
     <p:commandButton value="Cancel" type="button" onclick="confirmWdgt.hide()"/>            
 </p:confirmDialog>
             
+<p:dialog widgetVar="infoTipWdgt" header="Attention" appendToBody="true">
+    You can not change or delete read-only events!
+</p:dialog>
+            
 <h:outputStylesheet id="timelineCSS">
     table .formColumn {
         vertical-align: top;
     }
     
-    div.timeline-event.readonly {
+    div.timeline-event.readonly:not(.timeline-event-selected) {
         background-color: #ff4500;
         border-color: red;
         color: white;
