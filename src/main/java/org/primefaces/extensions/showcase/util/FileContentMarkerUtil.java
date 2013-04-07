@@ -35,7 +35,7 @@ public class FileContentMarkerUtil {
 
 	private static FileContentSettings javaFileSettings =
 	    new FileContentSettings().setStartMarkers("@ManagedBean", "@RequestScoped", "@ViewScoped", "@SessionScoped",
-	                                              "@FacesConverter", " class ").setShowLineWithMarker(true);
+	                                              "@FacesConverter", " class ", " enum ").setShowLineWithMarker(true);
 
 	private static FileContentSettings xhtmlFileSettings =
 	    new FileContentSettings().setStartMarkers("EXAMPLE_SOURCE_START", "EXAMPLE-SOURCE-START")

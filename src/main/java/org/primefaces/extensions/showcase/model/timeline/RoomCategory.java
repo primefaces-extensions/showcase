@@ -16,35 +16,27 @@
 
 package org.primefaces.extensions.showcase.model.timeline;
 
-import java.io.Serializable;
-
 /**
- * Data object for task in the Timeline examples.
+ * RoomCategory
  *
- * @author  Oleg Varaksin / last modified by $Author: $
+ * @author  oleg / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
-public class Task implements Serializable {
+public enum RoomCategory {
 
-	private String title;
-	private String imagePath;
-	private boolean period;
+	STANDARD("Standard"),
+	SUPERIOR("Superior"),
+	DELUXE("Deluxe"),
+	JUNIOR("Junior"),
+	EXECUTIVE_SUITE("Executive Suite");
 
-	public Task(String title, String imagePath, boolean period) {
-		this.title = title;
-		this.imagePath = imagePath;
-		this.period = period;
+	private String label;
+
+	private RoomCategory(String label) {
+		this.label = label;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public boolean isPeriod() {
-		return period;
+	public String getLabel() {
+		return label;
 	}
 }

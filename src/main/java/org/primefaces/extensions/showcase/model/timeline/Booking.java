@@ -19,32 +19,38 @@ package org.primefaces.extensions.showcase.model.timeline;
 import java.io.Serializable;
 
 /**
- * Data object for task in the Timeline examples.
+ * Data object for room booking in the Timeline examples.
  *
  * @author  Oleg Varaksin / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
-public class Task implements Serializable {
+public class Booking implements Serializable {
 
-	private String title;
-	private String imagePath;
-	private boolean period;
+	private int roomNumber;
+	private RoomCategory category;
+	private String phone;
+	private String comment;
 
-	public Task(String title, String imagePath, boolean period) {
-		this.title = title;
-		this.imagePath = imagePath;
-		this.period = period;
+	public Booking(int roomNumber, RoomCategory category, String phone, String comment) {
+		this.roomNumber = roomNumber;
+		this.category = category;
+		this.phone = phone;
+		this.comment = comment;
 	}
 
-	public String getTitle() {
-		return title;
+	public int getRoomNumber() {
+		return roomNumber;
 	}
 
-	public String getImagePath() {
-		return imagePath;
+	public RoomCategory getCategory() {
+		return category;
 	}
 
-	public boolean isPeriod() {
-		return period;
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getComment() {
+		return comment;
 	}
 }

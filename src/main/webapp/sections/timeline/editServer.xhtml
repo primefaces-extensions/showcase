@@ -11,21 +11,79 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-           Cooming soon...
+            If the attribute <strong>editable</strong> is true, the events can be created, edited (content), changed (start / end time) and deleted.
+            Events can only be editable when the attribute <strong>selectable</strong> is true (default). Editable timeline can fire
+            AJAX events <strong>select</strong>, <strong>change</strong>, <strong>edit</strong>, <strong>add</strong>, <strong>delete</strong>.
+            The global editable setting can be overwritten for individual events by setting boolean true or false in field "editable" (see TimelineEvent model class).
+            <p/>
+            <i>How to create, edit, change and delete events?</i> When the timeline is defined as editable, events can be moved to another time by dragging them
+            (first, select an event by mouse click and then drag it by mouse). When an event with a date range is selected, it has a drag area on the left and right side,
+            with which the start or end dates of the event can be manipulated. By double clicking, the contents of an event can be edited.
+            An event can be deleted by clicking the "Delete" icon on the upper right (first, select an event by mouse click and then click on the "Delete" icon).
+            A new event can be added in different ways: by double clicking in the timeline, or by keeping the Ctrl key down and clicking or dragging in the timeline,
+            or by clicking the "Add" button in the timeline navigation bar (visible when "showButtonNew" is set to true).
+            <p/>
+            This example shows an interactive timeline. The component provides a convenient server-side API to update its events smoothly.
+            <i>What does it mean?</i> Approach for editing is similar to the PrimeFaces' Schedule, but the Schedule component provide a client-side widget's API method <strong>update()</strong>
+            to update itself in <strong>oncomplete</strong>. The main goal is to avoid a DOM update of the component markup because is has a complex UI and can leads to flickers.
+            The problem with update() is a separate AJAX request. So, we have two requests in the Schedule if we want to add or edit an event.
+            The Timeline component provides a server-side API to update the component with only one request / response.
+            So, you can update the UI on the server-side immediately when sending "update" request for a particular event. The main steps to do:
+            <ul>
+                <li>Get <strong>TimelineUpdater</strong> instance by timeline's Id (in terms of findComponent()).</li>
+                <li>Invoke a CRUD operation (add, update, delete, deleteAll, clear) on the <strong>TimelineModel</strong> with the TimelineUpdater as parameter.</li>
+            </ul>
+            <strong>Note:</strong> All CRUD operations on the model instance can be also called without the TimelineUpdater.
+            In this case you should update the Timeline component manually to see last changes.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
+<p:growl id="growl" showSummary="true" showDetail="false" autoUpdate="true"/>
 
+<pe:timeline id="timeline" value="#{editServerTimelineController.model}" var="booking"
+             timeZone="#{editServerTimelineController.timeZone}"
+             zoomMax="#{editServerTimelineController.zoomMax}"
+             editable="true" showButtonNew="true" minHeight="200" widgetVar="timelineWdgt">
+    <p:ajax event="delete" update="_dialogForm_deleteBookingInner"
+            listener="#{editServerTimelineController.onDelete}"
+            onstart="timelineWdgt.cancelDelete()" oncomplete="deleteBookingWdgt.show()"/>
+    
+    <h:panelGrid columns="1">
+        <h:outputText value="Room: #{booking.roomNumber}"/>
+        <h:outputText value="Category: #{booking.category.label}"/>
+        <h:outputText value="Phone: #{booking.phone}"/>
+    </h:panelGrid>      
+</pe:timeline>
+            
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
-        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
+        <ui:decorate template="/templates/threeTabsDecoratorModel.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/timeline/eventFeatures.xhtml')}
+${showcase:getFileContent('/sections/timeline/editServer.xhtml')}
+
+// Booking details dialog
+${showcase:getFileContent('/sections/timeline/detailsDialog.xhtml')}
+                
+// Booking delete dialog
+${showcase:getFileContent('/sections/timeline/deleteDialog.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/BasicTimelineController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/EditServerTimelineController.java')}
+            </ui:define>
+            <ui:define name="contentTab3">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/timeline/Booking.java')}
+                
+// Room's category as enum type                
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/timeline/RoomCategory.java')}
             </ui:define>
         </ui:decorate>
+    </ui:define>
+    <ui:define name="dialogs">
+        <h:form id="dialogForm" prependId="false">            
+            <ui:include src="/sections/timeline/detailsDialog.xhtml"/>
+            <ui:include src="/sections/timeline/deleteDialog.xhtml"/>
+            <ui:include src="/sections/shared/dialogs.xhtml"/>
+        </h:form>
     </ui:define>
     <ui:define name="useCases">
         <ui:include src="/sections/timeline/useCasesChoice.xhtml"/>

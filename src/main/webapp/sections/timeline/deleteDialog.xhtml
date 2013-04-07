@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+<!-- EXAMPLE-SOURCE-START -->
+<p:dialog id="deleteBookingDlg" header="Booking Details" widgetVar="deleteBookingWdgt"
+          showEffect="clip" hideEffect="clip" dynamic="true">
+    <h:panelGroup id="deleteBookingInner" layout="block" style="margin:10px;">
+        Do you really want to delete the booking for the room #{editServerTimelineController.roomNumber}?
+    </h:panelGroup>
+    
+    <f:facet name="footer">
+        <h:panelGroup layout="block" style="text-align:right; padding:2px; white-space:nowrap;">
+            <p:commandButton value="Delete" process="@form" update="@none"
+                             action="#{editServerTimelineController.delete}"
+                             oncomplete="deleteBookingWdgt.hide()"/>
+            <p:commandButton type="button" value="Close" onclick="deleteBookingWdgt.hide()"/>
+        </h:panelGroup>
+    </f:facet>
+</p:dialog>
+<!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
+</html>     
