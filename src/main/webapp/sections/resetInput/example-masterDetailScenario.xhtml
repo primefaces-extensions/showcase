@@ -13,7 +13,7 @@
         <p:column headerText="Name">
             <p:commandLink value="#{person.name}"
                            action="#{advancedResetInputController.showPersonDetails(person)}"
-                           process="_mainForm_personsGroup" update="_mainForm_personsGroup"/>
+                           process=":mainForm:personsGroup" update=":mainForm:personsGroup"/>
         </p:column>
         <p:column headerText="Tax Class">
             <h:outputText value="#{person.taxClass}"/>

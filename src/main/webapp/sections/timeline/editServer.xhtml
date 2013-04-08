@@ -44,7 +44,7 @@
              timeZone="#{editServerTimelineController.timeZone}"
              zoomMax="#{editServerTimelineController.zoomMax}"
              editable="true" showButtonNew="true" minHeight="200" widgetVar="timelineWdgt">
-    <p:ajax event="delete" update="_dialogForm_deleteBookingInner"
+    <p:ajax event="delete" update=":dialogForm:deleteBookingInner"
             listener="#{editServerTimelineController.onDelete}"
             onstart="timelineWdgt.cancelDelete()" oncomplete="deleteBookingWdgt.show()"/>
     

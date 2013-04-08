@@ -25,9 +25,9 @@
     <p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}" paginator="true"
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
-        <p:ajax event="page" listener="#{dataTableController.doSomething}" update="_mainForm_messages"
+        <p:ajax event="page" listener="#{dataTableController.doSomething}" update=":mainForm:messages"
                 onstart="blockUIWidget2.block()" oncomplete="blockUIWidget2.unblock()"/>
-        <p:ajax event="sort" listener="#{dataTableController.doSomething}" update="_mainForm_messages"
+        <p:ajax event="sort" listener="#{dataTableController.doSomething}" update=":mainForm:messages"
                 onstart="blockUIWidget2.block()" oncomplete="blockUIWidget2.unblock()"/>
         <p:column sortBy="#{message.subject}">
             <f:facet name="header">

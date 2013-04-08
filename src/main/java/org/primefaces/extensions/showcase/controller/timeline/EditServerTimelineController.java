@@ -113,7 +113,7 @@ public class EditServerTimelineController implements Serializable {
 		int roomNumber = ((Booking) event.getData()).getRoomNumber();
 
 		// delete the TimelineEvent and update the Timeline in the same response
-		TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance("_mainForm_timeline");
+		TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":mainForm:timeline");
 		model.delete(event, timelineUpdater);
 
 		FacesMessage msg =

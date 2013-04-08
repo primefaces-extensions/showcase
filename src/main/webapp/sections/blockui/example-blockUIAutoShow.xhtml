@@ -13,11 +13,11 @@
         <h:panelGroup layout="block" styleClass="blockable" style="margin-right: 40px;">
             <p:tree id="fileSystem" value="#{fileSystemController.root}" var="node" dynamic="true"
                     cache="false" selectionMode="single" selection="#{fileSystemController.selectedNode}">
-                <p:ajax event="expand" update="_mainForm_accessRightsGroup"
+                <p:ajax event="expand" update=":mainForm:accessRightsGroup"
                         listener="#{fileSystemController.onNodeExpand}"/>
-                <p:ajax event="select" update="_mainForm_accessRightsGroup"
+                <p:ajax event="select" update=":mainForm:accessRightsGroup"
                         listener="#{fileSystemController.onNodeSelect}"/>
-                <p:ajax event="unselect" update="_mainForm_accessRightsGroup"
+                <p:ajax event="unselect" update=":mainForm:accessRightsGroup"
                         listener="#{fileSystemController.onNodeUnselect}"/>
                 <p:treeNode>
                     <h:outputText value="#{node}"/>

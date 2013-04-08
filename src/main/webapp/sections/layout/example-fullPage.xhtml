@@ -13,7 +13,7 @@
                stateCookie="true" widgetVar="fpLayoutWidget">
         <p:ajax event="open" listener="#{fullLayoutController.handleOpen}" update="msg"/>
         <p:ajax event="close" listener="#{fullLayoutController.handleClose}" update="msg"/>
-        <p:ajax event="resize" listener="#{fullLayoutController.handleResize}" update="_growl"/>
+        <p:ajax event="resize" listener="#{fullLayoutController.handleResize}" update=":growl"/>
 
         <pe:layoutPane position="north">
             North            
