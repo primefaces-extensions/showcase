@@ -25,6 +25,7 @@ import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 /**
  * MessageTableController
@@ -44,6 +45,7 @@ public class MessageTableController implements Serializable {
     private String newSubject = "my subject";
     private String newText = "my text";
     private final static String[] states;
+    private Date currentDate = new Date();
 
     static {
         states = new String[10];
@@ -103,6 +105,14 @@ public class MessageTableController implements Serializable {
 
     public String[] getStates() {
         return states;
+    }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
     }
 
     public String addMessage() {

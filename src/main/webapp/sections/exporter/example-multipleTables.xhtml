@@ -11,6 +11,10 @@
                  filteredValue="#{messageTableController.filteredMessages}">
      <f:facet name="header">
           <h:outputText value="Basic Message Table"/>
+          <h:outputText value="-As At Date-"/>
+          <h:outputText value="#{messageTableController.currentDate}">
+             <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+          </h:outputText>
      </f:facet>
      <p:column filterBy="#{message.subject}">
          <f:facet name="header">
