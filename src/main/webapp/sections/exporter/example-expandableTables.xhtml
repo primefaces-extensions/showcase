@@ -54,15 +54,18 @@
       </p:column>
 
       <p:rowExpansion>
-         <p:dataList id="display" var="customer" value="#{vehicle.customers}" style="width:300px;" >
+         <p:dataTable id="display" var="customer" value="#{vehicle.customers}" style="width:300px;" >
 
           <f:facet name="header">
              <h:outputText value="Cutmoer Details"></h:outputText>
           </f:facet>
-
+           <p:column>
               <h:outputText  value="#{customer}" />
-
-         </p:dataList>
+           </p:column>
+           <p:column>
+                 <h:outputText  value="#{customer}" />
+           </p:column>
+         </p:dataTable>
 
       </p:rowExpansion>
 </p:dataTable>
