@@ -103,21 +103,63 @@ public class EditServerTimelineController implements Serializable {
 		model.add(new TimelineEvent(new Booking(80, RoomCategory.JUNIOR, "(0034) 987-444", "Ten day booking"), begin, end));
 	}
 
+	public void onChange(TimelineModificationEvent e) {
+		// get clone of the TimelineEvent to be changed with new start / end dates
+		event = e.getTimelineEvent();
+
+		// update in DB...
+
+		// if everything was ok, no UI update is required. Only the model should be updated
+		model.update(event);
+
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO,
+		                     "The booking (room " + ((Booking) event.getData()).getRoomNumber() + ") has been updated", null);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+		// otherwise a rollback can be done with the same response as follows:
+		// TimelineEvent oldEvent = model.getEvent(model.getIndex(event));
+		// TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":mainForm:timeline");
+		// model.update(oldEvent, timelineUpdater);
+	}
+
+	public void onEdit(TimelineModificationEvent e) {
+		// get clone of the TimelineEvent to be edited
+		event = e.getTimelineEvent();
+	}
+
 	public void onDelete(TimelineModificationEvent e) {
-		// get TimelineEvent to be deleted
+		// get clone of the TimelineEvent to be deleted
 		event = e.getTimelineEvent();
 	}
 
 	public void delete() {
-		// get room number of the booking to be deleted
-		int roomNumber = ((Booking) event.getData()).getRoomNumber();
+		// delete in DB...
 
-		// delete the TimelineEvent and update the Timeline in the same response
+		// if everything was ok, delete the TimelineEvent in the model and update UI with the same response.
+		// otherwise no server-side delete is necessary (see timelineWdgt.cancelDelete() in the p:ajax onstart).
+		// we assume, delete in DB was successful
 		TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":mainForm:timeline");
 		model.delete(event, timelineUpdater);
 
 		FacesMessage msg =
-		    new FacesMessage(FacesMessage.SEVERITY_INFO, "The booking of the room " + roomNumber + " has been deleted", null);
+		    new FacesMessage(FacesMessage.SEVERITY_INFO,
+		                     "The booking (room " + ((Booking) event.getData()).getRoomNumber() + ") has been deleted", null);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void edit() {
+		// update in DB...
+
+		// if everything was ok, update the TimelineEvent in the model and update UI with the same response.
+		// otherwise no server-side update is necessary because UI was not changed.
+		// we assume, update in DB was successful
+		TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":mainForm:timeline");
+		model.update(event, timelineUpdater);
+
+		FacesMessage msg =
+		    new FacesMessage(FacesMessage.SEVERITY_INFO,
+		                     "The booking (room " + ((Booking) event.getData()).getRoomNumber() + ") has been updated", null);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 

@@ -42,15 +42,31 @@ public class Booking implements Serializable {
 		return roomNumber;
 	}
 
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+
 	public RoomCategory getCategory() {
 		return category;
+	}
+
+	public void setCategory(RoomCategory category) {
+		this.category = category;
 	}
 
 	public String getPhone() {
 		return phone;
 	}
 
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public String getComment() {
 		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 }

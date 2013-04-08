@@ -7,13 +7,44 @@
 <!-- EXAMPLE-SOURCE-START -->
 <p:dialog id="detailsBookingDlg" header="Booking Details" widgetVar="detailsBookingWdgt"
           showEffect="clip" hideEffect="clip">
-    <h:panelGrid columns="2" columnClasses="bookingDetails1,bookingDetails2" style="margin:10px;">
-
-    </h:panelGrid>
+    <h:panelGroup id="detailsBookingInner" layout="block">
+        <h:panelGrid columns="2" columnClasses="bookingDetails1,bookingDetails2">
+            <h:outputText value="Room"/>
+            <p:inputText value="#{editServerTimelineController.event.data.roomNumber}"
+                         required="true" label="Room"/>
+            
+            <h:outputText value="Category"/>
+            <p:selectOneMenu value="#{editServerTimelineController.event.data.category}">
+                <f:selectItem itemLabel="Standard" itemValue="STANDARD"/>
+                <f:selectItem itemLabel="Superior" itemValue="SUPERIOR"/>
+                <f:selectItem itemLabel="Deluxe" itemValue="DELUXE"/>
+                <f:selectItem itemLabel="Junior" itemValue="JUNIOR"/>
+                <f:selectItem itemLabel="Executive Suite" itemValue="EXECUTIVE_SUITE"/>
+            </p:selectOneMenu>
+            
+            <h:outputText value="From"/>
+            <p:calendar value="#{editServerTimelineController.event.startDate}"
+                        timeZone="#{editServerTimelineController.timeZone}"
+                        pattern="dd/MM/yyyy" required="true" label="From"/>
+            
+            <h:outputText value="Until"/>
+            <p:calendar value="#{editServerTimelineController.event.endDate}"
+                        timeZone="#{editServerTimelineController.timeZone}"
+                        pattern="dd/MM/yyyy" label="Until"/>
+            
+            <h:outputText value="Phone"/>
+            <p:inputMask value="#{editServerTimelineController.event.data.phone}" mask="(9999) 999-999"/>
+            
+            <h:outputText value="Comment"/>
+            <p:inputTextarea value="#{editServerTimelineController.event.data.comment}" autoResize="false"/>
+        </h:panelGrid>
+    </h:panelGroup>
 
     <f:facet name="footer">
         <h:panelGroup layout="block" style="text-align:right; padding:2px; white-space:nowrap;">
-            <p:commandButton value="Save" process="@form" update="@none" action=""/>
+            <p:commandButton value="Save" process="detailsBookingDlg" update="@none"
+                             action="#{editServerTimelineController.edit}"
+                             oncomplete="if(!args.validationFailed){detailsBookingWdgt.hide();}"/>
             <p:commandButton type="button" value="Close" onclick="detailsBookingWdgt.hide()"/>
         </h:panelGroup>
     </f:facet>
