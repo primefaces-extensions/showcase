@@ -11,21 +11,63 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Cooming soon...
+            When the property <strong>group</strong> in
+            <strong>TimelineEvent</strong> is provided, all events with the same group are placed on one line.
+            A vertical axis is displayed showing the groups. Grouping events can be useful for example when showing availability of
+            multiple people, rooms, or other resources next to each other.
+            Note, that groupped events will not be stacked automatically, when they overlap each other.
+            <p/>
+            Besides grouping, this example also demonstrates how to merge events when they get overlapped by dragging and dropping them.
+            Please consider the attribute
+            <strong>groupsChangeable</strong>. If it is set to true (default), events can be moved from one group to another.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
-Free Rooms - Price ($) - Book Now
-411          85.00       button            
+<pe:timeline id="timeline" value="#{groupingTimelineController.model}" var="order"
+             editable="true" eventMargin="5" eventMarginAxis="0"
+             showMajorLabels="false" axisOnTop="true"
+             groupsChangeable="true" groupsOnRight="false">
+    <h:graphicImage value="#{order.imagePath}" rendered="#{not empty order.imagePath}"
+                    style="display:inline;vertical-align:middle;"/>
+    <h:outputText value="Order #{order.number}"/>
+</pe:timeline>
             
+<h:outputStylesheet id="timelineCSS">
+    div.timeline-event {
+        border: none;
+        background-color: white;
+    }
+
+    div.timeline-event-content {
+        margin: 1px;
+        background-color: #D5DDF6;
+        border: 1px solid #8E3FFB;
+        padding: 4px;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+    }
+
+    div.timeline-event-selected div.timeline-event-content {
+        background-color: #ADFF2F;
+    }
+</h:outputStylesheet>
 <!-- EXAMPLE-SOURCE-END -->
+        <br/>
+        <span style="font-size:11px;color:#808080">
+        Icons by <a href="http://customicondesign.com/" target="_blank" style="color:#007edf">Custom Icon Design</a> and
+                 <a href="http://pixel-mixer.com" target="_blank" style="color:#007edf">Pixel Mixer</a>
+        </span>
         </h:panelGroup>
-        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
+        
+        <ui:decorate template="/templates/threeTabsDecoratorModel.xhtml">
             <ui:define name="contentTab1">
 ${showcase:getFileContent('/sections/timeline/grouping.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/BasicTimelineController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/GroupingTimelineController.java')}
+            </ui:define>
+            <ui:define name="contentTab3">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/timeline/Order.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
