@@ -43,7 +43,7 @@
     <f:facet name="footer">
         <h:panelGroup layout="block" style="text-align:right; padding:2px; white-space:nowrap;">
             <p:commandButton value="Save" process="detailsBookingDlg" update="@none"
-                             action="#{editServerTimelineController.edit}"
+                             action="#{editServerTimelineController.saveDetails}"
                              oncomplete="if(!args.validationFailed){detailsBookingWdgt.hide();}"/>
             <p:commandButton type="button" value="Close" onclick="detailsBookingWdgt.hide()"/>
         </h:panelGroup>

@@ -8,7 +8,7 @@
 <p:dialog id="deleteBookingDlg" header="Booking Details" widgetVar="deleteBookingWdgt"
           showEffect="clip" hideEffect="clip" dynamic="true">
     <h:panelGroup id="deleteBookingInner" layout="block" style="margin:10px;">
-        Do you really want to delete the booking for the room #{editServerTimelineController.roomNumber}?
+        <h:outputText value="#{editServerTimelineController.deleteMessage}"/>
     </h:panelGroup>
     
     <f:facet name="footer">

@@ -29,6 +29,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.extensions.component.timeline.TimelineUpdater;
+import org.primefaces.extensions.event.timeline.TimelineAddEvent;
 import org.primefaces.extensions.event.timeline.TimelineModificationEvent;
 import org.primefaces.extensions.model.timeline.TimelineEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
@@ -48,6 +49,8 @@ public class EditServerTimelineController implements Serializable {
 	private TimelineModel model;
 	private TimelineEvent event;
 	private long zoomMax;
+	private Date start;
+	private Date end;
 	private TimeZone timeZone = TimeZone.getTimeZone("Europe/Madrid");
 
 	@PostConstruct
@@ -55,9 +58,17 @@ public class EditServerTimelineController implements Serializable {
 		// initial zooming is ca. one month to avoid hiding of event details (due to wide time range of events)
 		zoomMax = 1000L * 60 * 60 * 24 * 30;
 
+		// set initial start / end dates for the axis of the timeline (just for testing)
+		Calendar cal = Calendar.getInstance();
+		cal.set(2013, Calendar.FEBRUARY, 9, 0, 0, 0);
+		start = cal.getTime();
+		cal.set(2013, Calendar.MARCH, 10, 0, 0, 0);
+		end = cal.getTime();
+
+		// create timeline model
 		model = new TimelineModel();
 
-		Calendar cal = Calendar.getInstance();
+		cal = Calendar.getInstance();
 		cal.set(2013, Calendar.JANUARY, 2, 0, 0, 0);
 		model.add(new TimelineEvent(new Booking(211, RoomCategory.DELUXE, "(0034) 987-111", "One day booking"), cal.getTime()));
 
@@ -107,17 +118,16 @@ public class EditServerTimelineController implements Serializable {
 		// get clone of the TimelineEvent to be changed with new start / end dates
 		event = e.getTimelineEvent();
 
-		// update in DB...
+		// update booking in DB...
 
 		// if everything was ok, no UI update is required. Only the model should be updated
 		model.update(event);
 
 		FacesMessage msg =
-		    new FacesMessage(FacesMessage.SEVERITY_INFO,
-		                     "The booking (room " + ((Booking) event.getData()).getRoomNumber() + ") has been updated", null);
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "The booking dates " + getRoom() + " have been updated", null);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
-		// otherwise a rollback can be done with the same response as follows:
+		// otherwise (if DB operation failed) a rollback can be done with the same response as follows:
 		// TimelineEvent oldEvent = model.getEvent(model.getIndex(event));
 		// TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":mainForm:timeline");
 		// model.update(oldEvent, timelineUpdater);
@@ -128,13 +138,22 @@ public class EditServerTimelineController implements Serializable {
 		event = e.getTimelineEvent();
 	}
 
+	public void onAdd(TimelineAddEvent e) {
+		// get TimelineEvent to be added
+		event = new TimelineEvent(new Booking(), e.getStartDate(), e.getEndDate(), true, e.getGroup());
+
+		// add the new event to the model in case if user will close or cancel the "Add dialog"
+		// without to update details of the new event. Note: the event is already added in UI.
+		model.add(event);
+	}
+
 	public void onDelete(TimelineModificationEvent e) {
 		// get clone of the TimelineEvent to be deleted
 		event = e.getTimelineEvent();
 	}
 
 	public void delete() {
-		// delete in DB...
+		// delete booking in DB...
 
 		// if everything was ok, delete the TimelineEvent in the model and update UI with the same response.
 		// otherwise no server-side delete is necessary (see timelineWdgt.cancelDelete() in the p:ajax onstart).
@@ -142,24 +161,21 @@ public class EditServerTimelineController implements Serializable {
 		TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":mainForm:timeline");
 		model.delete(event, timelineUpdater);
 
-		FacesMessage msg =
-		    new FacesMessage(FacesMessage.SEVERITY_INFO,
-		                     "The booking (room " + ((Booking) event.getData()).getRoomNumber() + ") has been deleted", null);
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "The booking " + getRoom() + " has been deleted", null);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
-	public void edit() {
-		// update in DB...
+	public void saveDetails() {
+		// save the updated booking in DB...
 
 		// if everything was ok, update the TimelineEvent in the model and update UI with the same response.
-		// otherwise no server-side update is necessary because UI was not changed.
-		// we assume, update in DB was successful
+		// otherwise no server-side update is necessary because UI is already up-to-date.
+		// we assume, save in DB was successful
 		TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":mainForm:timeline");
 		model.update(event, timelineUpdater);
 
 		FacesMessage msg =
-		    new FacesMessage(FacesMessage.SEVERITY_INFO,
-		                     "The booking (room " + ((Booking) event.getData()).getRoomNumber() + ") has been updated", null);
+		    new FacesMessage(FacesMessage.SEVERITY_INFO, "The booking details " + getRoom() + " have been saved", null);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
@@ -179,11 +195,33 @@ public class EditServerTimelineController implements Serializable {
 		return zoomMax;
 	}
 
+	public Date getStart() {
+		return start;
+	}
+
+	public Date getEnd() {
+		return end;
+	}
+
 	public TimeZone getTimeZone() {
 		return timeZone;
 	}
 
-	public int getRoomNumber() {
-		return ((Booking) event.getData()).getRoomNumber();
+	public String getDeleteMessage() {
+		Integer room = ((Booking) event.getData()).getRoomNumber();
+		if (room == null) {
+			return "Do you really want to delete the new booking?";
+		}
+
+		return "Do you really want to delete the booking for the room " + room + "?";
+	}
+
+	public String getRoom() {
+		Integer room = ((Booking) event.getData()).getRoomNumber();
+		if (room == null) {
+			return "(new booking)";
+		} else {
+			return "(room " + room + ")";
+		}
 	}
 }

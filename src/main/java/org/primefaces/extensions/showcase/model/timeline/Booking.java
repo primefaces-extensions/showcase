@@ -26,23 +26,26 @@ import java.io.Serializable;
  */
 public class Booking implements Serializable {
 
-	private int roomNumber;
+	private Integer roomNumber;
 	private RoomCategory category;
 	private String phone;
 	private String comment;
 
-	public Booking(int roomNumber, RoomCategory category, String phone, String comment) {
+	public Booking() {
+	}
+
+	public Booking(Integer roomNumber, RoomCategory category, String phone, String comment) {
 		this.roomNumber = roomNumber;
 		this.category = category;
 		this.phone = phone;
 		this.comment = comment;
 	}
 
-	public int getRoomNumber() {
+	public Integer getRoomNumber() {
 		return roomNumber;
 	}
 
-	public void setRoomNumber(int roomNumber) {
+	public void setRoomNumber(Integer roomNumber) {
 		this.roomNumber = roomNumber;
 	}
 

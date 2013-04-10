@@ -43,10 +43,15 @@
 <pe:timeline id="timeline" value="#{editServerTimelineController.model}" var="booking"
              timeZone="#{editServerTimelineController.timeZone}"
              zoomMax="#{editServerTimelineController.zoomMax}"
+             start="#{editServerTimelineController.start}"
+             end="#{editServerTimelineController.end}"
              editable="true" showButtonNew="true" minHeight="200" widgetVar="timelineWdgt">
     <p:ajax event="change" update="@none" listener="#{editServerTimelineController.onChange}"/>
     <p:ajax event="edit" update=":dialogForm:detailsBookingInner"
             listener="#{editServerTimelineController.onEdit}"
+            oncomplete="detailsBookingWdgt.show()"/>
+    <p:ajax event="add" update=":dialogForm:detailsBookingInner"
+            listener="#{editServerTimelineController.onAdd}"
             oncomplete="detailsBookingWdgt.show()"/>
     <p:ajax event="delete" update=":dialogForm:deleteBookingInner"
             listener="#{editServerTimelineController.onDelete}"
