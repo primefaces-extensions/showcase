@@ -19,14 +19,18 @@ package org.primefaces.extensions.showcase.controller.timeline;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
+import java.util.TreeSet;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.extensions.event.timeline.TimelineModificationEvent;
 import org.primefaces.extensions.model.timeline.TimelineEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
 import org.primefaces.extensions.showcase.model.timeline.Order;
@@ -42,6 +46,7 @@ import org.primefaces.extensions.showcase.model.timeline.Order;
 public class GroupingTimelineController implements Serializable {
 
 	private TimelineModel model;
+	private TimelineEvent event; // current changed event
 
 	@PostConstruct
 	protected void initialize() {
@@ -62,7 +67,9 @@ public class GroupingTimelineController implements Serializable {
 		// create timeline model
 		model = new TimelineModel();
 
-		Calendar cal = Calendar.getInstance();
+		// Server-side dates should be in UTC. They will be converted to a local dates in UI according to provided TimeZone.
+		// Submitted local dates in UI are converted back to UTC, so that server receives all dates in UTC again.
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		int orderNumber = 1;
 
 		for (String truckText : TRUCKS) {
@@ -89,5 +96,15 @@ public class GroupingTimelineController implements Serializable {
 
 	public TimelineModel getModel() {
 		return model;
+	}
+
+	public void onChange(TimelineModificationEvent e) {
+		// get changed event
+		event = e.getTimelineEvent();
+
+		// get overlapped events of the same group as the changed event
+		TreeSet<TimelineEvent> overlappedEvents = model.getOverlappedEvents(event);
+
+		System.out.println(overlappedEvents != null ? Arrays.toString(overlappedEvents.toArray()) : "null");
 	}
 }

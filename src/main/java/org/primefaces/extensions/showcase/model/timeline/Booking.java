@@ -72,4 +72,28 @@ public class Booking implements Serializable {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Booking booking = (Booking) o;
+
+		if (roomNumber != null ? !roomNumber.equals(booking.roomNumber) : booking.roomNumber != null) {
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return roomNumber != null ? roomNumber.hashCode() : 0;
+	}
 }

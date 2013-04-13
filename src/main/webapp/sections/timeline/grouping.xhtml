@@ -11,22 +11,27 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            When the property <strong>group</strong> in
-            <strong>TimelineEvent</strong> is provided, all events with the same group are placed on one line.
+            When the property <strong>group</strong> in <strong>TimelineEvent</strong> is provided, all events with the same group are placed on one line.
             A vertical axis is displayed showing the groups. Grouping events can be useful for example when showing availability of
             multiple people, rooms, or other resources next to each other.
-            Note, that groupped events will not be stacked automatically, when they overlap each other.
+            Note, that grouped events will not be stacked automatically when they overlap each other.
+            Editable grouped events can be moved. Please consider the attribute <strong>groupsChangeable</strong>.
+            If it is set to true (default), events can be moved from one group to another.
             <p/>
-            Besides grouping, this example also demonstrates how to merge events when they get overlapped by dragging and dropping them.
-            Please consider the attribute
-            <strong>groupsChangeable</strong>. If it is set to true (default), events can be moved from one group to another.
+            Besides grouping, this example also demonstrates how to merge events when they get overlapped by moving (dragging and dropping).
+            <strong>TimelineModel</strong> provides all necessary methods to get overlapped events and merge them with a given event.
+            Here again: use an instance of <strong>TimelineUpdater</strong> if you would like to reflect Timeline's server-side changes in UI.
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
+<p:growl id="growl" showSummary="true" showDetail="false" autoUpdate="true"/>
+            
 <pe:timeline id="timeline" value="#{groupingTimelineController.model}" var="order"
              editable="true" eventMargin="5" eventMarginAxis="0"
              showMajorLabels="false" axisOnTop="true"
              groupsChangeable="true" groupsOnRight="false">
+    <p:ajax event="change" update="@none" listener="#{groupingTimelineController.onChange}"/>
+    
     <h:graphicImage value="#{order.imagePath}" rendered="#{not empty order.imagePath}"
                     style="display:inline;vertical-align:middle;"/>
     <h:outputText value="Order #{order.number}"/>

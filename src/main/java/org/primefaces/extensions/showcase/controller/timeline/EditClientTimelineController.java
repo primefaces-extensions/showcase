@@ -52,7 +52,9 @@ public class EditClientTimelineController implements Serializable {
 
 		String contextPath = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
 
-		Calendar cal = Calendar.getInstance();
+		// Server-side dates should be in UTC. They will be converted to a local dates in UI according to provided TimeZone.
+		// Submitted local dates in UI are converted back to UTC, so that server receives all dates in UTC again.
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		cal.set(2012, Calendar.AUGUST, 22, 17, 30, 0);
 		model.add(new TimelineEvent("<div>Mail from boss</div><img src='" + contextPath
 		                            + "/resources/images/timeline/mail.png' style='width:32px;height:26px;'>", cal.getTime()));

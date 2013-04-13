@@ -47,7 +47,7 @@ import org.primefaces.extensions.showcase.model.timeline.RoomCategory;
 public class EditServerTimelineController implements Serializable {
 
 	private TimelineModel model;
-	private TimelineEvent event;
+	private TimelineEvent event; // current event to be changed, edited, deleted or added
 	private long zoomMax;
 	private Date start;
 	private Date end;
@@ -59,7 +59,7 @@ public class EditServerTimelineController implements Serializable {
 		zoomMax = 1000L * 60 * 60 * 24 * 30;
 
 		// set initial start / end dates for the axis of the timeline (just for testing)
-		Calendar cal = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		cal.set(2013, Calendar.FEBRUARY, 9, 0, 0, 0);
 		start = cal.getTime();
 		cal.set(2013, Calendar.MARCH, 10, 0, 0, 0);
@@ -68,7 +68,9 @@ public class EditServerTimelineController implements Serializable {
 		// create timeline model
 		model = new TimelineModel();
 
-		cal = Calendar.getInstance();
+		// Server-side dates should be in UTC. They will be converted to a local dates in UI according to provided TimeZone.
+		// Submitted local dates in UI are converted back to UTC, so that server receives all dates in UTC again.
+		cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		cal.set(2013, Calendar.JANUARY, 2, 0, 0, 0);
 		model.add(new TimelineEvent(new Booking(211, RoomCategory.DELUXE, "(0034) 987-111", "One day booking"), cal.getTime()));
 
