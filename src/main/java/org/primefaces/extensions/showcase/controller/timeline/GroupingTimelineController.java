@@ -27,6 +27,7 @@ import java.util.TimeZone;
 import java.util.TreeSet;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -108,8 +109,9 @@ public class GroupingTimelineController implements Serializable {
 	}
 
 	public void onChange(TimelineModificationEvent e) {
-		// get changed event
+		// get changed event and update the model
 		event = e.getTimelineEvent();
+		model.update(event);
 
 		// get overlapped events of the same group as for the changed event
 		TreeSet<TimelineEvent> overlappedEvents = model.getOverlappedEvents(event);
@@ -140,6 +142,10 @@ public class GroupingTimelineController implements Serializable {
 		// merge orders and update UI if the user selected some orders to be merged
 		if (ordersToMerge != null && !ordersToMerge.isEmpty()) {
 			model.merge(event, ordersToMerge, TimelineUpdater.getCurrentInstance(":mainForm:timeline"));
+		} else {
+			FacesMessage msg =
+			    new FacesMessage(FacesMessage.SEVERITY_INFO, "Nothing to merge, please choose orders to be merged", null);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 
 		overlappedOrders = null;
