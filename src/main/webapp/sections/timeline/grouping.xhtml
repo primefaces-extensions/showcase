@@ -29,8 +29,10 @@
 <pe:timeline id="timeline" value="#{groupingTimelineController.model}" var="order"
              editable="true" eventMargin="5" eventMarginAxis="0"
              showMajorLabels="false" axisOnTop="true"
-             groupsChangeable="true" groupsOnRight="false">
+             groupsChangeable="true" groupsOnRight="false"
+             timeZone="America/New_York">
     <p:ajax event="change" update="@none" listener="#{groupingTimelineController.onChange}"/>
+    <p:ajax event="delete" update="@none" listener="#{groupingTimelineController.onDelete}"/>
     
     <h:graphicImage value="#{order.imagePath}" rendered="#{not empty order.imagePath}"
                     style="display:inline;vertical-align:middle;"/>
@@ -55,6 +57,16 @@
     div.timeline-event-selected div.timeline-event-content {
         background-color: #ADFF2F;
     }
+    
+    #overlappedOrders {
+        margin-top: 20px;
+        width: 100%;
+    }
+    
+    #overlappedOrders .ui-chkbox {
+        vertical-align: middle;
+        margin: 3px 5px;
+    }
 </h:outputStylesheet>
 <!-- EXAMPLE-SOURCE-END -->
         <br/>
@@ -67,14 +79,26 @@
         <ui:decorate template="/templates/threeTabsDecoratorModel.xhtml">
             <ui:define name="contentTab1">
 ${showcase:getFileContent('/sections/timeline/grouping.xhtml')}
+                
+// Dialog with overlapped timeline events
+${showcase:getFileContent('/sections/timeline/overlapEventsDialog.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/GroupingTimelineController.java')}
             </ui:define>
             <ui:define name="contentTab3">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/model/timeline/Order.java')}
+                
+// Converter for the model class Order.java
+${showcase:getFileContent('/org/primefaces/extensions/showcase/converter/OrderConverter.java')}
             </ui:define>
         </ui:decorate>
+    </ui:define>
+    <ui:define name="dialogs">
+        <h:form id="dialogForm" prependId="false">            
+            <ui:include src="/sections/timeline/overlapEventsDialog.xhtml"/>
+            <ui:include src="/sections/shared/dialogs.xhtml"/>
+        </h:form>
     </ui:define>
     <ui:define name="useCases">
         <ui:include src="/sections/timeline/useCasesChoice.xhtml"/>

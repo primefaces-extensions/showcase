@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
+<ui:composition>
+<!-- EXAMPLE-SOURCE-START -->
+<p:dialog id="overlapEventsDlg" header="Overlapped Orders" widgetVar="overlapEventsWdgt"
+          showEffect="clip" hideEffect="clip">
+    <h:panelGroup id="overlappedOrdersInner" layout="block" style="padding:10px;">
+        <strong>
+            Please choose Orders you want to merge with the Order #{groupingTimelineController.selectedOrder}
+        </strong>
+        
+        <p/>
+        
+        <p:selectManyMenu id="overlappedOrders" value="#{groupingTimelineController.ordersToMerge}"
+                          showCheckbox="true">
+            <f:selectItems value="#{groupingTimelineController.overlappedOrders}" var="order"
+                           itemLabel=" Order #{order.data.number}" itemValue="#{order}"/>
+            <showcase:convertOrder events="#{groupingTimelineController.model.events}"/>
+        </p:selectManyMenu>
+    </h:panelGroup>
+
+    <f:facet name="footer">
+        <h:panelGroup layout="block" style="text-align:right; padding:2px; white-space:nowrap;">
+            <p:commandButton value="Merge" process="overlapEventsDlg" update="@none"
+                             action="#{groupingTimelineController.merge}"
+                             oncomplete="overlapEventsWdgt.hide()"/>
+            <p:commandButton type="button" value="Close" onclick="overlapEventsWdgt.hide()"/>
+        </h:panelGroup>
+    </f:facet>
+</p:dialog>
+<!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
+</html>     

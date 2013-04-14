@@ -19,9 +19,10 @@ package org.primefaces.extensions.showcase.controller.timeline;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 import java.util.TreeSet;
 
@@ -30,6 +31,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+import org.primefaces.extensions.component.timeline.TimelineUpdater;
 import org.primefaces.extensions.event.timeline.TimelineModificationEvent;
 import org.primefaces.extensions.model.timeline.TimelineEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
@@ -47,6 +50,8 @@ public class GroupingTimelineController implements Serializable {
 
 	private TimelineModel model;
 	private TimelineEvent event; // current changed event
+	private List<TimelineEvent> overlappedOrders; // all overlapped orders (events) to the changed order (event)
+	private List<TimelineEvent> ordersToMerge; // selected orders (events) in the dialog which should be merged
 
 	@PostConstruct
 	protected void initialize() {
@@ -70,6 +75,10 @@ public class GroupingTimelineController implements Serializable {
 		// Server-side dates should be in UTC. They will be converted to a local dates in UI according to provided TimeZone.
 		// Submitted local dates in UI are converted back to UTC, so that server receives all dates in UTC again.
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+
 		int orderNumber = 1;
 
 		for (String truckText : TRUCKS) {
@@ -102,9 +111,58 @@ public class GroupingTimelineController implements Serializable {
 		// get changed event
 		event = e.getTimelineEvent();
 
-		// get overlapped events of the same group as the changed event
+		// get overlapped events of the same group as for the changed event
 		TreeSet<TimelineEvent> overlappedEvents = model.getOverlappedEvents(event);
 
-		System.out.println(overlappedEvents != null ? Arrays.toString(overlappedEvents.toArray()) : "null");
+		if (overlappedEvents == null) {
+			// nothing to merge
+			return;
+		}
+
+		// list of orders which can be merged in the dialog
+		overlappedOrders = new ArrayList<TimelineEvent>(overlappedEvents);
+
+		// no pre-selection
+		ordersToMerge = null;
+
+		// update the dialog's content and show the dialog
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		requestContext.update("overlappedOrdersInner");
+		requestContext.execute("overlapEventsWdgt.show()");
+	}
+
+	public void onDelete(TimelineModificationEvent e) {
+		// keep the model up-to-date
+		model.delete(e.getTimelineEvent());
+	}
+
+	public void merge() {
+		// merge orders and update UI if the user selected some orders to be merged
+		if (ordersToMerge != null && !ordersToMerge.isEmpty()) {
+			model.merge(event, ordersToMerge, TimelineUpdater.getCurrentInstance(":mainForm:timeline"));
+		}
+
+		overlappedOrders = null;
+		ordersToMerge = null;
+	}
+
+	public int getSelectedOrder() {
+		if (event == null) {
+			return 0;
+		}
+
+		return ((Order) event.getData()).getNumber();
+	}
+
+	public List<TimelineEvent> getOverlappedOrders() {
+		return overlappedOrders;
+	}
+
+	public List<TimelineEvent> getOrdersToMerge() {
+		return ordersToMerge;
+	}
+
+	public void setOrdersToMerge(List<TimelineEvent> ordersToMerge) {
+		this.ordersToMerge = ordersToMerge;
 	}
 }
