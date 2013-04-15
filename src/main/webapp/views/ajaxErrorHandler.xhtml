@@ -24,9 +24,11 @@
 			<p>
 				Component ajaxErrorHandler can be used in simple and extended mode. Extended mode is activated when our exception-handler-factory is used in faces-config.xml
 			</p>
-			<div>
-				&lt;factory&gt;<br />
-				&lt;exception-handler-factory&gt;org.primefaces.extensions.component.ajaxerrorhandler.AjaxExceptionHandlerFactory&lt;/exception-handler-factory&gt;<br />
+			<div style="font-weight:bold;">
+			&lt;factory&gt;<br/>
+                &#160;&#160;&lt;exception-handler-factory&gt;<br/>
+                &#160;&#160;&#160;&#160;&lt;org.primefaces.extensions.component.ajaxerrorhandler.AjaxExceptionHandlerFactory<br/>
+                &#160;&#160;&lt;/exception-handler-factory&gt;<br/>
 			&lt;/factory&gt;
 			</div>
 			<p/>
@@ -43,7 +45,7 @@
 				</f:facet>
 
 				<p:row>
-					<p:column>all atp:rowibutes in pe: ajaxErrorHandler (body, title, ...)</p:column>
+					<p:column>all attributes in pe: ajaxErrorHandler (body, title, ...)</p:column>
 					<p:column>OK</p:column>
 					<p:column>OK</p:column>
 				</p:row>
@@ -63,7 +65,7 @@
 					<p:column>OK</p:column>
 				</p:row>
 				<p:row>
-					<p:column>Variable {error-stackp:rowace}</p:column>
+					<p:column>Variable {error-stacktrace}</p:column>
 					<p:column>NOT WORKING</p:column>
 					<p:column>OK</p:column>
 				</p:row>
@@ -78,7 +80,7 @@
 					<p:column>OK</p:column>
 				</p:row>
 			</p:panelGrid>
-			Note: Extended mode – handler solves problem, when javax.faces.PARTIAL_STATE_SAVING=false and javax.faces.STATE_SAVING_METHOD=server are set in web.xml and session is lost (cannot be restored after ViewExpiredException)
+			<strong>Note:</strong> Extended mode – handler solves problem, when javax.faces.PARTIAL_STATE_SAVING=false and javax.faces.STATE_SAVING_METHOD=server are set in web.xml and session is lost (cannot be restored after ViewExpiredException)
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
