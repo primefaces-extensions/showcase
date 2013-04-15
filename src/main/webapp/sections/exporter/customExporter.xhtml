@@ -9,18 +9,22 @@
             <h:outputText value="Exporter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            This feature enables fully  customizable own exporter with the required functionalities using Service Loader Concept.
+            This feature enables fully customizable own exporter with the required functionalities using Service Loader Concept.
+            <p/>
             Steps required:
-
-                  Step 1: Create a folder named META-INF under resouces folder.Below META-INF folder create another folder called services.
-                  Step 2: Creae a file name with ExporterFactory as a service(Fully binary name of the service)
-                          Ex: org.primefaces.extensions.component.exporter.ExporterFactory
-                  Step 3: Provide your own implementaions/providers of Exporter factory in your project.
-                          Ex: org.primefaces.extensions.showcase.util.CustomExporterFactory
-                  Step 4: Copy the exporter implementations and add your own changes.
-
-             Note: Example is not specified by keeping in the mind as it will always call the custom Exporter.
-
+            <p/>
+            <ui>
+                <li>Step 1: Create a folder named META-INF under resouces folder.Below META-INF folder create another folder called services.</li>
+                <li>Step 2: Creae a file name with ExporterFactory as a service(Fully binary name of the service).
+                    <br/> &#160;&#160;&#160; Ex: org.primefaces.extensions.component.exporter.ExporterFactory.
+                </li>
+                <li>Step 3: Provide your own implementaions/providers of Exporter factory in your project.
+                    <br/> &#160;&#160;&#160; Ex: org.primefaces.extensions.showcase.util.CustomExporterFactory.
+                </li>
+                <li>Step 4: Copy the exporter implementations and add your own changes.</li>
+            </ui>
+            <p/>
+            Note: Example is not specified by keeping in the mind as it will always call the custom Exporter.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
