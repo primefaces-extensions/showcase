@@ -30,9 +30,10 @@
              editable="true" eventMargin="5" eventMarginAxis="0"
              showMajorLabels="false" axisOnTop="true"
              groupsChangeable="true" groupsOnRight="false"
-             timeZone="America/New_York">
+             timeZone="America/New_York" widgetVar="timelineWdgt">
     <p:ajax event="change" update="@none" listener="#{groupingTimelineController.onChange}"/>
     <p:ajax event="delete" update="@none" listener="#{groupingTimelineController.onDelete}"/>
+    <p:ajax event="add" update="@none" onstart="timelineWdgt.cancelAdd()"/>
     
     <h:graphicImage value="#{order.imagePath}" rendered="#{not empty order.imagePath}"
                     style="display:inline;vertical-align:middle;"/>
