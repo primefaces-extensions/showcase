@@ -37,9 +37,9 @@ public class Vehicle implements Serializable {
     public int speed;
     public int price;
     public int year;
-    public List<String> customers = new ArrayList<String>();
+    public List<Customer> customers = new ArrayList<Customer>();
 
-    public Vehicle(int model, String manufacturer, String color, int speed, int price, int year, List<String> customers) {
+    public Vehicle(int model, String manufacturer, String color, int speed, int price, int year, List<Customer> customers) {
         this.model = model;
         this.manufacturer = manufacturer;
         this.color = color;
@@ -97,11 +97,11 @@ public class Vehicle implements Serializable {
         this.year = year;
     }
 
-    public List<String> getCustomers() {
+    public List<Customer> getCustomers() {
         return customers;
     }
 
-    public void setCustomers(List<String> customers) {
+    public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
 

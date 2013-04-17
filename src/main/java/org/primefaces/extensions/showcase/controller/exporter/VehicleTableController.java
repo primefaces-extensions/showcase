@@ -21,6 +21,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.ToggleEvent;
 import org.primefaces.extensions.showcase.model.Vehicle;
+import org.primefaces.extensions.showcase.model.Customer;
 
 import java.io.Serializable;
 import java.lang.String;
@@ -42,32 +43,13 @@ public class VehicleTableController implements Serializable {
     private final static String[] colors;
 
     private List<Vehicle> vehicles;
-    private List<String> customersDetails = new ArrayList<String>();
+    private List<Customer> customersDetails = new ArrayList<Customer>();
 
-    private final static String[] customersDetails1;
-    private final static String[] customersDetails2;
-    private List<String> customersDetailsList1 = new ArrayList<String>();
-    private List<String> customersDetailsList2 = new ArrayList<String>();
+    private List<Customer> customersDetailsList1 = new ArrayList<Customer>();
+    private List<Customer> customersDetailsList2 = new ArrayList<Customer>();
 
 
     static {
-
-        customersDetails1 = new String[6];
-        customersDetails1[0] = "Name: Thomas Country: Germany";
-        customersDetails1[1] = "Name: Oleg Country: Germany";
-        customersDetails1[2] = "Name: Nilesh Country: India";
-        customersDetails1[3] = "Name: fenoqlio Country: Uruguay";
-        customersDetails1[4] = "Name: Oval Country: Germany";
-        customersDetails1[5] = "Name: Sudheer Country: India";
-
-        customersDetails2 = new String[7];
-        customersDetails2[0] = "Name: Narayana Country: India";
-        customersDetails2[1] = "Name: Anu Country: India";
-        customersDetails2[2] = "Name: Uma Country: India";
-        customersDetails2[3] = "Name: Surendra Country: India";
-        customersDetails2[4] = "Name: Vineet Country: Canada";
-        customersDetails2[5] = "Name: Karthik Country: Canada";
-        customersDetails2[6] = "Name: Sudheer Country: India";
 
         manufacturers = new String[7];
         manufacturers[0] = "Mercedes";
@@ -92,18 +74,29 @@ public class VehicleTableController implements Serializable {
 
     public VehicleTableController() {
         vehicles = new ArrayList<Vehicle>();
-        for (int i = 0; i < 6; i++) {
-            customersDetailsList1.add(customersDetails1[i]);
-        }
-        for (int i = 0; i < 7; i++) {
-            customersDetailsList2.add(customersDetails2[i]);
-        }
+
+
+        customersDetailsList1.add(new Customer("Thomas","Germany"));
+        customersDetailsList1.add(new Customer("Oleg","Germany"));
+        customersDetailsList1.add(new Customer("Nilesh","India"));
+        customersDetailsList1.add(new Customer("fenoqlio","Uruguay"));
+        customersDetailsList1.add(new Customer("Oval","Germany"));
+        customersDetailsList1.add(new Customer("Sudheer","India"));
+
+        customersDetailsList2.add(new Customer("Narayana","India"));
+        customersDetailsList2.add(new Customer("Anu","India"));
+        customersDetailsList2.add(new Customer("Uma","India"));
+        customersDetailsList2.add(new Customer("Surendra","India"));
+        customersDetailsList2.add(new Customer("Vineet","Canada"));
+        customersDetailsList2.add(new Customer("Karthik","Canada"));
+        customersDetailsList2.add(new Customer("Sudheer","India"));
+
         populateRandomVehicles(vehicles, 6);
     }
 
     private void populateRandomVehicles(List<Vehicle> vehicles, int size) {
         for (int i = 0; i < size; i++) {
-            customersDetails = new ArrayList<String>();
+            customersDetails=new ArrayList<Customer>();
             if ((i + 1) % 2 == 0) {
                 customersDetails = customersDetailsList2;
             } else {
@@ -121,7 +114,7 @@ public class VehicleTableController implements Serializable {
         return manufacturers[(int) (Math.random() * 6)];
     }
 
-    public List<String> getCustomersDetails() {
+    public List<Customer> getCustomersDetails() {
         return customersDetails;
     }
 

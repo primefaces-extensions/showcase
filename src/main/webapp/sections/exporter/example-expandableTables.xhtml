@@ -60,10 +60,16 @@
              <h:outputText value="Cutmoer Details"></h:outputText>
           </f:facet>
            <p:column>
-              <h:outputText  value="#{customer}" />
+               <f:facet name="header">
+                   <h:outputText value="Cutmoer Name"></h:outputText>
+               </f:facet>
+              <h:outputText  value="#{customer.customerName}" />
            </p:column>
            <p:column>
-                 <h:outputText  value="#{customer}" />
+               <f:facet name="header">
+                   <h:outputText value="Country"></h:outputText>
+               </f:facet>
+                 <h:outputText  value="#{customer.country}" />
            </p:column>
          </p:dataTable>
 
