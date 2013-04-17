@@ -113,8 +113,4 @@ public class EditClientTimelineController implements Serializable {
 		                     events != null ? events.size() + " events available" : "0 events available");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
-
-	public String getTypeForEvents() {
-		return "java.util.List<org.primefaces.extensions.model.timeline.TimelineEvent>";
-	}
 }
