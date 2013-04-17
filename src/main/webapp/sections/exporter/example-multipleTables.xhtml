@@ -36,9 +36,7 @@
      </p:column>
 </p:dataTable>
 
-<p:spacer height="30"/>
-
-<p:dataTable id="messageDetailsTable" var="message" value="#{messageTableController.messages}"
+<p:dataTable id="messageDetailsTable" var="message" value="#{messageTableController.messages}"  style="margin-top:20px"
                  paginator="true" rows="5" paginatorPosition="bottom"
                  filteredValue="#{messageTableController.filteredMessages}">
      <f:facet name="header">
