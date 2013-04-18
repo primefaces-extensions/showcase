@@ -1,0 +1,59 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:outputStylesheet id="timelineCSS">
+<!-- EXAMPLE-SOURCE-START -->
+/* Custom styles for the Timeline */
+div.timeline-frame {
+    border-color: #5D99C3;
+    border-radius: 5px;
+}
+
+div.timeline-axis {
+    border-color: #5D99C3;
+    background-color: #5D99C3;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5D99C3', endColorstr='#3A6DA0'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#5D99C3), to(#3A6DA0)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #5D99C3,  #3A6DA0); /* for firefox 3.6+ */
+}
+
+div.timeline-groups-axis {
+    border-color: #5D99C3;
+}
+
+div.timeline-axis-text {
+    color: white;
+}
+
+div.timeline-event {
+    color: white;
+    border-radius: 5px;
+}
+
+div.timeline-event-selected {
+    background-color: #BECEFE !important;
+    border-color: #97B0F8 !important;
+}
+
+div.timeline-event-content {
+    padding: 5px;
+}
+
+div.unavailable {
+    background-color: #F03030; /* red */
+    border-color: #bd2828;     /* red */
+}
+
+div.available {
+    background-color: #1AA11A; /* green */
+    border-color: #136e13;     /* green */
+}
+
+div.maybe {
+    background-color: #FFA500; /* orange */
+    border-color: #cc8100;     /* orange */
+}
+<!-- EXAMPLE-SOURCE-END -->
+</h:outputStylesheet>
+</ui:composition>

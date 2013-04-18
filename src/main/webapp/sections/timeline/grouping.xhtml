@@ -48,14 +48,12 @@
         </span>
         </h:panelGroup>
         
-        <ui:decorate template="/templates/threeTabsDecoratorModel.xhtml">
+        <ui:decorate template="/templates/threeTabsDecoratorModelCSS.xhtml">
             <ui:define name="contentTab1">
 ${showcase:getFileContent('/sections/timeline/grouping.xhtml')}
                 
 // Dialog with overlapped timeline events
 ${showcase:getFileContent('/sections/timeline/overlapEventsDialog.xhtml')}
-                
-${showcase:getFileContent('/sections/timeline/groupingCSS.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/GroupingTimelineController.java')}
@@ -65,6 +63,9 @@ ${showcase:getFileContent('/org/primefaces/extensions/showcase/model/timeline/Or
                 
 // Converter for the model class Order.java
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/converter/OrderConverter.java')}
+            </ui:define>
+            <ui:define name="contentTab4">
+${showcase:getFileContent('/sections/timeline/groupingCSS.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>

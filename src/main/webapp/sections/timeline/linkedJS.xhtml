@@ -2,8 +2,9 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:outputScript id="timelineJS" target="body">
 <!-- EXAMPLE-SOURCE-START -->
+<h:outputScript id="timelineJS" target="body">
+/* <![CDATA[ */    
 $(function() {
     onrangechange1();  // to set the range equal initially on page load
 });
@@ -17,6 +18,7 @@ function onrangechange2() {
     var range = timelineSecondWdgt.getVisibleRange();
     timelineFirstWdgt.setVisibleRange(range.start, range.end);
 }
-<!-- EXAMPLE-SOURCE-END -->
+/* ]]> */
 </h:outputScript>
+<!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
