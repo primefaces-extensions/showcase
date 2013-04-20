@@ -45,7 +45,7 @@ public class BasicTimelineController implements Serializable {
 	private boolean selectable = true;
 	private boolean zoomable = true;
 	private boolean moveable = true;
-	private boolean themable = false;
+	private boolean stackEvents = true;
 	private String eventStyle = "box";
 	private boolean axisOnTop;
 	private boolean showCurrentTime = true;
@@ -122,12 +122,12 @@ public class BasicTimelineController implements Serializable {
 		this.moveable = moveable;
 	}
 
-	public boolean isThemable() {
-		return themable;
+	public boolean isStackEvents() {
+		return stackEvents;
 	}
 
-	public void setThemable(boolean themable) {
-		this.themable = themable;
+	public void setStackEvents(boolean stackEvents) {
+		this.stackEvents = stackEvents;
 	}
 
 	public String getEventStyle() {

@@ -11,7 +11,7 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            This example demonstrates configurable options such as "selectable", "zoomable", "moveable", "themable",
+            This example demonstrates configurable options such as "selectable", "zoomable", "moveable", "stackEvents",
             "eventStyle", "axisOnTop", "showCurrentTime", "showNavigation". The Timeline below shows the release history
             of the Primefaces Extensions. It is <strong>selectable</strong>. That means, you can click on any event and
             calls a server-side listener. The listener gets a parameter <strong>TimelineSelectEvent</strong> which contains
@@ -43,9 +43,9 @@
             <p:ajax event="change" process="@this" update="timeline"/>
         </p:selectBooleanButton>
         
-        <h:outputText value="Themable"/>
-        <p:selectBooleanButton id="themable" onLabel="Yes" offLabel="No"
-                               value="#{basicTimelineController.themable}">
+        <h:outputText value="Stack Events"/>
+        <p:selectBooleanButton id="stackEvents" onLabel="Yes" offLabel="No"
+                               value="#{basicTimelineController.stackEvents}">
             <p:ajax event="change" process="@this" update="timeline"/>
         </p:selectBooleanButton>
         
@@ -83,7 +83,7 @@
              selectable="#{basicTimelineController.selectable}"
              zoomable="#{basicTimelineController.zoomable}"
              moveable="#{basicTimelineController.moveable}"
-             themable="#{basicTimelineController.themable}"
+             stackEvents="#{basicTimelineController.stackEvents}"
              axisOnTop="#{basicTimelineController.axisOnTop}"             
              eventStyle="#{basicTimelineController.eventStyle}"
              showCurrentTime="#{basicTimelineController.showCurrentTime}"
