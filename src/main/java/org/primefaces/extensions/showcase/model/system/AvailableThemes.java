@@ -69,6 +69,7 @@ public class AvailableThemes {
 		themeNames.add("smoothness");
 		themeNames.add("south-street");
 		themeNames.add("start");
+		themeNames.add("sunny");
 		themeNames.add("swanky-purse");
 		themeNames.add("trontastic");
 		themeNames.add("ui-darkness");

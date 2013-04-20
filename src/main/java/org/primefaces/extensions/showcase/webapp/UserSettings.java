@@ -43,7 +43,7 @@ public class UserSettings implements Serializable {
 	private Theme currentTheme;
 
 	public UserSettings() {
-		currentTheme = AvailableThemes.getInstance().getThemeForName("bootstrap");
+		currentTheme = AvailableThemes.getInstance().getThemeForName("sunny");
 		availableThemes = AvailableThemes.getInstance().getThemes();
 	}
 
