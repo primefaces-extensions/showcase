@@ -21,7 +21,7 @@
             <pe:ajaxErrorHandler type="javax.faces.application.ViewExpiredException" button="Reload" buttonOnclick="document.location.href=document.location.href;" />
         </ui:insert>
 
-        <pe:layout id="fpl" widgetVar="fullLayoutWidget" options="#{showcaseLayout.layoutOptions}">
+        <pe:layout id="fpl" widgetVar="fullLayoutWidget" options="#{showcaseLayout.options}">
             <pe:layoutPane position="north">
                 <h:form id="headerForm" prependId="false">
                     <ui:insert name="header"/>

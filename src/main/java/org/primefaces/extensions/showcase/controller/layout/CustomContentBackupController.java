@@ -156,7 +156,7 @@ public class CustomContentBackupController implements Serializable {
 			center.replace("childOptionsOne", getLayoutOptionsNestedTwo());
 
 			// update options for oncomplete
-			jsonNestedOptions = getLayoutOptionsNestedTwo().render();
+			jsonNestedOptions = getLayoutOptionsNestedTwo().toJson();
 		} else if (SECOND_NESTED_LAYOUT.equals(src)) {
 			// change path to the nested layout
 			src = FIRST_NESTED_LAYOUT;
@@ -166,7 +166,7 @@ public class CustomContentBackupController implements Serializable {
 			center.replace("childOptionsTwo", getLayoutOptionsNestedOne());
 
 			// update options for oncomplete
-			jsonNestedOptions = getLayoutOptionsNestedOne().render();
+			jsonNestedOptions = getLayoutOptionsNestedOne().toJson();
 		}
 	}
 

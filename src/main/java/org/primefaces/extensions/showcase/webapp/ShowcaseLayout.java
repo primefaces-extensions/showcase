@@ -34,11 +34,11 @@ import org.primefaces.extensions.model.layout.LayoutOptions;
 @ManagedBean(eager = true)
 public class ShowcaseLayout {
 
-	private LayoutOptions layoutOptions;
+	private String options;
 
 	@PostConstruct
 	protected void initialize() {
-		layoutOptions = new LayoutOptions();
+		LayoutOptions layoutOptions = new LayoutOptions();
 
 		// for all panes
 		LayoutOptions panes = new LayoutOptions();
@@ -103,13 +103,16 @@ public class ShowcaseLayout {
 		southCenter.addOption("size", "70%");
 		southCenter.addOption("minSize", 60);
 		childEastOptions.setSouthOptions(southCenter);
+
+		// serialize options to JSON string (increase perf.)
+		options = layoutOptions.toJson();
 	}
 
-	public LayoutOptions getLayoutOptions() {
-		return layoutOptions;
+	public String getOptions() {
+		return options;
 	}
 
-	public void setLayoutOptions(LayoutOptions layoutOptions) {
-		this.layoutOptions = layoutOptions;
+	public void setOptions(String options) {
+		this.options = options;
 	}
 }
