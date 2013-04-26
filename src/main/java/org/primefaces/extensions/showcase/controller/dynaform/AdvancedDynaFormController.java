@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -49,7 +50,8 @@ public class AdvancedDynaFormController implements Serializable {
 
 	private DynaFormModel model;
 
-	public AdvancedDynaFormController() {
+	@PostConstruct
+	protected void initialize() {
 		model = new DynaFormModel();
 
 		// add rows, labels and editable controls

@@ -12,17 +12,19 @@
             This example demonstrates how to build a simple dynamic form. Main steps:
             <p/>
             <ul>
-                <li>Create model instance: DynaFormModel model = new DynaFormModel();</li>
-                <li>Add row to regular grid: DynaFormRow row = model.createRegularRow();</li>
-                <li>Add label: DynaFormLabel label = row.addLabel(value, colspan, rowspan);</li>
-                <li>Add editable control: DynaFormControl control = row.addControl(data, type, colspan, rowspan);</li>
-                <li>Set relationship between label and control (optional): label.setForControl(control);</li>
+                <li>Create model instance: <strong>DynaFormModel model = new DynaFormModel();</strong></li>
+                <li>Add row to regular grid: <strong>DynaFormRow row = model.createRegularRow();</strong></li>
+                <li>Add label: <strong>DynaFormLabel label = row.addLabel(value, colspan, rowspan);</strong></li>
+                <li>Add editable control: <strong>DynaFormControl control = row.addControl(data, type, colspan, rowspan);</strong></li>
+                <li>Set relationship between label and control (optional): <strong>label.setForControl(control);</strong></li>
             </ul>
             Repeat four last steps as many times as needed.
-            The main component tag is pe:dynaForm. Child tag pe:dynaFormControl matches created in Java controls by "type" attribute. This is usually a "one to many" relation.
+            The main component tag is <strong>pe:dynaForm</strong>. Child tag <strong>pe:dynaFormControl</strong> matches created
+            in Java controls by <strong>type</strong> attribute. This is usually a "one to many" relation.
             <p/>
-            You also see that one of important features is a buil-in support for labels. DynaForm renders labels automatically - no need to write p:outputLabel.
-            But of course h:outputText can be used as a quite normal tag inside pe:dynaFormControl with proper "type" too.
+            You also see that one of important features is a buil-in support for labels. DynaForm renders labels automatically -
+            no need to write <strong>p:outputLabel</strong>. But of course <strong>h:outputText</strong> can be used as a quite
+            normal tag inside <strong>pe:dynaFormControl</strong> with a proper <strong>type</strong> as well.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -45,8 +47,9 @@ ${showcase:getFileContent('/org/primefaces/extensions/showcase/model/dynaform/Bo
         <ui:include src="/sections/dynaform/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
-        <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="dynaForm"/>
+        <ui:include src="/sections/shared/twoTabsDocumentation.xhtml">
+            <ui:param name="tagName1" value="dynaForm"/>
+            <ui:param name="tagName2" value="dynaFormControl"/>
         </ui:include>
     </ui:define>
 </ui:composition>

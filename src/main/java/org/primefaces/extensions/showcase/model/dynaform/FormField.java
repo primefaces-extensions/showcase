@@ -37,6 +37,10 @@ public class FormField implements Serializable {
 	private boolean required;
 	private List<SelectItem> selectItems;
 
+	public FormField(Object value) {
+		this.value = value;
+	}
+
 	public FormField(boolean required) {
 		this.required = required;
 	}

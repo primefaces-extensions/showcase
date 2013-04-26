@@ -37,8 +37,9 @@ ${showcase:getFileContent('/org/primefaces/extensions/showcase/model/dynaform/In
         <ui:include src="/sections/dynaform/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
-        <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="dynaForm"/>
+        <ui:include src="/sections/shared/twoTabsDocumentation.xhtml">
+            <ui:param name="tagName1" value="dynaForm"/>
+            <ui:param name="tagName2" value="dynaFormControl"/>
         </ui:include>
     </ui:define>
 </ui:composition>
