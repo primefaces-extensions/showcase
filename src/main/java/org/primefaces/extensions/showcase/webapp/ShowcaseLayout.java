@@ -45,7 +45,6 @@ public class ShowcaseLayout {
 		panes.addOption("resizable", true);
 		panes.addOption("closable", true);
 		panes.addOption("slidable", false);
-		panes.addOption("spacing", 6);
 		panes.addOption("resizeWithWindow", false);
 		panes.addOption("resizeWhileDragging", true);
 		layoutOptions.setPanesOptions(panes);

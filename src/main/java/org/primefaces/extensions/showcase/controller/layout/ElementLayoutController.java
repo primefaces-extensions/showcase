@@ -54,7 +54,6 @@ public class ElementLayoutController implements Serializable {
 		// options for all panes (center and west)
 		LayoutOptions panes = new LayoutOptions();
 		panes.addOption("slidable", false);
-		panes.addOption("spacing", 6);
 		panes.addOption("resizeWhileDragging", true);
 		layoutOptionsOne.setPanesOptions(panes);
 
@@ -71,7 +70,6 @@ public class ElementLayoutController implements Serializable {
 		// options for all panes
 		panes = new LayoutOptions();
 		panes.addOption("slidable", false);
-		panes.addOption("spacing", 6);
 		panes.addOption("resizeWhileDragging", true);
 		layoutOptionsTwo.setPanesOptions(panes);
 

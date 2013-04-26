@@ -53,7 +53,6 @@ public class FullLayoutController implements Serializable {
 		// options for all panes
 		LayoutOptions panes = new LayoutOptions();
 		panes.addOption("slidable", false);
-		panes.addOption("spacing", 6);
 		panes.addOption("resizeWhileDragging", false);
 		layoutOptions.setPanesOptions(panes);
 

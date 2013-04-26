@@ -58,7 +58,6 @@ public class CustomContentBackupController implements Serializable {
 		// options for all panes
 		LayoutOptions panes = new LayoutOptions();
 		panes.addOption("slidable", false);
-		panes.addOption("spacing", 6);
 		layoutOptions.setPanesOptions(panes);
 
 		// north pane
