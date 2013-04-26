@@ -49,6 +49,7 @@ public class TimePickerController implements Serializable {
 	private Date time2;
 	private Date time3;
 	private Date time4;
+	private Date time5;
 	private boolean showTime = false;
 
 	public TimePickerController() {
@@ -63,6 +64,8 @@ public class TimePickerController implements Serializable {
 		time2 = calendar.getTime();
 
 		time3 = new Date();
+
+		time5 = new Date();
 	}
 
 	public Date getTime1() {
@@ -97,6 +100,14 @@ public class TimePickerController implements Serializable {
 		this.time4 = time4;
 	}
 
+	public Date getTime5() {
+		return time5;
+	}
+
+	public void setTime5(Date time5) {
+		this.time5 = time5;
+	}
+
 	public String getFormattedTime1() {
 		return getFormattedTime(time1, "HH:mm");
 	}
@@ -111,6 +122,10 @@ public class TimePickerController implements Serializable {
 
 	public String getFormattedTime4() {
 		return getFormattedTime(time4, "hh-mm a");
+	}
+
+	public String getFormattedTime5() {
+		return getFormattedTime(time5, "HH:mm");
 	}
 
 	public void showTime(ActionEvent ae) {
