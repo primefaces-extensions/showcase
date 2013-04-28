@@ -9,7 +9,7 @@
 
 <p:growl id="growl" showDetail="true" autoUpdate="true"/>
 <p:dataTable id="vehiclesTable" var="vehicle" value="#{vehicleTableController.vehicles}">
-      <p:ajax event="rowToggle" listener="#{vehicleTableController.onRowToggle}" update="display" />
+      <p:ajax event="rowToggle" listener="#{vehicleTableController.onRowToggle}" />
          <f:facet name="header">
             Expand rows to see detailed information
          </f:facet>
@@ -70,6 +70,12 @@
                    <h:outputText value="Country"></h:outputText>
                </f:facet>
                  <h:outputText  value="#{customer.country}" />
+           </p:column>
+           <p:column>
+               <f:facet name="header">
+                   <h:outputText value="Contact Number"></h:outputText>
+               </f:facet>
+                 <h:outputText  value="#{customer.contactNumber}" />
            </p:column>
          </p:dataTable>
 

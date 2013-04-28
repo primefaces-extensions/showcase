@@ -33,10 +33,12 @@ public class Customer implements Serializable {
 
     public String customerName;
     public String country;
+    public String contactNumber;
 
-    public Customer(String customerName, String country) {
+    public Customer(String customerName, String country,String contactNumber) {
         this.customerName = customerName;
         this.country = country;
+        this.contactNumber=contactNumber;
     }
 
     public String getCustomerName() {
@@ -55,11 +57,20 @@ public class Customer implements Serializable {
         this.country = country;
     }
 
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
                 "customerName='" + customerName + '\'' +
                 ", country='" + country + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
                 '}';
     }
 }
