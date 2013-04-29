@@ -24,9 +24,12 @@ import org.primefaces.extensions.showcase.model.Vehicle;
 import org.primefaces.extensions.showcase.model.Customer;
 
 import java.io.Serializable;
+import java.lang.Integer;
 import java.lang.String;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * VehicleTableController
@@ -76,27 +79,27 @@ public class VehicleTableController implements Serializable {
         vehicles = new ArrayList<Vehicle>();
 
 
-        customersDetailsList1.add(new Customer("Thomas","Germany"));
-        customersDetailsList1.add(new Customer("Oleg","Germany"));
-        customersDetailsList1.add(new Customer("Nilesh","India"));
-        customersDetailsList1.add(new Customer("fenoqlio","Uruguay"));
-        customersDetailsList1.add(new Customer("Oval","Germany"));
-        customersDetailsList1.add(new Customer("Sudheer","India"));
+        customersDetailsList1.add(new Customer("Thomas", "Germany", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("Oleg", "Germany", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("Nilesh", "India", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("fenoqlio", "Uruguay", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("Oval", "Germany", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("Sudheer", "India", populateRandomContactNumbers()));
 
-        customersDetailsList2.add(new Customer("Narayana","India"));
-        customersDetailsList2.add(new Customer("Anu","India"));
-        customersDetailsList2.add(new Customer("Uma","India"));
-        customersDetailsList2.add(new Customer("Surendra","India"));
-        customersDetailsList2.add(new Customer("Vineet","Canada"));
-        customersDetailsList2.add(new Customer("Karthik","Canada"));
-        customersDetailsList2.add(new Customer("Sudheer","India"));
+        customersDetailsList2.add(new Customer("Narayana", "India", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Anu", "India", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Uma", "India", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Surendra", "India", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Vineet", "Canada", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Karthik", "Canada", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Sudheer", "India", populateRandomContactNumbers()));
 
         populateRandomVehicles(vehicles, 6);
     }
 
     private void populateRandomVehicles(List<Vehicle> vehicles, int size) {
         for (int i = 0; i < size; i++) {
-            customersDetails=new ArrayList<Customer>();
+            customersDetails = new ArrayList<Customer>();
             if ((i + 1) % 2 == 0) {
                 customersDetails = customersDetailsList2;
             } else {
@@ -104,6 +107,23 @@ public class VehicleTableController implements Serializable {
             }
             vehicles.add(new Vehicle(i + 1, getRandomManufacturer(), getRandomColor(), getRandomSpeed(), getRandomPrice(), getRandomYear(), customersDetails));
         }
+    }
+
+    private String populateRandomContactNumbers() {
+        Random generator = new Random();
+
+        String strippedNum;
+        int num1 = 0;
+        int num2 = 0;
+        int num3 = 0;
+        num1 = generator.nextInt(600) + 100;
+        num2 = generator.nextInt(641) + 100;
+        num3 = generator.nextInt(8999) + 1000;
+
+        String string1 = Integer.toString(num1);
+        strippedNum = Integer.toOctalString(num1);
+        String contactNumber = strippedNum + "-" + num2 + "-" + num3;
+        return contactNumber;
     }
 
     public List<Vehicle> getVehicles() {
