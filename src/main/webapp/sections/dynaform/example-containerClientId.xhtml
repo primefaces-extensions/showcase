@@ -11,7 +11,7 @@
 
     <pe:dynaForm id="dynaForm" value="#{containerDynaFormController.model}"
                  var="data" varContainerId="ccId">
-        <pe:dynaFormControl type="input" for="txt">
+        <pe:dynaFormControl for="txt">
             <h:panelGroup style="white-space: nowrap;">
                 <p:inputText id="txt" value="#{data.value}"/>
                 <p:commandButton icon="ui-icon-search" process="@this txt"

@@ -69,22 +69,22 @@ public class ContainerDynaFormController implements Serializable {
 		DynaFormRow row = model.createRegularRow();
 
 		DynaFormLabel label11 = row.addLabel("Input 1");
-		DynaFormControl control12 = row.addControl(new FormField("Some text"), "input");
+		DynaFormControl control12 = row.addControl(new FormField("Some text"));
 		label11.setForControl(control12);
 
 		DynaFormLabel label13 = row.addLabel("Input 2");
-		DynaFormControl control14 = row.addControl(new FormField("Some text"), "input");
+		DynaFormControl control14 = row.addControl(new FormField("Some text"));
 		label13.setForControl(control14);
 
 		// 2. row
 		row = model.createRegularRow();
 
 		DynaFormLabel label21 = row.addLabel("Input 3");
-		DynaFormControl control22 = row.addControl(new FormField("Some text"), "input");
+		DynaFormControl control22 = row.addControl(new FormField("Some text"));
 		label21.setForControl(control22);
 
 		DynaFormLabel label23 = row.addLabel("Input 4");
-		DynaFormControl control24 = row.addControl(new FormField("Some text"), "input");
+		DynaFormControl control24 = row.addControl(new FormField("Some text"));
 		label23.setForControl(control24);
 	}
 
