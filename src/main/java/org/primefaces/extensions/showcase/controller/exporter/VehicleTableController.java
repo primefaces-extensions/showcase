@@ -51,9 +51,7 @@ public class VehicleTableController implements Serializable {
     private List<Customer> customersDetailsList1 = new ArrayList<Customer>();
     private List<Customer> customersDetailsList2 = new ArrayList<Customer>();
 
-
     static {
-
         manufacturers = new String[7];
         manufacturers[0] = "Mercedes";
         manufacturers[1] = "BMW";
@@ -71,27 +69,25 @@ public class VehicleTableController implements Serializable {
         colors[4] = "Blue";
         colors[5] = "Orange";
         colors[6] = "Black";
-
     }
 
 
     public VehicleTableController() {
         vehicles = new ArrayList<Vehicle>();
 
+        customersDetailsList1.add(new Customer("Thomas Andraschko", "Germany", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("Oleg Varaksin", "Russia", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("Nilesh Mali", "India", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("Mauricio Fenoglio", "Uruguay", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("Oval Slany", "Slovakia", populateRandomContactNumbers()));
+        customersDetailsList1.add(new Customer("Sudheer Jonna", "India", populateRandomContactNumbers()));
 
-        customersDetailsList1.add(new Customer("Thomas", "Germany", populateRandomContactNumbers()));
-        customersDetailsList1.add(new Customer("Oleg", "Germany", populateRandomContactNumbers()));
-        customersDetailsList1.add(new Customer("Nilesh", "India", populateRandomContactNumbers()));
-        customersDetailsList1.add(new Customer("fenoqlio", "Uruguay", populateRandomContactNumbers()));
-        customersDetailsList1.add(new Customer("Oval", "Germany", populateRandomContactNumbers()));
-        customersDetailsList1.add(new Customer("Sudheer", "India", populateRandomContactNumbers()));
-
-        customersDetailsList2.add(new Customer("Narayana", "India", populateRandomContactNumbers()));
-        customersDetailsList2.add(new Customer("Anu", "India", populateRandomContactNumbers()));
-        customersDetailsList2.add(new Customer("Uma", "India", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Narayana VenkataS", "India", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Anu Pallavi", "India", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Uma Vijayakumar", "India", populateRandomContactNumbers()));
         customersDetailsList2.add(new Customer("Surendra", "India", populateRandomContactNumbers()));
-        customersDetailsList2.add(new Customer("Vineet", "Canada", populateRandomContactNumbers()));
-        customersDetailsList2.add(new Customer("Karthik", "Canada", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Vineet Jain", "Canada", populateRandomContactNumbers()));
+        customersDetailsList2.add(new Customer("Karthikeyan", "Canada", populateRandomContactNumbers()));
         customersDetailsList2.add(new Customer("Sudheer", "India", populateRandomContactNumbers()));
 
         populateRandomVehicles(vehicles, 6);
@@ -111,7 +107,6 @@ public class VehicleTableController implements Serializable {
 
     private String populateRandomContactNumbers() {
         Random generator = new Random();
-
         String strippedNum;
         int num1 = 0;
         int num2 = 0;
@@ -154,12 +149,8 @@ public class VehicleTableController implements Serializable {
         return (int) (Math.random() * 10 + 10000);
     }
 
-
     public void onRowToggle(ToggleEvent event) {
-
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected Vehicle", "Manufacturer:" + ((Vehicle) event.getData()).getManufacturer());
-
         FacesContext.getCurrentInstance().addMessage(null, msg);
-
     }
 }
