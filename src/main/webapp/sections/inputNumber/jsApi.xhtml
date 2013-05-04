@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="InputNumber"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            Use the jsApi to set and get the inputNumber format.
+            <ul>
+                <li>The widgetVar is testing.</li>
+                <li>Execute testing.setValue(val) to set a value.</li>
+                <li>Execute testing.getValue() to get the value.</li>
+            </ul>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <ui:include src="/sections/inputNumber/example-jsApi.xhtml" />
+        </h:panelGroup>
+
+        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
+            <!-- Code here should be left aligned -->
+            <ui:define name="contentTab1">
+${showcase:getFileContent('/sections/inputNumber/example-jsApi.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/InputNumberController.java')}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/inputNumber/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="inputNumber"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>
+

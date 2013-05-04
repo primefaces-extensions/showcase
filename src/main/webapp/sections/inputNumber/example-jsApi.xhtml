@@ -1,0 +1,33 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">    
+ <!-- EXAMPLE-SOURCE-START -->
+
+<!-- This group is for coding -->
+<p:panelGrid id="exampleDataTable" styleClass="centerContent" >
+    <f:facet name="header">
+        <p:row>
+            <p:column style="font-weight: bold;">inputNumber</p:column>
+            <p:column style="font-weight: bold;">Numeric Value</p:column>           
+        </p:row>
+    </f:facet>
+ 
+    <p:row>
+        <p:column>
+            <pe:inputNumber id="Input1" value="#{inputNumberController.input1}" widgetVar="testing">
+                <p:ajax event="blur" update="valueInput1" />
+            </pe:inputNumber>
+        </p:column>
+
+        <p:column>
+            <p:inputText id="valueInput1" disabled="true" value="#{inputNumberController.input1}"/>
+        </p:column>
+    </p:row>
+    
+</p:panelGrid>
+    <!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
