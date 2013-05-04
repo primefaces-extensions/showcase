@@ -45,6 +45,7 @@ public class TriSateManyCheckBoxController implements Serializable {
 	private Map<String, String> selectedOptionsTriStateBasic;
 	private Map<String, String> selectedOptionsTriStateAjax;
 	private Map<String, State> selectedOptionsTriStateConverted;
+        private Map<String, State> selectedOptionsTriStateConvertedInline;
 	private Map<String, String> basicOptions;
 
 	public TriSateManyCheckBoxController() {
@@ -63,8 +64,13 @@ public class TriSateManyCheckBoxController implements Serializable {
 
 		selectedOptionsTriStateConverted = new HashMap<String, State>();
 		selectedOptionsTriStateConverted.put("Dog", new State("One"));
-		selectedOptionsTriStateConverted.put("Cat", new State("Two"));
-		selectedOptionsTriStateConverted.put("Fish", new State("Three"));
+		selectedOptionsTriStateConverted.put("Cat", new State("One"));
+		selectedOptionsTriStateConverted.put("Fish", new State("One"));
+                
+                selectedOptionsTriStateConvertedInline = new HashMap<String, State>();
+		selectedOptionsTriStateConvertedInline.put("Dog", new State("One"));
+		selectedOptionsTriStateConvertedInline.put("Cat", new State("Two"));
+		selectedOptionsTriStateConvertedInline.put("Fish", new State("Three"));
 	}
 
 	public Map<String, String> getSelectedOptionsTriStateAjax() {
@@ -108,4 +114,12 @@ public class TriSateManyCheckBoxController implements Serializable {
 	public void setSelectedOptionsTriStateConverted(Map<String, State> selectedOptionsTriStateConverted) {
 		this.selectedOptionsTriStateConverted = selectedOptionsTriStateConverted;
 	}
+
+        public Map<String, State> getSelectedOptionsTriStateConvertedInline() {
+            return selectedOptionsTriStateConvertedInline;
+        }
+
+        public void setSelectedOptionsTriStateConvertedInline(Map<String, State> selectedOptionsTriStateConvertedInline) {
+            this.selectedOptionsTriStateConvertedInline = selectedOptionsTriStateConvertedInline;
+        }        
 }
