@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+    <h:panelGroup layout="block" styleClass="source">
+        Source
+    </h:panelGroup>
+    <p:tabView id="sourceTabView">
+        <p:tab title="XHTML page">
+		    <pre name="code" class="xml"><ui:insert name="contentTab1"/></pre>
+        </p:tab>
+        <p:tab title="Managed bean">
+		    <pre name="code" class="java"><ui:insert name="contentTab2"/></pre>
+        </p:tab>
+        <p:tab title="Model class">
+		    <pre name="code" class="java"><ui:insert name="contentTab3"/></pre>
+        </p:tab>
+        <p:tab title="#{customTitle}">
+		    <pre name="code" class="#{customCode}"><ui:insert name="contentTab4"/></pre>
+        </p:tab>
+    </p:tabView>
+</ui:composition>
+</html>
