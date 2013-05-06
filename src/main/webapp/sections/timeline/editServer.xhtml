@@ -30,8 +30,8 @@
             The Timeline component provides a server-side API to update the component with only one request / response.
             So, you can update the UI on the server-side immediately when sending "update" request for a particular event. The main steps to do:
             <ul>
-                <li>Get <strong>TimelineUpdater</strong> instance by timeline's Id (in terms of findComponent()).</li>
-                <li>Invoke a CRUD operation (add, update, delete, deleteAll, clear) on the <strong>TimelineModel</strong> with the TimelineUpdater as parameter.</li>
+                <li>Get thread-safe <strong>TimelineUpdater</strong> instance by timeline's Id (in terms of findComponent()).</li>
+                <li>Invoke one or many (batch mode) CRUD operations, such as add, update, delete, deleteAll, clear, on the <strong>TimelineModel</strong> with the TimelineUpdater as parameter.</li>
             </ul>
             <strong>Note:</strong> All CRUD operations on the model instance can be also called without the TimelineUpdater.
             In this case you should update the Timeline component manually to see last changes.
