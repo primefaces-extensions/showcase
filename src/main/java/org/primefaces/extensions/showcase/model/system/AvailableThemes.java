@@ -50,6 +50,7 @@ public class AvailableThemes {
 		themeNames.add("cruze");
 		themeNames.add("cupertino");
 		themeNames.add("dark-hive");
+		themeNames.add("delta");
 		themeNames.add("dot-luv");
 		themeNames.add("eggplant");
 		themeNames.add("excite-bike");
