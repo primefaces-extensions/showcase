@@ -70,8 +70,8 @@ public class CustomContentLayoutController implements Serializable {
 
 		// west pane
 		LayoutOptions west = new LayoutOptions();
-		west.addOption("size", 210);
-		west.addOption("minSize", 180);
+		west.addOption("size", 340);
+		west.addOption("minSize", 150);
 		west.addOption("maxSize", 500);
 		layoutOptions.setWestOptions(west);
 
@@ -105,11 +105,16 @@ public class CustomContentLayoutController implements Serializable {
 		return src;
 	}
 
-	public String clickMe() {
-		FacesMessage msg =
-		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Nice to see that an action works in nested layouts.", null);
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+	public void showMessages() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		FacesMessage msg1 = new FacesMessage(FacesMessage.SEVERITY_ERROR, "This is the first error message", null);
+		FacesMessage msg2 = new FacesMessage(FacesMessage.SEVERITY_ERROR, "This is the second error message", null);
 
-		return null;
+		fc.addMessage(null, msg1);
+		fc.addMessage(null, msg2);
+	}
+
+	public void hideMessages() {
+		// nothing to do
 	}
 }

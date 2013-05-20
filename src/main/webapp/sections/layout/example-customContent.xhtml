@@ -6,9 +6,7 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
-<h:form id="mainForm" prependId="false">
-    <p:growl id="growl" showSummary="true" showDetail="false"/>
-    
+<h:form id="mainForm" prependId="false">    
     <pe:layout id="fullPage" options="#{customContentLayoutController.layoutOptions}"
                widgetVar="fpLayoutWidget">
         <pe:layoutPane position="north">
@@ -28,8 +26,71 @@
                 <ui:include src="#{customContentLayoutController.src}"/>
             </div>
         </pe:layoutPane>
-        <pe:layoutPane position="west">
-            West    
+        <pe:layoutPane position="west" styleHeader="background:none; border:none; padding:0;">
+            <f:facet name="header">
+                <p:outputPanel id="msgPanel" autoUpdate="true">
+                    <p:messages id="messages" showSummary="true" showDetail="false"/>
+                    
+                    <script type="text/javascript">
+                    /* <![CDATA[ */
+                        if (#{facesContext.partialViewContext.ajaxRequest}) {
+                            $(function() {
+                                fpLayoutWidget.sizeContent('west');
+                            });
+                        }
+                    /* ]]> */
+                    </script>    
+                </p:outputPanel>
+            </f:facet>
+            
+            Click on the buttons to see that scrollbars in the west pane are well adjusted and messages preserve their place when scrolling.
+            
+            <h:panelGrid columns="2" style="margin:15px">
+                <p:commandButton value="Show messages" process="@this" style="margin-right:5px;"
+                                 action="#{customContentLayoutController.showMessages}"/>
+                <p:commandButton value="Hide messages" process="@this"
+                                 action="#{customContentLayoutController.hideMessages}"/>
+            </h:panelGrid>
+            
+            <p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}" paginator="true"
+                         rows="30" rowsPerPageTemplate="20,30,40">
+                <p:column sortBy="#{message.subject}">
+                    <f:facet name="header">
+                        <h:outputText value="Subject"/>
+                    </f:facet>
+                    <h:outputText value="#{message.subject}"/>
+                </p:column>
+                <p:column sortBy="#{message.text}">
+                    <f:facet name="header">
+                        <h:outputText value="Text"/>
+                    </f:facet>
+                    <h:outputText value="#{message.text}"/>
+                </p:column>
+                <p:column sortBy="#{message.subject}">
+                    <f:facet name="header">
+                        <h:outputText value="Subject"/>
+                    </f:facet>
+                    <h:outputText value="#{message.subject}"/>
+                </p:column>
+                <p:column sortBy="#{message.text}">
+                    <f:facet name="header">
+                        <h:outputText value="Text"/>
+                    </f:facet>
+                    <h:outputText value="#{message.text}"/>
+                </p:column>
+                <p:column sortBy="#{message.subject}">
+                    <f:facet name="header">
+                        <h:outputText value="Subject"/>
+                    </f:facet>
+                    <h:outputText value="#{message.subject}"/>
+                </p:column>
+                <p:column sortBy="#{message.text}">
+                    <f:facet name="header">
+                        <h:outputText value="Text"/>
+                    </f:facet>
+                    <h:outputText value="#{message.text}"/>
+                </p:column>                
+            </p:dataTable>            
         </pe:layoutPane>
         <pe:layoutPane position="south">
             South
@@ -58,7 +119,27 @@
         color: #000000;
         overflow: hidden;
         vertical-align: middle;
-    }    
+    }
+    
+    .ui-datatable thead th,
+    .ui-datatable tbody td,
+    .ui-datatable tfoot td {
+        white-space: nowrap;
+    }
+    
+    .ui-messages-info,
+    .ui-messages-warn,
+    .ui-messages-error,
+    .ui-messages-fatal {
+        margin: 0;
+    }
+    
+    #messages > div {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        -moz-border-radius-bottomleft: 0;
+        -moz-border-radius-bottomright: 0;
+    }
 </h:outputStylesheet>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

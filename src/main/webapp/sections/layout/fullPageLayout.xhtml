@@ -10,11 +10,14 @@
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
             This example demonstrates a full page layout with nested panes, layout's AJAX events and client-side state management.
-            Three events are possible: "open", "close", "resize". The client-side state management is activated by setting stateCookie="true".
+            Three events are possible: <strong>open</strong>, <strong>close</strong>, <strong>resize</strong>.
+            The client-side state management is activated by setting <strong>stateCookie="true"</strong>.
             <p/>
-            Furthermore, you can see client-side widget's methods for pane manipulation in action. These are sizePane(), toggle(), close() and open().
-            They expect pane position as parameter. Nested panes are separated by _ sign. Example: sizePane("center_north", 300);
-            <strong>Attention:</strong> "center" pane can not be manipulated, so that e.g. toggle("center") or sizePane("west_center", 300) are invalid calls.
+            Furthermore, you can see client-side widget's methods for pane manipulation in action. These are
+            <strong>sizePane()</strong>, <strong>sizeContent()</strong> <strong>toggle()</strong>, <strong>close()</strong>
+            and <strong>open()</strong>. They expect pane position as parameter. Nested panes are separated by the <strong>_</strong> sign.
+            Example: sizePane("center_north", 300); <strong>Attention:</strong> "center" pane can not be manipulated,
+            so that e.g. toggle("center") or sizePane("west_center", 300) are invalid calls.
             <p/>
             In this example, the entire layout is defined by LayoutOptions which are bound to the "options" attribute of pe:layout.
             LayoutOptions is optional, it also possible to create a layout by options defined as attributes of pe:layoutPane.
