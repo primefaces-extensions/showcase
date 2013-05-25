@@ -98,7 +98,7 @@
 <p:panel header="Export PDF and Excel">
     <p:commandLink id="pdf" ajax="false">
         <p:graphicImage value="/resources/images/pdf.png"/>
-        <pe:exporter type="pdf" target="groupingTable" fileName="GroupedTable" tableTitle="Sales/Profits Analysis"
+        <pe:exporter type="pdf" target="groupingTable" fileName="GroupedTable" tableTitle="Sales/Profits Analysis" orientation="Landscape"
                      facetBackground="#F88017" facetFontSize="10" facetFontColor="#0000ff" facetFontStyle="BOLD"
                      cellFontColor="#00ff00" cellFontSize="8" cellFontStyle="NORMAL"/>
     </p:commandLink>
@@ -172,7 +172,7 @@
     <p:commandLink id="pdfSubtable" ajax="false">
         <p:graphicImage value="/resources/images/pdf.png"/>
 
-        <pe:exporter type="pdf" target="playersSubTable" fileName="PlayersStatistics"
+        <pe:exporter type="pdf" target="playersSubTable" fileName="PlayersStatistics"  orientation="Landscape"
                      tableTitle="Players Statistics" subTable="true" facetBackground="#008000" facetFontSize="15"
                      facetFontColor="#FFFFFF" facetFontStyle="BOLD" cellFontColor="#0000FF" cellFontSize="12"  datasetPadding="4"
                      cellFontStyle="NORMAL"/>
