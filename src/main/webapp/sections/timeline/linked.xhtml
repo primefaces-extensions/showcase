@@ -13,13 +13,27 @@
         <h:panelGroup layout="block" styleClass="centerContent">
             This example demonstrates linked timelines. When moving one timeline, the other moves along.
             Use mouse scroll wheel for zoom-in and zoom-out.
+            <p/>
+            Furthemore, this example demonstrates how to select events programmatically. A click on an event in the first timeline
+            selects an event in the second timeline (Project A or Project B).
+            A visual selection can be achieved either by calling the method
+            <strong>select(TimelineEvent event, TimelineUpdater timelineUpdater)</strong> from the <strong>TimelineModel</strong>
+            or by calling the method <strong>select(int index)</strong> on a proper <strong>TimelineUpdater</strong> instance
+            (index is a position of the event to be selected in the event's list - the order of adding to the model).
+            <p/>
+            <strong>Notes:</strong> If you select an event, the visible range will be moved, so that the selected event is placed in the middle.
+            If you want, you can also use the client-side widget's method <strong>setSelection(index)</strong>, where the
+            <strong>index</strong> is a position of the event to be selected in the event's list (the same index is used for TimelineUpdater).
         </h:panelGroup>
         
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
+<p:growl id="growl" showSummary="true" showDetail="false" autoUpdate="true"/>
+            
 <pe:timeline id="timelineFirst" value="#{linkedTimelinesController.modelFirst}" var="task"
              height="300px" widgetVar="timelineFirstWdgt">
     <pe:javascript event="rangechange" execute="onrangechange1()"/>
+    <p:ajax event="select" listener="#{linkedTimelinesController.onSelect}"/>
     
     <h:panelGroup layout="block" rendered="#{not task.period}" style="padding-bottom:5px">
         <h:outputText value="#{task.title}"/>

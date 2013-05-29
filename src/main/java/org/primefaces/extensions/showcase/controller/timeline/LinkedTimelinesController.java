@@ -22,9 +22,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.extensions.component.timeline.TimelineUpdater;
+import org.primefaces.extensions.event.timeline.TimelineSelectEvent;
 import org.primefaces.extensions.model.timeline.TimelineEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
 import org.primefaces.extensions.showcase.model.timeline.Task;
@@ -39,8 +43,9 @@ import org.primefaces.extensions.showcase.model.timeline.Task;
 @ViewScoped
 public class LinkedTimelinesController implements Serializable {
 
-	private TimelineModel modelFirst; // model of the first timeline
+	private TimelineModel modelFirst;  // model of the first timeline
 	private TimelineModel modelSecond; // model of the second timeline
+    private boolean aSelected;         // flag if the project A is selected (for test of select() call on the 2. model)
 
 	@PostConstruct
 	protected void initialize() {
@@ -94,6 +99,25 @@ public class LinkedTimelinesController implements Serializable {
 		endProject = cal.getTime();
 		modelSecond.add(new TimelineEvent("Project B", startProject, endProject));
 	}
+    
+    public void onSelect(TimelineSelectEvent e) {
+        // get a thread-safe TimelineUpdater instance for the second timeline
+        TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":mainForm:timelineSecond");
+        
+   		if (aSelected) {
+            // select project B visually (index in the event's list is 1)
+               timelineUpdater.select(1);
+        } else {
+            // select project A visually (index in the event's list is 0)
+               timelineUpdater.select(0);
+        }
+        
+        aSelected = !aSelected;
+        
+   		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                           "Selected project: " + (aSelected ? "A" : "B"), null);
+   		FacesContext.getCurrentInstance().addMessage(null, msg);
+   	}
 
 	public TimelineModel getModelFirst() {
 		return modelFirst;
