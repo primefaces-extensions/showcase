@@ -7,13 +7,14 @@
     <!-- EXAMPLE-SOURCE-START -->
 <p:messages id="messages"/>
 
-<h:panelGrid id="timePickerGrid" columns="5"
-             columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn,timePickerColumn">
+<h:panelGrid id="timePickerGrid" columns="6"
+    columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn,timePickerColumn,timePickerColumn">
     <h:outputText value="Inline mode"/>
     <h:outputText value="Popup mode"/>
     <h:outputText value="Spinner mode"/>
     <h:outputText value="Customization"/>
-    <h:outputText value="Popup triggered by button"/>
+    <h:outputText value="Show popup by button"/>
+    <h:outputText value="Spinner with button"/>
     
     <pe:timePicker value="#{timePickerController.time1}" mode="inline" widgetVar="inlineTimeWidget"
                    label="Inline time picker"/>
@@ -27,14 +28,18 @@
                    widgetVar="customTimeWidget" label="Custom time picker"/>
     <pe:timePicker value="#{timePickerController.time5}" mode="popup" widgetVar="popupBtnTimeWidget"
                    showOn="button" label="Popup time picker with button"/>
+    <pe:timePicker value="#{timePickerController.time6}" mode="spinner" widgetVar="spinnerBtnTimeWidget"
+                   showOn="button" label="Spinner time picker with button"/>    
 </h:panelGrid>
 
 <p:commandButton type="button" value="Disable time pickers" style="margin-top:10px;"
                  onclick="inlineTimeWidget.disable();popupTimeWidget.disable();
-                     spinnerTimeWidget.disable();customTimeWidget.disable();popupBtnTimeWidget.disable();"/>
+                     spinnerTimeWidget.disable();customTimeWidget.disable();
+                     popupBtnTimeWidget.disable();spinnerBtnTimeWidget.disable();"/>
 <p:commandButton type="button" value="Enable time pickers" style="margin-top:10px;"
                  onclick="inlineTimeWidget.enable();popupTimeWidget.enable();
-                     spinnerTimeWidget.enable();customTimeWidget.enable();popupBtnTimeWidget.enable();"/>
+                     spinnerTimeWidget.enable();customTimeWidget.enable();
+                     popupBtnTimeWidget.enable();spinnerBtnTimeWidget.enable();"/>
 <p:commandButton id="submitButton" value="Submit" actionListener="#{timePickerController.showTime}"
                  process="@this timePickerGrid" update="messages timeDialog timePickerGrid"
                  style="margin-top:10px;" icon="ui-icon-disk"/>
@@ -45,7 +50,8 @@
         <h:outputText value="Popup: #{timePickerController.formattedTime2}"/>
         <h:outputText value="Spinner: #{timePickerController.formattedTime3}"/>
         <h:outputText value="Custom: #{timePickerController.formattedTime4}"/>
-        <h:outputText value="Custom: #{timePickerController.formattedTime5}"/>
+        <h:outputText value="Button: #{timePickerController.formattedTime5}"/>
+        <h:outputText value="Spinner and Button: #{timePickerController.formattedTime6}"/>
     </h:panelGrid>
 </p:dialog>
     <!-- EXAMPLE-SOURCE-END -->
