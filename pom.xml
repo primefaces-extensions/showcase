@@ -313,7 +313,7 @@
 	<properties>
 		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
 		<primefaces-extensions.new-components>;</primefaces-extensions.new-components>
-		<primefaces-extensions.updated-components>exporter;keyFilter;layout;timeline;timePicker</primefaces-extensions.updated-components>
+		<primefaces-extensions.updated-components>;</primefaces-extensions.updated-components>
 
 		<mojarra.version>2.1.22</mojarra.version>
 		<myfaces.version>2.1.10</myfaces.version>
