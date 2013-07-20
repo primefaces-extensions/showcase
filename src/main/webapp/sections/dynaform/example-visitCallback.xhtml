@@ -43,9 +43,9 @@
 </pe:dynaForm>
     
 <p:commandButton value="Submit form and show current values" process="dynaForm" update="conditions"
-                     style="margin:15px 5px 0 0" oncomplete="condValuesDlg.show()"/>
+                     style="margin:15px 5px 0 0" oncomplete="PF('condValuesDlg').show()"/>
 <p:commandButton value="Show current values without submit" process="@none" update="conditions"
-                 style="margin-top:15px;" oncomplete="condValuesDlg.show()"/>
+                 style="margin-top:15px;" oncomplete="PF('condValuesDlg').show()"/>
     
 <p:dialog header="Condition Values" widgetVar="condValuesDlg">
     <h:panelGroup id="conditions" layout="block" style="margin:10px;">

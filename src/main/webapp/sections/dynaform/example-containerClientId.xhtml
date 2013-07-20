@@ -14,7 +14,7 @@
             <h:panelGroup style="white-space: nowrap;">
                 <p:inputText id="txt" value="#{data.value}"/>
                 <p:commandButton icon="ui-icon-search" process="@this txt"
-                                 update=":mainForm:dialogList" oncomplete="dialogListWdgt.show()"
+                                 update=":mainForm:dialogList" oncomplete="PF('dialogListWdgt').show()"
                                  title="Please choose an item"
                                  style="background:none; border:none;">
                     <f:setPropertyActionListener value="#{ccId}"
@@ -30,7 +30,7 @@
         <f:facet name="buttonBar">
             <p:commandButton value="Submit" process="dynaForm"
                              update=":mainForm:dynaFormGroup :mainForm:inputValues"
-                             oncomplete="inputValuesWidget.show()"/>
+                             oncomplete="PF('inputValuesWidget').show()"/>
         </f:facet>
     </pe:dynaForm>
 </h:panelGroup>
@@ -48,8 +48,8 @@
     <h:panelGroup layout="block" style="white-space:nowrap; margin-top:15px;">
         <p:commandButton value="OK" icon="ui-icon-disk" style="margin-right:5px"
                          process="@this selectList" action="#{containerDynaFormController.updateSelection}"
-                         global="false" oncomplete="dialogListWdgt.hide()"/>
-        <p:commandButton value="Cancel" type="button" onclick="dialogListWdgt.hide()"/>
+                         global="false" oncomplete="PF('dialogListWdgt').hide()"/>
+        <p:commandButton value="Cancel" type="button" onclick="PF('dialogListWdgt').hide()"/>
     </h:panelGroup>
 </p:dialog>    
 
