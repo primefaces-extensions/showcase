@@ -184,12 +184,12 @@
 		<dependency>
 			<groupId>de.odysseus.juel</groupId>
 			<artifactId>juel-impl</artifactId>
-			<version>2.2.5</version>
+			<version>2.2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>de.odysseus.juel</groupId>
 			<artifactId>juel-spi</artifactId>
-			<version>2.2.5</version>
+			<version>2.2.6</version>
 		</dependency>
 
 		<dependency>
@@ -315,7 +315,7 @@
 		<primefaces-extensions.new-components>;</primefaces-extensions.new-components>
 		<primefaces-extensions.updated-components>;</primefaces-extensions.updated-components>
 
-		<mojarra.version>2.1.23</mojarra.version>
+		<mojarra.version>2.1.24</mojarra.version>
 		<myfaces.version>2.1.10</myfaces.version>
 	</properties>
 </project>
