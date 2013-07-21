@@ -31,7 +31,7 @@ function change() {
 
     if (!timelineWdgt.isEditable(index)) {
         // only editable events can be changed
-        infoTipWdgt.show();
+        PF('infoTipWdgt').show();
         return;
     }
 
@@ -52,11 +52,11 @@ function remove() {
 
     if (!timelineWdgt.isEditable(index)) {
         // only editable events can be deleted
-        infoTipWdgt.show();
+        PF('infoTipWdgt').show();
         return;
     }
 
-    confirmWdgt.show();
+    PF('confirmWdgt').show();
 }
     
 function removeAfterConfirm() {

@@ -15,8 +15,8 @@
         <h:panelGroup layout="block" style="text-align:right; padding:2px; white-space:nowrap;">
             <p:commandButton value="Delete" process="deleteBookingDlg" update="@none"
                              action="#{editServerTimelineController.delete}"
-                             oncomplete="deleteBookingWdgt.hide()"/>
-            <p:commandButton type="button" value="Close" onclick="deleteBookingWdgt.hide()"/>
+                             oncomplete="PF('deleteBookingWdgt').hide()"/>
+            <p:commandButton type="button" value="Close" onclick="PF('deleteBookingWdgt').hide()"/>
         </h:panelGroup>
     </f:facet>
 </p:dialog>

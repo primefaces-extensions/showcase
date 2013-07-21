@@ -61,7 +61,7 @@
              widgetVar="timelineWdgt" style="margin-top:10px;">
     <pe:javascript event="select" execute="showContent()"/>
     <pe:javascript event="add" execute="showContent()"/>
-    <pe:javascript event="delete" execute="timelineWdgt.cancelDelete(); confirmWdgt.show();"/>
+    <pe:javascript event="delete" execute="timelineWdgt.cancelDelete(); PF('confirmWdgt').show();"/>
 </pe:timeline>
 
 <p:commandButton value="Submit" type="button" style="margin-top:15px;"
@@ -78,13 +78,13 @@
 </pe:remoteCommand>
             
 <p:confirmDialog message="Are you sure you want to delete the selected event?"
-                 header="Delete confirmation" appendToBody="true"
+                 header="Delete confirmation" appendTo="@(body)"
                  severity="alert" widgetVar="confirmWdgt">            
-    <p:commandButton value="Delete" type="button" onclick="confirmWdgt.hide(); removeAfterConfirm();"/>
-    <p:commandButton value="Cancel" type="button" onclick="confirmWdgt.hide()"/>            
+    <p:commandButton value="Delete" type="button" onclick="PF('confirmWdgt').hide(); removeAfterConfirm();"/>
+    <p:commandButton value="Cancel" type="button" onclick="PF('confirmWdgt').hide()"/>
 </p:confirmDialog>
             
-<p:dialog widgetVar="infoTipWdgt" header="Attention" appendToBody="true">
+<p:dialog widgetVar="infoTipWdgt" header="Attention" appendTo="@(body)">
     <p>You can not change or delete read-only events!</p>
 </p:dialog>
 <!-- EXAMPLE-SOURCE-END -->

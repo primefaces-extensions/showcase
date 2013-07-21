@@ -119,13 +119,13 @@
     </h:panelGroup>
 </h:panelGroup>
     
-<pe:waypoint id="waypoint1" forSelector=".ad-unit" forContextSelector="#mainForm .pe-layout-pane-content"
+<pe:waypoint id="waypoint1" for="@(.ad-unit)" forContext="@(#mainForm .pe-layout-pane-content)"
              offset="'bottom-in-view'" triggerOnce="true">
     <p:ajax event="reached" onstart="$(cfg.ext.waypoint).addClass('active')"
             listener="#{scrollAnalyticsController.adInView}" update="growl"/>
 </pe:waypoint>
     
-<pe:waypoint id="waypoint2" for="container" forContextSelector="#mainForm .pe-layout-pane-content"
+<pe:waypoint id="waypoint2" for="container" forContext="@(#mainForm .pe-layout-pane-content)"
              offset="function(){return $.waypoints('viewportHeight') - $(this).height()}">
     <pe:javascript event="reached" execute="$('#article-finished').toggleClass('hiding', ext.direction === 'up');"/>
 </pe:waypoint>

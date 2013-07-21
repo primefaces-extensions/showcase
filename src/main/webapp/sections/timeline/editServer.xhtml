@@ -55,7 +55,7 @@
             oncomplete="detailsBookingWdgt.show()"/>
     <p:ajax event="delete" update=":dialogForm:deleteBookingInner"
             listener="#{editServerTimelineController.onDelete}"
-            onstart="timelineWdgt.cancelDelete()" oncomplete="deleteBookingWdgt.show()"/>
+            onstart="timelineWdgt.cancelDelete()" oncomplete="PF('deleteBookingWdgt').show()"/>
     
     <h:panelGrid columns="1">
         <h:outputText value="Room: #{booking.roomNumber}"/>

@@ -64,7 +64,7 @@
     eleifend imperdiet lectus vitae aliquet. Mauris metus lorem, fermentum vitae malesuada quis, pretium id mi.
 </h:panelGroup>    
 
-<pe:waypoint id="waypoint" forSelector=".dial li" forContextSelector=".dial ul" offset="25">
+<pe:waypoint id="waypoint" for="@(.dial li)" forContext="@(.dial ul)" offset="25">
     <pe:javascript event="reached" execute="handleWaypoint(ext);"/>
 </pe:waypoint>
     
