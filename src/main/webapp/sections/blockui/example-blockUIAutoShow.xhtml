@@ -5,9 +5,7 @@
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
-
-    <!-- EXAMPLE-SOURCE-START -->
-
+<!-- EXAMPLE-SOURCE-START -->
 <h:panelGroup id="viewArea" layout="block">
     <h:panelGrid columns="2" columnClasses="columnTop,columnTop">
         <h:panelGroup layout="block" styleClass="blockable" style="margin-right: 40px;">
@@ -36,7 +34,7 @@
                 <p:ajax process="@this"/>
             </h:selectManyCheckbox>
 
-            <pe:blockUI source="accessRights" targetSelector=".blockable" autoShow="true">
+            <pe:blockUI source="accessRights" target="@(.blockable)" autoShow="true">
                 <h:panelGrid columns="2">
                     <h:graphicImage library="images" name="ajax-loader1.gif"
                                     style="margin-right: 12px; vertical-align: middle;"/>
@@ -53,7 +51,6 @@
                         style="margin-right: 12px; vertical-align: middle;"/>
         <h:outputText value="Tree event is running..." style="white-space: nowrap;"/>
     </h:panelGrid>
-</pe:blockUI>
-
+</pe:blockUI>    
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
