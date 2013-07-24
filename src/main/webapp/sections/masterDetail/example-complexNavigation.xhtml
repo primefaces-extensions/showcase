@@ -72,18 +72,18 @@
                          style="margin-top:10px;" icon="ui-icon-disk">
             <pe:selectDetailLevel level="1"/>
         </p:commandButton>
-        <p:commandButton type="button" value="Delete" onclick="deletedDlg.show()" style="margin-top:10px;"/>
+        <p:commandButton type="button" value="Delete" onclick="PF('deletedDlg').show()" style="margin-top:10px;"/>
 
         <p:dialog header="Delete confirmation" widgetVar="deletedDlg" resizable="false">
             <h:panelGroup layout="block" style="padding:5px;">
                 <h:outputText value="Are you sure you want to delete this person?"/>
             </h:panelGroup>
-            <p:commandButton id="deleteBtn" value="Delete" oncomplete="deletedDlg.hide();"
+            <p:commandButton id="deleteBtn" value="Delete" oncomplete="PF('deletedDlg').hide();"
                              action="#{complexMasterDetailController.delete(person)}" process="@this"
                              style="margin-top:10px;">
                 <pe:selectDetailLevel level="1"/>
             </p:commandButton>
-            <p:commandButton value="Cancel" type="button" onclick="deletedDlg.hide();"
+            <p:commandButton value="Cancel" type="button" onclick="PF('deletedDlg').hide();"
                              style="margin-top:10px;"/>
         </p:dialog>
     </pe:masterDetailLevel>
