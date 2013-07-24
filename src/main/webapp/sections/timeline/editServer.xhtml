@@ -49,13 +49,13 @@
     <p:ajax event="change" update="@none" listener="#{editServerTimelineController.onChange}"/>
     <p:ajax event="edit" update=":dialogForm:detailsBookingInner"
             listener="#{editServerTimelineController.onEdit}"
-            oncomplete="detailsBookingWdgt.show()"/>
+            oncomplete="PF('detailsBookingWdgt').show()"/>
     <p:ajax event="add" update=":dialogForm:detailsBookingInner"
             listener="#{editServerTimelineController.onAdd}"
-            oncomplete="detailsBookingWdgt.show()"/>
+            oncomplete="PF('detailsBookingWdgt').show()"/>
     <p:ajax event="delete" update=":dialogForm:deleteBookingInner"
             listener="#{editServerTimelineController.onDelete}"
-            onstart="timelineWdgt.cancelDelete()" oncomplete="PF('deleteBookingWdgt').show()"/>
+            onstart="PF('timelineWdgt').cancelDelete()" oncomplete="PF('deleteBookingWdgt').show()"/>
     
     <h:panelGrid columns="1">
         <h:outputText value="Room: #{booking.roomNumber}"/>

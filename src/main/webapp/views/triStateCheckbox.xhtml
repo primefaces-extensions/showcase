@@ -42,7 +42,7 @@
                 <pe:triStateCheckbox value="#{triStateCheckBoxController.value4}" itemLabel="Item Label"/>                
             </h:panelGrid>
             
-            <p:commandButton value="Submit" process="triStateGrid" update="display" oncomplete="dlg.show()"
+            <p:commandButton value="Submit" process="triStateGrid" update="display" oncomplete="PF('dlg').show()"
                              style="margin-top:10px;"/>
             
             <p:dialog header="Selected Values" showEffect="fade" hideEffect="fade" widgetVar="dlg">
@@ -78,7 +78,7 @@
     &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value4}&quot; itemLabel=&quot;Item Label&quot;/&gt;                
 &lt;/h:panelGrid&gt;
 
-&lt;p:commandButton value=&quot;Submit&quot; process=&quot;triStateGrid&quot; update=&quot;display&quot; oncomplete=&quot;dlg.show()&quot;
+&lt;p:commandButton value=&quot;Submit&quot; process=&quot;triStateGrid&quot; update=&quot;display&quot; oncomplete=&quot;PF('dlg').show()&quot;
                  style=&quot;margin-top:10px;&quot;/&gt;
 
 &lt;p:dialog header=&quot;Selected Values&quot; showEffect=&quot;fade&quot; hideEffect=&quot;fade&quot; widgetVar=&quot;dlg&quot;&gt;

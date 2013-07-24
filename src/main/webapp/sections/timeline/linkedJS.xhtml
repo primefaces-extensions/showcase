@@ -10,13 +10,13 @@ $(function() {
 });
     
 function onrangechange1() {
-    var range = timelineFirstWdgt.getVisibleRange();
-    timelineSecondWdgt.setVisibleRange(range.start, range.end);
+    var range = PF('timelineFirstWdgt').getVisibleRange();
+    PF('timelineSecondWdgt').setVisibleRange(range.start, range.end);
 }
 
 function onrangechange2() {
-    var range = timelineSecondWdgt.getVisibleRange();
-    timelineFirstWdgt.setVisibleRange(range.start, range.end);
+    var range = PF('timelineSecondWdgt').getVisibleRange();
+    PF('timelineFirstWdgt').setVisibleRange(range.start, range.end);
 }
 /* ]]> */
 </h:outputScript>

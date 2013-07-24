@@ -63,7 +63,7 @@
 </h:panelGrid>
 
 <p:commandButton value="Submit" process="inputNumberGrid" update="growl display"
-                 oncomplete="dlg.show()"/>
+                 oncomplete="PF('dlg').show()"/>
 
 <p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="470">
     <p:panelGrid id="display" columns="1">

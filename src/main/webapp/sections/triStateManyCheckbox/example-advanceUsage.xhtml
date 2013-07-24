@@ -38,7 +38,7 @@
     </pe:triStateManyCheckbox>
 </h:panelGrid>
 
-<p:commandButton value="Submit" update="display" oncomplete="dlg.show()"/>
+<p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()"/>
 
 <p:dialog header="Selected Values" modal="false" showEffect="fade" hideEffect="fade" widgetVar="dlg" width="240">
     <p:outputPanel id="display">

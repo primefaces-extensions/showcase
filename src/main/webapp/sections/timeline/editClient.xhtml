@@ -61,11 +61,11 @@
              widgetVar="timelineWdgt" style="margin-top:10px;">
     <pe:javascript event="select" execute="showContent()"/>
     <pe:javascript event="add" execute="showContent()"/>
-    <pe:javascript event="delete" execute="timelineWdgt.cancelDelete(); PF('confirmWdgt').show();"/>
+    <pe:javascript event="delete" execute="PF('timelineWdgt').cancelDelete(); PF('confirmWdgt').show();"/>
 </pe:timeline>
 
 <p:commandButton value="Submit" type="button" style="margin-top:15px;"
-                 onclick="updateData(timelineWdgt.getData())"/>
+                 onclick="updateData(PF('timelineWdgt').getData())"/>
 <p:commandButton value="Show current timeline model" process="@none" update="timeline"
                  style="margin:15px 0 0 5px;" title="Check if the model has been updated"/>            
 
