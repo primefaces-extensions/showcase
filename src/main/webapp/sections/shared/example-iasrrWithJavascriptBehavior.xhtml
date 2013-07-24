@@ -41,18 +41,18 @@
 
     <pe:imageRotateAndResize id="rotateAndResize" for="myImage" widgetVar="rotateAndResizeWidget">
         <p:ajax event="rotate" listener="#{imageController.rotateListener}"
-                update="growl" oncomplete="areaSelectWidget.reload();"/>
-        <pe:javascript event="resize" execute="areaSelectWidget.reload();"/>
+                update="growl" oncomplete="PF('areaSelectWidget').reload();"/>
+        <pe:javascript event="resize" execute="PF('areaSelectWidget').reload();"/>
     </pe:imageRotateAndResize>
 
     <p:commandButton icon="ui-icon-arrowreturnthick-1-w" value="Rotate Left"
-        onclick="rotateAndResizeWidget.rotateLeft(90);return false;"/>
+        onclick="PF('rotateAndResizeWidget').rotateLeft(90);return false;"/>
     <p:commandButton icon="ui-icon-arrowreturnthick-1-e" value="Rotate Right"
-        onclick="rotateAndResizeWidget.rotateRight(90);return false;"/>
+        onclick="PF('rotateAndResizeWidget').rotateRight(90);return false;"/>
     <p:commandButton icon="ui-icon-zoomin" value="Scale +"
-        onclick="rotateAndResizeWidget.scale(1.05);return false;"/>
+        onclick="PF('rotateAndResizeWidget').scale(1.05);return false;"/>
     <p:commandButton icon="ui-icon-zoomout" value="Scale -"
-        onclick="rotateAndResizeWidget.scale(0.95);return false;"/>
+        onclick="PF('rotateAndResizeWidget').scale(0.95);return false;"/>
 </p:outputPanel>
 
     <!-- EXAMPLE-SOURCE-END -->

@@ -17,12 +17,12 @@
 <br/>
 
 <p:commandButton icon="ui-icon-arrowreturnthick-1-w" value="Rotate Left"
-                 onclick="rotateAndResizeWidget.rotateLeft(90);return false;"/>
+                 onclick="PF('rotateAndResizeWidget').rotateLeft(90);return false;"/>
 <p:commandButton icon="ui-icon-arrowreturnthick-1-e" value="Rotate Right"
-                 onclick="rotateAndResizeWidget.rotateRight(90);return false;"/>
+                 onclick="PF('rotateAndResizeWidget').rotateRight(90);return false;"/>
 <p:commandButton icon="ui-icon-zoomin" value="Scale +"
-                 onclick="rotateAndResizeWidget.scale(1.05);return false;"/>
+                 onclick="PF('rotateAndResizeWidget').scale(1.05);return false;"/>
 <p:commandButton icon="ui-icon-zoomout" value="Scale -"
-                 onclick="rotateAndResizeWidget.scale(0.95);return false;"/>
+                 onclick="PF('rotateAndResizeWidget').scale(0.95);return false;"/>
     <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
