@@ -5,31 +5,31 @@
 <h:outputScript id="timelineJS" target="body">
 <!-- EXAMPLE-SOURCE-START -->    
 function showContent() {
-    $('#textArea').val(timelineWdgt.getSelectedEvent().content);
+    $('#textArea').val(PF('timelineWdgt').getSelectedEvent().content);
 }
     
 function add() {
-    var range = timelineWdgt.getVisibleRange();
+    var range = PF('timelineWdgt').getVisibleRange();
     var start = new Date((range.start.valueOf() + range.end.valueOf()) / 2);
     var content = $('#textArea').val();
 
-    timelineWdgt.addEvent({
+    PF('timelineWdgt').addEvent({
         'start': start,
         'content': content
     });
 
-    var count = timelineWdgt.getNumberOfEvents();
-    timelineWdgt.setSelection(count - 1);
+    var count = PF('timelineWdgt').getNumberOfEvents();
+    PF('timelineWdgt').setSelection(count - 1);
 }
 
 function change() {
-    var index = timelineWdgt.getSelectedIndex();
+    var index = PF('timelineWdgt').getSelectedIndex();
     if (index == -1) {
         // no event was selected
         return;
     }
 
-    if (!timelineWdgt.isEditable(index)) {
+    if (!PF('timelineWdgt').isEditable(index)) {
         // only editable events can be changed
         PF('infoTipWdgt').show();
         return;
@@ -37,20 +37,20 @@ function change() {
 
     var content = $('#textArea').val();
 
-    timelineWdgt.changeEvent(index, {
+    PF('timelineWdgt').changeEvent(index, {
         'content': content
         // Note: start, end, and group can be added here too.
     });
 }
 
 function remove() {
-    var index = timelineWdgt.getSelectedIndex();
+    var index = PF('timelineWdgt').getSelectedIndex();
     if (index == -1) {
         // no event was selected
         return;
     }
 
-    if (!timelineWdgt.isEditable(index)) {
+    if (!PF('timelineWdgt').isEditable(index)) {
         // only editable events can be deleted
         PF('infoTipWdgt').show();
         return;
@@ -60,9 +60,9 @@ function remove() {
 }
     
 function removeAfterConfirm() {
-    var index = timelineWdgt.getSelectedIndex();
+    var index = PF('timelineWdgt').getSelectedIndex();
     
-    timelineWdgt.deleteEvent(index);
+    PF('timelineWdgt').deleteEvent(index);
     $('#textArea').val('');
 }
 <!-- EXAMPLE-SOURCE-END -->

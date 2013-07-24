@@ -33,7 +33,7 @@
              timeZone="America/New_York" widgetVar="timelineWdgt">
     <p:ajax event="change" update="@none" listener="#{groupingTimelineController.onChange}"/>
     <p:ajax event="delete" update="@none" listener="#{groupingTimelineController.onDelete}"/>
-    <p:ajax event="add" update="@none" onstart="timelineWdgt.cancelAdd()"/>
+    <p:ajax event="add" update="@none" onstart="PF('timelineWdgt').cancelAdd()"/>
     
     <h:graphicImage value="#{order.imagePath}" rendered="#{not empty order.imagePath}"
                     style="display:inline;vertical-align:middle;"/>

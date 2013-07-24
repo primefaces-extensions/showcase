@@ -130,7 +130,7 @@ public class GroupingTimelineController implements Serializable {
 		// update the dialog's content and show the dialog
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 		requestContext.update("overlappedOrdersInner");
-		requestContext.execute("overlapEventsWdgt.show()");
+		requestContext.execute("PF('overlapEventsWdgt').show()");
 	}
 
 	public void onDelete(TimelineModificationEvent e) {
