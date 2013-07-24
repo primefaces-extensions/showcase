@@ -11,13 +11,13 @@
     <f:facet name="header">
         <h:panelGroup layout="block" style="text-align:left;margin-bottom:10px;">
             <p:commandButton value="Hide" type="button"
-                             onclick="tip1.hide();tip2.hide();tip3.hide();tip4.hide()"/>
+                             onclick="PF('tip1').hide();PF('tip2').hide();PF('tip3').hide();PF('tip4').hide()"/>
             <p:commandButton value="Show" type="button"
-                             onclick="tip1.show();tip2.show();tip3.show();tip4.show()"/>
+                             onclick="PF('tip1').show();PF('tip2').show();PF('tip3').show();PF('tip4').show()"/>
             <p:commandButton value="Reposition" type="button"
-                             onclick="tip1.reposition();tip2.reposition();tip3.reposition();tip4.reposition()"/>            
+                             onclick="PF('tip1').reposition();PF('tip2').reposition();PF('tip3').reposition();PF('tip4').reposition()"/>            
             <p:commandButton value="Destroy" type="button"
-                             onclick="tip1.destroy();tip2.destroy();tip3.destroy();tip4.destroy()">
+                             onclick="PF('tip1').destroy();PF('tip2').destroy();PF('tip3').destroy();PF('tip4').destroy()">
                 <pe:tooltip value="Once destroyed, tooltip's markup doesn't exist anymore"
                             autoShow="true" widgetVar="tip4"
                             myPosition="left center" atPosition="right center"/>

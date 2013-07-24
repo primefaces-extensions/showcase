@@ -33,13 +33,13 @@
 </h:panelGrid>
 
 <p:commandButton type="button" value="Disable time pickers" style="margin-top:10px;"
-                 onclick="inlineTimeWidget.disable();popupTimeWidget.disable();
-                     spinnerTimeWidget.disable();customTimeWidget.disable();
-                     popupBtnTimeWidget.disable();spinnerBtnTimeWidget.disable();"/>
+                 onclick="PF('inlineTimeWidget').disable();PF('popupTimeWidget').disable();
+                     PF('spinnerTimeWidget').disable();PF('customTimeWidget').disable();
+                     PF('popupBtnTimeWidget').disable();PF('spinnerBtnTimeWidget').disable();"/>
 <p:commandButton type="button" value="Enable time pickers" style="margin-top:10px;"
-                 onclick="inlineTimeWidget.enable();popupTimeWidget.enable();
-                     spinnerTimeWidget.enable();customTimeWidget.enable();
-                     popupBtnTimeWidget.enable();spinnerBtnTimeWidget.enable();"/>
+                 onclick="PF('inlineTimeWidget').enable();PF('popupTimeWidget').enable();
+                     PF('spinnerTimeWidget').enable();PF('customTimeWidget').enable();
+                     PF('popupBtnTimeWidget').enable();PF('spinnerBtnTimeWidget').enable();"/>
 <p:commandButton id="submitButton" value="Submit" actionListener="#{timePickerController.showTime}"
                  process="@this timePickerGrid" update="messages timeDialog timePickerGrid"
                  style="margin-top:10px;" icon="ui-icon-disk"/>

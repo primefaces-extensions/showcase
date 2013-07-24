@@ -13,7 +13,7 @@
     widgetVar="myCodeMirror"
     theme="eclipse" value="#{codeMirrorController.content}" lineNumbers="true"
     completeMethod="#{codeMirrorController.complete}"
-    extraKeys="{ 'Ctrl-Space': function(cm) { myCodeMirror.complete(); }}" />
+    extraKeys="{ 'Ctrl-Space': function(cm) { PF('myCodeMirror').complete(); }}" />
 
 <p:commandButton actionListener="#{codeMirrorController.changeMode}" update="codeMirror"
                  value="Change mode with AJAX" style="margin-top:10px;"/>
