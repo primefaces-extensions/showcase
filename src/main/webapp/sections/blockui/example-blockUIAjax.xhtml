@@ -16,6 +16,7 @@
             <h:outputText value="Text *"/>
             <h:inputText value="#{dataTableController.newText}" required="true" label="Text"/>
         </h:panelGrid>
+
         <p:commandButton id="addMsgButton" value="Add message" action="#{dataTableController.addMessage}"
                          process="messageDetailGroup" update="messageDetail dataTable messages"
                          style="margin-top: 20px;" icon="ui-icon-plusthick"
