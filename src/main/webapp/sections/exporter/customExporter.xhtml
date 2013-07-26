@@ -23,10 +23,23 @@
                 </li>
                 <li>Step 4: Copy the exporter implementations and add your own changes.</li>
             </ui>
-            <p/>
-            Note: Example is not specified by keeping in the mind as it will always call the custom Exporter.
+
         </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="centerExample">
+            <ui:include src="/sections/exporter/example-customExporterTables.xhtml"/>
+        </h:panelGroup>
+
+
+        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
+            <ui:define name="contentTab1">
+                ${showcase:getFileContent('/sections/exporter/example-customExporterTables.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+                ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/exporter/MessageTableController.java')}
+            </ui:define>
+        </ui:decorate>
     </ui:define>
+
     <ui:define name="useCases">
         <ui:include src="/sections/exporter/useCasesChoice.xhtml"/>
     </ui:define>
