@@ -15,14 +15,16 @@
             <p/>
             <ui>
                 <li>Step 1: Create a folder named META-INF under resouces folder.Below META-INF folder create another folder called services.</li>
-                <li>Step 2: Creae a file name with ExporterFactory as a service(Fully binary name of the service).
-                    <br/> &#160;&#160;&#160; Ex: org.primefaces.extensions.component.exporter.ExporterFactory.
+                <li>Step 2: Creae a file with the name  "ExporterFactory" as a service(Fully binary name of the service).
+                    <br/> &#160;&#160;&#160; Here it should be  org.primefaces.extensions.component.exporter.ExporterFactory.
                 </li>
-                <li>Step 3: Provide your own implementaions/providers of Exporter factory in your project.
-                    <br/> &#160;&#160;&#160; Ex: org.primefaces.extensions.showcase.util.CustomExporterFactory.
+                <li>Step 3: Provide your own implementaions/providers of Exporter factory anywhere in your project. <br/> &#160;&#160;&#160; And copy the absolute path of custom exporter factory implementation in the ExporterFactory file
+                    <br/> &#160;&#160;&#160; <b>How to do :</b> Copy the file content of DefaultExporterFactory and rename the file as  CustomExporterFactory.Copy the absolute path org.primefaces.extensions.showcase.util.CustomExporterFactory in ExporterFactory file.
                 </li>
-                <li>Step 4: Copy the exporter implementations and add your own changes.</li>
+                <li>Step 4: Copy the exporter implementations and add your own changes.And call these custom &#160;&#160;&#160; implementations(Ex PDFCustomExporter,ExcelCustomExporter) instead built-in implmentations(Ex PDFExporter,ExcelExporter)</li>
             </ui>
+            <br/>
+            The below example demonstrates how the index column added using Custom Exporter feature.
 
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
