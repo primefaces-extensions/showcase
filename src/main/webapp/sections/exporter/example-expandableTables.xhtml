@@ -88,7 +88,7 @@
 <p:panel header="Export PDF and Excel">
      <p:commandLink id="pdf" ajax="false">
          <p:graphicImage value="/resources/images/pdf.png"/>
-
+         <f:setPropertyActionListener value="false" target="#{exporterController.customExporter}" />
          <pe:exporter type="pdf" target="vehiclesTable" fileName="vehiclesTable" facetBackground="#AAFFBB"
                          datasetPadding="4"/>
 
@@ -98,7 +98,7 @@
 
      <p:commandLink id="xls" ajax="false">
          <p:graphicImage value="/resources/images/excel.png"/>
-
+         <f:setPropertyActionListener value="false" target="#{exporterController.customExporter}" />
          <pe:exporter type="xlsx" target="vehiclesTable" fileName="vehiclesTable" facetBackground="#AAFFBB"
                          datasetPadding="4"/>
 

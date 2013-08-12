@@ -76,7 +76,7 @@
     <p:panel header="Export PDF and Excel">
         <p:commandLink id="pdf" ajax="false">
             <p:graphicImage value="/resources/images/pdf.png"/>
-
+            <f:setPropertyActionListener value="false" target="#{exporterController.customExporter}" />
             <pe:exporter type="pdf" target="cellEditingTable" fileName="CellEditableTable"/>
 
         </p:commandLink>
@@ -85,7 +85,7 @@
 
         <p:commandLink id="xls" ajax="false">
             <p:graphicImage value="/resources/images/excel.png"/>
-
+            <f:setPropertyActionListener value="false" target="#{exporterController.customExporter}" />
             <pe:exporter type="xlsx" target="cellEditingTable" fileName="CellEditableTable"/>
 
         </p:commandLink>
@@ -167,7 +167,7 @@
 <p:panel header="Export PDF and Excel">
     <p:commandLink id="pdf1" ajax="false">
         <p:graphicImage value="/resources/images/pdf.png"/>
-
+        <f:setPropertyActionListener value="false" target="#{exporterController.customExporter}" />
         <pe:exporter type="pdf" target="rowEditingTable" fileName="RowEditableTable" cellFontColor="#80AAFF" facetBackground="#008000"
                      facetFontColor="#FFFFFF" />
 
@@ -177,7 +177,7 @@
 
     <p:commandLink id="xls1" ajax="false">
         <p:graphicImage value="/resources/images/excel.png"/>
-
+        <f:setPropertyActionListener value="false" target="#{exporterController.customExporter}" />
         <pe:exporter type="xlsx" target="rowEditingTable" fileName="RowEditableTable"  />
 
     </p:commandLink>
