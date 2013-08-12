@@ -61,6 +61,12 @@ body > form > .ui-layout-south {
     line-height: 1.3 !important;
 }
 
+.docuTable thead th,
+.docuTable tbody td,
+.docuTable tfoot td {
+    word-break: normal;
+}
+
 .docuCaption {
     vertical-align: middle;
     text-align: center;
