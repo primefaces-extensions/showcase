@@ -30,16 +30,10 @@
                 onstart="PF('blockUIWidget2').block()" oncomplete="PF('blockUIWidget2').unblock()"/>
         <p:ajax event="sort" listener="#{dataTableController.doSomething}" update=":mainForm:messages"
                 onstart="PF('blockUIWidget2').block()" oncomplete="PF('blockUIWidget2').unblock()"/>
-        <p:column sortBy="#{message.subject}">
-            <f:facet name="header">
-                <h:outputText value="Subject"/>
-            </f:facet>
+        <p:column sortBy="subject" headerText="Subject">
             <h:outputText value="#{message.subject}"/>
         </p:column>
-        <p:column sortBy="#{message.text}">
-            <f:facet name="header">
-                <h:outputText value="Text"/>
-            </f:facet>
+        <p:column sortBy="text" headerText="Text">
             <h:outputText value="#{message.text}"/>
         </p:column>
     </p:dataTable>
