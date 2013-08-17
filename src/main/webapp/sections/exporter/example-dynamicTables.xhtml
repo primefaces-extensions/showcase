@@ -17,7 +17,7 @@
 <p:dataTable id="dynamicColumnsTable" var="message" value="#{dynamicColumnsTableController.messages}"
              filteredValue="#{dynamicColumnsTableController.filteredMessages}">
     <p:columns value="#{dynamicColumnsTableController.columns}" var="column" columnIndexVar="colIndex"
-               sortBy="#{message[column.property]}" filterBy="#{message[column.property]}">
+                filterBy="#{message[column.property]}">
         <f:facet name="header">
             <h:outputText value="#{column.header}"/>
         </f:facet>
