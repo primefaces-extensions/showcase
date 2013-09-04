@@ -9,16 +9,22 @@
             <h:outputText value="Exporter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Generally the datatable columns content will be justified as left aligned,center aligned and right aligned based on the content type.
+            The datatable columns content will be justified as left aligned,center aligned and right aligned based on the content type.
             For example, numeric data will be right aligned and text data will be left aligned etc.
-            To export datatable content with the mentioned alignments we have to specify the alignments in the style attributes as below
-
-            <h:outputText value="center aligned content" style="center"></h:outputText>
-            <h:outputText value="left aligned content" style="left"></h:outputText>
-            <h:outputText value="right aligned content" style="right"></h:outputText>
-
+            <p/>
+            To export the datatable content with required alignments we have to specify the alignments in the style attributes as below
+            <p/>
+            <ui>
+            <li>&lt; h:outputText value="center aligned content" style="center" &gt;</li>
+            <li>&lt; h:outputText value="left aligned content" style="float:left" &gt;</li>
+            <li>&lt;h:outputText value="right aligned content" style="float:right" &gt;</li>
+            </ui>
+            <p/>
             Default Alignments for header or footer :Center
+            <p/>
             Default Alignments for cell: Left
+            <p/>
+            Note: Style attribute value should contain left,center or right values.
 
             A typically example is Message table and it's details table.
         </h:panelGroup>
