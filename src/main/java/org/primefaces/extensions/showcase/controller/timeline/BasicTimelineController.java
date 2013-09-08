@@ -85,6 +85,12 @@ public class BasicTimelineController implements Serializable {
 
 		cal.set(2013, Calendar.FEBRUARY, 3, 0, 0, 0);
 		model.add(new TimelineEvent("Primefaces-Extensions 0.6.3", cal.getTime()));
+
+		cal.set(2013, Calendar.MAY, 4, 0, 0, 0);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.7.0", cal.getTime()));
+
+		cal.set(2013, Calendar.JUNE, 5, 0, 0, 0);
+		model.add(new TimelineEvent("Primefaces-Extensions 0.7.1", cal.getTime()));
 	}
 
 	public void onSelect(TimelineSelectEvent e) {
