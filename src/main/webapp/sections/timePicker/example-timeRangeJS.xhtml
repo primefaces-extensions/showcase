@@ -30,11 +30,11 @@
     // Use case 3
     
     function tpStartOnHourShowCallback(hour) {
-        if (typeof endTimeWidget === 'undefined') {
+        if (typeof PF('endTimeWidget') === 'undefined') {
             return false;
         }
     
-        var tpEndHour = parseInt(endTimeWidget.getHours());
+        var tpEndHour = parseInt(PF('endTimeWidget').getHours());
     
         // Check if proposed hour is prior or equal to selected end time hour
         if (parseInt(hour) <= tpEndHour) {
@@ -46,12 +46,12 @@
     }
     
     function tpStartOnMinuteShowCallback(hour, minute) {
-        if (typeof endTimeWidget === 'undefined') {
+        if (typeof PF('endTimeWidget') === 'undefined') {
             return false;
         }
     
-        var tpEndHour = parseInt(endTimeWidget.getHours());
-        var tpEndMinute = parseInt(endTimeWidget.getMinutes());
+        var tpEndHour = parseInt(PF('endTimeWidget').getHours());
+        var tpEndMinute = parseInt(PF('endTimeWidget').getMinutes());
     
         // Check if proposed hour is prior to selected end time hour
         if (parseInt(hour) < tpEndHour) {
@@ -68,11 +68,11 @@
     }
     
     function tpEndOnHourShowCallback(hour) {
-        if (typeof startTimeWidget === 'undefined') {
+        if (typeof PF('startTimeWidget') === 'undefined') {
             return false;
         }
     
-        var tpStartHour = parseInt(startTimeWidget.getHours());
+        var tpStartHour = parseInt(PF('startTimeWidget').getHours());
     
         // Check if proposed hour is after or equal to selected start time hour
         if (parseInt(hour) >= tpStartHour) {
@@ -84,12 +84,12 @@
     }
     
     function tpEndOnMinuteShowCallback(hour, minute) {
-        if (typeof startTimeWidget === 'undefined') {
+        if (typeof PF('startTimeWidget') === 'undefined') {
             return false;
         }
     
-        var tpStartHour = parseInt(startTimeWidget.getHours());
-        var tpStartMinute = parseInt(startTimeWidget.getMinutes());
+        var tpStartHour = parseInt(PF('startTimeWidget').getHours());
+        var tpStartMinute = parseInt(PF('startTimeWidget').getMinutes());
     
         // Check if proposed hour is after selected start time hour
         if (parseInt(hour) > tpStartHour) {

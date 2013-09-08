@@ -19,17 +19,17 @@
             North            
             <h:panelGrid columns="6" style="margin-left:80px;">
                 <p:commandButton value="Toggle South" type="button"
-                                 onclick="fpLayoutWidget.toggle('south')"/>
+                                 onclick="PF('fpLayoutWidget').toggle('south')"/>
                 <p:commandButton value="Toggle West-North" type="button"
-                                 onclick="fpLayoutWidget.toggle('west_north')"/>
+                                 onclick="PF('fpLayoutWidget').toggle('west_north')"/>
                 <p:commandButton value="Close Center-North" type="button"
-                                 onclick="fpLayoutWidget.close('center_north')"/>
+                                 onclick="PF('fpLayoutWidget').close('center_north')"/>
                 <p:commandButton value="Open Center-North" type="button"
-                                 onclick="fpLayoutWidget.open('center_north')"/>
+                                 onclick="PF('fpLayoutWidget').open('center_north')"/>
                 <p:commandButton value="Size East Pane" type="button"
-                                 onclick="fpLayoutWidget.sizePane('east', 350)"/>
+                                 onclick="PF('fpLayoutWidget').sizePane('east', 350)"/>
                 <p:commandButton value="Size West-South Pane" type="button"
-                                 onclick="fpLayoutWidget.sizePane('west_south', 80)"/>
+                                 onclick="PF('fpLayoutWidget').sizePane('west_south', 80)"/>
             </h:panelGrid>
         </pe:layoutPane>
         <pe:layoutPane position="center">

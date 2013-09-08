@@ -79,7 +79,12 @@
 		
 		if (!$active.length) $active.end();
 		
-		$('#textContainer').css($active.closest('.dial').data('property'), $active.data('value'));
+		var cssProperty = $active.closest('.dial').data('property');
+		var cssValue = $active.data('value');
+		
+		if (cssProperty && cssValue) {
+		    $('#textContainer').css(cssProperty, cssValue);
+		}
     }
 /* ]]> */
 </h:outputScript>
