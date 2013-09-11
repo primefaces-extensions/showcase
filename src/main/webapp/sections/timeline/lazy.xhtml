@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Timeline"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            Timeline supports lazy loading of events during moving / zooming in the timeline.
+            This makes sense when event's loading is time-consuming. Events are loaded lazy
+            when the p:ajax with <strong>event="lazyload"</strong> is attached to the pe:timeline.
+            The event class <strong>TimelineLazyLoadEvent</strong> contains one or two time ranges
+            the events should be loaded for (two times ranges occurs when you zoom out the timeline).
+            <p/>
+            <strong>Note:</strong> The "lazyload" listener is not invoked again when the visible time range
+            (incl. some hidden ranges defined by <strong>preloadFactor</strong>) already has lazy loaded events.
+            <p/>
+            In this demo, you also can play with the <strong>preloadFactor</strong> attribute which is a float value
+            in range from 0 to 1. When the lazy loading feature is active, the visible time range will be multiplicated
+            by the preload factor. The result of this multiplication specifies the time range on the left and right side
+            of the visible time range which will be considered for the preloading during moving / zooming too.
+            For example, if the visible time range is 5 days and the preload factor is 0.2, the result is 5 * 0.2 = 1 day.
+            That means, 1 days backwards and 1 days onwards will be preloaded. This helps to avoid frequently,
+            time-consuming fetching of events.            
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="centerExample">
+<!-- EXAMPLE-SOURCE-START -->
+<pe:timeline value="#{lazyTimelineController.model}"
+             min="#{lazyTimelineController.min}"
+             max="#{lazyTimelineController.max}"
+             zoomMin="#{lazyTimelineController.zoomMin}"
+             zoomMax="#{lazyTimelineController.zoomMax}"
+             showNavigation="true"/>
+<!-- EXAMPLE-SOURCE-END -->
+        </h:panelGroup>
+        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
+            <ui:define name="contentTab1">
+${showcase:getFileContent('/sections/timeline/lazy.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/LazyTimelineController.java')}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/timeline/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="timeline"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>
