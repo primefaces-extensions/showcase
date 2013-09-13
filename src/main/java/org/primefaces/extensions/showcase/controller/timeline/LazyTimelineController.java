@@ -18,14 +18,13 @@
 package org.primefaces.extensions.showcase.controller.timeline;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.primefaces.extensions.model.timeline.TimelineEvent;
+import org.primefaces.extensions.event.timeline.TimelineLazyLoadEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
 
 /**
@@ -40,54 +39,24 @@ public class LazyTimelineController implements Serializable {
 
 	private TimelineModel model;
 
-	private Date min;
-	private Date max;
-	private long zoomMin;
-	private long zoomMax;
-
 	@PostConstruct
 	protected void initialize() {
 		model = new TimelineModel();
-
-		Calendar cal = Calendar.getInstance();
-		cal.set(2012, Calendar.MAY, 25, 0, 0, 0);
-		model.add(new TimelineEvent("First", cal.getTime()));
-
-		cal.set(2012, Calendar.MAY, 26, 0, 0, 0);
-		model.add(new TimelineEvent("Last", cal.getTime()));
-
-		// lower limit of visible range
-		cal.set(2012, Calendar.JANUARY, 1, 0, 0, 0);
-		min = cal.getTime();
-
-		// upper limit of visible range
-		cal.set(2012, Calendar.DECEMBER, 31, 0, 0, 0);
-		max = cal.getTime();
-
-		// one day in milliseconds for zoomMin
-		zoomMin = 1000L * 60 * 60 * 24;
-
-		// about three months in milliseconds for zoomMax
-		zoomMax = 1000L * 60 * 60 * 24 * 31 * 3;
 	}
 
 	public TimelineModel getModel() {
 		return model;
 	}
 
-	public Date getMin() {
-		return min;
-	}
+	public void onLazyLoad(TimelineLazyLoadEvent e) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public Date getMax() {
-		return max;
-	}
-
-	public long getZoomMin() {
-		return zoomMin;
-	}
-
-	public long getZoomMax() {
-		return zoomMax;
+		System.out.println("================================");
+		System.out.println("StartDateFirst = " + (e.getStartDateFirst() == null ? "null"
+		                                                                        : format.format(e.getStartDateFirst())));
+		System.out.println("EndDateFirst = " + (e.getEndDateFirst() == null ? "null" : format.format(e.getEndDateFirst())));
+		System.out.println("StartDateSecond = "
+		                   + (e.getStartDateSecond() == null ? "null" : format.format(e.getStartDateSecond())));
+		System.out.println("EndDateSecond = " + (e.getEndDateSecond() == null ? "null" : format.format(e.getEndDateSecond())));
 	}
 }

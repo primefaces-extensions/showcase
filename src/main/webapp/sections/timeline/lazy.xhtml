@@ -30,12 +30,9 @@
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
-<pe:timeline value="#{lazyTimelineController.model}"
-             min="#{lazyTimelineController.min}"
-             max="#{lazyTimelineController.max}"
-             zoomMin="#{lazyTimelineController.zoomMin}"
-             zoomMax="#{lazyTimelineController.zoomMax}"
-             showNavigation="true"/>
+<pe:timeline value="#{lazyTimelineController.model}" showNavigation="true">
+    <p:ajax event="lazyload" update="@none" listener="#{lazyTimelineController.onLazyLoad}"/>
+</pe:timeline>
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
