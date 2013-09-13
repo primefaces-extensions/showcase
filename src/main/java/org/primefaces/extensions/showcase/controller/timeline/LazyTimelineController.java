@@ -18,13 +18,19 @@
 package org.primefaces.extensions.showcase.controller.timeline;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
+import org.primefaces.extensions.component.timeline.TimelineUpdater;
 import org.primefaces.extensions.event.timeline.TimelineLazyLoadEvent;
+import org.primefaces.extensions.model.timeline.TimelineEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
 
 /**
@@ -39,9 +45,17 @@ public class LazyTimelineController implements Serializable {
 
 	private TimelineModel model;
 
+	private float preloadFactor = 0;
+	private long zoomMax;
+
 	@PostConstruct
 	protected void initialize() {
+		// create empty model
 		model = new TimelineModel();
+
+		// about five months in milliseconds for zoomMax
+		// this can help to avoid a long loading of events when zooming out to wide time ranges
+		zoomMax = 1000L * 60 * 60 * 24 * 31 * 5;
 	}
 
 	public TimelineModel getModel() {
@@ -49,14 +63,66 @@ public class LazyTimelineController implements Serializable {
 	}
 
 	public void onLazyLoad(TimelineLazyLoadEvent e) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			// simulate time-consuming loading before adding new events
+			Thread.sleep((long) (1000 * Math.random() + 100));
+		} catch (Exception ex) {
+			// ignore
+		}
 
-		System.out.println("================================");
-		System.out.println("StartDateFirst = " + (e.getStartDateFirst() == null ? "null"
-		                                                                        : format.format(e.getStartDateFirst())));
-		System.out.println("EndDateFirst = " + (e.getEndDateFirst() == null ? "null" : format.format(e.getEndDateFirst())));
-		System.out.println("StartDateSecond = "
-		                   + (e.getStartDateSecond() == null ? "null" : format.format(e.getStartDateSecond())));
-		System.out.println("EndDateSecond = " + (e.getEndDateSecond() == null ? "null" : format.format(e.getEndDateSecond())));
+		TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":mainForm:timeline");
+
+		Date startDate = e.getStartDateFirst(); // alias getStartDate() can be used too
+		Date endDate = e.getEndDateFirst(); // alias getEndDate() can be used too
+
+		// fetch events for the first time range
+		generateRandomEvents(startDate, endDate, timelineUpdater);
+
+		if (e.hasTwoRanges()) {
+			// zooming out ==> fetch events for the second time range
+			generateRandomEvents(e.getStartDateSecond(), e.getEndDateSecond(), timelineUpdater);
+		}
+	}
+
+	private void generateRandomEvents(Date startDate, Date endDate, TimelineUpdater timelineUpdater) {
+		Calendar cal = Calendar.getInstance();
+		Date curDate = startDate;
+		Random rnd = new Random();
+
+		while (curDate.before(endDate)) {
+			// create events in the given time range
+			if (rnd.nextBoolean()) {
+				// event with only one date
+				model.add(new TimelineEvent("Event " + RandomStringUtils.randomNumeric(5), curDate), timelineUpdater);
+			} else {
+				// event with start and end dates
+				cal.setTimeInMillis(curDate.getTime());
+				cal.add(Calendar.HOUR, 18);
+				model.add(new TimelineEvent("Event " + RandomStringUtils.randomNumeric(5), curDate, cal.getTime()),
+				          timelineUpdater);
+			}
+
+			cal.setTimeInMillis(curDate.getTime());
+			cal.add(Calendar.HOUR, 24);
+
+			curDate = cal.getTime();
+		}
+	}
+
+	public void clearTimeline() {
+		// clear Timeline, so that it can be loaded again with a new preload factor
+		model.clear();
+	}
+
+	public void setPreloadFactor(float preloadFactor) {
+		this.preloadFactor = preloadFactor;
+	}
+
+	public float getPreloadFactor() {
+		return preloadFactor;
+	}
+
+	public long getZoomMax() {
+		return zoomMax;
 	}
 }
