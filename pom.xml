@@ -11,7 +11,7 @@
 	<groupId>org.primefaces.extensions</groupId>
 	<artifactId>showcase</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0.RC1-SNAPSHOT</version>
+	<version>1.0.0.RC1</version>
 	<name>showcase</name>
 	<description>
         <![CDATA[PrimeFaces Extensions Project Showcase for Maven.]]>
@@ -313,7 +313,7 @@
 	<properties>
 		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
 		<primefaces-extensions.new-components>;</primefaces-extensions.new-components>
-		<primefaces-extensions.updated-components>;</primefaces-extensions.updated-components>
+		<primefaces-extensions.updated-components>blockUI;cKEditor;exporter;inputNumber;timePicker;timeline</primefaces-extensions.updated-components>
 
 		<mojarra.version>2.1.24</mojarra.version>
 		<myfaces.version>2.1.12</myfaces.version>
