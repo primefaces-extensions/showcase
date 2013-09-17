@@ -38,20 +38,20 @@
 
 
 <p:panel header="Export PDF and Excel">
-     <h:commandLink id="pdf" ajax="false" action="#{messageTableController.customExporterFileWriter()}" >
+     <p:commandLink id="pdf" ajax="false" action="#{messageTableController.customExporterFileWriter}" >
          <p:graphicImage value="/resources/images/pdf.png"/>
          <f:setPropertyActionListener value="true" target="#{exporterController.customExporter}" />
 
          <pe:exporter type="pdf" target="messageTable" fileName="MessagesTable"
                          />
 
-     </h:commandLink>
+     </p:commandLink>
 
      <p:spacer width="20"/>
 
-     <p:commandLink id="xls" ajax="false" actionListener="#{messageTableController.customExporterFileWriter}" >
+     <p:commandLink id="xls" ajax="false" action="#{messageTableController.customExporterFileWriter}" >
          <p:graphicImage value="/resources/images/excel.png"/>
-    <f:setPropertyActionListener value="true" target="#{exporterController.customExporter}" />
+         <f:setPropertyActionListener value="true" target="#{exporterController.customExporter}" />
          <pe:exporter type="xlsx" target="messageTable" fileName="MessagesTable"
                          />
 
