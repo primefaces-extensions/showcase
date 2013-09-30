@@ -27,6 +27,9 @@
             <p:menuitem value="Lazy loading of events" styleClass="#{navigationContext.getMenuitemStyleClass('lazy')}"
                         onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                         url="/sections/timeline/lazy.jsf"/>
+            <p:menuitem value="Drag-and-drop items from the outside" styleClass="#{navigationContext.getMenuitemStyleClass('dnd')}"
+                        onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                        url="/sections/timeline/dnd.jsf"/>
         </p:menu>
     </ui:composition>
 </html>

@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Timeline"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            This example demonstrates how to drag and drom items onto the timeline from the outside (an external list, etc).
+            Add <strong>p:ajax</strong> with <strong>event="drop"</strong> to the timeline tag to activate the drag-and-drop feature.
+            The AJAX listener gets an instance of the class <strong>TimelineDragDropEvent</strong>. Besides start / end date and
+            group, this event object also contains a client ID of the dragged component and
+            dragged model object if draggable item is within a data iteration component.
+            <p/>
+            Drag events from the list on the left side and drop them onto the timeline!
+        </h:panelGroup>
+        
+        <h:panelGroup layout="block" styleClass="centerExample">
+<!-- EXAMPLE-SOURCE-START -->
+<div style="float:left;">
+    <strong>Drag and drop events</strong>
+    <p/>
+    <p:dataList id="eventsList" value="#{dndTimelineController.events}"
+                var="event" itemType="circle">
+        <h:panelGroup id="eventBox" layout="box">
+            #{event.name}
+        </h:panelGroup>
+    </p:dataList>
+</div>    
+<pe:timeline id="timeline" value="#{dndTimelineController.model}"
+             editable="true" eventMargin="10" eventMarginAxis="0" minHeight="380"
+             start="#{dndTimelineController.start}"
+             end="#{dndTimelineController.end}"
+             style="margin-left:135px;"/>
+<!-- EXAMPLE-SOURCE-END -->
+        </h:panelGroup>
+        
+        <ui:decorate template="/templates/threeTabsDecoratorModel.xhtml">
+            <ui:define name="contentTab1">
+${showcase:getFileContent('/sections/timeline/dnd.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timeline/DndTimelineController.java')}
+            </ui:define>
+            <ui:define name="contentTab3">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/timeline/Event.java')}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/timeline/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="timeline"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>
