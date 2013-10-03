@@ -11,32 +11,50 @@
             <h:outputText value="Timeline"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            This example demonstrates how to drag and drom items onto the timeline from the outside (an external list, etc).
+            This example demonstrates how to drag and drop items onto the timeline from the outside (an external list, etc).
             Add <strong>p:ajax</strong> with <strong>event="drop"</strong> to the timeline tag to activate the drag-and-drop feature.
             The AJAX listener gets an instance of the class <strong>TimelineDragDropEvent</strong>. Besides start / end date and
             group, this event object also contains a client ID of the dragged component and
-            dragged model object if draggable item is within a data iteration component.
+            dragged model object if draggable item is within a data iteration component. Please also consider the drag-and-drop related
+            attributes <strong>dropHoverStyleClass</strong>, <strong>dropActiveStyleClass</strong>,
+            <strong>dropAccept</strong>, <strong>dropScope</strong>.They are similar to corresponding attributes in p:droppable.
             <p/>
             Drag events from the list on the left side and drop them onto the timeline!
+            <strong>Note:</strong> When an item is dragged and dropped, an event with an end date will be created.
+            The end date is the start date + 10% of the timeline width. This default algorithm fits the most use cases.
+            Tip: if events are editable, you can adjust the start / end date later by double clicking on an event.
         </h:panelGroup>
         
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
+<p:growl id="growl" showSummary="true" showDetail="false" autoUpdate="true"/>
+
 <div style="float:left;">
     <strong>Drag and drop events</strong>
     <p/>
     <p:dataList id="eventsList" value="#{dndTimelineController.events}"
                 var="event" itemType="circle">
-        <h:panelGroup id="eventBox" layout="box">
+        <h:panelGroup id="eventBox" layout="box" style="z-index:9999; cursor:move;">
             #{event.name}
         </h:panelGroup>
+        
+        <p:draggable for="eventBox" revert="true" helper="clone" cursor="move"/>
     </p:dataList>
 </div>    
-<pe:timeline id="timeline" value="#{dndTimelineController.model}"
-             editable="true" eventMargin="10" eventMarginAxis="0" minHeight="380"
-             start="#{dndTimelineController.start}"
-             end="#{dndTimelineController.end}"
-             style="margin-left:135px;"/>
+<pe:timeline id="timeline" value="#{dndTimelineController.model}" var="event"
+             editable="true" eventMargin="10" eventMarginAxis="0" minHeight="250"
+             start="#{dndTimelineController.start}" end="#{dndTimelineController.end}"
+             timeZone="#{dndTimelineController.localTimeZone}"
+             style="margin-left:135px;" snapEvents="false" showNavigation="true"
+             dropActiveStyleClass="ui-state-highlight" dropHoverStyleClass="ui-state-hover">
+    <p:ajax event="drop" listener="#{dndTimelineController.onDrop}" global="false" update="eventsList"/>
+    
+    <h:panelGrid columns="1">
+        <h:outputText value="#{event.name}"/>
+        <h:outputText value="#{event.formattedStart}"/>
+        <h:outputText value="#{event.formattedEnd}"/>
+    </h:panelGrid>
+</pe:timeline>
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         

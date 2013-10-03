@@ -17,7 +17,12 @@
 package org.primefaces.extensions.showcase.model.timeline;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
+
+import javax.faces.context.FacesContext;
 
 /**
  * Data object for an event in the drag-and-drop example.
@@ -25,61 +30,99 @@ import java.util.Date;
  * @author  Oleg Varaksin / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
-public class Event implements Serializable
-{
-    private String name;
-    private Date start;
-    private Date end;
+public class Event implements Serializable {
 
-    public Event() {
-    }
-    
-    public Event(String name) {
-        this.name = name;
-    }
+	private String name;
+	private Date start;
+	private Date end;
 
-    public String getName() {
-        return name;
-    }
+	private TimeZone localTimeZone;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Event() {
+	}
 
-    public Date getStart() {
-        return start;
-    }
+	public Event(TimeZone localTimeZone) {
+		this.localTimeZone = localTimeZone;
+	}
 
-    public void setStart(Date start) {
-        this.start = start;
-    }
+	public Event(String name) {
+		this.name = name;
+	}
 
-    public Date getEnd() {
-        return end;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setEnd(Date end) {
-        this.end = end;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+	public Date getStart() {
+		return start;
+	}
 
-        Event event = (Event) o;
+	public void setStart(Date start) {
+		this.start = start;
+	}
 
-        if (name != null ? !name.equals(event.name) : event.name != null) {
-            return false;
-        }
+	public Date getEnd() {
+		return end;
+	}
 
-        return true;
-    }
+	public void setEnd(Date end) {
+		this.end = end;
+	}
 
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
+	public void setLocalTimeZone(TimeZone localTimeZone) {
+		this.localTimeZone = localTimeZone;
+	}
+
+	public String getFormattedStart() {
+		DateFormat dateFormat =
+		    DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM,
+		                                   FacesContext.getCurrentInstance().getViewRoot().getLocale());
+
+		return dateFormat.format(toLocalDate(start));
+	}
+
+	public String getFormattedEnd() {
+		DateFormat dateFormat =
+		    DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM,
+		                                   FacesContext.getCurrentInstance().getViewRoot().getLocale());
+
+		return dateFormat.format(toLocalDate(end));
+	}
+
+	private Date toLocalDate(Date utcDate) {
+		Calendar calendar = Calendar.getInstance(localTimeZone);
+		int offsetFromUTC = localTimeZone.getOffset(utcDate.getTime());
+		calendar.setTime(utcDate);
+		calendar.add(Calendar.MILLISECOND, offsetFromUTC);
+
+		return calendar.getTime();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Event event = (Event) o;
+
+		if (name != null ? !name.equals(event.name) : event.name != null) {
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return name != null ? name.hashCode() : 0;
+	}
 }
