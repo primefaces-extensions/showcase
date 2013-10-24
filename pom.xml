@@ -312,8 +312,8 @@
 
 	<properties>
 		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-		<primefaces-extensions.new-components>;</primefaces-extensions.new-components>
-		<primefaces-extensions.updated-components>blockUI;ckEditor;exporter;inputNumber;timePicker;timeline;masterDetail</primefaces-extensions.updated-components>
+		<primefaces-extensions.new-components>fluidGrid</primefaces-extensions.new-components>
+		<primefaces-extensions.updated-components>ckEditor</primefaces-extensions.updated-components>
 
 		<mojarra.version>2.1.26</mojarra.version>
 		<myfaces.version>2.1.12</myfaces.version>

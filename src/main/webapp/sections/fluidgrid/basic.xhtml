@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="FluidGrid"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+            TODO.
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="centerExample">
+<!-- EXAMPLE-SOURCE-START -->
+            
+<h:outputStylesheet id="fluidGridCSS">
+    .pe-fluidgrid {
+        background: #EEE;
+        max-width: 640px;
+    }
+    
+    .pe-fluidgrid .pe-fluidgrid-item {
+        width:  60px;
+        height: 60px;
+        background: #D26;
+        border: 2px solid #333;
+        border-radius: 5px;
+    }
+    
+    .pe-fluidgrid-item.w2 {width: 125px;}
+    .pe-fluidgrid-item.w3 {width: 190px;}    
+    .pe-fluidgrid-item.h2 {height: 100px;}
+    .pe-fluidgrid-item.h3 {height: 130px;}
+</h:outputStylesheet>
+<!-- EXAMPLE-SOURCE-END -->
+        </h:panelGroup>
+        <ui:decorate template="/templates/oneTabDecorator.xhtml">
+            <ui:define name="contentTab1">
+${showcase:getFileContent('/sections/fluidgrid/basic.xhtml')}
+            </ui:define>
+        </ui:decorate>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/fluidgrid/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="fluidGrid"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>
