@@ -11,35 +11,27 @@
             <h:outputText value="FluidGrid"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            TODO.
+            FluidGrid allows to set up a nice tight grid with items that have variable heights and widths.
+            FluidGrid is a responsive grid. That means, the grid will reflow as the window size changes.
+            Items can have any content: text, images, links, input fields, etc.
+            They can be defined in a static or in a dynamic way as in data iteration components.
+            <p/>
+            This example demonstrates a simple usage with static items. Static items are defined by
+            the tag <strong>pe:fluidGridItem</strong> which can be placed multiple times below
+            the main tag <strong>pe:fluidGrid</strong>. Items can have different width / height
+            specified by style classes. In the example we used two attributes <strong>hGutter</strong>
+            and <strong>vGutter</strong> for horizontal and vertical space between items.
+            Click on the button below and resize the browser to test the fluid grid!
         </h:panelGroup>
+        
         <h:panelGroup layout="block" styleClass="centerExample">
-<!-- EXAMPLE-SOURCE-START -->
-            
-<h:outputStylesheet id="fluidGridCSS">
-    .pe-fluidgrid {
-        background: #EEE;
-        max-width: 640px;
-    }
-    
-    .pe-fluidgrid .pe-fluidgrid-item {
-        width:  60px;
-        height: 60px;
-        background: #D26;
-        border: 2px solid #333;
-        border-radius: 5px;
-    }
-    
-    .pe-fluidgrid-item.w2 {width: 125px;}
-    .pe-fluidgrid-item.w3 {width: 190px;}    
-    .pe-fluidgrid-item.h2 {height: 100px;}
-    .pe-fluidgrid-item.h3 {height: 130px;}
-</h:outputStylesheet>
-<!-- EXAMPLE-SOURCE-END -->
+            <p:button outcome="/sections/fluidgrid/examples/static.jsf"
+                      value="Show fluid grid" target="_blank"/>
         </h:panelGroup>
+        
         <ui:decorate template="/templates/oneTabDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/fluidgrid/basic.xhtml')}
+${showcase:getFileContent('/sections/fluidgrid/examples/example-static.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>
