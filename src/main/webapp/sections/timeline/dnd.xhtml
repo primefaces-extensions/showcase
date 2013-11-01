@@ -23,6 +23,10 @@
             <strong>Note:</strong> When an item is dragged and dropped, an event with an end date will be created.
             The end date is the start date + 10% of the timeline width. This default algorithm fits the most use cases.
             Tip: if events are editable, you can adjust the start / end date later by double clicking on an event.
+            <p/>
+            <strong>Note:</strong> You can choose your local time zone to show the timeline and events' start / end dates
+            in this time zone. You can also choose the browser's time zone because an automatic calculation of the
+            browser's time zone is not supported yet. The time zone of the browser is needed for a correction of the displayed time.
         </h:panelGroup>
         
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -44,17 +48,36 @@
 <pe:timeline id="timeline" value="#{dndTimelineController.model}" var="event"
              editable="true" eventMargin="10" eventMarginAxis="0" minHeight="250"
              start="#{dndTimelineController.start}" end="#{dndTimelineController.end}"
-             timeZone="#{dndTimelineController.localTimeZone}"
+             timeZone="#{dndTimelineController.localTZ}"
+             browserTimeZone="#{dndTimelineController.browserTZ}"
              style="margin-left:135px;" snapEvents="false" showNavigation="true"
              dropActiveStyleClass="ui-state-highlight" dropHoverStyleClass="ui-state-hover">
     <p:ajax event="drop" listener="#{dndTimelineController.onDrop}" global="false" update="eventsList"/>
     
     <h:panelGrid columns="1">
         <h:outputText value="#{event.name}"/>
-        <h:outputText value="#{event.formattedStart}"/>
-        <h:outputText value="#{event.formattedEnd}"/>
+        <h:outputText value="#{event.start}">
+            <f:convertDateTime dateStyle="short" type="both" timeZone="#{dndTimelineController.localTZ}"/>
+        </h:outputText>
+        <h:outputText value="#{event.end}">
+            <f:convertDateTime dateStyle="short" type="both" timeZone="#{dndTimelineController.localTZ}"/>
+        </h:outputText>
     </h:panelGrid>
 </pe:timeline>
+            
+<h:panelGrid columns="2" style="margin-top:15px;">
+    <h:outputText value="Choose your local time zone"/>
+    <p:selectOneMenu value="#{dndTimelineController.localTZ}" style="margin-left:5px;">
+        <f:selectItems value="#{dndTimelineController.timeZones}"/>
+        <p:ajax update="timeline" listener="#{dndTimelineController.onSwitchTimeZone}"/>
+    </p:selectOneMenu>
+    
+    <h:outputText value="Choose your browser's time zone"/>
+    <p:selectOneMenu value="#{dndTimelineController.browserTZ}" style="margin-left:5px;">
+        <f:selectItems value="#{dndTimelineController.timeZones}"/>
+        <p:ajax update="timeline" listener="#{dndTimelineController.onSwitchTimeZone}"/>
+    </p:selectOneMenu>
+</h:panelGrid>
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         

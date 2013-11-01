@@ -29,12 +29,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.model.SelectItem;
 
 import org.primefaces.extensions.component.timeline.TimelineUpdater;
 import org.primefaces.extensions.event.timeline.TimelineDragDropEvent;
 import org.primefaces.extensions.model.timeline.TimelineEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
 import org.primefaces.extensions.showcase.model.timeline.Event;
+import org.primefaces.extensions.showcase.util.TimeZoneUtil;
 
 /**
  * DndTimelineController
@@ -49,7 +52,17 @@ public class DndTimelineController implements Serializable {
 	private TimelineModel model;
 	private Date start;
 	private Date end;
-	private TimeZone localTimeZone = TimeZone.getTimeZone("Europe/Berlin");
+
+	// time zone the timeline to be displayed in
+	private String localTZ = "Europe/Berlin";
+
+	// your browser's time zone (defaults to the server's time zone)
+	private String browserTZ = TimeZone.getDefault().getID();
+
+	// all available time zones
+	private List<SelectItem> timeZones;
+
+	// events for drag and drop
 	private List<Event> events = new ArrayList<Event>();
 
 	@PostConstruct
@@ -71,23 +84,20 @@ public class DndTimelineController implements Serializable {
 		for (int i = 1; i <= 13; i++) {
 			events.add(new Event("Event " + i));
 		}
-	}
 
-	public TimelineModel getModel() {
-		return model;
-	}
-
-	public TimeZone getLocalTimeZone() {
-		return localTimeZone;
+		// get all unique time zones (code of the TimeZoneUtil is not relevant here)
+		timeZones = new ArrayList<SelectItem>();
+		for (TimeZone timeZone : TimeZoneUtil.getTimeZones()) {
+			timeZones.add(new SelectItem(timeZone.getID(), TimeZoneUtil.getName(timeZone)));
+		}
 	}
 
 	public void onDrop(TimelineDragDropEvent e) {
 		// get dragged model object (event class) if draggable item is within a data iteration component,
-		// update event's start / end dates and set local time zone for formatting in UI.
+		// update event's start and end dates.
 		Event dndEvent = (Event) e.getData();
 		dndEvent.setStart(e.getStartDate());
 		dndEvent.setEnd(e.getEndDate());
-		dndEvent.setLocalTimeZone(localTimeZone);
 
 		// create a timeline event (not editable)
 		TimelineEvent event = new TimelineEvent(dndEvent, e.getStartDate(), e.getEndDate(), false, e.getGroup());
@@ -101,6 +111,34 @@ public class DndTimelineController implements Serializable {
 
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "The " + dndEvent.getName() + " was added", null);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onSwitchTimeZone(AjaxBehaviorEvent e) {
+		model.clear();
+	}
+
+	public TimelineModel getModel() {
+		return model;
+	}
+
+	public String getLocalTZ() {
+		return localTZ;
+	}
+
+	public void setLocalTZ(String localTZ) {
+		this.localTZ = localTZ;
+	}
+
+	public String getBrowserTZ() {
+		return browserTZ;
+	}
+
+	public void setBrowserTZ(String browserTZ) {
+		this.browserTZ = browserTZ;
+	}
+
+	public List<SelectItem> getTimeZones() {
+		return timeZones;
 	}
 
 	public List<Event> getEvents() {

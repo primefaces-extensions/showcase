@@ -17,12 +17,7 @@
 package org.primefaces.extensions.showcase.model.timeline;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
-
-import javax.faces.context.FacesContext;
 
 /**
  * Data object for an event in the drag-and-drop example.
@@ -35,15 +30,6 @@ public class Event implements Serializable {
 	private String name;
 	private Date start;
 	private Date end;
-
-	private TimeZone localTimeZone;
-
-	public Event() {
-	}
-
-	public Event(TimeZone localTimeZone) {
-		this.localTimeZone = localTimeZone;
-	}
 
 	public Event(String name) {
 		this.name = name;
@@ -71,35 +57,6 @@ public class Event implements Serializable {
 
 	public void setEnd(Date end) {
 		this.end = end;
-	}
-
-	public void setLocalTimeZone(TimeZone localTimeZone) {
-		this.localTimeZone = localTimeZone;
-	}
-
-	public String getFormattedStart() {
-		DateFormat dateFormat =
-		    DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM,
-		                                   FacesContext.getCurrentInstance().getViewRoot().getLocale());
-
-		return dateFormat.format(toLocalDate(start));
-	}
-
-	public String getFormattedEnd() {
-		DateFormat dateFormat =
-		    DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM,
-		                                   FacesContext.getCurrentInstance().getViewRoot().getLocale());
-
-		return dateFormat.format(toLocalDate(end));
-	}
-
-	private Date toLocalDate(Date utcDate) {
-		Calendar calendar = Calendar.getInstance(localTimeZone);
-		int offsetFromUTC = localTimeZone.getOffset(utcDate.getTime());
-		calendar.setTime(utcDate);
-		calendar.add(Calendar.MILLISECOND, offsetFromUTC);
-
-		return calendar.getTime();
 	}
 
 	@Override

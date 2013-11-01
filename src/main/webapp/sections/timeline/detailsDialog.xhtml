@@ -25,12 +25,12 @@
             <h:outputText value="From"/>
             <p:calendar value="#{editServerTimelineController.event.startDate}"
                         timeZone="#{editServerTimelineController.timeZone}"
-                        pattern="dd/MM/yyyy" required="true" label="From"/>
+                        pattern="dd/MM/yyyy HH:mm" required="true" label="From"/>
             
             <h:outputText value="Until"/>
             <p:calendar value="#{editServerTimelineController.event.endDate}"
                         timeZone="#{editServerTimelineController.timeZone}"
-                        pattern="dd/MM/yyyy" label="Until"/>
+                        pattern="dd/MM/yyyy HH:mm" label="Until"/>
             
             <h:outputText value="Phone"/>
             <p:inputMask value="#{editServerTimelineController.event.data.phone}" mask="(9999) 999-999"/>
