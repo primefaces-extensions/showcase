@@ -16,26 +16,28 @@
             Items can have any content: text, images, links, input fields, etc.
             They can be defined in a static or in a dynamic way as in data iteration components.
             <p/>
-            This example demonstrates a simple usage with static items. Static items are defined by
-            the tag <strong>pe:fluidGridItem</strong> which can be placed multiple times below
-            the main tag <strong>pe:fluidGrid</strong>. Items can have different width / height
-            specified by style classes. The main container for the <strong>pe:fluidGrid</strong>
-            has the style class <strong>pe-fluidgrid</strong> and the container of the <strong>pe:fluidGridItem</strong>
-            has the style class <strong>pe-fluidgrid-item</strong>.
-            <p/>
-            In the example we used two attributes <strong>hGutter</strong>
-            and <strong>vGutter</strong> for horizontal and vertical space between items.
-            Click on the button below and resize the browser to test the fluid grid!
+            This example demonstrates a simple usage with dynamic items. Dynamic items can be put in a collection or list
+            of <strong>FluidGridItem</strong> instances. A <strong>FluidGridItem</strong> instance contains
+            a data object (of any data types) and an optional type to match the type attribute in
+            <strong>pe:fluidGridItem</strong> (see the example with dynamic form).
+            Dynamic items can be accessed in XHTML via the <strong>value</strong> attribute and exposed
+            via the <strong>var</strong> attribute. Click on the button below and resize the browser to test the fluid grid!
         </h:panelGroup>
         
         <h:panelGroup layout="block" styleClass="centerExample">
-            <p:button outcome="/sections/fluidgrid/examples/static.jsf"
+            <p:button outcome="/sections/fluidgrid/examples/dynamic.jsf"
                       value="Show fluid grid" target="_blank"/>
         </h:panelGroup>
         
-        <ui:decorate template="/templates/oneTabDecorator.xhtml">
+        <ui:decorate template="/templates/threeTabsDecoratorModel.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/fluidgrid/examples/example-static.xhtml')}
+${showcase:getFileContent('/sections/fluidgrid/examples/example-dynamic.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/fluidgrid/FluidGridDynamicController.java')}
+            </ui:define>
+            <ui:define name="contentTab3">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/fluidgrid/Image.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

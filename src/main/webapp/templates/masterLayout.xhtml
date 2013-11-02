@@ -22,6 +22,8 @@
         </ui:insert>
 
         <pe:layout id="fpl" widgetVar="fullLayoutWidget" options="#{showcaseLayout.options}">
+            <pe:javascript event="resize" execute="#{resizeFunction}" disabled="#{empty resizeFunction}"/>
+            
             <pe:layoutPane position="north">
                 <h:form id="headerForm" prependId="false">
                     <ui:insert name="header"/>
