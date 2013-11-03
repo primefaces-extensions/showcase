@@ -21,9 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.extensions.event.LayoutCompleteEvent;
 import org.primefaces.extensions.model.fluidgrid.FluidGridItem;
 import org.primefaces.extensions.showcase.model.fluidgrid.Image;
 
@@ -52,5 +55,10 @@ public class FluidGridDynamicController implements Serializable {
 
 	public List<FluidGridItem> getImages() {
 		return images;
+	}
+
+	public void fireLayoutComplete(LayoutCompleteEvent event) {
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Fluid grid has been laid out", null);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 }
