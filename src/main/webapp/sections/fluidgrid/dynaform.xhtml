@@ -18,14 +18,54 @@
             Items can have any content: text, images, links, input fields, etc.
             They can be defined in a static or in a dynamic way as in data iteration components.
             <p/>
-            This example demonstrates 
+            This example demonstrates how to design a responsive dynamic grid with input fields.
+            This is similar to the DynaForm component in PrimeFaces Extensions, but the grid is not
+            a fixed table in this case. It is responsive! Try to resize the browser window.
+            <strong>Tip:</strong> You will achieve a consistent alignment across all field blocks
+            if you place the labels above the input fields.
+            <p/>
+            The attribute <strong>type</strong> of <strong>pe:fluidGridItem</strong>
+            should match the corresponding <strong>type</strong> property of <strong>FluidGridItem</strong>.
         </h:panelGroup>
         
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
-<pe:fluidGrid resizeBound="false" widgetVar="fluidGridWdgt">
-
+<p:growl autoUpdate="true"/>            
+            
+<pe:fluidGrid id="fluidGrid" value="#{fluidGridDynaFormController.items}" var="data"
+              resizeBound="false" hGutter="20" widgetVar="fluidGridWdgt">
+    <pe:fluidGridItem type="input">
+        <div class="dynaFormLabel">
+            <p:outputLabel for="txt" value="#{data.label}"/>
+        </div>
+        <p:inputText id="txt" value="#{data.value}" required="#{data.required}"/>
+    </pe:fluidGridItem>
+    <pe:fluidGridItem type="select" styleClass="select">
+        <div class="dynaFormLabel">
+            <p:outputLabel for="menu" value="#{data.label}"/>
+        </div>
+        <p:selectOneMenu id="menu" value="#{data.value}" required="#{data.required}">
+            <f:selectItems value="#{data.selectItems}"/>
+        </p:selectOneMenu>
+    </pe:fluidGridItem>
+    <pe:fluidGridItem type="calendar" styleClass="calendar">
+        <div class="dynaFormLabel">
+            <p:outputLabel for="cal" value="#{data.label}"/>
+        </div>
+        <p:calendar id="cal" value="#{data.value}" required="#{data.required}" showOn="button"/>
+    </pe:fluidGridItem>
 </pe:fluidGrid>
+            
+<p:commandButton value="Submit" style="margin-top: 10px;"
+                 process="fluidGrid" update=":mainForm:fluidGrid :mainForm:inputValues"
+                 oncomplete="if(!args.validationFailed) {PF('inputValuesWidget').show();}"/>
+
+<p:dialog header="Input values" widgetVar="inputValuesWidget">
+    <p:dataList id="inputValues" value="#{fluidGridDynaFormController.items}" var="item"
+                style="margin:10px;">
+        <h:outputText value="#{item.data.label} : #{item.data.value}" style="margin-right:15px;"/>
+    </p:dataList>
+</p:dialog>
 
 <h:outputScript id="fluidGridScript" target="body">
 /* <![CDATA[ */    
@@ -34,12 +74,46 @@
     }
 /* ]]> */
 </h:outputScript>
+            
+<h:outputStylesheet id="fluidGridCSS">
+    .pe-fluidgrid-item {
+        width: 160px;
+        height: 60px;
+    }
+    
+    .pe-fluidgrid-item input {
+        width: 150px;
+    }
+
+    .pe-fluidgrid-item.calendar input {
+        width: 120px;
+    }
+
+    .pe-fluidgrid-item.select .ui-selectonemenu {
+        width: 157px !important;
+    }
+
+    .pe-fluidgrid-item.select .ui-selectonemenu .ui-selectonemenu-label {
+        width: 130px !important;
+    }
+    
+    .dynaFormLabel {
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+</h:outputStylesheet>
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>
         
-        <ui:decorate template="/templates/oneTabDecorator.xhtml">
+        <ui:decorate template="/templates/threeTabsDecoratorModel.xhtml">
             <ui:define name="contentTab1">
 ${showcase:getFileContent('/sections/fluidgrid/dynaform.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/fluidgrid/FluidGridDynaFormController.java')}
+            </ui:define>
+            <ui:define name="contentTab3">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/fluidgrid/DynamicField.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

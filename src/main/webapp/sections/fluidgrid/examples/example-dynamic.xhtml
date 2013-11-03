@@ -5,7 +5,8 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
-<pe:fluidGrid value="#{fluidGridDynamicController.images}" var="image" fitWidth="true">
+<pe:fluidGrid value="#{fluidGridDynamicController.images}" var="image"
+              fitWidth="true" hasImages="true">
     <pe:fluidGridItem>
         <h:graphicImage library="images" name="fluidgrid/#{image.name}"/>
     </pe:fluidGridItem>
