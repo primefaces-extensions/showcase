@@ -30,7 +30,7 @@
     // Use case 3
     
     function tpStartOnHourShowCallback(hour) {
-        if (typeof PF('endTimeWidget') === 'undefined') {
+        if (!PrimeFaces.widgets['endTimeWidget']) {
             return false;
         }
     
@@ -46,7 +46,7 @@
     }
     
     function tpStartOnMinuteShowCallback(hour, minute) {
-        if (typeof PF('endTimeWidget') === 'undefined') {
+        if (!PrimeFaces.widgets['endTimeWidget']) {
             return false;
         }
     
@@ -68,7 +68,7 @@
     }
     
     function tpEndOnHourShowCallback(hour) {
-        if (typeof PF('startTimeWidget') === 'undefined') {
+        if (!PrimeFaces.widgets['startTimeWidget']) {
             return false;
         }
     
@@ -84,7 +84,7 @@
     }
     
     function tpEndOnMinuteShowCallback(hour, minute) {
-        if (typeof PF('startTimeWidget') === 'undefined') {
+        if (!PrimeFaces.widgets['startTimeWidget']) {
             return false;
         }
     
