@@ -22,6 +22,9 @@
             Partial validation can be e.g. skipped by setting process="@none" or immediate="true". 
             Partial validation in case of the navigation via breadcrumbs is always skipped automatically.
             <p/>
+            <strong>Attention:</strong> You have to reference the pe:masterDetail in the "update" attribute of command components
+            manually if you have any auto updatable components, such as p:growl or p:message with autoUpdate="true", on the page.
+            <p/>
             Other features are a server-side listener invoking when a navigation attempt takes place, "header", "footer" facets and more.
         </h:panelGroup>
     </ui:define>

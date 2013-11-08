@@ -2,8 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:showcase="http://primefaces.org/ui/extensions/showcase"
-        >
+      xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
@@ -14,6 +13,9 @@
             Context values (any objects) are passed from level to level and available via context variables.
             Level to go to can be set via "level" or "step" attribute (default is step=1 if nothing specified). 
             Text for breadcrumb items is set by "levelLabel" attribute or "label" facet of MasterDetailLevel component.
+            <p/>
+            <strong>Attention:</strong> You have to reference the pe:masterDetail in the "update" attribute of command components
+            manually if you have any auto updatable components, such as p:growl or p:message with autoUpdate="true", on the page.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
