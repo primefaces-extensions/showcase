@@ -22,10 +22,14 @@
             Partial validation can be e.g. skipped by setting process="@none" or immediate="true". 
             Partial validation in case of the navigation via breadcrumbs is always skipped automatically.
             <p/>
+            Other features are a server-side listener invoking when a navigation attempt takes place, "header", "footer" facets and more.
+            <p/>
             <strong>Attention:</strong> You have to reference the pe:masterDetail in the "update" attribute of command components
             manually if you have any auto updatable components, such as p:growl or p:message with autoUpdate="true", on the page.
             <p/>
-            Other features are a server-side listener invoking when a navigation attempt takes place, "header", "footer" facets and more.
+            <strong>Known limitation:</strong> MasterDetail component doesn't work inside of data iteration components
+            extending UIData, e.g. inside of DataTable. More precise: the navigation will not work when pe:masterDetail
+            is placed within a data iteration component.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
