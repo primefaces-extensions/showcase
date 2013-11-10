@@ -8,7 +8,8 @@
             <h:outputText value="JsonConverter"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            The following example shows how JsonConverter can be applied to RemoteCommandParameter.
+            The following example shows how JsonConverter can be applied to RemoteCommand.
+            This can be achieved with <strong>pe:assignableParam</strong> and attached <strong>pe:convertJson</strong>.
             JsonConverter only has one optional attribute "type". It specifies data type of the value object.
             Any primitive type, array, non generic or generic type is supported.
             Data type is sometimes required to convert a value to a JSON representation. All data types should be

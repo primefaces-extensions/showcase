@@ -3,10 +3,14 @@
       xmlns:p="http://primefaces.org/ui">
 <ui:composition>
     <p:menu id="useCaseList">
-        <p:menuitem value="JsonConverter"
-                    styleClass="#{navigationContext.getMenuitemStyleClass('jsonConverter')}"
+        <p:menuitem value="JsonConverter with pe:remoteCommand"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('jsonConverterRC')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/converters/jsonConverter.jsf"/>
+                    url="/sections/converters/jsonConverterRC.jsf"/>
+        <p:menuitem value="JsonConverter with f:viewParam and URL parameters"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('jsonConverterVP')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/converters/jsonConverterVP.jsf"/>
         <p:menuitem value="LocaleConverter"
                     styleClass="#{navigationContext.getMenuitemStyleClass('localeConverter')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
