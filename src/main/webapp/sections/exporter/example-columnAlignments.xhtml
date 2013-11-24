@@ -6,7 +6,7 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
     <!-- EXAMPLE-SOURCE-START -->
-<p:dataTable id="messageTable" var="message" value="#{messageTableController.messages}"
+<p:dataTable id="messageTable" var="message" value="#{messageTableController.messages}" widgetVar="$messageTable"
                  paginator="true" rows="5" paginatorPosition="bottom"
                  filteredValue="#{messageTableController.filteredMessages}">
      <f:facet name="header">
@@ -15,6 +15,13 @@
           <h:outputText value="#{messageTableController.currentDate}">
              <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
           </h:outputText>
+         <p:spacer width="20"></p:spacer>
+         <p:selectBooleanCheckbox id="select" value="#{messageTableController.checkValue}" itemLabel="All"/>
+         <p:outputPanel style="float:right;margin-top: 4px">
+             <h:outputText value="Search all fields:" />
+             <p:inputText id="globalFilter" onkeyup="PF('$messageTable').filter()" style="width:100px;height:10px;" />
+         </p:outputPanel>
+
      </f:facet>
      <p:column filterBy="#{message.subject}">
          <f:facet name="header">
@@ -28,11 +35,11 @@
          </f:facet>
             <h:outputText value="#{message.text}" style="center" />
      </p:column>
-     <p:column filterBy="#{message.time}">
+     <p:column filterBy="#{message.time}" filterStyle="float:right">
          <f:facet name="header">
             <h:outputText value="Time" style="float:right"/>
          </f:facet>
-            <h:outputText value="#{message.time}" style="float:right"/>
+            <h:outputText value="#{message.time}" style="right"/>
      </p:column>
 </p:dataTable>
 
@@ -75,8 +82,8 @@
      <p:commandLink id="pdf" ajax="false">
          <p:graphicImage value="/resources/images/pdf.png"/>
          <f:setPropertyActionListener value="false" target="#{exporterController.customExporter}" />
-         <pe:exporter type="pdf" target="messageTable,messageDetailsTable" fileName="MessagesAndDetails"
-                         datasetPadding="4"/>
+         <pe:exporter type="pdf" target="messageTable,messageDetailsTable" fileName="MessagesAndDetails" datasetPadding="4"
+           skipComponents="org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox,org.primefaces.component.spacer.Spacer,org.primefaces.component.outputpanel.OutputPanel"/>
 
      </p:commandLink>
 
@@ -85,9 +92,8 @@
      <p:commandLink id="xls" ajax="false">
          <p:graphicImage value="/resources/images/excel.png"/>
          <f:setPropertyActionListener value="false" target="#{exporterController.customExporter}" />
-         <pe:exporter type="xlsx" target="messageTable,messageDetailsTable" fileName="MessagesAndDetails"
-                         datasetPadding="4"/>
-
+         <pe:exporter type="xlsx" target="messageTable,messageDetailsTable" fileName="MessagesAndDetails" datasetPadding="4"
+           skipComponents="org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox,org.primefaces.component.spacer.Spacer,org.primefaces.component.outputpanel.OutputPanel"/>
      </p:commandLink>
 
 </p:panel>

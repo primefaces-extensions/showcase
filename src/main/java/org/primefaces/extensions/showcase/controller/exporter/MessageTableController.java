@@ -46,6 +46,7 @@ public class MessageTableController implements Serializable {
     private String newText = "my text";
     private final static String[] states;
     private Date currentDate = new Date();
+    private boolean checkValue;
 
     static {
         states = new String[10];
@@ -115,6 +116,13 @@ public class MessageTableController implements Serializable {
         this.currentDate = currentDate;
     }
 
+    public boolean getCheckValue(){
+       return checkValue;
+    }
+
+    public void setCheckValue(boolean checkValue) {
+       this.checkValue = checkValue;
+    }
     public String addMessage() {
         doSomething();
 
