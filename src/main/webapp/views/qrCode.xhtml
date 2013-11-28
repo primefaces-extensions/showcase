@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="qrCode"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+             <!-- This group is for description -->
+             QRCode enable you to dynamically generate QR codes. 
+             Choose between a lot of options like rendering mode, color, size and more.
+             <p/>
+             This component make use of <b>jQuery.qrcode</b>             
+             You can visit github page  
+             <h:outputLink value="https://github.com/lrsjng/jQuery.qrcode"  target="_blank">
+                 <h:outputText value="here"/>
+             </h:outputLink>
+             <p/>
+             Choose uses cases to see pe:qrCode in action.
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/qrCode/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="qrCode"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>

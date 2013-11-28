@@ -312,7 +312,7 @@
 
 	<properties>
 		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-		<primefaces-extensions.new-components>;</primefaces-extensions.new-components>
+		<primefaces-extensions.new-components>qrCode</primefaces-extensions.new-components>
 		<primefaces-extensions.updated-components>ajaxErrorHandler;exporter</primefaces-extensions.updated-components>
 
 		<mojarra.version>2.1.26</mojarra.version>
