@@ -69,11 +69,11 @@
 <p:commandButton value="Show current timeline model" process="@none" update="timeline"
                  style="margin:15px 0 0 5px;" title="Check if the model has been updated"/>            
 
-<pe:remoteCommand id="updateData" name="updateData" process="@this" update="growl"
+<pe:remoteCommand id="updateDataRC" name="updateData" process="@this" update="growl"
                   actionListener="#{editClientTimelineController.updateData}">
     <pe:methodSignature parameters="java.util.List"/>
     <pe:methodParam name="events">
-        <pe:convertTimelineEvents timeZone="#{editClientTimelineController.timeZone}"/>
+        <pe:convertTimelineEvents/>
     </pe:methodParam>
 </pe:remoteCommand>
             
