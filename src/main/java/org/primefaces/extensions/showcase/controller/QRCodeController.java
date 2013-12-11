@@ -45,7 +45,7 @@ public class QRCodeController implements Serializable {
         text = "http://primefaces-extensions.github.io/";
         label = "PF-Extensions";
         mode = 2;
-        fillColor = "#7d767d";
+        fillColor = "7d767d";
         size = 200;
     }
 
