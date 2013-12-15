@@ -24,9 +24,10 @@
             The end date is the start date + 10% of the timeline width. This default algorithm fits the most use cases.
             Tip: if events are editable, you can adjust the start / end date later by double clicking on an event.
             <p/>
-            <strong>Note:</strong> You can choose your local time zone to show the timeline and events' start / end dates
-            in this time zone. You can also choose the browser's time zone because an automatic calculation of the
-            browser's time zone is not supported yet. The time zone of the browser is needed for a correction of the displayed time.
+            <strong>Note:</strong> You can choose your <strong>target time zone</strong> to show the timeline and events' start / end dates
+            in this time zone. You can also choose the <strong>browser's time zone</strong> because an automatic calculation of the
+            browser's time zone is not supported (due to some required JS scripts having big sizes).
+            The time zone of the browser is needed for a correction of the displayed time.
         </h:panelGroup>
         
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -66,7 +67,7 @@
 </pe:timeline>
             
 <h:panelGrid columns="2" style="margin-top:15px;">
-    <h:outputText value="Choose your local time zone"/>
+    <h:outputText value="Choose your target time zone"/>
     <p:selectOneMenu value="#{dndTimelineController.localTZ}" style="margin-left:5px;">
         <f:selectItems value="#{dndTimelineController.timeZones}"/>
         <p:ajax update="timeline" listener="#{dndTimelineController.onSwitchTimeZone}"/>
