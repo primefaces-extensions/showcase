@@ -13,8 +13,9 @@
             When resizing the window, this offset will be recalculated automatically.
             The Waypoint component self is used in combination with pe:javascript.
             In the callback function we check the current scrolling direction. Furthermore, we use two widget methods:
-            .remove() and .register(). The method remove() unregisters the waypoint(s) and wipes any custom options,
-            but leaves the waypoint's event bound. Calling register() again in the future would reregister the waypoint(s)
+            <strong>disable()</strong> and <strong>enable()</strong>. The method <strong>disable()</strong> temporarily
+            disables the waypoint (callback function) from firing, but leaves the waypoint's event bound.
+            Calling <strong>enable()</strong> again in the future would re-enables a previously disabled waypoint
             and the old handlers would continue to work.
         </h:panelGroup>
 
@@ -28,6 +29,14 @@
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
 ${showcase:getFileContent('/sections/waypoint/examples/example-infiniteScrollingOne.xhtml')}
+
+=== first remote content from the file remoteContentOne.xhmtl (for demo purpose)
+                
+${showcase:getFileContent('/sections/waypoint/examples/remoteContentOne.xhtml')}
+                
+=== second remote content from the file remoteContentSecond.xhmtl (for demo purpose)
+                
+${showcase:getFileContent('/sections/waypoint/examples/remoteContentSecond.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/waypoint/InfiniteScrollController.java')}

@@ -107,7 +107,7 @@
 /* <![CDATA[ */
     function handleLoadStart(ext) {
         if (ext.direction == "down") {
-            PF('waypointWidget').remove();
+            PF('waypointWidget').disable();
             PF('loadingDlg').show();
             loadRemoteContent();
         }
@@ -116,7 +116,7 @@
     function handleLoadStop() {
         $('#container').append($('#remoteContent > div.article'));
         PF('loadingDlg').hide();
-        PF('waypointWidget').register();
+        PF('waypointWidget').enable();
     }
 /* ]]> */
 </h:outputScript>
