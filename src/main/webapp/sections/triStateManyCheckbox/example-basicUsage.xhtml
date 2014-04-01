@@ -29,7 +29,7 @@
                              tabindex="2">
         <f:selectItem itemLabel="Tamara" itemValue="Tamara"/>
         <f:selectItem itemLabel="Mauricio" itemValue="Mauricio"/>
-        <p:ajax update="growl" listener="#{triSateManyCheckBoxController.addMessage}"/>
+        <p:ajax event="change" update="growl" listener="#{triSateManyCheckBoxController.addMessage}"/>
     </pe:triStateManyCheckbox>
 </h:panelGrid>
 

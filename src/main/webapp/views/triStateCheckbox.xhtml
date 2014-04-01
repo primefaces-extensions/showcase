@@ -30,7 +30,7 @@
             
                 <h:outputText value="Ajax Behavior: "/>
                 <pe:triStateCheckbox id="ajaxTriState" value="#{triStateCheckBoxController.value2}">
-                    <p:ajax update="growl" listener="#{triStateCheckBoxController.addMessage}"/>
+                    <p:ajax event="change" update="growl" listener="#{triStateCheckBoxController.addMessage}"/>
                 </pe:triStateCheckbox>
             
                 <h:outputText value="Customs Icons: "/>
