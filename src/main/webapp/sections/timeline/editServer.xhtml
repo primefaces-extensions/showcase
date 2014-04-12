@@ -16,7 +16,11 @@
             AJAX events <strong>select</strong>, <strong>change</strong>, <strong>edit</strong>, <strong>add</strong>, <strong>delete</strong>.
             The global editable setting can be overwritten for individual events by setting boolean true or false in field "editable" (see TimelineEvent model class).
             <p/>
-            <i>How to create, edit, change and delete events?</i> When the timeline is defined as editable, events can be moved to another time by dragging them
+            Editable events can be restricted to only content editing. Events can not be moved or dragged horizontally (neither start time
+            nor end time is changable) if the attribute <strong>timeChangeable</strong> is set to false (default is true). You can test
+            this behavior in the exampe by clicking on the button "Toggle TimeChangeable". 
+            <p/>
+            <i>But how to create, edit, change and delete events in the UI?</i> When the timeline is defined as editable, events can be moved to another time by dragging them
             (first, select an event by mouse click and then drag it by mouse). When an event with a date range is selected, it has a drag area on the left and right side,
             with which the start or end dates of the event can be manipulated. By double clicking, the contents of an event can be edited.
             An event can be deleted by clicking the "Delete" icon on the upper right (first, select an event by mouse click and then click on the "Delete" icon).
@@ -45,7 +49,8 @@
              zoomMax="#{editServerTimelineController.zoomMax}"
              start="#{editServerTimelineController.start}"
              end="#{editServerTimelineController.end}"
-             editable="true" showButtonNew="true" minHeight="200" widgetVar="timelineWdgt">
+             editable="true" timeChangeable="#{editServerTimelineController.timeChangeable}"
+             showButtonNew="true" minHeight="200" widgetVar="timelineWdgt">
     <p:ajax event="change" update="@none" listener="#{editServerTimelineController.onChange}"/>
     <p:ajax event="edit" update=":dialogForm:detailsBookingInner"
             listener="#{editServerTimelineController.onEdit}"
@@ -63,6 +68,9 @@
         <h:outputText value="Phone: #{booking.phone}"/>
     </h:panelGrid>      
 </pe:timeline>
+           
+<p:commandButton value="Toggle TimeChangeable" process="@this" update="timeline" style="margin-top:15px"
+                 action="#{editServerTimelineController.toggleTimeChangeable}"/>
             
 <!-- EXAMPLE-SOURCE-END -->
         </h:panelGroup>

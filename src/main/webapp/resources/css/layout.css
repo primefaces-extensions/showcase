@@ -61,6 +61,12 @@ body > form > .ui-layout-south {
     line-height: 1.3 !important;
 }
 
+.docuTable table,
+.docuEventTable table {
+    width: auto !important;
+    table-layout: auto !important;
+}
+
 .docuTable thead th,
 .docuTable tbody td,
 .docuTable tfoot td {

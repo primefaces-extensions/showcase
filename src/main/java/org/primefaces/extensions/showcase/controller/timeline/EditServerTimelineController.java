@@ -17,17 +17,6 @@
  */
 package org.primefaces.extensions.showcase.controller.timeline;
 
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-
 import org.primefaces.extensions.component.timeline.TimelineUpdater;
 import org.primefaces.extensions.event.timeline.TimelineAddEvent;
 import org.primefaces.extensions.event.timeline.TimelineModificationEvent;
@@ -35,6 +24,16 @@ import org.primefaces.extensions.model.timeline.TimelineEvent;
 import org.primefaces.extensions.model.timeline.TimelineModel;
 import org.primefaces.extensions.showcase.model.timeline.Booking;
 import org.primefaces.extensions.showcase.model.timeline.RoomCategory;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * EditServerTimelineController
@@ -52,6 +51,7 @@ public class EditServerTimelineController implements Serializable {
 	private Date start;
 	private Date end;
 	private TimeZone timeZone = TimeZone.getTimeZone("Europe/Madrid");
+    private boolean timeChangeable = true;
 
 	@PostConstruct
 	protected void initialize() {
@@ -209,7 +209,15 @@ public class EditServerTimelineController implements Serializable {
 		return timeZone;
 	}
 
-	public String getDeleteMessage() {
+    public boolean isTimeChangeable() {
+        return timeChangeable;
+    }
+    
+    public void toggleTimeChangeable() {
+        timeChangeable = !timeChangeable;
+    }
+
+    public String getDeleteMessage() {
 		Integer room = ((Booking) event.getData()).getRoomNumber();
 		if (room == null) {
 			return "Do you really want to delete the new booking?";
