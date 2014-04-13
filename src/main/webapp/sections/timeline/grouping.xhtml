@@ -14,9 +14,19 @@
             When the property <strong>group</strong> in <strong>TimelineEvent</strong> is provided, all events with the same group are placed on one line.
             A vertical axis is displayed showing the groups. Grouping events can be useful for example when showing availability of
             multiple people, rooms, or other resources next to each other.
-            Note, that grouped events will not be stacked automatically when they overlap each other.
+            Note, that grouped events will not be stacked automatically when they overlap each other if the attribute
+            <strong>stackEvents</strong> is set to false (default is true).
             Editable grouped events can be moved. Please consider the attribute <strong>groupsChangeable</strong>.
             If it is set to true (default), events can be moved from one group to another.
+            <p/>
+            There are two ways to define the content of groups. <strong>1)</strong> Directly by setting the content into the <strong>group</strong> property of the TimelineEvent.
+            <strong>2)</strong> By <strong>TimelineGroup</strong> and the <strong>f:facet name="group"</strong>. The second variant is more flexible than the first one.
+            <i>How does it works?</i> TimelineModel can have a list of TimelineGroup objects. Each TimelineGroup encapsulates a data object (any type) and an ID (string).
+            Ordering is defined by the native list ordering (elements in the list are ordered). TimelineEvent need to get an ID of the group via the <strong>group</strong>
+            property. This ID is a reference between event and group. The group's data can be accessed via the <strong>varGroup</strong> attribute and
+            rendered via the <strong>f:facet name="group"</strong> (see this example). <span style="text-decoration:underline;">Important:</span>
+            If the list of TimelineGroup objects is available, we assume that the <strong>group</strong> property containes an ID.
+            Otherwise, the <strong>group</strong> property containes the whole content of the group.
             <p/>
             Besides grouping, this example also demonstrates how to merge events when they get overlapped by moving (dragging and dropping).
             <strong>TimelineModel</strong> provides all necessary methods to get overlapped events and merge them with a given event.
@@ -26,17 +36,22 @@
 <!-- EXAMPLE-SOURCE-START -->
 <p:growl id="growl" showSummary="true" showDetail="false" autoUpdate="true"/>
             
-<pe:timeline id="timeline" value="#{groupingTimelineController.model}" var="order"
+<pe:timeline id="timeline" value="#{groupingTimelineController.model}" var="order" varGroup="group"
              editable="true" eventMargin="5" eventMarginAxis="0"
+             groupsChangeable="true" groupsOnRight="false" stackEvents="false"
              showMajorLabels="false" axisOnTop="true"
-             groupsChangeable="true" groupsOnRight="false"
              timeZone="America/New_York" widgetVar="timelineWdgt">
     <p:ajax event="change" update="@none" listener="#{groupingTimelineController.onChange}"/>
     <p:ajax event="delete" update="@none" listener="#{groupingTimelineController.onDelete}"/>
     <p:ajax event="add" update="@none" onstart="PF('timelineWdgt').cancelAdd()"/>
     
+    <f:facet name="group">
+        <h:graphicImage value="#{group.imagePath}" style="vertical-align:middle;" alt="Truck"/>
+        <h:outputText value="Truck #{group.text}" style="font-weight:bold;"/>
+    </f:facet>
+    
     <h:graphicImage value="#{order.imagePath}" rendered="#{not empty order.imagePath}"
-                    style="display:inline;vertical-align:middle;"/>
+                    style="display:inline; vertical-align:middle;" alt="Order"/>
     <h:outputText value="Order #{order.number}"/>
 </pe:timeline>
 <!-- EXAMPLE-SOURCE-END -->

@@ -12,6 +12,7 @@
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
             This example demonstrates timeline's customization (custom styles) along with i18n text.
+            Please consider that we set the content of groups directly in the TimelineEvent.
             <p/>
             <h:outputLink value="https://github.com/primefaces-extensions/primefaces-extensions.github.com/wiki/PrimeFaces-Extensions-Locales"
                           target="_blank" style="font-weight: bold; text-decoration: none; border-bottom: 1px dotted;">
@@ -28,7 +29,7 @@
              start="#{customTimelineController.start}"
              end="#{customTimelineController.end}"
              showNavigation="true" showButtonNew="true"
-             axisOnTop="true" themable="false"/>
+             axisOnTop="true" stackEvents="false" themable="false"/>
             
 <h:panelGrid columns="2" style="margin-top:15px" cellpadding="5">
     <h:outputText value="Select your Locale: "/>

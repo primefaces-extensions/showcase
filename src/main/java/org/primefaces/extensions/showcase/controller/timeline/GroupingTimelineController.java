@@ -15,10 +15,24 @@
  *
  * $Id$
  */
+
 package org.primefaces.extensions.showcase.controller.timeline;
 
+import org.primefaces.context.RequestContext;
+import org.primefaces.extensions.component.timeline.TimelineUpdater;
+import org.primefaces.extensions.event.timeline.TimelineModificationEvent;
+import org.primefaces.extensions.model.timeline.TimelineEvent;
+import org.primefaces.extensions.model.timeline.TimelineGroup;
+import org.primefaces.extensions.model.timeline.TimelineModel;
+import org.primefaces.extensions.showcase.model.timeline.Order;
+import org.primefaces.extensions.showcase.model.timeline.Truck;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,149 +40,140 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.TreeSet;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.context.RequestContext;
-import org.primefaces.extensions.component.timeline.TimelineUpdater;
-import org.primefaces.extensions.event.timeline.TimelineModificationEvent;
-import org.primefaces.extensions.model.timeline.TimelineEvent;
-import org.primefaces.extensions.model.timeline.TimelineModel;
-import org.primefaces.extensions.showcase.model.timeline.Order;
-
 /**
  * GroupingTimelineController
  *
- * @author  Oleg Varaksin / last modified by $Author: $
+ * @author Oleg Varaksin / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
 @ManagedBean
 @ViewScoped
 public class GroupingTimelineController implements Serializable {
 
-	private TimelineModel model;
-	private TimelineEvent event; // current changed event
-	private List<TimelineEvent> overlappedOrders; // all overlapped orders (events) to the changed order (event)
-	private List<TimelineEvent> ordersToMerge; // selected orders (events) in the dialog which should be merged
+    private TimelineModel model;
+    private TimelineEvent event; // current changed event
+    private List<TimelineEvent> overlappedOrders; // all overlapped orders (events) to the changed order (event)
+    private List<TimelineEvent> ordersToMerge; // selected orders (events) in the dialog which should be merged
 
-	@PostConstruct
-	protected void initialize() {
-		MessageFormat messageFormat =
-		    new MessageFormat("<img src='" + FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()
-		                      + "/resources/images/timeline/truck.png' style='vertical-align:middle'>"
-		                      + "<span style='font-weight:bold;'>Truck {0}</span>");
+    @PostConstruct
+    protected void initialize() {
+        // create timeline model
+        model = new TimelineModel();
 
-		// initalize markup for group
-		String[] TRUCKS = new String[6];
-		TRUCKS[0] = messageFormat.format(new String[] {"10"});
-		TRUCKS[1] = messageFormat.format(new String[] {"11"});
-		TRUCKS[2] = messageFormat.format(new String[] {"12"});
-		TRUCKS[3] = messageFormat.format(new String[] {"13"});
-		TRUCKS[4] = messageFormat.format(new String[] {"14"});
-		TRUCKS[5] = messageFormat.format(new String[] {"15"});
+        // create groups
+        TimelineGroup group1 = new TimelineGroup("id1", new Truck("/resources/images/timeline/truck.png", "10"));
+        TimelineGroup group2 = new TimelineGroup("id2", new Truck("/resources/images/timeline/truck.png", "11"));
+        TimelineGroup group3 = new TimelineGroup("id3", new Truck("/resources/images/timeline/truck.png", "12"));
+        TimelineGroup group4 = new TimelineGroup("id4", new Truck("/resources/images/timeline/truck.png", "13"));
+        TimelineGroup group5 = new TimelineGroup("id5", new Truck("/resources/images/timeline/truck.png", "14"));
+        TimelineGroup group6 = new TimelineGroup("id6", new Truck("/resources/images/timeline/truck.png", "15"));
 
-		// create timeline model
-		model = new TimelineModel();
+        // add groups to the model
+        model.addGroup(group1);
+        model.addGroup(group2);
+        model.addGroup(group3);
+        model.addGroup(group4);
+        model.addGroup(group5);
+        model.addGroup(group6);
 
-		// Server-side dates should be in UTC. They will be converted to a local dates in UI according to provided TimeZone.
-		// Submitted local dates in UI are converted back to UTC, so that server receives all dates in UTC again.
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-		cal.set(Calendar.MINUTE, 0);
-		cal.set(Calendar.SECOND, 0);
-		cal.set(Calendar.MILLISECOND, 0);
+        // Server-side dates should be in UTC. They will be converted to a local dates in UI according to provided TimeZone.
+        // Submitted local dates in UI are converted back to UTC, so that server receives all dates in UTC again.
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        
+        int orderNumber = 1;
 
-		int orderNumber = 1;
+        // iterate over groups
+        for (int j = 1; j <= 6; j++) {
+            cal.set(2012, Calendar.DECEMBER, 14, 8, 0, 0);
+            // iterate over events in the same group
+            for (int i = 0; i < 6; i++) {
+                cal.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY) + 3 * (Math.random() < 0.2 ? 1 : 0));
+                Date startDate = cal.getTime();
 
-		for (String truckText : TRUCKS) {
-			cal.set(2012, Calendar.DECEMBER, 14, 8, 0, 0);
-			for (int i = 0; i < 6; i++) {
-				cal.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY) + 3 * (Math.random() < 0.2 ? 1 : 0));
-				Date startDate = cal.getTime();
+                cal.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY) + 2 + (int) Math.floor(Math.random() * 4));
+                Date endDate = cal.getTime();
 
-				cal.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY) + 2 + (int) Math.floor(Math.random() * 4));
-				Date endDate = cal.getTime();
+                String imagePath = null;
+                if (Math.random() < 0.25) {
+                    imagePath = "/resources/images/timeline/box.png";
+                }
 
-				String imagePath = null;
-				if (Math.random() < 0.25) {
-					imagePath = "/resources/images/timeline/box.png";
-				}
+                Order order = new Order(orderNumber, imagePath);
+                model.add(new TimelineEvent(order, startDate, endDate, true, "id" + j));
+                
+                orderNumber++;
+            }
+        }
+    }
 
-				Order order = new Order(orderNumber, imagePath);
-				model.add(new TimelineEvent(order, startDate, endDate, true, truckText));
+    public TimelineModel getModel() {
+        return model;
+    }
 
-				orderNumber++;
-			}
-		}
-	}
+    public void onChange(TimelineModificationEvent e) {
+        // get changed event and update the model
+        event = e.getTimelineEvent();
+        model.update(event);
 
-	public TimelineModel getModel() {
-		return model;
-	}
+        // get overlapped events of the same group as for the changed event
+        TreeSet<TimelineEvent> overlappedEvents = model.getOverlappedEvents(event);
 
-	public void onChange(TimelineModificationEvent e) {
-		// get changed event and update the model
-		event = e.getTimelineEvent();
-		model.update(event);
+        if (overlappedEvents == null) {
+            // nothing to merge
+            return;
+        }
 
-		// get overlapped events of the same group as for the changed event
-		TreeSet<TimelineEvent> overlappedEvents = model.getOverlappedEvents(event);
+        // list of orders which can be merged in the dialog
+        overlappedOrders = new ArrayList<TimelineEvent>(overlappedEvents);
 
-		if (overlappedEvents == null) {
-			// nothing to merge
-			return;
-		}
+        // no pre-selection
+        ordersToMerge = null;
 
-		// list of orders which can be merged in the dialog
-		overlappedOrders = new ArrayList<TimelineEvent>(overlappedEvents);
+        // update the dialog's content and show the dialog
+        RequestContext requestContext = RequestContext.getCurrentInstance();
+        requestContext.update("overlappedOrdersInner");
+        requestContext.execute("PF('overlapEventsWdgt').show()");
+    }
 
-		// no pre-selection
-		ordersToMerge = null;
+    public void onDelete(TimelineModificationEvent e) {
+        // keep the model up-to-date
+        model.delete(e.getTimelineEvent());
+    }
 
-		// update the dialog's content and show the dialog
-		RequestContext requestContext = RequestContext.getCurrentInstance();
-		requestContext.update("overlappedOrdersInner");
-		requestContext.execute("PF('overlapEventsWdgt').show()");
-	}
+    public void merge() {
+        // merge orders and update UI if the user selected some orders to be merged
+        if (ordersToMerge != null && !ordersToMerge.isEmpty()) {
+            model.merge(event, ordersToMerge, TimelineUpdater.getCurrentInstance(":mainForm:timeline"));
+        } else {
+            FacesMessage msg =
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Nothing to merge, please choose orders to be merged", null);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
 
-	public void onDelete(TimelineModificationEvent e) {
-		// keep the model up-to-date
-		model.delete(e.getTimelineEvent());
-	}
+        overlappedOrders = null;
+        ordersToMerge = null;
+    }
 
-	public void merge() {
-		// merge orders and update UI if the user selected some orders to be merged
-		if (ordersToMerge != null && !ordersToMerge.isEmpty()) {
-			model.merge(event, ordersToMerge, TimelineUpdater.getCurrentInstance(":mainForm:timeline"));
-		} else {
-			FacesMessage msg =
-			    new FacesMessage(FacesMessage.SEVERITY_INFO, "Nothing to merge, please choose orders to be merged", null);
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-		}
+    public int getSelectedOrder() {
+        if (event == null) {
+            return 0;
+        }
 
-		overlappedOrders = null;
-		ordersToMerge = null;
-	}
+        return ((Order) event.getData()).getNumber();
+    }
 
-	public int getSelectedOrder() {
-		if (event == null) {
-			return 0;
-		}
+    public List<TimelineEvent> getOverlappedOrders() {
+        return overlappedOrders;
+    }
 
-		return ((Order) event.getData()).getNumber();
-	}
+    public List<TimelineEvent> getOrdersToMerge() {
+        return ordersToMerge;
+    }
 
-	public List<TimelineEvent> getOverlappedOrders() {
-		return overlappedOrders;
-	}
-
-	public List<TimelineEvent> getOrdersToMerge() {
-		return ordersToMerge;
-	}
-
-	public void setOrdersToMerge(List<TimelineEvent> ordersToMerge) {
-		this.ordersToMerge = ordersToMerge;
-	}
+    public void setOrdersToMerge(List<TimelineEvent> ordersToMerge) {
+        this.ordersToMerge = ordersToMerge;
+    }
 }
