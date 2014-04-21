@@ -313,7 +313,7 @@
     <properties>
         <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
         <primefaces-extensions.new-components>;</primefaces-extensions.new-components>
-        <primefaces-extensions.updated-components>ajaxErrorHandler;exporter;imageAreaSelect;imageRotateAndResize;timeline</primefaces-extensions.updated-components>
+        <primefaces-extensions.updated-components>ajaxErrorHandler;exporter;imageAreaSelect;imageRotateAndResize;timeline;masterDetail</primefaces-extensions.updated-components>
 
         <mojarra.version>2.2.5</mojarra.version>
         <myfaces.version>2.2.2</myfaces.version>
