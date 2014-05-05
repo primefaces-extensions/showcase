@@ -54,22 +54,22 @@
             
             <p:dataTable id="dataTable" var="message" value="#{dataTableController.messages}" paginator="true"
                          rows="30" rowsPerPageTemplate="20,30,40">
-                <p:column sortBy="subject" headerText="Subject">
+                <p:column sortBy="#{message.subject}" headerText="Subject">
                     <h:outputText value="#{message.subject}"/>
                 </p:column>
-                <p:column sortBy="text" headerText="Text">
+                <p:column sortBy="#{message.text}" headerText="Text">
                     <h:outputText value="#{message.text}"/>
                 </p:column>
-                <p:column sortBy="subject" headerText="Subject">
+                <p:column sortBy="#{message.subject}" headerText="Subject">
                     <h:outputText value="#{message.subject}"/>
                 </p:column>
-                <p:column sortBy="text" headerText="Text">
+                <p:column sortBy="#{message.text}" headerText="Text">
                     <h:outputText value="#{message.text}"/>
                 </p:column>
-                <p:column sortBy="subject" headerText="Subject">
+                <p:column sortBy="#{message.subject}" headerText="Subject">
                     <h:outputText value="#{message.subject}"/>
                 </p:column>
-                <p:column sortBy="text" headerText="Text">
+                <p:column sortBy="#{message.text}" headerText="Text">
                     <h:outputText value="#{message.text}"/>
                 </p:column>
             </p:dataTable>            
