@@ -5,9 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions"
       xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
-<ui:composition template="/templates/showcaseLayout.xhtml">
-    <ui:param name="resizeFunction" value="resizeLayout()"/>
-    
+<ui:composition template="/templates/showcaseLayout.xhtml">    
     <ui:define name="centerContent">
         <f:facet name="header">
             <h:outputText value="FluidGrid"/>
@@ -24,13 +22,11 @@
             which can be any search expression supported by the PrimeFaces Search Expression Framework.
             <p/>
             Furtermore, some client-side widget's methods will be demonstrated too. Stamped elements can be
-            toggled by the button "Toggle stumped" and the layout can be triggered automatically by the
-            widget's method <strong>layout</strong>. This is useful when the fluid grid should re-layout itself
-            on resizing layout pane(s) and not on resizing the browser window. To invoke e.g. a method
-            <strong>resizeLayout()</strong> (defined in this example) on resizing
-            layout panes(s), put
-            <strong>&lt;pe:javascript event="resize" execute="resizeLayout()"/&gt;</strong>
-            below the <strong>pe:layout</strong> or <strong>p:layout</strong> tag.
+            toggled by the widget's method <strong>unstamp()</strong> and <strong>stamp()</strong>.
+            The layout can be triggered automatically by the widget's method <strong>layout()</strong>.
+            <strong>Note:</strong> When the fluid grid is within a layout pane / unit, it re-layouts itself automatically
+            on resizing this layout pane / unit. In this case, set the attribute <strong>resizeBound</strong>
+            to <strong>false</strong> to deacivate the re-layouting when resizing the browser window.
         </h:panelGroup>
         
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -94,10 +90,6 @@
         PF('fluidGridWdgt').layout();
         
         isStamped = !isStamped;
-    }
-    
-    function resizeLayout() {
-        PF('fluidGridWdgt').layout();
     }
 /* ]]> */
 </h:outputScript>

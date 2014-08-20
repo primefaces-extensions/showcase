@@ -5,9 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions"
       xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
-<ui:composition template="/templates/showcaseLayout.xhtml">
-    <ui:param name="resizeFunction" value="resizeLayout()"/>
-    
+<ui:composition template="/templates/showcaseLayout.xhtml">    
     <ui:define name="centerContent">
         <f:facet name="header">
             <h:outputText value="FluidGrid"/>
@@ -66,14 +64,6 @@
         <h:outputText value="#{item.data.label} : #{item.data.value}" style="margin-right:15px;"/>
     </p:dataList>
 </p:dialog>
-
-<h:outputScript id="fluidGridScript" target="body">
-/* <![CDATA[ */    
-    function resizeLayout() {
-        PF('fluidGridWdgt').layout();
-    }
-/* ]]> */
-</h:outputScript>
             
 <h:outputStylesheet id="fluidGridCSS">
     .pe-fluidgrid-item {
