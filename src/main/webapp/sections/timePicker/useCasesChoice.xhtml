@@ -14,7 +14,11 @@
         <p:menuitem value="Time range"
                     styleClass="#{navigationContext.getMenuitemStyleClass('timeRange')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/timePicker/timeRange.jsf"/>        
+                    url="/sections/timePicker/timeRange.jsf"/>
+        <p:menuitem value="Setting min. / max. time"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('minMaxTime')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/timePicker/minMaxTime.jsf"/>
     </p:menu>
 </ui:composition>
 </html>
