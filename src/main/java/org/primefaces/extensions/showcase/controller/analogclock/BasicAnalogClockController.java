@@ -1,14 +1,13 @@
 package org.primefaces.extensions.showcase.controller.analogclock;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
 @ManagedBean
 @RequestScoped
-public class BasicAnalogClockController implements Serializable{
+public class BasicAnalogClockController implements Serializable {
 
 	private static final long serialVersionUID = -5427668306657486626L;
 	
