@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/templates/showcaseLayout.xhtml">
+    <ui:define name="centerContent">
+        <f:facet name="header">
+            <h:outputText value="Analog Clock"/>
+        </f:facet>
+        <h:panelGroup layout="block" styleClass="centerContent">
+        	<i>pe:analogClock</i> it's an analogic version of <a href="http://www.primefaces.org/showcase/ui/misc/clock.xhtml" target="_blank">PrimeFaces Clock</a>, created with <a href="http://raphaeljs.com/" target="_blank">Raphaël</a>.
+			It can show the server time or the client time. It automatically syncs its colors with PrimeFaces theme or you can force the colors of your clock using an AnalogClockColorModel.
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="useCases">
+        <ui:include src="/sections/analogclock/useCasesChoice.xhtml"/>
+    </ui:define>
+    <ui:define name="docuTable">
+        <ui:include src="/sections/shared/documentation.xhtml">
+            <ui:param name="tagName" value="analogClock"/>
+        </ui:include>
+    </ui:define>
+</ui:composition>
+</html>
