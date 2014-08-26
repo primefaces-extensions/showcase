@@ -4,10 +4,13 @@
 <ui:composition>
     <p:menu id="useCaseList">
         <p:menuitem value="Basic usage"
-                    styleClass="#{navigationContext.getMenuitemStyleClass('blockUIAjax')}"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('analogClockBasic')}"
                     onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                     url="/sections/analogclock/basic.jsf"/>
-     
+        <p:menuitem value="Setting colors"
+                    styleClass="#{navigationContext.getMenuitemStyleClass('analogClockColors')}"
+                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    url="/sections/analogclock/colors.jsf"/>
     </p:menu>
 </ui:composition>
 </html>
