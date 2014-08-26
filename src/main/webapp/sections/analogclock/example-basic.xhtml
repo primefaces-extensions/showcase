@@ -6,16 +6,16 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
-<style>
-	.clockCloumn{
-		width: 50%;
-	}
-</style>
 <p:panelGrid columns="2" style="width:100%;" columnClasses="clockCloumn,clockCloumn">
 	<h:outputText value="Client"/>
 	<h:outputText value="Server"/>
 	<pe:analogClock/>
 	<pe:analogClock mode="server" startTime="#{basicAnalogClockController.now}"/>
 </p:panelGrid>
+<style>
+    .clockCloumn{
+        width: 50%;
+    }
+</style>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
