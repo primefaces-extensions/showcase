@@ -9,16 +9,20 @@
             <h:outputText value="Gravatar"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Gravatar is extremely easy to use. You just need a valid Gravatar email to show a profile photo or a QRCode.
+            You can also change the size of your Gravatar and manage the <strong>"not found"</strong> case.
+            In some cases the image will change accordingly with the chosen username.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/gravatar/example-basic.xhtml"/>
+            <ui:include src="/sections/gravatar/example-advanced.xhtml"/>
         </h:panelGroup>
 
-        <ui:decorate template="/templates/oneTabDecorator.xhtml">
+        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-                ${showcase:getFileContent('/sections/gravatar/example-basic.xhtml')}
+                ${showcase:getFileContent('/sections/gravatar/example-advanced.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+                ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/gravatar/GravatarController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
