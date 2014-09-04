@@ -312,7 +312,7 @@
 
     <properties>
         <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-        <primefaces-extensions.new-components>analogClock;gravatar;documentViewer</primefaces-extensions.new-components>
+        <primefaces-extensions.new-components>analogClock;gravatar;documentViewer;gChart</primefaces-extensions.new-components>
         <primefaces-extensions.updated-components>timeline;fluidGrid;inputNumber;layout;timePicker;ckEditor</primefaces-extensions.updated-components>
 
         <mojarra.version>2.2.8</mojarra.version>
