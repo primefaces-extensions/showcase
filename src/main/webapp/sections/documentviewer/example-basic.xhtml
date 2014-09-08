@@ -6,17 +6,17 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
-    <f:event listener="#{basicDocumentViewerController.onPrerender}" type="preRenderView" />
-    <p:tabView>
-        <p:tab title="URL">
-            <pe:documentViewer height="500" url="/sections/documentViewer/book.pdf"/>
-        </p:tab>
-        <p:tab title="Resource">
-            <pe:documentViewer height="500" library="books" name="hood.pdf"/>
-        </p:tab>
-        <p:tab title="StreamedContent">
-            <pe:documentViewer height="500" value="#{basicDocumentViewerController.content}"/>
-        </p:tab>
-    </p:tabView>
+<f:event listener="#{basicDocumentViewerController.onPrerender}" type="preRenderView" />
+<p:tabView>
+    <p:tab title="URL">
+        <pe:documentViewer height="500" url="/sections/documentViewer/book.pdf"/>
+    </p:tab>
+    <p:tab title="Resource">
+        <pe:documentViewer height="500" library="books" name="hood.pdf"/>
+    </p:tab>
+    <p:tab title="StreamedContent">
+        <pe:documentViewer height="500" value="#{basicDocumentViewerController.content}"/>
+    </p:tab>
+</p:tabView>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

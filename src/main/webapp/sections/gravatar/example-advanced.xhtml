@@ -6,7 +6,7 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
-    <p:outputPanel id="container" layout="block" style="width:100%;overflow:hidden;">
+<p:outputPanel id="container" layout="block" style="width:100%;overflow:hidden;">
     <h:panelGrid columns="1" style="margin-bottom: 10px">
         <h:outputText value="Username" />
         <p:inputText value="#{gravatarController.username}" size="40">
@@ -32,6 +32,6 @@
     <div style="text-align: center;overflow: auto">
         <pe:gravatar value="#{gravatarController.username}" size="#{gravatarController.size}" notFound="#{gravatarController.notFound}"/>
     </div>
-    </p:outputPanel>
+</p:outputPanel>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

@@ -6,24 +6,24 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
-    <p:messages autoUpdate="true"/>
-    <p:outputPanel id="container" layout="block">
-        <h:panelGrid columns="4">
-            <h:outputText value="Mushrooms" />
-            <h:outputText value="Onions" />
-            <h:outputText value="Type" />
-            <h:panelGroup/>
-            <p:inputText converter="javax.faces.Integer" value="#{basicGChartController.mushrooms}" />
-            <p:inputText converter="javax.faces.Integer" value="#{basicGChartController.onions}" />
-            <h:selectOneMenu value="#{basicGChartController.chartType}">
-                <f:selectItems value="#{basicGChartController.types}"/>
-            </h:selectOneMenu>
-            <p:commandButton value="Generate" update="container" action="#{basicGChartController.generateModel}" />
-        </h:panelGrid>
+<p:messages autoUpdate="true"/>
+<p:outputPanel id="container" layout="block">
+    <h:panelGrid columns="4">
+        <h:outputText value="Mushrooms" />
+        <h:outputText value="Onions" />
+        <h:outputText value="Type" />
+        <h:panelGroup/>
+        <p:inputText converter="javax.faces.Integer" value="#{basicGChartController.mushrooms}" />
+        <p:inputText converter="javax.faces.Integer" value="#{basicGChartController.onions}" />
+        <h:selectOneMenu value="#{basicGChartController.chartType}">
+            <f:selectItems value="#{basicGChartController.types}"/>
+        </h:selectOneMenu>
+        <p:commandButton value="Generate" update="container" action="#{basicGChartController.generateModel}" />
+    </h:panelGrid>
 
-        <pe:gChart value="#{basicGChartController.chart}" title="How Much Pizza I Ate Last Night">
-            <p:ajax listener="#{basicGChartController.onSelect}"/>
-        </pe:gChart>
-    </p:outputPanel>
+    <pe:gChart value="#{basicGChartController.chart}" title="How Much Pizza I Ate Last Night">
+        <p:ajax listener="#{basicGChartController.onSelect}"/>
+    </pe:gChart>
+</p:outputPanel>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
