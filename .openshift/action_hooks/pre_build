@@ -1,0 +1,19 @@
+cd $OPENSHIFT_DATA_DIR
+rm -rf temp
+mkdir temp
+git clone git://github.com/primefaces-extensions/master-pom.git temp
+cd temp/master-pom
+mvn install
+cd ../..
+git clone git://github.com/primefaces-extensions/core.git temp
+cd temp/core
+mvn install
+cd ../..
+git clone git://github.com/primefaces-extensions/resources-ckeditor.git temp
+cd temp/resources-ckeditor
+mvn install
+cd ../..
+git clone git://github.com/primefaces-extensions/resources-codemirror.git temp
+cd temp/resources-ckeditor
+mvn install
+cd ../..
