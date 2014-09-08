@@ -9,20 +9,19 @@
             <h:outputText value="GChart"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Google Charts is extremely versatile, in this example we use it to display an organizational Chart. It's possible to use
-            a <strong>TreeNode</strong> to generate the GChartModel for this kind of charts.
+            In this example we use a GeoChart to show data about countries. As you can see to add the rows to our datatable we can use simple strings or java.util.Locale.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/gchart/example-organizational.xhtml"/>
+            <ui:include src="/sections/gchart/example-geochart.xhtml"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/gchart/example-organizational.xhtml')}
+${showcase:getFileContent('/sections/gchart/example-geochart.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/gchart/OrganizationalGChartController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/gchart/GeoChartSeriesGChartController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
