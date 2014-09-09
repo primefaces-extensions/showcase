@@ -12,13 +12,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.extensions.component.gchart.model.GChartModel;
 import org.primefaces.extensions.component.gchart.model.GChartModelBuilder;
 import org.primefaces.extensions.component.gchart.model.GChartModelRow;
 import org.primefaces.extensions.component.gchart.model.GChartType;
-import org.primefaces.json.JSONArray;
-import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
 
 @ManagedBean
@@ -45,16 +46,12 @@ public class BasicGChartController implements Serializable {
 	}
 	
 	public void onSelect(SelectEvent event){
-		try {
-			JSONArray value = (JSONArray) event.getObject();
-			if(value.length() > 0){
-				JSONObject object = (JSONObject) value.get(0);
-				String label = new ArrayList<GChartModelRow>(this.getChart().getRows()).get((Integer) object.get("row")).getLabel();
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "You have selected: " + label, null));
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		JsonArray value = (JsonArray) event.getObject();
+        if(value.size() > 0){
+            JsonElement element = value.get(0);
+            String label = new ArrayList<GChartModelRow>(this.getChart().getRows()).get(element.getAsJsonObject().get("row").getAsInt()).getLabel();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "You have selected: " + label, null));
+        }
 	}
 
 	public int getMushrooms() {
