@@ -1,0 +1,63 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- EXAMPLE-SOURCE-START -->
+<pe:importConstants className="java.awt.Color" var="Color" />
+<p:accordionPanel>
+    <p:tab title="Max,Min and Step">
+        <h:panelGrid columns="2" cellpadding="10">
+            <pe:knob max="1000" step="50" value="950"/>
+            <h:outputText value="You can set the max and min value (the default range is 0-100), it's also possible to set a custom increment/decrement step" />
+        </h:panelGrid>
+    </p:tab>
+    <p:tab title="Show/Hide label">
+        <h:panelGrid columns="2" cellpadding="10">
+            <pe:knob showLabel="false" value="65"/>
+            <h:outputText value="You can hide the value label" />
+        </h:panelGrid>
+    </p:tab>
+    <p:tab title="Label template">
+        <h:panelGrid columns="2" cellpadding="10">
+            <pe:knob labelTemplate="{value}%" value="35"/>
+            <h:outputText value="Just like PrimeFaces's ProgressBar, you can set the output format of the label" />
+        </h:panelGrid>
+    </p:tab>
+    <p:tab title="Disabled">
+        <h:panelGrid columns="2" cellpadding="10">
+            <pe:knob disabled="true" value="85"/>
+            <h:outputText value="Like any other input component the knob can be disabled" />
+        </h:panelGrid>
+    </p:tab>
+    <p:tab title="Cursor">
+        <h:panelGrid columns="2" cellpadding="10">
+            <pe:knob cursor="true" value="0"/>
+            <h:outputText value="Setting this attribute to true the bar is not filled, leaving just a little cursor to show the value of the knob" />
+        </h:panelGrid>
+    </p:tab>
+    <p:tab title="Thickness">
+        <h:panelGrid columns="3" cellpadding="10">
+            <pe:knob thickness=".2" value="50"/>
+            <pe:knob thickness=".5" value="50"/>
+            <h:outputText value="You can change the thickness of the bar" />
+        </h:panelGrid>
+    </p:tab>
+    <p:tab title="Theme">
+        <h:panelGrid columns="2" cellpadding="10">
+            <pe:knob colorTheme="hot-sneaks" value="45"/>
+            <h:outputText value="Knob will syncs with PrimeFaces theme. It's also possbile to fix the theme using this attribute" />
+        </h:panelGrid>
+    </p:tab>
+    <p:tab title="Colors">
+        <h:panelGrid columns="3" cellpadding="10">
+            <pe:knob foregroundColor="red" backgroundColor="#00000" value="25"/>
+            <pe:knob foregroundColor="#{Color.GRAY}" backgroundColor="#{Color.BLUE}" value="75"/>
+            <h:outputText value="you can change the color of your knob. You can use an hex value, a css constant or a java.awt.Color object"/>
+        </h:panelGrid>
+    </p:tab>
+</p:accordionPanel>
+<!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
