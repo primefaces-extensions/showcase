@@ -7,7 +7,7 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
 <h:outputLink
-    value="/primeext-showcase/javax.faces.resource/documentviewer/viewer.html.jsf?ln=primefaces-extensions&amp;v=3.0.0-SNAPSHOT&amp;file=%2Fprimeext-showcase%2Fsections%2Fdocumentviewer%2Fbook.pdf"
+    value="#{request.contextPath}/javax.faces.resource/documentviewer/viewer.html.jsf?ln=primefaces-extensions&amp;v=3.0.0-SNAPSHOT&amp;file=#{pe:encodeURL(request.contextPath)}%2Fsections%2FdocumentViewer%2Fbook.pdf"
     target="_blank">
         Open Document
 </h:outputLink>
