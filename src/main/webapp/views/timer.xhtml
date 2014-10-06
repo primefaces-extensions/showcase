@@ -7,18 +7,18 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="Countdown"/>
+            <h:outputText value="Timer"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Countdown fires an JSF listener after an customizable interval. It also provide a Javascript API to start,pause and stop the countdown.
+            Timer fires an JSF listener after an customizable interval. It also provide a Javascript API to start,pause and stop the timer.
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/countdown/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/timer/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="countdown"/>
+            <ui:param name="tagName" value="timer"/>
         </ui:include>
     </ui:define>
 </ui:composition>

@@ -4,21 +4,21 @@
 <ui:composition>
     <p:menu id="useCaseList">
         <p:menuitem value="Basic usage"
-            styleClass="#{navigationContext.getMenuitemStyleClass('countdownBasic')}"
+            styleClass="#{navigationContext.getMenuitemStyleClass('timerBasic')}"
             onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-            url="/sections/countdown/basic.jsf"/>
+            url="/sections/timer/basic.jsf"/>
         <p:menuitem value="Interval format"
-            styleClass="#{navigationContext.getMenuitemStyleClass('countdownFormat')}"
+            styleClass="#{navigationContext.getMenuitemStyleClass('timerFormat')}"
             onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-            url="/sections/countdown/format.jsf"/>
+            url="/sections/timer/format.jsf"/>
         <p:menuitem value="JS Api"
-            styleClass="#{navigationContext.getMenuitemStyleClass('countdownJsApi')}"
+            styleClass="#{navigationContext.getMenuitemStyleClass('timerJsApi')}"
             onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-            url="/sections/countdown/jsapi.jsf"/>
+            url="/sections/timer/jsapi.jsf"/>
         <p:menuitem value="Invisible"
-            styleClass="#{navigationContext.getMenuitemStyleClass('countdownInvisible')}"
+            styleClass="#{navigationContext.getMenuitemStyleClass('timerInvisible')}"
             onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-            url="/sections/countdown/invisible.jsf"/>
+            url="/sections/timer/invisible.jsf"/>
     </p:menu>
 </ui:composition>
 </html>

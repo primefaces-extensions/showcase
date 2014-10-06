@@ -7,9 +7,9 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
 <p:growl autoUpdate="true"/>
-<pe:countdown
+<pe:timer
     timeout="5"
     singleRun="false"
-    listener="#{basicCountdownController.onTimeout}"/>
+    listener="#{basicTimerController.onTimeout}"/>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

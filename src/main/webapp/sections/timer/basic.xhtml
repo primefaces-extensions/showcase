@@ -6,32 +6,31 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="Countdown"/>
+            <h:outputText value="Timer"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Countdown features are also aviable as a Javascript API. You can start, stop and pause the countdown. When stopping
-            the countdown you can set the 'silent' attribute to <i>true</i> to skip the JSF listener.
+            The interval is setted via the "timeout" Attribute. you can also make the interval periodic setting the "singleRun" attribute to false.
          </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/countdown/example-jsapi.xhtml"/>
+            <ui:include src="/sections/timer/example-basic.xhtml"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/countdown/example-jsapi.xhtml')}
+${showcase:getFileContent('/sections/timer/example-basic.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/countdown/JsApiCountdownController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/timer/BasicTimerController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/countdown/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/timer/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="countdown"/>
+            <ui:param name="tagName" value="timer"/>
         </ui:include>
     </ui:define>
 </ui:composition>

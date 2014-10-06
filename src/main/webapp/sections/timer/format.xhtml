@@ -6,10 +6,10 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="Countdown"/>
+            <h:outputText value="Timer"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            There are various ways to format the value of the Countdown.
+            There are various ways to format the value of the Timer.
             <ul>
                 <li>
                     <strong>Default:</strong> simply display the seconds remaining
@@ -25,27 +25,27 @@
                     <strong>Custom:</strong> use a <a href="http://momentjs.com/docs/#/displaying/format/" target="_blank">Moment.JS format</a>. For example HH:mm:ss
                 </li>
                 <li>
-                    <strong>Function:</strong> you can simply pass any JavaScript function to format the Countdown value.
+                    <strong>Function:</strong> you can simply pass any JavaScript function to format the timer value.
                 </li>
             </ul>
          </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/countdown/example-format.xhtml"/>
+            <ui:include src="/sections/timer/example-format.xhtml"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/oneTabDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/countdown/example-format.xhtml')}
+${showcase:getFileContent('/sections/timer/example-format.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/countdown/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/timer/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="countdown"/>
+            <ui:param name="tagName" value="timer"/>
         </ui:include>
     </ui:define>
 </ui:composition>
