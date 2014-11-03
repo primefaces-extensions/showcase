@@ -16,5 +16,5 @@ mvn install
 cd ..
 rm -rf resources-codemirror
 git clone git://github.com/primefaces-extensions/resources-codemirror.git
-cd resources-ckeditor
+cd resources-codemirror
 mvn install
