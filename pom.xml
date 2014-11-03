@@ -349,7 +349,7 @@
 
     <properties>
         <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-        <primefaces-extensions.new-components>analogClock;gravatar;documentViewer;gChart;knob;timer</primefaces-extensions.new-components>
+        <primefaces-extensions.new-components>;</primefaces-extensions.new-components>
         <primefaces-extensions.updated-components>;</primefaces-extensions.updated-components>
 
         <mojarra.version>2.2.8</mojarra.version>
