@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-Run MyFaces</actionName>
+            <displayName>Run MyFaces</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>package</goal>
+            </goals>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>run-jetty</activatedProfile>
+                <activatedProfile>myfaces</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-Run Mojarra</actionName>
+            <displayName>Run Mojarra</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>package</goal>
+            </goals>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>run-jetty</activatedProfile>
+                <activatedProfile>mojarra</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-Debug MyFaces</actionName>
+            <displayName>Debug MyFaces</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>package</goal>
+            </goals>
+            <properties>
+                <jpda.listen>maven</jpda.listen>
+                <skipTests>true</skipTests>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>run-jetty</activatedProfile>
+                <activatedProfile>myfaces</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-Debug Mojarra</actionName>
+            <displayName>Debug Mojarra</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>package</goal>
+            </goals>
+            <properties>
+                <jpda.listen>maven</jpda.listen>
+                <skipTests>true</skipTests>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>run-jetty</activatedProfile>
+                <activatedProfile>mojarra</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>
