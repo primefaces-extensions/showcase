@@ -11,10 +11,12 @@
         <h:panelGrid columns="2" columnClasses="bookingDetails1,bookingDetails2">
             <h:outputText value="Room"/>
             <p:inputText value="#{editServerTimelineController.event.data.roomNumber}"
+                         rendered="#{not empty editServerTimelineController.event}"
                          required="true" label="Room"/>
             
             <h:outputText value="Category"/>
-            <p:selectOneMenu value="#{editServerTimelineController.event.data.category}">
+            <p:selectOneMenu value="#{editServerTimelineController.event.data.category}"
+                             rendered="#{not empty editServerTimelineController.event}">
                 <f:selectItem itemLabel="Standard" itemValue="STANDARD"/>
                 <f:selectItem itemLabel="Superior" itemValue="SUPERIOR"/>
                 <f:selectItem itemLabel="Deluxe" itemValue="DELUXE"/>
@@ -24,19 +26,23 @@
             
             <h:outputText value="From"/>
             <p:calendar value="#{editServerTimelineController.event.startDate}"
+                        rendered="#{not empty editServerTimelineController.event}"
                         timeZone="#{editServerTimelineController.timeZone}"
                         pattern="dd/MM/yyyy HH:mm" required="true" label="From"/>
             
             <h:outputText value="Until"/>
             <p:calendar value="#{editServerTimelineController.event.endDate}"
+                        rendered="#{not empty editServerTimelineController.event}"
                         timeZone="#{editServerTimelineController.timeZone}"
                         pattern="dd/MM/yyyy HH:mm" label="Until"/>
             
             <h:outputText value="Phone"/>
-            <p:inputMask value="#{editServerTimelineController.event.data.phone}" mask="(9999) 999-999"/>
+            <p:inputMask value="#{editServerTimelineController.event.data.phone}" mask="(9999) 999-999"
+                         rendered="#{not empty editServerTimelineController.event}"/>
             
             <h:outputText value="Comment"/>
-            <p:inputTextarea value="#{editServerTimelineController.event.data.comment}" autoResize="false"/>
+            <p:inputTextarea value="#{editServerTimelineController.event.data.comment}" autoResize="false"
+                             rendered="#{not empty editServerTimelineController.event}"/>
         </h:panelGrid>
     </h:panelGroup>
 
