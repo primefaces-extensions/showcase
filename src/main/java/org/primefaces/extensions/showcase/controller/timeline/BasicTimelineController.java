@@ -17,18 +17,17 @@
  */
 package org.primefaces.extensions.showcase.controller.timeline;
 
-import java.io.Serializable;
-import java.util.Calendar;
+import org.primefaces.extensions.event.timeline.TimelineSelectEvent;
+import org.primefaces.extensions.model.timeline.TimelineEvent;
+import org.primefaces.extensions.model.timeline.TimelineModel;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
-import org.primefaces.extensions.event.timeline.TimelineSelectEvent;
-import org.primefaces.extensions.model.timeline.TimelineEvent;
-import org.primefaces.extensions.model.timeline.TimelineModel;
+import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * BasicTimelineController
@@ -56,41 +55,32 @@ public class BasicTimelineController implements Serializable {
 		model = new TimelineModel();
 
 		Calendar cal = Calendar.getInstance();
-		cal.set(2011, Calendar.MAY, 10, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.1", cal.getTime()));
+        cal.set(2013, Calendar.MAY, 4, 0, 0, 0);
+        model.add(new TimelineEvent("Primefaces-Extensions 0.7.0", cal.getTime()));
+        
+        cal.set(2013, Calendar.JUNE, 5, 0, 0, 0);
+        model.add(new TimelineEvent("Primefaces-Extensions 0.7.1", cal.getTime()));
+        
+		cal.set(2013, Calendar.OCTOBER, 3, 0, 0, 0);
+		model.add(new TimelineEvent("Primefaces-Extensions 1.0.0", cal.getTime()));
 
-		cal.set(2012, Calendar.JANUARY, 23, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.2.0", cal.getTime()));
+		cal.set(2013, Calendar.DECEMBER, 28, 0, 0, 0);
+		model.add(new TimelineEvent("Primefaces-Extensions 1.2.0", cal.getTime()));
 
-		cal.set(2012, Calendar.APRIL, 2, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.3.0", cal.getTime()));
+		cal.set(2014, Calendar.JANUARY, 1, 0, 0, 0);
+		model.add(new TimelineEvent("Primefaces-Extensions 1.2.1", cal.getTime()));
 
-		cal.set(2012, Calendar.APRIL, 16, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.4.0", cal.getTime()));
+		cal.set(2014, Calendar.MAY, 5, 0, 0, 0);
+		model.add(new TimelineEvent("Primefaces-Extensions 2.0.0", cal.getTime()));
 
-		cal.set(2012, Calendar.JUNE, 10, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.5.0", cal.getTime()));
+		cal.set(2014, Calendar.AUGUST, 22, 0, 0, 0);
+		model.add(new TimelineEvent("Primefaces-Extensions 2.1.0", cal.getTime()));
 
-		cal.set(2012, Calendar.JUNE, 19, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.5.1", cal.getTime()));
+		cal.set(2014, Calendar.NOVEMBER, 3, 0, 0, 0);
+		model.add(new TimelineEvent("Primefaces-Extensions 3.0.0", cal.getTime()));
 
-		cal.set(2012, Calendar.SEPTEMBER, 26, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.6.0", cal.getTime()));
-
-		cal.set(2012, Calendar.OCTOBER, 13, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.6.1", cal.getTime()));
-
-		cal.set(2012, Calendar.DECEMBER, 16, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.6.2", cal.getTime()));
-
-		cal.set(2013, Calendar.FEBRUARY, 3, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.6.3", cal.getTime()));
-
-		cal.set(2013, Calendar.MAY, 4, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.7.0", cal.getTime()));
-
-		cal.set(2013, Calendar.JUNE, 5, 0, 0, 0);
-		model.add(new TimelineEvent("Primefaces-Extensions 0.7.1", cal.getTime()));
+		cal.set(2015, Calendar.APRIL, 26, 0, 0, 0);
+		model.add(new TimelineEvent("Primefaces-Extensions 3.1.0", cal.getTime()));
 	}
 
 	public void onSelect(TimelineSelectEvent e) {

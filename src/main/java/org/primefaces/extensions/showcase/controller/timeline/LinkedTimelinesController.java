@@ -17,21 +17,20 @@
  */
 package org.primefaces.extensions.showcase.controller.timeline;
 
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
+import org.primefaces.extensions.component.timeline.TimelineUpdater;
+import org.primefaces.extensions.event.timeline.TimelineSelectEvent;
+import org.primefaces.extensions.model.timeline.TimelineEvent;
+import org.primefaces.extensions.model.timeline.TimelineModel;
+import org.primefaces.extensions.showcase.model.timeline.Task;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
-import org.primefaces.extensions.component.timeline.TimelineUpdater;
-import org.primefaces.extensions.event.timeline.TimelineSelectEvent;
-import org.primefaces.extensions.model.timeline.TimelineEvent;
-import org.primefaces.extensions.model.timeline.TimelineModel;
-import org.primefaces.extensions.showcase.model.timeline.Task;
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * LinkedTimelinesController
@@ -57,27 +56,27 @@ public class LinkedTimelinesController implements Serializable {
 		modelFirst = new TimelineModel();
 
 		Calendar cal = Calendar.getInstance();
-		cal.set(2012, Calendar.AUGUST, 22, 17, 30, 0);
+		cal.set(2015, Calendar.AUGUST, 22, 17, 30, 0);
 		modelFirst.add(new TimelineEvent(new Task("Mail from boss", "timeline/mail.png", false), cal.getTime()));
 
-		cal.set(2012, Calendar.AUGUST, 23, 23, 0, 0);
+		cal.set(2015, Calendar.AUGUST, 23, 23, 0, 0);
 		modelFirst.add(new TimelineEvent(new Task("Call back my boss", "timeline/callback.png", false), cal.getTime()));
 
-		cal.set(2012, Calendar.AUGUST, 24, 21, 45, 0);
+		cal.set(2015, Calendar.AUGUST, 24, 21, 45, 0);
 		modelFirst.add(new TimelineEvent(new Task("Travel to Spain", "timeline/location.png", false), cal.getTime()));
 
-		cal.set(2012, Calendar.AUGUST, 26, 0, 0, 0);
+		cal.set(2015, Calendar.AUGUST, 26, 0, 0, 0);
 		Date startWork = cal.getTime();
-		cal.set(2012, Calendar.SEPTEMBER, 2, 0, 0, 0);
+		cal.set(2015, Calendar.SEPTEMBER, 2, 0, 0, 0);
 		Date endWork = cal.getTime();
 		modelFirst.add(new TimelineEvent(new Task("Do homework", "timeline/homework.png", true), startWork, endWork));
 
-		cal.set(2012, Calendar.AUGUST, 28, 0, 0, 0);
+		cal.set(2015, Calendar.AUGUST, 28, 0, 0, 0);
 		modelFirst.add(new TimelineEvent(new Task("Create memo", "timeline/memo.png", false), cal.getTime()));
 
-		cal.set(2012, Calendar.AUGUST, 31, 0, 0, 0);
+		cal.set(2015, Calendar.AUGUST, 31, 0, 0, 0);
 		Date startReport = cal.getTime();
-		cal.set(2012, Calendar.SEPTEMBER, 3, 0, 0, 0);
+		cal.set(2015, Calendar.SEPTEMBER, 3, 0, 0, 0);
 		Date endReport = cal.getTime();
 		modelFirst.add(new TimelineEvent(new Task("Create report", "timeline/report.png", true), startReport, endReport));
 	}
@@ -87,15 +86,15 @@ public class LinkedTimelinesController implements Serializable {
 
 		Calendar cal = Calendar.getInstance();
 
-		cal.set(2012, Calendar.AUGUST, 23, 0, 0, 0);
+		cal.set(2015, Calendar.AUGUST, 23, 0, 0, 0);
 		Date startProject = cal.getTime();
-		cal.set(2012, Calendar.AUGUST, 30, 0, 0, 0);
+		cal.set(2015, Calendar.AUGUST, 30, 0, 0, 0);
 		Date endProject = cal.getTime();
 		modelSecond.add(new TimelineEvent("Project A", startProject, endProject));
 
-		cal.set(2012, Calendar.AUGUST, 27, 0, 0, 0);
+		cal.set(2015, Calendar.AUGUST, 27, 0, 0, 0);
 		startProject = cal.getTime();
-		cal.set(2012, Calendar.AUGUST, 31, 0, 0, 0);
+		cal.set(2015, Calendar.AUGUST, 31, 0, 0, 0);
 		endProject = cal.getTime();
 		modelSecond.add(new TimelineEvent("Project B", startProject, endProject));
 	}
@@ -106,10 +105,10 @@ public class LinkedTimelinesController implements Serializable {
         
    		if (aSelected) {
             // select project B visually (index in the event's list is 1)
-               timelineUpdater.select(1);
+            timelineUpdater.select(1);
         } else {
             // select project A visually (index in the event's list is 0)
-               timelineUpdater.select(0);
+            timelineUpdater.select(0);
         }
         
         aSelected = !aSelected;

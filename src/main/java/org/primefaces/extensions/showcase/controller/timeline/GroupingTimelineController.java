@@ -87,7 +87,7 @@ public class GroupingTimelineController implements Serializable {
 
         // iterate over groups
         for (int j = 1; j <= 6; j++) {
-            cal.set(2012, Calendar.DECEMBER, 14, 8, 0, 0);
+            cal.set(2015, Calendar.DECEMBER, 14, 8, 0, 0);
             // iterate over events in the same group
             for (int i = 0; i < 6; i++) {
                 cal.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY) + 3 * (Math.random() < 0.2 ? 1 : 0));

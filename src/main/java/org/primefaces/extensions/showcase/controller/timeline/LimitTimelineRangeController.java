@@ -17,16 +17,15 @@
  */
 package org.primefaces.extensions.showcase.controller.timeline;
 
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
+import org.primefaces.extensions.model.timeline.TimelineEvent;
+import org.primefaces.extensions.model.timeline.TimelineModel;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
-import org.primefaces.extensions.model.timeline.TimelineEvent;
-import org.primefaces.extensions.model.timeline.TimelineModel;
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * LimitTimelineRangeController
@@ -50,18 +49,18 @@ public class LimitTimelineRangeController implements Serializable {
 		model = new TimelineModel();
 
 		Calendar cal = Calendar.getInstance();
-		cal.set(2012, Calendar.MAY, 25, 0, 0, 0);
+		cal.set(2015, Calendar.MAY, 25, 0, 0, 0);
 		model.add(new TimelineEvent("First", cal.getTime()));
 
-		cal.set(2012, Calendar.MAY, 26, 0, 0, 0);
+		cal.set(2015, Calendar.MAY, 26, 0, 0, 0);
 		model.add(new TimelineEvent("Last", cal.getTime()));
 
 		// lower limit of visible range
-		cal.set(2012, Calendar.JANUARY, 1, 0, 0, 0);
+		cal.set(2015, Calendar.JANUARY, 1, 0, 0, 0);
 		min = cal.getTime();
 
 		// upper limit of visible range
-		cal.set(2012, Calendar.DECEMBER, 31, 0, 0, 0);
+		cal.set(2015, Calendar.DECEMBER, 31, 0, 0, 0);
 		max = cal.getTime();
 
 		// one day in milliseconds for zoomMin
