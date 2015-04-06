@@ -41,7 +41,7 @@
              groupsChangeable="true" groupsOnRight="false" stackEvents="false"
              showMajorLabels="false" axisOnTop="true"
              timeZone="America/New_York" widgetVar="timelineWdgt">
-    <p:ajax event="change" update="@none" listener="#{groupingTimelineController.onChange}"/>
+    <p:ajax event="changed" update="@none" listener="#{groupingTimelineController.onChange}"/>
     <p:ajax event="delete" update="@none" listener="#{groupingTimelineController.onDelete}"/>
     <p:ajax event="add" update="@none" onstart="PF('timelineWdgt').cancelAdd()"/>
     
