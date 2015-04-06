@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2013 PrimeFaces Extensions.
+ * Copyright 2011-2015 PrimeFaces Extensions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,13 @@
 
 package org.primefaces.extensions.showcase.converter;
 
+import org.primefaces.extensions.showcase.model.system.AvailableThemes;
+import org.primefaces.extensions.showcase.model.system.Theme;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-
-import org.primefaces.extensions.showcase.model.system.AvailableThemes;
-import org.primefaces.extensions.showcase.model.system.Theme;
 
 /**
  * ThemeConverter

@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 PrimeFaces Extensions.
+ * Copyright 2011-2015 PrimeFaces Extensions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,15 +18,14 @@
 
 package org.primefaces.extensions.showcase.controller.masterdetail;
 
-import java.io.Serializable;
+import org.primefaces.extensions.showcase.model.masterdetail.User;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-
-import org.primefaces.extensions.showcase.model.masterdetail.User;
+import java.io.Serializable;
 
 /**
  * WizardMasterDetailController.
