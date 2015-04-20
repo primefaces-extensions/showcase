@@ -16,19 +16,6 @@
 
 package org.primefaces.extensions.showcase.controller.dynaform;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.component.visit.VisitContext;
-import javax.faces.component.visit.VisitHint;
-import javax.faces.context.FacesContext;
-
 import org.primefaces.context.RequestContext;
 import org.primefaces.extensions.component.dynaform.DynaForm;
 import org.primefaces.extensions.model.dynaform.DynaFormModel;
@@ -36,6 +23,18 @@ import org.primefaces.extensions.model.dynaform.DynaFormRow;
 import org.primefaces.extensions.showcase.model.dynaform.Condition;
 import org.primefaces.extensions.util.visitcallback.ExecutableVisitCallback;
 import org.primefaces.extensions.util.visitcallback.VisitTaskExecutor;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.component.visit.VisitContext;
+import javax.faces.component.visit.VisitHint;
+import javax.faces.context.FacesContext;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * ClearDynaFormController
@@ -107,6 +106,18 @@ public class ClearDynaFormController implements Serializable {
 		ExecutableVisitCallback visitCallback = new ExecutableVisitCallback(visitTaskExecutor);
 		dynaForm.visitTree(VisitContext.createVisitContext(fc, null, VISIT_HINTS), visitCallback);
 	}
+    
+    public void removeCondition(Condition condition) {
+        model.removeRegularRow(condition.getIndex());        
+        conditions.remove(condition);
+        
+        // re-index conditions
+        int idx = 0;
+        for (Condition cond : conditions) {
+            cond.setIndex(idx);
+            idx++;
+        }
+    }
 
 	public String getConditions() {
 		StringBuilder sb = new StringBuilder();

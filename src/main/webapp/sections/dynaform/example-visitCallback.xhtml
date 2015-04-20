@@ -39,6 +39,9 @@
         <p:commandLink value="Clear inputs" process="@this"
                        action="#{clearDynaFormController.clearInputs(condition.index)}"
                        global="false"/>
+        <p:commandLink value="Remove" process="@this" update="dynaForm"
+                       action="#{clearDynaFormController.removeCondition(condition)}"
+                       global="false" style="margin-left:10px"/>
     </pe:dynaFormControl>
 </pe:dynaForm>
     

@@ -21,8 +21,17 @@
             The <strong>ClearInputsExecutor</strong> is instantiated and and set into the <strong>ExecutableVisitCallback</strong>.
             That happens in the <strong>ClearDynaFormController</strong> (see the action method <strong>clearInputs</strong>).
             <p/>
+            This example also demonstrates how to remove rows at runtime. Rows can be removed by the following methods in the
+            <strong>DynaFormModel</strong>:
+            <ul>
+                <li>removeRegularRow(DynaFormRow row)</li>
+                <li>removeRegularRow(int index)</li>
+                <li>removeExtendedRow(DynaFormRow row)</li>
+                <li>removeExtendedRow(int index)</li>
+            </ul>
+            <p/>
             You see here an imaginary filter mask with three rows and four input / select components in each row.
-            Click on "Clear inputs" links to see this example in action!
+            Click on "Clear inputs" and "Remove" links to see this example in action!
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">

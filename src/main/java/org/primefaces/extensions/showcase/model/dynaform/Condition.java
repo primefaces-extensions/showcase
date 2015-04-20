@@ -83,7 +83,50 @@ public class Condition implements Serializable {
 		this.index = index;
 	}
 
-	@Override
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Condition condition = (Condition) o;
+
+        if (index != condition.index) {
+            return false;
+        }
+        if (inputOffset != condition.inputOffset) {
+            return false;
+        }
+        if (inputValue != null ? !inputValue.equals(condition.inputValue) :
+                condition.inputValue != null) {
+            return false;
+        }
+        if (tableColumn != null ? !tableColumn.equals(condition.tableColumn) :
+                condition.tableColumn != null) {
+            return false;
+        }
+        if (valueOperator != null ? !valueOperator.equals(condition.valueOperator) :
+                condition.valueOperator != null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = tableColumn != null ? tableColumn.hashCode() : 0;
+        result = 31 * result + inputOffset;
+        result = 31 * result + (valueOperator != null ? valueOperator.hashCode() : 0);
+        result = 31 * result + (inputValue != null ? inputValue.hashCode() : 0);
+        result = 31 * result + index;
+        return result;
+    }
+
+    @Override
 	public String toString() {
 		return "Condition {"
 		       + "tableColumn='" + tableColumn + '\''
