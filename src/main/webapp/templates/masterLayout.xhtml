@@ -16,12 +16,6 @@
         </f:facet>
     </pe:head>
     <h:body>
-        <ui:insert name="ajaxErrorHandler">
-            <!-- Enable ajaxErrorHandler -->
-            <pe:ajaxErrorHandler widgetVar="ajaxErrorHandler" button="Hide" buttonOnclick="ajaxErrorHandler.hide();" />
-            <pe:ajaxErrorHandler type="javax.faces.application.ViewExpiredException" button="Reload" buttonOnclick="document.location.href=document.location.href;" />
-        </ui:insert>
-
         <pe:layout id="fpl" widgetVar="fullLayoutWidget" options="#{showcaseLayout.options}">
             <pe:javascript event="resize" execute="#{resizeFunction}" disabled="#{empty resizeFunction}"/>
             

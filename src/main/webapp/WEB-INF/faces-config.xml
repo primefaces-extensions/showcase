@@ -4,12 +4,6 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
               version="2.2">
 
-    <factory>
-        <exception-handler-factory>
-            org.primefaces.extensions.component.ajaxerrorhandler.AjaxExceptionHandlerFactory
-        </exception-handler-factory>
-    </factory>
-
     <converter>
         <converter-id>org.primefaces.extensions.showcase.converter.OrderConverter</converter-id>
         <converter-class>org.primefaces.extensions.showcase.converter.OrderConverter</converter-class>
