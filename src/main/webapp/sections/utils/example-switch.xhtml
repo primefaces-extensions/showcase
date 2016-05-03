@@ -14,31 +14,33 @@
 	<f:selectItem itemLabel="Case 1" itemValue="case1" />
     <f:selectItem itemLabel="null" itemValue="#{null}" />
     <f:selectItem itemLabel="Case 2" itemValue="case2" />
-       
-    <p:ajax update="switch" process="@this" />
+
+    <p:ajax update="swichWrapper" process="@this" />
 </p:selectOneMenu>
 
 <p:separator />
 
-<pe:switch id="switch" value="#{switchController.value}">
-	<pe:defaultCase>
-		Case: Default
-	</pe:defaultCase>
+<p:outputPanel id="swichWrapper">
+    <pe:switch id="switch" value="#{switchController.value}">
+            <pe:defaultCase>
+                    Case: Default
+            </pe:defaultCase>
 
-	<pe:case value="case1">
-		Case: <p:commandButton id="case1button" actionListener="#{switchController.listener('case1')}" update=":mainForm:growl"
-				value="Call listener with 'case1'" /> 
-	</pe:case>
+            <pe:case value="case1">
+                    Case: <p:commandButton id="case1button" actionListener="#{switchController.listener('case1')}" update=":mainForm:growl"
+                                    value="Call listener with 'case1'" />
+            </pe:case>
 
-	<pe:case value="case2">
-		Case: <p:commandButton id="case2button" actionListener="#{switchController.listener('case2')}" update=":mainForm:growl"
-				value="Call listener with 'case2'"  />
-	</pe:case>
+            <pe:case value="case2">
+                    Case: <p:commandButton id="case2button" actionListener="#{switchController.listener('case2')}" update=":mainForm:growl"
+                                    value="Call listener with 'case2'"  />
+            </pe:case>
 
-	<pe:case value="#{null}">
-		Case: Null
-	</pe:case>
-</pe:switch>
+            <pe:case value="#{null}">
+                    Case: Null
+            </pe:case>
+    </pe:switch>
+</p:outputPanel>
 
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
