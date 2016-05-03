@@ -76,6 +76,7 @@ public class AvailableThemes {
 		themeNames.add("ui-darkness");
 		themeNames.add("ui-lightness");
 		themeNames.add("vader");
+                themeNames.add("omega");
 
 		themesAsMap = new HashMap<String, Theme>();
 		themes = new ArrayList<Theme>();
