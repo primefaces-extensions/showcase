@@ -1,0 +1,134 @@
+/*
+ * Copyright 2011-2015 PrimeFaces Extensions
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * $Id$
+ */
+
+package org.primefaces.extensions.showcase.controller.dynaform;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.context.RequestContext;
+import org.primefaces.extensions.model.dynaform.DynaFormControl;
+import org.primefaces.extensions.model.dynaform.DynaFormLabel;
+import org.primefaces.extensions.model.dynaform.DynaFormModel;
+import org.primefaces.extensions.model.dynaform.DynaFormRow;
+import org.primefaces.extensions.showcase.model.dynaform.BookProperty;
+
+/**
+ * AnotherDynaFormController
+ *
+ * @author  Oleg Varaksin / last modified by $Author$
+ * @version $Revision$
+ */
+@ManagedBean
+@ViewScoped
+public class NestedDynaFormController implements Serializable {
+
+	private static final long serialVersionUID = 20120423L;
+
+	private DynaFormModel model;
+
+	@PostConstruct  
+    protected void initialize() {  
+		model = new DynaFormModel();
+
+		// add rows, labels and editable controls
+		// set relationship between label and editable controls to support outputLabel with "for" attribute
+
+		// 1. regular row
+		DynaFormRow row = model.createRegularRow();
+		
+		// 1.1 Nested model
+		DynaFormModel nestedModel = new DynaFormModel();
+		DynaFormRow nestedRow1 = nestedModel.createRegularRow();
+		
+		DynaFormLabel label11 = nestedRow1.addLabel("Firstname");
+		DynaFormLabel label12 = nestedRow1.addLabel("Lastname");
+		
+		nestedRow1 = nestedModel.createRegularRow();
+		DynaFormControl control21 = nestedRow1.addControl(new BookProperty("firstname", true), "input");
+		DynaFormControl control22 = nestedRow1.addControl(new BookProperty("lastname", true), "input");
+		
+		label11.setForControl(control21);
+		label12.setForControl(control22);
+		row.addModel(nestedModel, 2, 1);
+		
+		// 2. regular row
+		row = model.createRegularRow();
+		DynaFormLabel label31 = row.addLabel("Date from");
+		
+		// 2.1 Nested model
+		nestedModel = new DynaFormModel();
+		DynaFormRow nestedRow2 = nestedModel.createRegularRow();
+
+		DynaFormControl control32 = nestedRow2.addControl(new BookProperty("beginDate", false), "date");
+		label31.setForControl(control32);
+
+		DynaFormLabel label33 = nestedRow2.addLabel("till");
+		DynaFormControl control34 = nestedRow2.addControl(new BookProperty("endDate", false), "date");
+		label33.setForControl(control34);
+		row.addModel(nestedModel);
+		
+		// 2.2 Nested model
+		nestedModel = new DynaFormModel();
+		DynaFormRow nestedRow3 = nestedModel.createRegularRow();
+		
+		DynaFormLabel label36 = nestedRow3.addLabel("Located from");
+		DynaFormControl control37 = nestedRow3.addControl(new BookProperty("locationStart", "Lane A", false), "input");
+		label36.setForControl(control37);
+		
+		DynaFormLabel label38 = nestedRow3.addLabel("To");
+		DynaFormControl control39 = nestedRow3.addControl(new BookProperty("locationEnd", "Lane B", false), "input");
+		label38.setForControl(control39);
+		
+		row.addModel(nestedModel);
+	}
+	
+	public DynaFormModel getModel() {
+		return model;
+	}
+	
+	public String submitForm() {
+		FacesMessage.Severity sev = FacesContext.getCurrentInstance().getMaximumSeverity();
+		boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR.compareTo(sev) >= 0));
+
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		requestContext.addCallbackParam("isValid", !hasErrors);
+
+		return null;
+	}
+	
+	public List<BookProperty> getBookProperties() {
+		if (model == null) {
+			return null;
+		}
+
+		List<BookProperty> bookProperties = new ArrayList<BookProperty>();
+		for (DynaFormControl dynaFormControl : model.getControls()) {
+			bookProperties.add((BookProperty) dynaFormControl.getData());
+		}
+
+		return bookProperties;
+	}
+}
