@@ -9,14 +9,14 @@
 <h:panelGroup id="dynaFormGroup">
     <p:messages id="messages" showSummary="true"/>
 
-    <pe:dynaForm id="dynaForm" value="#{dynaFormController.model}" var="data">
+    <pe:dynaForm id="dynaForm" value="#{dynaFormController.model}" var="data" columnClasses="label-container, field-container">
         <pe:dynaFormControl type="input" for="txt">
             <p:inputText id="txt" value="#{data.value}" required="#{data.required}"/>
         </pe:dynaFormControl>
         <pe:dynaFormControl type="calendar" for="cal" styleClass="calendar">
             <p:calendar id="cal" value="#{data.value}" required="#{data.required}" showOn="button"/>
         </pe:dynaFormControl>
-        <pe:dynaFormControl type="select" for="sel" styleClass="select">
+        <pe:dynaFormControl type="select" for="sel">
             <p:selectOneMenu id="sel" value="#{data.value}" required="#{data.required}">
                 <f:selectItems value="#{dynaFormController.languages}"/>
             </p:selectOneMenu>
@@ -72,12 +72,16 @@
         width: 120px;
     }
 
-    .pe-dynaform-cell.select .ui-selectonemenu {
-        width: 157px !important;
+    .pe-dynaform-cell .ui-selectonemenu {
+        width: 134px;
     }
-
-    .pe-dynaform-cell.select .ui-selectonemenu .ui-selectonemenu-label {
-        width: 130px !important;
+    
+    .label-container {
+    	font-weight: bold;
+    }
+    
+    .field-container input {
+    	text-transform: uppercase;
     }
 </h:outputStylesheet>
 
