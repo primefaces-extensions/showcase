@@ -38,7 +38,7 @@ import org.primefaces.extensions.showcase.model.dynaform.BookProperty;
 /**
  * AnotherDynaFormController
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author  Sébastien Lepage / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
