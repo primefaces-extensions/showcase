@@ -62,6 +62,7 @@ public class AvailableThemes {
 		themeNames.add("le-frog");
 		themeNames.add("midnight");
 		themeNames.add("mint-choc");
+        themeNames.add("omega");
 		themeNames.add("overcast");
 		themeNames.add("pepper-grinder");
 		themeNames.add("redmond");
@@ -76,7 +77,6 @@ public class AvailableThemes {
 		themeNames.add("ui-darkness");
 		themeNames.add("ui-lightness");
 		themeNames.add("vader");
-                themeNames.add("omega");
 
 		themesAsMap = new HashMap<String, Theme>();
 		themes = new ArrayList<Theme>();
