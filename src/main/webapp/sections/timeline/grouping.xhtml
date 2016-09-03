@@ -36,7 +36,7 @@
 <!-- EXAMPLE-SOURCE-START -->
 <p:growl id="growl" showSummary="true" showDetail="false" autoUpdate="true"/>
             
-<pe:timeline id="timeline" value="#{groupingTimelineController.model}" var="order" varGroup="group"
+<p:timeline id="timeline" value="#{groupingTimelineController.model}" var="order" varGroup="group"
              editable="true" eventMargin="5" eventMarginAxis="0"
              groupsChangeable="true" groupsOnRight="false" stackEvents="false"
              showMajorLabels="false" axisOnTop="true"
@@ -53,7 +53,7 @@
     <h:graphicImage value="#{order.imagePath}" rendered="#{not empty order.imagePath}"
                     style="display:inline; vertical-align:middle;" alt="Order"/>
     <h:outputText value="Order #{order.number}"/>
-</pe:timeline>
+</p:timeline>
 <!-- EXAMPLE-SOURCE-END -->
 <ui:include src="/sections/timeline/groupingCSS.xhtml"/>
         <br/>

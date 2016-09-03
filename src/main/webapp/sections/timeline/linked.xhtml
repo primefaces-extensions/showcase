@@ -31,7 +31,7 @@
 <!-- EXAMPLE-SOURCE-START -->
 <p:growl id="growl" showSummary="true" showDetail="false" autoUpdate="true"/>
             
-<pe:timeline id="timelineFirst" value="#{linkedTimelinesController.modelFirst}" var="task"
+<p:timeline id="timelineFirst" value="#{linkedTimelinesController.modelFirst}" var="task"
              height="300px" widgetVar="timelineFirstWdgt">
     <pe:javascript event="rangechange" execute="onrangechange1()"/>
     <p:ajax event="select" listener="#{linkedTimelinesController.onSelect}"/>
@@ -43,12 +43,12 @@
     <h:panelGroup rendered="#{task.period}" style="padding:8px">
         <h:outputText value="#{task.title}"/>
     </h:panelGroup>
-</pe:timeline>
+</p:timeline>
             
-<pe:timeline id="timelineSecond" value="#{linkedTimelinesController.modelSecond}"
+<p:timeline id="timelineSecond" value="#{linkedTimelinesController.modelSecond}"
              height="150px" widgetVar="timelineSecondWdgt" style="margin-top:10px;">
     <pe:javascript event="rangechange" execute="onrangechange2()"/>
-</pe:timeline>
+</p:timeline>
 <!-- EXAMPLE-SOURCE-END -->
 <ui:include src="/sections/timeline/linkedJS.xhtml"/>
         </h:panelGroup>

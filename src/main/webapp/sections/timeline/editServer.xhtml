@@ -44,7 +44,7 @@
 <!-- EXAMPLE-SOURCE-START -->
 <p:growl id="growl" showSummary="true" showDetail="false" autoUpdate="true"/>
 
-<pe:timeline id="timeline" value="#{editServerTimelineController.model}" var="booking"
+<p:timeline id="timeline" value="#{editServerTimelineController.model}" var="booking"
              timeZone="#{editServerTimelineController.timeZone}"
              zoomMax="#{editServerTimelineController.zoomMax}"
              start="#{editServerTimelineController.start}"
@@ -67,7 +67,7 @@
         <h:outputText value="Category: #{booking.category.label}"/>
         <h:outputText value="Phone: #{booking.phone}"/>
     </h:panelGrid>      
-</pe:timeline>
+</p:timeline>
            
 <p:commandButton value="Toggle TimeChangeable" process="@this" update="timeline" style="margin-top:15px"
                  action="#{editServerTimelineController.toggleTimeChangeable}"/>

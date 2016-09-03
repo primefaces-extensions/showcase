@@ -14,7 +14,7 @@
             The TriStateCheckbox add a new state for a common SelectBooleanCheckbox.
             The value of TriStateCheckbox are mapped to 0,1,2 string values. This component can be customized with CSS classes for icons.
             <p/>
-            This example show pe:triStateCheckbox in action.
+            This example show p:triStateCheckbox in action.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -23,23 +23,23 @@
             
             <h:panelGrid id="triStateGrid" columns="2" styleClass="centerContent">
                 <h:outputText value="Basic Usage with title: "/>
-                <pe:triStateCheckbox value="#{triStateCheckBoxController.value1}" 
+                <p:triStateCheckbox value="#{triStateCheckBoxController.value1}" 
                                      stateOneTitle="StateOneTitle"
                                      stateTwoTitle="StateTwoTitle"
                                      stateThreeTitle="StateThreeTitle"/>
             
                 <h:outputText value="Ajax Behavior: "/>
-                <pe:triStateCheckbox id="ajaxTriState" value="#{triStateCheckBoxController.value2}">
+                <p:triStateCheckbox id="ajaxTriState" value="#{triStateCheckBoxController.value2}">
                     <p:ajax event="change" update="growl" listener="#{triStateCheckBoxController.addMessage}"/>
-                </pe:triStateCheckbox>
+                </p:triStateCheckbox>
             
                 <h:outputText value="Customs Icons: "/>
-                <pe:triStateCheckbox value="#{triStateCheckBoxController.value3}"
+                <p:triStateCheckbox value="#{triStateCheckBoxController.value3}"
                                      stateTwoIcon="ui-icon-plus"
                                      stateThreeIcon="ui-icon-minus"/>
                 
                 <h:panelGroup/>
-                <pe:triStateCheckbox value="#{triStateCheckBoxController.value4}" itemLabel="Item Label"/>                
+                <p:triStateCheckbox value="#{triStateCheckBoxController.value4}" itemLabel="Item Label"/>                
             </h:panelGrid>
             
             <p:commandButton value="Submit" process="triStateGrid" update="display" oncomplete="PF('dlg').show()"
@@ -62,20 +62,20 @@
 
 &lt;h:panelGrid id=&quot;triStateGrid&quot; columns=&quot;2&quot; styleClass=&quot;centerContent&quot;&gt;
     &lt;h:outputText value=&quot;Basic Usage: &quot;/&gt;
-    &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value1}&quot;/&gt;
+    &lt;p:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value1}&quot;/&gt;
 
     &lt;h:outputText value=&quot;Ajax Behavior: &quot;/&gt;
-    &lt;pe:triStateCheckbox id=&quot;ajaxTriState&quot; value=&quot;#{triStateCheckBoxController.value2}&quot;&gt;
+    &lt;p:triStateCheckbox id=&quot;ajaxTriState&quot; value=&quot;#{triStateCheckBoxController.value2}&quot;&gt;
         &lt;p:ajax update=&quot;growl&quot; listener=&quot;\#{triStateCheckBoxController.addMessage}&quot;/&gt;
-    &lt;/pe:triStateCheckbox&gt;
+    &lt;/p:triStateCheckbox&gt;
 
     &lt;h:outputText value=&quot;Customs Icons: &quot;/&gt;
-    &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value3}&quot;
+    &lt;p:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value3}&quot;
                          stateTwoIcon=&quot;ui-icon-plus&quot;
                          stateThreeIcon=&quot;ui-icon-minus&quot;/&gt;
     
     &lt;h:panelGroup/&gt;
-    &lt;pe:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value4}&quot; itemLabel=&quot;Item Label&quot;/&gt;                
+    &lt;p:triStateCheckbox value=&quot;\#{triStateCheckBoxController.value4}&quot; itemLabel=&quot;Item Label&quot;/&gt;                
 &lt;/h:panelGrid&gt;
 
 &lt;p:commandButton value=&quot;Submit&quot; process=&quot;triStateGrid&quot; update=&quot;display&quot; oncomplete=&quot;PF('dlg').show()&quot;

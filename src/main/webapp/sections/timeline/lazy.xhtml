@@ -13,7 +13,7 @@
         <h:panelGroup layout="block" styleClass="centerContent">
             Timeline supports lazy loading of events during moving / zooming in the timeline.
             This makes sense when event's loading is time-consuming. Events are loaded lazy
-            when <strong>p:ajax</strong> with <strong>event="lazyload"</strong> is attached to the <strong>pe:timeline</strong> tag.
+            when <strong>p:ajax</strong> with <strong>event="lazyload"</strong> is attached to the <strong>p:timeline</strong> tag.
             The event class <strong>TimelineLazyLoadEvent</strong> contains one or two time ranges
             the events should be loaded for (two times ranges occur when you zoom out the timeline).
             <p/>
@@ -32,14 +32,14 @@
 <!-- EXAMPLE-SOURCE-START -->
 <div id="loadingText" style="font-weight:bold; margin:-5px 0 5px 0; visibility:hidden;">Loading ...</div>
             
-<pe:timeline id="timeline" value="#{lazyTimelineController.model}"
+<p:timeline id="timeline" value="#{lazyTimelineController.model}"
              preloadFactor="#{lazyTimelineController.preloadFactor}"
              zoomMax="#{lazyTimelineController.zoomMax}"
              minHeight="170" showNavigation="true">
     <p:ajax event="lazyload" update="@none" listener="#{lazyTimelineController.onLazyLoad}"
             onstart="$('#loadingText').css('visibility', 'visible')" 
             oncomplete="$('#loadingText').css('visibility', 'hidden')"/>
-</pe:timeline>
+</p:timeline>
  
 <h:panelGrid columns="2" style="margin-top:15px">
     <p:spinner id="spinner" value="#{lazyTimelineController.preloadFactor}"

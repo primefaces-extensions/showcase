@@ -37,7 +37,7 @@
             Notice, that we also defined a style class "readonly" to highlight read-only events with a red color.
             <p/>
             Press the button "Submit" to send all changes and save them on the server-side. We take advantage of the
-            <strong>pe:remoteCommand</strong> and the Json converter <strong>pe:convertTimelineEvents</strong> to submit current events
+            <strong>pe:remoteCommand</strong> and the Json converter <strong>p:convertTimelineEvents</strong> to submit current events
             retrieved by widget's method <strong>getData()</strong>. The converter is needed because <strong>getData()</strong>
             retrieves an array of current data (events) as an JSON string.
             The converter is also needed to convert displayed dates in user's local time zone to the server-side's UTC.
@@ -58,14 +58,14 @@
     <p:commandButton value="Delete" type="button" onclick="remove()"/>
 </h:panelGrid>
 
-<pe:timeline id="timeline" value="#{editClientTimelineController.model}"
+<p:timeline id="timeline" value="#{editClientTimelineController.model}"
              editable="true" showButtonNew="true"
              timeZone="#{editClientTimelineController.timeZone}"
              widgetVar="timelineWdgt" style="margin-top:10px;">
     <pe:javascript event="select" execute="showContent()"/>
     <pe:javascript event="add" execute="showContent()"/>
     <pe:javascript event="delete" execute="PF('timelineWdgt').cancelDelete(); PF('confirmWdgt').show();"/>
-</pe:timeline>
+</p:timeline>
 
 <p:commandButton value="Submit" type="button" style="margin-top:15px;"
                  onclick="updateData(PF('timelineWdgt').getData())"/>
@@ -76,7 +76,7 @@
                   actionListener="#{editClientTimelineController.updateData}">
     <pe:methodSignature parameters="java.util.List"/>
     <pe:methodParam name="events">
-        <pe:convertTimelineEvents/>
+        <p:convertTimelineEvents/>
     </pe:methodParam>
 </pe:remoteCommand>
             

@@ -46,7 +46,7 @@
         <p:draggable for="eventBox" revert="true" helper="clone" cursor="move"/>
     </p:dataList>
 </div>    
-<pe:timeline id="timeline" value="#{dndTimelineController.model}" var="event"
+<p:timeline id="timeline" value="#{dndTimelineController.model}" var="event"
              editable="true" eventMargin="10" eventMarginAxis="0" minHeight="250"
              start="#{dndTimelineController.start}" end="#{dndTimelineController.end}"
              timeZone="#{dndTimelineController.localTZ}"
@@ -64,7 +64,7 @@
             <f:convertDateTime dateStyle="short" type="both" timeZone="#{dndTimelineController.localTZ}"/>
         </h:outputText>
     </h:panelGrid>
-</pe:timeline>
+</p:timeline>
             
 <h:panelGrid columns="2" style="margin-top:15px;">
     <h:outputText value="Choose your target time zone"/>

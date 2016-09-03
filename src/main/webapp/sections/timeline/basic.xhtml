@@ -79,7 +79,7 @@
 
 <p:spacer width="100%" height="10"/>
 
-<pe:timeline id="timeline" value="#{basicTimelineController.model}" height="250px"
+<p:timeline id="timeline" value="#{basicTimelineController.model}" height="250px"
              selectable="#{basicTimelineController.selectable}"
              zoomable="#{basicTimelineController.zoomable}"
              moveable="#{basicTimelineController.moveable}"
@@ -89,7 +89,7 @@
              showCurrentTime="#{basicTimelineController.showCurrentTime}"
              showNavigation="#{basicTimelineController.showNavigation}">
     <p:ajax event="select" listener="#{basicTimelineController.onSelect}"/>
-</pe:timeline>
+</p:timeline>
             
 <h:outputStylesheet id="timelineCSS">
     table .formColumn {
