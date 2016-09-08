@@ -11,16 +11,17 @@
 			CodeMirror is a JavaScript library that can be used to create a relatively pleasant editor interface for code-like content ― computer programs, HTML markup, and similar. If a mode has been written for the language you are editing, the code will be coloured, and the editor will optionally help you with indentation.
 			<br/>
 			<br/>
-			CodeMirror also provides CSS for some modes. If you want to inclue this, they will aply to ALL CodeMirror instances on the page. <br/>
+			Based on <a href="https://codemirror.net/">CodeMirror.js</a> library by Marijn Haverbeke.
 			<br/>
-			Following CSS are available: <br/>
+			<br/>
+			CodeMirror provides many languages for markup and themes for styling. <br/>
+			<br/>
+			<strong>Following Modes are available:</strong> <br/>
 			<ul>
-				<li>codemirror/mode/spec.css</li>
-				<li>codemirror/mode/tiddlywiki.css</li>
-				<li>codemirror/mode/tiki.css</li>
+			    <ui:repeat var="language" value="#{codeMirrorController.modes}">
+			    <li>#{language}</li>
+			    </ui:repeat>
 			</ul>
-			You can include this CSS via:<br/>
-			&lt;h:outputStylesheet library="primefaces-extensions" name="codemirror/mode/tiki.css" /&gt;
 			
 		
 		</h:panelGroup>
