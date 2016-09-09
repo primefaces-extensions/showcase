@@ -1,18 +1,40 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
 
-<!-- EXAMPLE-SOURCE-START -->
-
+   <!-- EXAMPLE-SOURCE-START -->
 <p:growl id="growl" showDetail="true" />
 
-<pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}"
-    theme="eclipse" value="#{codeMirrorController.content}" lineNumbers="true"/>
+<pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}" theme="#{codeMirrorController.theme}"
+	value="#{codeMirrorController.content}" keyMap="#{codeMirrorController.keymap}" lineNumbers="true"
+	matchBrackets="true" />
 
-<p:commandButton actionListener="#{codeMirrorController.changeMode}" update="codeMirror"
-                 value="Change mode with AJAX" style="margin-top:10px;"/>
+<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+	<p:outputLabel for="theme" value="Theme: " />
+	<p:selectOneMenu id="theme" value="#{codeMirrorController.theme}">
+		<f:selectItem itemLabel="Select One" itemValue="" />
+		<f:selectItems value="#{codeMirrorController.themes}" />
+		<p:ajax update="codeMirror" />
+	</p:selectOneMenu>
+
+	<p:outputLabel for="mode" value="Mode: " />
+	<p:selectOneMenu id="mode" value="#{codeMirrorController.mode}">
+		<f:selectItem itemLabel="Select One" itemValue="" />
+		<f:selectItems value="#{codeMirrorController.modes}" />
+		<p:ajax update="codeMirror" />
+	</p:selectOneMenu>
+	
+	<p:outputLabel for="keymap" value="Keymap: " />
+    <p:selectOneMenu id="keymap" value="#{codeMirrorController.keymap}">
+        <f:selectItem itemLabel="Select One" itemValue="" />
+        <f:selectItems value="#{codeMirrorController.keymaps}" />
+        <p:ajax update="codeMirror" />
+    </p:selectOneMenu>
+</h:panelGrid>
 
 <!-- EXAMPLE-SOURCE-END< -->
 </ui:composition>
