@@ -12,8 +12,9 @@
     <p:inputText id="lastName" required="true" title="#{component.valid ? '' : 'Last Name can not be empty'}"/>
 </h:panelGrid>
 
-<p:commandButton value="Submit" process="details" update="details" style="margin-top: 10px;"/>
+<p:commandButton value="Submit" process="details" update="details tooltip" style="margin-top: 10px;"/>
 
-<pe:tooltip global="true" myPosition="left center" atPosition="right center" for="@(.ui-state-error)"/>
+<pe:tooltip id="tooltip" global="true" for="@(.ui-state-error)" header="Error" styleClass="qtip qtip-red qtip-rounded qtip-shadow" myPosition="left center" atPosition="right center" />
+
     <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

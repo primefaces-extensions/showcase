@@ -9,15 +9,23 @@
     <h:outputLabel value="Focus / Blur: "/>
     <h:panelGroup layout="block" style="padding: 0 0 3px 0;">
         <p:inputText id="focus" title="This tooltip is displayed when input gets the focus"/>
-        <pe:tooltip for="focus" showEvent="focus" hideEvent="blur"/>
+        <pe:tooltip for="focus" showEvent="focus" hideEvent="blur" styleClass="qtip-default"/>
     </h:panelGroup>
 
+    <h:outputText value="Styled "/>
+    <h:panelGroup layout="block" style="padding: 3px 0 3px 0;">
+        <h:outputLink id="styled" value="#">
+            <h:outputText value="Styled with custom header"/>
+        </h:outputLink>
+        <pe:tooltip for="styled" value="Override style by using styleClass" header="Style Override" styleClass="qtip qtip-green qtip-rounded qtip-shadow"/>
+    </h:panelGroup>
+    
     <h:outputText value="Fade: "/>
     <h:panelGroup layout="block" style="padding: 3px 0 3px 0;">
         <h:outputLink id="fade" value="#">
             <h:outputText value="Fade Effect"/>
         </h:outputLink>
-        <pe:tooltip for="fade" value="Fade effect is used by default" showEffect="fadeIn" hideEffect="fadeIn"/>
+        <pe:tooltip for="fade" value="Fade effect is used by default" header="Fade" showEffect="fadeIn" hideEffect="fadeIn"/>
     </h:panelGroup>
 
     <h:outputText value="Position: "/>
@@ -25,7 +33,7 @@
         <h:outputLink id="pos" value="#">
             <h:outputText value="Position (top, right)"/>
         </h:outputLink>
-        <pe:tooltip for="pos" value="This tooltip positioned at top right" myPosition="top, right"/>
+        <pe:tooltip for="pos" value="This tooltip positioned at top right" myPosition="top, right" header="Position"/>
     </h:panelGroup>
 
     <h:outputText value="Slide: "/>
@@ -34,7 +42,7 @@
             <h:outputText value="Slide Effect with custom position"/>
         </h:outputLink>
         <pe:tooltip for="slide" value="This tooltip uses slide effect for the animation" showEffect="slideToggle"
-                    hideEffect="slideToggle" showDelay="0" myPosition="left center" atPosition="right center"/>
+                    hideEffect="slideToggle" showDelay="0" myPosition="left center" atPosition="right center" header="Slide"/>
     </h:panelGroup>
 
     <h:outputText value="Content: "/>
