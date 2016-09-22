@@ -16,9 +16,4 @@
         </exception-handler-factory>
     </factory>
 
-    <converter>
-        <converter-id>org.primefaces.extensions.showcase.converter.OrderConverter</converter-id>
-        <converter-class>org.primefaces.extensions.showcase.converter.OrderConverter</converter-class>
-    </converter>
-
 </faces-config>

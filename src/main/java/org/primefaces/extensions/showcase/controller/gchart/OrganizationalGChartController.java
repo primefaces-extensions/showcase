@@ -40,9 +40,6 @@ public class OrganizationalGChartController implements Serializable {
                 .build();
 
         TreeNode mike = new DefaultTreeNode("Mike");
-        TreeNode alice = new DefaultTreeNode("Alice",mike);
-        TreeNode jim = new DefaultTreeNode("Jim",mike);
-        TreeNode bob = new DefaultTreeNode("Bob",alice);
 
         treeModel = new GChartModelBuilder().setChartType(GChartType.ORGANIZATIONAL)
                 .addColumns("Name","Manager")

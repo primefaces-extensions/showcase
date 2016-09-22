@@ -966,27 +966,27 @@ public class PDFCustomExporter extends Exporter {
 		}
 
 		if (facetFontStyle.equalsIgnoreCase("NORMAL")) {
-			this.facetFontStyle = "" + facetFont.NORMAL;
+			this.facetFontStyle = "" + Font.NORMAL;
 		}
 
 		if (facetFontStyle.equalsIgnoreCase("BOLD")) {
-			this.facetFontStyle = "" + facetFont.BOLD;
+			this.facetFontStyle = "" + Font.BOLD;
 		}
 
 		if (facetFontStyle.equalsIgnoreCase("ITALIC")) {
-			this.facetFontStyle = "" + facetFont.ITALIC;
+			this.facetFontStyle = "" + Font.ITALIC;
 		}
 
 		if (cellFontStyle.equalsIgnoreCase("NORMAL")) {
-			this.cellFontStyle = "" + cellFont.NORMAL;
+			this.cellFontStyle = "" + Font.NORMAL;
 		}
 
 		if (cellFontStyle.equalsIgnoreCase("BOLD")) {
-			this.cellFontStyle = "" + cellFont.BOLD;
+			this.cellFontStyle = "" + Font.BOLD;
 		}
 
 		if (cellFontStyle.equalsIgnoreCase("ITALIC")) {
-			this.cellFontStyle = "" + cellFont.ITALIC;
+			this.cellFontStyle = "" + Font.ITALIC;
 		}
 	}
 

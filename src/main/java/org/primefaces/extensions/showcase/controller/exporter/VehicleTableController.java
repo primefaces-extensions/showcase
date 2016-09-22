@@ -15,21 +15,19 @@
  */
 package org.primefaces.extensions.showcase.controller.exporter;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.event.ToggleEvent;
-import org.primefaces.extensions.showcase.model.Vehicle;
-import org.primefaces.extensions.showcase.model.Customer;
 
-import java.io.Serializable;
-import java.lang.Integer;
-import java.lang.String;
-import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import org.primefaces.event.ToggleEvent;
+import org.primefaces.extensions.showcase.model.Customer;
+import org.primefaces.extensions.showcase.model.Vehicle;
 
 /**
  * VehicleTableController
@@ -115,7 +113,6 @@ public class VehicleTableController implements Serializable {
         num2 = generator.nextInt(641) + 100;
         num3 = generator.nextInt(8999) + 1000;
 
-        String string1 = Integer.toString(num1);
         strippedNum = Integer.toOctalString(num1);
         String contactNumber = strippedNum + "-" + num2 + "-" + num3;
         return contactNumber;

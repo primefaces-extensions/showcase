@@ -18,10 +18,13 @@
 
 package org.primefaces.extensions.showcase.util;
 
-import javax.el.ELContext;
 import javax.faces.FacesException;
 import javax.faces.context.FacesContext;
-import org.primefaces.extensions.component.exporter.*;
+
+import org.primefaces.extensions.component.exporter.ExcelExporter;
+import org.primefaces.extensions.component.exporter.Exporter;
+import org.primefaces.extensions.component.exporter.ExporterFactory;
+import org.primefaces.extensions.component.exporter.PDFExporter;
 import org.primefaces.extensions.showcase.controller.ExporterController;
 
 /**

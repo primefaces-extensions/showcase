@@ -1,24 +1,14 @@
 package org.primefaces.extensions.showcase.controller.gchart;
 
-import org.primefaces.event.SelectEvent;
-import org.primefaces.extensions.component.gchart.model.GChartModel;
-import org.primefaces.extensions.component.gchart.model.GChartModelBuilder;
-import org.primefaces.extensions.component.gchart.model.GChartModelRow;
-import org.primefaces.extensions.component.gchart.model.GChartType;
-import org.primefaces.json.JSONArray;
-import org.primefaces.json.JSONException;
-import org.primefaces.json.JSONObject;
+import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+
+import org.primefaces.extensions.component.gchart.model.GChartModel;
+import org.primefaces.extensions.component.gchart.model.GChartModelBuilder;
+import org.primefaces.extensions.component.gchart.model.GChartType;
 
 @ManagedBean
 @RequestScoped

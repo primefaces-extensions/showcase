@@ -1,14 +1,14 @@
 package org.primefaces.extensions.showcase.controller.analogclock;
 
-import org.primefaces.extensions.component.analogclock.model.AnalogClockColorModel;
-import org.primefaces.extensions.component.analogclock.model.DefaultAnalogClockColorModel;
+import java.awt.Color;
+import java.io.Serializable;
+import java.util.Random;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import java.awt.*;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Random;
+
+import org.primefaces.extensions.component.analogclock.model.AnalogClockColorModel;
+import org.primefaces.extensions.component.analogclock.model.DefaultAnalogClockColorModel;
 
 @ManagedBean
 @RequestScoped

@@ -18,15 +18,10 @@
 
 package org.primefaces.extensions.showcase.controller.blockui;
 
-import org.primefaces.event.NodeExpandEvent;
-import org.primefaces.event.NodeSelectEvent;
-import org.primefaces.event.NodeUnselectEvent;
-import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.TreeNode;
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import java.io.Serializable;
 
 /**
  * BlockUIController

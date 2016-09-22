@@ -18,13 +18,13 @@
 
 package org.primefaces.extensions.showcase.controller.exporter;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  * DynamicColumnsTableController
@@ -43,7 +43,6 @@ public class DynamicColumnsTableController implements Serializable {
 	private static final long serialVersionUID = 20111020L;
 
 	private List<Message> messages;
-	private List<Message> messageDetails;
 	private List<Message> filteredMessages;
 
 	private String columnTemplate = "subject text country textLength";
@@ -67,9 +66,6 @@ public class DynamicColumnsTableController implements Serializable {
 		createDynamicColumns();
 	}
 
-	private String getRandomModel() {
-		return UUID.randomUUID().toString().substring(0, 8);
-	}
 
 	public List<ColumnModel> getColumns() {
 		return columns;

@@ -19,13 +19,9 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
-import java.lang.Boolean;
-import java.math.BigDecimal;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
-
-import org.primefaces.extensions.showcase.model.Distance;
+import javax.faces.bean.ManagedBean;
 
 /**
  * ExporterController

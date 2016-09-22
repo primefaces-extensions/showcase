@@ -40,7 +40,6 @@ public class MessageTableController implements Serializable {
     private static final long serialVersionUID = 20111020L;
 
     private List<Message> messages;
-    private List<Message> messageDetails;
     private List<Message> filteredMessages;
     private String newSubject = "my subject";
     private String newText = "my text";

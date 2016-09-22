@@ -12,15 +12,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.extensions.component.gchart.model.GChartModel;
 import org.primefaces.extensions.component.gchart.model.GChartModelBuilder;
 import org.primefaces.extensions.component.gchart.model.GChartModelRow;
 import org.primefaces.extensions.component.gchart.model.GChartType;
-import org.primefaces.json.JSONObject;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 @ManagedBean
 @RequestScoped
