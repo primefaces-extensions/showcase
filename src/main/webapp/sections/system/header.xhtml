@@ -4,7 +4,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition>
-    <h:graphicImage library="images" name="logo.png" styleClass="logo" title="PrimeFaces Extensions"/>
+    <p:link href="home.jsf">
+       <h:graphicImage library="images" name="logo.png" styleClass="logo" title="PrimeFaces Extensions"/>
+    </p:link>
 
     <h:panelGrid columns="1" styleClass="smallNav" columnClasses="smallNavText">
         <h:outputLink value="http://primefaces-extensions.github.com/" target="_blank">
