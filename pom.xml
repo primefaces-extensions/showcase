@@ -15,10 +15,21 @@
     </description>
 
     <scm>
-        <connection>scm:git:git@github.com:primefaces-extensions/showcase.git</connection>
-        <developerConnection>scm:git:git@github.com:primefaces-extensions/showcase.git</developerConnection>
+        <connection>scm:git:git://github.com/primefaces-extensions/showcase.git</connection>
+        <developerConnection>scm:git:ssh://github.com:primefaces-extensions/showcase.git</developerConnection>
         <url>https://github.com/primefaces-extensions/showcase</url>
     </scm>
+
+    <properties>
+        <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
+        <primefaces-extensions.new-components>;</primefaces-extensions.new-components>
+        <primefaces-extensions.updated-components>;</primefaces-extensions.updated-components>
+
+        <mojarra.version>2.2.8</mojarra.version>
+        <myfaces.version>2.2.4</myfaces.version>
+        <jetty.version>8.1.16.v20140903</jetty.version>
+        <juel.version>2.2.6</juel.version>
+    </properties>
 
     <build>
         <resources>
@@ -38,7 +49,7 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.1.16.v20140903</version>
+                <version>${jetty.version}</version>
                 <configuration>
                     <webAppConfig>
                         <contextPath>/primeext-showcase</contextPath>
@@ -149,9 +160,39 @@
                 <artifactId>buildnumber-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>buildnumber-maven-plugin</artifactId>
+                                        <versionRange>[1.0,)</versionRange>
+                                        <goals>
+                                            <goal>create-timestamp</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <dependencies>
+        <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -181,14 +222,15 @@
         <dependency>
             <groupId>de.odysseus.juel</groupId>
             <artifactId>juel-impl</artifactId>
-            <version>2.2.6</version>
+            <version>${juel.version}</version>
         </dependency>
         <dependency>
             <groupId>de.odysseus.juel</groupId>
             <artifactId>juel-spi</artifactId>
-            <version>2.2.6</version>
+            <version>${juel.version}</version>
         </dependency>
 
+        <!-- PrimeFaces -->
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-extensions</artifactId>
@@ -204,11 +246,12 @@
             <artifactId>resources-codemirror</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>all-themes</artifactId>
         </dependency>
+
+        <!-- Exporter Dependencies iText and POI -->
         <dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
@@ -341,13 +384,4 @@
             </dependencies>
         </profile>
     </profiles>
-
-    <properties>
-        <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-        <primefaces-extensions.new-components>;</primefaces-extensions.new-components>
-        <primefaces-extensions.updated-components>;</primefaces-extensions.updated-components>
-
-        <mojarra.version>2.2.8</mojarra.version>
-        <myfaces.version>2.2.4</myfaces.version>
-    </properties>
 </project>
