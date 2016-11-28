@@ -183,3 +183,8 @@ div.source {
     background-image: url("#{resource['images/updated.png']}") !important;
     margin-right: 3px;
 }
+
+.ui-icon-deprecated-comp {
+    background-image: url("#{resource['images/deprecated.png']}") !important;
+    margin-right: 3px;
+}
