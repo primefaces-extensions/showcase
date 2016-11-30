@@ -22,7 +22,7 @@
 
     <properties>
         <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-        <primefaces-extensions.new-components>calculator;</primefaces-extensions.new-components>
+        <primefaces-extensions.new-components>calculator;slideout</primefaces-extensions.new-components>
         <primefaces-extensions.updated-components>tooltip;codeMirror;ckEditor;documentViewer</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components>timeline</primefaces-extensions.deprecated-components>
 

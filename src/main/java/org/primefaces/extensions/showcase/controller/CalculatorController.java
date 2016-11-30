@@ -10,9 +10,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 /**
- * Calculator Controller. <p, "
+ * Calculator Controller.
  *
- * @author Melloware info@melloware.com
+ * @author Melloware mellowaredev@gmail.com
  */
 @ManagedBean
 @ViewScoped
