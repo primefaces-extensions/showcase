@@ -2,12 +2,17 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-	<p:messages id="messages" autoUpdate="true" />
+	<p:growl id="growl" autoUpdate="true" />
 
 	<!-- EXAMPLE-SOURCE-START -->
 	<pe:slideout id="slideoutContact" title="Contact" icon="fa fa-envelope" location="top" widgetVar="slideout"
 		handleStyleClass="contact-handle" panelStyleClass="contact-panel" offset="450px" bounceTimes="5"
-		bounceDistance="100px">
+		bounceDistance="100px" onopen="$('#lblOnOpenClose').text('Open Event!');"
+		onclose="$('#lblOnOpenClose').text('Close Event!');">
+		
+		<p:ajax event="open" listener="#{slideOutController.openListener}" update="growl"/> 
+		<p:ajax event="close" listener="#{slideOutController.closeListener}" update="growl"/> 
+		
 		<p:panelGrid styleClass="ui-noborder">
 			<p:row>
 				<p:column styleClass="ui-widget-header">
@@ -48,12 +53,10 @@
 		</p:panelGrid>
 	</pe:slideout>
 
-	<h:panelGroup layout="block" style="text-align:left;margin-bottom:10px;">
-		<p:commandButton value="Open" type="button" onclick="PF('slideout').open();" />
-		<p:commandButton value="Close" type="button" onclick="PF('slideout').close();" />
-		<p:commandButton value="Toggle" type="button" onclick="PF('slideout').toggle();" />
-		<p:commandButton value="Bounce" type="button" onclick="PF('slideout').bounce();" />
-	</h:panelGroup>
+	<p>
+		<h:outputText id="lblOnOpenClose" value="Event Result" style="font-weight:bold" />
+	</p>
+
 	<!-- EXAMPLE-SOURCE-END -->
 	<ui:include src="/sections/slideout/basicUsageCSS.xhtml" />
 </ui:composition>
