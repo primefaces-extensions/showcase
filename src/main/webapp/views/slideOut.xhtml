@@ -21,6 +21,13 @@
             A typically area of application is anywhere you may want to get customer feedback.
             <p/>
             Based on <h:outputLink id="lnkSlideout" value="https://github.com/hawk-ip/jquery.tabSlideOut.js">jQuery TabSlideOut</h:outputLink>.
+            <p/>
+            <p/>
+            <strong>WARNING:</strong>Demos in this showcase may not work in some browsers and all examples are shown set to the top of the screen.
+            The reason is because of CSS position:absolute vs. position:relative of the tabs.  The PE Showcase uses pe:layout component which
+            causes issues trying to use this component because the tab cannot be drawn on top of the Layout panes.
+            <p/>
+            However, we are successfully using the component in production applications you just have to be careful where you lay it out.  
         </h:panelGroup>
     </ui:define>
     <ui:define name="useCases">
