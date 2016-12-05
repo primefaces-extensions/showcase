@@ -5,8 +5,8 @@
 	<p:growl id="growl" autoUpdate="true" />
 
 	<!-- EXAMPLE-SOURCE-START -->
-	<pe:slideout id="slideoutContact" title="Contact" icon="fa fa-envelope" location="top" widgetVar="slideout"
-		handleStyleClass="contact-handle" panelStyleClass="contact-panel" offset="450px" bounceTimes="5"
+	<pe:slideout id="slideoutContact" title="Feedback" icon="fa fa-thumbs-o-up" location="top" widgetVar="slideout"
+		handleStyleClass="feedback-handle" panelStyleClass="feedback-panel" offset="475px" bounceTimes="5"
 		bounceDistance="100px" onopen="$('#lblOnOpenClose').text('Open Event!');"
 		onclose="$('#lblOnOpenClose').text('Close Event!');">
 		
@@ -53,10 +53,11 @@
 		</p:panelGrid>
 	</pe:slideout>
 
-	<p>
-		<h:outputText id="lblOnOpenClose" value="Event Result" style="font-weight:bold" />
-	</p>
+    <p>
+        <h:outputText id="lblResult" value="Javascript Callback Result: " />
+        <h:outputText id="lblOnOpenClose" value="Event Result" style="font-weight:bold; color: DeepPink;" />
+    </p>
 
 	<!-- EXAMPLE-SOURCE-END -->
-	<ui:include src="/sections/slideout/basicUsageCSS.xhtml" />
+	<ui:include src="/sections/slideout/advancedUsageCSS.xhtml" />
 </ui:composition>

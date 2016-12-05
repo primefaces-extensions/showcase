@@ -10,6 +10,13 @@
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
             Advanced example demonstrates using of ajax events, callbacks and interesting settings.
+            <p/>
+            <strong>Examples include:</strong>
+            <ul>
+               <li>Javascript callbacks for "onOpen" and "onClose" events</li> 
+               <li>p:ajax server side events for "open" and "close" events</li>
+               <li>CSS styling is different for open vs closed states by check for "ui-slideouttab-open" style.</li>
+            </ul>
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
@@ -24,7 +31,7 @@ ${showcase:getFileContent('/sections/slideout/example-advancedUsage.xhtml')}
 ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/SlideOutController.java')}
             </ui:define>
             <ui:define name="contentTab3">
-${showcase:getFileContent('/sections/slideout/basicUsageCSS.xhtml')}
+${showcase:getFileContent('/sections/slideout/advancedUsageCSS.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>
