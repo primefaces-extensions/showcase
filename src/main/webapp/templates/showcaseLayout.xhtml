@@ -16,6 +16,9 @@
         <h:outputScript id="syntaxhighlighterInit" target="body">
             dp.SyntaxHighlighter.ClipboardSwf = '#{request.contextPath}/resources/syntaxhighlighter/scripts/clipboard.swf';
             dp.SyntaxHighlighter.HighlightAll('code');
+            $( document ).ready(function() {
+               PF('fullLayoutWidget').resizeAll();
+            });
         </h:outputScript>
     </ui:define>
     <ui:define name="header">
