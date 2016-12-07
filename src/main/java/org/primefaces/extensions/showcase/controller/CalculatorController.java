@@ -5,9 +5,15 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+
+import org.primefaces.extensions.event.ButtonEvent;
+import org.primefaces.extensions.event.CloseEvent;
+import org.primefaces.extensions.event.OpenEvent;
 
 /**
  * Calculator Controller.
@@ -48,6 +54,24 @@ public class CalculatorController implements Serializable {
       results.add(new SelectItem("zh_CN", "简体中文 (Chinese, Simplified)"));
       results.add(new SelectItem("zh_TW", "繁體中文 (Chinese, Traditional)"));
       return results;
+   }
+
+   public void closeListener(final CloseEvent closeEvent) {
+      final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Close fired",
+               "Component id: " + closeEvent.getComponent().getId());
+      FacesContext.getCurrentInstance().addMessage(null, msg);
+   }
+
+   public void openListener(final OpenEvent openEvent) {
+      final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Open fired",
+               "Component id: " + openEvent.getComponent().getId());
+      FacesContext.getCurrentInstance().addMessage(null, msg);
+   }
+
+   public void buttonListener(final ButtonEvent buttonEvent) {
+      final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Button fired",
+               "Name: " + buttonEvent.getName() + " Value: " + buttonEvent.getValue());
+      FacesContext.getCurrentInstance().addMessage(null, msg);
    }
 
    public BigDecimal gethInputText() {

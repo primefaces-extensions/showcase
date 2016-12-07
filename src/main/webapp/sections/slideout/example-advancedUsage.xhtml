@@ -2,10 +2,10 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-	<p:growl id="growl" autoUpdate="true" />
+	<p:growl id="growl" autoUpdate="true" showDetail="true" showSummary="true" />
 
 	<!-- EXAMPLE-SOURCE-START -->
-	<pe:slideout id="slideoutContact" title="Feedback" icon="fa fa-thumbs-o-up" location="top" widgetVar="slideout"
+	<pe:slideout id="slideoutFeedback" title="Feedback" icon="fa fa-thumbs-o-up" location="top" widgetVar="slideout"
 		handleStyleClass="feedback-handle" panelStyleClass="feedback-panel" offset="475px" bounceTimes="5"
 		bounceDistance="100px" onopen="$('#lblOnOpenClose').text('Open Event!');"
 		onclose="$('#lblOnOpenClose').text('Close Event!');">
