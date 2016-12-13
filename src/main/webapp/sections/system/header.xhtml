@@ -4,23 +4,48 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition>
-    <p:link href="/views/home.jsf">
-       <h:graphicImage library="images" name="logo.png" styleClass="logo" title="PrimeFaces Extensions"/>
-    </p:link>
+	<p:link href="/views/home.jsf">
+		<h:graphicImage library="images" name="logo.png" styleClass="logo" title="PrimeFaces Extensions" />
+	</p:link>
 
-    <h:panelGrid columns="1" styleClass="smallNav" columnClasses="smallNavText">
-        <h:outputLink value="http://primefaces-extensions.github.com/" target="_blank">
-            <h:outputText value="Homepage"/>
-        </h:outputLink>
-    </h:panelGrid>
+	<h:panelGrid columns="4" style="float:right;padding:4px;">
+		<h:form id="themeForm" prependId="false">
+			<h:panelGrid columns="2" columnClasses="themeText,themeSelect">
+				<h:outputText value="Theme" />
+				<p:selectOneMenu id="themeSelectMenu" value="#{userSettings.currentTheme}" var="theme" effect="drop"
+					onchange="$('#themeForm').submit()">
+					<f:converter converterId="org.primefaces.extensions.showcase.converter.ThemeConverter" />
+					<f:selectItems var="t" value="#{userSettings.availableThemes}" itemLabel="#{t.name}" itemValue="#{t}" />
+					<p:column>
+						<p:graphicImage value="#{theme.image}" rendered="${not empty theme.image}" />
+					</p:column>
+					<p:column>
+                        #{theme.name}
+                    </p:column>
+				</p:selectOneMenu>
+			</h:panelGrid>
+		</h:form>
 
-    <p:ajaxStatus styleClass="logo" style="left:80px; width:32px; height:32px; margin-top: 10px;">
-        <f:facet name="start">
-            <h:graphicImage library="images" name="ajax-loader.gif" alt="AJAX Status"/>
-        </f:facet>
-        <f:facet name="complete">
-            <h:outputText value=""/>
-        </f:facet>
-    </p:ajaxStatus>
+		<p:link href="http://primefaces-extensions.github.com/" target="_blank">
+			<h:graphicImage library="images" name="bookmark-home.png" title="Homepage" />
+		</p:link>
+
+		<p:link href="https://github.com/primefaces-extensions" target="_blank">
+			<h:graphicImage library="images" name="bookmark-github.png" title="GitHub" />
+		</p:link>
+		
+        <p:link href="https://github.com/primefaces-extensions/primefaces-extensions.github.com/issues" target="_blank">
+            <h:graphicImage library="images" name="bookmark-issues.png" title="Issue Tracking" />
+        </p:link>
+	</h:panelGrid>
+
+	<p:ajaxStatus styleClass="logo" style="left:80px; width:32px; height:32px; margin-top: 10px;">
+		<f:facet name="start">
+			<h:graphicImage library="images" name="ajax-loader.gif" alt="AJAX Status" />
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
 </ui:composition>
 </html>

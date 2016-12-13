@@ -32,26 +32,6 @@
             </h:form>
         </pe:layout>
 
-        <h:form id="themeForm" prependId="false">
-            <h:panelGrid columns="2" styleClass="themeRoller" columnClasses="themeText,themeSelect">
-                <h:outputText value="Theme"/>
-                <p:selectOneMenu id="themeSelectMenu" value="#{userSettings.currentTheme}" var="theme" effect="drop"
-                                 onchange="$('#themeForm').submit()">
-                    <f:converter converterId="org.primefaces.extensions.showcase.converter.ThemeConverter"/>
-                    <f:selectItems var="t"
-                                   value="#{userSettings.availableThemes}"
-                                   itemLabel="#{t.name}"
-                                   itemValue="#{t}"/>
-                    <p:column>
-                        <p:graphicImage value="#{theme.image}" rendered="${not empty theme.image}"/>
-                    </p:column>
-                    <p:column>
-                        #{theme.name}
-                    </p:column>
-                </p:selectOneMenu>
-            </h:panelGrid>
-        </h:form>
-        
         <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException"
                                 update="expDialog"
                                 onexception="PF('exceptionDialog').show();"/>
