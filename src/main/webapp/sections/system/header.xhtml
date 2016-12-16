@@ -9,22 +9,20 @@
 	</p:link>
 
 	<h:panelGrid columns="4" style="float:right;padding:4px;">
-		<h:form id="themeForm" prependId="false">
-			<h:panelGrid columns="2" columnClasses="themeText,themeSelect">
-				<h:outputText value="Theme" />
-				<p:selectOneMenu id="themeSelectMenu" value="#{userSettings.currentTheme}" var="theme" effect="drop"
-					onchange="$('#themeForm').submit()">
-					<f:converter converterId="org.primefaces.extensions.showcase.converter.ThemeConverter" />
-					<f:selectItems var="t" value="#{userSettings.availableThemes}" itemLabel="#{t.name}" itemValue="#{t}" />
-					<p:column>
-						<p:graphicImage value="#{theme.image}" rendered="${not empty theme.image}" />
-					</p:column>
-					<p:column>
+		<h:panelGrid columns="2" columnClasses="themeText,themeSelect">
+			<h:outputText value="Theme" />
+			<p:selectOneMenu id="themeSelectMenu" value="#{userSettings.currentTheme}" var="theme" effect="drop"
+				onchange="console.log('Theme Change');$('#headerForm').submit();">
+				<f:converter converterId="org.primefaces.extensions.showcase.converter.ThemeConverter" />
+				<f:selectItems var="t" value="#{userSettings.availableThemes}" itemLabel="#{t.name}" itemValue="#{t}" />
+				<p:column>
+					<p:graphicImage value="#{theme.image}" rendered="${not empty theme.image}" />
+				</p:column>
+				<p:column>
                         #{theme.name}
                     </p:column>
-				</p:selectOneMenu>
-			</h:panelGrid>
-		</h:form>
+			</p:selectOneMenu>
+		</h:panelGrid>
 
 		<p:link href="http://primefaces-extensions.github.com/" target="_blank">
 			<h:graphicImage library="images" name="bookmark-home.png" title="Homepage" />
@@ -33,10 +31,10 @@
 		<p:link href="https://github.com/primefaces-extensions" target="_blank">
 			<h:graphicImage library="images" name="bookmark-github.png" title="GitHub" />
 		</p:link>
-		
-        <p:link href="https://github.com/primefaces-extensions/primefaces-extensions.github.com/issues" target="_blank">
-            <h:graphicImage library="images" name="bookmark-issues.png" title="Issue Tracking" />
-        </p:link>
+
+		<p:link href="https://github.com/primefaces-extensions/primefaces-extensions.github.com/issues" target="_blank">
+			<h:graphicImage library="images" name="bookmark-issues.png" title="Issue Tracking" />
+		</p:link>
 	</h:panelGrid>
 
 	<p:ajaxStatus styleClass="logo" style="left:80px; width:32px; height:32px; margin-top: 10px;">
