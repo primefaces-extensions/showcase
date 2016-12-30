@@ -23,7 +23,7 @@
 
 		<p:outputLabel value="Calc:" for="pInputText" />
 		<p:inputText id="pInputText" value="#{calculatorController.pInputText}">
-			<pe:calculator rtl="#{calculatorController.rtl}" locale="#{calculatorController.language}" showOn="both"/>
+			<pe:calculator dir="#{calculatorController.rtl ? 'rtl' : 'ltr'}" locale="#{calculatorController.language}" showOn="both"/>
 		</p:inputText>
 	</h:panelGrid>
 	<!-- EXAMPLE-SOURCE-END -->
