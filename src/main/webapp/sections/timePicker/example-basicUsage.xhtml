@@ -25,7 +25,7 @@
     <pe:timePicker value="#{timePickerController.time4}" timeSeparator="-" startHours="8" endHours="20"
                    startMinutes="10" endMinutes="40" intervalMinutes="10" showCloseButton="true"
                    showDeselectButton="true" showNowButton="true" rows="3" showPeriod="true" style="width:70px;"
-                   widgetVar="customTimeWidget" label="Custom time picker"/>
+                   widgetVar="customTimeWidget" label="Custom time picker" required="true" requiredMessage="Customization is required!"/>
     <pe:timePicker value="#{timePickerController.time5}" mode="popup" widgetVar="popupBtnTimeWidget"
                    showOn="button" label="Popup time picker with button"/>
     <pe:timePicker value="#{timePickerController.time6}" mode="spinner" widgetVar="spinnerBtnTimeWidget"
