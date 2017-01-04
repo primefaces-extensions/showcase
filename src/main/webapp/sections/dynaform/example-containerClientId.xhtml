@@ -16,7 +16,7 @@
                 <p:commandButton icon="ui-icon-search" process="@this txt"
                                  update=":mainForm:dialogList" oncomplete="PF('dialogListWdgt').show()"
                                  title="Please choose an item"
-                                 style="background:none; border:none;">
+                                 style="border:none;">
                     <f:setPropertyActionListener value="#{ccId}"
                                                  target="#{containerDynaFormController.containerClientId}"/>
                     <f:setPropertyActionListener value="#{data}"
