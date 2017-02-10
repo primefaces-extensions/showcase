@@ -7,6 +7,12 @@
 <!-- EXAMPLE-SOURCE-START -->
 
 <p:growl id="growl" showDetail="true" />
+
+<p:commandButton oncomplete="PF('testDialog').show()" value="Open In Dialog" update="dialog" style="margin:8px;"></p:commandButton>
+<p:dialog id="dialog" widgetVar="testDialog" resizable="true" closable="true" closeOnEscape="true" height="500" width="630">
+    <pe:ckEditor id="dialogEditor"></pe:ckEditor>
+</p:dialog>
+    
 <pe:ckEditor id="editor" value="#{editorController.content}">
     <p:ajax event="save" listener="#{editorController.saveListener}" update="growl"/>
 </pe:ckEditor>
