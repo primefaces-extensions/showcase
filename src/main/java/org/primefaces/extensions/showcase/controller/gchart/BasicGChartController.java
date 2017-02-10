@@ -25,59 +25,62 @@ import com.google.gson.JsonElement;
 @RequestScoped
 public class BasicGChartController implements Serializable {
 
-    private static final long serialVersionUID = 253762400419864192L;
+   private static final long serialVersionUID = 253762400419864192L;
 
-	private Random random = new Random();
-	private int mushrooms = random.nextInt(10);
-	private int onions = random.nextInt(10);
-	private GChartType chartType = GChartType.PIE;
-	private GChartModel chartModel = null;
-	
-	public GChartModel getChart(){
-		return chartModel;
-	}
-	
-	@PostConstruct
-	public void generateModel() {
-		chartModel = new GChartModelBuilder().setChartType(getChartType())
-				.addColumns("Topping", "Slices").addRow("Mushrooms", mushrooms)
-				.addRow("Onions", onions).build();
-	}
-	
-	public void onSelect(SelectEvent event){
-		JsonArray value = (JsonArray) event.getObject();
-        if(value.size() > 0){
-            JsonElement element = value.get(0);
-            String label = new ArrayList<GChartModelRow>(this.getChart().getRows()).get(element.getAsJsonObject().get("row").getAsInt()).getLabel();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "You have selected: " + label, null));
-        }
-	}
+   private final Random random = new Random();
+   private int mushrooms = random.nextInt(10);
+   private int onions = random.nextInt(10);
+   private GChartType chartType = GChartType.PIE;
+   private GChartModel chartModel = null;
 
-	public int getMushrooms() {
-		return mushrooms;
-	}
+   public GChartModel getChart() {
+      return chartModel;
+   }
 
-	public void setMushrooms(int mushrooms) {
-		this.mushrooms = mushrooms;
-	}
+   @PostConstruct
+   public void generateModel() {
+      chartModel = new GChartModelBuilder().setChartType(getChartType())
+               .addColumns("Topping", "Slices").addRow("Mushrooms", mushrooms)
+               .addRow("Onions", onions).build();
+   }
 
-	public int getOnions() {
-		return onions;
-	}
+   public void onSelect(final SelectEvent event) {
+      final JsonArray value = (JsonArray) event.getObject();
+      if (value.size() > 0) {
+         final JsonElement element = value.get(0);
+         final String label = new ArrayList<GChartModelRow>(getChart().getRows())
+                  .get(element.getAsJsonObject().get("row").getAsInt()).getLabel();
+         FacesContext.getCurrentInstance().addMessage(null,
+                  new FacesMessage(FacesMessage.SEVERITY_INFO, "You have selected: " + label, null));
+      }
+   }
 
-	public void setOnions(int onions) {
-		this.onions = onions;
-	}
+   public int getMushrooms() {
+      return mushrooms;
+   }
 
-	public GChartType getChartType() {
-		return chartType;
-	}
+   public void setMushrooms(final int mushrooms) {
+      this.mushrooms = mushrooms;
+   }
 
-	public void setChartType(GChartType chartType) {
-		this.chartType = chartType;
-	}
-	
-	public List<GChartType> getTypes(){
-		return Arrays.asList(new GChartType[]{GChartType.AREA,GChartType.BAR,GChartType.COLUMN,GChartType.PIE});
-	}
+   public int getOnions() {
+      return onions;
+   }
+
+   public void setOnions(final int onions) {
+      this.onions = onions;
+   }
+
+   public GChartType getChartType() {
+      return chartType;
+   }
+
+   public void setChartType(final GChartType chartType) {
+      this.chartType = chartType;
+   }
+
+   public List<GChartType> getTypes() {
+      return Arrays.asList(new GChartType[] { GChartType.AREA, GChartType.BAR, GChartType.COLUMN, GChartType.PIE,
+               GChartType.LINE });
+   }
 }
