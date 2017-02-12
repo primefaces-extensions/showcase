@@ -150,6 +150,7 @@ public class CodeMirrorController implements Serializable {
       results.add("erlang");
       results.add("fcl");
       results.add("fortran");
+      results.add("freemarker");
       results.add("gfm");
       results.add("gas");
       results.add("gherkin");
