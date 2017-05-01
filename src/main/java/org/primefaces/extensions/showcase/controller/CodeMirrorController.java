@@ -23,8 +23,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.extensions.event.CompleteEvent;
 
@@ -40,14 +42,10 @@ public class CodeMirrorController implements Serializable {
 
    private static final long serialVersionUID = 20111020L;
 
-   private String content;
+   private String content = "function test() { console.log('test'); }";
    private String mode = "javascript";
    private String theme = "blackboard";
    private String keymap = "default";
-
-   public CodeMirrorController() {
-      content = "function test() { console.log('test'); }";
-   }
 
    public void changeMode() {
       if (mode.equals("css")) {
@@ -55,6 +53,12 @@ public class CodeMirrorController implements Serializable {
       } else {
          mode = "css";
       }
+   }
+
+   public void submitContent() {
+      final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+               "CodeMirror content: " + content);
+      FacesContext.getCurrentInstance().addMessage(null, msg);
    }
 
    public List<String> complete(final CompleteEvent event) {

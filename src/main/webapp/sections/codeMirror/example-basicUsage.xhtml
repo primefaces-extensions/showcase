@@ -7,7 +7,7 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
 
    <!-- EXAMPLE-SOURCE-START -->
-<p:growl id="growl" showDetail="true" />
+<p:growl id="growl" showDetail="true" autoUpdate="true"/>
 
 <pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}" theme="#{codeMirrorController.theme}"
 	value="#{codeMirrorController.content}" keyMap="#{codeMirrorController.keymap}" lineNumbers="true"
@@ -34,6 +34,8 @@
         <f:selectItems value="#{codeMirrorController.keymaps}" />
         <p:ajax update="codeMirror" />
     </p:selectOneMenu>
+    
+    <p:commandButton id="btnSubmit" value="Submit" icon="fa fa-save" actionListener="#{codeMirrorController.submitContent()}" />
 </h:panelGrid>
 
 <!-- EXAMPLE-SOURCE-END< -->
