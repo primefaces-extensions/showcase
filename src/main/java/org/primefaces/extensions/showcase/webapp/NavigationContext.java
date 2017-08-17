@@ -27,34 +27,34 @@ import javax.faces.context.FacesContext;
 /**
  * Navigation infos.
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
 @SessionScoped
 public class NavigationContext implements Serializable {
 
-	private static final long serialVersionUID = 20111020L;
+   private static final long serialVersionUID = 20111020L;
 
-	public String getMenuitemStyleClass(final String page) {
-		final String viewId = getViewId();
-		if (viewId != null && viewId.equals(page)) {
-			return "ui-state-active";
-		}
+   public String getMenuitemStyleClass(final String page) {
+      final String viewId = getViewId();
+      if (viewId != null && viewId.equalsIgnoreCase(page)) {
+         return "ui-state-active";
+      }
 
-		return "";
-	}
+      return "";
+   }
 
-	public String getViewId() {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		String viewId = fc.getViewRoot().getViewId();
-		String selectedComponent;
-		if (viewId != null) {
-			selectedComponent = viewId.substring(viewId.lastIndexOf("/") + 1, viewId.lastIndexOf("."));
-		} else {
-			selectedComponent = null;
-		}
+   public String getViewId() {
+      FacesContext fc = FacesContext.getCurrentInstance();
+      String viewId = fc.getViewRoot().getViewId();
+      String selectedComponent;
+      if (viewId != null) {
+         selectedComponent = viewId.substring(viewId.lastIndexOf("/") + 1, viewId.lastIndexOf("."));
+      } else {
+         selectedComponent = null;
+      }
 
-		return selectedComponent;
-	}
+      return selectedComponent;
+   }
 }

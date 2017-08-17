@@ -35,6 +35,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * TechnicalInfo.
  *
@@ -127,15 +129,16 @@ public class TechnicalInfo {
    }
 
    public String getMenuitemIconStyleClass(final String page) {
-      if (newComponents.contains(page)) {
+      String check = page.toLowerCase();
+      if (newComponents.contains(check)) {
          return "ui-icon-new-comp";
       }
 
-      if (updatedComponents.contains(page)) {
+      if (updatedComponents.contains(check)) {
          return "ui-icon-updated-comp";
       }
-      
-      if (deprecatedComponents.contains(page)) {
+
+      if (deprecatedComponents.contains(check)) {
          return "ui-icon-deprecated-comp";
       }
 
@@ -144,14 +147,20 @@ public class TechnicalInfo {
 
    private void processComponentTypes(final String newComp, final String updatedComp, final String deprecatedComp) {
       try {
-         final String[] newCompArray = newComp.split(";");
-         Collections.addAll(newComponents, newCompArray);
+         if (StringUtils.isNotBlank(newComp)) {
+            final String[] newCompArray = newComp.toLowerCase().split(";");
+            Collections.addAll(newComponents, newCompArray);
+         }
 
-         final String[] updatedCompArray = updatedComp.split(";");
-         Collections.addAll(updatedComponents, updatedCompArray);
-         
-         final String[] deprecatedCompArray = deprecatedComp.split(";");
-         Collections.addAll(deprecatedComponents, deprecatedCompArray);
+         if (StringUtils.isNotBlank(updatedComp)) {
+            final String[] updatedCompArray = updatedComp.toLowerCase().split(";");
+            Collections.addAll(updatedComponents, updatedCompArray);
+         }
+
+         if (StringUtils.isNotBlank(deprecatedComp)) {
+            final String[] deprecatedCompArray = deprecatedComp.toLowerCase().split(";");
+            Collections.addAll(deprecatedComponents, deprecatedCompArray);
+         }
       } catch (final Exception ex) {
          newComponents = new ArrayList<String>();
          updatedComponents = new ArrayList<String>();
