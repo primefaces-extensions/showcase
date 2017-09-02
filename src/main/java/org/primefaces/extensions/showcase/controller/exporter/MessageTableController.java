@@ -22,6 +22,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.component.api.UIColumn;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -146,6 +149,10 @@ public class MessageTableController implements Serializable {
         } catch (Exception e) {
             // ignore
         }
+    }
+    
+    public String exportColumn(final UIColumn column) {
+        return "PFE Rocks!";
     }
 
     public class Message implements Serializable {
