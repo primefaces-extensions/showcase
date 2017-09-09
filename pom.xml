@@ -23,7 +23,7 @@
     <properties>
         <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
         <primefaces-extensions.new-components></primefaces-extensions.new-components>
-        <primefaces-extensions.updated-components>gchart;</primefaces-extensions.updated-components>
+        <primefaces-extensions.updated-components>gchart;documentViewer;</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components></primefaces-extensions.deprecated-components>
 
         <mojarra.version>2.2.8</mojarra.version>
@@ -240,11 +240,6 @@
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>resources-ckeditor</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>resources-codemirror</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
