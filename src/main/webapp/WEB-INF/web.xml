@@ -68,6 +68,11 @@
         <param-name>primefaces.FONT_AWESOME</param-name>  
         <param-value>true</param-value>  
     </context-param>
+    <!-- enable script collecting and moves all script to end of body -->
+    <context-param>  
+        <param-name>primeFaces.COLLECT_SCRIPTS</param-name>  
+        <param-value>true</param-value>  
+    </context-param>
 
     <listener>
         <listener-class>${jsf-listener}</listener-class>
