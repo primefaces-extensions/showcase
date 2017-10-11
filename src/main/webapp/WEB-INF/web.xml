@@ -70,7 +70,7 @@
     </context-param>
     <!-- enable script collecting and moves all script to end of body -->
     <context-param>  
-        <param-name>primeFaces.COLLECT_SCRIPTS</param-name>  
+        <param-name>primefaces.COLLECT_SCRIPTS</param-name>  
         <param-value>true</param-value>  
     </context-param>
 
