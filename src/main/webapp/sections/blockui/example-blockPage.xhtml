@@ -9,7 +9,7 @@
 <p:commandButton value="Block this page!" action="#{blockUIController.doSomething}" update="@none"
                  onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"/>
 
-<pe:blockUI widgetVar="blockUIWidget">
+<pe:blockUI widgetVar="blockUIWidget" cssOverlay="{opacity:0.5}">
     <h:panelGrid columns="2">
         <h:graphicImage library="images" name="ajax-loader1.gif"
                         style="margin-right: 12px; vertical-align: middle;"/>
