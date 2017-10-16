@@ -30,10 +30,6 @@ button,
     font-size: 12px !important;
 }
 
-.ui-menu .ui-menuitem-link {
-    width: 115%;
-}
-
 .ui-chkbox .ui-chkbox-label {
     margin: 3px;
 }
