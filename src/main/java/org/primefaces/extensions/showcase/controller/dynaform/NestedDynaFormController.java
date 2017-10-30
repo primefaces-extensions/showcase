@@ -28,7 +28,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
 import org.primefaces.extensions.model.dynaform.DynaFormLabel;
 import org.primefaces.extensions.model.dynaform.DynaFormModel;
@@ -38,97 +38,96 @@ import org.primefaces.extensions.showcase.model.dynaform.BookProperty;
 /**
  * AnotherDynaFormController
  *
- * @author  Sébastien Lepage / last modified by $Author$
+ * @author Sébastien Lepage / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
 @ViewScoped
 public class NestedDynaFormController implements Serializable {
 
-	private static final long serialVersionUID = 20120423L;
+    private static final long serialVersionUID = 20120423L;
 
-	private DynaFormModel model;
+    private DynaFormModel model;
 
-	@PostConstruct  
-    protected void initialize() {  
-		model = new DynaFormModel();
+    @PostConstruct
+    protected void initialize() {
+        model = new DynaFormModel();
 
-		// add rows, labels and editable controls
-		// set relationship between label and editable controls to support outputLabel with "for" attribute
+        // add rows, labels and editable controls
+        // set relationship between label and editable controls to support outputLabel with "for" attribute
 
-		// 1. regular row
-		DynaFormRow row = model.createRegularRow();
-		
-		// 1.1 Nested model
-		DynaFormModel nestedModel = new DynaFormModel();
-		DynaFormRow nestedRow1 = nestedModel.createRegularRow();
-		
-		DynaFormLabel label11 = nestedRow1.addLabel("Firstname");
-		DynaFormLabel label12 = nestedRow1.addLabel("Lastname");
-		
-		nestedRow1 = nestedModel.createRegularRow();
-		DynaFormControl control21 = nestedRow1.addControl(new BookProperty("firstname", true), "input");
-		DynaFormControl control22 = nestedRow1.addControl(new BookProperty("lastname", true), "input");
-		
-		label11.setForControl(control21);
-		label12.setForControl(control22);
-		row.addModel(nestedModel, 2, 1);
-		
-		// 2. regular row
-		row = model.createRegularRow();
-		DynaFormLabel label31 = row.addLabel("Date from");
-		
-		// 2.1 Nested model
-		nestedModel = new DynaFormModel();
-		DynaFormRow nestedRow2 = nestedModel.createRegularRow();
+        // 1. regular row
+        DynaFormRow row = model.createRegularRow();
 
-		DynaFormControl control32 = nestedRow2.addControl(new BookProperty("beginDate", false), "date");
-		label31.setForControl(control32);
+        // 1.1 Nested model
+        DynaFormModel nestedModel = new DynaFormModel();
+        DynaFormRow nestedRow1 = nestedModel.createRegularRow();
 
-		DynaFormLabel label33 = nestedRow2.addLabel("till");
-		DynaFormControl control34 = nestedRow2.addControl(new BookProperty("endDate", false), "date");
-		label33.setForControl(control34);
-		row.addModel(nestedModel);
-		
-		// 2.2 Nested model
-		nestedModel = new DynaFormModel();
-		DynaFormRow nestedRow3 = nestedModel.createRegularRow();
-		
-		DynaFormLabel label36 = nestedRow3.addLabel("Located from");
-		DynaFormControl control37 = nestedRow3.addControl(new BookProperty("locationStart", "Lane A", false), "input");
-		label36.setForControl(control37);
-		
-		DynaFormLabel label38 = nestedRow3.addLabel("To");
-		DynaFormControl control39 = nestedRow3.addControl(new BookProperty("locationEnd", "Lane B", false), "input");
-		label38.setForControl(control39);
-		
-		row.addModel(nestedModel);
-	}
-	
-	public DynaFormModel getModel() {
-		return model;
-	}
-	
-	public String submitForm() {
-		FacesMessage.Severity sev = FacesContext.getCurrentInstance().getMaximumSeverity();
-		boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR.compareTo(sev) >= 0));
+        DynaFormLabel label11 = nestedRow1.addLabel("Firstname");
+        DynaFormLabel label12 = nestedRow1.addLabel("Lastname");
 
-		RequestContext requestContext = RequestContext.getCurrentInstance();
-		requestContext.addCallbackParam("isValid", !hasErrors);
+        nestedRow1 = nestedModel.createRegularRow();
+        DynaFormControl control21 = nestedRow1.addControl(new BookProperty("firstname", true), "input");
+        DynaFormControl control22 = nestedRow1.addControl(new BookProperty("lastname", true), "input");
 
-		return null;
-	}
-	
-	public List<BookProperty> getBookProperties() {
-		if (model == null) {
-			return null;
-		}
+        label11.setForControl(control21);
+        label12.setForControl(control22);
+        row.addModel(nestedModel, 2, 1);
 
-		List<BookProperty> bookProperties = new ArrayList<BookProperty>();
-		for (DynaFormControl dynaFormControl : model.getControls()) {
-			bookProperties.add((BookProperty) dynaFormControl.getData());
-		}
+        // 2. regular row
+        row = model.createRegularRow();
+        DynaFormLabel label31 = row.addLabel("Date from");
 
-		return bookProperties;
-	}
+        // 2.1 Nested model
+        nestedModel = new DynaFormModel();
+        DynaFormRow nestedRow2 = nestedModel.createRegularRow();
+
+        DynaFormControl control32 = nestedRow2.addControl(new BookProperty("beginDate", false), "date");
+        label31.setForControl(control32);
+
+        DynaFormLabel label33 = nestedRow2.addLabel("till");
+        DynaFormControl control34 = nestedRow2.addControl(new BookProperty("endDate", false), "date");
+        label33.setForControl(control34);
+        row.addModel(nestedModel);
+
+        // 2.2 Nested model
+        nestedModel = new DynaFormModel();
+        DynaFormRow nestedRow3 = nestedModel.createRegularRow();
+
+        DynaFormLabel label36 = nestedRow3.addLabel("Located from");
+        DynaFormControl control37 = nestedRow3.addControl(new BookProperty("locationStart", "Lane A", false), "input");
+        label36.setForControl(control37);
+
+        DynaFormLabel label38 = nestedRow3.addLabel("To");
+        DynaFormControl control39 = nestedRow3.addControl(new BookProperty("locationEnd", "Lane B", false), "input");
+        label38.setForControl(control39);
+
+        row.addModel(nestedModel);
+    }
+
+    public DynaFormModel getModel() {
+        return model;
+    }
+
+    public String submitForm() {
+        FacesMessage.Severity sev = FacesContext.getCurrentInstance().getMaximumSeverity();
+        boolean hasErrors = sev != null && FacesMessage.SEVERITY_ERROR.compareTo(sev) >= 0;
+
+        PrimeFaces.current().ajax().addCallbackParam("isValid", !hasErrors);
+
+        return null;
+    }
+
+    public List<BookProperty> getBookProperties() {
+        if (model == null) {
+            return null;
+        }
+
+        List<BookProperty> bookProperties = new ArrayList<BookProperty>();
+        for (DynaFormControl dynaFormControl : model.getControls()) {
+            bookProperties.add((BookProperty) dynaFormControl.getData());
+        }
+
+        return bookProperties;
+    }
 }

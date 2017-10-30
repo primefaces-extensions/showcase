@@ -16,13 +16,11 @@
 
 package org.primefaces.extensions.showcase.controller.dynaform;
 
-import org.primefaces.context.RequestContext;
-import org.primefaces.extensions.component.dynaform.DynaForm;
-import org.primefaces.extensions.model.dynaform.DynaFormModel;
-import org.primefaces.extensions.model.dynaform.DynaFormRow;
-import org.primefaces.extensions.showcase.model.dynaform.Condition;
-import org.primefaces.extensions.util.visitcallback.ExecutableVisitCallback;
-import org.primefaces.extensions.util.visitcallback.VisitTaskExecutor;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -30,87 +28,88 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.visit.VisitContext;
 import javax.faces.component.visit.VisitHint;
 import javax.faces.context.FacesContext;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
+
+import org.primefaces.extensions.component.dynaform.DynaForm;
+import org.primefaces.extensions.model.dynaform.DynaFormModel;
+import org.primefaces.extensions.model.dynaform.DynaFormRow;
+import org.primefaces.extensions.showcase.model.dynaform.Condition;
+import org.primefaces.extensions.util.visitcallback.ExecutableVisitCallback;
+import org.primefaces.extensions.util.visitcallback.VisitTaskExecutor;
 
 /**
  * ClearDynaFormController
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
 @ManagedBean
 @ViewScoped
 public class ClearDynaFormController implements Serializable {
 
-	private static final long serialVersionUID = 20130504L;
+    private static final long serialVersionUID = 20130504L;
 
-	public static final Set<VisitHint> VISIT_HINTS = EnumSet.of(VisitHint.SKIP_UNRENDERED);
+    public static final Set<VisitHint> VISIT_HINTS = EnumSet.of(VisitHint.SKIP_UNRENDERED);
 
-	private DynaFormModel model;
-	private List<Condition> conditions;
+    private DynaFormModel model;
+    private List<Condition> conditions;
 
-	@PostConstruct
-	protected void initialize() {
-		model = new DynaFormModel();
-		conditions = new ArrayList<Condition>();
+    @PostConstruct
+    protected void initialize() {
+        model = new DynaFormModel();
+        conditions = new ArrayList<Condition>();
 
-		// 1. condition and row
-		Condition condition = new Condition("model", 2, "eq", "mercedes", 0);
-		conditions.add(condition);
+        // 1. condition and row
+        Condition condition = new Condition("model", 2, "eq", "mercedes", 0);
+        conditions.add(condition);
 
-		DynaFormRow row = model.createRegularRow();
-		row.addControl(condition, "column");
-		row.addControl(condition, "offset");
-		row.addControl(condition, "operator");
-		row.addControl(condition, "value");
-		row.addControl(condition, "clear");
+        DynaFormRow row = model.createRegularRow();
+        row.addControl(condition, "column");
+        row.addControl(condition, "offset");
+        row.addControl(condition, "operator");
+        row.addControl(condition, "value");
+        row.addControl(condition, "clear");
 
-		// 2. condition and row
-		condition = new Condition("manufacturer", 1, "not", "chrysler group", 1);
-		conditions.add(condition);
+        // 2. condition and row
+        condition = new Condition("manufacturer", 1, "not", "chrysler group", 1);
+        conditions.add(condition);
 
-		row = model.createRegularRow();
-		row.addControl(condition, "column");
-		row.addControl(condition, "offset");
-		row.addControl(condition, "operator");
-		row.addControl(condition, "value");
-		row.addControl(condition, "clear");
+        row = model.createRegularRow();
+        row.addControl(condition, "column");
+        row.addControl(condition, "offset");
+        row.addControl(condition, "operator");
+        row.addControl(condition, "value");
+        row.addControl(condition, "clear");
 
-		// 3. condition and row
-		condition = new Condition("year", 0, "lt", "2010", 2);
-		conditions.add(condition);
+        // 3. condition and row
+        condition = new Condition("year", 0, "lt", "2010", 2);
+        conditions.add(condition);
 
-		row = model.createRegularRow();
-		row.addControl(condition, "column");
-		row.addControl(condition, "offset");
-		row.addControl(condition, "operator");
-		row.addControl(condition, "value");
-		row.addControl(condition, "clear");
-	}
+        row = model.createRegularRow();
+        row.addControl(condition, "column");
+        row.addControl(condition, "offset");
+        row.addControl(condition, "operator");
+        row.addControl(condition, "value");
+        row.addControl(condition, "clear");
+    }
 
-	public void clearInputs(int index) {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		DynaForm dynaForm = (DynaForm) fc.getViewRoot().findComponent(":mainForm:dynaForm");
+    public void clearInputs(int index) {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        DynaForm dynaForm = (DynaForm) fc.getViewRoot().findComponent(":mainForm:dynaForm");
 
-		// Ids of components to be visited
-		String[] ids = new String[] {"tableColumn", "inputValue", "inputOffset", "valueOperator"};
+        // Ids of components to be visited
+        String[] ids = new String[] { "tableColumn", "inputValue", "inputOffset", "valueOperator" };
 
-		VisitTaskExecutor visitTaskExecutor =
-		    new ClearInputsExecutor(fc.getELContext(), RequestContext.getCurrentInstance(), ids, index);
+        VisitTaskExecutor visitTaskExecutor = new ClearInputsExecutor(fc.getELContext(), ids, index);
 
-		// clear inputs in the visit callback
-		ExecutableVisitCallback visitCallback = new ExecutableVisitCallback(visitTaskExecutor);
-		dynaForm.visitTree(VisitContext.createVisitContext(fc, null, VISIT_HINTS), visitCallback);
-	}
-    
+        // clear inputs in the visit callback
+        ExecutableVisitCallback visitCallback = new ExecutableVisitCallback(visitTaskExecutor);
+        dynaForm.visitTree(VisitContext.createVisitContext(fc, null, VISIT_HINTS), visitCallback);
+    }
+
     public void removeCondition(Condition condition) {
-        model.removeRegularRow(condition.getIndex());        
+        model.removeRegularRow(condition.getIndex());
         conditions.remove(condition);
-        
+
         // re-index conditions
         int idx = 0;
         for (Condition cond : conditions) {
@@ -119,17 +118,17 @@ public class ClearDynaFormController implements Serializable {
         }
     }
 
-	public String getConditions() {
-		StringBuilder sb = new StringBuilder();
-		for (Condition condition : conditions) {
-			sb.append(condition.toString());
-			sb.append("<br/>");
-		}
+    public String getConditions() {
+        StringBuilder sb = new StringBuilder();
+        for (Condition condition : conditions) {
+            sb.append(condition.toString());
+            sb.append("<br/>");
+        }
 
-		return sb.toString();
-	}
+        return sb.toString();
+    }
 
-	public DynaFormModel getModel() {
-		return model;
-	}
+    public DynaFormModel getModel() {
+        return model;
+    }
 }

@@ -25,80 +25,81 @@ import javax.faces.component.visit.VisitResult;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 import org.primefaces.extensions.util.visitcallback.VisitTaskExecutor;
 
 /**
  * Executor to clear all input values of one row in pe:dynaForm.
  *
- * @author  Oleg Varaksin / last modified by $Author: $
+ * @author Oleg Varaksin / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
 public class ClearInputsExecutor implements VisitTaskExecutor {
 
-	private static final String INDEX_ATTR = "rcIndex";
+    private static final String INDEX_ATTR = "rcIndex";
 
-	private ELContext elContext;
-	private RequestContext requestContext;
-	private String[] ids;
-	private int index;
+    private ELContext elContext;
+    private String[] ids;
+    private int index;
 
-	public ClearInputsExecutor(ELContext elContext, RequestContext requestContext, String[] ids, int index) {
-		this.elContext = elContext;
-		this.requestContext = requestContext;
-		this.ids = ids;
-		this.index = index;
-	}
+    public ClearInputsExecutor(ELContext elContext, String[] ids, int index) {
+        this.elContext = elContext;
+        this.ids = ids;
+        this.index = index;
+    }
 
-	/**
-	 * @see org.primefaces.extensions.util.visitcallback.VisitTaskExecutor
-	 */
-	public VisitResult execute(UIComponent component) {
-		UIInput input = (UIInput) component;
-		String id = input.getId();
+    /**
+     * @see org.primefaces.extensions.util.visitcallback.VisitTaskExecutor
+     */
+    @Override
+    public VisitResult execute(UIComponent component) {
+        UIInput input = (UIInput) component;
+        String id = input.getId();
 
-		// reset UI
-		input.resetValue();
+        // reset UI
+        input.resetValue();
 
-		// reset value in bean
-		if ("tableColumn".equals(id) || "inputValue".equals(id)) {
-			ValueExpression ve = input.getValueExpression("value");
-			if (ve != null) {
-				ve.setValue(elContext, StringUtils.EMPTY);
-			}
-		} else if ("inputOffset".equals(id)) {
-			ValueExpression ve = input.getValueExpression("value");
-			if (ve != null) {
-				ve.setValue(elContext, 0);
-			}
-		} else if ("valueOperator".equals(id)) {
-			ValueExpression ve = input.getValueExpression("value");
-			if (ve != null) {
-				ve.setValue(elContext, "eq");
-			}
-		}
+        // reset value in bean
+        if ("tableColumn".equals(id) || "inputValue".equals(id)) {
+            ValueExpression ve = input.getValueExpression("value");
+            if (ve != null) {
+                ve.setValue(elContext, StringUtils.EMPTY);
+            }
+        }
+        else if ("inputOffset".equals(id)) {
+            ValueExpression ve = input.getValueExpression("value");
+            if (ve != null) {
+                ve.setValue(elContext, 0);
+            }
+        }
+        else if ("valueOperator".equals(id)) {
+            ValueExpression ve = input.getValueExpression("value");
+            if (ve != null) {
+                ve.setValue(elContext, "eq");
+            }
+        }
 
-		// update the corresponding input during response
-		requestContext.update(input.getClientId());
+        // update the corresponding input during response
+        PrimeFaces.current().ajax().update(input.getClientId());
 
-		// delete handled id from the list, so that similar inputs should not be executed again
-		ArrayUtils.removeElement(ids, id);
+        // delete handled id from the list, so that similar inputs should not be executed again
+        ArrayUtils.removeElement(ids, id);
 
-		return (ids.length != 0) ? VisitResult.REJECT : VisitResult.COMPLETE;
-	}
+        return ids.length != 0 ? VisitResult.REJECT : VisitResult.COMPLETE;
+    }
 
-	/**
-	 * @see org.primefaces.extensions.util.visitcallback.VisitTaskExecutor
-	 */
-	public boolean shouldExecute(UIComponent component) {
-		if ((component instanceof EditableValueHolder) && ArrayUtils.contains(ids, component.getId())) {
-			Integer idx = (Integer) component.getAttributes().get(INDEX_ATTR);
-			if ((idx != null) && (index == idx)) {
-				return true;
-			}
-		}
+    /**
+     * @see org.primefaces.extensions.util.visitcallback.VisitTaskExecutor
+     */
+    @Override
+    public boolean shouldExecute(UIComponent component) {
+        if (component instanceof EditableValueHolder && ArrayUtils.contains(ids, component.getId())) {
+            Integer idx = (Integer) component.getAttributes().get(INDEX_ATTR);
+            if (idx != null && index == idx) {
+                return true;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 }
