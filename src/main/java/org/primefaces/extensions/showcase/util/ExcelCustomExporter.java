@@ -37,7 +37,9 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.PrintSetup;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -83,7 +85,8 @@ public class ExcelCustomExporter extends Exporter {
     XSSFWorkbook wb;
 
     @Override
-    public void export(ActionEvent event, String tableId, FacesContext context, String filename, String tableTitle, boolean pageOnly, boolean selectionOnly, String encodingType, MethodExpression preProcessor, MethodExpression postProcessor, boolean subTable) throws IOException {
+    public void export(ActionEvent event, String tableId, FacesContext context, String filename, String tableTitle, boolean pageOnly, boolean selectionOnly,
+                String encodingType, MethodExpression preProcessor, MethodExpression postProcessor, boolean subTable) throws IOException {
 
         wb = new XSSFWorkbook();
         String safeName = WorkbookUtil.createSafeSheetName(filename);
@@ -103,14 +106,15 @@ public class ExcelCustomExporter extends Exporter {
                 throw new FacesException("Cannot find component \"" + tableName + "\" in view.");
             }
             if (!(component instanceof DataTable || component instanceof DataList)) {
-                throw new FacesException("Unsupported datasource target:\"" + component.getClass().getName() + "\", exporter must target a PrimeFaces DataTable/DataList.");
+                throw new FacesException(
+                            "Unsupported datasource target:\"" + component.getClass().getName() + "\", exporter must target a PrimeFaces DataTable/DataList.");
             }
 
             DataList list = null;
             DataTable table = null;
             int cols = 0;
             if (preProcessor != null) {
-                preProcessor.invoke(context.getELContext(), new Object[]{wb});
+                preProcessor.invoke(context.getELContext(), new Object[] { wb });
             }
             if (tableTitle != null && !tableTitle.isEmpty() && !tableId.contains("" + ",")) {
                 Row titleRow = sheet.createRow(sheet.getLastRowNum());
@@ -118,7 +122,7 @@ public class ExcelCustomExporter extends Exporter {
                 Cell cell = titleRow.createCell(cellIndex);
                 cell.setCellValue(new XSSFRichTextString(tableTitle));
                 Font titleFont = wb.createFont();
-                titleFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+                titleFont.setBold(true);
                 titleStyle.setFont(titleFont);
                 cell.setCellStyle(titleStyle);
                 sheet.createRow(sheet.getLastRowNum() + 3);
@@ -132,11 +136,13 @@ public class ExcelCustomExporter extends Exporter {
                 }
                 if (pageOnly) {
                     exportPageOnly(context, list, sheet);
-                } else {
+                }
+                else {
                     exportAll(context, list, sheet);
                 }
                 cols = list.getRowCount();
-            } else {
+            }
+            else {
 
                 table = (DataTable) component;
                 int columnsCount = getColumnsCount(table);
@@ -153,9 +159,11 @@ public class ExcelCustomExporter extends Exporter {
 
                 if (pageOnly) {
                     exportPageOnly(context, table, sheet);
-                } else if (selectionOnly) {
+                }
+                else if (selectionOnly) {
                     exportSelectionOnly(context, table, sheet);
-                } else {
+                }
+                else {
                     exportAll(context, table, sheet, subTable);
                 }
 
@@ -167,7 +175,7 @@ public class ExcelCustomExporter extends Exporter {
                 }
                 table.setRowIndex(-1);
                 if (postProcessor != null) {
-                    postProcessor.invoke(context.getELContext(), new Object[]{wb});
+                    postProcessor.invoke(context.getELContext(), new Object[] { wb });
                 }
                 cols = table.getColumnsCount();
 
@@ -178,10 +186,11 @@ public class ExcelCustomExporter extends Exporter {
             sheet.createRow(sheet.getLastRowNum() + Integer.parseInt(datasetPadding));
         }
 
-        if (!subTable)
+        if (!subTable) {
             for (int i = 0; i < maxColumns; i++) {
                 sheet.autoSizeColumn((short) i);
             }
+        }
 
         PrintSetup printSetup = sheet.getPrintSetup();
         printSetup.setLandscape(true);
@@ -243,7 +252,8 @@ public class ExcelCustomExporter extends Exporter {
             if (table.hasFooterColumn()) {
                 tableFacet(context, sheet, table, subTableColumnsCount, "footer");
             }
-        } else {
+        }
+        else {
             if (lazy) {
                 for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
                     if (rowIndex % rows == 0) {
@@ -254,14 +264,15 @@ public class ExcelCustomExporter extends Exporter {
                     exportRow(table, sheet, rowIndex);
                 }
 
-                //restore
+                // restore
                 table.setFirst(first);
                 table.loadLazyData();
-            } else {
+            }
+            else {
                 for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
                     exportRow(table, sheet, rowIndex);
                 }
-                //restore
+                // restore
                 table.setFirst(first);
             }
         }
@@ -283,10 +294,11 @@ public class ExcelCustomExporter extends Exporter {
                 exportRow(table, sheet, rowIndex);
             }
 
-            //restore
+            // restore
             table.setFirst(first);
             // table.loadLazyData();
-        } else {
+        }
+        else {
             tableColumnGroup(sheet, table, "header");
             if (hasHeaderColumn(table)) {
                 addColumnFacets(table, sheet, ColumnType.HEADER);
@@ -298,7 +310,7 @@ public class ExcelCustomExporter extends Exporter {
                 addColumnFacets(table, sheet, ColumnType.FOOTER);
             }
             tableColumnGroup(sheet, table, "footer");
-            //restore
+            // restore
             table.setFirst(first);
         }
 
@@ -320,15 +332,16 @@ public class ExcelCustomExporter extends Exporter {
                 exportRow(list, sheet, rowIndex);
             }
 
-            //restore
+            // restore
             list.setFirst(first);
             // table.loadLazyData();
-        } else {
+        }
+        else {
 
             for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
                 exportRow(list, sheet, rowIndex);
             }
-            //restore
+            // restore
             list.setFirst(first);
         }
 
@@ -365,11 +378,12 @@ public class ExcelCustomExporter extends Exporter {
                 for (int i = 0; i < size; i++) {
                     requestMap.put(var, Array.get(selection, i));
 
-                    exportCells(table, sheet,0);
+                    exportCells(table, sheet, 0);
                 }
-            } else {
+            }
+            else {
                 requestMap.put(var, selection);
-                exportCells(table, sheet,0);
+                exportCells(table, sheet, 0);
             }
         }
     }
@@ -381,13 +395,15 @@ public class ExcelCustomExporter extends Exporter {
             String headerValue = null;
             if (component instanceof HtmlCommandButton) {
                 headerValue = exportValue(context, component);
-            } else if (component instanceof HtmlCommandLink) {
+            }
+            else if (component instanceof HtmlCommandLink) {
                 headerValue = exportValue(context, component);
-            } else if (component instanceof UIPanel) {
-                String header="";
-                for(UIComponent child:component.getChildren())  {
+            }
+            else if (component instanceof UIPanel) {
+                String header = "";
+                for (UIComponent child : component.getChildren()) {
                     headerValue = exportValue(context, child);
-                    header=header+headerValue;
+                    header = header + headerValue;
                 }
                 headerValue = header;
             }
@@ -402,10 +418,10 @@ public class ExcelCustomExporter extends Exporter {
             cell.setCellStyle(facetStyle);
 
             sheet.addMergedRegion(new CellRangeAddress(
-                    sheetRowIndex, //first row (0-based)
-                    sheetRowIndex, //last row  (0-based)
-                    0, //first column (0-based)
-                    columnCount+1  //last column  (0-based)
+                        sheetRowIndex, // first row (0-based)
+                        sheetRowIndex, // last row (0-based)
+                        0, // first column (0-based)
+                        columnCount + 1 // last column (0-based)
             ));
 
         }
@@ -418,16 +434,19 @@ public class ExcelCustomExporter extends Exporter {
             String headerValue = null;
             if (component instanceof HtmlCommandButton) {
                 headerValue = exportValue(context, component);
-            } else if (component instanceof HtmlCommandLink) {
+            }
+            else if (component instanceof HtmlCommandLink) {
                 headerValue = exportValue(context, component);
-            } else if (component instanceof UIPanel) {
-                String header="";
-                for(UIComponent child:component.getChildren())  {
+            }
+            else if (component instanceof UIPanel) {
+                String header = "";
+                for (UIComponent child : component.getChildren()) {
                     headerValue = exportValue(context, child);
-                    header=header+headerValue;
+                    header = header + headerValue;
                 }
                 headerValue = header;
-            } else {
+            }
+            else {
                 headerValue = exportFacetValue(context, component);
             }
 
@@ -438,12 +457,11 @@ public class ExcelCustomExporter extends Exporter {
             cell.setCellStyle(facetStyle);
 
             sheet.addMergedRegion(new CellRangeAddress(
-                    sheetRowIndex, //first row (0-based)
-                    sheetRowIndex, //last row  (0-based)
-                    0, //first column (0-based)
-                    columnCount  //last column  (0-based)
+                        sheetRowIndex, // first row (0-based)
+                        sheetRowIndex, // last row (0-based)
+                        0, // first column (0-based)
+                        columnCount // last column (0-based)
             ));
-
 
         }
     }
@@ -455,9 +473,11 @@ public class ExcelCustomExporter extends Exporter {
             String headerValue = null;
             if (component instanceof HtmlCommandButton) {
                 headerValue = exportValue(context, component);
-            } else if (component instanceof HtmlCommandLink) {
+            }
+            else if (component instanceof HtmlCommandLink) {
                 headerValue = exportValue(context, component);
-            } else {
+            }
+            else {
                 headerValue = exportFacetValue(context, component);
             }
 
@@ -468,12 +488,11 @@ public class ExcelCustomExporter extends Exporter {
             cell.setCellStyle(facetStyle);
 
             sheet.addMergedRegion(new CellRangeAddress(
-                    sheetRowIndex, //first row (0-based)
-                    sheetRowIndex, //last row  (0-based)
-                    0, //first column (0-based)
-                    1  //last column  (0-based)
+                        sheetRowIndex, // first row (0-based)
+                        sheetRowIndex, // last row (0-based)
+                        0, // first column (0-based)
+                        1 // last column (0-based)
             ));
-
 
         }
     }
@@ -496,7 +515,8 @@ public class ExcelCustomExporter extends Exporter {
                         String value = null;
                         if (facetType.equalsIgnoreCase("header")) {
                             value = column.getHeaderText();
-                        } else {
+                        }
+                        else {
                             value = column.getFooterText();
                         }
                         int rowSpan = column.getRowspan();
@@ -519,10 +539,10 @@ public class ExcelCustomExporter extends Exporter {
                                     cell.setCellValue(value);
                                     cell.setCellStyle(facetStyle);
                                     sheet.addMergedRegion(new CellRangeAddress(
-                                            sheetRowIndex, //first row (0-based)
-                                            sheetRowIndex + (rowSpan - 1), //last row  (0-based)
-                                            i, //first column (0-based)
-                                            i  //last column  (0-based)
+                                                sheetRowIndex, // first row (0-based)
+                                                sheetRowIndex + rowSpan - 1, // last row (0-based)
+                                                i, // first column (0-based)
+                                                i // last column (0-based)
                                     ));
                                 }
                             }
@@ -538,14 +558,15 @@ public class ExcelCustomExporter extends Exporter {
                                 cell.setCellValue(value);
                                 cell.setCellStyle(facetStyle);
                                 sheet.addMergedRegion(new CellRangeAddress(
-                                        sheetRowIndex, //first row (0-based)
-                                        sheetRowIndex, //last row  (0-based)
-                                        i, //first column (0-based)
-                                        i + (colSpan - 1)  //last column  (0-based)
+                                            sheetRowIndex, // first row (0-based)
+                                            sheetRowIndex, // last row (0-based)
+                                            i, // first column (0-based)
+                                            i + colSpan - 1 // last column (0-based)
                                 ));
                                 i = i + colSpan - 1;
                             }
-                        } else {
+                        }
+                        else {
                             cell = xlRow.createCell((short) i);
                             for (int j = 0; j < sheet.getNumMergedRegions(); j++) {
                                 CellRangeAddress merged = sheet.getMergedRegion(j);
@@ -584,7 +605,8 @@ public class ExcelCustomExporter extends Exporter {
                         String value = null;
                         if (facetType.equalsIgnoreCase("header")) {
                             value = column.getHeaderText();
-                        } else {
+                        }
+                        else {
                             value = column.getFooterText();
                         }
                         int rowSpan = column.getRowspan();
@@ -608,10 +630,10 @@ public class ExcelCustomExporter extends Exporter {
                                     cell.setCellStyle(cellStyle);
                                     cell.setCellValue(value);
                                     sheet.addMergedRegion(new CellRangeAddress(
-                                            sheetRowIndex, //first row (0-based)
-                                            sheetRowIndex + rowSpan - 1, //last row  (0-based)
-                                            i, //first column (0-based)
-                                            i  //last column  (0-based)
+                                                sheetRowIndex, // first row (0-based)
+                                                sheetRowIndex + rowSpan - 1, // last row (0-based)
+                                                i, // first column (0-based)
+                                                i // last column (0-based)
                                     ));
                                 }
                             }
@@ -626,14 +648,15 @@ public class ExcelCustomExporter extends Exporter {
                                 cell.setCellStyle(cellStyle);
                                 cell.setCellValue(value);
                                 sheet.addMergedRegion(new CellRangeAddress(
-                                        sheetRowIndex, //first row (0-based)
-                                        sheetRowIndex, //last row  (0-based)
-                                        i, //first column (0-based)
-                                        i + colSpan - 1  //last column  (0-based)
+                                            sheetRowIndex, // first row (0-based)
+                                            sheetRowIndex, // last row (0-based)
+                                            i, // first column (0-based)
+                                            i + colSpan - 1 // last column (0-based)
                                 ));
                                 i = i + colSpan - 1;
                             }
-                        } else {
+                        }
+                        else {
                             cell = xlRow.createCell((short) i);
                             for (int j = 0; j < sheet.getNumMergedRegions(); j++) {
                                 CellRangeAddress merged = sheet.getMergedRegion(j);
@@ -649,7 +672,6 @@ public class ExcelCustomExporter extends Exporter {
                     }
                 }
 
-
             }
         }
 
@@ -661,7 +683,7 @@ public class ExcelCustomExporter extends Exporter {
             return;
         }
 
-        exportCells(table, sheet,rowIndex);
+        exportCells(table, sheet, rowIndex);
     }
 
     protected void exportRow(SubTable table, Sheet sheet, int rowIndex) {
@@ -684,7 +706,7 @@ public class ExcelCustomExporter extends Exporter {
         exportCells(list, sheet);
     }
 
-    protected void exportCells(DataTable table, Sheet sheet,int rowIndex) {
+    protected void exportCells(DataTable table, Sheet sheet, int rowIndex) {
         int sheetRowIndex = sheet.getLastRowNum() + 1;
         Row row = sheet.createRow(sheetRowIndex);
 
@@ -698,13 +720,13 @@ public class ExcelCustomExporter extends Exporter {
             }
 
             if (col.isExportable()) {
-                //Adding RowIndex for custom Export
-                UIComponent component=(UIComponent)col;
-                if(component.getId().equalsIgnoreCase("subject")) {
+                // Adding RowIndex for custom Export
+                UIComponent component = (UIComponent) col;
+                if (component.getId().equalsIgnoreCase("subject")) {
 
-                Cell cell = row.createCell(0);
-                String value = rowIndex+"";
-                cell.setCellValue(new XSSFRichTextString(value));
+                    Cell cell = row.createCell(0);
+                    String value = rowIndex + "";
+                    cell.setCellValue(new XSSFRichTextString(value));
                 }
                 addColumnValue(row, col.getChildren(), "content");
             }
@@ -733,14 +755,14 @@ public class ExcelCustomExporter extends Exporter {
             if (component instanceof RowExpansion) {
                 RowExpansion rowExpansion = (RowExpansion) component;
                 if (rowExpansion.getChildren() != null) {
-                    if(rowExpansion.getChildren().get(0) instanceof DataList) {
+                    if (rowExpansion.getChildren().get(0) instanceof DataList) {
                         DataList list = (DataList) rowExpansion.getChildren().get(0);
                         if (list.getHeader() != null) {
                             tableFacet(context, sheet, list, "header");
                         }
                         exportAll(context, list, sheet);
                     }
-                    if(rowExpansion.getChildren().get(0) instanceof DataTable) {
+                    if (rowExpansion.getChildren().get(0) instanceof DataTable) {
                         DataTable childTable = (DataTable) rowExpansion.getChildren().get(0);
                         int columnsCount = getColumnsCount(childTable);
 
@@ -802,7 +824,8 @@ public class ExcelCustomExporter extends Exporter {
                     }
                 }
 
-            } else {
+            }
+            else {
                 int cellIndex = row.getLastCellNum() == -1 ? 0 : row.getLastCellNum();
                 Cell cell = row.createCell(cellIndex);
                 if (component.isRendered()) {
@@ -830,15 +853,15 @@ public class ExcelCustomExporter extends Exporter {
             }
 
             if (col.isExportable()) {
-                //Adding RowIndex for custom Export
-                UIComponent component=(UIComponent)col;
-                if(component.getId().equalsIgnoreCase("subject")) {
+                // Adding RowIndex for custom Export
+                UIComponent component = (UIComponent) col;
+                if (component.getId().equalsIgnoreCase("subject")) {
 
                     Cell cell = rowHeader.createCell(0);
                     String value = "Index";
                     cell.setCellValue(new XSSFRichTextString(value));
                 }
-                //Adding RowIndex for custom Export
+                // Adding RowIndex for custom Export
                 addColumnValue(rowHeader, col.getFacet(columnType.facet()), "facet");
             }
         }
@@ -873,7 +896,8 @@ public class ExcelCustomExporter extends Exporter {
         if (type.equalsIgnoreCase("facet")) {
             // addColumnAlignments(component,facetStyle);
             cell.setCellStyle(facetStyle);
-        } else {
+        }
+        else {
             CellStyle cellStyle = this.cellStyle;
             cellStyle = addColumnAlignments(component, cellStyle);
             cell.setCellStyle(cellStyle);
@@ -900,9 +924,10 @@ public class ExcelCustomExporter extends Exporter {
         cell.setCellValue(new XSSFRichTextString(builder.toString()));
 
         if (type.equalsIgnoreCase("facet")) {
-            //addColumnAlignments(components,facetStyle);
+            // addColumnAlignments(components,facetStyle);
             cell.setCellStyle(facetStyle);
-        } else {
+        }
+        else {
             CellStyle cellStyle = this.cellStyle;
             for (UIComponent component : components) {
                 cellStyle = addColumnAlignments(component, cellStyle);
@@ -916,19 +941,21 @@ public class ExcelCustomExporter extends Exporter {
         if (component instanceof HtmlOutputText) {
             HtmlOutputText output = (HtmlOutputText) component;
             if (output.getStyle() != null && output.getStyle().contains("left")) {
-                style.setAlignment(CellStyle.ALIGN_LEFT);
+                style.setAlignment(HorizontalAlignment.LEFT);
             }
             if (output.getStyle() != null && output.getStyle().contains("right")) {
-                style.setAlignment(CellStyle.ALIGN_RIGHT);
+                style.setAlignment(HorizontalAlignment.RIGHT);
             }
             if (output.getStyle() != null && output.getStyle().contains("center")) {
-                style.setAlignment(CellStyle.ALIGN_CENTER);
+                style.setAlignment(HorizontalAlignment.CENTER);
             }
         }
         return style;
     }
 
-    public void customFormat(String facetBackground, String facetFontSize, String facetFontColor, String facetFontStyle, String fontName, String cellFontSize, String cellFontColor, String cellFontStyle, String datasetPadding, String orientation) {
+    @Override
+    public void customFormat(String facetBackground, String facetFontSize, String facetFontColor, String facetFontStyle, String fontName, String cellFontSize,
+                String cellFontColor, String cellFontStyle, String datasetPadding, String orientation) {
         if (facetBackground != null) {
             this.facetBackground = Color.decode(facetBackground);
         }
@@ -960,18 +987,18 @@ public class ExcelCustomExporter extends Exporter {
             ((XSSFFont) cellFont).setColor(cellColor);
         }
         if (cellFontSize != null) {
-            cellFont.setFontHeightInPoints((short) cellFontSize);
+            cellFont.setFontHeightInPoints(cellFontSize);
         }
 
         if (cellFontStyle.equalsIgnoreCase("BOLD")) {
-            cellFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+            cellFont.setBold(true);
         }
         if (cellFontStyle.equalsIgnoreCase("ITALIC")) {
             cellFont.setItalic(true);
         }
 
         if (facetFontStyle.equalsIgnoreCase("BOLD")) {
-            facetFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+            facetFont.setBold(true);
         }
         if (facetFontStyle.equalsIgnoreCase("ITALIC")) {
             facetFont.setItalic(true);
@@ -987,7 +1014,7 @@ public class ExcelCustomExporter extends Exporter {
         if (facetBackground != null) {
             XSSFColor backgroundColor = new XSSFColor(facetBackground);
             ((XSSFCellStyle) facetStyle).setFillForegroundColor(backgroundColor);
-            facetStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
+            facetStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
         }
 
@@ -997,22 +1024,23 @@ public class ExcelCustomExporter extends Exporter {
 
         }
         if (facetFontSize != null) {
-            facetFont.setFontHeightInPoints((short) facetFontSize);
+            facetFont.setFontHeightInPoints(facetFontSize);
         }
 
         facetStyle.setFont(facetFont);
-        facetStyle.setAlignment(CellStyle.ALIGN_CENTER);
+        facetStyle.setAlignment(HorizontalAlignment.CENTER);
 
     }
 
-    protected void writeExcelToResponse(ExternalContext externalContext, org.apache.poi.ss.usermodel.Workbook generatedExcel, String filename) throws IOException {
+    protected void writeExcelToResponse(ExternalContext externalContext, org.apache.poi.ss.usermodel.Workbook generatedExcel, String filename)
+                throws IOException {
 
         externalContext.setResponseContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         externalContext.setResponseHeader("Expires", "0");
         externalContext.setResponseHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
         externalContext.setResponseHeader("Pragma", "public");
         externalContext.setResponseHeader("Content-disposition", "attachment;filename=" + filename + ".xlsx");
-        externalContext.addResponseCookie(Constants.DOWNLOAD_COOKIE, "true", Collections.<String, Object>emptyMap());
+        externalContext.addResponseCookie(Constants.DOWNLOAD_COOKIE, "true", Collections.<String, Object> emptyMap());
 
         OutputStream out = externalContext.getResponseOutputStream();
         generatedExcel.write(out);
