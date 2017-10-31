@@ -40,6 +40,10 @@ body > form > .ui-layout-south {
     padding: 0.10em;
 }
 
+#componentList .ui-menuitem-text {
+    width: 60px;
+}
+
 #componentList .ui-separator {
     margin: 5px 0;
     width: 120%;

@@ -22,7 +22,7 @@
 
     <properties>
         <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-        <primefaces-extensions.new-components></primefaces-extensions.new-components>
+        <primefaces-extensions.new-components>social</primefaces-extensions.new-components>
         <primefaces-extensions.updated-components>gchart;documentViewer;</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components></primefaces-extensions.deprecated-components>
 
