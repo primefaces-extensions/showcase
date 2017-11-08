@@ -2,16 +2,19 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-    <p:growl id="growl" autoUpdate="true" showDetail="true" showSummary="true" />
+	<p:growl id="growl" autoUpdate="true" showDetail="true" showSummary="true" />
 
-<!-- EXAMPLE-SOURCE-START -->
-<pe:speedtest id="speedtest" file="#{request.contextPath}/resources/other/dummy.payload" widgetVar="speedtest" bgColor="#65ed28" captionDownload="Down" captionUpload="Up" captionJitter="Jit" captionPing="Pg">
-    <p:ajax listener="#{speedTestController.SaveResults}" process="@this" update="growl" />
-</pe:speedtest>
+	<!-- EXAMPLE-SOURCE-START -->
+	<!-- SPEED TEST -->
+	<pe:speedtest id="speedtest" widgetVar="speedtest" bgColor="#65ed28" captionDownload="Down" captionUpload="Up"
+		captionJitter="Jitter" captionPing="Ping" file="#{request.contextPath}/resources/other/dummy.payload">
+		<p:ajax listener="#{speedTestController.saveResults}" process="@this" update="growl" />
+	</pe:speedtest>
 
-<div class="ui-g">
-    <p:commandButton id="btnStart" value="Start Speedtest" icon="fa btnStart" style="width:100%;" onclick="PF('speedtest').start();"/>
-</div>
-<!-- EXAMPLE-SOURCE-END -->
+	<div class="ui-g">
+		<p:commandButton id="btnStart" value="Start Speedtest" icon="fa fa-play" style="width:100%;"
+			onclick="PF('speedtest').start();" />
+	</div>
+	<!-- EXAMPLE-SOURCE-END -->
 
 </ui:composition>
