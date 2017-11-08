@@ -2,7 +2,9 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-	<p:messages id="messages" autoUpdate="true" />
+<p:messages id="messages">
+   <p:autoUpdate />
+</p:messages>
 
 	<!-- EXAMPLE-SOURCE-START -->
 	<pe:slideout id="soAuto" title="AutoOpen" icon="fa fa-folder-open" location="top" widgetVar="slideoutAuto"

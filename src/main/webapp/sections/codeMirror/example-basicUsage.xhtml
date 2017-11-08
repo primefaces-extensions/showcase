@@ -7,7 +7,9 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
 
    <!-- EXAMPLE-SOURCE-START -->
-<p:growl id="growl" showDetail="true" autoUpdate="true"/>
+	<p:growl id="growl" showDetail="true" showSummary="true">
+		<p:autoUpdate />
+	</p:growl>
 
 <pe:codeMirror id="codeMirror" mode="#{codeMirrorController.mode}" theme="#{codeMirrorController.theme}"
 	value="#{codeMirrorController.content}" keyMap="#{codeMirrorController.keymap}" lineNumbers="true"

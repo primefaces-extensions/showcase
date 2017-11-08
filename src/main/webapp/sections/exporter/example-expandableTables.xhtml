@@ -7,7 +7,9 @@
         xmlns:pe="http://primefaces.org/ui/extensions">
         
 <!-- EXAMPLE-SOURCE-START -->
-	<p:growl id="growl" showDetail="true" autoUpdate="true" />
+	<p:growl id="growl" showDetail="true" showSummary="true">
+		<p:autoUpdate />
+	</p:growl>
 	<p:dataTable id="vehiclesTable" var="vehicle" value="#{vehicleTableController.vehicles}">
 		<p:ajax event="rowToggle" listener="#{vehicleTableController.onRowToggle}" />
 		<f:facet name="header">

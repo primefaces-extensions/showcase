@@ -2,7 +2,9 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-	<p:growl id="growl" autoUpdate="true" showDetail="true" showSummary="true" />
+	<p:growl id="growl" showDetail="true" showSummary="true">
+		<p:autoUpdate />
+	</p:growl>
 
 	<!-- EXAMPLE-SOURCE-START -->
 	<h:panelGrid columns="3">

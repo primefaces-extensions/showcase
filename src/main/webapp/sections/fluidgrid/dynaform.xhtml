@@ -28,7 +28,9 @@
         
         <h:panelGroup layout="block" styleClass="centerExample">
 <!-- EXAMPLE-SOURCE-START -->
-<p:growl autoUpdate="true"/>            
+	<p:growl id="growl" showDetail="true" showSummary="true">
+		<p:autoUpdate />
+	</p:growl>            
             
 <pe:fluidGrid id="fluidGrid" value="#{fluidGridDynaFormController.items}" var="data"
               resizeBound="false" hGutter="20" widgetVar="fluidGridWdgt">

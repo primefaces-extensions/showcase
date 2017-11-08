@@ -5,7 +5,9 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
 <!-- EXAMPLE-SOURCE-START -->
-<p:growl autoUpdate="true"/>
+	<p:growl id="growl" showDetail="true" showSummary="true">
+		<p:autoUpdate />
+	</p:growl>
     
 <pe:fluidGrid value="#{fluidGridDynamicController.images}" var="image"
               fitWidth="true" hasImages="true">
