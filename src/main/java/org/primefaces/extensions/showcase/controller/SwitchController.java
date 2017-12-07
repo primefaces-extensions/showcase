@@ -12,7 +12,7 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class SwitchController implements Serializable {
 
-	private String value;
+	private String value = "";
 	
 	public String getValue() {
 		return value;
