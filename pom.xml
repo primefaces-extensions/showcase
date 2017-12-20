@@ -149,6 +149,7 @@
                 <groupId>org.primefaces.extensions</groupId>
                 <artifactId>resources-optimizer-maven-plugin</artifactId>
                 <configuration>
+                    <useDataUri>true</useDataUri>
                     <resourcesSets>
                         <resourcesSet>
                             <inputDir>${project.build.directory}/webapp-resources</inputDir>
