@@ -4,9 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition>
-	<p:link href="/views/home.jsf">
-		<h:graphicImage library="images" name="logo.png" styleClass="logo" title="PrimeFaces Extensions" />
-	</p:link>
+	<p:link id="logo-link" href="/views/home.jsf" title="PrimeFaces Extensions" styleClass="logo"/>
 
 	<h:panelGrid columns="4" style="float:right;padding:4px;">
 		<h:panelGrid columns="2" columnClasses="themeText,themeSelect">
@@ -24,22 +22,16 @@
 			</p:selectOneMenu>
 		</h:panelGrid>
 
-		<p:link href="http://primefaces-extensions.github.com/" target="_blank">
-			<h:graphicImage library="images" name="bookmark-home.png" title="Homepage" />
-		</p:link>
+		<p:link href="http://primefaces-extensions.github.com/" target="_blank" id="homepage-link" title="Homepage"/>
 
-		<p:link href="https://github.com/primefaces-extensions" target="_blank">
-			<h:graphicImage library="images" name="bookmark-github.png" title="GitHub" />
-		</p:link>
+		<p:link href="https://github.com/primefaces-extensions" target="_blank" id="github-link" title="GitHub"/>
 
-		<p:link href="https://github.com/primefaces-extensions/primefaces-extensions.github.com/issues" target="_blank">
-			<h:graphicImage library="images" name="bookmark-issues.png" title="Issue Tracking" />
-		</p:link>
+		<p:link href="https://github.com/primefaces-extensions/primefaces-extensions.github.com/issues" target="_blank" id="issues-link" title="Issue Tracking"/>
 	</h:panelGrid>
 
 	<p:ajaxStatus styleClass="logo" style="left:80px; width:32px; height:32px; margin-top: 10px;">
 		<f:facet name="start">
-			<h:graphicImage library="images" name="ajax-loader.gif" alt="AJAX Status" />
+			<div class="fa-3x"><i class="fas fa-sync fa-spin ajax-loader" aria-hidden="true"/></div>
 		</f:facet>
 		<f:facet name="complete">
 			<h:outputText value="" />
