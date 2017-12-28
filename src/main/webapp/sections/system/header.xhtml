@@ -12,7 +12,7 @@
 		<h:panelGrid columns="2" columnClasses="themeText,themeSelect">
 			<h:outputText value="Theme" />
 			<p:selectOneMenu id="themeSelectMenu" value="#{userSettings.currentTheme}" var="theme" effect="drop"
-				onchange="console.log('Theme Change');$('#headerForm').submit();">
+				onchange="console.log('Theme Change');$('#headerForm').submit();" dynamic="true">
 				<f:converter converterId="org.primefaces.extensions.showcase.converter.ThemeConverter" />
 				<f:selectItems var="t" value="#{userSettings.availableThemes}" itemLabel="#{t.name}" itemValue="#{t}" />
 				<p:column>
@@ -20,7 +20,7 @@
 				</p:column>
 				<p:column>
                         #{theme.name}
-                    </p:column>
+                </p:column>
 			</p:selectOneMenu>
 		</h:panelGrid>
 
