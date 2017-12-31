@@ -9,6 +9,11 @@
             org.primefaces.application.exceptionhandler.PrimeExceptionHandlerELResolver
         </el-resolver>
     </application>
+    
+    <converter>
+        <converter-id>themeConverter</converter-id>
+        <converter-class>org.primefaces.extensions.showcase.converter.ThemeConverter</converter-class>
+    </converter>
 
     <factory>
         <exception-handler-factory>
