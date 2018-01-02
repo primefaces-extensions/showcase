@@ -23,7 +23,7 @@
 	<properties>
 		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
 		<primefaces-extensions.new-components>social;speedtest</primefaces-extensions.new-components>
-		<primefaces-extensions.updated-components>gchart;documentViewer;</primefaces-extensions.updated-components>
+		<primefaces-extensions.updated-components>gchart;documentViewer;slideout;</primefaces-extensions.updated-components>
 		<primefaces-extensions.deprecated-components/>
 
 		<mojarra.version>2.3.2</mojarra.version>
