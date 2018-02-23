@@ -16,14 +16,14 @@
         <pe:layout id="fpl" widgetVar="fullLayoutWidget" options="#{showcaseLayout.options}">
             <pe:javascript event="resize" execute="#{resizeFunction}" disabled="#{empty resizeFunction}"/>
             
-            <pe:layoutPane position="north">
+            <pe:layoutPane position="north" id="layoutNorth">
                 <h:form id="headerForm" prependId="false">
                     <ui:insert name="header"/>
                 </h:form>
             </pe:layoutPane>
             <h:form id="mainForm" prependId="false">
                 <ui:insert name="center"/>
-                <pe:layoutPane position="south">
+                <pe:layoutPane position="south" id="layoutSouth">
                     <ui:insert name="footer"/>
                 </pe:layoutPane>
             </h:form>

@@ -18,6 +18,7 @@
             dp.SyntaxHighlighter.HighlightAll('code');
             $( document ).ready(function() {
                PF('fullLayoutWidget').resizeAll();
+               $("#layoutCenter").css("z-index", '');
             });
         </h:outputScript>
     </ui:define>
@@ -25,10 +26,10 @@
         <ui:include src="/sections/system/header.xhtml"/>
     </ui:define>
     <ui:define name="center">
-        <pe:layoutPane position="center">
+        <pe:layoutPane position="center" id="layoutCenter">
             <ui:insert name="centerContent"/>
         </pe:layoutPane>
-        <pe:layoutPane position="west">
+        <pe:layoutPane position="west" id="layoutWest">
             <f:facet name="header">
                 <h:outputText value="Components and more"/>
             </f:facet>
@@ -129,7 +130,7 @@
             <pe:tooltip value="Updated component / use case in the current release" shared="true" for="@(.ui-icon-updated-comp)"/>
             <pe:tooltip value="Deprecated component - Retired or moved to PrimeFaces" shared="true" for="@(.ui-icon-deprecated-comp)"/>
         </pe:layoutPane>
-        <pe:layoutPane position="east">
+        <pe:layoutPane position="east" id="layoutEast">
             <pe:layoutPane position="center">
                 <f:facet name="header">
                     <h:outputText value="Use Cases"/>
