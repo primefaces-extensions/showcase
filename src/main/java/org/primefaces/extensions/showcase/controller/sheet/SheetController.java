@@ -1,6 +1,8 @@
 package org.primefaces.extensions.showcase.controller.sheet;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -10,11 +12,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.primefaces.extensions.component.sheet.Sheet;
-import org.primefaces.extensions.event.SheetUpdate;
+import org.primefaces.extensions.event.SheetEvent;
+import org.primefaces.extensions.model.sheet.SheetUpdate;
 import org.primefaces.extensions.showcase.model.sheet.Asset;
 import org.primefaces.extensions.showcase.model.sheet.AssetType;
 import org.primefaces.extensions.showcase.model.sheet.PlatformArchType;
@@ -40,15 +42,15 @@ public class SheetController implements Serializable {
         addAssets(5, null, null, AssetType.PRINTER);
     }
 
-    public void cellEditEvent(AjaxBehaviorEvent event) {
-        Sheet sheet = (Sheet) event.getComponent();
-        List<SheetUpdate> updates = sheet.getUpdates();
+    public void cellChangeEvent(final SheetEvent event) {
+        final Sheet sheet = event.getSheet();
+        final List<SheetUpdate> updates = sheet.getUpdates();
         // A SheetUpdate exists for each column updated, the same row may
         // appear more than once. For this reason we will track those we already persisted
-        HashSet<Asset> processed = new HashSet<Asset>();
+        final HashSet<Asset> processed = new HashSet<Asset>();
         int rowUpdates = 0;
-        for (SheetUpdate update : updates) {
-            Asset asset = (Asset) update.getRowData();
+        for (final SheetUpdate update : updates) {
+            final Asset asset = (Asset) update.getRowData();
             if (processed.contains(asset)) {
                 continue;
             }
@@ -64,13 +66,13 @@ public class SheetController implements Serializable {
         return assets;
     }
 
-    public void setAssets(List<Asset> assets) {
+    public void setAssets(final List<Asset> assets) {
         this.assets = assets;
     }
 
-    private void addAssets(int count, PlatformType platform, PlatformArchType arch, AssetType type) {
+    private void addAssets(final int count, final PlatformType platform, final PlatformArchType arch, final AssetType type) {
         for (int i = 0; i < count; i++) {
-            Asset asset = new Asset();
+            final Asset asset = new Asset();
             asset.setAssetId(RandomUtils.nextLong());
             asset.setPlatform(platform);
             asset.setPlatformArch(arch);
@@ -78,6 +80,8 @@ public class SheetController implements Serializable {
             asset.setAssetType(type);
             asset.setLastUpdated(new Date());
             asset.setValue1(RandomUtils.nextInt(1, 1000));
+            asset.setPurchasePrice(
+                        BigDecimal.valueOf(RandomUtils.nextDouble(1.11, 999.99) * (RandomUtils.nextBoolean() ? -1 : 1)).setScale(2, RoundingMode.HALF_UP));
             getAssets().add(asset);
         }
     }

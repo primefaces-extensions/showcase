@@ -9,20 +9,20 @@
             <h:outputText value="Sheet"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Sheet provides a spreadsheet experience you are already familiar with. You can finally work with large volumes of data without worrying about performance issues.
-            Notice the <strong>fixed</strong> columns and rows, and the custom cell styling. 
+            Sheet provides ajax events for <strong>cellSelect, change, sort, filter, columnSelect, rowSelect.</strong>
+            Click on a header once to select it, then you may move columns around when the hand icon appears.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/sheet/example-basicUsage.xhtml"/>
+            <ui:include src="/sections/sheet/example-ajaxEvents.xhtml"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/sheet/example-basicUsage.xhtml')}
+${showcase:getFileContent('/sections/sheet/example-ajaxEvents.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/sheet/SheetController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/sheet/SheetAjaxController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
