@@ -7,46 +7,43 @@
 	</p:growl>
 
 <!-- EXAMPLE-SOURCE-START -->
-<h:form id="frmMain">
-	<pe:sheet id="sheet" widgetVar="sheetWidget" value="#{sheetController.assets}" var="row" 
-	    height="400" rowKey="#{row.assetId}" fixedCols="2" fixedRows="3" showRowHeaders="true"
-	    resizableCols="true" resizableRows="true" 
-	    sortBy="#{row.assetId}" sortOrder="ascending">
+<pe:sheet id="sheet" widgetVar="sheetWidget" value="#{sheetController.assets}" var="row" 
+    height="400" rowKey="#{row.assetId}" fixedCols="2" fixedRows="3" showRowHeaders="true"
+    resizableCols="true" resizableRows="true" 
+    sortBy="#{row.assetId}" sortOrder="ascending">
 
-		<p:ajax event="change" listener="#{sheetController.cellChangeEvent}" />
+	<p:ajax event="change" listener="#{sheetController.cellChangeEvent}" />
 
-		<f:facet name="header">
-			<h:outputText value="Assets" />
-		</f:facet>
+	<f:facet name="header">
+		<h:outputText value="Assets" />
+	</f:facet>
 
-		<f:facet name="footer">
-			<h:outputText value="#{sheetController.assets.size()} Records" />
-		</f:facet>
+	<f:facet name="footer">
+		<h:outputText value="#{sheetController.assets.size()} Records" />
+	</f:facet>
 
-		<pe:sheetcolumn headerText="Id (read-only)" readonly="true" value="#{row.assetId}" sortBy="#{row.assetId}" colWidth="150" filterBy="#{row.assetId}" />
-		<pe:sheetcolumn headerText="Host Name" value="#{row.hostName}" colWidth="150" sortBy="#{row.hostName}"	filterBy="#{row.hostName}" readonly="true"/>
-		<pe:sheetcolumn headerText="Type" value="#{row.assetType}" readonly="true" colWidth="100" sortBy="#{row.assetType}"	filterBy="#{row.assetType}" filterOptions="#{sheetOptionProducer.assetTypes}" />
-		<pe:sheetcolumn headerText="Platform" value="#{row.platform}" readonly="true" colWidth="100" sortBy="#{row.platform}" filterBy="#{row.platform}" filterOptions="#{sheetOptionProducer.platformTypes}" />
-		<pe:sheetcolumn headerText="Arch" value="#{row.platformArch}" readonly="true" colWidth="100" sortBy="#{row.platformArch}" filterBy="#{row.platformArch}" filterOptions="#{sheetOptionProducer.archTypes}" />
-		<pe:sheetcolumn headerText="Price" value="#{row.purchasePrice}" colWidth="100" styleClass="htRight #{row.purchasePrice gt 0 ? 'positive' : 'negative'}">
-            <f:converter converterId="javax.faces.BigDecimal" />
-        </pe:sheetcolumn>
-		<pe:sheetcolumn headerText="Comments" value="#{row.comment}" colWidth="200" sortBy="#{row.comment}" />
-		<pe:sheetcolumn headerText="Updated" value="#{row.lastUpdated}" colWidth="170" sortBy="#{row.lastUpdated}" styleClass="htCenter">
-			<f:convertDateTime type="both" />
-		</pe:sheetcolumn>
-		<pe:sheetcolumn headerText="Value 1" value="#{row.value1}" colWidth="100" styleClass="htRight"/>
-		<pe:sheetcolumn headerText="Value 2" value="#{row.value2}" colWidth="100" />
-		<pe:sheetcolumn headerText="Value 3" value="#{row.value3}" colWidth="100" />
-		<pe:sheetcolumn headerText="Value 4" value="#{row.value4}" colWidth="100" />
-		<pe:sheetcolumn headerText="Value 5" value="#{row.value5}" colWidth="100" />
-		<pe:sheetcolumn headerText="Value 6" value="#{row.value6}" colWidth="100" />
-		<pe:sheetcolumn headerText="Value 7" value="#{row.value7}" colWidth="100" />
-		<pe:sheetcolumn headerText="Value 8" value="#{row.value8}" colWidth="100" />
-		<pe:sheetcolumn headerText="Value 9" value="#{row.value9}" colWidth="100" />
-		<pe:sheetcolumn headerText="Value 10" value="#{row.value10}" colWidth="100" />
-	</pe:sheet>
-</h:form>
+	<pe:sheetcolumn headerText="Id (read-only)" readonly="true" value="#{row.assetId}" sortBy="#{row.assetId}" colWidth="150" filterBy="#{row.assetId}" />
+	<pe:sheetcolumn headerText="Type" value="#{row.assetType}" readonly="true" colWidth="100" sortBy="#{row.assetType}"	filterBy="#{row.assetType}" filterOptions="#{sheetOptionProducer.assetTypes}" />
+	<pe:sheetcolumn headerText="Platform" value="#{row.platform}" readonly="true" colWidth="100" sortBy="#{row.platform}" filterBy="#{row.platform}" filterOptions="#{sheetOptionProducer.platformTypes}" />
+	<pe:sheetcolumn headerText="Arch" value="#{row.platformArch}" readonly="true" colWidth="100" sortBy="#{row.platformArch}" filterBy="#{row.platformArch}" filterOptions="#{sheetOptionProducer.archTypes}" />
+	<pe:sheetcolumn headerText="Price" value="#{row.purchasePrice}" colWidth="100" styleClass="htRight #{row.purchasePrice gt 0 ? 'positive' : 'negative'}" required="true" requiredMessage="Price is required!">
+           <f:converter converterId="javax.faces.BigDecimal" />
+    </pe:sheetcolumn>
+	<pe:sheetcolumn headerText="Comments" value="#{row.comment}" colWidth="200" sortBy="#{row.comment}" />
+	<pe:sheetcolumn headerText="Updated" value="#{row.lastUpdated}" colWidth="170" sortBy="#{row.lastUpdated}" styleClass="htCenter">
+		<f:convertDateTime type="both" />
+	</pe:sheetcolumn>
+	<pe:sheetcolumn headerText="Value 1" value="#{row.value1}" colWidth="100" styleClass="htRight"/>
+	<pe:sheetcolumn headerText="Value 2" value="#{row.value2}" colWidth="100" />
+	<pe:sheetcolumn headerText="Value 3" value="#{row.value3}" colWidth="100" />
+	<pe:sheetcolumn headerText="Value 4" value="#{row.value4}" colWidth="100" />
+	<pe:sheetcolumn headerText="Value 5" value="#{row.value5}" colWidth="100" />
+	<pe:sheetcolumn headerText="Value 6" value="#{row.value6}" colWidth="100" />
+	<pe:sheetcolumn headerText="Value 7" value="#{row.value7}" colWidth="100" />
+	<pe:sheetcolumn headerText="Value 8" value="#{row.value8}" colWidth="100" />
+	<pe:sheetcolumn headerText="Value 9" value="#{row.value9}" colWidth="100" />
+	<pe:sheetcolumn headerText="Value 10" value="#{row.value10}" colWidth="100" />
+</pe:sheet>
 
 <style type="text/css">
 .positive {color : green}

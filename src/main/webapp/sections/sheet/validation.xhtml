@@ -9,20 +9,19 @@
             <h:outputText value="Sheet"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Sheet provides a spreadsheet experience you are already familiar with. You can finally work with large volumes of data without worrying about performance issues.
-            Notice the <strong>fixed</strong> columns and rows, and the custom cell styling. Validation is per cell, try and enter "abc" into the Price column which is expecting a BigDecimal. 
+            Cells and columns can be validated individually as well as marked required.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/sheet/example-basicUsage.xhtml"/>
+            <ui:include src="/sections/sheet/example-validation.xhtml"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/sheet/example-basicUsage.xhtml')}
+${showcase:getFileContent('/sections/sheet/example-validation.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/sheet/SheetController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/sheet/SheetAjaxController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>

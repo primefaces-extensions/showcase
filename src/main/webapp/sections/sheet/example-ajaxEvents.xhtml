@@ -7,30 +7,28 @@
 	</p:growl>
 
 <!-- EXAMPLE-SOURCE-START -->
-<h:form id="frmMain">
-	<pe:sheet id="sheet" value="#{sheetAjaxController.assets}" var="row" height="400" rowKey="#{row.assetId}"
-		showRowHeaders="true" sortBy="#{row.assetId}" sortOrder="ascending"  width="700"
-		stretchH="all" movableCols="true" movableRows="true">
+<pe:sheet id="sheet" value="#{sheetAjaxController.assets}" var="row" height="400" rowKey="#{row.assetId}"
+	showRowHeaders="true" sortBy="#{row.assetId}" sortOrder="ascending"  width="700"
+	stretchH="all" movableCols="true" movableRows="true">
 
-		<p:ajax event="change" listener="#{sheetAjaxController.cellChangeEvent}" />
-		<p:ajax event="columnSelect" listener="#{sheetAjaxController.columnSelectEvent}" />
-		<p:ajax event="rowSelect" listener="#{sheetAjaxController.rowSelectEvent}" />
+	<p:ajax event="change" listener="#{sheetAjaxController.cellChangeEvent}" />
+	<p:ajax event="columnSelect" listener="#{sheetAjaxController.columnSelectEvent}" />
+	<p:ajax event="rowSelect" listener="#{sheetAjaxController.rowSelectEvent}" />
 
-		<f:facet name="header">
-			<h:outputText value="Assets" />
-		</f:facet>
+	<f:facet name="header">
+		<h:outputText value="Assets" />
+	</f:facet>
 
-		<f:facet name="footer">
-			<h:outputText value="#{sheetAjaxController.assets.size()} Records" />
-		</f:facet>
+	<f:facet name="footer">
+		<h:outputText value="#{sheetAjaxController.assets.size()} Records" />
+	</f:facet>
 
-		<pe:sheetcolumn headerText="Id (readonly)" readonly="true" value="#{row.assetId}" colWidth="150"  />
-		<pe:sheetcolumn headerText="Type (readonly)" value="#{row.assetType}" readonly="true" colWidth="100" />
-		<pe:sheetcolumn headerText="Platform (readonly)" value="#{row.platform}" readonly="true" colWidth="100" />
-		<pe:sheetcolumn headerText="Arch (readonly)" value="#{row.platformArch}" readonly="true" colWidth="100" />
-		<pe:sheetcolumn headerText="Editable" value="#{row.value1}" colWidth="100" styleClass="htRight"/>
-	</pe:sheet>
-</h:form>
+	<pe:sheetcolumn headerText="Id (readonly)" readonly="true" value="#{row.assetId}" colWidth="150"  />
+	<pe:sheetcolumn headerText="Type (readonly)" value="#{row.assetType}" readonly="true" colWidth="100" />
+	<pe:sheetcolumn headerText="Platform (readonly)" value="#{row.platform}" readonly="true" colWidth="100" />
+	<pe:sheetcolumn headerText="Arch (readonly)" value="#{row.platformArch}" readonly="true" colWidth="100" />
+	<pe:sheetcolumn headerText="Editable" value="#{row.value1}" colWidth="100" styleClass="htRight"/>
+</pe:sheet>
 
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

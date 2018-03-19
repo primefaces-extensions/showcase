@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<p:growl id="growl" showDetail="true" showSummary="true">
+		<p:autoUpdate />
+	</p:growl>
+
+<!-- EXAMPLE-SOURCE-START -->
+<pe:sheet id="sheet" value="#{sheetDynamicController.sheetRows}" var="row" height="400" rowKey="#{row.id}"
+	showRowHeaders="true" sortBy="#{row.id}" sortOrder="ascending"  width="800"
+	widgetVar="sheetWidget">
+	
+	<f:facet name="header">
+		<h:outputText value="Dynamic Columns" />
+	</f:facet>
+
+	<pe:sheetcolumn headerText="Id (readonly)" readonly="true" value="#{row.id}" colWidth="150"  />
+	<c:forEach items="#{sheetDynamicController.hoursOfDay}" var="hourOfDay" varStatus="status">
+        <pe:sheetcolumn styleClass="htRight #{row.cells[status.index].style}"
+                        headerText="#{hourOfDay}"
+                        value="#{row.cells[status.index].value}"
+                        readonlyCell="#{row.readOnly}">
+                        <f:converter converterId="javax.faces.Integer" />
+        </pe:sheetcolumn>
+    </c:forEach>
+
+    <f:facet name="footer">
+        <h:outputText value="#{sheetDynamicController.sheetRows.size()} Records" />
+    </f:facet>
+</pe:sheet>
+
+<style type="text/css">
+.cell-blue {color : blue}
+.cell-orange {color : darkorange}
+</style>
+<script type="text/javascript">
+//<![CDATA[
+ $(document).ready(function() {
+    PF('sheetWidget').ht.updateSettings({
+       beforeKeyDown: function (e) {
+           // prevent Alpha chars in numeric sheet cells
+           var key = e.charCode || e.keyCode || 0;
+           // allow backspace, tab, delete, enter, arrows, numbers and keypad numbers
+           // ONLY home, end, F5, F12
+           console.log('Key: ' + key + ' Shift: ' + e.shiftKey);
+           var isNumeric = ((key == 8) || (key == 9) || (key == 13) || (key == 46)
+                           || (key == 116) || (key == 123) || ((key >= 35) && (key <= 40))
+                           || ((key >= 48) && (key <= 57)) || ((key >= 96) && (key <= 105)));
+
+            if (!isNumeric || e.shiftKey) {
+               // prevent alpha characters
+               e.stopImmediatePropagation();
+               e.preventDefault();
+         }
+       }
+    });
+ });
+//]]>
+</script>
+<!-- EXAMPLE-SOURCE-END -->
+</ui:composition>

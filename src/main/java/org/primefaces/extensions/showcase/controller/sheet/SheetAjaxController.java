@@ -5,7 +5,9 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import org.primefaces.extensions.component.sheet.Sheet;
 import org.primefaces.extensions.event.SheetEvent;
@@ -59,6 +61,14 @@ public class SheetAjaxController extends SheetController {
         final int row = sheet.getSelectedRow() + 1;
         FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Row Selected", String.format("Row %d selected.", row)));
+    }
+
+    public void validateExactly5(final FacesContext context, final UIComponent comp, final Object value) {
+        final Integer integer = (Integer) value;
+        if (integer.intValue() != 5) {
+            final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Value must only be 5 exactly!");
+            throw new ValidatorException(message);
+        }
     }
 
 }

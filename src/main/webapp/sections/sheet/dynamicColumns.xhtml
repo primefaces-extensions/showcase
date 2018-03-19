@@ -9,20 +9,28 @@
             <h:outputText value="Sheet"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Sheet provides a spreadsheet experience you are already familiar with. You can finally work with large volumes of data without worrying about performance issues.
-            Notice the <strong>fixed</strong> columns and rows, and the custom cell styling. Validation is per cell, try and enter "abc" into the Price column which is expecting a BigDecimal. 
+            Create columns dynamically and render their style and other attributes from backing beans.
+            Also demonstrate how to customize the Handsontable instance using "updateSettings" Javascript.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/sheet/example-basicUsage.xhtml"/>
+            <ui:include src="/sections/sheet/example-dynamicColumns.xhtml"/>
         </h:panelGroup>
 
-        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
+        <ui:decorate template="/templates/fourTabsDecoratorCustom.xhtml">
+            <ui:param name="customTitle" value="SheetCell"/>
+            <ui:param name="customCode" value="java"/>
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/sheet/example-basicUsage.xhtml')}
+${showcase:getFileContent('/sections/sheet/example-dynamicColumns.xhtml')}
             </ui:define>
             <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/sheet/SheetController.java')}
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/sheet/SheetDynamicController.java')}
+            </ui:define>
+            <ui:define name="contentTab3">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/sheet/DynaSheetRow.java')}
+            </ui:define>
+            <ui:define name="contentTab4">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/model/sheet/DynaSheetCell.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
