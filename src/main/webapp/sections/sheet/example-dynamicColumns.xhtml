@@ -38,7 +38,8 @@
 <script type="text/javascript">
 //<![CDATA[
  $(document).ready(function() {
-    PF('sheetWidget').ht.updateSettings({
+    var $hot = PF('sheetWidget').ht;
+    $hot.updateSettings({
        beforeKeyDown: function (e) {
            // prevent Alpha chars in numeric sheet cells
            var key = e.charCode || e.keyCode || 0;
@@ -49,11 +50,40 @@
                            || (key == 116) || (key == 123) || ((key >= 35) && (key <= 40))
                            || ((key >= 48) && (key <= 57)) || ((key >= 96) && (key <= 105)));
 
-            if (!isNumeric || e.shiftKey) {
+           if (!isNumeric || e.shiftKey) {
                // prevent alpha characters
                e.stopImmediatePropagation();
                e.preventDefault();
-         }
+           }
+       },
+       contextMenu: {
+           callback: function (key, options) {
+             if (key === 'about') {
+               setTimeout(function () {
+                 // timeout is used to make sure the menu collapsed before alert is shown
+                 alert("PrimeFaces Extensions Rocks! This is a context menu with default and custom options mixed");
+               }, 100);
+             }
+           },
+           items: {
+             "row_above": {
+               disabled: function () {
+                 // if first row, disable this option
+                 return $hot.getSelected()[0] === 0;
+               }
+             },
+             "row_below": {},
+             "hsep1": "---------",
+             "remove_row": {
+               name: 'Remove this row, ok?',
+               disabled: function () {
+                 // if first row, disable this option
+                 return $hot.getSelected()[0] === 0
+               }
+             },
+             "hsep2": "---------",
+             "about": {name: 'About...'}
+           }
        }
     });
  });
