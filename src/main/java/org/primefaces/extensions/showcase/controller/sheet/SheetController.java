@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.primefaces.extensions.component.sheet.Sheet;
 import org.primefaces.extensions.event.SheetEvent;
@@ -73,6 +74,7 @@ public class SheetController implements Serializable {
             asset.setAssetType(type);
             asset.setLastUpdated(new Date());
             asset.setValue1(RandomUtils.nextInt(1, 1000));
+            asset.setPassword(RandomStringUtils.randomAlphabetic(6));
             asset.setPurchasePrice(
                         BigDecimal.valueOf(RandomUtils.nextDouble(1.11, 999.99) * (RandomUtils.nextBoolean() ? -1 : 1)).setScale(2, RoundingMode.HALF_UP));
             getAssets().add(asset);

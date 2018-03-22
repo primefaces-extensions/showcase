@@ -29,7 +29,7 @@
 	<pe:sheetcolumn headerText="Price" value="#{row.purchasePrice}" colWidth="100" styleClass="htRight #{row.purchasePrice gt 0 ? 'positive' : 'negative'}" required="true" requiredMessage="Price is required!">
            <f:converter converterId="javax.faces.BigDecimal" />
     </pe:sheetcolumn>
-	<pe:sheetcolumn headerText="Comments" value="#{row.comment}" colWidth="200" sortBy="#{row.comment}" />
+	<pe:sheetcolumn headerText="Password" value="#{row.password}" colWidth="100" colType="password" passwordHashSymbol="*" passwordHashLength="8" />
 	<pe:sheetcolumn headerText="Updated" value="#{row.lastUpdated}" colWidth="170" sortBy="#{row.lastUpdated}" styleClass="htCenter">
 		<f:convertDateTime type="both" />
 	</pe:sheetcolumn>
