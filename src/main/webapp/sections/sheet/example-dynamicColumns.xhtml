@@ -10,7 +10,7 @@
 <!-- EXAMPLE-SOURCE-START -->
 <pe:sheet id="sheet" value="#{sheetDynamicController.sheetRows}" var="row" height="400" rowKey="#{row.id}"
 	showRowHeaders="true" sortBy="#{row.id}" sortOrder="ascending"  width="800"
-	widgetVar="sheetWidget">
+	widgetVar="sheetWidget" filteredValue="#{sheetDynamicController.filteredSheetRows}">
 	
 	<f:facet name="header">
 		<h:outputText value="Dynamic Columns" />
@@ -27,7 +27,7 @@
     </c:forEach>
 
     <f:facet name="footer">
-        <h:outputText value="#{sheetDynamicController.sheetRows.size()} Records" />
+        <h:outputText value="#{sheetDynamicController.filteredSheetRows.size()} Records" />
     </f:facet>
 </pe:sheet>
 

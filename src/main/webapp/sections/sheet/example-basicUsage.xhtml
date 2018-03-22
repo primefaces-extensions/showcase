@@ -9,7 +9,7 @@
 <!-- EXAMPLE-SOURCE-START -->
 <pe:sheet id="sheet" widgetVar="sheetWidget" value="#{sheetController.assets}" var="row" 
     height="400" rowKey="#{row.assetId}" fixedCols="2" fixedRows="3" showRowHeaders="true"
-    resizableCols="true" resizableRows="true" 
+    resizableCols="true" resizableRows="true" filteredValue="#{sheetController.filteredAssets}"
     sortBy="#{row.assetId}" sortOrder="ascending">
 
 	<p:ajax event="change" listener="#{sheetController.cellChangeEvent}" />
@@ -19,7 +19,7 @@
 	</f:facet>
 
 	<f:facet name="footer">
-		<h:outputText value="#{sheetController.assets.size()} Records" />
+		<h:outputText id="footer" value="#{sheetController.filteredAssets.size()} Records" />
 	</f:facet>
 
 	<pe:sheetcolumn headerText="Id (read-only)" readonly="true" value="#{row.assetId}" sortBy="#{row.assetId}" colWidth="150" filterBy="#{row.assetId}" />

@@ -7,9 +7,11 @@
 	</p:growl>
 
 <!-- EXAMPLE-SOURCE-START -->
-<pe:sheet id="sheet" value="#{sheetAjaxController.assets}" var="row" height="400" rowKey="#{row.assetId}"
-	showRowHeaders="true" sortBy="#{row.assetId}" sortOrder="ascending"  width="700"
-	stretchH="all" movableCols="true" movableRows="true">
+<pe:sheet id="sheet" widgetVar="sheetWidget" value="#{sheetAjaxController.assets}" 
+    var="row" height="400" rowKey="#{row.assetId}" showRowHeaders="true"
+	sortBy="#{row.assetId}" sortOrder="ascending"  width="700"
+	stretchH="all" movableCols="true" movableRows="true" 
+	filteredValue="#{sheetAjaxController.filteredAssets}">
 
 	<p:ajax event="change" listener="#{sheetAjaxController.cellChangeEvent}" />
 	<p:ajax event="columnSelect" listener="#{sheetAjaxController.columnSelectEvent}" />
@@ -20,7 +22,7 @@
 	</f:facet>
 
 	<f:facet name="footer">
-		<h:outputText value="#{sheetAjaxController.assets.size()} Records" />
+		<h:outputText value="#{sheetAjaxController.filteredAssets.size()} Records" />
 	</f:facet>
 
 	<pe:sheetcolumn headerText="Id (readonly)" readonly="true" value="#{row.assetId}" colWidth="150"  />

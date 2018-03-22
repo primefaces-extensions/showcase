@@ -34,6 +34,7 @@ public class SheetController implements Serializable {
     private static final long serialVersionUID = 20120224L;
 
     private List<Asset> assets = new ArrayList<>();
+    private List<Asset> filteredAssets = new ArrayList<>();
 
     public SheetController() {
         addAssets(40, PlatformType.Linux, PlatformArchType.AMD64, AssetType.SERVER);
@@ -62,14 +63,6 @@ public class SheetController implements Serializable {
                     new FacesMessage("Update Success", Integer.toString(rowUpdates) + " rows updated"));
     }
 
-    public List<Asset> getAssets() {
-        return assets;
-    }
-
-    public void setAssets(final List<Asset> assets) {
-        this.assets = assets;
-    }
-
     private void addAssets(final int count, final PlatformType platform, final PlatformArchType arch, final AssetType type) {
         for (int i = 0; i < count; i++) {
             final Asset asset = new Asset();
@@ -84,6 +77,22 @@ public class SheetController implements Serializable {
                         BigDecimal.valueOf(RandomUtils.nextDouble(1.11, 999.99) * (RandomUtils.nextBoolean() ? -1 : 1)).setScale(2, RoundingMode.HALF_UP));
             getAssets().add(asset);
         }
+    }
+
+    public List<Asset> getAssets() {
+        return assets;
+    }
+
+    public void setAssets(final List<Asset> assets) {
+        this.assets = assets;
+    }
+
+    public List<Asset> getFilteredAssets() {
+        return filteredAssets;
+    }
+
+    public void setFilteredAssets(final List<Asset> filteredAssets) {
+        this.filteredAssets = filteredAssets;
     }
 
 }

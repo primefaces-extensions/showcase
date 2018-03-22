@@ -24,6 +24,7 @@ public class SheetDynamicController implements Serializable {
     private static final long serialVersionUID = 20120224L;
 
     private List<DynaSheetRow> sheetRows = new ArrayList<>();
+    private List<DynaSheetRow> filteredSheetRows = new ArrayList<>();
     private List<Integer> hoursOfDay = new ArrayList<>();
 
     public SheetDynamicController() {
@@ -58,6 +59,14 @@ public class SheetDynamicController implements Serializable {
 
     public void setHoursOfDay(final List<Integer> hoursOfDay) {
         this.hoursOfDay = hoursOfDay;
+    }
+
+    public List<DynaSheetRow> getFilteredSheetRows() {
+        return filteredSheetRows;
+    }
+
+    public void setFilteredSheetRows(final List<DynaSheetRow> filteredSheetRows) {
+        this.filteredSheetRows = filteredSheetRows;
     }
 
 }
