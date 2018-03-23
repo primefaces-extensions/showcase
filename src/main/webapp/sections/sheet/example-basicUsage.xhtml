@@ -26,28 +26,32 @@
 	<pe:sheetcolumn headerText="Type" value="#{row.assetType}" readonly="true" colWidth="100" sortBy="#{row.assetType}"	filterBy="#{row.assetType}" filterOptions="#{sheetOptionProducer.assetTypes}" />
 	<pe:sheetcolumn headerText="Platform" value="#{row.platform}" readonly="true" colWidth="100" sortBy="#{row.platform}" filterBy="#{row.platform}" filterOptions="#{sheetOptionProducer.platformTypes}" />
 	<pe:sheetcolumn headerText="Arch" value="#{row.platformArch}" readonly="true" colWidth="100" sortBy="#{row.platformArch}" filterBy="#{row.platformArch}" filterOptions="#{sheetOptionProducer.archTypes}" />
-	<pe:sheetcolumn headerText="Price" value="#{row.purchasePrice}" colWidth="100" styleClass="htRight #{row.purchasePrice gt 0 ? 'positive' : 'negative'}" required="true" requiredMessage="Price is required!">
+	<pe:sheetcolumn headerText="Price" value="#{row.purchasePrice}" colWidth="100" 
+	                styleClass="htRight #{row.purchasePrice gt 0 ? 'positive' : 'negative'}" 
+	                colType="numeric" numericLocale="en-US" numericPattern="$0,0.00"
+	                required="true" requiredMessage="Price is required!">
            <f:converter converterId="javax.faces.BigDecimal" />
     </pe:sheetcolumn>
-	<pe:sheetcolumn headerText="Password" value="#{row.password}" colWidth="100" colType="password" passwordHashSymbol="*" passwordHashLength="8" />
+	<pe:sheetcolumn headerText="Password" value="#{row.password}" colWidth="100" styleClass="password" colType="password" passwordHashSymbol="*" passwordHashLength="8" />
 	<pe:sheetcolumn headerText="Updated" value="#{row.lastUpdated}" colWidth="170" sortBy="#{row.lastUpdated}" styleClass="htCenter">
 		<f:convertDateTime type="both" />
 	</pe:sheetcolumn>
-	<pe:sheetcolumn headerText="Value 1" value="#{row.value1}" colWidth="100" styleClass="htRight"/>
-	<pe:sheetcolumn headerText="Value 2" value="#{row.value2}" colWidth="100" />
-	<pe:sheetcolumn headerText="Value 3" value="#{row.value3}" colWidth="100" />
-	<pe:sheetcolumn headerText="Value 4" value="#{row.value4}" colWidth="100" />
-	<pe:sheetcolumn headerText="Value 5" value="#{row.value5}" colWidth="100" />
-	<pe:sheetcolumn headerText="Value 6" value="#{row.value6}" colWidth="100" />
-	<pe:sheetcolumn headerText="Value 7" value="#{row.value7}" colWidth="100" />
-	<pe:sheetcolumn headerText="Value 8" value="#{row.value8}" colWidth="100" />
-	<pe:sheetcolumn headerText="Value 9" value="#{row.value9}" colWidth="100" />
-	<pe:sheetcolumn headerText="Value 10" value="#{row.value10}" colWidth="100" />
+	<pe:sheetcolumn headerText="Value 1" value="#{row.value1}" colWidth="100" colType="numeric"/>
+	<pe:sheetcolumn headerText="Value 2" value="#{row.value2}" colWidth="100" colType="numeric"/>
+	<pe:sheetcolumn headerText="Value 3" value="#{row.value3}" colWidth="100" colType="numeric"/>
+	<pe:sheetcolumn headerText="Value 4" value="#{row.value4}" colWidth="100" colType="numeric"/>
+	<pe:sheetcolumn headerText="Value 5" value="#{row.value5}" colWidth="100" colType="numeric"/>
+	<pe:sheetcolumn headerText="Value 6" value="#{row.value6}" colWidth="100" colType="numeric"/>
+	<pe:sheetcolumn headerText="Value 7" value="#{row.value7}" colWidth="100" colType="numeric"/>
+	<pe:sheetcolumn headerText="Value 8" value="#{row.value8}" colWidth="100" colType="numeric"/>
+	<pe:sheetcolumn headerText="Value 9" value="#{row.value9}" colWidth="100" colType="numeric"/>
+	<pe:sheetcolumn headerText="Value 10" value="#{row.value10}" colWidth="100" colType="numeric"/>
 </pe:sheet>
 
 <style type="text/css">
-.positive {color : green}
-.negative {color : red}
+.positive {color : Green}
+.negative {color : Red}
+.password {color : DarkViolet}
 </style>
 
 <!-- EXAMPLE-SOURCE-END -->

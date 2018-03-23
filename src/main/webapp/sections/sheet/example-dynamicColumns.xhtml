@@ -21,7 +21,8 @@
         <pe:sheetcolumn styleClass="htRight #{row.cells[status.index].style}"
                         headerText="#{hourOfDay}"
                         value="#{row.cells[status.index].value}"
-                        readonlyCell="#{row.readOnly}">
+                        readonlyCell="#{row.readOnly}"
+                        colType="numeric">
                         <f:converter converterId="javax.faces.Integer" />
         </pe:sheetcolumn>
     </c:forEach>
