@@ -68,11 +68,13 @@ public class SheetController implements Serializable {
         for (int i = 0; i < count; i++) {
             final Asset asset = new Asset();
             asset.setAssetId(RandomUtils.nextLong());
+            asset.setActive(RandomUtils.nextBoolean());
             asset.setPlatform(platform);
             asset.setPlatformArch(arch);
             asset.setHostName(type.toString().toLowerCase() + i + ".example.lan");
             asset.setAssetType(type);
-            asset.setLastUpdated(new Date());
+            asset.setPurchaseDate(new Date());
+            asset.setPurchaseTime(new Date());
             asset.setValue1(RandomUtils.nextInt(1, 1000));
             asset.setPassword(RandomStringUtils.randomAlphabetic(6));
             asset.setPurchasePrice(

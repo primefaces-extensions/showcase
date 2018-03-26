@@ -26,16 +26,23 @@
 	<pe:sheetcolumn headerText="Type" value="#{row.assetType}" readonly="true" colWidth="100" sortBy="#{row.assetType}"	filterBy="#{row.assetType}" filterOptions="#{sheetOptionProducer.assetTypes}" />
 	<pe:sheetcolumn headerText="Platform" value="#{row.platform}" readonly="true" colWidth="100" sortBy="#{row.platform}" filterBy="#{row.platform}" filterOptions="#{sheetOptionProducer.platformTypes}" />
 	<pe:sheetcolumn headerText="Arch" value="#{row.platformArch}" readonly="true" colWidth="100" sortBy="#{row.platformArch}" filterBy="#{row.platformArch}" filterOptions="#{sheetOptionProducer.archTypes}" />
+	<pe:sheetcolumn headerText="Active" value="#{row.active}" colWidth="60" colType="checkbox"/>
 	<pe:sheetcolumn headerText="Price" value="#{row.purchasePrice}" colWidth="100" 
 	                styleClass="htRight #{row.purchasePrice gt 0 ? 'positive' : 'negative'}" 
 	                colType="numeric" numericLocale="en-US" numericPattern="$0,0.00"
 	                required="true" requiredMessage="Price is required!">
            <f:converter converterId="javax.faces.BigDecimal" />
     </pe:sheetcolumn>
-	<pe:sheetcolumn headerText="Password" value="#{row.password}" colWidth="100" styleClass="password" colType="password" passwordHashSymbol="*" passwordHashLength="8" />
-	<pe:sheetcolumn headerText="Updated" value="#{row.lastUpdated}" colWidth="170" sortBy="#{row.lastUpdated}" styleClass="htCenter">
-		<f:convertDateTime type="both" />
+	<pe:sheetcolumn headerText="Password" value="#{row.password}" colWidth="100" styleClass="password" 
+	                colType="password" passwordHashSymbol="*" passwordHashLength="8" />
+	<pe:sheetcolumn headerText="Date" value="#{row.purchaseDate}" colWidth="110" sortBy="#{row.purchaseDate}" 
+	                styleClass="htCenter" colType="date" dateFormat="YYYY-MM-DD">
+		<f:convertDateTime type="date" pattern="yyyy-MM-dd"/>
 	</pe:sheetcolumn>
+    <pe:sheetcolumn headerText="Time" value="#{row.purchaseTime}" colWidth="110" sortBy="#{row.purchaseTime}" 
+                    styleClass="htCenter" colType="time" timeFormat="h:mm:ss a">
+        <f:convertDateTime type="time" pattern="h:mm:ss a"/>
+    </pe:sheetcolumn>
 	<pe:sheetcolumn headerText="Value 1" value="#{row.value1}" colWidth="100" colType="numeric"/>
 	<pe:sheetcolumn headerText="Value 2" value="#{row.value2}" colWidth="100" colType="numeric"/>
 	<pe:sheetcolumn headerText="Value 3" value="#{row.value3}" colWidth="100" colType="numeric"/>

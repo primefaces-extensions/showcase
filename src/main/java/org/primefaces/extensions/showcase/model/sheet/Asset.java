@@ -12,6 +12,8 @@ public class Asset implements Serializable {
 
     private Date purchaseDate;
 
+    private Date purchaseTime;
+
     private String hostName;
 
     private String description;
@@ -23,6 +25,8 @@ public class Asset implements Serializable {
     private PlatformArchType platformArch;
 
     private AssetType assetType;
+
+    private Boolean active;
 
     private String comment;
 
@@ -246,6 +250,22 @@ public class Asset implements Serializable {
 
     public void setPassword(final String password) {
         this.password = password;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(final Boolean active) {
+        this.active = active;
+    }
+
+    public Date getPurchaseTime() {
+        return purchaseTime;
+    }
+
+    public void setPurchaseTime(final Date purchaseTime) {
+        this.purchaseTime = purchaseTime;
     }
 
     /*
