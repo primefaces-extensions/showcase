@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.primefaces.extensions</groupId>
 		<artifactId>master-pom</artifactId>
-		<version>6.2.1</version>
+		<version>6.2.3</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -28,7 +28,7 @@
 
 		<mojarra.version>2.3.2</mojarra.version>
 		<myfaces.version>2.2.4</myfaces.version>
-		<jetty.version>9.4.8.v20171121</jetty.version>
+		<jetty.version>9.4.9.v20180320</jetty.version>
 		<omnifaces.version>1.14.1</omnifaces.version>
 	</properties>
 
