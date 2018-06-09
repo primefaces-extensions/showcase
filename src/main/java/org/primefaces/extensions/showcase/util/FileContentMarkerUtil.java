@@ -63,15 +63,15 @@ public class FileContentMarkerUtil {
 			return null;
 		}
 
-		StringBuffer sbBeforeStartMarker = new StringBuffer();
-		StringBuffer sbBeforeEndMarker = new StringBuffer();
+		StringBuilder sbBeforeStartMarker = new StringBuilder();
+		StringBuilder sbBeforeEndMarker = new StringBuilder();
 		String markerLineStart = null;
 		String markerLineEnd = null;
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 		String line;
 
-		StringBuffer sb = sbBeforeStartMarker;
+		StringBuilder sb = sbBeforeStartMarker;
 		while ((line = br.readLine()) != null) {
 			// if is before first start marker
 			if (markerLineStart == null && containMarker(line, settings.getStartMarkers())) {
