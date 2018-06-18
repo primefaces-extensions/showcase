@@ -10,7 +10,8 @@
 <!-- EXAMPLE-SOURCE-START -->
 <pe:sheet id="sheet" value="#{sheetDynamicController.sheetRows}" var="row" height="400" rowKey="#{row.id}"
 	showRowHeaders="true" sortBy="#{row.id}" sortOrder="ascending"  width="800"
-	widgetVar="sheetWidget" filteredValue="#{sheetDynamicController.filteredSheetRows}">
+	widgetVar="sheetWidget" filteredValue="#{sheetDynamicController.filteredSheetRows}"
+	extender="sheetExtender">
 	
 	<f:facet name="header">
 		<h:outputText value="Dynamic Columns" />
@@ -37,7 +38,13 @@
 .cell-orange {color : darkorange}
 </style>
 <script type="text/javascript">
- $(document).ready(function() {
+function sheetExtender() {
+    // this = widget
+    // this.cfg = JSON configuration
+    this.cfg.trimWhitespace = true;
+};
+
+$(document).ready(function() {
     var $hot = PF('sheetWidget').ht;
     $hot.updateSettings({
        contextMenu: {
@@ -70,7 +77,7 @@
            }
        }
     });
- });
+});
 </script>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
