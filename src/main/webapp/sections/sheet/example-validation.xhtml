@@ -7,6 +7,19 @@
 	</p:growl>
 
 <!-- EXAMPLE-SOURCE-START -->
+<script type="text/javascript">
+var myRegex = /^\d+$/; // regex only digits
+
+// function must return callback(bool)
+function validateEquals6(value, callback) {
+    if (value != 6) {
+        callback(false);
+    } else {
+        callback(true);
+    }
+}
+</script>
+
 <pe:sheet id="sheet" value="#{sheetAjaxController.assets}" var="row" height="400" rowKey="#{row.assetId}"
 	showRowHeaders="true" sortBy="#{row.assetId}" sortOrder="ascending"  width="800"
 	widgetVar="sheetWidget">
@@ -23,10 +36,16 @@
            <f:converter converterId="javax.faces.BigDecimal" />
            <f:validateDoubleRange minimum="1.7" maximum="10.5" for="sheet"/>
     </pe:sheetcolumn>
-    <pe:sheetcolumn headerText="Integer" value="#{row.value1}" colWidth="100" styleClass="htRight">
+    <pe:sheetcolumn headerText="Integer" value="#{row.value1}" colWidth="100" styleClass="htRight" onvalidate="numeric">
            <f:converter converterId="javax.faces.Integer" />
     </pe:sheetcolumn>
-    <pe:sheetcolumn headerText="Exactly 5" value="#{row.value2}" colWidth="100" styleClass="htRight" 
+    <pe:sheetcolumn headerText="Regex" value="#{row.value2}" colWidth="100" styleClass="htRight" onvalidate="myRegex">
+           <f:converter converterId="javax.faces.Integer" />
+    </pe:sheetcolumn>
+    <pe:sheetcolumn headerText="JS Exactly 6" value="#{row.value3}" colWidth="100" styleClass="htRight" onvalidate="validateEquals6">
+           <f:converter converterId="javax.faces.Integer" />
+    </pe:sheetcolumn>
+    <pe:sheetcolumn headerText="Faces Exactly 5" value="#{row.value4}" colWidth="100" styleClass="htRight" 
                     validator="#{sheetAjaxController.validateExactly5}">
            <f:converter converterId="javax.faces.Integer" />
     </pe:sheetcolumn>
@@ -34,6 +53,8 @@
         <h:outputText value="#{sheetAjaxController.assets.size()} Records" />
     </f:facet>
 </pe:sheet>
+
+
 
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
