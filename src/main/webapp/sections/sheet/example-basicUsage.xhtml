@@ -13,7 +13,7 @@
 <pe:sheet id="sheet" widgetVar="sheetWidget" value="#{sheetController.assets}" var="row" 
     height="400" rowKey="#{row.assetId}" fixedCols="2" fixedRows="3" showRowHeaders="true"
     resizableCols="true" resizableRows="true" filteredValue="#{sheetController.filteredAssets}"
-    sortBy="#{row.assetId}" sortOrder="ascending">
+    sortBy="#{row.assetId}" sortOrder="ascending" readOnly="false">
 
 	<p:ajax event="change" listener="#{sheetController.cellChangeEvent}" />
 
