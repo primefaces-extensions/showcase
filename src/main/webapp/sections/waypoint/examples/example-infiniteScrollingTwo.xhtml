@@ -145,7 +145,7 @@
         
         // note: call .load() on cached images is not reliable.
         // better to use https://github.com/desandro/imagesloaded
-        img.load(function(){
+        img.on("load", function(){
             img.animate({ opacity: 1 }, 500);
 
             // remove data-src
