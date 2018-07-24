@@ -1,5 +1,6 @@
 html {
     overflow: auto !important;
+    visibility: hidden;
 }
 
 body {

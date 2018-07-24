@@ -5,19 +5,19 @@
     <p:menu id="useCaseList">
         <p:menuitem value="Static items"
                     styleClass="#{navigationContext.getMenuitemStyleClass('static')}"
-                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                     url="/sections/fluidgrid/static.jsf"/>
         <p:menuitem value="Dynamic items"
                     styleClass="#{navigationContext.getMenuitemStyleClass('dynamic')}"
-                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                     url="/sections/fluidgrid/dynamic.jsf"/>
         <p:menuitem value="Stamped elements within layout"
                     styleClass="#{navigationContext.getMenuitemStyleClass('stamped')}"
-                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                     url="/sections/fluidgrid/stamped.jsf"/>
         <p:menuitem value="Dynamic form"
                     styleClass="#{navigationContext.getMenuitemStyleClass('dynaform')}"
-                    onclick="selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
+                    onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
                     url="/sections/fluidgrid/dynaform.jsf"/>
     </p:menu>
 </ui:composition>
