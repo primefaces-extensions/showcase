@@ -8,6 +8,7 @@
         <el-resolver>
             org.primefaces.application.exceptionhandler.PrimeExceptionHandlerELResolver
         </el-resolver>
+        <resource-handler>org.omnifaces.resourcehandler.CombinedResourceHandler</resource-handler>
     </application>
     
     <converter>

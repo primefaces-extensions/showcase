@@ -84,6 +84,12 @@
 		<param-value>true</param-value>  
 	</context-param>
 
+	<!-- Context parameters - OmniFaces -->
+	<context-param>
+		<param-name>org.omnifaces.COMBINED_RESOURCE_HANDLER_DISABLED</param-name>
+		<param-value>#{facesContext.application.projectStage eq 'Development'}</param-value>
+	</context-param>
+
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>

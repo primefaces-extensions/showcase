@@ -8,11 +8,11 @@
     <ui:define name="resources-app">
         <ui:include src="/sections/shared/resources-app.xhtml"/>
         <h:outputStylesheet library="syntaxhighlighter" name="styles/syntaxhighlighter.css"/>
-        <h:outputScript library="syntaxhighlighter" name="scripts/shCore.js" target="body"/>
-        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushXml.js" target="body"/>
-        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushJava.js" target="body"/>
-        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushCss.js" target="body"/>
-        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushJScript.js" target="body"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shCore.js" target="head"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushXml.js" target="head"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushJava.js" target="head"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushCss.js" target="head"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushJScript.js" target="head"/>
         <h:outputScript id="syntaxhighlighterInit" target="body">
             dp.SyntaxHighlighter.ClipboardSwf = '#{request.contextPath}/resources/syntaxhighlighter/scripts/clipboard.swf';
             dp.SyntaxHighlighter.HighlightAll('code');
