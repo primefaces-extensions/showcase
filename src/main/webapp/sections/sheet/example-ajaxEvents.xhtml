@@ -25,10 +25,10 @@
 		<h:outputText value="#{sheetAjaxController.filteredAssets.size()} Records" />
 	</f:facet>
 
-	<pe:sheetcolumn headerText="Id (readonly)" readonly="true" value="#{row.assetId}" colWidth="150"  />
-	<pe:sheetcolumn headerText="Type (readonly)" value="#{row.assetType}" readonly="true" colWidth="100" />
-	<pe:sheetcolumn headerText="Platform (readonly)" value="#{row.platform}" readonly="true" colWidth="100" />
-	<pe:sheetcolumn headerText="Arch (readonly)" value="#{row.platformArch}" readonly="true" colWidth="100" />
+	<pe:sheetcolumn headerText="Id (readOnly)" readOnly="true" value="#{row.assetId}" colWidth="150"  />
+	<pe:sheetcolumn headerText="Type (readOnly)" value="#{row.assetType}" readOnly="true" colWidth="100" />
+	<pe:sheetcolumn headerText="Platform (readOnly)" value="#{row.platform}" readOnly="true" colWidth="100" />
+	<pe:sheetcolumn headerText="Arch (readOnly)" value="#{row.platformArch}" readOnly="true" colWidth="100" />
 	<pe:sheetcolumn headerText="Editable" value="#{row.value1}" colWidth="100" styleClass="htRight"/>
 </pe:sheet>
 

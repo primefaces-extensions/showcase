@@ -29,7 +29,7 @@ function validateEquals6(value, callback) {
 		<h:outputText value="Assets" />
 	</f:facet>
 
-	<pe:sheetcolumn headerText="Id (readonly)" readonly="true" value="#{row.assetId}" colWidth="150"  />
+	<pe:sheetcolumn headerText="Id (readOnly)" readOnly="true" value="#{row.assetId}" colWidth="150"  />
 	<pe:sheetcolumn headerText="Required" value="#{row.hostName}" colWidth="140" 
 	                required="true" requiredMessage="This field is required!" />
 	<pe:sheetcolumn id="colBigDecimal" headerText="BigDecimal(1-10)" value="#{row.purchasePrice}" colWidth="100" styleClass="htRight">

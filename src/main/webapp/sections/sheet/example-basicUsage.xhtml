@@ -26,7 +26,7 @@
 	</f:facet>
 
 	<pe:sheetcolumn headerText="Id (read-only)" 
-	                readonly="true" 
+	                readOnly="true" 
 	                value="#{row.assetId}" 
 	                sortBy="#{row.assetId}" 
 	                colWidth="150" 
@@ -43,7 +43,7 @@
 	                selectItems="#{PlatformType.ALL_VALUES}" 
 	                autoCompleteStrict="false"
 	                autoCompleteVisibleRows="4" />
-	<pe:sheetcolumn headerText="Arch" value="#{row.platformArch}" readonly="true" 
+	<pe:sheetcolumn headerText="Arch" value="#{row.platformArch}" readOnly="true" 
 	                colWidth="100" sortBy="#{row.platformArch}" 
 	                filterBy="#{row.platformArch}" 
 	                filterOptions="#{sheetOptionProducer.archTypes}" />
@@ -51,7 +51,7 @@
 	<pe:sheetcolumn headerText="Price" value="#{row.purchasePrice}" colWidth="100" 
 	                styleClass="htRight #{row.purchasePrice gt 0 ? 'positive' : 'negative'}" 
 	                colType="numeric" 
-	                numericLocale="en-US" 
+	                numericLocale="de-DE" 
 	                numericPattern="$0,0.00"
 	                required="true" 
 	                requiredMessage="Price is required!">
