@@ -6,11 +6,11 @@
         <p:menuitem value="Basic usage"
                     styleClass="#{navigationContext.getMenuitemStyleClass('documentViewerBasic')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/documentviewer/basic.jsf"/>
+                    url="#{request.contextPath}/sections/documentviewer/basic.jsf"/>
         <p:menuitem value="Advanced Usage"
                     styleClass="#{navigationContext.getMenuitemStyleClass('documentViewerAdvanced')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/documentviewer/advanced.jsf"/>
+                    url="#{request.contextPath}/sections/documentviewer/advanced.jsf"/>
     </p:menu>
 </ui:composition>
 </html>

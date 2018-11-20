@@ -6,11 +6,11 @@
         <p:menuitem value="Basic usage"
                     styleClass="#{navigationContext.getMenuitemStyleClass('gravatarBasic')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/gravatar/basic.jsf"/>
+                    url="#{request.contextPath}/sections/gravatar/basic.jsf"/>
         <p:menuitem value="Advanced usage"
                     styleClass="#{navigationContext.getMenuitemStyleClass('gravatarColors')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/gravatar/advanced.jsf"/>
+                    url="#{request.contextPath}/sections/gravatar/advanced.jsf"/>
     </p:menu>
 </ui:composition>
 </html>

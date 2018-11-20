@@ -6,15 +6,15 @@
         <p:menuitem value="JsonConverter with pe:remoteCommand"
                     styleClass="#{navigationContext.getMenuitemStyleClass('jsonConverterRC')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/converters/jsonConverterRC.jsf"/>
+                    url="#{request.contextPath}/sections/converters/jsonConverterRC.jsf"/>
         <p:menuitem value="JsonConverter with f:viewParam and URL parameters"
                     styleClass="#{navigationContext.getMenuitemStyleClass('jsonConverterVP')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/converters/jsonConverterVP.jsf"/>
+                    url="#{request.contextPath}/sections/converters/jsonConverterVP.jsf"/>
         <p:menuitem value="LocaleConverter"
                     styleClass="#{navigationContext.getMenuitemStyleClass('localeConverter')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/converters/localeConverter.jsf"/>
+                    url="#{request.contextPath}/sections/converters/localeConverter.jsf"/>
     </p:menu>
 </ui:composition>
 </html>

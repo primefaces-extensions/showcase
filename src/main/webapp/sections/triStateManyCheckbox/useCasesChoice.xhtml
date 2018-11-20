@@ -6,11 +6,11 @@
                         <p:menuitem value="Simple Usage"
                                     styleClass="#{navigationContext.getMenuitemStyleClass('basicUsage')}"
                                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                                    url="/sections/triStateManyCheckbox/basicUsage.jsf"/>
+                                    url="#{request.contextPath}/sections/triStateManyCheckbox/basicUsage.jsf"/>
                         <p:menuitem value="Converters and Validators"
                                     styleClass="#{navigationContext.getMenuitemStyleClass('advanceUsage')}"
                                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                                    url="/sections/triStateManyCheckbox/advanceUsage.jsf"/>        
+                                    url="#{request.contextPath}/sections/triStateManyCheckbox/advanceUsage.jsf"/>        
                 </p:menu>
         </ui:composition>
 </html>

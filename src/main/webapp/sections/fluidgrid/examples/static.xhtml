@@ -8,6 +8,9 @@
     <pe:head title="PrimeFaces Extensions" shortcutIcon="#{request.contextPath}/favicon.ico">
         <f:facet name="first">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+             <h:outputScript  target="body">
+               document.getElementsByTagName("html")[0].style.visibility = "visible";
+            </h:outputScript>
         </f:facet>
     </pe:head>
     <h:body>

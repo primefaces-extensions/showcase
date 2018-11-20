@@ -6,15 +6,15 @@
         <p:menuitem value="Common Functions"
                     styleClass="#{navigationContext.getMenuitemStyleClass('commonFunctions')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/utils/commonFunctions.jsf"/>
+                    url="#{request.contextPath}/sections/utils/commonFunctions.jsf"/>
         <p:menuitem value="escapeSelector"
                     styleClass="#{navigationContext.getMenuitemStyleClass('escapeSelector')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/utils/escapeSelector.jsf"/>   
+                    url="#{request.contextPath}/sections/utils/escapeSelector.jsf"/>   
         <p:menuitem value="Switch"
                     styleClass="#{navigationContext.getMenuitemStyleClass('switch')}"
                     onclick="Showcase.selectUseCaseLink(this)" ajax="false" icon="ui-icon ui-icon-play"
-                    url="/sections/utils/switch.jsf"/>
+                    url="#{request.contextPath}/sections/utils/switch.jsf"/>
     </p:menu>
 </ui:composition>
 </html>
