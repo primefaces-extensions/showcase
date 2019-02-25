@@ -22,8 +22,8 @@
 
 	<properties>
 		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-		<primefaces-extensions.new-components>social;speedtest;sheet;orgchart</primefaces-extensions.new-components>
-		<primefaces-extensions.updated-components>gchart;documentViewer;slideout;</primefaces-extensions.updated-components>
+		<primefaces-extensions.new-components>letteravatar;sheet;orgchart</primefaces-extensions.new-components>
+		<primefaces-extensions.updated-components>clipboard;ckeditor</primefaces-extensions.updated-components>
 		<primefaces-extensions.deprecated-components/>
 
 		<mojarra.version>2.3.2</mojarra.version>
