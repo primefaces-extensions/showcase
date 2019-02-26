@@ -22,7 +22,7 @@
 
 	<properties>
 		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-		<primefaces-extensions.new-components>letteravatar;sheet;orgchart</primefaces-extensions.new-components>
+		<primefaces-extensions.new-components>inputhone;letteravatar;sheet;orgchart</primefaces-extensions.new-components>
 		<primefaces-extensions.updated-components>clipboard;ckeditor</primefaces-extensions.updated-components>
 		<primefaces-extensions.deprecated-components/>
 
