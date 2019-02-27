@@ -21,7 +21,12 @@ public class BasicInputPhoneController implements Serializable {
     public void onCountrySelect(SelectEvent event) {
         Country country = (Country) event.getObject();
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected "+ country.getName(), null));
+                new FacesMessage(FacesMessage.SEVERITY_WARN, "Selected "+ country.getName(), null));
+    }
+   
+    public void submit() {
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Phone Number  "+ phoneNumber, null));
     }
 
     public String getPhoneNumber() {
