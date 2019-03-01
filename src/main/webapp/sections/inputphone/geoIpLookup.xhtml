@@ -9,19 +9,26 @@
             <h:outputText value="InputPhone"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            International phone numbers input.
+            <p>
+            International phone numbers input with initial country based on IP location lookup using
+            <h:outputLink value="https://ipinfo.io">https://ipinfo.io</h:outputLink>.
+            </p>
+            <p>
+            When setting <code>initialCountry</code> to "auto", you must use this option to specify a custom function
+            that looks up the user's location, and then calls the success callback with the relevant country code.
+            </p>
+            <p>
+            Tip: store the result in a cookie to avoid repeated lookups.
+            </p>
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/inputphone/example-basicUsage.xhtml"/>
+            <ui:include src="/sections/inputphone/example-geoIpLookup.xhtml"/>
         </h:panelGroup>
 
-        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
+        <ui:decorate template="/templates/oneTabDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/inputphone/example-basicUsage.xhtml')}
-            </ui:define>
-            <ui:define name="contentTab2">
-${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/inputphone/BasicInputPhoneController.java')}
+${showcase:getFileContent('/sections/inputphone/example-geoIpLookup.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>
