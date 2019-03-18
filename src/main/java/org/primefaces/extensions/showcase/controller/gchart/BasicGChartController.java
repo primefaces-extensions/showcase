@@ -16,6 +16,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.extensions.component.gchart.model.GChartModel;
 import org.primefaces.extensions.component.gchart.model.GChartModelBuilder;
 import org.primefaces.extensions.component.gchart.model.GChartModelRow;
+import org.primefaces.extensions.component.gchart.model.DefaultGChartModelColumn;
 import org.primefaces.extensions.component.gchart.model.GChartType;
 
 import com.google.gson.JsonArray;
@@ -40,7 +41,7 @@ public class BasicGChartController implements Serializable {
    @PostConstruct
    public void generateModel() {
       chartModel = new GChartModelBuilder().setChartType(getChartType())
-               .addColumns("Topping", "Slices").addRow("Mushrooms", mushrooms)
+               .addColumns(new DefaultGChartModelColumn("Topping", "string"),new DefaultGChartModelColumn("Slices", "number")).addRow("Mushrooms", mushrooms)
                .addRow("Onions", onions).build();
    }
 
