@@ -60,9 +60,15 @@ public class AvailableThemes {
 		themeNames.add("hot-sneaks");
 		themeNames.add("humanity");
 		themeNames.add("le-frog");
+		themeNames.add("luna-amber");
+		themeNames.add("luna-blue");
+		themeNames.add("luna-green");
+		themeNames.add("luna-pink");
 		themeNames.add("midnight");
 		themeNames.add("mint-choc");
-        themeNames.add("omega");
+		themeNames.add("nova-dark");
+		themeNames.add("nova-light");
+		themeNames.add("omega");
 		themeNames.add("overcast");
 		themeNames.add("pepper-grinder");
 		themeNames.add("redmond");
