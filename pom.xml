@@ -22,7 +22,7 @@
 
 	<properties>
 		<primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-		<primefaces-extensions.new-components>inputphone;letteravatar;sheet;orgchart</primefaces-extensions.new-components>
+		<primefaces-extensions.new-components>inputphone;letteravatar;sheet;orgchart;timeago</primefaces-extensions.new-components>
 		<primefaces-extensions.updated-components>clipboard;ckeditor</primefaces-extensions.updated-components>
 		<primefaces-extensions.deprecated-components/>
 
@@ -239,7 +239,7 @@
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>all-themes</artifactId>
 		</dependency>
-		<dependency>  
+		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
 			<version>${omnifaces.version}</version>

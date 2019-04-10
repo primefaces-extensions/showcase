@@ -33,7 +33,7 @@ public class CalculatorController implements Serializable {
    public List<SelectItem> getLanguages() {
       final List<SelectItem> results = new ArrayList<SelectItem>();
       results.add(new SelectItem("ms", "Bahasa Melayu (Malaysian)"));
-      results.add(new SelectItem("ca", "Català  (Catalan)"));
+      results.add(new SelectItem("ca", "Català (Catalan)"));
       results.add(new SelectItem("da", "Dansk (Danish)"));
       results.add(new SelectItem("de", "Deutsch (German)"));
       results.add(new SelectItem("es", "Español (Spanish)"));
