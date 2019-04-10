@@ -1,0 +1,30 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:pe="http://primefaces.org/ui/extensions"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<!-- EXAMPLE-SOURCE-START -->
+<p:outputLabel value="Locale:" for="taLocale" />
+<p:selectOneMenu id="taLocale" value="#{localizedTimeAgoController.locale}"
+                 style="width:200px" required="true">
+    <f:selectItems value="#{localizedTimeAgoController.languages}" />
+    <p:ajax update="times" process="@this"/>
+</p:selectOneMenu>
+
+<h:panelGroup id="times">
+    <p>
+        You've opened this page
+        <pe:timeAgo value="#{localizedTimeAgoController.now}"
+                    locale="#{localizedTimeAgoController.locale}"/>.
+    </p>
+    <p>
+        PrimeFaces Extensions was first released
+        <pe:timeAgo value="#{localizedTimeAgoController.firstRelease}"
+                    locale="#{localizedTimeAgoController.locale}"/>.
+    </p>
+</h:panelGroup>
+<!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
