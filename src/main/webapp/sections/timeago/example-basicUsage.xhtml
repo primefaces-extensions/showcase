@@ -6,11 +6,13 @@
 <!-- EXAMPLE-SOURCE-START -->
 <p>
     You've opened this page
-    <pe:timeAgo value="#{basicTimeAgoController.now}"/>.
+    <pe:timeAgo value="#{basicTimeAgoController.now}"
+                titlePattern="MMMMM dd yyyy hh:mm aaa"/>.
 </p>
 <p>
     PrimeFaces Extensions was first released
-    <pe:timeAgo value="#{basicTimeAgoController.firstRelease}"/>.
+    <pe:timeAgo value="#{basicTimeAgoController.firstRelease}"
+                titlePattern="MMMMM dd yyyy"/>.
 </p>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
