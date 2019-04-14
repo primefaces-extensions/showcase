@@ -68,7 +68,7 @@ public class FileContentMarkerUtil {
 		String markerLineStart = null;
 		String markerLineEnd = null;
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1));
+		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 		String line;
 
 		StringBuilder sb = sbBeforeStartMarker;
