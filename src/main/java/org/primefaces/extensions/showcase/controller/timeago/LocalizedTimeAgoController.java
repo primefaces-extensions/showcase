@@ -38,8 +38,8 @@ public class LocalizedTimeAgoController implements Serializable {
         final List<SelectItem> results = new ArrayList<>();
         results.add(new SelectItem("de", "Deutsch (German)"));
         results.add(new SelectItem("en", "English"));
-        results.add(new SelectItem("es", "Español (Spanish)"));
-        results.add(new SelectItem("fr", "Français (French)"));
+        results.add(new SelectItem("es", "EspaÃ±ol (Spanish)"));
+        results.add(new SelectItem("fr", "FranÃ§ais (French)"));
         results.add(new SelectItem("it", "Italiano (Italian)"));
         results.add(new SelectItem("nl", "Nederlands (Dutch)"));
         return results;
