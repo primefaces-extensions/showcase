@@ -18,8 +18,8 @@
 
 package org.primefaces.extensions.showcase.util;
 
-import javax.faces.context.FacesContext;
 import java.io.InputStream;
+import javax.faces.context.FacesContext;
 
 /**
  * ShowcaseUtil

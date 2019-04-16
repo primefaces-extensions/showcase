@@ -3,10 +3,8 @@ package org.primefaces.extensions.showcase.controller.sheet;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.apache.commons.lang3.RandomUtils;
 import org.primefaces.extensions.component.sheet.Sheet;
 import org.primefaces.extensions.showcase.model.sheet.DynaSheetCell;
@@ -17,7 +15,7 @@ import org.primefaces.extensions.showcase.model.sheet.DynaSheetRow;
  *
  * @author Melloware mellowaredev@gmail.com
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class SheetDynamicController implements Serializable {
 

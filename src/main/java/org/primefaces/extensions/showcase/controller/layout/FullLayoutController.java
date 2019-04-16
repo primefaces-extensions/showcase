@@ -19,13 +19,11 @@
 package org.primefaces.extensions.showcase.controller.layout;
 
 import java.io.Serializable;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.primefaces.extensions.component.layout.LayoutPane;
 import org.primefaces.extensions.event.CloseEvent;
 import org.primefaces.extensions.event.OpenEvent;
@@ -38,7 +36,7 @@ import org.primefaces.extensions.model.layout.LayoutOptions;
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class FullLayoutController implements Serializable {
 

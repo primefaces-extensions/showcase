@@ -25,14 +25,11 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-
 import org.primefaces.extensions.showcase.model.jsonconverter.FooGeneric;
 import org.primefaces.extensions.showcase.model.jsonconverter.FooNonGeneric;
 import org.primefaces.extensions.util.RequestParameterBuilder;
@@ -43,11 +40,11 @@ import org.primefaces.extensions.util.RequestParameterBuilder;
  * @author  Oleg Varaksin / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class ViewParamJsonController implements Serializable {
 
-	@ManagedProperty(value = "#{typesJsonController}")
+	@Inject
 	private TypesJsonController typesJsonController;
 
 	private boolean b;

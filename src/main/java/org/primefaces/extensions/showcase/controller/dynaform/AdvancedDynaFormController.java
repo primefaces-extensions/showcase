@@ -22,13 +22,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
 import org.primefaces.extensions.model.dynaform.DynaFormLabel;
@@ -42,7 +40,7 @@ import org.primefaces.extensions.showcase.model.dynaform.InventoryProperty;
  * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class AdvancedDynaFormController implements Serializable {
 

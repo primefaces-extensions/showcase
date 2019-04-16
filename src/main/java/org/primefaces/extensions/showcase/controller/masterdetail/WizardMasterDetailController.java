@@ -18,14 +18,13 @@
 
 package org.primefaces.extensions.showcase.controller.masterdetail;
 
-import org.primefaces.extensions.showcase.model.masterdetail.User;
-
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import java.io.Serializable;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+import org.primefaces.extensions.showcase.model.masterdetail.User;
 
 /**
  * WizardMasterDetailController.
@@ -33,7 +32,7 @@ import java.io.Serializable;
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class WizardMasterDetailController implements Serializable {
 

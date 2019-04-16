@@ -21,14 +21,12 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.visit.VisitContext;
 import javax.faces.component.visit.VisitHint;
 import javax.faces.context.FacesContext;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.primefaces.extensions.component.dynaform.DynaForm;
 import org.primefaces.extensions.model.dynaform.DynaFormModel;
 import org.primefaces.extensions.model.dynaform.DynaFormRow;
@@ -42,7 +40,7 @@ import org.primefaces.extensions.util.visitcallback.VisitTaskExecutor;
  * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class ClearDynaFormController implements Serializable {
 

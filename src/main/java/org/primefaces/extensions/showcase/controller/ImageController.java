@@ -19,12 +19,10 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.primefaces.extensions.event.ImageAreaSelectEvent;
 import org.primefaces.extensions.event.ResizeEvent;
 import org.primefaces.extensions.event.RotateEvent;
@@ -35,7 +33,7 @@ import org.primefaces.extensions.event.RotateEvent;
  * @author  Thomas Andraschko / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class ImageController implements Serializable {
 

@@ -21,13 +21,11 @@ package org.primefaces.extensions.showcase.controller.dynaform;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
@@ -42,7 +40,7 @@ import org.primefaces.extensions.showcase.model.dynaform.FormField;
  * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class AnotherDynaFormController implements Serializable {
 

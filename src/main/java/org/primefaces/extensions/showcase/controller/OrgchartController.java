@@ -18,11 +18,8 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
-
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.primefaces.extensions.component.orgchart.DefaultOrgChartNode;
 import org.primefaces.extensions.component.orgchart.OrgChartNode;
 import org.primefaces.extensions.event.OrgChartClickEvent;
@@ -34,7 +31,7 @@ import org.primefaces.extensions.event.OrgChartDropEvent;
  * @author  @jxmai / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class OrgchartController implements Serializable {
 

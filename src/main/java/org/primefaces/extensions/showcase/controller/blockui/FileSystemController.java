@@ -19,10 +19,8 @@
 package org.primefaces.extensions.showcase.controller.blockui;
 
 import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.event.NodeUnselectEvent;
@@ -35,7 +33,7 @@ import org.primefaces.model.TreeNode;
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class FileSystemController implements Serializable {
 

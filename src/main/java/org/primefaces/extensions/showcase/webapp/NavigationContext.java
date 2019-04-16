@@ -19,10 +19,9 @@
 package org.primefaces.extensions.showcase.webapp;
 
 import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
 /**
  * Navigation infos.
@@ -30,7 +29,7 @@ import javax.faces.context.FacesContext;
  * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @SessionScoped
 public class NavigationContext implements Serializable {
 

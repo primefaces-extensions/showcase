@@ -19,9 +19,8 @@
 package org.primefaces.extensions.showcase.webapp;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import org.primefaces.extensions.model.layout.LayoutOptions;
 
 /**
@@ -31,7 +30,7 @@ import org.primefaces.extensions.model.layout.LayoutOptions;
  * @version $Revision$
  */
 @ApplicationScoped
-@ManagedBean(eager = true)
+@Named
 public class ShowcaseLayout {
 
 	private String options;

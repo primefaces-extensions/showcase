@@ -2,13 +2,11 @@ package org.primefaces.extensions.showcase.controller.speedtest;
 
 import java.io.Serializable;
 import java.util.Random;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletResponse;
-
 import org.primefaces.extensions.component.speedtest.Speedtest;
 import org.primefaces.extensions.event.SpeedTestEvent;
 
@@ -17,7 +15,7 @@ import org.primefaces.extensions.event.SpeedTestEvent;
  *
  * @author Stefan Sibitz ssibitz@me.com
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class SpeedTestController implements Serializable {
 

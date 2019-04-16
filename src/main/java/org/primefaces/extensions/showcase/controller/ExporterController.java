@@ -19,9 +19,8 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
-
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 /**
  * ExporterController
@@ -30,7 +29,7 @@ import javax.faces.bean.ManagedBean;
  * @version $Revision$
  * @since   1.0
  */
-@ManagedBean
+@Named
 @ApplicationScoped
 public class ExporterController implements Serializable {
 
