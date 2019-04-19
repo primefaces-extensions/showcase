@@ -1,14 +1,12 @@
 package org.primefaces.extensions.showcase.controller.sheet;
 
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.primefaces.extensions.component.sheet.Sheet;
 import org.primefaces.extensions.event.SheetEvent;
 import org.primefaces.extensions.model.sheet.SheetUpdate;
@@ -18,7 +16,7 @@ import org.primefaces.extensions.model.sheet.SheetUpdate;
  *
  * @author Melloware mellowaredev@gmail.com
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class SheetAjaxController extends SheetController {
 

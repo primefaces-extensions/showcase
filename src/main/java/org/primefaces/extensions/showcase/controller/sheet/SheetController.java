@@ -7,12 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.primefaces.extensions.component.sheet.Sheet;
@@ -28,7 +26,7 @@ import org.primefaces.extensions.showcase.model.sheet.PlatformType;
  *
  * @author Melloware mellowaredev@gmail.com
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class SheetController implements Serializable {
 

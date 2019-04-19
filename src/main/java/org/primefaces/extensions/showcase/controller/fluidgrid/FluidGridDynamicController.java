@@ -19,13 +19,11 @@ package org.primefaces.extensions.showcase.controller.fluidgrid;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.primefaces.extensions.event.LayoutCompleteEvent;
 import org.primefaces.extensions.model.fluidgrid.FluidGridItem;
 import org.primefaces.extensions.showcase.model.fluidgrid.Image;
@@ -36,7 +34,7 @@ import org.primefaces.extensions.showcase.model.fluidgrid.Image;
  * @author  Oleg Varaksin / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class FluidGridDynamicController implements Serializable {
 

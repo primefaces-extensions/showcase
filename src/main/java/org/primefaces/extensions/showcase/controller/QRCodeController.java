@@ -16,9 +16,8 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  * InputNumberController
@@ -27,7 +26,7 @@ import javax.faces.bean.ViewScoped;
  * @version $Revision$
  * @since 0.3
  */
-@ManagedBean(name = "qrCodeController")
+@Named("qrCodeController")
 @ViewScoped
 public class QRCodeController implements Serializable {
 
@@ -38,7 +37,7 @@ public class QRCodeController implements Serializable {
     private int mode;
     private int size;
     private String fillColor;
-   
+
 
     public QRCodeController() {
         renderMethod = "canvas";
@@ -96,5 +95,5 @@ public class QRCodeController implements Serializable {
     public void setSize(int size) {
         this.size = size;
     }
-        
+
 }

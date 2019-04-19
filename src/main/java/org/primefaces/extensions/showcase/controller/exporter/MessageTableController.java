@@ -18,17 +18,15 @@
 
 package org.primefaces.extensions.showcase.controller.exporter;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.component.api.UIColumn;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+import org.primefaces.component.api.UIColumn;
 
 /**
  * MessageTableController
@@ -36,7 +34,7 @@ import java.util.Date;
  * @author Sudheer Jonna / last modified by $Author$
  * @since 0.7.0
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class MessageTableController implements Serializable {
 

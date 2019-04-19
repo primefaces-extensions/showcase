@@ -18,12 +18,12 @@
 
 package org.primefaces.extensions.showcase.controller.blockui;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  * AccessRightsController
@@ -31,7 +31,7 @@ import java.util.List;
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class AccessRightsController implements Serializable {
 

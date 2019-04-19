@@ -28,13 +28,11 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
-
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.ServletContext;
-
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -44,7 +42,7 @@ import org.apache.commons.lang3.StringUtils;
  * @version $Revision$
  */
 @ApplicationScoped
-@ManagedBean(eager = true)
+@Named
 public class TechnicalInfo {
 
    private static final Logger LOGGER = Logger.getLogger(TechnicalInfo.class.getName());

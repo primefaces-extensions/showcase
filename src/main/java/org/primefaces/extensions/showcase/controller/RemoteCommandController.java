@@ -19,12 +19,10 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.util.Date;
-
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
+import javax.inject.Named;
 import org.primefaces.extensions.showcase.model.Circle;
 
 /**
@@ -33,7 +31,7 @@ import org.primefaces.extensions.showcase.model.Circle;
  * @author  Thomas Andraschko / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class RemoteCommandController {
 

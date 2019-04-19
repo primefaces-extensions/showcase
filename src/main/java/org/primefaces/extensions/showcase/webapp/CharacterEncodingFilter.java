@@ -19,7 +19,6 @@
 package org.primefaces.extensions.showcase.webapp;
 
 import java.io.IOException;
-
 import javax.servlet.*;
 
 /**

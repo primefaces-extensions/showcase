@@ -16,11 +16,8 @@
 package org.primefaces.extensions.showcase.model;
 
 import java.io.Serializable;
-import java.lang.Object;
-import java.lang.Override;
-import java.lang.String;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Vehicle

@@ -18,13 +18,12 @@
 
 package org.primefaces.extensions.showcase.webapp;
 
-import org.primefaces.extensions.showcase.model.system.AvailableThemes;
-import org.primefaces.extensions.showcase.model.system.Theme;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+import org.primefaces.extensions.showcase.model.system.AvailableThemes;
+import org.primefaces.extensions.showcase.model.system.Theme;
 
 /**
  * User settings.
@@ -32,7 +31,7 @@ import java.util.List;
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @SessionScoped
 public class UserSettings implements Serializable {
 

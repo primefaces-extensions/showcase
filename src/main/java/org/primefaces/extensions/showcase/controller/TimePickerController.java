@@ -22,13 +22,11 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.extensions.event.BeforeShowEvent;
 import org.primefaces.extensions.event.CloseEvent;
@@ -40,7 +38,7 @@ import org.primefaces.extensions.event.TimeSelectEvent;
  * @author ova / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class TimePickerController implements Serializable {
 
