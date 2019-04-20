@@ -1,10 +1,11 @@
 package org.primefaces.extensions.showcase.controller.documentviewer;
 
 import java.io.Serializable;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 
-@Named
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+@ManagedBean
 @ViewScoped
 public class AdvancedDocumentViewerController implements Serializable {
 

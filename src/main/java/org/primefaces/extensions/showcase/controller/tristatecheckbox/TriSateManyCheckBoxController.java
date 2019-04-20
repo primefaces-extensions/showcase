@@ -18,14 +18,15 @@
 
 package org.primefaces.extensions.showcase.controller.tristatecheckbox;
 
+import org.primefaces.extensions.showcase.model.State;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
-import org.primefaces.extensions.showcase.model.State;
 
 /**
  * TriSateManyCheckboxController
@@ -34,7 +35,7 @@ import org.primefaces.extensions.showcase.model.State;
  * @version $Revision$
  * @since   0.3
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class TriSateManyCheckBoxController implements Serializable {
 

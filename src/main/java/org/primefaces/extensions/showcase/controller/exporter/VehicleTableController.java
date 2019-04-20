@@ -19,10 +19,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+
 import org.primefaces.event.ToggleEvent;
 import org.primefaces.extensions.showcase.model.Customer;
 import org.primefaces.extensions.showcase.model.Vehicle;
@@ -34,7 +36,7 @@ import org.primefaces.extensions.showcase.model.Vehicle;
  * @version $Revision: 1.0 $
  * @since 0.7.0
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class VehicleTableController implements Serializable {
 

@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 
-@Named
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+@ManagedBean
 @ViewScoped
 public class LocaleController implements Serializable {
 

@@ -2,15 +2,17 @@ package org.primefaces.extensions.showcase.controller.sheet;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
-import javax.inject.Named;
+
 import org.primefaces.extensions.showcase.model.sheet.AssetType;
 import org.primefaces.extensions.showcase.model.sheet.PlatformArchType;
 import org.primefaces.extensions.showcase.model.sheet.PlatformType;
 
-@Named
+@ManagedBean
 @ApplicationScoped
 public class SheetOptionProducer {
 

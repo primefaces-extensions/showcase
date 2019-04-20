@@ -1,16 +1,17 @@
 package org.primefaces.extensions.showcase.controller.gchart;
 
-import java.io.Serializable;
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import org.primefaces.extensions.component.gchart.model.GChartModel;
 import org.primefaces.extensions.component.gchart.model.GChartModelBuilder;
 import org.primefaces.extensions.component.gchart.model.GChartType;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
-@Named
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import java.io.Serializable;
+
+@ManagedBean
 @RequestScoped
 public class OrganizationalGChartController implements Serializable {
 

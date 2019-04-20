@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 import org.primefaces.extensions.event.ButtonEvent;
 import org.primefaces.extensions.event.CloseEvent;
 import org.primefaces.extensions.event.OpenEvent;
@@ -18,7 +18,7 @@ import org.primefaces.extensions.event.OpenEvent;
  *
  * @author Melloware mellowaredev@gmail.com
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class CalculatorController implements Serializable {
 

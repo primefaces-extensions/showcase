@@ -1,10 +1,12 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+
 import org.primefaces.extensions.event.ClipboardErrorEvent;
 import org.primefaces.extensions.event.ClipboardSuccessEvent;
 
@@ -13,7 +15,7 @@ import org.primefaces.extensions.event.ClipboardSuccessEvent;
  *
  * @author Melloware mellowaredev@gmail.com
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class ClipboardController implements Serializable {
 

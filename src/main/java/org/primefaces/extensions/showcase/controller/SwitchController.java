@@ -1,13 +1,14 @@
 package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 
 @SuppressWarnings("serial")
-@Named
+@ManagedBean
 @ViewScoped
 public class SwitchController implements Serializable {
 

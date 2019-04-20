@@ -20,10 +20,12 @@ package org.primefaces.extensions.showcase.webapp;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
 import javax.faces.FacesException;
-import javax.inject.Named;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+
 import org.primefaces.extensions.showcase.model.system.DocuAttribute;
 import org.primefaces.extensions.showcase.model.system.DocuEvent;
 import org.primefaces.extensions.showcase.model.system.DocuTag;
@@ -36,7 +38,7 @@ import org.primefaces.extensions.showcase.util.TagLibParser;
  * @version $Revision$
  */
 @ApplicationScoped
-@Named
+@ManagedBean(eager = true)
 public class DocuPreparer {
 
 	private Map<String, DocuTag> tags;

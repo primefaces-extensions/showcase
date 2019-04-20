@@ -18,8 +18,9 @@
 
 package org.primefaces.extensions.showcase.controller.masterdetail;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import org.primefaces.extensions.component.masterdetail.SelectLevelEvent;
 
 /**
@@ -28,7 +29,7 @@ import org.primefaces.extensions.component.masterdetail.SelectLevelEvent;
  * @author  ova / last modified by $Author$
  * @version $Revision$
  */
-@Named
+@ManagedBean
 @RequestScoped
 public class SelectLevelListener {
 

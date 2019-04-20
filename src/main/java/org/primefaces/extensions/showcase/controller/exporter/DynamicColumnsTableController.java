@@ -22,8 +22,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  * DynamicColumnsTableController
@@ -32,7 +33,7 @@ import javax.inject.Named;
  * @since   0.7.0
  * @version $Revision: 1.0 $
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class DynamicColumnsTableController implements Serializable {
 

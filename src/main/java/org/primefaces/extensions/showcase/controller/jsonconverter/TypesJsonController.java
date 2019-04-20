@@ -17,8 +17,9 @@
 package org.primefaces.extensions.showcase.controller.jsonconverter;
 
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  * TypesJsonController
@@ -26,7 +27,7 @@ import javax.inject.Named;
  * @author  Oleg Varaksin / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
-@Named
+@ManagedBean
 @SessionScoped
 public class TypesJsonController implements Serializable {
 

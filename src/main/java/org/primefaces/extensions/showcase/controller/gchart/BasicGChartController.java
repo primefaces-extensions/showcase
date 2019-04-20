@@ -1,25 +1,28 @@
 package org.primefaces.extensions.showcase.controller.gchart;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
+
 import org.primefaces.event.SelectEvent;
-import org.primefaces.extensions.component.gchart.model.DefaultGChartModelColumn;
 import org.primefaces.extensions.component.gchart.model.GChartModel;
 import org.primefaces.extensions.component.gchart.model.GChartModelBuilder;
 import org.primefaces.extensions.component.gchart.model.GChartModelRow;
+import org.primefaces.extensions.component.gchart.model.DefaultGChartModelColumn;
 import org.primefaces.extensions.component.gchart.model.GChartType;
 
-@Named
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+
+@ManagedBean
 @RequestScoped
 public class BasicGChartController implements Serializable {
 

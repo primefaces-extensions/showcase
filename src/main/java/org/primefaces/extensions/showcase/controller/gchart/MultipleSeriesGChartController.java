@@ -1,14 +1,16 @@
 package org.primefaces.extensions.showcase.controller.gchart;
 
 import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import org.primefaces.extensions.component.gchart.model.GChartModel;
 import org.primefaces.extensions.component.gchart.model.GChartModelBuilder;
 import org.primefaces.extensions.component.gchart.model.GChartType;
 
-@Named
+@ManagedBean
 @RequestScoped
 public class MultipleSeriesGChartController implements Serializable {
 

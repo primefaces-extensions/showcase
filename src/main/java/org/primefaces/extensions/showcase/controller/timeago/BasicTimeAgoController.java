@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Jasper de Vries &lt;jepsar@gmail.com&gt;
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class BasicTimeAgoController implements Serializable {
 

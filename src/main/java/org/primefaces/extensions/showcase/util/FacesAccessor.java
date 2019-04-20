@@ -43,7 +43,7 @@ public class FacesAccessor {
 
 		if (bean == null) {
 			throw new FacesException("Managed bean with name '" + beanName
-			                         + "' was not found. Check your faces-config.xml or @Named annotation.");
+			                         + "' was not found. Check your faces-config.xml or @ManagedBean annotation.");
 		}
 
 		return bean;

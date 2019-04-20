@@ -22,10 +22,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+
 import org.primefaces.extensions.event.CompleteEvent;
 
 /**
@@ -34,7 +36,7 @@ import org.primefaces.extensions.event.CompleteEvent;
  * @author Thomas Andraschko / last modified by $Author$
  * @version $Revision$
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class CodeMirrorController implements Serializable {
 
