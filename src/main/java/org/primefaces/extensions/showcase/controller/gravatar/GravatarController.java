@@ -1,15 +1,15 @@
 package org.primefaces.extensions.showcase.controller.gravatar;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 
 /**
  * Example Bean for Gravatar component
  *
  * @author f.strazzullo
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class GravatarController implements Serializable{
 

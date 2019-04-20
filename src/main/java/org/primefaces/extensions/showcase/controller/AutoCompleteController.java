@@ -20,8 +20,9 @@ package org.primefaces.extensions.showcase.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /**
  * AutoCompleteController
@@ -29,7 +30,7 @@ import javax.inject.Named;
  * @author  Thomas Andraschko / last modified by $Author$
  * @version $Revision$
  */
-@Named
+@ManagedBean
 @RequestScoped
 public class AutoCompleteController {
 

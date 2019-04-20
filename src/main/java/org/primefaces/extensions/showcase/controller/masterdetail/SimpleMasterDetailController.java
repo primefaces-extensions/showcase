@@ -21,8 +21,10 @@ package org.primefaces.extensions.showcase.controller.masterdetail;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
 import org.primefaces.extensions.showcase.model.masterdetail.Country;
 import org.primefaces.extensions.showcase.model.masterdetail.League;
 import org.primefaces.extensions.showcase.model.masterdetail.Sport;
@@ -33,7 +35,7 @@ import org.primefaces.extensions.showcase.model.masterdetail.Sport;
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class SimpleMasterDetailController implements Serializable {
 

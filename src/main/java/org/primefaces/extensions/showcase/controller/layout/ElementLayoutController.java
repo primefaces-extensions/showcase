@@ -19,10 +19,12 @@
 package org.primefaces.extensions.showcase.controller.layout;
 
 import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+
 import org.primefaces.extensions.model.layout.LayoutOptions;
 
 /**
@@ -31,7 +33,7 @@ import org.primefaces.extensions.model.layout.LayoutOptions;
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class ElementLayoutController implements Serializable {
 

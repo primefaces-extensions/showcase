@@ -16,12 +16,13 @@
 
 package org.primefaces.extensions.showcase.converter;
 
+import org.primefaces.extensions.showcase.model.system.AvailableThemes;
+import org.primefaces.extensions.showcase.model.system.Theme;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import org.primefaces.extensions.showcase.model.system.AvailableThemes;
-import org.primefaces.extensions.showcase.model.system.Theme;
 
 /**
  * ThemeConverter

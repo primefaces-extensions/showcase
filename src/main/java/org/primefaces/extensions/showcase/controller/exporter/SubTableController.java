@@ -15,11 +15,11 @@
  */
 package org.primefaces.extensions.showcase.controller.exporter;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 
 /**
  * SubTableController
@@ -28,7 +28,7 @@ import javax.inject.Named;
  * @since   0.7.0
  * @version $Revision: 1.0 $
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class SubTableController implements Serializable {
 

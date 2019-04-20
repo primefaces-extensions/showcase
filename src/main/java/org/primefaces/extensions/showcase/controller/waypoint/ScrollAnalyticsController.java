@@ -19,13 +19,15 @@
 package org.primefaces.extensions.showcase.controller.waypoint;
 
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.ContextCallback;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlPanelGroup;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+
 import org.primefaces.extensions.event.WaypointEvent;
 
 /**
@@ -34,7 +36,7 @@ import org.primefaces.extensions.event.WaypointEvent;
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class ScrollAnalyticsController implements Serializable {
 
