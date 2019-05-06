@@ -18,13 +18,12 @@
 
 package org.primefaces.extensions.showcase.webapp;
 
-import org.primefaces.extensions.showcase.model.system.AvailableThemes;
-import org.primefaces.extensions.showcase.model.system.Theme;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import org.primefaces.extensions.showcase.model.system.AvailableThemes;
+import org.primefaces.extensions.showcase.model.system.Theme;
 
 /**
  * User settings.
@@ -42,7 +41,7 @@ public class UserSettings implements Serializable {
 	private Theme currentTheme;
 
 	public UserSettings() {
-		currentTheme = AvailableThemes.getInstance().getThemeForName("omega");
+		setCurrentThemeByName("omega");
 		availableThemes = AvailableThemes.getInstance().getThemes();
 	}
 
@@ -60,5 +59,9 @@ public class UserSettings implements Serializable {
 
 	public final void setCurrentTheme(Theme currentTheme) {
 		this.currentTheme = currentTheme;
+	}
+
+	public final void setCurrentThemeByName(String theme) {
+		this.currentTheme = AvailableThemes.getInstance().getThemeForName(theme);
 	}
 }
