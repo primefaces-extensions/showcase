@@ -28,7 +28,7 @@
 
         <mojarra.version>2.3.2</mojarra.version>
         <myfaces.version>2.2.4</myfaces.version>
-        <jetty.version>9.4.9.v20180320</jetty.version>
+        <jetty.version>9.4.18.v20190429</jetty.version>
         <omnifaces.version>1.14.1</omnifaces.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
