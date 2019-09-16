@@ -23,40 +23,40 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  * DynamicColumnsTableController
  *
- * @author  Sudheer Jonna / last modified by $Author$
- * @since   0.7.0
+ * @author Sudheer Jonna / last modified by $Author$
+ * @since 0.7.0
  * @version $Revision: 1.0 $
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class DynamicColumnsTableController implements Serializable {
 
-	private static final List<String> VALID_COLUMN_KEYS =
-	    Arrays.asList("subject", "text", "country", "textLength", "deliveryStatus");
+	private static final long serialVersionUID = 1L;
 
-	private static final long serialVersionUID = 20111020L;
+	private static final List<String> VALID_COLUMN_KEYS = Arrays.asList("subject", "text", "country", "textLength",
+			"deliveryStatus");
 
 	private List<Message> messages;
 	private List<Message> filteredMessages;
 
 	private String columnTemplate = "subject text country textLength";
-	private List<ColumnModel> columns = new ArrayList<ColumnModel>();
+	private final List<ColumnModel> columns = new ArrayList<ColumnModel>();
 
 	public DynamicColumnsTableController() {
 		if (messages == null) {
 			messages = new ArrayList<Message>();
 
 			for (int i = 0; i < 10; i++) {
-				Message message = new Message();
+				final Message message = new Message();
 				message.setSubject("subject " + i);
 				message.setText("text " + i);
-				message.setTextLength(((i * 10) + 10) + "");
+				message.setTextLength(i * 10 + 10 + "");
 				message.setCountry("country" + i);
 				message.setDeliveryStatus("successfull");
 				messages.add(message);
@@ -65,7 +65,6 @@ public class DynamicColumnsTableController implements Serializable {
 
 		createDynamicColumns();
 	}
-
 
 	public List<ColumnModel> getColumns() {
 		return columns;
@@ -83,16 +82,17 @@ public class DynamicColumnsTableController implements Serializable {
 		return filteredMessages;
 	}
 
-	public void setFilteredMessages(List<Message> filteredMessages) {
+	public void setFilteredMessages(final List<Message> filteredMessages) {
 		this.filteredMessages = filteredMessages;
 	}
 
 	public static class ColumnModel implements Serializable {
 
-		private String header;
-		private String property;
+		private static final long serialVersionUID = 1L;
+		private final String header;
+		private final String property;
 
-		public ColumnModel(String header, String property) {
+		public ColumnModel(final String header, final String property) {
 			this.header = header;
 			this.property = property;
 		}
@@ -106,9 +106,9 @@ public class DynamicColumnsTableController implements Serializable {
 		}
 	}
 
-
 	public class Message implements Serializable {
 
+		private static final long serialVersionUID = 1L;
 		private String subject;
 		private String text;
 		private long time;
@@ -125,7 +125,7 @@ public class DynamicColumnsTableController implements Serializable {
 			return subject;
 		}
 
-		public final void setSubject(String subject) {
+		public final void setSubject(final String subject) {
 			this.subject = subject;
 		}
 
@@ -133,7 +133,7 @@ public class DynamicColumnsTableController implements Serializable {
 			return text;
 		}
 
-		public final void setText(String text) {
+		public final void setText(final String text) {
 			this.text = text;
 		}
 
@@ -141,7 +141,7 @@ public class DynamicColumnsTableController implements Serializable {
 			return time;
 		}
 
-		public void setTime(long time) {
+		public void setTime(final long time) {
 			this.time = time;
 		}
 
@@ -149,7 +149,7 @@ public class DynamicColumnsTableController implements Serializable {
 			return textLength;
 		}
 
-		public void setTextLength(String textLength) {
+		public void setTextLength(final String textLength) {
 			this.textLength = textLength;
 		}
 
@@ -157,7 +157,7 @@ public class DynamicColumnsTableController implements Serializable {
 			return country;
 		}
 
-		public void setCountry(String country) {
+		public void setCountry(final String country) {
 			this.country = country;
 		}
 
@@ -165,7 +165,7 @@ public class DynamicColumnsTableController implements Serializable {
 			return deliveryStatus;
 		}
 
-		public void setDeliveryStatus(String deliveryStatus) {
+		public void setDeliveryStatus(final String deliveryStatus) {
 			this.deliveryStatus = deliveryStatus;
 		}
 	}
@@ -174,7 +174,7 @@ public class DynamicColumnsTableController implements Serializable {
 		return columnTemplate;
 	}
 
-	public void setColumnTemplate(String columnTemplate) {
+	public void setColumnTemplate(final String columnTemplate) {
 		this.columnTemplate = columnTemplate;
 	}
 
@@ -183,11 +183,11 @@ public class DynamicColumnsTableController implements Serializable {
 	}
 
 	public void createDynamicColumns() {
-		String[] columnKeys = columnTemplate.split(" ");
+		final String[] columnKeys = columnTemplate.split(" ");
 		columns.clear();
 
-		for (String columnKey : columnKeys) {
-			String key = columnKey.trim();
+		for (final String columnKey : columnKeys) {
+			final String key = columnKey.trim();
 
 			if (VALID_COLUMN_KEYS.contains(key)) {
 				columns.add(new ColumnModel(columnKey.toUpperCase(), columnKey));

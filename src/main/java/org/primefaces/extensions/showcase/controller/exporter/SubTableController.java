@@ -15,22 +15,25 @@
  */
 package org.primefaces.extensions.showcase.controller.exporter;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
 /**
  * SubTableController
  *
- * @author  Sudheer Jonna / last modified by $Author$
- * @since   0.7.0
+ * @author Sudheer Jonna / last modified by $Author$
+ * @since 0.7.0
  * @version $Revision: 1.0 $
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class SubTableController implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private List<Player> players;
 
@@ -41,7 +44,7 @@ public class SubTableController implements Serializable {
 	public void populatePlayers() {
 		players = new ArrayList<Player>();
 
-		Player sachin = new Player("Sachin", 10, "India");
+		final Player sachin = new Player("Sachin", 10, "India");
 		sachin.getDetails().add(new PlayerDetails("2001", 800, 7, 12));
 		sachin.getDetails().add(new PlayerDetails("2002", 933, 13, 11));
 		sachin.getDetails().add(new PlayerDetails("2003", 900, 10, 33));
@@ -50,7 +53,7 @@ public class SubTableController implements Serializable {
 		sachin.getDetails().add(new PlayerDetails("2006", 700, 5, 9));
 		players.add(sachin);
 
-		Player ponting = new Player("Ponting", 6, "Australia");
+		final Player ponting = new Player("Ponting", 6, "Australia");
 		ponting.getDetails().add(new PlayerDetails("2001", 900, 5, 11));
 		ponting.getDetails().add(new PlayerDetails("2002", 600, 2, 13));
 		ponting.getDetails().add(new PlayerDetails("2003", 700, 13, 9));
@@ -59,7 +62,7 @@ public class SubTableController implements Serializable {
 		ponting.getDetails().add(new PlayerDetails("2006", 400, 6, 16));
 		players.add(ponting);
 
-		Player lara = new Player("Lara", 10, "Trinidad");
+		final Player lara = new Player("Lara", 10, "Trinidad");
 		lara.getDetails().add(new PlayerDetails("2001", 600, 12, 22));
 		lara.getDetails().add(new PlayerDetails("2002", 700, 9, 17));
 		lara.getDetails().add(new PlayerDetails("2003", 999, 14, 9));
@@ -75,6 +78,8 @@ public class SubTableController implements Serializable {
 
 	public class Player implements Serializable {
 
+		private static final long serialVersionUID = 1L;
+
 		private String name;
 
 		private int number;
@@ -86,17 +91,17 @@ public class SubTableController implements Serializable {
 		public Player() {
 		}
 
-		public Player(String name) {
+		public Player(final String name) {
 			this.name = name;
 		}
 
-		public Player(String name, int number, String country) {
+		public Player(final String name, final int number, final String country) {
 			this.name = name;
 			this.number = number;
 			this.country = country;
 		}
 
-		public Player(String name, int number) {
+		public Player(final String name, final int number) {
 			this.name = name;
 			this.number = number;
 		}
@@ -105,7 +110,7 @@ public class SubTableController implements Serializable {
 			return name;
 		}
 
-		public void setName(String name) {
+		public void setName(final String name) {
 			this.name = name;
 		}
 
@@ -113,7 +118,7 @@ public class SubTableController implements Serializable {
 			return number;
 		}
 
-		public void setNumber(int number) {
+		public void setNumber(final int number) {
 			this.number = number;
 		}
 
@@ -121,7 +126,7 @@ public class SubTableController implements Serializable {
 			return country;
 		}
 
-		public void setCountry(String country) {
+		public void setCountry(final String country) {
 			this.country = country;
 		}
 
@@ -129,14 +134,14 @@ public class SubTableController implements Serializable {
 			return details;
 		}
 
-		public void setDetails(List<PlayerDetails> details) {
+		public void setDetails(final List<PlayerDetails> details) {
 			this.details = details;
 		}
 
 		public int getTotalRuns() {
 			int sum = 0;
 
-			for (PlayerDetails d : details) {
+			for (final PlayerDetails d : details) {
 				sum += d.getRuns();
 			}
 
@@ -146,7 +151,7 @@ public class SubTableController implements Serializable {
 		public int getTotalWickets() {
 			int sum = 0;
 
-			for (PlayerDetails d : details) {
+			for (final PlayerDetails d : details) {
 				sum += d.getWickets();
 			}
 
@@ -156,7 +161,7 @@ public class SubTableController implements Serializable {
 		public int getTotalCatches() {
 			int sum = 0;
 
-			for (PlayerDetails d : details) {
+			for (final PlayerDetails d : details) {
 				sum += d.getCatches();
 			}
 
@@ -164,7 +169,7 @@ public class SubTableController implements Serializable {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(final Object obj) {
 			if (obj == null) {
 				return false;
 			}
@@ -178,7 +183,7 @@ public class SubTableController implements Serializable {
 
 		@Override
 		public int hashCode() {
-			int hash = 1;
+			final int hash = 1;
 
 			return hash * 31 + name.hashCode();
 		}
@@ -189,8 +194,9 @@ public class SubTableController implements Serializable {
 		}
 	}
 
-
 	public class PlayerDetails implements Serializable {
+
+		private static final long serialVersionUID = 1L;
 
 		private String year;
 
@@ -203,7 +209,7 @@ public class SubTableController implements Serializable {
 		public PlayerDetails() {
 		}
 
-		public PlayerDetails(String year, int runs, int wickets, int catches) {
+		public PlayerDetails(final String year, final int runs, final int wickets, final int catches) {
 			this.year = year;
 			this.runs = runs;
 			this.wickets = wickets;
@@ -214,7 +220,7 @@ public class SubTableController implements Serializable {
 			return year;
 		}
 
-		public void setYear(String year) {
+		public void setYear(final String year) {
 			this.year = year;
 		}
 
@@ -222,7 +228,7 @@ public class SubTableController implements Serializable {
 			return runs;
 		}
 
-		public void setRuns(int runs) {
+		public void setRuns(final int runs) {
 			this.runs = runs;
 		}
 
@@ -230,7 +236,7 @@ public class SubTableController implements Serializable {
 			return wickets;
 		}
 
-		public void setWickets(int wickets) {
+		public void setWickets(final int wickets) {
 			this.wickets = wickets;
 		}
 
@@ -238,7 +244,7 @@ public class SubTableController implements Serializable {
 			return catches;
 		}
 
-		public void setCatches(int catches) {
+		public void setCatches(final int catches) {
 			this.catches = catches;
 		}
 	}

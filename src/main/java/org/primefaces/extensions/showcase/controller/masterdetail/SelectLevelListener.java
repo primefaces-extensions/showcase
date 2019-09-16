@@ -18,24 +18,24 @@
 
 package org.primefaces.extensions.showcase.controller.masterdetail;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
 import org.primefaces.extensions.component.masterdetail.SelectLevelEvent;
 
 /**
  * SelectLevelListener
  *
- * @author  ova / last modified by $Author$
+ * @author ova / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class SelectLevelListener {
 
 	private boolean errorOccured = false;
 
-	public int handleNavigation(SelectLevelEvent selectLevelEvent) {
+	public int handleNavigation(final SelectLevelEvent selectLevelEvent) {
 		if (errorOccured) {
 			return 2;
 		} else {
@@ -43,7 +43,7 @@ public class SelectLevelListener {
 		}
 	}
 
-	public void setErrorOccured(boolean errorOccured) {
+	public void setErrorOccured(final boolean errorOccured) {
 		this.errorOccured = errorOccured;
 	}
 }

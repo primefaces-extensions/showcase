@@ -18,27 +18,28 @@
 
 package org.primefaces.extensions.showcase.controller.masterdetail;
 
-import org.primefaces.extensions.showcase.model.Person;
-
-import javax.el.ELContext;
-import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.el.ELContext;
+import javax.faces.FacesException;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
+import org.primefaces.extensions.showcase.model.Person;
+
 /**
  * ComplexMasterDetailController.
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class ComplexMasterDetailController implements Serializable {
 
@@ -46,14 +47,14 @@ public class ComplexMasterDetailController implements Serializable {
 
 	private List<Person> persons;
 	private List<SelectItem> availableLanguageSkills = null;
-	private List<String> selectedLanguageSkills = new ArrayList<String>();
+	private final List<String> selectedLanguageSkills = new ArrayList<String>();
 	private String languageSkillToAdd;
 
 	public ComplexMasterDetailController() {
 		if (persons == null) {
 			persons = new ArrayList<Person>();
 
-			Calendar calendar = Calendar.getInstance();
+			final Calendar calendar = Calendar.getInstance();
 			calendar.set(1972, 5, 25);
 			persons.add(new Person("1", "Max Mustermann", 1, calendar.getTime()));
 			calendar.set(1981, 12, 10);
@@ -86,7 +87,7 @@ public class ComplexMasterDetailController implements Serializable {
 		return selectedLanguageSkills;
 	}
 
-	public void setLanguageSkillToAdd(String languageSkillToAdd) {
+	public void setLanguageSkillToAdd(final String languageSkillToAdd) {
 		this.languageSkillToAdd = languageSkillToAdd;
 	}
 
@@ -94,36 +95,36 @@ public class ComplexMasterDetailController implements Serializable {
 		return languageSkillToAdd;
 	}
 
-	public String saveSuccess(Person person) {
-		FacesMessage message =
-		    new FacesMessage(FacesMessage.SEVERITY_INFO, "Person " + person.getName() + " has been saved", null);
+	public String saveSuccess(final Person person) {
+		final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"Person " + person.getName() + " has been saved", null);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 
 		return null;
 	}
 
-	public String saveFailure(Person person) {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		ELContext elContext = fc.getELContext();
+	public String saveFailure(final Person person) {
+		final FacesContext fc = FacesContext.getCurrentInstance();
+		final ELContext elContext = fc.getELContext();
 
 		SelectLevelListener selectLevelListener;
 		try {
-			selectLevelListener =
-			    (SelectLevelListener) elContext.getELResolver().getValue(elContext, null, "selectLevelListener");
+			selectLevelListener = (SelectLevelListener) elContext.getELResolver().getValue(elContext, null,
+					"selectLevelListener");
 			selectLevelListener.setErrorOccured(true);
-		} catch (RuntimeException e) {
+		} catch (final RuntimeException e) {
 			throw new FacesException(e.getMessage(), e);
 		}
 
-		FacesMessage message =
-		    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Person " + person.getName() + " could not be saved", null);
+		final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+				"Person " + person.getName() + " could not be saved", null);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 
 		return null;
 	}
 
-	public String delete(Person person) {
-		for (Person pers : persons) {
+	public String delete(final Person person) {
+		for (final Person pers : persons) {
 			if (pers.getId().equals(person.getId())) {
 				persons.remove(pers);
 
@@ -134,7 +135,7 @@ public class ComplexMasterDetailController implements Serializable {
 		return null;
 	}
 
-	public void addLanguageSkill(Person person) {
+	public void addLanguageSkill(final Person person) {
 		if (languageSkillToAdd != null) {
 			person.addLanguageSkill(languageSkillToAdd);
 		}

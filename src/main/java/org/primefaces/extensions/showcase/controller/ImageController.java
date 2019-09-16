@@ -21,9 +21,9 @@ package org.primefaces.extensions.showcase.controller;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.extensions.event.ImageAreaSelectEvent;
 import org.primefaces.extensions.event.ResizeEvent;
@@ -32,10 +32,10 @@ import org.primefaces.extensions.event.RotateEvent;
 /**
  * ImageController
  *
- * @author  Thomas Andraschko / last modified by $Author$
+ * @author Thomas Andraschko / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class ImageController implements Serializable {
 
@@ -48,13 +48,9 @@ public class ImageController implements Serializable {
 	}
 
 	public void selectEndListener(final ImageAreaSelectEvent e) {
-		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Area selected", 
-				"X1: " + e.getX1() 
-				+ ", X2: " + e.getX2() 
-				+ ", Y1: " + e.getY1()
-				+ ", Y2: " + e.getY2()
-		        + ", Image width: " + e.getImgWidth() 
-		        + ", Image height: " + e.getImgHeight());
+		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Area selected",
+				"X1: " + e.getX1() + ", X2: " + e.getX2() + ", Y1: " + e.getY1() + ", Y2: " + e.getY2()
+						+ ", Image width: " + e.getImgWidth() + ", Image height: " + e.getImgHeight());
 
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}

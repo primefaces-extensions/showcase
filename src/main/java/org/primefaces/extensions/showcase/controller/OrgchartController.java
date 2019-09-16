@@ -19,9 +19,8 @@ package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.extensions.component.orgchart.DefaultOrgChartNode;
 import org.primefaces.extensions.component.orgchart.OrgChartNode;
@@ -31,64 +30,64 @@ import org.primefaces.extensions.event.OrgChartDropEvent;
 /**
  * OrgchartController
  *
- * @author  @jxmai / last modified by $Author$
+ * @author @jxmai / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class OrgchartController implements Serializable {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1648477595853984820L;
-    
-    private OrgChartNode orgChartNode;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1648477595853984820L;
 
-    private String direction = "t2b";
+	private OrgChartNode orgChartNode;
 
-    public OrgchartController() {
-        super();
-        init();
-    }
+	private String direction = "t2b";
 
-    public void init() {
-        orgChartNode = new DefaultOrgChartNode("id1", "Node1", "content1");
-        orgChartNode.addChild(new DefaultOrgChartNode("id2", "Node2", "Content2"));
-        orgChartNode.addChild(new DefaultOrgChartNode("id3", "Node3", "Content3"));
-        OrgChartNode node = new DefaultOrgChartNode("id4", "Node4", "Content4");
-        orgChartNode.addChild(node);
-        node.addChild(new DefaultOrgChartNode("id5", "Node5", "Content5"));
-        node.addChild(new DefaultOrgChartNode("id6", "Node6", "Content6"));
-    }
+	public OrgchartController() {
+		super();
+		init();
+	}
 
-    public void onClick(OrgChartClickEvent event) {
+	public void init() {
+		orgChartNode = new DefaultOrgChartNode("id1", "Node1", "content1");
+		orgChartNode.addChild(new DefaultOrgChartNode("id2", "Node2", "Content2"));
+		orgChartNode.addChild(new DefaultOrgChartNode("id3", "Node3", "Content3"));
+		final OrgChartNode node = new DefaultOrgChartNode("id4", "Node4", "Content4");
+		orgChartNode.addChild(node);
+		node.addChild(new DefaultOrgChartNode("id5", "Node5", "Content5"));
+		node.addChild(new DefaultOrgChartNode("id6", "Node6", "Content6"));
+	}
 
-        System.out.println("clicked ID: " + event.getId());
-        System.out.println("hierachy: " + event.getHierarchy().toString());
-    }
+	public void onClick(final OrgChartClickEvent event) {
 
-    public void onDropOver(OrgChartDropEvent event) {
+		System.out.println("clicked ID: " + event.getId());
+		System.out.println("hierachy: " + event.getHierarchy().toString());
+	}
 
-        System.out.println("hierachy: " + event.getHierarchy().toString());
-        System.out.println("dragged node id " + event.getDraggedNodeId());
-        System.out.println("dropped node id " + event.getDroppedZoneId());
-    }
+	public void onDropOver(final OrgChartDropEvent event) {
 
-    public OrgChartNode getOrgChartNode() {
-        return orgChartNode;
-    }
+		System.out.println("hierachy: " + event.getHierarchy().toString());
+		System.out.println("dragged node id " + event.getDraggedNodeId());
+		System.out.println("dropped node id " + event.getDroppedZoneId());
+	}
 
-    public void setOrgChartNode(OrgChartNode orgChartNode) {
-        this.orgChartNode = orgChartNode;
-    }
+	public OrgChartNode getOrgChartNode() {
+		return orgChartNode;
+	}
 
-    public String getDirection() {
-        return direction;
-    }
+	public void setOrgChartNode(final OrgChartNode orgChartNode) {
+		this.orgChartNode = orgChartNode;
+	}
 
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(final String direction) {
+		this.direction = direction;
+	}
 
 }

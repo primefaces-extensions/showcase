@@ -20,16 +20,16 @@ package org.primefaces.extensions.showcase.controller.blockui;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  * BlockUIController
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class BlockUIController implements Serializable {
 
@@ -39,7 +39,7 @@ public class BlockUIController implements Serializable {
 		try {
 			// simulate a long running request
 			Thread.sleep(1200);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			// ignore
 		}
 	}

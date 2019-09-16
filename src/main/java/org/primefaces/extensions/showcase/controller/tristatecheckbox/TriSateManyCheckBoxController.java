@@ -18,24 +18,25 @@
 
 package org.primefaces.extensions.showcase.controller.tristatecheckbox;
 
-import org.primefaces.extensions.showcase.model.State;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
+import org.primefaces.extensions.showcase.model.State;
+
 /**
  * TriSateManyCheckboxController
  *
- * @author  Mauricio Fenoglio / last modified by $Author$
+ * @author Mauricio Fenoglio / last modified by $Author$
  * @version $Revision$
- * @since   0.3
+ * @since 0.3
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class TriSateManyCheckBoxController implements Serializable {
 
@@ -44,7 +45,7 @@ public class TriSateManyCheckBoxController implements Serializable {
 	private Map<String, String> selectedOptionsTriStateBasic;
 	private Map<String, String> selectedOptionsTriStateAjax;
 	private Map<String, State> selectedOptionsTriStateConverted;
-        private Map<String, State> selectedOptionsTriStateConvertedInline;
+	private Map<String, State> selectedOptionsTriStateConvertedInline;
 	private Map<String, String> basicOptions;
 
 	public TriSateManyCheckBoxController() {
@@ -53,7 +54,7 @@ public class TriSateManyCheckBoxController implements Serializable {
 		basicOptions.put("Label for Cat", "Cat");
 		basicOptions.put("Label for Fish", "Fish");
 
-		//default will created with state=0
+		// default will created with state=0
 		selectedOptionsTriStateBasic = new HashMap<String, String>();
 		selectedOptionsTriStateBasic.put("Cat", "1");
 
@@ -65,8 +66,8 @@ public class TriSateManyCheckBoxController implements Serializable {
 		selectedOptionsTriStateConverted.put("Dog", new State("One"));
 		selectedOptionsTriStateConverted.put("Cat", new State("One"));
 		selectedOptionsTriStateConverted.put("Fish", new State("One"));
-                
-                selectedOptionsTriStateConvertedInline = new HashMap<String, State>();
+
+		selectedOptionsTriStateConvertedInline = new HashMap<String, State>();
 		selectedOptionsTriStateConvertedInline.put("Dog", new State("One"));
 		selectedOptionsTriStateConvertedInline.put("Cat", new State("Two"));
 		selectedOptionsTriStateConvertedInline.put("Fish", new State("Three"));
@@ -76,7 +77,7 @@ public class TriSateManyCheckBoxController implements Serializable {
 		return selectedOptionsTriStateAjax;
 	}
 
-	public void setSelectedOptionsTriStateAjax(Map<String, String> selectedOptionsTriStateAjax) {
+	public void setSelectedOptionsTriStateAjax(final Map<String, String> selectedOptionsTriStateAjax) {
 		this.selectedOptionsTriStateAjax = selectedOptionsTriStateAjax;
 	}
 
@@ -84,17 +85,17 @@ public class TriSateManyCheckBoxController implements Serializable {
 		return selectedOptionsTriStateBasic;
 	}
 
-	public void setSelectedOptionsTriStateBasic(Map<String, String> selectedOptionsTriStateBasic) {
+	public void setSelectedOptionsTriStateBasic(final Map<String, String> selectedOptionsTriStateBasic) {
 		this.selectedOptionsTriStateBasic = selectedOptionsTriStateBasic;
 	}
 
 	public void addMessage() {
 		String message = "";
-		for (String key : selectedOptionsTriStateAjax.keySet()) {
+		for (final String key : selectedOptionsTriStateAjax.keySet()) {
 			message += key + "=" + selectedOptionsTriStateAjax.get(key) + "  ";
 		}
 
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "State has been changed", message.trim());
+		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "State has been changed", message.trim());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
@@ -102,7 +103,7 @@ public class TriSateManyCheckBoxController implements Serializable {
 		return basicOptions;
 	}
 
-	public void setBasicOptions(Map<String, String> basicOptions) {
+	public void setBasicOptions(final Map<String, String> basicOptions) {
 		this.basicOptions = basicOptions;
 	}
 
@@ -110,15 +111,16 @@ public class TriSateManyCheckBoxController implements Serializable {
 		return selectedOptionsTriStateConverted;
 	}
 
-	public void setSelectedOptionsTriStateConverted(Map<String, State> selectedOptionsTriStateConverted) {
+	public void setSelectedOptionsTriStateConverted(final Map<String, State> selectedOptionsTriStateConverted) {
 		this.selectedOptionsTriStateConverted = selectedOptionsTriStateConverted;
 	}
 
-        public Map<String, State> getSelectedOptionsTriStateConvertedInline() {
-            return selectedOptionsTriStateConvertedInline;
-        }
+	public Map<String, State> getSelectedOptionsTriStateConvertedInline() {
+		return selectedOptionsTriStateConvertedInline;
+	}
 
-        public void setSelectedOptionsTriStateConvertedInline(Map<String, State> selectedOptionsTriStateConvertedInline) {
-            this.selectedOptionsTriStateConvertedInline = selectedOptionsTriStateConvertedInline;
-        }        
+	public void setSelectedOptionsTriStateConvertedInline(
+			final Map<String, State> selectedOptionsTriStateConvertedInline) {
+		this.selectedOptionsTriStateConvertedInline = selectedOptionsTriStateConvertedInline;
+	}
 }

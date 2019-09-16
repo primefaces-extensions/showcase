@@ -71,7 +71,7 @@
 	<!-- Context parameters - Primefaces & Extensions -->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>#{userSettings.currentTheme.name}</param-value>
+		<param-value>#{empty userSettings ? 'omega' : userSettings.currentTheme.name}</param-value>
 	</context-param>
 	<!-- enabled FontAwesome -->
 	<context-param>  
@@ -89,9 +89,15 @@
 		<param-name>org.omnifaces.COMBINED_RESOURCE_HANDLER_DISABLED</param-name>
 		<param-value>#{facesContext.application.projectStage eq 'Development'}</param-value>
 	</context-param>
+	
+    <!-- Enable PostConstruct on JSF ManagedBeans on Jetty -->
+    <context-param>
+        <param-name>org.apache.myfaces.config.annotation.LifecycleProvider</param-name>
+        <param-value>org.apache.myfaces.config.annotation.NoInjectionAnnotationLifecycleProvider</param-value>
+    </context-param>
 
 	<listener>
-		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+		<listener-class>org.apache.webbeans.servlet.WebBeansConfigurationListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>${jsf-listener}</listener-class>

@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.FacesException;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
 import org.primefaces.extensions.showcase.model.system.DocuAttribute;
 import org.primefaces.extensions.showcase.model.system.DocuEvent;
@@ -34,11 +34,11 @@ import org.primefaces.extensions.showcase.util.TagLibParser;
 /**
  * Prepares the documentation from the tag library.
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
 @ApplicationScoped
-@ManagedBean(eager = true)
+@Named
 public class DocuPreparer {
 
 	private Map<String, DocuTag> tags;
@@ -47,7 +47,7 @@ public class DocuPreparer {
 	protected void initialize() {
 		try {
 			tags = TagLibParser.getTags();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			throw new FacesException("Taglib parsing failed!", e);
 		}
 	}
@@ -57,7 +57,7 @@ public class DocuPreparer {
 			return null;
 		}
 
-		DocuTag docuTag = tags.get(tagName);
+		final DocuTag docuTag = tags.get(tagName);
 		if (docuTag == null) {
 			return null;
 		}
@@ -70,7 +70,7 @@ public class DocuPreparer {
 			return null;
 		}
 
-		DocuTag docuTag = tags.get(tagName);
+		final DocuTag docuTag = tags.get(tagName);
 		if (docuTag == null) {
 			return null;
 		}

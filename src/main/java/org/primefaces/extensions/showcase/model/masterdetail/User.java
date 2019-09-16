@@ -27,6 +27,8 @@ import java.io.Serializable;
  * @version $Revision$
  */
 public class User implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	private String firstname;
 	private String lastname;

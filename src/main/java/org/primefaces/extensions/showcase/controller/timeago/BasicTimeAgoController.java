@@ -4,35 +4,38 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author Jasper de Vries &lt;jepsar@gmail.com&gt;
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class BasicTimeAgoController implements Serializable {
 
-    private Date now;
+	private static final long serialVersionUID = 1L;
 
-    private Date firstRelease;
+	private final Date now;
 
-    public BasicTimeAgoController() {
-        now = new Date();
+	private final Date firstRelease;
 
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.set(2012, 0, 23);
-        firstRelease = calendar.getTime();
-    }
+	public BasicTimeAgoController() {
+		now = new Date();
 
-    public Date getNow() {
-        return now;
-    }
+		final Calendar calendar = GregorianCalendar.getInstance();
+		calendar.set(2012, 0, 23);
+		firstRelease = calendar.getTime();
+	}
 
-    public Date getFirstRelease() {
-        return firstRelease;
-    }
+	public Date getNow() {
+		return now;
+	}
+
+	public Date getFirstRelease() {
+		return firstRelease;
+	}
 
 }

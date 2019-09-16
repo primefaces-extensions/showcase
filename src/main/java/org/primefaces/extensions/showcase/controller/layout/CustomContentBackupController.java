@@ -21,19 +21,19 @@ package org.primefaces.extensions.showcase.controller.layout;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.extensions.model.layout.LayoutOptions;
 
 /**
  * CustomContentLayoutController
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class CustomContentBackupController implements Serializable {
 
@@ -56,12 +56,12 @@ public class CustomContentBackupController implements Serializable {
 		layoutOptions = new LayoutOptions();
 
 		// options for all panes
-		LayoutOptions panes = new LayoutOptions();
+		final LayoutOptions panes = new LayoutOptions();
 		panes.addOption("slidable", false);
 		layoutOptions.setPanesOptions(panes);
 
 		// north pane
-		LayoutOptions north = new LayoutOptions();
+		final LayoutOptions north = new LayoutOptions();
 		north.addOption("resizable", false);
 		north.addOption("closable", false);
 		north.addOption("size", 60);
@@ -69,7 +69,7 @@ public class CustomContentBackupController implements Serializable {
 		layoutOptions.setNorthOptions(north);
 
 		// south pane
-		LayoutOptions south = new LayoutOptions();
+		final LayoutOptions south = new LayoutOptions();
 		south.addOption("resizable", false);
 		south.addOption("closable", false);
 		south.addOption("size", 28);
@@ -77,14 +77,14 @@ public class CustomContentBackupController implements Serializable {
 		layoutOptions.setSouthOptions(south);
 
 		// west pane
-		LayoutOptions west = new LayoutOptions();
+		final LayoutOptions west = new LayoutOptions();
 		west.addOption("size", 210);
 		west.addOption("minSize", 180);
 		west.addOption("maxSize", 500);
 		layoutOptions.setWestOptions(west);
 
 		// center pane, instantiated with Id in order to be able to update child options
-		LayoutOptions center = new LayoutOptions("centerOptions");
+		final LayoutOptions center = new LayoutOptions("centerOptions");
 		center.addOption("resizable", false);
 		center.addOption("closable", false);
 		center.addOption("minWidth", 200);
@@ -108,12 +108,12 @@ public class CustomContentBackupController implements Serializable {
 		optionsNestedOne = new LayoutOptions("childOptionsOne");
 
 		// options for center-north pane
-		LayoutOptions centerNorth = new LayoutOptions();
+		final LayoutOptions centerNorth = new LayoutOptions();
 		centerNorth.addOption("size", "50%");
 		optionsNestedOne.setNorthOptions(centerNorth);
 
 		// options for center-center pane
-		LayoutOptions centerCenter = new LayoutOptions();
+		final LayoutOptions centerCenter = new LayoutOptions();
 		centerCenter.addOption("minHeight", 60);
 		optionsNestedOne.setCenterOptions(centerCenter);
 
@@ -129,12 +129,12 @@ public class CustomContentBackupController implements Serializable {
 		optionsNestedTwo = new LayoutOptions("childOptionsTwo");
 
 		// options for center-east pane
-		LayoutOptions centerEast = new LayoutOptions();
+		final LayoutOptions centerEast = new LayoutOptions();
 		centerEast.addOption("size", "50%");
 		optionsNestedTwo.setEastOptions(centerEast);
 
 		// options for center-center pane
-		LayoutOptions centerCenter = new LayoutOptions();
+		final LayoutOptions centerCenter = new LayoutOptions();
 		centerCenter.addOption("minWidth", 60);
 		optionsNestedTwo.setCenterOptions(centerCenter);
 
@@ -145,13 +145,13 @@ public class CustomContentBackupController implements Serializable {
 		return src;
 	}
 
-	public void toggleSrc(ActionEvent evt) {
+	public void toggleSrc(final ActionEvent evt) {
 		if (FIRST_NESTED_LAYOUT.equals(src)) {
 			// change path to the nested layout
 			src = SECOND_NESTED_LAYOUT;
 
 			// replace child options in layout options
-			LayoutOptions center = layoutOptions.getLayoutOptions("centerOptions");
+			final LayoutOptions center = layoutOptions.getLayoutOptions("centerOptions");
 			center.replace("childOptionsOne", getLayoutOptionsNestedTwo());
 
 			// update options for oncomplete
@@ -161,7 +161,7 @@ public class CustomContentBackupController implements Serializable {
 			src = FIRST_NESTED_LAYOUT;
 
 			// replace child options in layout options
-			LayoutOptions center = layoutOptions.getLayoutOptions("centerOptions");
+			final LayoutOptions center = layoutOptions.getLayoutOptions("centerOptions");
 			center.replace("childOptionsTwo", getLayoutOptionsNestedOne());
 
 			// update options for oncomplete

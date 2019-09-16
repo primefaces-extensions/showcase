@@ -26,7 +26,9 @@ import java.io.Serializable;
  */
 public class Customer implements Serializable {
 
-    public String customerName;
+	private static final long serialVersionUID = 1L;
+	
+	public String customerName;
     public String country;
     public String contactNumber;
 

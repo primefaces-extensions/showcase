@@ -17,8 +17,8 @@ package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  * InputNumberController
@@ -27,74 +27,73 @@ import javax.faces.bean.ViewScoped;
  * @version $Revision$
  * @since 0.3
  */
-@ManagedBean(name = "qrCodeController")
+@Named("qrCodeController")
 @ViewScoped
 public class QRCodeController implements Serializable {
 
-    private static final long serialVersionUID = 20120316L;
-    private String renderMethod;
-    private String text;
-    private String label;
-    private int mode;
-    private int size;
-    private String fillColor;
-   
+	private static final long serialVersionUID = 20120316L;
+	private String renderMethod;
+	private String text;
+	private String label;
+	private int mode;
+	private int size;
+	private String fillColor;
 
-    public QRCodeController() {
-        renderMethod = "canvas";
-        text = "http://primefaces-extensions.github.io/";
-        label = "PF-Extensions";
-        mode = 2;
-        fillColor = "7d767d";
-        size = 200;
-    }
+	public QRCodeController() {
+		renderMethod = "canvas";
+		text = "http://primefaces-extensions.github.io/";
+		label = "PF-Extensions";
+		mode = 2;
+		fillColor = "7d767d";
+		size = 200;
+	}
 
-    public String getRenderMethod() {
-        return renderMethod;
-    }
+	public String getRenderMethod() {
+		return renderMethod;
+	}
 
-    public void setRenderMethod(String renderMethod) {
-        this.renderMethod = renderMethod;
-    }
+	public void setRenderMethod(final String renderMethod) {
+		this.renderMethod = renderMethod;
+	}
 
-    public String getText() {
-        return text;
-    }
+	public String getText() {
+		return text;
+	}
 
-    public void setText(String text) {
-        this.text = text;
-    }
+	public void setText(final String text) {
+		this.text = text;
+	}
 
-    public String getLabel() {
-        return label;
-    }
+	public String getLabel() {
+		return label;
+	}
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
+	public void setLabel(final String label) {
+		this.label = label;
+	}
 
-    public int getMode() {
-        return mode;
-    }
+	public int getMode() {
+		return mode;
+	}
 
-    public void setMode(int mode) {
-        this.mode = mode;
-    }
+	public void setMode(final int mode) {
+		this.mode = mode;
+	}
 
-    public String getFillColor() {
-        return fillColor;
-    }
+	public String getFillColor() {
+		return fillColor;
+	}
 
-    public void setFillColor(String fillColor) {
-        this.fillColor = fillColor;
-    }
+	public void setFillColor(final String fillColor) {
+		this.fillColor = fillColor;
+	}
 
-    public int getSize() {
-        return size;
-    }
+	public int getSize() {
+		return size;
+	}
 
-    public void setSize(int size) {
-        this.size = size;
-    }
-        
+	public void setSize(final int size) {
+		this.size = size;
+	}
+
 }

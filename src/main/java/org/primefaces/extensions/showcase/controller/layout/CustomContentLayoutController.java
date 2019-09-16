@@ -22,25 +22,25 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.extensions.model.layout.LayoutOptions;
 
 /**
  * CustomContentLayoutController
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class CustomContentLayoutController implements Serializable {
 
 	private static final long serialVersionUID = 20120925L;
 
-	private String src = "/sections/layout/example-customContentOne.xhtml";
+	private final String src = "/sections/layout/example-customContentOne.xhtml";
 	private LayoutOptions layoutOptions;
 
 	@PostConstruct
@@ -48,12 +48,12 @@ public class CustomContentLayoutController implements Serializable {
 		layoutOptions = new LayoutOptions();
 
 		// options for all panes
-		LayoutOptions panes = new LayoutOptions();
+		final LayoutOptions panes = new LayoutOptions();
 		panes.addOption("slidable", false);
 		layoutOptions.setPanesOptions(panes);
 
 		// north pane
-		LayoutOptions north = new LayoutOptions();
+		final LayoutOptions north = new LayoutOptions();
 		north.addOption("resizable", false);
 		north.addOption("closable", false);
 		north.addOption("size", 60);
@@ -61,7 +61,7 @@ public class CustomContentLayoutController implements Serializable {
 		layoutOptions.setNorthOptions(north);
 
 		// south pane
-		LayoutOptions south = new LayoutOptions();
+		final LayoutOptions south = new LayoutOptions();
 		south.addOption("resizable", false);
 		south.addOption("closable", false);
 		south.addOption("size", 28);
@@ -69,13 +69,13 @@ public class CustomContentLayoutController implements Serializable {
 		layoutOptions.setSouthOptions(south);
 
 		// west pane
-		LayoutOptions west = new LayoutOptions();
+		final LayoutOptions west = new LayoutOptions();
 		west.addOption("size", 340);
 		west.addOption("minSize", 150);
 		west.addOption("maxSize", 500);
 		layoutOptions.setWestOptions(west);
 
-		LayoutOptions center = new LayoutOptions();
+		final LayoutOptions center = new LayoutOptions();
 		center.addOption("resizable", false);
 		center.addOption("closable", false);
 		center.addOption("minWidth", 200);
@@ -83,16 +83,16 @@ public class CustomContentLayoutController implements Serializable {
 		layoutOptions.setCenterOptions(center);
 
 		// set options for nested center layout
-		LayoutOptions optionsNested = new LayoutOptions();
+		final LayoutOptions optionsNested = new LayoutOptions();
 		center.setChildOptions(optionsNested);
 
 		// options for center-north pane
-		LayoutOptions centerNorth = new LayoutOptions();
+		final LayoutOptions centerNorth = new LayoutOptions();
 		centerNorth.addOption("size", "50%");
 		optionsNested.setNorthOptions(centerNorth);
 
 		// options for center-center pane
-		LayoutOptions centerCenter = new LayoutOptions();
+		final LayoutOptions centerCenter = new LayoutOptions();
 		centerCenter.addOption("minHeight", 60);
 		optionsNested.setCenterOptions(centerCenter);
 	}
@@ -106,9 +106,11 @@ public class CustomContentLayoutController implements Serializable {
 	}
 
 	public void showMessages() {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		FacesMessage msg1 = new FacesMessage(FacesMessage.SEVERITY_ERROR, "This is the first error message", null);
-		FacesMessage msg2 = new FacesMessage(FacesMessage.SEVERITY_ERROR, "This is the second error message", null);
+		final FacesContext fc = FacesContext.getCurrentInstance();
+		final FacesMessage msg1 = new FacesMessage(FacesMessage.SEVERITY_ERROR, "This is the first error message",
+				null);
+		final FacesMessage msg2 = new FacesMessage(FacesMessage.SEVERITY_ERROR, "This is the second error message",
+				null);
 
 		fc.addMessage(null, msg1);
 		fc.addMessage(null, msg2);

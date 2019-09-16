@@ -27,12 +27,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
-
 import org.primefaces.extensions.showcase.model.jsonconverter.FooGeneric;
 import org.primefaces.extensions.showcase.model.jsonconverter.FooNonGeneric;
 import org.primefaces.extensions.util.RequestParameterBuilder;
@@ -40,14 +39,16 @@ import org.primefaces.extensions.util.RequestParameterBuilder;
 /**
  * ViewParamJsonController
  *
- * @author  Oleg Varaksin / last modified by $Author: $
+ * @author Oleg Varaksin / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class ViewParamJsonController implements Serializable {
 
-	@ManagedProperty(value = "#{typesJsonController}")
+	private static final long serialVersionUID = 1L;
+
+	@Inject
 	private TypesJsonController typesJsonController;
 
 	private boolean b;
@@ -63,33 +64,32 @@ public class ViewParamJsonController implements Serializable {
 
 	private FooNonGeneric fooNonGeneric = new FooNonGeneric();
 	private FooGeneric<String, Integer> fooGenericSimple = new FooGeneric<String, Integer>();
-	private FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>> fooGenericComplex =
-	    new FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>>();
+	private FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>> fooGenericComplex = new FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>>();
 
 	private String generatedUrl;
 
 	@PostConstruct
 	protected void initialize() {
 		// creates a builder instance by the current request URL
-		RequestParameterBuilder rpBuilder = new RequestParameterBuilder(true);
+		final RequestParameterBuilder rpBuilder = new RequestParameterBuilder(true);
 
 		try {
 			rpBuilder.param("b", true);
 			rpBuilder.param("l", 5000L);
-			rpBuilder.paramJson("ints", new int[] {1, 2, 3, 4, 5});
-			rpBuilder.paramJson("chars", new char[] {'x', 'y', 'z'});
+			rpBuilder.paramJson("ints", new int[] { 1, 2, 3, 4, 5 });
+			rpBuilder.paramJson("chars", new char[] { 'x', 'y', 'z' });
 			rpBuilder.paramJson("s", "Hallo World");
 			rpBuilder.param("i", 99);
 			rpBuilder.paramJson("d", new Date());
 
-			Collection<Integer> list = new ArrayList<Integer>();
+			final Collection<Integer> list = new ArrayList<Integer>();
 			list.add(11);
 			list.add(22);
 			list.add(33);
 
 			rpBuilder.paramJson("list", list, typesJsonController.getTypeGenericList());
 
-			Map<String, ImmutablePair<Integer, Date>> map = new HashMap<String, ImmutablePair<Integer, Date>>();
+			final Map<String, ImmutablePair<Integer, Date>> map = new HashMap<String, ImmutablePair<Integer, Date>>();
 			GregorianCalendar calendar = new GregorianCalendar(2012, 1, 20);
 			map.put("cat", new ImmutablePair<Integer, Date>(1, calendar.getTime()));
 			calendar = new GregorianCalendar(2011, 6, 1);
@@ -99,7 +99,7 @@ public class ViewParamJsonController implements Serializable {
 
 			rpBuilder.paramJson("map", map, typesJsonController.getTypeGenericMap());
 
-			FooNonGeneric fooNonGeneric = new FooNonGeneric();
+			final FooNonGeneric fooNonGeneric = new FooNonGeneric();
 			fooNonGeneric.setCount(1001);
 			fooNonGeneric.setStartDate(new Date());
 			fooNonGeneric.setEndDate(new Date(fooNonGeneric.getStartDate().getTime() + 360000));
@@ -108,31 +108,30 @@ public class ViewParamJsonController implements Serializable {
 
 			rpBuilder.paramJson("fooNonGeneric", fooNonGeneric);
 
-			FooGeneric<String, Integer> fooGenericSimple = new FooGeneric<String, Integer>();
+			final FooGeneric<String, Integer> fooGenericSimple = new FooGeneric<String, Integer>();
 			fooGenericSimple.setA("test");
 			fooGenericSimple.setB(25);
 
 			rpBuilder.paramJson("fooGenericSimple", fooGenericSimple, typesJsonController.getTypeGenericSimple());
 
-			FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>> fooGenericComplex =
-			    new FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>>();
-			FooNonGeneric fooNonGeneric2 = new FooNonGeneric();
+			final FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>> fooGenericComplex = new FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>>();
+			final FooNonGeneric fooNonGeneric2 = new FooNonGeneric();
 			fooNonGeneric2.setCount(909);
 			fooNonGeneric2.setStartDate(new Date());
 			fooNonGeneric2.setEndDate(new Date(fooNonGeneric.getStartDate().getTime() + 7200000));
 			fooNonGeneric2.addMessage("Message string 11");
 			fooNonGeneric2.addMessage("Message string 22");
 
-			FooGeneric<FooNonGeneric, Boolean> fooGenericInnner = new FooGeneric<FooNonGeneric, Boolean>();
+			final FooGeneric<FooNonGeneric, Boolean> fooGenericInnner = new FooGeneric<FooNonGeneric, Boolean>();
 			fooGenericInnner.setA(fooNonGeneric2);
 			fooGenericInnner.setB(false);
 
-			int[] ints = {11, 22};
+			final int[] ints = { 11, 22 };
 			fooGenericComplex.setA(ints);
 			fooGenericComplex.setB(fooGenericInnner);
 
 			rpBuilder.paramJson("fooGenericComplex", fooGenericComplex, typesJsonController.getTypeGenericComplex());
-		} catch (UnsupportedEncodingException e) {
+		} catch (final UnsupportedEncodingException e) {
 			// handle exception ...
 		}
 
@@ -148,7 +147,7 @@ public class ViewParamJsonController implements Serializable {
 		return b;
 	}
 
-	public void setB(boolean b) {
+	public void setB(final boolean b) {
 		this.b = b;
 	}
 
@@ -156,7 +155,7 @@ public class ViewParamJsonController implements Serializable {
 		return l;
 	}
 
-	public void setL(long l) {
+	public void setL(final long l) {
 		this.l = l;
 	}
 
@@ -168,7 +167,7 @@ public class ViewParamJsonController implements Serializable {
 		return Arrays.toString(ints);
 	}
 
-	public void setInts(int[] ints) {
+	public void setInts(final int[] ints) {
 		this.ints = ints;
 	}
 
@@ -180,7 +179,7 @@ public class ViewParamJsonController implements Serializable {
 		return Arrays.toString(chars);
 	}
 
-	public void setChars(char[] chars) {
+	public void setChars(final char[] chars) {
 		this.chars = chars;
 	}
 
@@ -188,7 +187,7 @@ public class ViewParamJsonController implements Serializable {
 		return s;
 	}
 
-	public void setS(String s) {
+	public void setS(final String s) {
 		this.s = s;
 	}
 
@@ -196,7 +195,7 @@ public class ViewParamJsonController implements Serializable {
 		return i;
 	}
 
-	public void setI(Integer i) {
+	public void setI(final Integer i) {
 		this.i = i;
 	}
 
@@ -204,7 +203,7 @@ public class ViewParamJsonController implements Serializable {
 		return d;
 	}
 
-	public void setD(Date d) {
+	public void setD(final Date d) {
 		this.d = d;
 	}
 
@@ -212,7 +211,7 @@ public class ViewParamJsonController implements Serializable {
 		return list;
 	}
 
-	public void setList(Collection<Integer> list) {
+	public void setList(final Collection<Integer> list) {
 		this.list = list;
 	}
 
@@ -220,7 +219,7 @@ public class ViewParamJsonController implements Serializable {
 		return map;
 	}
 
-	public void setMap(Map<String, ImmutablePair<Integer, Date>> map) {
+	public void setMap(final Map<String, ImmutablePair<Integer, Date>> map) {
 		this.map = map;
 	}
 
@@ -228,7 +227,7 @@ public class ViewParamJsonController implements Serializable {
 		return fooNonGeneric;
 	}
 
-	public void setFooNonGeneric(FooNonGeneric fooNonGeneric) {
+	public void setFooNonGeneric(final FooNonGeneric fooNonGeneric) {
 		this.fooNonGeneric = fooNonGeneric;
 	}
 
@@ -236,7 +235,7 @@ public class ViewParamJsonController implements Serializable {
 		return fooGenericSimple;
 	}
 
-	public void setFooGenericSimple(FooGeneric<String, Integer> fooGenericSimple) {
+	public void setFooGenericSimple(final FooGeneric<String, Integer> fooGenericSimple) {
 		this.fooGenericSimple = fooGenericSimple;
 	}
 
@@ -244,7 +243,7 @@ public class ViewParamJsonController implements Serializable {
 		return fooGenericComplex;
 	}
 
-	public void setFooGenericComplex(FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>> fooGenericComplex) {
+	public void setFooGenericComplex(final FooGeneric<int[], FooGeneric<FooNonGeneric, Boolean>> fooGenericComplex) {
 		this.fooGenericComplex = fooGenericComplex;
 	}
 
@@ -252,7 +251,7 @@ public class ViewParamJsonController implements Serializable {
 		return typesJsonController;
 	}
 
-	public void setTypesJsonController(TypesJsonController typesJsonController) {
+	public void setTypesJsonController(final TypesJsonController typesJsonController) {
 		this.typesJsonController = typesJsonController;
 	}
 }

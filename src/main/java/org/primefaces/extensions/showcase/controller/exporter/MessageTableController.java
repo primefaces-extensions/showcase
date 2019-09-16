@@ -18,17 +18,17 @@
 
 package org.primefaces.extensions.showcase.controller.exporter;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.component.api.UIColumn;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
+import org.primefaces.component.api.UIColumn;
 
 /**
  * MessageTableController
@@ -36,194 +36,197 @@ import java.util.Date;
  * @author Sudheer Jonna / last modified by $Author$
  * @since 0.7.0
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class MessageTableController implements Serializable {
 
-    private static final long serialVersionUID = 20111020L;
+	private static final long serialVersionUID = 20111020L;
 
-    private List<Message> messages;
-    private List<Message> filteredMessages;
-    private String newSubject = "my subject";
-    private String newText = "my text";
-    private final static String[] states;
-    private Date currentDate = new Date();
-    private boolean checkValue;
+	private List<Message> messages;
+	private List<Message> filteredMessages;
+	private String newSubject = "my subject";
+	private String newText = "my text";
+	private final static String[] states;
+	private Date currentDate = new Date();
+	private boolean checkValue;
 
-    static {
-        states = new String[10];
-        for (int i = 0; i < 10; i++) {
-            states[i] = "state" + i;
-        }
-    }
+	static {
+		states = new String[10];
+		for (int i = 0; i < 10; i++) {
+			states[i] = "state" + i;
+		}
+	}
 
-    public MessageTableController() {
-        if (messages == null) {
-            messages = new ArrayList<Message>();
+	public MessageTableController() {
+		if (messages == null) {
+			messages = new ArrayList<Message>();
 
-            for (int i = 0; i < 10; i++) {
-                Message message = new Message();
-                message.setSubject("subject " + i);
-                message.setText("text " + i);
-                message.setTextLength(((i * 10) + 10) + "");
-                message.setCountry("country" + i);
-                message.setState("state" + i);
-                message.setDeliveryStatus("successfull");
-                messages.add(message);
-            }
-        }
-    }
+			for (int i = 0; i < 10; i++) {
+				final Message message = new Message();
+				message.setSubject("subject " + i);
+				message.setText("text " + i);
+				message.setTextLength(i * 10 + 10 + "");
+				message.setCountry("country" + i);
+				message.setState("state" + i);
+				message.setDeliveryStatus("successfull");
+				messages.add(message);
+			}
+		}
+	}
 
-    public List<Message> getMessages() {
-        return messages;
-    }
+	public List<Message> getMessages() {
+		return messages;
+	}
 
-    public void setMessages(final List<Message> messages) {
-        this.messages = messages;
-    }
+	public void setMessages(final List<Message> messages) {
+		this.messages = messages;
+	}
 
-    public List<Message> getFilteredMessages() {
-        return filteredMessages;
-    }
+	public List<Message> getFilteredMessages() {
+		return filteredMessages;
+	}
 
-    public void setFilteredMessages(List<Message> filteredMessages) {
-        this.filteredMessages = filteredMessages;
-    }
+	public void setFilteredMessages(final List<Message> filteredMessages) {
+		this.filteredMessages = filteredMessages;
+	}
 
-    public String getNewSubject() {
-        return newSubject;
-    }
+	public String getNewSubject() {
+		return newSubject;
+	}
 
-    public void setNewSubject(String newSubject) {
-        this.newSubject = newSubject;
-    }
+	public void setNewSubject(final String newSubject) {
+		this.newSubject = newSubject;
+	}
 
-    public String getNewText() {
-        return newText;
-    }
+	public String getNewText() {
+		return newText;
+	}
 
-    public void setNewText(String newText) {
-        this.newText = newText;
-    }
+	public void setNewText(final String newText) {
+		this.newText = newText;
+	}
 
-    public String[] getStates() {
-        return states;
-    }
+	public String[] getStates() {
+		return states;
+	}
 
-    public Date getCurrentDate() {
-        return currentDate;
-    }
+	public Date getCurrentDate() {
+		return currentDate;
+	}
 
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
-    }
+	public void setCurrentDate(final Date currentDate) {
+		this.currentDate = currentDate;
+	}
 
-    public boolean getCheckValue(){
-       return checkValue;
-    }
+	public boolean getCheckValue() {
+		return checkValue;
+	}
 
-    public void setCheckValue(boolean checkValue) {
-       this.checkValue = checkValue;
-    }
-    public String addMessage() {
-        doSomething();
+	public void setCheckValue(final boolean checkValue) {
+		this.checkValue = checkValue;
+	}
 
-        Message message = new Message();
-        message.setSubject(newSubject);
-        message.setText(newText);
-        messages.add(0, message);
+	public String addMessage() {
+		doSomething();
 
-        newSubject = "";
-        newText = "";
+		final Message message = new Message();
+		message.setSubject(newSubject);
+		message.setText(newText);
+		messages.add(0, message);
 
-        FacesContext fc = FacesContext.getCurrentInstance();
-        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "New message has been added successfully", null));
+		newSubject = "";
+		newText = "";
 
-        return null;
-    }
+		final FacesContext fc = FacesContext.getCurrentInstance();
+		fc.addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "New message has been added successfully", null));
 
-    public void doSomething() {
-        try {
-            // simulate a long running request
-            Thread.sleep(1500);
-        } catch (Exception e) {
-            // ignore
-        }
-    }
-    
-    public String exportColumn(final UIColumn column) {
-        return "PFE Rocks!";
-    }
+		return null;
+	}
 
-    public class Message implements Serializable {
+	public void doSomething() {
+		try {
+			// simulate a long running request
+			Thread.sleep(1500);
+		} catch (final Exception e) {
+			// ignore
+		}
+	}
 
-        private String subject;
-        private String text;
-        private long time;
-        private String textLength;
-        private String country;
-        private String state;
-        private String deliveryStatus;
+	public String exportColumn(final UIColumn column) {
+		return "PFE Rocks!";
+	}
 
-        public Message() {
-            time = System.currentTimeMillis() + (long) (Math.random() * 10);
-            textLength = Math.random() * 10 + "";
-        }
+	public class Message implements Serializable {
 
-        public final String getSubject() {
-            return subject;
-        }
+		private static final long serialVersionUID = 1L;
+		private String subject;
+		private String text;
+		private long time;
+		private String textLength;
+		private String country;
+		private String state;
+		private String deliveryStatus;
 
-        public final void setSubject(String subject) {
-            this.subject = subject;
-        }
+		public Message() {
+			time = System.currentTimeMillis() + (long) (Math.random() * 10);
+			textLength = Math.random() * 10 + "";
+		}
 
-        public final String getText() {
-            return text;
-        }
+		public final String getSubject() {
+			return subject;
+		}
 
-        public final void setText(String text) {
-            this.text = text;
-        }
+		public final void setSubject(final String subject) {
+			this.subject = subject;
+		}
 
-        public long getTime() {
-            return time;
-        }
+		public final String getText() {
+			return text;
+		}
 
-        public void setTime(long time) {
-            this.time = time;
-        }
+		public final void setText(final String text) {
+			this.text = text;
+		}
 
-        public String getTextLength() {
-            return textLength;
-        }
+		public long getTime() {
+			return time;
+		}
 
-        public void setTextLength(String textLength) {
-            this.textLength = textLength;
-        }
+		public void setTime(final long time) {
+			this.time = time;
+		}
 
-        public String getCountry() {
-            return country;
-        }
+		public String getTextLength() {
+			return textLength;
+		}
 
-        public void setCountry(String country) {
-            this.country = country;
-        }
+		public void setTextLength(final String textLength) {
+			this.textLength = textLength;
+		}
 
-        public String getState() {
-            return state;
-        }
+		public String getCountry() {
+			return country;
+		}
 
-        public void setState(String state) {
-            this.state = state;
-        }
+		public void setCountry(final String country) {
+			this.country = country;
+		}
 
-        public String getDeliveryStatus() {
-            return deliveryStatus;
-        }
+		public String getState() {
+			return state;
+		}
 
-        public void setDeliveryStatus(String deliveryStatus) {
-            this.deliveryStatus = deliveryStatus;
-        }
-    }
+		public void setState(final String state) {
+			this.state = state;
+		}
+
+		public String getDeliveryStatus() {
+			return deliveryStatus;
+		}
+
+		public void setDeliveryStatus(final String deliveryStatus) {
+			this.deliveryStatus = deliveryStatus;
+		}
+	}
 }

@@ -22,9 +22,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.extensions.model.fluidgrid.FluidGridItem;
 import org.primefaces.extensions.showcase.model.fluidgrid.DynamicField;
@@ -32,20 +32,21 @@ import org.primefaces.extensions.showcase.model.fluidgrid.DynamicField;
 /**
  * FluidGridDynaFormController
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class FluidGridDynaFormController implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private List<FluidGridItem> items;
 
 	@PostConstruct
 	protected void initialize() {
 		items = new ArrayList<FluidGridItem>();
 
-		List<SelectItem> selectItems = new ArrayList<SelectItem>();
+		final List<SelectItem> selectItems = new ArrayList<SelectItem>();
 		selectItems.add(new SelectItem("1", "Label 1"));
 		selectItems.add(new SelectItem("2", "Label 2"));
 		selectItems.add(new SelectItem("3", "Label 3"));
