@@ -26,10 +26,10 @@
         <primefaces-extensions.updated-components>clipboard;ckeditor</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components/>
 
-        <mojarra.version>2.3.2</mojarra.version>
-        <myfaces.version>2.2.4</myfaces.version>
-        <jetty.version>9.4.18.v20190429</jetty.version>
-        <omnifaces.version>1.14.1</omnifaces.version>
+        <mojarra.version>2.3.9</mojarra.version>
+        <myfaces.version>2.3.3</myfaces.version>
+        <jetty.version>9.4.20.v20190813</jetty.version>
+        <omnifaces.version>2.7</omnifaces.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -227,12 +227,15 @@
             <artifactId>hibernate-validator</artifactId>
             <version>5.0.1.Final</version>
         </dependency>
+
+        <!-- CDI Impl -->
         <dependency>
             <groupId>org.jboss.weld.servlet</groupId>
             <artifactId>weld-servlet-core</artifactId>
-            <version>2.4.6.Final</version>
+            <version>3.1.2.Final</version>
         </dependency>
 
+        
         <!-- PrimeFaces -->
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
