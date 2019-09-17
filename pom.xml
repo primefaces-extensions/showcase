@@ -26,7 +26,6 @@
         <primefaces-extensions.updated-components>clipboard;ckeditor</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components/>
 
-        <mojarra.version>2.3.9</mojarra.version>
         <myfaces.version>2.3.3</myfaces.version>
         <owb.version>2.0.11</owb.version>
         <jetty.version>9.4.20.v20190813</jetty.version>
@@ -335,20 +334,20 @@
             </dependencies>
         </profile>
         <profile>
-            <id>mojarra</id>
+            <id>jakarta</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <jsf-impl>mojarra</jsf-impl>
-                <jsf-version>${mojarra.version}</jsf-version>
+                <jsf-impl>jakarta</jsf-impl>
+                <jsf-version>${jakarta-faces.version}</jsf-version>
                 <jsf-listener>com.sun.faces.config.ConfigureListener</jsf-listener>
             </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.glassfish</groupId>
-                    <artifactId>javax.faces</artifactId>
-                    <version>${mojarra.version}</version>
+                    <artifactId>jakarta.faces</artifactId>
+                    <scope>compile</scope>
                 </dependency>
             </dependencies>
         </profile>
