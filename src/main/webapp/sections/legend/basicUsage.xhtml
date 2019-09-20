@@ -6,28 +6,31 @@
 <ui:composition template="/templates/showcaseLayout.xhtml">
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="Badge"/>
+            <h:outputText value="Legend"/>
         </f:facet>
         <h:panelGroup layout="block" styleClass="centerContent">
-            Badge makes it simple to add iOS style badges to PrimeFaces buttons.
+            Legend makes it easy to add a key to your UI.
         </h:panelGroup>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/badge/example-basicUsage.xhtml"/>
+            <ui:include src="/sections/legend/example-basicUsage.xhtml"/>
         </h:panelGroup>
 
-        <ui:decorate template="/templates/oneTabDecorator.xhtml">
+        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/badge/example-basicUsage.xhtml')}
+${showcase:getFileContent('/sections/legend/example-basicUsage.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/legend/LegendController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/badge/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/legend/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="badge"/>
+            <ui:param name="tagName" value="legend"/>
         </ui:include>
     </ui:define>
 </ui:composition>
