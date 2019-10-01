@@ -20,17 +20,17 @@ package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 /**
  * ExporterController
  *
- * @author  Sudheer Jonna / last modified by $Author$
+ * @author Sudheer Jonna / last modified by $Author$
  * @version $Revision$
- * @since   1.0
+ * @since 1.0
  */
-@ManagedBean
+@Named
 @ApplicationScoped
 public class ExporterController implements Serializable {
 
@@ -38,16 +38,15 @@ public class ExporterController implements Serializable {
 
 	private Boolean customExporter;
 
-
 	public ExporterController() {
-             customExporter=false;
+		customExporter = false;
 	}
 
-    public Boolean getCustomExporter() {
-        return customExporter;
-    }
+	public Boolean getCustomExporter() {
+		return customExporter;
+	}
 
-    public void setCustomExporter(Boolean customExporter) {
-        this.customExporter = customExporter;
-    }
+	public void setCustomExporter(final Boolean customExporter) {
+		this.customExporter = customExporter;
+	}
 }

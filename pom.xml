@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.primefaces.extensions</groupId>
         <artifactId>master-pom</artifactId>
-        <version>7.0.2-SNAPSHOT</version>
+        <version>7.0.3-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -22,14 +22,14 @@
 
     <properties>
         <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-        <primefaces-extensions.new-components>inputphone;letteravatar;sheet;orgchart;timeago;fab</primefaces-extensions.new-components>
-        <primefaces-extensions.updated-components>clipboard;ckeditor</primefaces-extensions.updated-components>
+        <primefaces-extensions.new-components>inputphone;timeago;fab;badge;legend</primefaces-extensions.new-components>
+        <primefaces-extensions.updated-components>sheet</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components/>
 
-        <mojarra.version>2.3.2</mojarra.version>
-        <myfaces.version>2.2.4</myfaces.version>
-        <jetty.version>9.4.18.v20190429</jetty.version>
-        <omnifaces.version>1.14.1</omnifaces.version>
+        <myfaces.version>2.3.4</myfaces.version>
+        <owb.version>2.0.11</owb.version>
+        <jetty.version>9.4.20.v20190813</jetty.version>
+        <omnifaces.version>2.7</omnifaces.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -221,18 +221,62 @@
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-atinject_1.0_spec</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jcdi_2.0_spec</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-interceptor_1.2_spec</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-annotation_1.3_spec</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- Bean Validation -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>5.0.1.Final</version>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.weld.servlet</groupId>
-            <artifactId>weld-servlet-core</artifactId>
-            <version>2.4.6.Final</version>
-        </dependency>
 
+        <!-- OpenWebBeans -->
+        <dependency>
+            <groupId>org.apache.openwebbeans</groupId>
+            <artifactId>openwebbeans-impl</artifactId>
+            <version>${owb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openwebbeans</groupId>
+            <artifactId>openwebbeans-jsf</artifactId>
+            <version>${owb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openwebbeans</groupId>
+            <artifactId>openwebbeans-web</artifactId>
+            <version>${owb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openwebbeans</groupId>
+            <artifactId>openwebbeans-el22</artifactId>
+            <version>${owb.version}</version>
+        </dependency>
+        
         <!-- PrimeFaces -->
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
@@ -290,20 +334,20 @@
             </dependencies>
         </profile>
         <profile>
-            <id>mojarra</id>
+            <id>jakarta</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <jsf-impl>mojarra</jsf-impl>
-                <jsf-version>${mojarra.version}</jsf-version>
+                <jsf-impl>jakarta</jsf-impl>
+                <jsf-version>${jakarta-faces.version}</jsf-version>
                 <jsf-listener>com.sun.faces.config.ConfigureListener</jsf-listener>
             </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.glassfish</groupId>
-                    <artifactId>javax.faces</artifactId>
-                    <version>${mojarra.version}</version>
+                    <artifactId>jakarta.faces</artifactId>
+                    <scope>compile</scope>
                 </dependency>
             </dependencies>
         </profile>

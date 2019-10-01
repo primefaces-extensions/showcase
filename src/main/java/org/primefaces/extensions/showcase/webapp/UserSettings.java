@@ -20,8 +20,10 @@ package org.primefaces.extensions.showcase.webapp;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+
 import org.primefaces.extensions.showcase.model.system.AvailableThemes;
 import org.primefaces.extensions.showcase.model.system.Theme;
 
@@ -31,7 +33,7 @@ import org.primefaces.extensions.showcase.model.system.Theme;
  * @author  Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named 
 @SessionScoped
 public class UserSettings implements Serializable {
 
@@ -45,23 +47,23 @@ public class UserSettings implements Serializable {
 		availableThemes = AvailableThemes.getInstance().getThemes();
 	}
 
-	public final List<Theme> getAvailableThemes() {
+	public List<Theme> getAvailableThemes() {
 		return availableThemes;
 	}
 
-	public final void setAvailableThemes(List<Theme> availableThemes) {
+	public void setAvailableThemes(List<Theme> availableThemes) {
 		this.availableThemes = availableThemes;
 	}
 
-	public final Theme getCurrentTheme() {
+	public Theme getCurrentTheme() {
 		return currentTheme;
 	}
 
-	public final void setCurrentTheme(Theme currentTheme) {
+	public void setCurrentTheme(Theme currentTheme) {
 		this.currentTheme = currentTheme;
 	}
 
-	public final void setCurrentThemeByName(String theme) {
+	public void setCurrentThemeByName(String theme) {
 		this.currentTheme = AvailableThemes.getInstance().getThemeForName(theme);
 	}
 }

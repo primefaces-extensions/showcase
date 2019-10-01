@@ -23,17 +23,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  * DataTableController
  *
- * @author  Thomas Andraschko / last modified by $Author$
+ * @author Thomas Andraschko / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class DataTableController implements Serializable {
 
@@ -49,7 +49,7 @@ public class DataTableController implements Serializable {
 			messages = new ArrayList<Message>();
 
 			for (int i = 0; i < 100; i++) {
-				Message message = new Message();
+				final Message message = new Message();
 				message.setSubject("subject " + i);
 				message.setText("text " + i);
 				messages.add(message);
@@ -69,7 +69,7 @@ public class DataTableController implements Serializable {
 		return filteredMessages;
 	}
 
-	public void setFilteredMessages(List<Message> filteredMessages) {
+	public void setFilteredMessages(final List<Message> filteredMessages) {
 		this.filteredMessages = filteredMessages;
 	}
 
@@ -77,7 +77,7 @@ public class DataTableController implements Serializable {
 		return newSubject;
 	}
 
-	public void setNewSubject(String newSubject) {
+	public void setNewSubject(final String newSubject) {
 		this.newSubject = newSubject;
 	}
 
@@ -85,14 +85,14 @@ public class DataTableController implements Serializable {
 		return newText;
 	}
 
-	public void setNewText(String newText) {
+	public void setNewText(final String newText) {
 		this.newText = newText;
 	}
 
 	public String addMessage() {
 		doSomething();
 
-		Message message = new Message();
+		final Message message = new Message();
 		message.setSubject(newSubject);
 		message.setText(newText);
 		messages.add(0, message);
@@ -100,8 +100,9 @@ public class DataTableController implements Serializable {
 		newSubject = "";
 		newText = "";
 
-		FacesContext fc = FacesContext.getCurrentInstance();
-		fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "New message has been added successfully", null));
+		final FacesContext fc = FacesContext.getCurrentInstance();
+		fc.addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "New message has been added successfully", null));
 
 		return null;
 	}
@@ -110,12 +111,14 @@ public class DataTableController implements Serializable {
 		try {
 			// simulate a long running request
 			Thread.sleep(1500);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			// ignore
 		}
 	}
 
 	public class Message implements Serializable {
+
+		private static final long serialVersionUID = 1L;
 
 		private String subject;
 		private String text;
@@ -129,7 +132,7 @@ public class DataTableController implements Serializable {
 			return subject;
 		}
 
-		public final void setSubject(String subject) {
+		public final void setSubject(final String subject) {
 			this.subject = subject;
 		}
 
@@ -137,7 +140,7 @@ public class DataTableController implements Serializable {
 			return text;
 		}
 
-		public final void setText(String text) {
+		public final void setText(final String text) {
 			this.text = text;
 		}
 
@@ -145,7 +148,7 @@ public class DataTableController implements Serializable {
 			return time;
 		}
 
-		public void setTime(long time) {
+		public void setTime(final long time) {
 			this.time = time;
 		}
 	}

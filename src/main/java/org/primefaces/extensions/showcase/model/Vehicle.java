@@ -30,6 +30,8 @@ import java.util.ArrayList;
  * @since 0.7.0
  */
 public class Vehicle implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
     public int model;
     public String manufacturer;

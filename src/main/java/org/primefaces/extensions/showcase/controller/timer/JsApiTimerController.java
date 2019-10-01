@@ -1,15 +1,19 @@
 package org.primefaces.extensions.showcase.controller.timer;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
-@ManagedBean
-public class JsApiTimerController implements Serializable{
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
-    public void listener(){
-        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Stopped",null));
-    }
+@Named
+public class JsApiTimerController implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	public void listener() {
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Stopped", null));
+	}
 
 }

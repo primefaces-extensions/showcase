@@ -24,10 +24,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
@@ -42,105 +42,106 @@ import org.primefaces.extensions.showcase.model.dynaform.BookProperty;
  * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class DynaFormController implements Serializable {
 
-    private static final long serialVersionUID = 20120423L;
+	private static final long serialVersionUID = 20120423L;
 
-    private DynaFormModel model;
+	private DynaFormModel model;
 
-    private static List<SelectItem> LANGUAGES = new ArrayList<SelectItem>();
+	private static List<SelectItem> LANGUAGES = new ArrayList<SelectItem>();
 
-    @PostConstruct
-    protected void initialize() {
-        model = new DynaFormModel();
+	@PostConstruct
+	protected void initialize() {
+		model = new DynaFormModel();
 
-        // add rows, labels and editable controls
-        // set relationship between label and editable controls to support outputLabel with "for" attribute
+		// add rows, labels and editable controls
+		// set relationship between label and editable controls to support outputLabel
+		// with "for" attribute
 
-        // 1. row
-        DynaFormRow row = model.createRegularRow();
+		// 1. row
+		DynaFormRow row = model.createRegularRow();
 
-        DynaFormLabel label11 = row.addLabel("Author");
-        DynaFormControl control12 = row.addControl(new BookProperty("Author", true), "input");
-        label11.setForControl(control12);
+		final DynaFormLabel label11 = row.addLabel("Author");
+		final DynaFormControl control12 = row.addControl(new BookProperty("Author", true), "input");
+		label11.setForControl(control12);
 
-        DynaFormLabel label13 = row.addLabel("ISBN");
-        DynaFormControl control14 = row.addControl(new BookProperty("ISBN", true), "input");
-        label13.setForControl(control14);
+		final DynaFormLabel label13 = row.addLabel("ISBN");
+		final DynaFormControl control14 = row.addControl(new BookProperty("ISBN", true), "input");
+		label13.setForControl(control14);
 
-        // 2. row
-        row = model.createRegularRow();
+		// 2. row
+		row = model.createRegularRow();
 
-        DynaFormLabel label21 = row.addLabel("Title");
-        DynaFormControl control22 = row.addControl(new BookProperty("Title", false), "input", 3, 1);
-        label21.setForControl(control22);
+		final DynaFormLabel label21 = row.addLabel("Title");
+		final DynaFormControl control22 = row.addControl(new BookProperty("Title", false), "input", 3, 1);
+		label21.setForControl(control22);
 
-        // 3. row
-        row = model.createRegularRow();
+		// 3. row
+		row = model.createRegularRow();
 
-        DynaFormLabel label31 = row.addLabel("Publisher");
-        DynaFormControl control32 = row.addControl(new BookProperty("Publisher", false), "input");
-        label31.setForControl(control32);
+		final DynaFormLabel label31 = row.addLabel("Publisher");
+		final DynaFormControl control32 = row.addControl(new BookProperty("Publisher", false), "input");
+		label31.setForControl(control32);
 
-        DynaFormLabel label33 = row.addLabel("Published on");
-        DynaFormControl control34 = row.addControl(new BookProperty("Published on", false), "calendar");
-        label33.setForControl(control34);
+		final DynaFormLabel label33 = row.addLabel("Published on");
+		final DynaFormControl control34 = row.addControl(new BookProperty("Published on", false), "calendar");
+		label33.setForControl(control34);
 
-        // 4. row
-        row = model.createRegularRow();
+		// 4. row
+		row = model.createRegularRow();
 
-        DynaFormLabel label41 = row.addLabel("Language");
-        DynaFormControl control42 = row.addControl(new BookProperty("Language", false), "select");
-        label41.setForControl(control42);
+		final DynaFormLabel label41 = row.addLabel("Language");
+		final DynaFormControl control42 = row.addControl(new BookProperty("Language", false), "select");
+		label41.setForControl(control42);
 
-        DynaFormLabel label43 = row.addLabel("Description", 1, 2);
-        DynaFormControl control44 = row.addControl(new BookProperty("Description", false), "textarea", 1, 2);
-        label43.setForControl(control44);
+		final DynaFormLabel label43 = row.addLabel("Description", 1, 2);
+		final DynaFormControl control44 = row.addControl(new BookProperty("Description", false), "textarea", 1, 2);
+		label43.setForControl(control44);
 
-        // 5. row
-        row = model.createRegularRow();
+		// 5. row
+		row = model.createRegularRow();
 
-        DynaFormLabel label51 = row.addLabel("Rating");
-        DynaFormControl control52 = row.addControl(new BookProperty("Rating", 3, true), "rating");
-        label51.setForControl(control52);
-    }
+		final DynaFormLabel label51 = row.addLabel("Rating");
+		final DynaFormControl control52 = row.addControl(new BookProperty("Rating", 3, true), "rating");
+		label51.setForControl(control52);
+	}
 
-    public DynaFormModel getModel() {
-        return model;
-    }
+	public DynaFormModel getModel() {
+		return model;
+	}
 
-    public List<BookProperty> getBookProperties() {
-        if (model == null) {
-            return null;
-        }
+	public List<BookProperty> getBookProperties() {
+		if (model == null) {
+			return null;
+		}
 
-        List<BookProperty> bookProperties = new ArrayList<BookProperty>();
-        for (DynaFormControl dynaFormControl : model.getControls()) {
-            bookProperties.add((BookProperty) dynaFormControl.getData());
-        }
+		final List<BookProperty> bookProperties = new ArrayList<BookProperty>();
+		for (final DynaFormControl dynaFormControl : model.getControls()) {
+			bookProperties.add((BookProperty) dynaFormControl.getData());
+		}
 
-        return bookProperties;
-    }
+		return bookProperties;
+	}
 
-    public String submitForm() {
-        FacesMessage.Severity sev = FacesContext.getCurrentInstance().getMaximumSeverity();
-        boolean hasErrors = sev != null && FacesMessage.SEVERITY_ERROR.compareTo(sev) >= 0;
+	public String submitForm() {
+		final FacesMessage.Severity sev = FacesContext.getCurrentInstance().getMaximumSeverity();
+		final boolean hasErrors = sev != null && FacesMessage.SEVERITY_ERROR.compareTo(sev) >= 0;
 
-        PrimeFaces.current().ajax().addCallbackParam("isValid", !hasErrors);
+		PrimeFaces.current().ajax().addCallbackParam("isValid", !hasErrors);
 
-        return null;
-    }
+		return null;
+	}
 
-    public List<SelectItem> getLanguages() {
-        if (LANGUAGES.isEmpty()) {
-            LANGUAGES.add(new SelectItem("en", "English"));
-            LANGUAGES.add(new SelectItem("de", "German"));
-            LANGUAGES.add(new SelectItem("ru", "Russian"));
-            LANGUAGES.add(new SelectItem("tr", "Turkish"));
-        }
+	public List<SelectItem> getLanguages() {
+		if (LANGUAGES.isEmpty()) {
+			LANGUAGES.add(new SelectItem("en", "English"));
+			LANGUAGES.add(new SelectItem("de", "German"));
+			LANGUAGES.add(new SelectItem("ru", "Russian"));
+			LANGUAGES.add(new SelectItem("tr", "Turkish"));
+		}
 
-        return LANGUAGES;
-    }
+		return LANGUAGES;
+	}
 }

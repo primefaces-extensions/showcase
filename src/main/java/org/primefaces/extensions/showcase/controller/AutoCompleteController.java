@@ -21,16 +21,16 @@ package org.primefaces.extensions.showcase.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
 /**
  * AutoCompleteController
  *
- * @author  Thomas Andraschko / last modified by $Author$
+ * @author Thomas Andraschko / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class AutoCompleteController {
 
@@ -50,7 +50,7 @@ public class AutoCompleteController {
 		return text;
 	}
 
-	public final void setText(String text) {
+	public final void setText(final String text) {
 		this.text = text;
 	}
 }

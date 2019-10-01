@@ -21,17 +21,17 @@ package org.primefaces.extensions.showcase.controller.waypoint;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  * InfiniteScrollController
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class InfiniteScrollController implements Serializable {
 
@@ -48,11 +48,11 @@ public class InfiniteScrollController implements Serializable {
 		src = CONTENT_PATH_DUMMY;
 	}
 
-	public void toggleSrc(ActionEvent evt) {
+	public void toggleSrc(final ActionEvent evt) {
 		try {
 			// simulate a long running request
 			Thread.sleep(1500);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			// ignore
 		}
 

@@ -26,6 +26,7 @@ import java.io.Serializable;
  */
 public class Condition implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String tableColumn;
 	private int inputOffset;
 	private String valueOperator;

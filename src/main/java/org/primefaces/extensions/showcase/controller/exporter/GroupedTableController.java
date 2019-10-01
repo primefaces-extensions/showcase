@@ -15,24 +15,26 @@
  */
 package org.primefaces.extensions.showcase.controller.exporter;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
 /**
  * GroupedTableController
  *
- * @author  Sudheer Jonna / last modified by $Author$
- * @since   0.7.0
+ * @author Sudheer Jonna / last modified by $Author$
+ * @since 0.7.0
  * @version $Revision: 1.0 $
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class GroupedTableController implements Serializable {
 
-	private List<Mobile> mobileList;
+	private static final long serialVersionUID = 1L;
+	private final List<Mobile> mobileList;
 
 	public GroupedTableController() {
 		mobileList = new ArrayList<Mobile>();
@@ -41,8 +43,8 @@ public class GroupedTableController implements Serializable {
 
 	private void populateRandomSales() {
 		for (int i = 0; i < 10; i++) {
-			mobileList.add(new Mobile("Model" + i, getQ1Sales(), getQ1Profits(), getQ2Sales(), getQ2Profits(), getQ3Sales(),
-			                          getQ3Profits(), getQ4Sales(), getQ4Profits()));
+			mobileList.add(new Mobile("Model" + i, getQ1Sales(), getQ1Profits(), getQ2Sales(), getQ2Profits(),
+					getQ3Sales(), getQ3Profits(), getQ4Sales(), getQ4Profits()));
 		}
 	}
 
@@ -81,7 +83,7 @@ public class GroupedTableController implements Serializable {
 	public long getQ1TotSales() {
 		long total = 0;
 
-		for (Mobile sale : mobileList) {
+		for (final Mobile sale : mobileList) {
 			total += sale.getQ1Sale();
 		}
 
@@ -91,7 +93,7 @@ public class GroupedTableController implements Serializable {
 	public long getQ2TotSales() {
 		long total = 0;
 
-		for (Mobile sale : mobileList) {
+		for (final Mobile sale : mobileList) {
 			total += sale.getQ2Sale();
 		}
 
@@ -101,7 +103,7 @@ public class GroupedTableController implements Serializable {
 	public long getQ3TotSales() {
 		long total = 0;
 
-		for (Mobile sale : mobileList) {
+		for (final Mobile sale : mobileList) {
 			total += sale.getQ3Sale();
 		}
 
@@ -111,7 +113,7 @@ public class GroupedTableController implements Serializable {
 	public long getQ4TotSales() {
 		long total = 0;
 
-		for (Mobile sale : mobileList) {
+		for (final Mobile sale : mobileList) {
 			total += sale.getQ4Sale();
 		}
 
@@ -121,7 +123,7 @@ public class GroupedTableController implements Serializable {
 	public long getQ1TotProfit() {
 		long total = 0;
 
-		for (Mobile sale : mobileList) {
+		for (final Mobile sale : mobileList) {
 			total += sale.getQ1Profit();
 		}
 
@@ -131,7 +133,7 @@ public class GroupedTableController implements Serializable {
 	public long getQ2TotProfit() {
 		long total = 0;
 
-		for (Mobile sale : mobileList) {
+		for (final Mobile sale : mobileList) {
 			total += sale.getQ2Profit();
 		}
 
@@ -141,7 +143,7 @@ public class GroupedTableController implements Serializable {
 	public long getQ3TotProfit() {
 		long total = 0;
 
-		for (Mobile sale : mobileList) {
+		for (final Mobile sale : mobileList) {
 			total += sale.getQ3Profit();
 		}
 
@@ -151,7 +153,7 @@ public class GroupedTableController implements Serializable {
 	public long getQ4TotProfit() {
 		long total = 0;
 
-		for (Mobile sale : mobileList) {
+		for (final Mobile sale : mobileList) {
 			total += sale.getQ4Profit();
 		}
 
@@ -160,6 +162,7 @@ public class GroupedTableController implements Serializable {
 
 	public class Mobile implements Serializable {
 
+		private static final long serialVersionUID = 1L;
 		public String manufacturer;
 		public long q1Sale;
 		public long q2Sale;
@@ -171,8 +174,8 @@ public class GroupedTableController implements Serializable {
 		public long q3Profit;
 		public long q4Profit;
 
-		public Mobile(String manufacturer, long q1Sale, long q2Sale, long q3Sale, long q4Sale, long q1Profit, long q2Profit,
-		              long q3Profit, long q4Profit) {
+		public Mobile(final String manufacturer, final long q1Sale, final long q2Sale, final long q3Sale,
+				final long q4Sale, final long q1Profit, final long q2Profit, final long q3Profit, final long q4Profit) {
 			this.manufacturer = manufacturer;
 			this.q1Sale = q1Sale;
 			this.q2Sale = q2Sale;
@@ -188,7 +191,7 @@ public class GroupedTableController implements Serializable {
 			return manufacturer;
 		}
 
-		public void setManufacturer(String manufacturer) {
+		public void setManufacturer(final String manufacturer) {
 			this.manufacturer = manufacturer;
 		}
 
@@ -196,7 +199,7 @@ public class GroupedTableController implements Serializable {
 			return q1Sale;
 		}
 
-		public void setQ1Sale(long q1Sale) {
+		public void setQ1Sale(final long q1Sale) {
 			this.q1Sale = q1Sale;
 		}
 
@@ -204,7 +207,7 @@ public class GroupedTableController implements Serializable {
 			return q2Sale;
 		}
 
-		public void setQ2Sale(long q2Sale) {
+		public void setQ2Sale(final long q2Sale) {
 			this.q2Sale = q2Sale;
 		}
 
@@ -212,7 +215,7 @@ public class GroupedTableController implements Serializable {
 			return q3Sale;
 		}
 
-		public void setQ3Sale(long q3Sale) {
+		public void setQ3Sale(final long q3Sale) {
 			this.q3Sale = q3Sale;
 		}
 
@@ -220,7 +223,7 @@ public class GroupedTableController implements Serializable {
 			return q4Sale;
 		}
 
-		public void setQ4Sale(long q4Sale) {
+		public void setQ4Sale(final long q4Sale) {
 			this.q4Sale = q4Sale;
 		}
 
@@ -228,7 +231,7 @@ public class GroupedTableController implements Serializable {
 			return q1Profit;
 		}
 
-		public void setQ1Profit(long q1Profit) {
+		public void setQ1Profit(final long q1Profit) {
 			this.q1Profit = q1Profit;
 		}
 
@@ -236,7 +239,7 @@ public class GroupedTableController implements Serializable {
 			return q2Profit;
 		}
 
-		public void setQ2Profit(long q2Profit) {
+		public void setQ2Profit(final long q2Profit) {
 			this.q2Profit = q2Profit;
 		}
 
@@ -244,7 +247,7 @@ public class GroupedTableController implements Serializable {
 			return q3Profit;
 		}
 
-		public void setQ3Profit(long q3Profit) {
+		public void setQ3Profit(final long q3Profit) {
 			this.q3Profit = q3Profit;
 		}
 
@@ -252,7 +255,7 @@ public class GroupedTableController implements Serializable {
 			return q4Profit;
 		}
 
-		public void setQ4Profit(long q4Profit) {
+		public void setQ4Profit(final long q4Profit) {
 			this.q4Profit = q4Profit;
 		}
 	}
