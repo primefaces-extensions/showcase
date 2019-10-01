@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class LocaleController implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private List<Locale> selectedLocales;
 	private Locale enteredLocale;
 	private List<Locale> addedLocales;

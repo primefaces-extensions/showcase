@@ -21,19 +21,19 @@ package org.primefaces.extensions.showcase.controller.layout;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.extensions.model.layout.LayoutOptions;
 
 /**
  * LayoutController
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class ElementLayoutController implements Serializable {
 
@@ -58,7 +58,7 @@ public class ElementLayoutController implements Serializable {
 		layoutOptionsOne.setPanesOptions(panes);
 
 		// options for west pane
-		LayoutOptions west = new LayoutOptions();
+		final LayoutOptions west = new LayoutOptions();
 		west.addOption("size", 150);
 		west.addOption("minSize", 40);
 		west.addOption("maxSize", 300);
@@ -74,18 +74,18 @@ public class ElementLayoutController implements Serializable {
 		layoutOptionsTwo.setPanesOptions(panes);
 
 		// options for east pane
-		LayoutOptions east = new LayoutOptions();
+		final LayoutOptions east = new LayoutOptions();
 		panes.addOption("resizable", false);
 		panes.addOption("closable", false);
 		east.addOption("size", "50%");
 		layoutOptionsTwo.setEastOptions(east);
 
 		// options for nested east layout
-		LayoutOptions childEastOptions = new LayoutOptions();
+		final LayoutOptions childEastOptions = new LayoutOptions();
 		east.setChildOptions(childEastOptions);
 
 		// options for east-south pane
-		LayoutOptions eastSouth = new LayoutOptions();
+		final LayoutOptions eastSouth = new LayoutOptions();
 		eastSouth.addOption("size", "50%");
 		childEastOptions.setSouthOptions(eastSouth);
 	}
@@ -94,7 +94,7 @@ public class ElementLayoutController implements Serializable {
 		return stateOne;
 	}
 
-	public void setStateOne(String stateOne) {
+	public void setStateOne(final String stateOne) {
 		this.stateOne = stateOne;
 	}
 
@@ -102,11 +102,11 @@ public class ElementLayoutController implements Serializable {
 		return stateTwo;
 	}
 
-	public void setStateTwo(String stateTwo) {
+	public void setStateTwo(final String stateTwo) {
 		this.stateTwo = stateTwo;
 	}
 
-	public void toogleLayout(ActionEvent event) {
+	public void toogleLayout(final ActionEvent event) {
 		layoutOneShown = !layoutOneShown;
 	}
 

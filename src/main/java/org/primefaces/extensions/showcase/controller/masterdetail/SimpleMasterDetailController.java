@@ -22,8 +22,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.extensions.showcase.model.masterdetail.Country;
 import org.primefaces.extensions.showcase.model.masterdetail.League;
@@ -32,10 +32,10 @@ import org.primefaces.extensions.showcase.model.masterdetail.Sport;
 /**
  * SimpleMasterDetailController.
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class SimpleMasterDetailController implements Serializable {
 
@@ -60,7 +60,7 @@ public class SimpleMasterDetailController implements Serializable {
 			countries.add(country);
 			sports.add(new Sport("Football", countries));
 
-			//basketball
+			// basketball
 			countries = new ArrayList<Country>();
 			country = new Country("Germany", "DE", "Basketball", getLeagues("Germany"));
 			countries.add(country);
@@ -88,12 +88,12 @@ public class SimpleMasterDetailController implements Serializable {
 		return currentLevel;
 	}
 
-	public void setCurrentLevel(int currentLevel) {
+	public void setCurrentLevel(final int currentLevel) {
 		this.currentLevel = currentLevel;
 	}
 
-	private List<League> getLeagues(String country) {
-		List<League> leagues = new ArrayList<League>();
+	private List<League> getLeagues(final String country) {
+		final List<League> leagues = new ArrayList<League>();
 
 		leagues.add(new League(country + " SuperLeague", 20));
 		leagues.add(new League(country + " NotBadLeague", 15));

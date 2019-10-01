@@ -12,7 +12,7 @@ public class DynaSheetRow implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private List<? extends DynaSheetCell> cells = new ArrayList<>();
+    private List<DynaSheetCell> cells = new ArrayList<>();
     private boolean readOnly;
 
     /**
@@ -39,7 +39,7 @@ public class DynaSheetRow implements Serializable {
      * @return Returns the {@link #cells}.
      */
     public List<DynaSheetCell> getCells() {
-        return (List<DynaSheetCell>) cells;
+        return  cells;
     }
 
     /**

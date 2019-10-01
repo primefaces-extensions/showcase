@@ -20,8 +20,8 @@ package org.primefaces.extensions.showcase.controller.blockui;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.event.NodeSelectEvent;
@@ -32,27 +32,27 @@ import org.primefaces.model.TreeNode;
 /**
  * TreeBean
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class FileSystemController implements Serializable {
 
 	private static final long serialVersionUID = 20111229L;
 
-	private TreeNode root;
+	private final TreeNode root;
 	private TreeNode selectedNode;
 
 	public FileSystemController() {
 		root = new DefaultTreeNode("Root", null);
 
-		TreeNode node0 = new DefaultTreeNode("Folder 0", root);
-		TreeNode node1 = new DefaultTreeNode("Folder 1", root);
-		TreeNode node2 = new DefaultTreeNode("Folder 2", root);
-		TreeNode node00 = new DefaultTreeNode("Folder 0.0", node0);
-		TreeNode node01 = new DefaultTreeNode("Folder 0.1", node0);
-		TreeNode node10 = new DefaultTreeNode("Folder 1.0", node1);
+		final TreeNode node0 = new DefaultTreeNode("Folder 0", root);
+		final TreeNode node1 = new DefaultTreeNode("Folder 1", root);
+		final TreeNode node2 = new DefaultTreeNode("Folder 2", root);
+		final TreeNode node00 = new DefaultTreeNode("Folder 0.0", node0);
+		final TreeNode node01 = new DefaultTreeNode("Folder 0.1", node0);
+		final TreeNode node10 = new DefaultTreeNode("Folder 1.0", node1);
 		new DefaultTreeNode("File 1.1", node1);
 		new DefaultTreeNode("File 2.0", node2);
 		new DefaultTreeNode("File 0.0.0", node00);
@@ -69,20 +69,20 @@ public class FileSystemController implements Serializable {
 		return selectedNode;
 	}
 
-	public void setSelectedNode(TreeNode selectedNode) {
+	public void setSelectedNode(final TreeNode selectedNode) {
 		this.selectedNode = selectedNode;
 	}
 
-	public void onNodeExpand(NodeExpandEvent event) {
+	public void onNodeExpand(final NodeExpandEvent event) {
 		doSomething();
 	}
 
-	public void onNodeSelect(NodeSelectEvent event) {
+	public void onNodeSelect(final NodeSelectEvent event) {
 		selectedNode = event.getTreeNode();
 		doSomething();
 	}
 
-	public void onNodeUnselect(NodeUnselectEvent event) {
+	public void onNodeUnselect(final NodeUnselectEvent event) {
 		selectedNode = null;
 		doSomething();
 	}
@@ -91,7 +91,7 @@ public class FileSystemController implements Serializable {
 		try {
 			// simulate a long running request
 			Thread.sleep(1200);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			// ignore
 		}
 	}

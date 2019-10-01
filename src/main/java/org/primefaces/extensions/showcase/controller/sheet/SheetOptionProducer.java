@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
 
 import org.primefaces.extensions.showcase.model.sheet.AssetType;
 import org.primefaces.extensions.showcase.model.sheet.PlatformArchType;
 import org.primefaces.extensions.showcase.model.sheet.PlatformType;
 
-@ManagedBean
+@Named
 @ApplicationScoped
 public class SheetOptionProducer {
 
@@ -27,11 +27,12 @@ public class SheetOptionProducer {
 		archTypes = createEnumList(PlatformArchType.values());
 	}
 
-	private <T extends Enum<?>> List<SelectItem> createEnumList(T[] values) {
-		List<SelectItem> result = new ArrayList<SelectItem>();
+	private <T extends Enum<?>> List<SelectItem> createEnumList(final T[] values) {
+		final List<SelectItem> result = new ArrayList<SelectItem>();
 		result.add(new SelectItem("", "All"));
-		for (T value : values)
+		for (final T value : values) {
 			result.add(new SelectItem(value, value.name()));
+		}
 		return result;
 	}
 

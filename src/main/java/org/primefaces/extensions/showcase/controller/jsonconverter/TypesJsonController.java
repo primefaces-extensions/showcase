@@ -18,18 +18,20 @@ package org.primefaces.extensions.showcase.controller.jsonconverter;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 /**
  * TypesJsonController
  *
- * @author  Oleg Varaksin / last modified by $Author: $
+ * @author Oleg Varaksin / last modified by $Author: $
  * @version $Revision: 1.0 $
  */
-@ManagedBean
+@Named
 @SessionScoped
 public class TypesJsonController implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public String getTypeGenericList() {
 		return "java.util.Collection<java.lang.Integer>";
@@ -45,7 +47,7 @@ public class TypesJsonController implements Serializable {
 
 	public String getTypeGenericComplex() {
 		return "org.primefaces.extensions.showcase.model.jsonconverter.FooGeneric"
-		       + "<int[], org.primefaces.extensions.showcase.model.jsonconverter.FooGeneric"
-		       + "<org.primefaces.extensions.showcase.model.jsonconverter.FooNonGeneric, java.lang.Boolean>>";
+				+ "<int[], org.primefaces.extensions.showcase.model.jsonconverter.FooGeneric"
+				+ "<org.primefaces.extensions.showcase.model.jsonconverter.FooNonGeneric, java.lang.Boolean>>";
 	}
 }

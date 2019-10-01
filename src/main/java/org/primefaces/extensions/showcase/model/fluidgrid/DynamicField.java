@@ -31,6 +31,7 @@ import javax.faces.model.SelectItem;
  */
 public class DynamicField implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String label;
 	private Object value;
 	private boolean required;

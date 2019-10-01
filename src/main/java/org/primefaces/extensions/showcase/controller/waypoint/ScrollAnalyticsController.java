@@ -21,40 +21,42 @@ package org.primefaces.extensions.showcase.controller.waypoint;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.ContextCallback;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlPanelGroup;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.extensions.event.WaypointEvent;
 
 /**
  * WaypointController
  *
- * @author  Oleg Varaksin / last modified by $Author$
+ * @author Oleg Varaksin / last modified by $Author$
  * @version $Revision$
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class ScrollAnalyticsController implements Serializable {
 
 	private static final long serialVersionUID = 20120816L;
 
-	public void adInView(WaypointEvent e) {
-		UIComponent container = e.getComponent().findComponent("container");
+	public void adInView(final WaypointEvent e) {
+		final UIComponent container = e.getComponent().findComponent("container");
 
 		container.invokeOnComponent(FacesContext.getCurrentInstance(), e.getWaypointId(), new ContextCallback() {
 
-				public void invokeContextCallback(FacesContext fc, UIComponent component) {
-					HtmlPanelGroup panelGroup = (HtmlPanelGroup) component;
-					String analyticsId = panelGroup != null ? (String) panelGroup.getAttributes().get("analyticsid") : "";
+			@Override
+			public void invokeContextCallback(final FacesContext fc, final UIComponent component) {
+				final HtmlPanelGroup panelGroup = (HtmlPanelGroup) component;
+				final String analyticsId = panelGroup != null ? (String) panelGroup.getAttributes().get("analyticsid")
+						: "";
 
-					FacesMessage msg =
-					    new FacesMessage(FacesMessage.SEVERITY_INFO, "Ad with ID: " + analyticsId + " was read", null);
-					fc.addMessage(null, msg);
-				}
-			});
+				final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Ad with ID: " + analyticsId + " was read", null);
+				fc.addMessage(null, msg);
+			}
+		});
 	}
 }

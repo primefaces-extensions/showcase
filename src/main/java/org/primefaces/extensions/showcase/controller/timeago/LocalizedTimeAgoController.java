@@ -6,59 +6,62 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+
 import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author Jasper de Vries &lt;jepsar@gmail.com&gt;
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class LocalizedTimeAgoController implements Serializable {
 
-    private Date now;
+	private static final long serialVersionUID = 1L;
 
-    private Date firstRelease;
+	private final Date now;
 
-    private String locale;
+	private final Date firstRelease;
 
-    public LocalizedTimeAgoController() {
-        now = new Date();
+	private String locale;
 
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.set(2012, 0, 23);
-        firstRelease = calendar.getTime();
+	public LocalizedTimeAgoController() {
+		now = new Date();
 
-        locale = "en";
-    }
+		final Calendar calendar = GregorianCalendar.getInstance();
+		calendar.set(2012, 0, 23);
+		firstRelease = calendar.getTime();
 
-    public List<SelectItem> getLanguages() {
-        final List<SelectItem> results = new ArrayList<>();
-        results.add(new SelectItem("de", "Deutsch (German)"));
-        results.add(new SelectItem("en", "English"));
-        results.add(new SelectItem("es", "Español (Spanish)"));
-        results.add(new SelectItem("fr", "Français (French)"));
-        results.add(new SelectItem("it", "Italiano (Italian)"));
-        results.add(new SelectItem("nl", "Nederlands (Dutch)"));
-        return results;
-    }
+		locale = "en";
+	}
 
-    public Date getNow() {
-        return now;
-    }
+	public List<SelectItem> getLanguages() {
+		final List<SelectItem> results = new ArrayList<>();
+		results.add(new SelectItem("de", "Deutsch (German)"));
+		results.add(new SelectItem("en", "English"));
+		results.add(new SelectItem("es", "Español (Spanish)"));
+		results.add(new SelectItem("fr", "Français (French)"));
+		results.add(new SelectItem("it", "Italiano (Italian)"));
+		results.add(new SelectItem("nl", "Nederlands (Dutch)"));
+		return results;
+	}
 
-    public Date getFirstRelease() {
-        return firstRelease;
-    }
+	public Date getNow() {
+		return now;
+	}
 
-    public String getLocale() {
-        return locale;
-    }
+	public Date getFirstRelease() {
+		return firstRelease;
+	}
 
-    public void setLocale(String locale) {
-        this.locale = locale;
-    }
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(final String locale) {
+		this.locale = locale;
+	}
 
 }
