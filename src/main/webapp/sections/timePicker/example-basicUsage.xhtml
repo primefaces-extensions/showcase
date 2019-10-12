@@ -7,30 +7,45 @@
     <!-- EXAMPLE-SOURCE-START -->
 <p:messages id="messages"/>
 
-<h:panelGrid id="timePickerGrid" columns="6"
-    columnClasses="timePickerColumn1,timePickerColumn,timePickerColumn,timePickerColumn,timePickerColumn,timePickerColumn">
-    <h:outputText value="Inline mode"/>
-    <h:outputText value="Popup mode"/>
-    <h:outputText value="Spinner mode"/>
-    <h:outputText value="Customization"/>
-    <h:outputText value="Show popup by button"/>
-    <h:outputText value="Spinner with button"/>
-    
+<h:panelGroup id="timePickerGroup" layout="block">
+    <p>
+    Inline mode
     <pe:timePicker value="#{timePickerController.time1}" mode="inline" widgetVar="inlineTimeWidget"
                    label="Inline time picker"/>
+    </p>
+
+    <p>
+    Popup mode
     <pe:timePicker value="#{timePickerController.time2}" mode="popup" widgetVar="popupTimeWidget"
                    label="Popup time picker"/>
+    </p>
+
+    <p>
+    Spinner mode
     <pe:timePicker value="#{timePickerController.time3}" widgetVar="spinnerTimeWidget"
                    label="Spinner time picker"/>
+    </p>
+
+    <p>
+    Customization
     <pe:timePicker value="#{timePickerController.time4}" timeSeparator="-" startHours="8" endHours="20"
                    startMinutes="10" endMinutes="40" intervalMinutes="10" showCloseButton="true"
-                   showDeselectButton="true" showNowButton="true" rows="3" showPeriod="true" style="width:70px;"
+                   showDeselectButton="true" showNowButton="true" rows="3" showPeriod="true" size="8"
                    widgetVar="customTimeWidget" label="Custom time picker" required="true" requiredMessage="Customization is required!"/>
+    </p>
+
+    <p>
+    Show popup by button
     <pe:timePicker value="#{timePickerController.time5}" mode="popup" widgetVar="popupBtnTimeWidget"
                    showOn="button" label="Popup time picker with button"/>
+    </p>
+
+    <p>
+    Spinner with button
     <pe:timePicker value="#{timePickerController.time6}" mode="spinner" widgetVar="spinnerBtnTimeWidget"
-                   showOn="button" label="Spinner time picker with button"/>    
-</h:panelGrid>
+                   showOn="button" label="Spinner time picker with button"/>
+    </p>
+</h:panelGroup>
 
 <p:commandButton type="button" value="Disable time pickers" style="margin-top:10px;"
                  onclick="PF('inlineTimeWidget').disable();PF('popupTimeWidget').disable();
@@ -41,7 +56,7 @@
                      PF('spinnerTimeWidget').enable();PF('customTimeWidget').enable();
                      PF('popupBtnTimeWidget').enable();PF('spinnerBtnTimeWidget').enable();"/>
 <p:commandButton id="submitButton" value="Submit" actionListener="#{timePickerController.showTime}"
-                 process="@this timePickerGrid" update="messages timeDialog timePickerGrid"
+                 process="@this timePickerGroup" update="messages timeDialog timePickerGroup"
                  style="margin-top:10px;" icon="fa fa-save"/>
 
 <p:dialog id="timeDialog" header="Selected Values" visible="#{timePickerController.showTimeDialog}">
