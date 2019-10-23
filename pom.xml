@@ -26,7 +26,7 @@
         <primefaces-extensions.updated-components>sheet</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components/>
 
-        <myfaces.version>2.3.4</myfaces.version>
+        <myfaces.version>2.3.5</myfaces.version>
         <owb.version>2.0.12</owb.version>
         <jetty.version>9.4.20.v20190813</jetty.version>
         <omnifaces.version>2.7</omnifaces.version>
