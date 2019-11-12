@@ -37,19 +37,19 @@ public class ClipboardController implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
-	public final String getCopyInput() {
+	public String getCopyInput() {
 		return copyInput;
 	}
 
-	public final void setCopyInput(final String copyInput) {
+	public void setCopyInput(final String copyInput) {
 		this.copyInput = copyInput;
 	}
 
-	public final String getCutInput() {
+	public String getCutInput() {
 		return cutInput;
 	}
 
-	public final void setCutInput(final String cutInput) {
+	public void setCutInput(final String cutInput) {
 		this.cutInput = cutInput;
 	}
 
