@@ -88,6 +88,10 @@
 		<param-name>primefaces.CSP</param-name>
 		<param-value>true</param-value>
 	</context-param>
+	<context-param>
+		<param-name>primefaces.CSP_POLICY</param-name>
+		<param-value>script-src 'self' 'unsafe-inline' https://api.github.com</param-value>
+	</context-param>
 
 	<!-- Context parameters - OmniFaces -->
 	<context-param>
