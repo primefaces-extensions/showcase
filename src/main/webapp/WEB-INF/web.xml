@@ -83,15 +83,6 @@
 		<param-name>primefaces.MOVE_SCRIPTS_TO_BOTTOM</param-name>  
 		<param-value>true</param-value>  
 	</context-param>
-	<!-- enable content security policy -->
-	<context-param>
-		<param-name>primefaces.CSP</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	<context-param>
-		<param-name>primefaces.CSP_POLICY</param-name>
-		<param-value>script-src 'self' 'unsafe-inline' https: *.googleapis.com</param-value>
-	</context-param>
 
 	<!-- Context parameters - OmniFaces -->
 	<context-param>
