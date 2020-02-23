@@ -22,4 +22,12 @@
         </exception-handler-factory>
     </factory>
 
+    <render-kit>
+        <renderer>
+            <component-family>org.primefaces.component</component-family>
+            <renderer-type>org.primefaces.component.CommandButtonRenderer</renderer-type>
+            <renderer-class>org.primefaces.extensions.renderer.CommandButtonSingleClickRenderer</renderer-class>
+        </renderer>
+    </render-kit>
+
 </faces-config>
