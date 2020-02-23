@@ -4,30 +4,36 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:showcase="http://primefaces.org/ui/extensions/showcase">
 <ui:composition template="/templates/showcaseLayout.xhtml">
+
+    <f:metadata>
+        <f:viewAction action="#{userSettings.setCurrentThemeByName('nova-light')}"/>
+    </f:metadata>
+
     <ui:define name="centerContent">
         <f:facet name="header">
-            <h:outputText value="GitHub"/>
+            <h:outputText value="Floating Action Button"/>
         </f:facet>
-        <h:panelGroup layout="block" styleClass="centerContent">
-            Github component makes it simple to display any Github project in a nicely styled box.
-        </h:panelGroup>
+
+        <p>
+            Custom content allows you to open an overlay panel instead of a menu.
+        </p>
 
         <h:panelGroup layout="block" styleClass="centerExample">
-            <ui:include src="/sections/github/example-basicUsage.xhtml"/>
+            <ui:include src="/sections/fab/example-customContent.xhtml"/>
         </h:panelGroup>
 
         <ui:decorate template="/templates/oneTabDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/github/example-basicUsage.xhtml')}
+${showcase:getFileContent('/sections/fab/example-customContent.xhtml')}
             </ui:define>
         </ui:decorate>
     </ui:define>
     <ui:define name="useCases">
-        <ui:include src="/sections/github/useCasesChoice.xhtml"/>
+        <ui:include src="/sections/fab/useCasesChoice.xhtml"/>
     </ui:define>
     <ui:define name="docuTable">
         <ui:include src="/sections/shared/documentation.xhtml">
-            <ui:param name="tagName" value="github"/>
+            <ui:param name="tagName" value="fab"/>
         </ui:include>
     </ui:define>
 </ui:composition>

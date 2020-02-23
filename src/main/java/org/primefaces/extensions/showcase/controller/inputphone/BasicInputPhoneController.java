@@ -21,8 +21,8 @@ public class BasicInputPhoneController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String phoneNumber;
 
-	public void onCountrySelect(final SelectEvent event) {
-		final Country country = (Country) event.getObject();
+	public void onCountrySelect(final SelectEvent<Country> event) {
+		final Country country = event.getObject();
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_WARN, "Selected " + country.getName(), null));
 	}

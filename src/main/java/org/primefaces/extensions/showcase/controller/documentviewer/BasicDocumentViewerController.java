@@ -21,6 +21,7 @@ public class BasicDocumentViewerController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private String downloadFileName = "pfe-rocks.pdf";
 	private StreamedContent content;
 
 	public void onPrerender(final ComponentSystemEvent event) {
@@ -50,5 +51,13 @@ public class BasicDocumentViewerController implements Serializable {
 
 	public void setContent(final StreamedContent content) {
 		this.content = content;
+	}
+	
+	public String getDownloadFileName() {
+		return downloadFileName;
+	}
+
+	public void setDownloadFileName(final String downloadFileName) {
+		this.downloadFileName = downloadFileName;
 	}
 }

@@ -20,6 +20,9 @@ package org.primefaces.extensions.showcase.controller;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -35,10 +38,9 @@ import org.primefaces.extensions.event.CloseEvent;
 import org.primefaces.extensions.event.TimeSelectEvent;
 
 /**
- * TimePickerController
+ * TimePickerController using java.util.Date and java.time.LocalTime.
  *
- * @author ova / last modified by $Author$
- * @version $Revision$
+ * @author ova / last modified by Melloware
  */
 @Named
 @ViewScoped
@@ -48,9 +50,9 @@ public class TimePickerController implements Serializable {
 
 	private Date time1;
 	private Date time2;
-	private Date time3;
-	private Date time4;
-	private Date time5;
+	private LocalTime time3;
+	private LocalTime time4;
+	private LocalTime time5;
 	private Date time6;
 	private boolean showTime = false;
 	private String locale = "en_US";
@@ -66,9 +68,9 @@ public class TimePickerController implements Serializable {
 		calendar.set(Calendar.MINUTE, 40);
 		time2 = calendar.getTime();
 
-		time3 = new Date();
+		time3 = LocalTime.now();
 
-		time5 = new Date();
+		time5 = LocalTime.now();
 
 		time6 = new Date();
 	}
@@ -89,27 +91,27 @@ public class TimePickerController implements Serializable {
 		this.time2 = time2;
 	}
 
-	public Date getTime3() {
+	public LocalTime getTime3() {
 		return time3;
 	}
 
-	public void setTime3(final Date time3) {
+	public void setTime3(final LocalTime time3) {
 		this.time3 = time3;
 	}
 
-	public Date getTime4() {
+	public LocalTime getTime4() {
 		return time4;
 	}
 
-	public void setTime4(final Date time4) {
+	public void setTime4(final LocalTime time4) {
 		this.time4 = time4;
 	}
 
-	public Date getTime5() {
+	public LocalTime getTime5() {
 		return time5;
 	}
 
-	public void setTime5(final Date time5) {
+	public void setTime5(final LocalTime time5) {
 		this.time5 = time5;
 	}
 
@@ -175,7 +177,7 @@ public class TimePickerController implements Serializable {
 		return false;
 	}
 
-	public void timeSelectListener(final TimeSelectEvent timeSelectEvent) {
+	public void timeSelectListener(final TimeSelectEvent<Date> timeSelectEvent) {
 		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Time select fired",
 				"Selected time: " + getFormattedTime(timeSelectEvent.getTime(), "HH:mm"));
 		FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -198,9 +200,17 @@ public class TimePickerController implements Serializable {
 			return null;
 		}
 
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+		final SimpleDateFormat formatter = new SimpleDateFormat(format);
+		return formatter.format(time);
+	}
 
-		return simpleDateFormat.format(time);
+	private String getFormattedTime(final Temporal time, final String format) {
+		if (time == null) {
+			return null;
+		}
+
+		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+		return formatter.format(time);
 	}
 
 }

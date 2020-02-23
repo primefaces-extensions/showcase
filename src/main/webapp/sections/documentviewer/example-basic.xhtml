@@ -15,7 +15,7 @@
         <pe:documentViewer height="500" library="books" name="hood.pdf"/>
     </p:tab>
     <p:tab title="StreamedContent">
-        <pe:documentViewer height="500" value="#{basicDocumentViewerController.content}" download="extensions-rocks.pdf"/>
+        <pe:documentViewer height="500" value="#{basicDocumentViewerController.content}" download="#{basicDocumentViewerController.downloadFileName}"/>
     </p:tab>
 </p:tabView>
 <!-- EXAMPLE-SOURCE-END -->

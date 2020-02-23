@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.primefaces.extensions</groupId>
         <artifactId>master-pom</artifactId>
-        <version>7.0.3-SNAPSHOT</version>
+        <version>8.0.RC1</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -26,10 +26,10 @@
         <primefaces-extensions.updated-components>sheet</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components/>
 
-        <myfaces.version>2.3.4</myfaces.version>
+        <myfaces.version>2.3.6</myfaces.version>
         <owb.version>2.0.12</owb.version>
         <jetty.version>9.4.20.v20190813</jetty.version>
-        <omnifaces.version>2.7</omnifaces.version>
+        <omnifaces.version>2.7.2</omnifaces.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -161,14 +161,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>

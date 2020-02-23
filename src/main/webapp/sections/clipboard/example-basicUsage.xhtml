@@ -26,7 +26,7 @@
 	</h:panelGrid>
 
 	<h:panelGroup layout="block" style="text-align:left;margin:10px;">
-		<p:commandButton id="btnAjaxCopy" value="Ajax Copy" icon="fa fa-copy" />
+		<p:commandButton id="btnAjaxCopy" value="Ajax Copy" icon="fa fa-copy" onclick="return false;" />
 		<pe:clipboard id="clipAjax" trigger="btnAjaxCopy" action="copy" text="PrimeFaces Clipboard Rocks Ajax!">
 			<p:ajax event="success" listener="#{clipboardController.successListener}" />
 			<p:ajax event="error" listener="#{clipboardController.errorListener}" />
@@ -38,7 +38,7 @@
 			onerror="alert('Action: ' + this.action + ' FAILED!');" />
 	</h:panelGroup>
 
-	<h:panelGroup layout="block" style="text-align:left;margin:10px;">
+	<h:panelGroup  layout="block" style="text-align:left;margin:10px;">
 	    <h:outputText id="lblRightClick">Right click me to view the menu options!</h:outputText>
 	    
 		<p:contextMenu>
