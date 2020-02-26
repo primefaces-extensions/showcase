@@ -34,6 +34,22 @@
                         <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
                     </p:confirmDialog>
                 </p>
+                <h:panelGrid columns="2" id="buttonsAandB">
+                    <h:panelGroup>
+                        Press to render button B:<br/>
+                        <p:commandButton value="Button A"
+                                         action="#{rendererController.setButtonB(true)}"
+                                         rendered="#{not rendererController.buttonB}"
+                                         update="buttonsAandB"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        Press to render button A:<br/>
+                        <p:commandButton value="Button B"
+                                         action="#{rendererController.setButtonB(false)}"
+                                         rendered="#{rendererController.buttonB}"
+                                         update="buttonsAandB"/>
+                    </h:panelGroup>
+                </h:panelGrid>
             </h:panelGroup>
         </ui:define>
         <ui:define name="useCases">

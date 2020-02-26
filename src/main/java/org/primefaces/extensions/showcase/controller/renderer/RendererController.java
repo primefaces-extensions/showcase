@@ -14,8 +14,18 @@ public class RendererController implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private boolean buttonB;
+
     public void sleep(long millis) throws InterruptedException {
         Thread.sleep(millis);
+    }
+
+    public boolean isButtonB() {
+        return buttonB;
+    }
+
+    public void setButtonB(boolean buttonB) {
+        this.buttonB = buttonB;
     }
 
 }
