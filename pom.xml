@@ -22,7 +22,7 @@
 
     <properties>
         <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-        <primefaces-extensions.new-components>inputphone;timeago;fab;badge;legend</primefaces-extensions.new-components>
+        <primefaces-extensions.new-components>renderers;inputphone;timeago;fab;badge;legend</primefaces-extensions.new-components>
         <primefaces-extensions.updated-components>sheet</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components/>
 
