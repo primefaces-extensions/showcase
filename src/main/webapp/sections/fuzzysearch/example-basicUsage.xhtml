@@ -1,0 +1,20 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+   
+<p:messages id="messages">
+   <p:autoUpdate />
+</p:messages>
+
+<!-- EXAMPLE-SOURCE-START -->
+<h:panelGrid columns="2">   
+        <h:outputText value="Basic Usage"/>   
+        <pe:fuzzySearch value="#{fuzzySearchController.items}" var="item">
+            <h:outputText value="#{item.name}" />
+        </pe:fuzzySearch>
+</h:panelGrid>
+<!-- EXAMPLE-SOURCE-END -->
+</ui:composition>
