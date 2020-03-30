@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.primefaces.event.SelectEvent;
 
 @Named
 @ViewScoped
@@ -25,6 +28,13 @@ public class FuzzySearchController implements Serializable {
         items.add(new FuzzySearchItem("fileName3", "name3"));
         items.add(new FuzzySearchItem("fileName4", "name4"));
         items.add(new FuzzySearchItem("fileName5", "name5"));
+    }
+
+    public void onSelect(SelectEvent<FuzzySearchItem> event) {
+        FuzzySearchItem item = event.getObject();
+        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Select fired",
+                "Item is: " + item.getName());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public List<FuzzySearchItem> getItems() {

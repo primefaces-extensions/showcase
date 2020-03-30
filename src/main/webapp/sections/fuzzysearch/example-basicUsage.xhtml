@@ -12,7 +12,8 @@
 <!-- EXAMPLE-SOURCE-START -->
 <h:panelGrid columns="2">   
         <h:outputText value="Basic Usage"/>   
-        <pe:fuzzySearch value="#{fuzzySearchController.items}" var="item">
+        <pe:fuzzySearch value="#{fuzzySearchController.items}" var="item" resultStyleClass="resultStyleClass1234" resultStyle="resultStyle1234">
+            <p:ajax event="select" listener="#{fuzzySearchController.onSelect}" />
             <h:outputText value="#{item.name}" />
         </pe:fuzzySearch>
 </h:panelGrid>
