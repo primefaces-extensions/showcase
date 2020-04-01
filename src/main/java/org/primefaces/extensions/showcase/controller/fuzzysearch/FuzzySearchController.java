@@ -36,8 +36,8 @@ public class FuzzySearchController implements Serializable {
         themes.add(new Theme("Omega", "omega"));
     }
 
-    public void onSelect(SelectEvent<Theme> event) {
-        Theme theme = event.getObject();
+    public void valueSelectTheme(AjaxBehaviorEvent event) {
+        Theme theme = (Theme) ((UIOutput) event.getSource()).getValue();
         final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Select fired",
                 "Theme is: " + theme.getName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -45,7 +45,7 @@ public class FuzzySearchController implements Serializable {
 
     public void onSubmit(ActionEvent actionEvent) {
         final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Select fired",
-                "Item is: " + selectedTheme.getName());
+                "Theme is: " + selectedTheme.getName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 

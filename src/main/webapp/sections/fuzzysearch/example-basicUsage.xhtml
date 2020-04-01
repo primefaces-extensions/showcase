@@ -1,29 +1,29 @@
 <ui:composition
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui"
-        xmlns:pe="http://primefaces.org/ui/extensions"
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-   
-<p:messages id="messages">
-   <p:autoUpdate />
-</p:messages>
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<!-- EXAMPLE-SOURCE-START -->
+    <p:messages id="messages">
+        <p:autoUpdate />
+    </p:messages>
 
-<h:panelGrid columns="2">
-    <h:outputText value="Basic Usage"/>
-    <pe:fuzzySearch value="#{fuzzySearchController.selectedTheme}" 
-                    placeholder="Search theme" listItemsAtTheBeginning="true"
-                    resultStyleClass="resultStyleClass1234" resultStyle="resultStyle1234"
-                    converter="themeConverter">
-        <p:ajax event="select" listener="#{fuzzySearchController.onSelect}" />
-        <f:selectItems value="#{fuzzySearchController.themes}" var="theme" itemLabel="#{theme.name}" itemValue="#{theme}" />
-    </pe:fuzzySearch>
-    <p:commandButton value="Submit" actionListener="#{fuzzySearchController.onSubmit}" update="messages" icon="pi pi-check" />
-    <p:spacer />
-</h:panelGrid>
+    <!-- EXAMPLE-SOURCE-START -->
 
-<!-- EXAMPLE-SOURCE-END -->
+    <h:panelGrid columns="2">
+        <h:outputText value="Basic Usage"/>
+        <pe:fuzzySearch value="#{fuzzySearchController.selectedTheme}" 
+                        placeholder="Search theme" listItemsAtTheBeginning="true"
+                        resultStyleClass="resultStyleClass1234" resultStyle="resultStyle1234"
+                        converter="themeConverter">
+            <p:ajax event="select" listener="#{fuzzySearchController.valueSelectTheme}"/>
+            <f:selectItems value="#{fuzzySearchController.themes}" var="theme" itemLabel="#{theme.name}" itemValue="#{theme}" />
+        </pe:fuzzySearch>
+        <p:commandButton value="Submit" actionListener="#{fuzzySearchController.onSubmit}" update="messages" icon="pi pi-check" />
+        <p:spacer />
+    </h:panelGrid>
+
+    <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
