@@ -1,16 +1,18 @@
 package org.primefaces.extensions.showcase.controller.fuzzysearch;
 
-import org.primefaces.extensions.showcase.model.fuzzysearch.FuzzySearchItem;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.extensions.showcase.model.system.Theme;
 
 @Named
 @ViewScoped
@@ -18,27 +20,49 @@ public class FuzzySearchController implements Serializable {
 
     private static final long serialVersionUID = 20120224L;
 
-    private List<FuzzySearchItem> items;
+    private List<Theme> themes;
+    private Theme selectedTheme;
 
     @PostConstruct
     public void init() {
-        items = new ArrayList<>();
-        items.add(new FuzzySearchItem("fileName1", "name1"));
-        items.add(new FuzzySearchItem("fileName2", "name2"));
-        items.add(new FuzzySearchItem("fileName3", "name3"));
-        items.add(new FuzzySearchItem("fileName4", "name4"));
-        items.add(new FuzzySearchItem("fileName5", "name5"));
+        themes = new ArrayList<>();
+        themes.add(new Theme("Nova-Light", "nova-light"));
+        themes.add(new Theme("Nova-Dark", "nova-dark"));
+        themes.add(new Theme("Nova-Colored", "nova-colored"));
+        themes.add(new Theme("Luna-Blue", "luna-blue"));
+        themes.add(new Theme("Luna-Amber", "luna-amber"));
+        themes.add(new Theme("Luna-Green", "luna-green"));
+        themes.add(new Theme("Luna-Pink", "luna-pink"));
+        themes.add(new Theme("Omega", "omega"));
     }
 
-    public void onSelect(SelectEvent<FuzzySearchItem> event) {
-        FuzzySearchItem item = event.getObject();
+    public void onSelect(SelectEvent<Theme> event) {
+        Theme theme = event.getObject();
         final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Select fired",
-                "Item is: " + item.getName());
+                "Theme is: " + theme.getName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public List<FuzzySearchItem> getItems() {
-        return items;
+    public void onSubmit(ActionEvent actionEvent) {
+        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Select fired",
+                "Item is: " + selectedTheme.getName());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public List<Theme> getThemes() {
+        return themes;
+    }
+
+    public void setThemes(List<Theme> themes) {
+        this.themes = themes;
+    }
+
+    public Theme getSelectedTheme() {
+        return selectedTheme;
+    }
+
+    public void setSelectedTheme(Theme selectedTheme) {
+        this.selectedTheme = selectedTheme;
     }
 
 }
