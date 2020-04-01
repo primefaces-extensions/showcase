@@ -289,8 +289,8 @@
 
         <!-- Exporter Dependencies iText and POI -->
         <dependency>
-            <groupId>com.lowagie</groupId>
-            <artifactId>itext</artifactId>
+            <groupId>com.github.librepdf</groupId>
+            <artifactId>openpdf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
