@@ -6,24 +6,24 @@
     xmlns:pe="http://primefaces.org/ui/extensions"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <p:messages id="messages">
-        <p:autoUpdate />
-    </p:messages>
+<p:messages id="messages">
+    <p:autoUpdate />
+</p:messages>
 
-    <!-- EXAMPLE-SOURCE-START -->
+<!-- EXAMPLE-SOURCE-START -->
 
-    <h:panelGrid columns="2">
-        <h:outputText value="Basic Usage"/>
-        <pe:fuzzySearch value="#{fuzzySearchController.selectedTheme}" 
-                        placeholder="Search theme" listItemsAtTheBeginning="true"
-                        resultStyleClass="resultStyleClass1234" resultStyle="resultStyle1234"
-                        converter="themeConverter">
-            <p:ajax event="select" listener="#{fuzzySearchController.valueSelectTheme}"/>
-            <f:selectItems value="#{fuzzySearchController.themes}" var="theme" itemLabel="#{theme.name}" itemValue="#{theme}" />
-        </pe:fuzzySearch>
-        <p:commandButton value="Submit" actionListener="#{fuzzySearchController.onSubmit}" update="messages" icon="pi pi-check" />
-        <p:spacer />
-    </h:panelGrid>
+<h:panelGrid columns="2">
+    <h:outputText value="Basic Usage"/>
+    <pe:fuzzySearch value="#{fuzzySearchController.selectedTheme}" 
+                    placeholder="Search theme" listItemsAtTheBeginning="true"
+                    resultStyleClass="resultStyleClass1234" resultStyle="resultStyle1234"
+                    converter="themeConverter">
+        <p:ajax event="itemSelect" listener="#{fuzzySearchController.onSelect}" update="messages" />
+        <f:selectItems value="#{fuzzySearchController.themes}" var="theme" itemLabel="#{theme.name}" itemValue="#{theme}" />
+    </pe:fuzzySearch>
+    <p:commandButton value="Submit" actionListener="#{fuzzySearchController.onSubmit}" update="messages" icon="pi pi-check" />
+    <p:spacer />
+</h:panelGrid>
 
-    <!-- EXAMPLE-SOURCE-END -->
+<!-- EXAMPLE-SOURCE-END -->
 </ui:composition>

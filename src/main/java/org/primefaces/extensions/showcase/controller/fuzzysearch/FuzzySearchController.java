@@ -11,7 +11,6 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import org.primefaces.event.SelectEvent;
 import org.primefaces.extensions.showcase.model.system.Theme;
 
 @Named
@@ -36,7 +35,7 @@ public class FuzzySearchController implements Serializable {
         themes.add(new Theme("Omega", "omega"));
     }
 
-    public void valueSelectTheme(AjaxBehaviorEvent event) {
+    public void onSelect(AjaxBehaviorEvent event) {
         Theme theme = (Theme) ((UIOutput) event.getSource()).getValue();
         final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Select fired",
                 "Theme is: " + theme.getName());
