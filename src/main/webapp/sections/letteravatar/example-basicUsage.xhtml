@@ -12,16 +12,19 @@
 <!-- EXAMPLE-SOURCE-START -->
 <h:panelGrid columns="2">   
         <h:outputText value="Basic Usage"/>
-        <pe:letterAvatar value="PrimeFaces Extensions" height="150" width="150" />
+        <pe:letterAvatar value="PrimeFaces Extensions" />
  
         <h:outputText value="Rounded Corners"/>
-        <pe:letterAvatar value="Optimus Prime" height="150" width="150" rounded="true" />
+        <pe:letterAvatar value="Optimus Prime" rounded="true" />
 
         <h:outputText value="Name Only"/>
-        <pe:letterAvatar value="PrimeFaces" height="150" width="150" rounded="true" />
+        <pe:letterAvatar value="PrimeFaces" rounded="true" />
 
         <h:outputText value="Long Name"/>
-        <pe:letterAvatar value="Johann Chrysostom Wolfgang Amadeus Mozart" height="150" width="150" rounded="true" />
+        <pe:letterAvatar value="Johann Chrysostom Wolfgang Amadeus Mozart" rounded="true" />
+
+        <h:outputText value="Custom Size and Colors"/>
+        <pe:letterAvatar value="PrimeFaces Extensions" size="5rem" backgroundColor="#000" color="#ccc" />
 </h:panelGrid>
 <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
