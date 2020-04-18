@@ -28,6 +28,13 @@
 		<p:commandButton value="Command Button" id="btnCommand">
 			<pe:badge content="99+" color="orange" widgetVar="badgeCommand" />
 		</p:commandButton>
+		
+		<p:outputLabel value="Letter Avatar:" />
+		<p:outputPanel>
+		    <pe:letterAvatar value="PrimeFaces Extensions" backgroundColor="#000" color="#ccc"/>
+		    <pe:badge content="8" for="@previous" color="deeppink" />
+		</p:outputPanel>
+		
 	</p:panelGrid>
 	<!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
