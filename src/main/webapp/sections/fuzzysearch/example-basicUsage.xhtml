@@ -6,24 +6,36 @@
     xmlns:pe="http://primefaces.org/ui/extensions"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<p:messages id="messages">
+<p:growl id="messages">
     <p:autoUpdate />
-</p:messages>
+</p:growl>
 
 <!-- EXAMPLE-SOURCE-START -->
+<style>
+.ui-fuzzysearch-item b {
+    color: red;
+}
+</style>
 
 <h:panelGrid columns="2">
-    <h:outputText value="Basic Usage"/>
-    <pe:fuzzySearch value="#{fuzzySearchController.selectedTheme}" 
+    <p:outputLabel value="Themes" for="@next"/>
+    <pe:fuzzySearch id="txtTheme"
+                    value="#{fuzzySearchController.selectedTheme}" 
                     label="Theme"
                     placeholder="Search theme" listItemsAtTheBeginning="true"
-                    resultStyleClass="resultStyleClass1234" resultStyle="resultStyle1234"
                     converter="themeConverter">
         <p:ajax event="change" listener="#{fuzzySearchController.onChange}" />
         <f:selectItems value="#{fuzzySearchController.themes}" var="theme" itemLabel="#{theme.name}" itemValue="#{theme}" />
     </pe:fuzzySearch>
-    <p:commandButton value="Submit" actionListener="#{fuzzySearchController.onSubmit}" update="messages" icon="pi pi-check" />
     <p:spacer />
+    <p:spacer />
+    <p:outputLabel value="TimeZones" for="@next"/>
+    <pe:fuzzySearch id="txtTimeZone" value="#{fuzzySearchController.selectedTimezone}" 
+                    placeholder="Search timezones">
+        <f:selectItems value="#{fuzzySearchController.timezones}" var="timezone" itemLabel="#{timezone}" itemValue="#{timezone}" />
+    </pe:fuzzySearch>
+    <p:spacer />
+    <p:commandButton value="Submit" actionListener="#{fuzzySearchController.onSubmit}" update="messages" process="@form" icon="pi pi-check" />
 </h:panelGrid>
 
 <!-- EXAMPLE-SOURCE-END -->
