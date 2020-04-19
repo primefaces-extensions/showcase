@@ -23,6 +23,21 @@
         <h:outputText value="Long Name"/>
         <pe:letterAvatar value="Johann Chrysostom Wolfgang Amadeus Mozart" rounded="true" />
 
+        <h:outputText value="Child Image"/>
+        <pe:letterAvatar value="Nature" rounded="true">
+            <h:graphicImage library="images" name="nature7.jpg" alt="Nature"/>
+        </pe:letterAvatar>
+
+        <h:outputText value="Badge"/>
+        <pe:letterAvatar value="Optimus Prime" rounded="true">
+            <pe:badge content="1"/>
+        </pe:letterAvatar>
+
+        <h:outputText value="Command link"/>
+        <p:commandLink>
+            <pe:letterAvatar value="PrimeFaces" rounded="true" />
+        </p:commandLink>
+
         <h:outputText value="Custom Size and Colors"/>
         <pe:letterAvatar value="PrimeFaces Extensions" size="5rem" backgroundColor="#000" color="#ccc" />
 </h:panelGrid>
