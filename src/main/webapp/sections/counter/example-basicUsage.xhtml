@@ -4,27 +4,30 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
-   
-<p:messages id="messages">
-   <p:autoUpdate />
-</p:messages>
 
-<!-- EXAMPLE-SOURCE-START -->
-<h:panelGrid columns="2">
-    <h:outputText value="Basic Usage"/>
-    <pe:counter end="9000" />
-    <h:outputText value="Start Value"/>
-    <pe:counter end="9000" start="1000" />
-    <h:outputText value="Count Down"/>
-    <pe:counter start="9000" end="1000" />
-    <h:outputText value="Decimal Places"/>
-    <pe:counter end="9000" decimals="2" />
-    <h:outputText value="Seperator"/>
-    <pe:counter end="9000" separator="." decimals="2" decimal="," />
-    <h:outputText value="Prefix Suffix"/>
-    <pe:counter end="9000" prefix="USD" suffix="$" />
-    <h:outputText value="Duration"/>
-    <pe:counter end="9000" duration="10" oncountercomplete="alert('COMPLETED')" />
-</h:panelGrid>
-<!-- EXAMPLE-SOURCE-END -->
+    <p:messages id="messages" showSummary="true" showDetail="true">
+        <p:autoUpdate/>
+    </p:messages>
+
+    <!-- EXAMPLE-SOURCE-START -->
+    <h:panelGrid columns="2">
+        <h:outputText value="Basic Usage"/>
+        <pe:counter end="9000"/>
+        <h:outputText value="Start Value"/>
+        <pe:counter end="9000" start="1000"/>
+        <h:outputText value="Count Down"/>
+        <pe:counter start="9000" end="1000"/>
+        <h:outputText value="Decimal Places"/>
+        <pe:counter end="9000" decimals="2"/>
+        <h:outputText value="Seperator"/>
+        <pe:counter end="9000" separator="." decimals="2" decimal=","/>
+        <h:outputText value="Prefix Suffix"/>
+        <pe:counter end="9000" prefix="USD" suffix="$"/>
+        <h:outputText value="AJAX and Events"/>
+        <pe:counter start="0" end="9000" duration="6" oncountercomplete="alert('COMPLETED')" autoStart="true">
+            <p:ajax event="start" listener="#{counterController.startListener}"/>
+            <p:ajax event="end" listener="#{counterController.endListener}"/>
+        </pe:counter>
+    </h:panelGrid>
+    <!-- EXAMPLE-SOURCE-END -->
 </ui:composition>
