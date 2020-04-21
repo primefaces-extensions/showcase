@@ -18,34 +18,38 @@
 
 package org.primefaces.extensions.showcase.util;
 
-import javax.faces.context.FacesContext;
 import java.io.InputStream;
+
+import javax.faces.context.FacesContext;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * ShowcaseUtil
  *
- * @author  Pavol Slany / last modified by $Author$
+ * @author Pavol Slany / last modified by $Author$
  * @version $Revision$
  */
 public class ShowcaseUtil {
-	public static String getFileContent(final String fullPathToFile) {
-		try {
-			// Finding in WEB ...
-			FacesContext fc = FacesContext.getCurrentInstance();
-			InputStream is = fc.getExternalContext().getResourceAsStream(fullPathToFile);
-			if (is != null) {
-				return FileContentMarkerUtil.readFileContent(fullPathToFile, is);
-			}
-
-			// Finding in ClassPath ...
-			is = ShowcaseUtil.class.getResourceAsStream(fullPathToFile);
-			if (is != null) {
+    public static String getFileContent(final String fullPathToFile) {
+        try {
+            // Finding in WEB ...
+            final FacesContext fc = FacesContext.getCurrentInstance();
+            InputStream is = fc.getExternalContext().getResourceAsStream(fullPathToFile);
+            if (is != null) {
                 return FileContentMarkerUtil.readFileContent(fullPathToFile, is);
-			}
-		} catch (Exception e) {
-			throw new IllegalStateException("Internal error: file " + fullPathToFile + " could not be read", e);
-		}
+            }
 
-		return "";
-	}
+            // Finding in ClassPath ...
+            is = ShowcaseUtil.class.getResourceAsStream(fullPathToFile);
+            if (is != null) {
+                return FileContentMarkerUtil.readFileContent(fullPathToFile, is);
+            }
+        }
+        catch (final Exception e) {
+            throw new IllegalStateException("Internal error: file " + fullPathToFile + " could not be read", e);
+        }
+
+        return StringUtils.EMPTY;
+    }
 }
