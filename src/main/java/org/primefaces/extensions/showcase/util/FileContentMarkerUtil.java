@@ -22,114 +22,117 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * FileContentMarkerUtil
  *
- * @author  Pavol Slany / last modified by $Author$
+ * @author Pavol Slany / last modified by $Author$
  * @version $Revision$
- * @since   0.5
+ * @since 0.5
  */
 public class FileContentMarkerUtil {
 
-	private static FileContentSettings javaFileSettings =
-	    new FileContentSettings().setStartMarkers("@ManagedBean", "@RequestScoped", "@ViewScoped", "@SessionScoped",
-	                                              "@FacesConverter", " class ", " enum ").setShowLineWithMarker(true);
+    private static final FileContentSettings javaFileSettings =
+                new FileContentSettings().setStartMarkers("@Named", "@RequestScoped", "@ViewScoped", "@SessionScoped",
+                            "@FacesConverter", " class ", " enum ").setShowLineWithMarker(true);
 
-	private static FileContentSettings xhtmlFileSettings =
-	    new FileContentSettings().setStartMarkers("EXAMPLE_SOURCE_START", "EXAMPLE-SOURCE-START")
-	                             .setEndMarkers("EXAMPLE_SOURCE_END", "EXAMPLE-SOURCE-END").setShowLineWithMarker(false);
+    private static final FileContentSettings xhtmlFileSettings =
+                new FileContentSettings().setStartMarkers("EXAMPLE_SOURCE_START", "EXAMPLE-SOURCE-START")
+                            .setEndMarkers("EXAMPLE_SOURCE_END", "EXAMPLE-SOURCE-END").setShowLineWithMarker(false);
 
-	public static String readFileContent(String fileName, InputStream is) {
-		try {
-			if (StringUtils.endsWithIgnoreCase(fileName, ".java")) {
-				return readFileContent(is, javaFileSettings);
-			}
+    public static String readFileContent(final String fileName, final InputStream is) {
+        try {
+            if (StringUtils.endsWithIgnoreCase(fileName, ".java")) {
+                return readFileContent(is, javaFileSettings);
+            }
 
-			if (StringUtils.endsWithIgnoreCase(fileName, ".xhtml")) {
-				return readFileContent(is, xhtmlFileSettings);
-			}
+            if (StringUtils.endsWithIgnoreCase(fileName, ".xhtml")) {
+                return readFileContent(is, xhtmlFileSettings);
+            }
 
-			// Show all files
-			return readFileContent(is, new FileContentSettings());
-		} catch (Exception e) {
-			throw new IllegalStateException("Internal error: file " + fileName + " could not be read", e);
-		}
-	}
+            // Show all files
+            return readFileContent(is, new FileContentSettings());
+        }
+        catch (final Exception e) {
+            throw new IllegalStateException("Internal error: file " + fileName + " could not be read", e);
+        }
+    }
 
-	private static String readFileContent(InputStream inputStream, FileContentSettings settings) throws IOException {
-		if (inputStream == null) {
-			return null;
-		}
+    private static String readFileContent(final InputStream inputStream, final FileContentSettings settings) throws IOException {
+        if (inputStream == null) {
+            return null;
+        }
 
-		StringBuilder sbBeforeStartMarker = new StringBuilder();
-		StringBuilder sbBeforeEndMarker = new StringBuilder();
-		String markerLineStart = null;
-		String markerLineEnd = null;
+        final StringBuilder sbBeforeStartMarker = new StringBuilder(5000);
+        final StringBuilder sbBeforeEndMarker = new StringBuilder(5000);
+        String markerLineStart = null;
+        String markerLineEnd = null;
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-		String line;
+        final BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        String line;
 
-		StringBuilder sb = sbBeforeStartMarker;
-		while ((line = br.readLine()) != null) {
-			// if is before first start marker
-			if (markerLineStart == null && containMarker(line, settings.getStartMarkers())) {
-				markerLineStart = "\n" + line;
-				sb = sbBeforeEndMarker;
+        StringBuilder sb = sbBeforeStartMarker;
+        while ((line = br.readLine()) != null) {
+            // if is before first start marker
+            if (markerLineStart == null && containMarker(line, settings.getStartMarkers())) {
+                markerLineStart = IOUtils.LINE_SEPARATOR_WINDOWS + line;
+                sb = sbBeforeEndMarker;
 
-				continue;
-			}
+                continue;
+            }
 
-			// if is before first end marker
-			if (containMarker(line, settings.getEndMarkers())) {
-				markerLineEnd = "\n" + line;
+            // if is before first end marker
+            if (containMarker(line, settings.getEndMarkers())) {
+                markerLineEnd = IOUtils.LINE_SEPARATOR_WINDOWS + line;
 
-				break; // other content file is ignored
-			}
+                break; // other content file is ignored
+            }
 
-			sb.append("\n");
-			sb.append(line);
-		}
+            sb.append(IOUtils.LINE_SEPARATOR_WINDOWS);
+            sb.append(line);
+        }
 
-		// if both (START and END) markers are in file
-		if (markerLineStart != null && markerLineEnd != null) {
-			if (settings.isShowLineWithMarker()) {
-				sbBeforeEndMarker.append(markerLineEnd);
-				sbBeforeEndMarker.insert(0, markerLineStart);
-			}
+        // if both (START and END) markers are in file
+        if (markerLineStart != null && markerLineEnd != null) {
+            if (settings.isShowLineWithMarker()) {
+                sbBeforeEndMarker.append(markerLineEnd);
+                sbBeforeEndMarker.insert(0, markerLineStart);
+            }
 
-			return sbBeforeEndMarker.toString().trim();
-		}
+            return sbBeforeEndMarker.toString().trim();
+        }
 
-		// if only START marker is in file
-		if (markerLineStart != null) {
-			if (settings.isShowLineWithMarker()) {
-				sbBeforeEndMarker.insert(0, markerLineStart);
-			}
+        // if only START marker is in file
+        if (markerLineStart != null) {
+            if (settings.isShowLineWithMarker()) {
+                sbBeforeEndMarker.insert(0, markerLineStart);
+            }
 
-			return sbBeforeEndMarker.toString().trim();
-		}
+            return sbBeforeEndMarker.toString().trim();
+        }
 
-		// if only END marker is in file
-		if (settings.isShowLineWithMarker()) {
-			sbBeforeStartMarker.append(markerLineEnd);
-		}
+        // if only END marker is in file
+        if (settings.isShowLineWithMarker()) {
+            sbBeforeStartMarker.append(markerLineEnd);
+        }
 
-		return sbBeforeStartMarker.toString().trim();
-	}
+        return sbBeforeStartMarker.toString().trim();
+    }
 
-	private static boolean containMarker(String line, String[] markers) {
-		for (String marker : markers) {
-			if (StringUtils.isEmpty(marker)) {
-				continue;
-			}
+    private static boolean containMarker(final String line, final String[] markers) {
+        for (final String marker : markers) {
+            if (StringUtils.isEmpty(marker)) {
+                continue;
+            }
 
-			if (StringUtils.contains(line, marker)) {
-				return true;
-			}
-		}
+            if (StringUtils.contains(line, marker)) {
+                return true;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 }
