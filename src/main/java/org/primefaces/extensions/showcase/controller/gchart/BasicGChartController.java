@@ -1,10 +1,7 @@
 package org.primefaces.extensions.showcase.controller.gchart;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -38,8 +35,17 @@ public class BasicGChartController implements Serializable {
 
     @PostConstruct
     public void generateModel() {
+        // tooltip use values
+        final HashMap<String, String> tooltip = new HashMap<>();
+        tooltip.put("text", "value");
+
+        // color each slice
+        final List<String> colors = Arrays.asList("#F39C12", "#7D3C98");
+
         chartModel = new GChartModelBuilder().setChartType(getChartType())
-                    .addOption("colors", Arrays.asList("#F39C12", "#7D3C98"))
+                    .addOption("colors", colors)
+                    .addOption("tooltip", tooltip)
+                    .addOption("pieSliceText", "percentage")
                     .addColumns(new DefaultGChartModelColumn("Topping", "string"),
                                 new DefaultGChartModelColumn("Slices", "number"))
                     .addRow("Mushrooms", mushrooms).addRow("Onions", onions).build();
