@@ -19,38 +19,46 @@ import org.primefaces.extensions.event.ClipboardSuccessEvent;
 @ViewScoped
 public class ClipboardController implements Serializable {
 
-	private static final long serialVersionUID = 20120224L;
+    private static final long serialVersionUID = 20120224L;
 
-	private String copyInput = "Test Copy!";
-	private String cutInput = "Cut Me!";
+    private String copyInput = "Test Copy!";
+    private String cutInput = "Cut Me!";
+    private String lineBreaks = "PrimeFaces Clipboard\nRocks Ajax!";
 
-	public void successListener(final ClipboardSuccessEvent successEvent) {
-		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-				"Component id: " + successEvent.getComponent().getId() + " Action: " + successEvent.getAction()
-						+ " Text: " + successEvent.getText());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
+    public void successListener(final ClipboardSuccessEvent successEvent) {
+        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+                    "Component id: " + successEvent.getComponent().getId() + " Action: " + successEvent.getAction()
+                                + " Text: " + successEvent.getText());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
-	public void errorListener(final ClipboardErrorEvent errorEvent) {
-		final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-				"Component id: " + errorEvent.getComponent().getId() + " Action: " + errorEvent.getAction());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
+    public void errorListener(final ClipboardErrorEvent errorEvent) {
+        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                    "Component id: " + errorEvent.getComponent().getId() + " Action: " + errorEvent.getAction());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
-	public String getCopyInput() {
-		return copyInput;
-	}
+    public String getCopyInput() {
+        return copyInput;
+    }
 
-	public void setCopyInput(final String copyInput) {
-		this.copyInput = copyInput;
-	}
+    public void setCopyInput(final String copyInput) {
+        this.copyInput = copyInput;
+    }
 
-	public String getCutInput() {
-		return cutInput;
-	}
+    public String getCutInput() {
+        return cutInput;
+    }
 
-	public void setCutInput(final String cutInput) {
-		this.cutInput = cutInput;
-	}
+    public void setCutInput(final String cutInput) {
+        this.cutInput = cutInput;
+    }
 
+    public String getLineBreaks() {
+        return lineBreaks;
+    }
+
+    public void setLineBreaks(final String lineBreaks) {
+        this.lineBreaks = lineBreaks;
+    }
 }

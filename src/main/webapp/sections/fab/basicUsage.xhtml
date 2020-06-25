@@ -27,9 +27,12 @@
             <ui:include src="/sections/fab/example-basicUsage.xhtml"/>
         </h:panelGroup>
 
-        <ui:decorate template="/templates/oneTabDecorator.xhtml">
+        <ui:decorate template="/templates/twoTabsDecorator.xhtml">
             <ui:define name="contentTab1">
-${showcase:getFileContent('/sections/fab/example-basicUsage.xhtml')}
+                ${showcase:getFileContent('/sections/fab/example-basicUsage.xhtml')}
+            </ui:define>
+            <ui:define name="contentTab2">
+                ${showcase:getFileContent('/org/primefaces/extensions/showcase/controller/FabController.java')}
             </ui:define>
         </ui:decorate>
     </ui:define>
