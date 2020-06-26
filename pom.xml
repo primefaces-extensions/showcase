@@ -11,7 +11,7 @@
     <packaging>war</packaging>
     <name>PrimeFaces Extensions Showcase</name>
     <description>
-		<![CDATA[PrimeFaces Extensions Project Showcase for Maven.]]>
+        <![CDATA[PrimeFaces Extensions Project Showcase for Maven.]]>
     </description>
 
     <scm>
@@ -22,7 +22,8 @@
 
     <properties>
         <primefaces-extensions.core.version>${project.version}</primefaces-extensions.core.version>
-        <primefaces-extensions.new-components>renderers;inputphone;timeago;fab;badge;legend;creditcard;fuzzysearch;counter</primefaces-extensions.new-components>
+        <primefaces-extensions.new-components>renderers;inputphone;timeago;fab;badge;legend;creditcard;fuzzysearch;counter
+        </primefaces-extensions.new-components>
         <primefaces-extensions.updated-components>sheet;letteravatar</primefaces-extensions.updated-components>
         <primefaces-extensions.deprecated-components/>
 
@@ -239,7 +240,7 @@
             <version>2.1</version>
             <scope>provided</scope>
         </dependency>
-        
+
         <!-- Bean Validation -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -268,7 +269,7 @@
             <artifactId>openwebbeans-el22</artifactId>
             <version>${owb.version}</version>
         </dependency>
-        
+
         <!-- PrimeFaces -->
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
@@ -287,6 +288,16 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- GChart and Layout needs GSON-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <!-- InputPhone -->
+        <dependency>
+            <groupId>com.googlecode.libphonenumber</groupId>
+            <artifactId>libphonenumber</artifactId>
+        </dependency>
         <!-- Exporter Dependencies iText and POI -->
         <dependency>
             <groupId>com.github.librepdf</groupId>
