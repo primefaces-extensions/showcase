@@ -22,8 +22,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -34,6 +32,8 @@ import org.apache.commons.lang3.StringUtils;
  * @since 0.5
  */
 public class FileContentMarkerUtil {
+
+    private static final String LINE_SEPARATOR_WINDOWS = "\r\n";
 
     private static final FileContentSettings javaFileSettings =
                 new FileContentSettings().setStartMarkers("@Named", "@RequestScoped", "@ViewScoped", "@SessionScoped",
@@ -78,7 +78,7 @@ public class FileContentMarkerUtil {
         while ((line = br.readLine()) != null) {
             // if is before first start marker
             if (markerLineStart == null && containMarker(line, settings.getStartMarkers())) {
-                markerLineStart = IOUtils.LINE_SEPARATOR_WINDOWS + line;
+                markerLineStart = LINE_SEPARATOR_WINDOWS + line;
                 sb = sbBeforeEndMarker;
 
                 continue;
@@ -86,12 +86,12 @@ public class FileContentMarkerUtil {
 
             // if is before first end marker
             if (containMarker(line, settings.getEndMarkers())) {
-                markerLineEnd = IOUtils.LINE_SEPARATOR_WINDOWS + line;
+                markerLineEnd = LINE_SEPARATOR_WINDOWS + line;
 
                 break; // other content file is ignored
             }
 
-            sb.append(IOUtils.LINE_SEPARATOR_WINDOWS);
+            sb.append(LINE_SEPARATOR_WINDOWS);
             sb.append(line);
         }
 
